@@ -16,6 +16,12 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>edu.lu.uni</groupId>
+			<artifactId>simple-utils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<!-- akka -->
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
