@@ -49,6 +49,18 @@ public class AkkaMiner {
 				if (revFile.getName().endsWith(".java")) {
 					File prevFile = new File(projectFolder + "/prevFiles/prev_" + revFile.getName());// previous file
 					File diffentryFile = new File(projectFolder + "/DiffEntries/" + revFile.getName().replace(".java", ".txt")); // DiffEntry file
+					if (!revFile.exists()) {
+						System.out.println("======" + revFile.getPath());
+						continue;
+					}
+					if (!prevFile.exists()) {
+						System.out.println("======" + prevFile.getPath());
+						continue;
+					}
+					if (!diffentryFile.exists()) {
+						System.out.println("======" + diffentryFile.getPath());
+						continue;
+					}
 					MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
 					msgFiles.add(msgFile);
 				}
