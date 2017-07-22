@@ -39,8 +39,15 @@ public class MineFixPatternWorker extends UntypedActor {
 			StringBuilder patchesSourceCode = new StringBuilder();
 			for (Object obj : files) {
 				MessageFile msgFile = (MessageFile) obj;
+				File revFile = msgFile.getRevFile();
+				File prevFile = msgFile.getPrevFile();
+				File diffentryFile = msgFile.getDiffEntryFile();
+				if (!prevFile.exists()) {
+					System.out.println(prevFile.getPath());
+					continue;
+				}
 				Miner miner = new Miner();
-				miner.mineFixPatterns(msgFile.getPrevFile(), msgFile.getRevFile(), msgFile.getDiffEntryFile());
+				miner.mineFixPatterns(prevFile, revFile, diffentryFile);
 				editScripts.append(miner.getAstEditScripts());
 				patchesSourceCode.append(miner.getPatchesSourceCode());
 			}

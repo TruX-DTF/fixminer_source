@@ -20,6 +20,7 @@ public class AkkaMiner {
 		// input data
 		log.info("Get the input data...");
 		final List<MessageFile> msgFiles = getMessageFiles();
+		log.info("MessageFiles: " + msgFiles.size());
 		
 		// output path
 		final String editScriptsFilePath = "../GumTreeResults/editScripts/";
@@ -57,18 +58,14 @@ public class AkkaMiner {
 				if (revFile.getName().endsWith(".java")) {
 					File prevFile = new File(projectFolder + "/prevFiles/prev_" + revFile.getName());// previous file
 					File diffentryFile = new File(projectFolder + "/DiffEntries/" + revFile.getName().replace(".java", ".txt")); // DiffEntry file
-					if (!revFile.exists()) {
-						log.info("======" + revFile.getPath());
-						continue;
-					}
-					if (!prevFile.exists()) {
-						log.info("======" + prevFile.getPath());
-						continue;
-					}
-					if (!diffentryFile.exists()) {
-						log.info("======" + diffentryFile.getPath());
-						continue;
-					}
+//					if (!prevFile.exists()) {
+//						log.info("======" + prevFile.getPath());
+//						continue;
+//					}
+//					if (!diffentryFile.exists()) {
+//						log.info("======" + diffentryFile.getPath());
+//						continue;
+//					}
 					MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
 					msgFiles.add(msgFile);
 				}
