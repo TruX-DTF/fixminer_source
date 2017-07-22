@@ -4,15 +4,21 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import edu.lu.uni.serval.utils.FileHelper;
 
 public class AkkaMiner {
+	
+	private static Logger log = LoggerFactory.getLogger(AkkaMiner.class);
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// input data
+		log.info("Get the input data...");
 		final List<MessageFile> msgFiles = getMessageFiles();
 		
 		// output path
@@ -25,6 +31,7 @@ public class AkkaMiner {
 		ActorRef parsingActor = null;
 		final int numberOfWorkers = 100;
 		try {
+			log.info("Akka beings...");
 			system = ActorSystem.create("Mining-FixPattern-System");
 			parsingActor = system.actorOf(MineFixPatternActor.props(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath), "mine-fix-pattern-actor");
 			parsingActor.tell(msgFiles, ActorRef.noSender());
@@ -38,6 +45,7 @@ public class AkkaMiner {
 		String inputPath = "../OUTPUT/"; //DiffEntries  prevFiles  revFiles
 		File inputFileDirector = new File(inputPath);
 		File[] files = inputFileDirector.listFiles();   // project folders
+		log.info("Projects: " + files.length);
 		List<MessageFile> msgFiles = new ArrayList<>();
 		
 		for (File file : files) {
@@ -50,15 +58,15 @@ public class AkkaMiner {
 					File prevFile = new File(projectFolder + "/prevFiles/prev_" + revFile.getName());// previous file
 					File diffentryFile = new File(projectFolder + "/DiffEntries/" + revFile.getName().replace(".java", ".txt")); // DiffEntry file
 					if (!revFile.exists()) {
-						System.out.println("======" + revFile.getPath());
+						log.info("======" + revFile.getPath());
 						continue;
 					}
 					if (!prevFile.exists()) {
-						System.out.println("======" + prevFile.getPath());
+						log.info("======" + prevFile.getPath());
 						continue;
 					}
 					if (!diffentryFile.exists()) {
-						System.out.println("======" + diffentryFile.getPath());
+						log.info("======" + diffentryFile.getPath());
 						continue;
 					}
 					MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
