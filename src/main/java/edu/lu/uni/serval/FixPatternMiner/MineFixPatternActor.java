@@ -43,8 +43,8 @@ public class MineFixPatternActor extends UntypedActor {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if (message instanceof List<?>) {
-			List<?> files = (List<?>) message;
+		if (message instanceof WorkMessage) {
+			List<MessageFile> files = ((WorkMessage) message).getMsgFiles();
 			int size = files.size();
 			int average = size / numberOfWorkers;
 			
@@ -55,9 +55,10 @@ public class MineFixPatternActor extends UntypedActor {
 					toIndex = size;
 				}
 				
-				List<Object> filesOfWorkers = new ArrayList<>();
+				List<MessageFile> filesOfWorkers = new ArrayList<>();
 				filesOfWorkers.addAll(files.subList(fromIndex, toIndex));
-				mineRouter.tell(filesOfWorkers, getSelf());
+				final WorkMessage workMsg = new WorkMessage(i + 1, filesOfWorkers);
+				mineRouter.tell(workMsg, getSelf());
 				logger.info("Assign a task to worker #" + (i + 1) + "...");
 			}
 		} else if ("STOP".equals(message.toString())) {

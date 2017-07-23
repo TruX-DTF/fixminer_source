@@ -30,12 +30,13 @@ public class AkkaMiner {
 		
 		ActorSystem system = null;
 		ActorRef parsingActor = null;
-		final int numberOfWorkers = 100;
+		final int numberOfWorkers = 200;
+		final WorkMessage msg = new WorkMessage(0, msgFiles);
 		try {
 			log.info("Akka beings...");
 			system = ActorSystem.create("Mining-FixPattern-System");
 			parsingActor = system.actorOf(MineFixPatternActor.props(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath), "mine-fix-pattern-actor");
-			parsingActor.tell(msgFiles, ActorRef.noSender());
+			parsingActor.tell(msg, ActorRef.noSender());
 		} catch (Exception e) {
 			system.shutdown();
 			e.printStackTrace();

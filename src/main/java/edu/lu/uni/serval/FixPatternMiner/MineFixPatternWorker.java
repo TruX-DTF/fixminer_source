@@ -33,17 +33,17 @@ public class MineFixPatternWorker extends UntypedActor {
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if (message instanceof List<?>) {
-			List<?> files = (List<?>) message;
+		if (message instanceof WorkMessage) {
+			WorkMessage msg = (WorkMessage) message;
+			List<MessageFile> files = msg.getMsgFiles();
 			StringBuilder editScripts = new StringBuilder();
 			StringBuilder patchesSourceCode = new StringBuilder();
-			for (Object obj : files) {
-				MessageFile msgFile = (MessageFile) obj;
+			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
 				if (!prevFile.exists()) {
-					System.out.println(prevFile.getPath());
+					System.out.println("Previous File:" + prevFile.getPath());
 					continue;
 				}
 				Miner miner = new Miner();
@@ -52,15 +52,13 @@ public class MineFixPatternWorker extends UntypedActor {
 					editScripts.append(miner.getAstEditScripts());
 					patchesSourceCode.append(miner.getPatchesSourceCode());
 				} catch (Exception e) {
-					System.out.println(revFile.getPath());
+					System.out.println("Revised File:" + revFile.getPath());
 					e.printStackTrace();
 				}
 			}
 			
-			List<File> subFiles1 = FileHelper.getAllFilesInCurrentDiectory(editScriptsFilePath, ".list");
-			List<File> subFiles2 = FileHelper.getAllFilesInCurrentDiectory(patchesSourceCodeFilePath, ".list");
-			FileHelper.outputToFile(editScriptsFilePath + "edistScripts" + subFiles1.size() + ".list", editScripts, false);
-			FileHelper.outputToFile(patchesSourceCodeFilePath + "patches" + subFiles2.size() + ".list", patchesSourceCode, false);
+			FileHelper.outputToFile(editScriptsFilePath + "edistScripts" + msg.getId() + ".list", editScripts, false);
+			FileHelper.outputToFile(patchesSourceCodeFilePath + "patches" + msg.getId() + ".list", patchesSourceCode, false);
 			
 			this.getSender().tell("STOP", getSelf());
 		} else {
