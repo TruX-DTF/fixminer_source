@@ -228,9 +228,8 @@ public class Miner {
 			int counter3 = 0; // counter of non-buggy code line.
 			while ((line = reader.readLine()) != null) {
 				if (startLine == 0 && line.startsWith("@@ -")) {
-					String lineNum = line.substring(4);
-					int plusIndex = lineNum.indexOf("+");
-					lineNum = lineNum.substring(0, plusIndex);
+					int plusIndex = line.indexOf("+");
+					String lineNum = line.substring(4, plusIndex);
 					String[] nums = lineNum.split(",");
 					if (nums.length != 2) {
 						System.out.println("Line Num: " + line + ", Old line: " + startLineNum + " - " + endLineNum);
