@@ -229,9 +229,11 @@ public class Miner {
 			while ((line = reader.readLine()) != null) {
 				if (startLine == 0 && line.startsWith("@@ -")) {
 					String lineNum = line.substring(4);
-					lineNum = lineNum.substring(0, lineNum.indexOf(" "));
+					int plusIndex = lineNum.indexOf("+");
+					lineNum = lineNum.substring(0, plusIndex);
 					String[] nums = lineNum.split(",");
 					if (nums.length != 2) {
+						System.out.println("Line Num: " + line + ", Old line: " + startLineNum + " - " + endLineNum);
 						continue;
 					}
 					startLine = Integer.parseInt(nums[0].trim());
@@ -243,9 +245,15 @@ public class Miner {
 						startLine = 0;
 						continue;
 					}
-					String lineNum2 = line.substring(line.indexOf("+")).trim();
+					String lineNum2 = line.substring(plusIndex) .trim();
 					lineNum2 = lineNum2.substring(1, lineNum2.length() - 2);
 					String[] nums2 = lineNum2.split(",");
+					if (nums2.length != 2) {
+						System.out.println("Line Num: " + line + ", New line: " + startLineNum2 + " - " + endLineNum2);
+						startLine = 0;
+						range = 0;
+						continue;
+					}
 					startLine2 = Integer.parseInt(nums2[0].trim());
 					range2 = Integer.parseInt(nums2[1].trim());
 					continue;
