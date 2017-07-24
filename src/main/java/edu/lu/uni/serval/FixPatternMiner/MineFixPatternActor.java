@@ -40,7 +40,6 @@ public class MineFixPatternActor extends UntypedActor {
 		});
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Object message) throws Exception {
 		if (message instanceof WorkMessage) {

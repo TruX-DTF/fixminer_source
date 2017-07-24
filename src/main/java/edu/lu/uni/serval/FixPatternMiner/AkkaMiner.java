@@ -15,7 +15,6 @@ public class AkkaMiner {
 	
 	private static Logger log = LoggerFactory.getLogger(AkkaMiner.class);
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// input data
 		log.info("Get the input data...");
@@ -59,14 +58,6 @@ public class AkkaMiner {
 				if (revFile.getName().endsWith(".java")) {
 					File prevFile = new File(projectFolder + "/prevFiles/prev_" + revFile.getName());// previous file
 					File diffentryFile = new File(projectFolder + "/DiffEntries/" + revFile.getName().replace(".java", ".txt")); // DiffEntry file
-//					if (!prevFile.exists()) {
-//						log.info("======" + prevFile.getPath());
-//						continue;
-//					}
-//					if (!diffentryFile.exists()) {
-//						log.info("======" + diffentryFile.getPath());
-//						continue;
-//					}
 					MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
 					msgFiles.add(msgFile);
 				}

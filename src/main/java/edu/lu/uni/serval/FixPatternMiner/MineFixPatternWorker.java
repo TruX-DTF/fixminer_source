@@ -38,21 +38,22 @@ public class MineFixPatternWorker extends UntypedActor {
 			List<MessageFile> files = msg.getMsgFiles();
 			StringBuilder editScripts = new StringBuilder();
 			StringBuilder patchesSourceCode = new StringBuilder();
+			int maxSize = 0;
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
-				if (!prevFile.exists()) {
-					System.out.println("Previous File:" + prevFile.getPath());
-					continue;
-				}
 				Miner miner = new Miner();
 				miner.mineFixPatterns(prevFile, revFile, diffentryFile);
 				editScripts.append(miner.getAstEditScripts());
 				patchesSourceCode.append(miner.getPatchesSourceCode());
+				int size = miner.getMaxSize();
+				if (size > maxSize) {
+					maxSize = size;
+				}
 			}
 			
-			FileHelper.outputToFile(editScriptsFilePath + "edistScripts" + msg.getId() + ".list", editScripts, false);
+			FileHelper.outputToFile(editScriptsFilePath + "edistScripts" + msg.getId() + "_MaxSize=" + maxSize + ".list", editScripts, false);
 			FileHelper.outputToFile(patchesSourceCodeFilePath + "patches" + msg.getId() + ".list", patchesSourceCode, false);
 			
 			this.getSender().tell("STOP", getSelf());

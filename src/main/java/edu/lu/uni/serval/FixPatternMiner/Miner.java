@@ -31,6 +31,7 @@ import edu.lu.uni.serval.utils.FileHelper;
 public class Miner {
 	private String astEditScripts = "";
 	private String patchesSourceCode = "";
+	private int maxSize = 0;
 
 	public void mineFixPatterns(File prevFile, File revFile, File diffEntryFile) throws FileNotFoundException, IOException {
 		// GumTree results
@@ -131,6 +132,10 @@ public class Miner {
 						 */
 						// 1. First level: AST node type.
 						String astEditScripts = getASTEditScripts(actionSet);
+						int size = astEditScripts.split(" ").length;
+						if (size > maxSize) {
+							maxSize = size;
+						}
 						this.astEditScripts += astEditScripts + "\n";
 						// 2. source code: raw tokens
 						String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
@@ -232,7 +237,6 @@ public class Miner {
 					String lineNum = line.substring(4, plusIndex);
 					String[] nums = lineNum.split(",");
 					if (nums.length != 2) {
-						System.out.println("Line Num: " + line + ", Old line: " + startLineNum + " - " + endLineNum);
 						continue;
 					}
 					startLine = Integer.parseInt(nums[0].trim());
@@ -248,7 +252,6 @@ public class Miner {
 					lineNum2 = lineNum2.substring(1, lineNum2.length() - 2);
 					String[] nums2 = lineNum2.split(",");
 					if (nums2.length != 2) {
-						System.out.println("Line Num: " + line + ", New line: " + startLineNum2 + " - " + endLineNum2);
 						startLine = 0;
 						range = 0;
 						continue;
@@ -348,6 +351,10 @@ public class Miner {
 
 	public String getPatchesSourceCode() {
 		return patchesSourceCode;
+	}
+
+	public int getMaxSize() {
+		return maxSize;
 	}
 
 }
