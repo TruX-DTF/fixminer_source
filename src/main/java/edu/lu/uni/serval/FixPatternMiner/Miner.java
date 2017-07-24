@@ -231,6 +231,9 @@ public class Miner {
 					String lineNum = line.substring(4);
 					lineNum = lineNum.substring(0, lineNum.indexOf(" "));
 					String[] nums = lineNum.split(",");
+					if (nums.length != 2) {
+						continue;
+					}
 					startLine = Integer.parseInt(nums[0].trim());
 					range = Integer.parseInt(nums[1].trim());
 					if (startLine > startLineNum) {
