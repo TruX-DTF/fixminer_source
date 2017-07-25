@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval.MultipleThreadsParser;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import edu.lu.uni.serval.utils.FileHelper;
 
-public class AkkaMiner {
+public class AkkaParser {
 	
-	private static Logger log = LoggerFactory.getLogger(AkkaMiner.class);
+	private static Logger log = LoggerFactory.getLogger(AkkaParser.class);
 
 	public static void main(String[] args) {
 		// input data
@@ -32,9 +32,9 @@ public class AkkaMiner {
 		final int numberOfWorkers = 200;
 		final WorkMessage msg = new WorkMessage(0, msgFiles);
 		try {
-			log.info("Akka beings...");
+			log.info("Akka begins...");
 			system = ActorSystem.create("Mining-FixPattern-System");
-			parsingActor = system.actorOf(MineFixPatternActor.props(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath), "mine-fix-pattern-actor");
+			parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath), "mine-fix-pattern-actor");
 			parsingActor.tell(msg, ActorRef.noSender());
 		} catch (Exception e) {
 			system.shutdown();

@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval.MultipleThreadsParser;
 
 import java.io.File;
 import java.util.List;
@@ -6,26 +6,27 @@ import java.util.List;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
+import edu.lu.uni.serval.FixPatternParser.Parser;
 import edu.lu.uni.serval.utils.FileHelper;
 
-public class MineFixPatternWorker extends UntypedActor {
+public class ParseFixPatternWorker extends UntypedActor {
 	
 	private String editScriptsFilePath;
 	private String patchesSourceCodeFilePath;
 	
-	public MineFixPatternWorker(String editScriptsFilePath, String patchesSourceCodeFilePath) {
+	public ParseFixPatternWorker(String editScriptsFilePath, String patchesSourceCodeFilePath) {
 		this.editScriptsFilePath = editScriptsFilePath;
 		this.patchesSourceCodeFilePath = patchesSourceCodeFilePath;
 	}
 
 	public static Props props(final String editScriptsFile, final String patchesSourceCodeFile) {
-		return Props.create(new Creator<MineFixPatternWorker>() {
+		return Props.create(new Creator<ParseFixPatternWorker>() {
 
 			private static final long serialVersionUID = -7615153844097275009L;
 
 			@Override
-			public MineFixPatternWorker create() throws Exception {
-				return new MineFixPatternWorker(editScriptsFile, patchesSourceCodeFile);
+			public ParseFixPatternWorker create() throws Exception {
+				return new ParseFixPatternWorker(editScriptsFile, patchesSourceCodeFile);
 			}
 			
 		});
@@ -43,7 +44,7 @@ public class MineFixPatternWorker extends UntypedActor {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
-				Miner miner = new Miner();
+				Parser miner = new Parser();
 				miner.mineFixPatterns(prevFile, revFile, diffentryFile);
 				editScripts.append(miner.getAstEditScripts());
 				patchesSourceCode.append(miner.getPatchesSourceCode());

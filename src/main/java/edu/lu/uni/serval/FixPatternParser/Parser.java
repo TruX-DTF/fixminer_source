@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval.FixPatternParser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,12 +23,13 @@ import edu.lu.uni.serval.gumtree.utils.CUCreator;
 import edu.lu.uni.serval.utils.FileHelper;
 
 /**
- * Mine fix patterns from GumTree results.
+ * Parse fix patterns with GumTree..
  * 
  * @author kui.liu
  *
  */
-public class Miner {
+public class Parser {
+	
 	private String astEditScripts = "";
 	private String patchesSourceCode = "";
 	private int maxSize = 0;
@@ -91,6 +92,10 @@ public class Miner {
 						endPosition = getEndPosition(children);
 						List<ITree> newChildren = newNode.getChildren();
 						endPosition2 = getEndPosition(newChildren);
+						
+						if (endPosition == 0 || endPosition2 == 0) {
+							continue;
+						}
 					}
 				} else {// DEL actions and MOV actions: we don't need these actions, as for now.
 					continue;
@@ -114,7 +119,8 @@ public class Miner {
 					String patchSourceCode = getPatchSourceCode(sourceCode, startLineNum, endLineNum, startLineNum2,
 							endLineNum2);
 					if (patchSourceCode != null) {
-						patchesSourceCode += "PATCH###Num\n" + patchSourceCode + "\n";
+						patchesSourceCode += "PATCH###Num\n" + patchSourceCode;
+						patchesSourceCode += actionSet.toString() + "\n";
 
 						/**
 						 * Convert the ITree of buggy code to a simple tree.
@@ -197,11 +203,12 @@ public class Miner {
 						int startPositionFirst = firstMoveAction.getPosition();
 						int startPositionLast = lastMoveAction.getPosition();
 						int lengthLast = lastMoveAction.getNode().getLength();
-						if (startPosition < startPositionFirst) {
+						if (startPosition < startPositionFirst || (startPosition == startPositionFirst && length > firstMoveAction.getLength())) {
 							firstMoveAction = (Move) action.getAction();
-						} else if ((startPosition + length) > (startPositionLast + lengthLast)) {
-							lastMoveAction = (Move) action.getAction();
 						}
+						if ((startPosition + length) > (startPositionLast + lengthLast)) {
+							lastMoveAction = (Move) action.getAction();
+						} 
 					}
 				}
 			}
@@ -241,7 +248,7 @@ public class Miner {
 					}
 					startLine = Integer.parseInt(nums[0].trim());
 					range = Integer.parseInt(nums[1].trim());
-					if (startLine > startLineNum) {
+					if (startLine > endLineNum) {
 						return null; // Wrong Matching.
 					}
 					if (startLine + range < startLineNum) {
@@ -263,7 +270,7 @@ public class Miner {
 				
 				int lineNum1 = counter + counter3;
 				int lineNum2 = counter2 + counter3;
-				if (startLine > 0 && lineNum1 < range && lineNum2 < range2) {
+				if (startLine > 0 && startLine2 > 0 && lineNum1 < range && lineNum2 < range2) {
 					if (line.startsWith("-") && startLine + lineNum1 >= startLineNum && startLine + lineNum1 <= endLineNum) {
 						buggyStatements += line + "\n";
 					} else if (line.startsWith("+") && startLine2 + lineNum2 >= startLineNum2 && startLine2 + lineNum2 <= endLineNum2) {
@@ -290,7 +297,7 @@ public class Miner {
 				e.printStackTrace();
 			}
 		}
-		return buggyStatements + "\n" + fixedStatements;
+		return buggyStatements + fixedStatements;
 	}
 
 	/**

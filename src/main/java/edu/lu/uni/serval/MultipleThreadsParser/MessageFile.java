@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval.MultipleThreadsParser;
 
 import java.io.File;
 

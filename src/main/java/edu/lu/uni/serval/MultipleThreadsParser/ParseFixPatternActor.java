@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval.MultipleThreadsParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,29 +12,29 @@ import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import akka.routing.RoundRobinPool;
 
-public class MineFixPatternActor extends UntypedActor {
+public class ParseFixPatternActor extends UntypedActor {
 	
-	private static Logger logger = LoggerFactory.getLogger(MineFixPatternActor.class);
+	private static Logger logger = LoggerFactory.getLogger(ParseFixPatternActor.class);
 
 	private ActorRef mineRouter;
 	private final int numberOfWorkers;
 	private int counter = 0;
 	
-	public MineFixPatternActor(int numberOfWorkers, String editScriptsFilePath, String patchesSourceCodeFilePath) {
+	public ParseFixPatternActor(int numberOfWorkers, String editScriptsFilePath, String patchesSourceCodeFilePath) {
 		mineRouter = this.getContext().actorOf(new RoundRobinPool(numberOfWorkers)
-				.props(MineFixPatternWorker.props(editScriptsFilePath, patchesSourceCodeFilePath)), "mine-fix-pattern-router");
+				.props(ParseFixPatternWorker.props(editScriptsFilePath, patchesSourceCodeFilePath)), "mine-fix-pattern-router");
 		this.numberOfWorkers = numberOfWorkers;
 	}
 
 	public static Props props(final int numberOfWorkers, final String editScriptsFilePath, final String patchesSourceCodeFilePath) {
 		
-		return Props.create(new Creator<MineFixPatternActor>() {
+		return Props.create(new Creator<ParseFixPatternActor>() {
 
 			private static final long serialVersionUID = 9207427376110704705L;
 
 			@Override
-			public MineFixPatternActor create() throws Exception {
-				return new MineFixPatternActor(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath);
+			public ParseFixPatternActor create() throws Exception {
+				return new ParseFixPatternActor(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath);
 			}
 			
 		});
