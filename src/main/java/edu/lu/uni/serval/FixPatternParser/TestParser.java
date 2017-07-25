@@ -35,7 +35,7 @@ public class TestParser {
 					
 					Parser parser = new Parser();
 					try {
-						parser.mineFixPatterns(prevFile, revFile, diffentryFile);
+						parser.parseFixPatterns(prevFile, revFile, diffentryFile);
 						astEditScriptsBuilder.append(parser.getAstEditScripts());
 						sourceCodeBuilder.append(parser.getPatchesSourceCode());
 					} catch (FileNotFoundException e) {

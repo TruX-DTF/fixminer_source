@@ -35,7 +35,7 @@ public class Parser {
 	private String buggyTrees = "";
 	private int maxSize = 0;
 
-	public void mineFixPatterns(File prevFile, File revFile, File diffEntryFile) throws FileNotFoundException, IOException {
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) throws FileNotFoundException, IOException {
 		// GumTree results
 		List<HierarchicalActionSet> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
 		

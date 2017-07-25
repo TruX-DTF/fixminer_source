@@ -61,9 +61,7 @@ public class ParseFixPatternActor extends UntypedActor {
 				logger.info("Assign a task to worker #" + (i + 1) + "...");
 			}
 		} else if ("STOP".equals(message.toString())) {
-			counter ++;
-			logger.info("Worker #" + counter + " finished the work...");
-			if (counter >= numberOfWorkers) {
+			if (++ counter >= numberOfWorkers) {
 				this.getContext().stop(mineRouter);
 				this.getContext().stop(getSelf());
 				this.getContext().system().shutdown();
