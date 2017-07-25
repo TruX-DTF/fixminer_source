@@ -23,7 +23,7 @@ import edu.lu.uni.serval.gumtree.utils.CUCreator;
 import edu.lu.uni.serval.utils.FileHelper;
 
 /**
- * Parse fix patterns with GumTree..
+ * Parse fix patterns with GumTree.
  * 
  * @author kui.liu
  *
@@ -32,6 +32,7 @@ public class Parser {
 	
 	private String astEditScripts = "";
 	private String patchesSourceCode = "";
+	private String buggyTrees = "";
 	private int maxSize = 0;
 
 	public void mineFixPatterns(File prevFile, File revFile, File diffEntryFile) throws FileNotFoundException, IOException {
@@ -115,41 +116,43 @@ public class Parser {
 					actionSet.setStartLineNum(startLineNum);
 					actionSet.setEndLineNum(endLineNum);
 
+					/*
+					 * Convert the ITree of buggy code to a simple tree.
+					 * It will be used to compute the similarity. 
+					 */
+					SimplifyTree abstractIdentifier = new SimplifyTree();
+					abstractIdentifier.abstractTree(actionSet);
+					SimpleTree simpleTree = actionSet.getSimpleTree();
+					clearITree(actionSet);
+					if (simpleTree == null) { // Failed to get the simple tree for INS actions.
+						continue;
+					}
+					this.buggyTrees += "BUGGY_TREE###\n" + simpleTree.toString() + "\n";
+					
 					// Source Code of patches.
 					String patchSourceCode = getPatchSourceCode(sourceCode, startLineNum, endLineNum, startLineNum2,
 							endLineNum2);
-					if (patchSourceCode != null) {
-						patchesSourceCode += "PATCH###Num\n" + patchSourceCode;
-						patchesSourceCode += actionSet.toString() + "\n";
-
-						/**
-						 * Convert the ITree of buggy code to a simple tree.
-						 * TODO: it will be used to compute the similarity. 
-						 */
-						SimplifyTree abstractIdentifier = new SimplifyTree();
-						abstractIdentifier.abstractTree(actionSet);
-						SimpleTree simpleTree = actionSet.getSimpleTree();
-						SimpleTree abstractSimpleTree = actionSet.getAbstractSimpleTree();
-						clearITree(actionSet);
-
-						/**
-						 * Select edit scripts for deep learning. 
-						 * Edit scripts will be used to mine common fix patterns.
-						 */
-						// 1. First level: AST node type.
-						String astEditScripts = getASTEditScripts(actionSet);
-						int size = astEditScripts.split(" ").length;
-						if (size > maxSize) {
-							maxSize = size;
-						}
-						this.astEditScripts += astEditScripts + "\n";
-						// 2. source code: raw tokens
-						String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
-						// 3. abstract identifiers: 
-						String abstractIdentifiersEditScripts = getAbstractIdentifiersEditScripts(actionSet);
-						// 4. semi-source code: 
-						String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
+					if (patchSourceCode == null) continue;
+					patchesSourceCode += "PATCH###\n" + patchSourceCode;
+					patchesSourceCode += actionSet.toString() + "\n";
+					
+					/**
+					 * Select edit scripts for deep learning. 
+					 * Edit scripts will be used to mine common fix patterns.
+					 */
+					// 1. First level: AST node type.
+					String astEditScripts = getASTEditScripts(actionSet);
+					int size = astEditScripts.split(" ").length;
+					if (size > maxSize) {
+						maxSize = size;
 					}
+					this.astEditScripts += astEditScripts + "\n";
+					// 2. source code: raw tokens
+					String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
+					// 3. abstract identifiers: 
+					String abstractIdentifiersEditScripts = getAbstractIdentifiersEditScripts(actionSet);
+					// 4. semi-source code: 
+					String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
 				}
 			}
 		}
@@ -362,6 +365,10 @@ public class Parser {
 
 	public int getMaxSize() {
 		return maxSize;
+	}
+
+	public String getBuggyTrees() {
+		return buggyTrees;
 	}
 
 }
