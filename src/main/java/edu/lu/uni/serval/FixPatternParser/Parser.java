@@ -14,6 +14,7 @@ import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.actions.model.Update;
 import com.github.gumtreediff.tree.ITree;
 
+import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.ActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
@@ -127,7 +128,7 @@ public class Parser {
 					if (simpleTree == null) { // Failed to get the simple tree for INS actions.
 						continue;
 					}
-					this.buggyTrees += "BUGGY_TREE###\n" + simpleTree.toString() + "\n";
+					this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
 					
 					// Source Code of patches.
 					String patchSourceCode = getPatchSourceCode(sourceCode, startLineNum, endLineNum, startLineNum2,
