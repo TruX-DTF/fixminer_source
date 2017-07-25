@@ -17,20 +17,24 @@ public class ParseFixPatternWorker extends UntypedActor {
 	
 	private String editScriptsFilePath;
 	private String patchesSourceCodeFilePath;
+	private String editScriptSizesFilePath;
+	private String buggyTreesFilePath;
 	
-	public ParseFixPatternWorker(String editScriptsFilePath, String patchesSourceCodeFilePath) {
+	public ParseFixPatternWorker(String editScriptsFilePath, String patchesSourceCodeFilePath, String buggyTreesFilePath, String editScriptSizesFilePath) {
 		this.editScriptsFilePath = editScriptsFilePath;
 		this.patchesSourceCodeFilePath = patchesSourceCodeFilePath;
+		this.editScriptSizesFilePath = editScriptSizesFilePath;
+		this.buggyTreesFilePath = buggyTreesFilePath;
 	}
 
-	public static Props props(final String editScriptsFile, final String patchesSourceCodeFile) {
+	public static Props props(final String editScriptsFile, final String patchesSourceCodeFile, final String buggyTreesFilePath, final String editScriptSizesFilePath) {
 		return Props.create(new Creator<ParseFixPatternWorker>() {
 
 			private static final long serialVersionUID = -7615153844097275009L;
 
 			@Override
 			public ParseFixPatternWorker create() throws Exception {
-				return new ParseFixPatternWorker(editScriptsFile, patchesSourceCodeFile);
+				return new ParseFixPatternWorker(editScriptsFile, patchesSourceCodeFile, buggyTreesFilePath, editScriptSizesFilePath);
 			}
 			
 		});
@@ -44,6 +48,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			StringBuilder editScripts = new StringBuilder();
 			StringBuilder patchesSourceCode = new StringBuilder();
 			StringBuilder sizes = new StringBuilder();
+			StringBuilder buggyTrees = new StringBuilder();
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
@@ -54,13 +59,15 @@ public class ParseFixPatternWorker extends UntypedActor {
 				editScripts.append(miner.getAstEditScripts());
 				patchesSourceCode.append(miner.getPatchesSourceCode());
 				sizes.append(miner.getSizes());
+				buggyTrees.append(miner.getBuggyTrees());
 				log.info("Finish of parsing file: " + revFile.getPath());
 			}
 			
 			int id = msg.getId();
 			FileHelper.outputToFile(editScriptsFilePath + "edistScripts" + id + ".list", editScripts, false);
 			FileHelper.outputToFile(patchesSourceCodeFilePath + "patches" + id + ".list", patchesSourceCode, false);
-			FileHelper.outputToFile(patchesSourceCodeFilePath + "sizes" + id + ".list", sizes, false);
+			FileHelper.outputToFile(editScriptSizesFilePath + "sizes" + id + ".list", sizes, false);
+			FileHelper.outputToFile(buggyTreesFilePath + "buggyTrees" + id + ".list", buggyTrees, false);
 			
 			log.info("Worker #" + id + " finished the work...");
 			this.getSender().tell("STOP", getSelf());

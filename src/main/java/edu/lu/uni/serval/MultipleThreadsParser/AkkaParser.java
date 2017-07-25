@@ -24,8 +24,12 @@ public class AkkaParser {
 		// output path
 		final String editScriptsFilePath = "../GumTreeResults/editScripts/";
 		final String patchesSourceCodeFilePath = "../GumTreeResults/sourceCode/";
+		final String buggyTreesFilePath = "../GumTreeResults/buggyTrees/";
+		final String editScriptSizesFilePath = "../GumTreeResults/editScriptSizes/";
 		FileHelper.deleteDirectory(editScriptsFilePath);
 		FileHelper.deleteDirectory(patchesSourceCodeFilePath);
+		FileHelper.deleteDirectory(buggyTreesFilePath);
+		FileHelper.deleteDirectory(editScriptSizesFilePath);
 		
 		ActorSystem system = null;
 		ActorRef parsingActor = null;
@@ -34,7 +38,7 @@ public class AkkaParser {
 		try {
 			log.info("Akka begins...");
 			system = ActorSystem.create("Mining-FixPattern-System");
-			parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath), "mine-fix-pattern-actor");
+			parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath, buggyTreesFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
 			parsingActor.tell(msg, ActorRef.noSender());
 		} catch (Exception e) {
 			system.shutdown();
