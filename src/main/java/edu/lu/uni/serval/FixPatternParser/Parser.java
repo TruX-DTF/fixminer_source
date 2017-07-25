@@ -33,7 +33,7 @@ public class Parser {
 	private String astEditScripts = "";
 	private String patchesSourceCode = "";
 	private String buggyTrees = "";
-	private int maxSize = 0;
+	private String sizes = "";
 
 	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) throws FileNotFoundException, IOException {
 		// GumTree results
@@ -143,9 +143,7 @@ public class Parser {
 					// 1. First level: AST node type.
 					String astEditScripts = getASTEditScripts(actionSet);
 					int size = astEditScripts.split(" ").length;
-					if (size > maxSize) {
-						maxSize = size;
-					}
+					this.sizes += size + "\n";
 					this.astEditScripts += astEditScripts + "\n";
 					// 2. source code: raw tokens
 					String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
@@ -363,12 +361,11 @@ public class Parser {
 		return patchesSourceCode;
 	}
 
-	public int getMaxSize() {
-		return maxSize;
-	}
-
 	public String getBuggyTrees() {
 		return buggyTrees;
 	}
 
+	public String getSizes() {
+		return sizes;
+	}
 }

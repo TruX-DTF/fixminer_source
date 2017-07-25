@@ -43,7 +43,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			List<MessageFile> files = msg.getMsgFiles();
 			StringBuilder editScripts = new StringBuilder();
 			StringBuilder patchesSourceCode = new StringBuilder();
-			int maxSize = 0;
+			StringBuilder sizes = new StringBuilder();
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
@@ -53,16 +53,14 @@ public class ParseFixPatternWorker extends UntypedActor {
 				miner.parseFixPatterns(prevFile, revFile, diffentryFile);
 				editScripts.append(miner.getAstEditScripts());
 				patchesSourceCode.append(miner.getPatchesSourceCode());
-				int size = miner.getMaxSize();
-				if (size > maxSize) {
-					maxSize = size;
-				}
+				sizes.append(miner.getSizes());
 				log.info("Finish of parsing file: " + revFile.getPath());
 			}
 			
 			int id = msg.getId();
-			FileHelper.outputToFile(editScriptsFilePath + "edistScripts" + id + "_MaxSize=" + maxSize + ".list", editScripts, false);
+			FileHelper.outputToFile(editScriptsFilePath + "edistScripts" + id + ".list", editScripts, false);
 			FileHelper.outputToFile(patchesSourceCodeFilePath + "patches" + id + ".list", patchesSourceCode, false);
+			FileHelper.outputToFile(patchesSourceCodeFilePath + "sizes" + id + ".list", sizes, false);
 			
 			log.info("Worker #" + id + " finished the work...");
 			this.getSender().tell("STOP", getSelf());
