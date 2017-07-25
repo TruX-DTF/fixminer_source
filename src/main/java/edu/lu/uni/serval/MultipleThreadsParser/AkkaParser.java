@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 
 public class AkkaParser {
@@ -22,10 +23,10 @@ public class AkkaParser {
 		log.info("MessageFiles: " + msgFiles.size());
 		
 		// output path
-		final String editScriptsFilePath = "../GumTreeResults/editScripts/";
-		final String patchesSourceCodeFilePath = "../GumTreeResults/sourceCode/";
-		final String buggyTreesFilePath = "../GumTreeResults/buggyTrees/";
-		final String editScriptSizesFilePath = "../GumTreeResults/editScriptSizes/";
+		final String editScriptsFilePath = Configuration.EDITSCRIPTS_FILE_PATH;
+		final String patchesSourceCodeFilePath = Configuration.PATCH_SOURCECODE_FILE_PATH;
+		final String buggyTreesFilePath = Configuration.BUGGYTREE_FILE_PATH;
+		final String editScriptSizesFilePath = Configuration.EDITSCRIPT_SIZES_FILE_PATH;
 		FileHelper.deleteDirectory(editScriptsFilePath);
 		FileHelper.deleteDirectory(patchesSourceCodeFilePath);
 		FileHelper.deleteDirectory(buggyTreesFilePath);
@@ -47,7 +48,7 @@ public class AkkaParser {
 	}
 
 	private static List<MessageFile> getMessageFiles() {
-		String inputPath = "../OUTPUT/"; //DiffEntries  prevFiles  revFiles
+		String inputPath = Configuration.GUM_TREE_INPUT; //DiffEntries  prevFiles  revFiles
 		File inputFileDirector = new File(inputPath);
 		File[] files = inputFileDirector.listFiles();   // project folders
 		log.info("Projects: " + files.length);
