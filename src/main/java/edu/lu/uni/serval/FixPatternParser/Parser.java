@@ -60,24 +60,25 @@ public class Parser {
 				String actionStr = actionSet.getActionString();
 				String astNodeType = actionSet.getAstNodeType();
 				if (actionStr.startsWith("INS")) {
-					startPosition2 = actionSet.getStartPosition();
-					endPosition2 = startPosition2 + actionSet.getLength();
-
-					if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-							|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-							|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-							|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
-						List<Move> firstAndLastMov = getFirstAndLastMoveAction(actionSet);
-						if (firstAndLastMov != null) {
-							startPosition = firstAndLastMov.get(0).getNode().getPos();
-							ITree lastTree = firstAndLastMov.get(1).getNode();
-							endPosition = lastTree.getPos() + lastTree.getLength();
-						} else { // Pure insert actions without any move actions.
-							continue;
-						}
-					} else { // other insert statements
-						continue;
-					}
+					continue;
+//					startPosition2 = actionSet.getStartPosition();
+//					endPosition2 = startPosition2 + actionSet.getLength();
+//
+//					if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
+//							|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
+//							|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
+//							|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
+//						List<Move> firstAndLastMov = getFirstAndLastMoveAction(actionSet);
+//						if (firstAndLastMov != null) {
+//							startPosition = firstAndLastMov.get(0).getNode().getPos();
+//							ITree lastTree = firstAndLastMov.get(1).getNode();
+//							endPosition = lastTree.getPos() + lastTree.getLength();
+//						} else { // Pure insert actions without any move actions.
+//							continue;
+//						}
+//					} else { // other insert statements
+//						continue;
+//					}
 				} else if (actionStr.startsWith("UPD")) {
 					startPosition = actionSet.getStartPosition();
 					endPosition = startPosition + actionSet.getLength();
