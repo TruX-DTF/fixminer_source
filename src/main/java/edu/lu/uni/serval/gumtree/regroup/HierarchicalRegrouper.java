@@ -9,7 +9,7 @@ import com.github.gumtreediff.actions.model.Insert;
 import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.tree.ITree;
 
-import edu.lu.uni.serval.gumtree.utils.ASTNodeMap;
+import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
 import edu.lu.uni.serval.utils.ListSorter;
 
 /**

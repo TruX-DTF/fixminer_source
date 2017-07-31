@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.github.gumtreediff.tree.ITree;
 
-import edu.lu.uni.serval.gumtree.utils.ASTNodeMap;
+import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
 
 /**
  * A traveler to travel a tree-constructed object.

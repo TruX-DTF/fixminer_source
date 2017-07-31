@@ -8,7 +8,8 @@ import java.util.Map;
 import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.tree.ITree;
 
-import edu.lu.uni.serval.gumtree.utils.ASTNodeMap;
+import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.FixPattern.utils.Checker;
 import edu.lu.uni.serval.utils.ListSorter;
 
 /**
@@ -65,10 +66,7 @@ public class SimplifyTree {
 		} else {
 			ITree tree = actionSet.getNode();
 			String astNodeType = actionSet.getAstNodeType();
-			if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-					|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-					|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-					|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
+			if (Checker.containsBodyBlock(astNodeType)) {
 				// delete the body block.
 				List<ITree> children = tree.getChildren();
 				List<ITree> newChildren = new ArrayList<>();
@@ -511,7 +509,7 @@ public class SimplifyTree {
 		String label = tree.getLabel();
 		String astNode = ASTNodeMap.map.get(tree.getType());
 
-		if (isExpressionType(astNode)) {
+		if (Checker.isExpressionType(astNode)) {
 			if (modifyAction == null || !modifyAction.getActionString().contains("@@" + label)) {
 				simpleTree.setNodeType("Expression");
 				simpleTree.setLabel("EXP"); // astNode
@@ -566,10 +564,7 @@ public class SimplifyTree {
 	
 	private List<Action> getAllMoveActions(HierarchicalActionSet actionSet) {
 		String astNodeType = actionSet.getAstNodeType();
-		if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-				|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-				|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-				|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
+		if (Checker.containsBodyBlock(astNodeType)) {
 			List<Action> allMoveActions = getAllMoveActions2(actionSet);
 			if (allMoveActions != null && allMoveActions.size() > 0) {
 				ListSorter<Action> sorter = new ListSorter<Action>(allMoveActions);
@@ -615,21 +610,6 @@ public class SimplifyTree {
 			map.put(label, name);
 			return name;
 		}
-	}
-
-	private boolean isExpressionType(String astNode) {
-		if (astNode.equals("ArrayAccess") || astNode.equals("ArrayCreation") ||
-				astNode.equals("ArrayInitializer") || astNode.equals("Assignment") || astNode.equals("CastExpression") ||
-				astNode.equals("ClassInstanceCreation") || astNode.equals("ConditionalExpression") || astNode.equals("CreationReference") ||
-				astNode.equals("ExpressionMethodReference") || astNode.equals("FieldAccess") || astNode.equals("InfixExpression") ||
-				astNode.equals("InstanceofExpression") || astNode.equals("LambdaExpression") || astNode.equals("MethodInvocation")  ||
-				astNode.equals("MethodReference") || astNode.equals("ParenthesizedExpression") || astNode.equals("PostfixExpression")  ||
-				astNode.equals("PrefixExpression") || astNode.equals("SuperFieldAccess") || astNode.equals("SuperMethodInvocation")  ||
-				astNode.equals("SuperMethodReference") || astNode.equals("TypeLiteral") || astNode.equals("TypeMethodReference") 
-				|| astNode.equals("VariableDeclarationExpression") ) {
-			return true;
-		}
-		return false;
 	}
 
 	private HierarchicalActionSet findHierarchicalActionSet(int position, int length, HierarchicalActionSet actionSet) {
