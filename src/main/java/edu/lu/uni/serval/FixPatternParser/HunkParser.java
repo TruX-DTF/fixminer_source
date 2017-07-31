@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.github.gumtreediff.actions.model.Action;
 
+import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
@@ -105,9 +106,16 @@ public class HunkParser {
 					}
 				}
 				if (children.size() == 0) continue;
+				if (endLine - startLine >= Configuration.HUNK_SIZE - 2 || endLine2 - startLine2 >= Configuration.HUNK_SIZE - 2 ) continue;
+
 				simpleTree.setChildren(children);
 				simpleTree.setParent(null);
 				
+				// Source Code of patches.
+				String patchSourceCode = getPatchSourceCode(hunkFixPattern.getHunk(), startLine, endLine, startLine2, endLine2);
+				if ("".equals(patchSourceCode)) continue;
+				
+				this.patchesSourceCode += "PATCH###\n" + patchSourceCode + "\n";
 				int size = astEditScripts.split(" ").length;
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
@@ -117,11 +125,6 @@ public class HunkParser {
 //				this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
 //				this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
 				
-				// Source Code of patches.
-				String patchSourceCode = getPatchSourceCode(hunkFixPattern.getHunk(), startLine, endLine, startLine2, endLine2);
-				if (patchSourceCode == null) continue;
-				patchesSourceCode += "PATCH###\n" + patchSourceCode + "\n";
-//				patchesSourceCode += actionSet.toString() + "\n";
 			}
 		}
 	}
@@ -210,11 +213,12 @@ public class HunkParser {
 					if (fixStartLine + fixLineIndex >= startLineNum2 && fixStartLine + fixLineIndex <= endLineNum2) {
 						fixedStatements += line + "\n";
 					}
+					fixLines ++;
 				} else {
 					contextLines ++;
 				}
 				
-				if (bugStartLine + bugLineIndex >= endLineNum && fixStartLine + fixLineIndex >= endLineNum2) {
+				if (bugStartLine + bugLineIndex > endLineNum && fixStartLine + fixLineIndex > endLineNum2) {
 					break;
 				}
 			}
