@@ -52,7 +52,10 @@ public class ActionFilter {
 								break FindActionSet;
 							}
 						}
-					} else if (actionStr.startsWith("INS StringLiteral") || actionStr.startsWith("DEL StringLiteral") || actionStr.startsWith("MOV StringLiteral")) {
+					} else if (actionStr.startsWith("UPD StringLiteral") || actionStr.startsWith("INS StringLiteral") 
+							|| actionStr.startsWith("DEL StringLiteral") || actionStr.startsWith("MOV StringLiteral")
+							|| actionStr.startsWith("UPD CharacterLiteral") || actionStr.startsWith("INS CharacterLiteral") 
+							|| actionStr.startsWith("DEL CharacterLiteral") || actionStr.startsWith("MOV CharacterLiteral")) {
 						addToUselessActions(actionSet, uselessActions);
 						break FindActionSet;
 					}
