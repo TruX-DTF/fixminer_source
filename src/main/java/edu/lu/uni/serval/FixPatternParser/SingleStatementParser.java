@@ -15,6 +15,7 @@ import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.actions.model.Update;
 import com.github.gumtreediff.tree.ITree;
 
+import edu.lu.uni.serval.FixPattern.utils.Checker;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
@@ -83,10 +84,7 @@ public class SingleStatementParser {
 						startPosition2 = newNode.getPos();
 						endPosition2 = startPosition2 + newNode.getLength();
 
-						if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-								|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-								|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-								|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
+						if (Checker.containsBodyBlock(astNodeType)) {
 							List<ITree> children = update.getNode().getChildren();
 							endPosition = getEndPosition(children);
 							List<ITree> newChildren = newNode.getChildren();
@@ -118,6 +116,7 @@ public class SingleStatementParser {
 					int endLine = prevUnit.getLineNumber(endPosition);
 					int startLine2 = revUnit.getLineNumber(startPosition2);
 					int endLine2 = revUnit.getLineNumber(endPosition2);
+					if (endLine - startLine >= Configuration.HUNK_SIZE - 2 || endLine2 - startLine2 >= Configuration.HUNK_SIZE - 2 ) continue;
 					//Filter out the modify actions, which are not in the DiffEntry hunks.
 					DiffEntryHunk hunk = matchHunk(startLine, endLine, startLine2, endLine2, actionStr, diffentryHunks);
 					if (hunk == null) {
@@ -146,6 +145,12 @@ public class SingleStatementParser {
 						System.out.println(actionSet);
 						continue;
 					}
+					
+					// Source Code of patches.
+					String patchSourceCode = getPatchSourceCode(hunk, startLine, endLine, startLine2, endLine2);
+					if ("".equals(patchSourceCode)) continue;
+
+					this.patchesSourceCode += Configuration.PATCH_TOKEN +"\n" + revFile.getName() + "\n" + patchSourceCode + "\n";
 					this.sizes += size + "\n";
 					this.astEditScripts += astEditScripts + "\n";
 					// 2. source code: raw tokens
@@ -155,15 +160,10 @@ public class SingleStatementParser {
 					// 4. semi-source code: 
 					String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
 					
-					
 //					this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
 					this.tokensOfSourceCode += getTokensDeepFirst(simpleTree).trim() + "\n";
 //					this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
 //					this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
-					
-					// Source Code of patches.
-					String patchSourceCode = getPatchSourceCode(hunk, startLine, endLine, startLine2, endLine2);
-					patchesSourceCode += Configuration.PATCH_TOKEN +"\n" + patchSourceCode + "\n";
 				}
 			}
 		}
@@ -336,6 +336,7 @@ public class SingleStatementParser {
 					if (fixStartLine + fixLineIndex >= startLineNum2 && fixStartLine + fixLineIndex <= endLineNum2) {
 						fixedStatements += line + "\n";
 					}
+					fixLines ++;
 				} else {
 					contextLines ++;
 				}
