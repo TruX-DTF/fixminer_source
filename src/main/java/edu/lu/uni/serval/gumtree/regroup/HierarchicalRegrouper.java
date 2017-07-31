@@ -37,12 +37,12 @@ public class HierarchicalRegrouper {
 		for(Action act : actions){
 			Action parentAct = findParentAction(act, actions);
 			if (parentAct == null) {
-				actionSet = createActionSet(act, parentAct);
+				actionSet = createActionSet(act, parentAct, null);
 				actionSets.add(actionSet);
 			} else {
 				if (!addToAactionSet(act, parentAct, actionSets)) {
 					// The index of the parent action in the actions' list is larger than the index of this action.
-					actionSet = createActionSet(act, parentAct);
+					actionSet = createActionSet(act, parentAct, null);
 					actionSets.add(actionSet);
 				}
 			}
@@ -63,13 +63,13 @@ public class HierarchicalRegrouper {
 		return reActionSets;
 	}
 
-	private HierarchicalActionSet createActionSet(Action act, Action parentAct) {
+	private HierarchicalActionSet createActionSet(Action act, Action parentAct, HierarchicalActionSet parent) {
 		HierarchicalActionSet actionSet = new HierarchicalActionSet();
 		actionSet.setAction(act);
 		actionSet.setActionString(parseAction(act.toString()));
 		actionSet.setParentAction(parentAct);
 		actionSet.setNode(act.getNode());
-		actionSet.setParent(null);
+		actionSet.setParent(parent);
 		return actionSet;
 	}
 
@@ -124,8 +124,7 @@ public class HierarchicalRegrouper {
 					continue;
 				}
 				
-				HierarchicalActionSet actSet = createActionSet(act, actionSet.getAction());
-				actSet.setParent(actionSet);
+				HierarchicalActionSet actSet = createActionSet(act, actionSet.getAction(), actionSet);
 				actionSet.getSubActions().add(actSet);
 				return true;
 			} else {
