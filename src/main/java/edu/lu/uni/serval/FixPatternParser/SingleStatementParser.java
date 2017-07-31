@@ -339,6 +339,10 @@ public class SingleStatementParser {
 				} else {
 					contextLines ++;
 				}
+				
+				if (bugStartLine + bugLineIndex >= endLineNum && fixStartLine + fixLineIndex >= endLineNum2) {
+					break;
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
