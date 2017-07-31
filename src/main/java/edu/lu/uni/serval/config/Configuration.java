@@ -3,6 +3,7 @@ package edu.lu.uni.serval.config;
 public class Configuration {
 	private static final String ROOT_PATH = "../";
 
+	public static final int HUNK_SIZE = 7;
 	public static final String BUGGY_TREE_TOKEN = "BUGGY_TREE###";
 	public static final String PATCH_TOKEN = "PATCH###";
 	

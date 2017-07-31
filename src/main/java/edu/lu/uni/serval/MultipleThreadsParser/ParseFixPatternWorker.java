@@ -10,6 +10,7 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import edu.lu.uni.serval.FixPatternParser.Parser;
+import edu.lu.uni.serval.FixPatternParser.SingleStatementParser;
 import edu.lu.uni.serval.utils.FileHelper;
 
 public class ParseFixPatternWorker extends UntypedActor {
@@ -56,13 +57,13 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
-				Parser miner = new Parser();
+				SingleStatementParser parser = new SingleStatementParser();
 				log.info("Start to parse file: " + revFile.getPath());
-				miner.parseFixPatterns(prevFile, revFile, diffentryFile);
-				editScripts.append(miner.getAstEditScripts());
-				patchesSourceCode.append(miner.getPatchesSourceCode());
-				sizes.append(miner.getSizes());
-				buggyTrees.append(miner.getBuggyTrees());
+				parser.parseFixPatterns(prevFile, revFile, diffentryFile);
+				editScripts.append(parser.getAstEditScripts());
+				patchesSourceCode.append(parser.getPatchesSourceCode());
+				sizes.append(parser.getSizes());
+				buggyTrees.append(parser.getBuggyTrees());
 				log.info("Finish of parsing file: " + revFile.getPath());
 				counter ++;
 				if (counter % 1000 == 0) {

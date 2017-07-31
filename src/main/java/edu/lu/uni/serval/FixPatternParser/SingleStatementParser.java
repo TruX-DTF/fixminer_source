@@ -8,7 +8,10 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jdt.core.dom.CompilationUnit;
+
 import com.github.gumtreediff.actions.model.Action;
+import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.actions.model.Update;
 import com.github.gumtreediff.tree.ITree;
 
@@ -19,7 +22,6 @@ import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.ActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
-import edu.lu.uni.serval.gumtree.regroup.HunkActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 
@@ -29,7 +31,7 @@ import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
  * @author kui.liu
  *
  */
-public class Parser {
+public class SingleStatementParser {
 	
 	private String astEditScripts = "";     // it will be used for fix patterns mining.
 	private String patchesSourceCode = "";  // testing
@@ -40,95 +42,88 @@ public class Parser {
 	private String actionSets = ""; 		// Guide of generating patches.
 
 	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) throws FileNotFoundException, IOException {
-		
 		// GumTree results
 		List<Action> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
 		
 		if (gumTreeResults != null && gumTreeResults.size() > 0) {
-			List<HierarchicalActionSet> actionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
-			
-			/**
-			 *  TODO What we need to discuss:
-			 *  3. actions' nodes have the same parent belongs to one fix pattern?
-			 *  actions in the same method body.
-			 *  field, one by one,
-			 *  contains a body block.
-			 */
-			ActionFilter filter = new ActionFilter();
+			List<HierarchicalActionSet> allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
 			// Filter out modified actions of changing method names, method parameters, variable names and field names in declaration part.
-			List<HierarchicalActionSet> hierarchicalActionSets = filter.filterOutUselessActions(actionSets); // TODO: variable effects range, sub-actions are these kinds of modification?
+			// TODO: variable effects range, sub-actions are these kinds of modification?
+			List<HierarchicalActionSet> actionSets = new ActionFilter().filterOutUselessActions(allActionSets);
 			
-			// DiffEntry size:
-			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(diffEntryFile); // filter out big hunks.
-			//Filter out the modify actions, which are not in the DiffEntry hunks.
-			HunkActionFilter hunkFilter = new HunkActionFilter();
-			hierarchicalActionSets = hunkFilter.filterActionsByDiffEntryHunk(diffentryHunks, actionSets, revFile, prevFile);
-			
-			/**
-			 *  Patch size；
-			 *  1. one hunk is one patch。
-			 *  2. one statement.
-			 */
-			
-			//
-			
-			for (HierarchicalActionSet actionSet : hierarchicalActionSets) {
-				// position of buggy statements
-				int startPosition = 0;
-				int endPosition = 0;
-				// position of fixed statements
-				int startPosition2 = 0;
-				int endPosition2 = 0;
+			if (actionSets.size() > 0) {
+				// DiffEntry Hunks: filter out big hunks.
+				List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(diffEntryFile);
+				for (HierarchicalActionSet actionSet : actionSets) {
+					// position of buggy statements
+					int startPosition = 0;
+					int endPosition = 0;
+					// position of fixed statements
+					int startPosition2 = 0;
+					int endPosition2 = 0;
 
-				String actionStr = actionSet.getActionString();
-				String astNodeType = actionSet.getAstNodeType();
-				if (actionStr.startsWith("INS")) {
-					continue;
-//					startPosition2 = actionSet.getStartPosition();
-//					endPosition2 = startPosition2 + actionSet.getLength();
-//
-//					if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-//							|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-//							|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-//							|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
-//						List<Move> firstAndLastMov = getFirstAndLastMoveAction(actionSet);
-//						if (firstAndLastMov != null) {
-//							startPosition = firstAndLastMov.get(0).getNode().getPos();
-//							ITree lastTree = firstAndLastMov.get(1).getNode();
-//							endPosition = lastTree.getPos() + lastTree.getLength();
-//						} else { // Pure insert actions without any move actions.
-//							continue;
-//						}
-//					} else { // other insert statements
-//						continue;
-//					}
-				} else if (actionStr.startsWith("UPD")) {
-					startPosition = actionSet.getStartPosition();
-					endPosition = startPosition + actionSet.getLength();
-					Update update = (Update) actionSet.getAction();
-					ITree newNode = update.getNewNode();
-					startPosition2 = newNode.getPos();
-					endPosition2 = startPosition2 + newNode.getLength();
-
-					if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-							|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-							|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-							|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
-						List<ITree> children = update.getNode().getChildren();
-						endPosition = getEndPosition(children);
-						List<ITree> newChildren = newNode.getChildren();
-						endPosition2 = getEndPosition(newChildren);
-						
-						if (endPosition == 0 || endPosition2 == 0) {
+					String actionStr = actionSet.getActionString();
+					String astNodeType = actionSet.getAstNodeType();
+					if (actionStr.startsWith("INS")) {
+						startPosition2 = actionSet.getStartPosition();
+						endPosition2 = startPosition2 + actionSet.getLength();
+						List<Move> firstAndLastMov = getFirstAndLastMoveAction(actionSet);
+						if (firstAndLastMov != null) {
+							startPosition = firstAndLastMov.get(0).getNode().getPos();
+							ITree lastTree = firstAndLastMov.get(1).getNode();
+							endPosition = lastTree.getPos() + lastTree.getLength();
+						} else { // Ignore the pure insert actions without any move actions.
 							continue;
 						}
-					}
-				} else {// DEL actions and MOV actions: we don't need these actions, as for now.
-					continue;
-				}
+					} else if (actionStr.startsWith("UPD")) {
+						startPosition = actionSet.getStartPosition();
+						endPosition = startPosition + actionSet.getLength();
+						Update update = (Update) actionSet.getAction();
+						ITree newNode = update.getNewNode();
+						startPosition2 = newNode.getPos();
+						endPosition2 = startPosition2 + newNode.getLength();
 
-				// Get the buggy code and fixed code
-				if (startPosition != 0 && startPosition2 != 0) {
+						if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
+								|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
+								|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
+								|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
+							List<ITree> children = update.getNode().getChildren();
+							endPosition = getEndPosition(children);
+							List<ITree> newChildren = newNode.getChildren();
+							endPosition2 = getEndPosition(newChildren);
+							
+							if (endPosition == 0) {
+								endPosition = startPosition + actionSet.getLength();
+							}
+							if (endPosition2 == 0) {
+								endPosition2 = startPosition2 + newNode.getLength();
+							}
+						}
+					} else {// DEL actions and MOV actions: we don't need these actions, as for now.
+						continue;
+					}
+					if (startPosition == 0 || startPosition2 == 0) {
+						continue;
+					}
+					
+					CUCreator cuCreator = new CUCreator();
+					CompilationUnit prevUnit = cuCreator.createCompilationUnit(prevFile);
+					CompilationUnit revUnit = cuCreator.createCompilationUnit(revFile);
+					if (prevUnit == null || revUnit == null) {
+						continue;
+					}
+					
+					// Get line numbers.
+					int startLine = prevUnit.getLineNumber(startPosition);
+					int endLine = prevUnit.getLineNumber(endPosition);
+					int startLine2 = revUnit.getLineNumber(startPosition2);
+					int endLine2 = revUnit.getLineNumber(endPosition2);
+					//Filter out the modify actions, which are not in the DiffEntry hunks.
+					DiffEntryHunk hunk = matchHunk(startLine, endLine, startLine2, endLine2, actionStr, diffentryHunks);
+					if (hunk == null) {
+						continue;
+					}
+					
 					/*
 					 * Convert the ITree of buggy code to a simple tree.
 					 * It will be used to compute the similarity. 
@@ -149,8 +144,7 @@ public class Parser {
 					int size = astEditScripts.split(" ").length;
 					if (size == 1) {
 						System.out.println(actionSet);
-						System.out.println(revFile.getPath());
-//						continue;
+						continue;
 					}
 					this.sizes += size + "\n";
 					this.astEditScripts += astEditScripts + "\n";
@@ -167,15 +161,83 @@ public class Parser {
 					this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
 					this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
 					
-//					// Source Code of patches.
-//					String patchSourceCode = getPatchSourceCode(sourceCode, startLineNum, endLineNum, startLineNum2,
-//							endLineNum2);
-//					if (patchSourceCode == null) continue;
-//					patchesSourceCode += "PATCH###\n" + patchSourceCode;
-//					patchesSourceCode += actionSet.toString() + "\n";
+					// Source Code of patches.
+					String patchSourceCode = getPatchSourceCode(hunk, startLine, endLine, startLine2, endLine2);
+					patchesSourceCode += Configuration.PATCH_TOKEN +"\n" + patchSourceCode + "\n";
 				}
 			}
 		}
+	}
+	
+	private DiffEntryHunk matchHunk(int startLine, int endLine, int startLine2, int endLine2, String actionStr, List<DiffEntryHunk> hunks) {
+		for (DiffEntryHunk hunk : hunks) {
+			int bugStartLine = hunk.getBugLineStartNum();
+			int bugRange = hunk.getBugRange();
+			int fixStartLine = hunk.getFixLineStartNum();
+			int fixRange = hunk.getFixRange();
+			
+			if (actionStr.startsWith("INS")) {
+				if (fixStartLine + fixRange < startLine2)  {
+					continue;
+				} 
+				if (endLine2 < fixStartLine ) {
+					return null;
+				} 
+				return hunk;
+			} else {
+				if (bugStartLine + bugRange < startLine)  {
+					continue;
+				} 
+				if (endLine < bugStartLine ) {
+					return null;
+				} 
+				return hunk;
+			}
+		}
+		return null;
+	}
+
+	private List<Move> getFirstAndLastMoveAction(HierarchicalActionSet gumTreeResult) {
+		List<Move> firstAndLastMoveActions = new ArrayList<>();
+		List<HierarchicalActionSet> actions = gumTreeResult.getSubActions();
+		if (actions.size() == 0) {
+			return null;
+		}
+		Move firstMoveAction = null;
+		Move lastMoveAction = null;
+		while (actions.size() > 0) {
+			List<HierarchicalActionSet> subActions = new ArrayList<>();
+			for (HierarchicalActionSet action : actions) {
+				subActions.addAll(action.getSubActions());
+				if (action.toString().startsWith("MOV")) {
+					if (firstMoveAction == null) {
+						firstMoveAction = (Move) action.getAction();
+						lastMoveAction = (Move) action.getAction();
+					} else {
+						int startPosition = action.getStartPosition();
+						int length = action.getLength();
+						int startPositionFirst = firstMoveAction.getPosition();
+						int startPositionLast = lastMoveAction.getPosition();
+						int lengthLast = lastMoveAction.getNode().getLength();
+						if (startPosition < startPositionFirst || (startPosition == startPositionFirst && length > firstMoveAction.getLength())) {
+							firstMoveAction = (Move) action.getAction();
+						}
+						if ((startPosition + length) > (startPositionLast + lengthLast)) {
+							lastMoveAction = (Move) action.getAction();
+						} 
+					}
+				}
+			}
+			
+			actions.clear();
+			actions.addAll(subActions);
+		}
+		if (firstMoveAction == null) {
+			return null;
+		}
+		firstAndLastMoveActions.add(firstMoveAction);
+		firstAndLastMoveActions.add(lastMoveAction);
+		return firstAndLastMoveActions;
 	}
 	
 	private String readActionSet(HierarchicalActionSet actionSet, String line) {
@@ -249,66 +311,33 @@ public class Parser {
 		return endPosition;
 	}
 
-	private String getPatchSourceCode(String sourceCode, int startLineNum, int endLineNum, int startLineNum2, int endLineNum2) {
+	private String getPatchSourceCode(DiffEntryHunk hunk, int startLineNum, int endLineNum, int startLineNum2, int endLineNum2) {
+		String sourceCode = hunk.getHunk();
+		int bugStartLine = hunk.getBugLineStartNum();
+		int fixStartLine = hunk.getFixLineStartNum();
 		String buggyStatements = "";
 		String fixedStatements = "";
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new StringReader(sourceCode));
 			String line = null;
-			int startLine = 0;
-			int counter = 0;
-			int range = 0;
-			int startLine2 = 0;
-			int counter2 = 0;
-			int range2 = 0;
-			int counter3 = 0; // counter of non-buggy code line.
+			int bugLines = 0;
+			int fixLines = 0;
+			int contextLines = 0; // counter of non-buggy code line.
 			while ((line = reader.readLine()) != null) {
-				if (startLine == 0 && line.startsWith("@@ -")) {
-					// RegExp.filterSignal(line)
-					int plusIndex = line.indexOf("+");
-					String lineNum = line.substring(4, plusIndex);
-					String[] nums = lineNum.split(",");
-					if (nums.length != 2) {
-						continue;
-					}
-					startLine = Integer.parseInt(nums[0].trim());
-					range = Integer.parseInt(nums[1].trim());
-					if (startLine > endLineNum) {
-						return null; // Wrong Matching.
-					}
-					if (startLine + range < startLineNum) {
-						startLine = 0;
-						continue;
-					}
-					String lineNum2 = line.substring(plusIndex) .trim();
-					lineNum2 = lineNum2.substring(1, lineNum2.length() - 2);
-					String[] nums2 = lineNum2.split(",");
-					if (nums2.length != 2) {
-						startLine = 0;
-						range = 0;
-						continue;
-					}
-					startLine2 = Integer.parseInt(nums2[0].trim());
-					range2 = Integer.parseInt(nums2[1].trim());
-					continue;
-				}
-				
-				int lineNum1 = counter + counter3;
-				int lineNum2 = counter2 + counter3;
-				if (startLine > 0 && startLine2 > 0 && lineNum1 < range && lineNum2 < range2) {
-					if (line.startsWith("-") && startLine + lineNum1 >= startLineNum && startLine + lineNum1 <= endLineNum) {
+				int bugLineIndex = bugLines + contextLines;
+				int fixLineIndex = fixLines + contextLines;
+				if (line.startsWith("-")) {
+					if (bugStartLine + bugLineIndex >= startLineNum && bugStartLine + bugLineIndex <= endLineNum) {
 						buggyStatements += line + "\n";
-					} else if (line.startsWith("+") && startLine2 + lineNum2 >= startLineNum2 && startLine2 + lineNum2 <= endLineNum2) {
+					}
+					bugLines ++;
+				} else if (line.startsWith("+")) {
+					if (fixStartLine + fixLineIndex >= startLineNum2 && fixStartLine + fixLineIndex <= endLineNum2) {
 						fixedStatements += line + "\n";
 					}
-					if (line.startsWith("-")) {
-						counter ++;
-					} else if (line.startsWith("+")) {
-						counter2 ++;
-					} else {
-						counter3 ++;
-					}
+				} else {
+					contextLines ++;
 				}
 			}
 		} catch (IOException e) {
@@ -371,13 +400,6 @@ public class Parser {
 		return editScript;
 	}
 	
-	private void clearITree(HierarchicalActionSet actionSet) {
-		actionSet.getAction().setNode(null);
-		for (HierarchicalActionSet subActionSet : actionSet.getSubActions()) {
-			clearITree(subActionSet);
-		}
-	}
-
 	public String getAstEditScripts() {
 		return astEditScripts;
 	}

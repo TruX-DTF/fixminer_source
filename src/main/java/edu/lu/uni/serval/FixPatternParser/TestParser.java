@@ -20,8 +20,12 @@ public class TestParser {
 		FileHelper.deleteDirectory("OUTPUT/GumTreeResults_Exp_ASTNode/");
 		FileHelper.deleteDirectory("OUTPUT/GumTreeResults_Exp_RawCode/");
 		
-		StringBuilder astEditScriptsBuilder = new StringBuilder();
-		StringBuilder sourceCodeBuilder = new StringBuilder();
+		StringBuilder astEditScripts = new StringBuilder();
+		StringBuilder originalTrees = new StringBuilder();
+		StringBuilder buggyTrees = new StringBuilder();
+		StringBuilder actionSets = new StringBuilder();
+		StringBuilder tokens = new StringBuilder();
+		StringBuilder sizes = new StringBuilder();
 		
 		for (File file : files) {
 			String projectFolder = file.getPath();
@@ -36,8 +40,13 @@ public class TestParser {
 					Parser parser = new Parser();
 					try {
 						parser.parseFixPatterns(prevFile, revFile, diffentryFile);
-						astEditScriptsBuilder.append(parser.getAstEditScripts());
-						sourceCodeBuilder.append(parser.getPatchesSourceCode());
+						
+						astEditScripts.append(parser.getAstEditScripts());
+						originalTrees.append(parser.getOriginalTree());
+						buggyTrees.append(parser.getBuggyTrees());
+						actionSets.append(parser.getActionSets());
+						tokens.append(parser.getTokensOfSourceCode());
+						sizes.append(parser.getSizes());
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
@@ -46,7 +55,11 @@ public class TestParser {
 				}
 			}
 		}
-		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/EditScripts.list", astEditScriptsBuilder, false);
-		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/Patches.list", sourceCodeBuilder, false);
+		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/EditScripts.list", astEditScripts, false);
+		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/OriginalTrees.list", originalTrees, false);
+		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/BuggyTrees.list", buggyTrees, false);
+		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/ActionSets.list", actionSets, false);
+		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/Tokens.list", tokens, false);
+		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/Sizes.list", sizes, false);
 	}
 }

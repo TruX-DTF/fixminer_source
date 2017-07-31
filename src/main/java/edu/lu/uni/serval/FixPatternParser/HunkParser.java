@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.actions.model.Update;
 import com.github.gumtreediff.tree.ITree;
 
 import edu.lu.uni.serval.config.Configuration;
@@ -20,6 +19,7 @@ import edu.lu.uni.serval.gumtree.regroup.ActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
 import edu.lu.uni.serval.gumtree.regroup.HunkActionFilter;
+import edu.lu.uni.serval.gumtree.regroup.HunkFixPattern;
 import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 
@@ -29,7 +29,7 @@ import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
  * @author kui.liu
  *
  */
-public class Parser {
+public class HunkParser {
 	
 	private String astEditScripts = "";     // it will be used for fix patterns mining.
 	private String patchesSourceCode = "";  // testing
@@ -47,133 +47,65 @@ public class Parser {
 		if (gumTreeResults != null && gumTreeResults.size() > 0) {
 			List<HierarchicalActionSet> actionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
 			
-			/**
-			 *  TODO What we need to discuss:
-			 *  3. actions' nodes have the same parent belongs to one fix pattern?
-			 *  actions in the same method body.
-			 *  field, one by one,
-			 *  contains a body block.
-			 */
 			ActionFilter filter = new ActionFilter();
 			// Filter out modified actions of changing method names, method parameters, variable names and field names in declaration part.
-			List<HierarchicalActionSet> hierarchicalActionSets = filter.filterOutUselessActions(actionSets); // TODO: variable effects range, sub-actions are these kinds of modification?
+			// TODO: variable effects range, sub-actions are these kinds of modification?
+			List<HierarchicalActionSet> allActionSets = filter.filterOutUselessActions(actionSets); 
 			
-			// DiffEntry size:
-			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(diffEntryFile); // filter out big hunks.
+			// DiffEntry size: filter out big hunks.
+			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(diffEntryFile);
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
 			HunkActionFilter hunkFilter = new HunkActionFilter();
-			hierarchicalActionSets = hunkFilter.filterActionsByDiffEntryHunk(diffentryHunks, actionSets, revFile, prevFile);
+			List<HunkFixPattern> allHunkFixPatternss = hunkFilter.filterActionsByDiffEntryHunk2(diffentryHunks, allActionSets, revFile, prevFile);
 			
-			/**
-			 *  Patch size；
-			 *  1. one hunk is one patch。
-			 *  2. one statement.
-			 */
-			
-			//
-			
-			for (HierarchicalActionSet actionSet : hierarchicalActionSets) {
-				// position of buggy statements
-				int startPosition = 0;
-				int endPosition = 0;
-				// position of fixed statements
-				int startPosition2 = 0;
-				int endPosition2 = 0;
-
-				String actionStr = actionSet.getActionString();
-				String astNodeType = actionSet.getAstNodeType();
-				if (actionStr.startsWith("INS")) {
-					continue;
-//					startPosition2 = actionSet.getStartPosition();
-//					endPosition2 = startPosition2 + actionSet.getLength();
-//
-//					if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-//							|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-//							|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-//							|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
-//						List<Move> firstAndLastMov = getFirstAndLastMoveAction(actionSet);
-//						if (firstAndLastMov != null) {
-//							startPosition = firstAndLastMov.get(0).getNode().getPos();
-//							ITree lastTree = firstAndLastMov.get(1).getNode();
-//							endPosition = lastTree.getPos() + lastTree.getLength();
-//						} else { // Pure insert actions without any move actions.
-//							continue;
-//						}
-//					} else { // other insert statements
-//						continue;
-//					}
-				} else if (actionStr.startsWith("UPD")) {
-					startPosition = actionSet.getStartPosition();
-					endPosition = startPosition + actionSet.getLength();
-					Update update = (Update) actionSet.getAction();
-					ITree newNode = update.getNewNode();
-					startPosition2 = newNode.getPos();
-					endPosition2 = startPosition2 + newNode.getLength();
-
-					if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-							|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-							|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-							|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)) {
-						List<ITree> children = update.getNode().getChildren();
-						endPosition = getEndPosition(children);
-						List<ITree> newChildren = newNode.getChildren();
-						endPosition2 = getEndPosition(newChildren);
-						
-						if (endPosition == 0 || endPosition2 == 0) {
-							continue;
-						}
-					}
-				} else {// DEL actions and MOV actions: we don't need these actions, as for now.
-					continue;
-				}
-
-				// Get the buggy code and fixed code
-				if (startPosition != 0 && startPosition2 != 0) {
-					/*
-					 * Convert the ITree of buggy code to a simple tree.
-					 * It will be used to compute the similarity. 
-					 */
+			for (HunkFixPattern hunkFixPattern : allHunkFixPatternss) {
+				/*
+				 * Convert the ITree of buggy code to a simple tree.
+				 * It will be used to compute the similarity. 
+				 */
+				List<HierarchicalActionSet> hunkActionSets = hunkFixPattern.getHunkActionSets();
+				SimpleTree simpleTree = new SimpleTree();
+				simpleTree.setLabel("Block");
+				simpleTree.setNodeType("Block");
+				List<SimpleTree> children = new ArrayList<>();
+				String astEditScripts = "";
+				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
 					SimplifyTree abstractIdentifier = new SimplifyTree();
-					abstractIdentifier.abstractTree(actionSet);
-					SimpleTree simpleTree = actionSet.getSimpleTree();
+					abstractIdentifier.abstractTree(hunkActionSet);
+					SimpleTree simpleT = hunkActionSet.getSimpleTree();
 					if (simpleTree == null) { // Failed to get the simple tree for INS actions.
 						continue;
-					}
+					} 
+					children.add(simpleT);
 					
 					/**
 					 * Select edit scripts for deep learning. 
 					 * Edit scripts will be used to mine common fix patterns.
 					 */
 					// 1. First level: AST node type.
-					String astEditScripts = getASTEditScripts(actionSet);
-					int size = astEditScripts.split(" ").length;
-					if (size == 1) {
-						System.out.println(actionSet);
-						System.out.println(revFile.getPath());
-//						continue;
-					}
-					this.sizes += size + "\n";
-					this.astEditScripts += astEditScripts + "\n";
+					astEditScripts += getASTEditScripts(hunkActionSet);
 					// 2. source code: raw tokens
-					String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
 					// 3. abstract identifiers: 
-					String abstractIdentifiersEditScripts = getAbstractIdentifiersEditScripts(actionSet);
 					// 4. semi-source code: 
-					String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
-					
-					
-					this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
-					this.tokensOfSourceCode += getTokensDeepFirst(simpleTree).trim() + "\n";
-					this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
-					this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
-					
-//					// Source Code of patches.
-//					String patchSourceCode = getPatchSourceCode(sourceCode, startLineNum, endLineNum, startLineNum2,
-//							endLineNum2);
-//					if (patchSourceCode == null) continue;
-//					patchesSourceCode += "PATCH###\n" + patchSourceCode;
-//					patchesSourceCode += actionSet.toString() + "\n";
 				}
+				simpleTree.setChildren(children);
+				simpleTree.setParent(null);
+				
+				int size = astEditScripts.split(" ").length;
+				this.sizes += size + "\n";
+				this.astEditScripts += astEditScripts + "\n";
+				
+				this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
+				this.tokensOfSourceCode += getTokensDeepFirst(simpleTree).trim() + "\n";
+//				this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
+//				this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
+				
+				// Source Code of patches.
+//				String patchSourceCode = getPatchSourceCode(sourceCode, startLineNum, endLineNum, startLineNum2,
+//						endLineNum2);
+//				if (patchSourceCode == null) continue;
+//				patchesSourceCode += "PATCH###\n" + patchSourceCode;
+//				patchesSourceCode += actionSet.toString() + "\n";
 			}
 		}
 	}
