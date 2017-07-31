@@ -156,10 +156,10 @@ public class SingleStatementParser {
 					String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
 					
 					
-					this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
+//					this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
 					this.tokensOfSourceCode += getTokensDeepFirst(simpleTree).trim() + "\n";
-					this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
-					this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
+//					this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
+//					this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
 					
 					// Source Code of patches.
 					String patchSourceCode = getPatchSourceCode(hunk, startLine, endLine, startLine2, endLine2);
