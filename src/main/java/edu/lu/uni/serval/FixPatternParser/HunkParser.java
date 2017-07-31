@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.tree.ITree;
 
-import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
@@ -51,7 +49,7 @@ public class HunkParser {
 			// Filter out modified actions of changing method names, method parameters, variable names and field names in declaration part.
 			// TODO: variable effects range, sub-actions are these kinds of modification?
 			List<HierarchicalActionSet> allActionSets = filter.filterOutUselessActions(actionSets); 
-			
+			if (allActionSets.size() == 0) return;
 			// DiffEntry size: filter out big hunks.
 			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(diffEntryFile);
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
@@ -59,6 +57,12 @@ public class HunkParser {
 			List<HunkFixPattern> allHunkFixPatternss = hunkFilter.filterActionsByDiffEntryHunk2(diffentryHunks, allActionSets, revFile, prevFile);
 			
 			for (HunkFixPattern hunkFixPattern : allHunkFixPatternss) {
+				// Range of buggy source code
+				int startLine = 0;
+				int endLine = 0;
+				// Range of fixing source code
+				int startLine2 = 0;
+				int endLine2 = 0;
 				/*
 				 * Convert the ITree of buggy code to a simple tree.
 				 * It will be used to compute the similarity. 
@@ -87,6 +91,18 @@ public class HunkParser {
 					// 2. source code: raw tokens
 					// 3. abstract identifiers: 
 					// 4. semi-source code: 
+					
+					if (startLine == 0) {
+						startLine = hunkActionSet.getBugStartLineNum();
+						endLine = hunkActionSet.getBugEndLineNum();
+						startLine2 = hunkActionSet.getFixStartLineNum();
+						endLine2 = hunkActionSet.getFixEndLineNum();
+					} else {
+						if (startLine > hunkActionSet.getBugStartLineNum()) startLine = hunkActionSet.getBugStartLineNum();
+						if (startLine2 > hunkActionSet.getFixStartLineNum()) startLine2 = hunkActionSet.getFixStartLineNum();
+						if (endLine < hunkActionSet.getBugEndLineNum()) endLine = hunkActionSet.getBugEndLineNum();
+						if (endLine2 < hunkActionSet.getFixEndLineNum()) endLine2 = hunkActionSet.getFixEndLineNum();
+					}
 				}
 				simpleTree.setChildren(children);
 				simpleTree.setParent(null);
@@ -95,16 +111,15 @@ public class HunkParser {
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
 				
-				this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
+//				this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
 				this.tokensOfSourceCode += getTokensDeepFirst(simpleTree).trim() + "\n";
 //				this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
 //				this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
 				
 				// Source Code of patches.
-//				String patchSourceCode = getPatchSourceCode(sourceCode, startLineNum, endLineNum, startLineNum2,
-//						endLineNum2);
-//				if (patchSourceCode == null) continue;
-//				patchesSourceCode += "PATCH###\n" + patchSourceCode;
+				String patchSourceCode = getPatchSourceCode(hunkFixPattern.getHunk(), startLine, endLine, startLine2, endLine2);
+				if (patchSourceCode == null) continue;
+				patchesSourceCode += "PATCH###\n" + patchSourceCode + "\n";
 //				patchesSourceCode += actionSet.toString() + "\n";
 			}
 		}
@@ -129,7 +144,7 @@ public class HunkParser {
 				|| "SynchronizedStatement".equals(astNodeType) || "ThrowStatement".equals(astNodeType)
 				|| "TryStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)) {
 			String label = simpleTree.getLabel();
-			label = label.substring(0, label.indexOf("S")).toLowerCase();
+			label = label.substring(0, label.lastIndexOf("S")).toLowerCase();
 			tokens += label + " ";
 		} else if ("EnhancedForStatement".equals(astNodeType)) {
 			tokens += "for ";
@@ -170,77 +185,36 @@ public class HunkParser {
 		return null;
 	}
 
-	private int getEndPosition(List<ITree> children) {
-		int endPosition = 0;
-		for (ITree child : children) {
-			if (child.getLabel().endsWith("Body")) {
-				endPosition = child.getPos() - 1;
-				break;
-			}
-		}
-		return endPosition;
-	}
-
-	private String getPatchSourceCode(String sourceCode, int startLineNum, int endLineNum, int startLineNum2, int endLineNum2) {
-		String buggyStatements = "";
+	private String getPatchSourceCode(DiffEntryHunk hunk, int startLineNum, int endLineNum, int startLineNum2, int endLineNum2) {
+		String sourceCode = hunk.getHunk();
+		int bugStartLine = hunk.getBugLineStartNum();
+		int fixStartLine = hunk.getFixLineStartNum();String buggyStatements = "";
 		String fixedStatements = "";
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new StringReader(sourceCode));
 			String line = null;
-			int startLine = 0;
-			int counter = 0;
-			int range = 0;
-			int startLine2 = 0;
-			int counter2 = 0;
-			int range2 = 0;
-			int counter3 = 0; // counter of non-buggy code line.
+			int bugLines = 0;
+			int fixLines = 0;
+			int contextLines = 0; // counter of non-buggy code line.
 			while ((line = reader.readLine()) != null) {
-				if (startLine == 0 && line.startsWith("@@ -")) {
-					// RegExp.filterSignal(line)
-					int plusIndex = line.indexOf("+");
-					String lineNum = line.substring(4, plusIndex);
-					String[] nums = lineNum.split(",");
-					if (nums.length != 2) {
-						continue;
-					}
-					startLine = Integer.parseInt(nums[0].trim());
-					range = Integer.parseInt(nums[1].trim());
-					if (startLine > endLineNum) {
-						return null; // Wrong Matching.
-					}
-					if (startLine + range < startLineNum) {
-						startLine = 0;
-						continue;
-					}
-					String lineNum2 = line.substring(plusIndex) .trim();
-					lineNum2 = lineNum2.substring(1, lineNum2.length() - 2);
-					String[] nums2 = lineNum2.split(",");
-					if (nums2.length != 2) {
-						startLine = 0;
-						range = 0;
-						continue;
-					}
-					startLine2 = Integer.parseInt(nums2[0].trim());
-					range2 = Integer.parseInt(nums2[1].trim());
-					continue;
-				}
-				
-				int lineNum1 = counter + counter3;
-				int lineNum2 = counter2 + counter3;
-				if (startLine > 0 && startLine2 > 0 && lineNum1 < range && lineNum2 < range2) {
-					if (line.startsWith("-") && startLine + lineNum1 >= startLineNum && startLine + lineNum1 <= endLineNum) {
+				int bugLineIndex = bugLines + contextLines;
+				int fixLineIndex = fixLines + contextLines;
+				if (line.startsWith("-")) {
+					if (bugStartLine + bugLineIndex >= startLineNum && bugStartLine + bugLineIndex <= endLineNum) {
 						buggyStatements += line + "\n";
-					} else if (line.startsWith("+") && startLine2 + lineNum2 >= startLineNum2 && startLine2 + lineNum2 <= endLineNum2) {
+					}
+					bugLines ++;
+				} else if (line.startsWith("+")) {
+					if (fixStartLine + fixLineIndex >= startLineNum2 && fixStartLine + fixLineIndex <= endLineNum2) {
 						fixedStatements += line + "\n";
 					}
-					if (line.startsWith("-")) {
-						counter ++;
-					} else if (line.startsWith("+")) {
-						counter2 ++;
-					} else {
-						counter3 ++;
-					}
+				} else {
+					contextLines ++;
+				}
+				
+				if (bugStartLine + bugLineIndex >= endLineNum && fixStartLine + fixLineIndex >= endLineNum2) {
+					break;
 				}
 			}
 		} catch (IOException e) {
