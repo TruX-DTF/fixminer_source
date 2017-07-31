@@ -147,7 +147,11 @@ public class SimplifyTree {
 				}
 			} else {
 				simpleTree.setNodeType(astNode);
-				simpleTree.setLabel(label.replaceAll(" ", ""));
+				if (astNode.endsWith("Type")) {
+					simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
+				} else {
+					simpleTree.setLabel(label.replaceAll(" ", ""));
+				}
 			}
 		}
 		
