@@ -63,10 +63,10 @@ public class ActionFilter {
 						break;
 					}
 				} else {
-					if (!actionSet.getAstNodeType().endsWith("Statement") || !"FieldDeclaration".equals(actionSet.getAstNodeType())) {
-						uselessActions.add(actionSet);
-					} else {
+					if (actionSet.getAstNodeType().endsWith("Statement") || "FieldDeclaration".equals(actionSet.getAstNodeType())) {
 						uselessActions.addAll(findoutUselessActionSets(actionSet.getSubActions(), false));
+					} else {
+						uselessActions.add(actionSet);
 					}
                 }
 			}
