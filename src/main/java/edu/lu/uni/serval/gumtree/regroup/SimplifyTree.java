@@ -59,7 +59,7 @@ public class SimplifyTree {
 						actions.add(action);
 					}
 				}
-				sourceCodeSimpleTree = sourceCodeTree(actions);
+//				sourceCodeSimpleTree = sourceCodeTree(actions);
 				simpleTree = canonicalizeSourceCodeTree(actions, null);
 			}
 		} else {
@@ -79,15 +79,14 @@ public class SimplifyTree {
 				}
 				tree.setChildren(newChildren);
 			}
-			sourceCodeSimpleTree = originalSourceCodeTree(tree, null);
+//			sourceCodeSimpleTree = originalSourceCodeTree(tree, null);
 //			abstractIdentifierTree = abstractIdentifierTree(actionSet, tree, null);
 //			abstractSimpleTree = semiSourceCodeTree(actionSet, tree, null);
 			simpleTree = canonicalizeSourceCodeTree(tree, null);
 		}
 		
-//		actionSet.setAbstractSimpleTree(abstractSimpleTree);
-//		actionSet.setAbstractIdentifierTree(abstractIdentifierTree);
-//		actionSet.setSimpleTree(sourceCodeSimpleTree);
+		actionSet.setAbstractSimpleTree(abstractSimpleTree);
+		actionSet.setAbstractIdentifierTree(abstractIdentifierTree);
 		actionSet.setSimpleTree(simpleTree);
 		actionSet.setOriginalTree(sourceCodeSimpleTree);
 	}
