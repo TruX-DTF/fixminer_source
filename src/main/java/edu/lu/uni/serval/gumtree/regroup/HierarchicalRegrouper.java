@@ -84,9 +84,10 @@ public class HierarchicalRegrouper {
 			String nodeType = actStrFrag.substring(index);
 			if (!"".equals(nodeType)) {
 				try {
-					nodeType = ASTNodeMap.map.get(Integer.parseInt(nodeType));
+					String type = ASTNodeMap.map.get(Integer.parseInt(nodeType));
+					nodeType = type;
 				} catch (NumberFormatException e) {
-					nodeType = actStrFrag.substring(index);
+//					nodeType = actStrFrag.substring(index);
 				}
 			}
 			actStrFrag = actStrFrag.substring(0, index) + nodeType + "@@";
@@ -158,7 +159,7 @@ public class HierarchicalRegrouper {
 		
 		ITree parent = action.getNode().getParent();
 		if (action instanceof Addition) {
-			parent = ((Addition) action).getParent();
+			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
 		}
 		for (Action act : actions) {
 			if (act.getNode().equals(parent)) {
