@@ -259,7 +259,7 @@ public class SingleStatementParser {
 				|| "SynchronizedStatement".equals(astNodeType) || "ThrowStatement".equals(astNodeType)
 				|| "TryStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)) {
 			String label = simpleTree.getLabel();
-			label = label.substring(0, label.indexOf("S")).toLowerCase();
+			label = label.substring(0, label.lastIndexOf("S")).toLowerCase();
 			tokens += label + " ";
 		} else if ("EnhancedForStatement".equals(astNodeType)) {
 			tokens += "for ";
