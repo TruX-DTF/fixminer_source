@@ -340,7 +340,7 @@ public class SingleStatementParser {
 					contextLines ++;
 				}
 				
-				if (bugStartLine + bugLineIndex >= endLineNum && fixStartLine + fixLineIndex >= endLineNum2) {
+				if (bugStartLine + bugLineIndex > endLineNum && fixStartLine + fixLineIndex > endLineNum2) {
 					break;
 				}
 			}
