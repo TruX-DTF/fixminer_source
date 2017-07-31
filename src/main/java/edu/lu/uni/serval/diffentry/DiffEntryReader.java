@@ -46,7 +46,7 @@ public class DiffEntryReader {
 					lineNum2 = lineNum2.substring(1, lineNum2.length() - 2);
 					String[] nums2 = lineNum2.split(",");
 					startLine2 = Integer.parseInt(nums2[0].trim());
-					if (nums2.length != 2) {
+					if (nums2.length == 2) {
 						range2 = Integer.parseInt(nums2[1].trim());
 					}
 					continue;
@@ -54,7 +54,7 @@ public class DiffEntryReader {
 				hunk.append(line + "\n");
 			}
 			
-			if (range < 7 && range2 < 7) { // filter out big hunks
+			if ((range < 7 && range2 < 7) || range == 0 || range2 == 0) { // filter out big hunks
 				DiffEntryHunk diffEntryHunk = new DiffEntryHunk(startLine, startLine2, range, range2);
 				diffEntryHunk.setHunk(hunk.toString());
 				diffentryHunks.add(diffEntryHunk);
