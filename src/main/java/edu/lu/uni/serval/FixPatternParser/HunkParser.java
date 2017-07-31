@@ -77,7 +77,7 @@ public class HunkParser {
 					SimplifyTree abstractIdentifier = new SimplifyTree();
 					abstractIdentifier.abstractTree(hunkActionSet);
 					SimpleTree simpleT = hunkActionSet.getSimpleTree();
-					if (simpleTree == null) { // Failed to get the simple tree for INS actions.
+					if (simpleT == null) { // Failed to get the simple tree for INS actions.
 						continue;
 					} 
 					children.add(simpleT);
@@ -104,6 +104,7 @@ public class HunkParser {
 						if (endLine2 < hunkActionSet.getFixEndLineNum()) endLine2 = hunkActionSet.getFixEndLineNum();
 					}
 				}
+				if (children.size() == 0) continue;
 				simpleTree.setChildren(children);
 				simpleTree.setParent(null);
 				
