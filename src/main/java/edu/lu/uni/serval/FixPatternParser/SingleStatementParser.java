@@ -165,7 +165,10 @@ public class SingleStatementParser {
 //					this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
 //					this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
 				}
+				actionSets.clear();
 			}
+			allActionSets.clear();
+			gumTreeResults.clear();
 		}
 	}
 	

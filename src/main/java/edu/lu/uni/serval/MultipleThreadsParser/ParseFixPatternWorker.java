@@ -58,16 +58,14 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
 				SingleStatementParser parser = new SingleStatementParser();
-				log.info("Start to parse file: " + revFile.getPath());
 				parser.parseFixPatterns(prevFile, revFile, diffentryFile);
 				editScripts.append(parser.getAstEditScripts());
 				patchesSourceCode.append(parser.getPatchesSourceCode());
 				sizes.append(parser.getSizes());
 //				buggyTrees.append(parser.getBuggyTrees());
 				tokens.append(parser.getTokensOfSourceCode());
-				log.info("Finish of parsing file: " + revFile.getPath());
 				counter ++;
-				if (counter % 1000 == 0) {
+				if (counter % 100 == 0) {
 					FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
 					FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
 					FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
@@ -78,6 +76,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 					sizes.setLength(0);
 //					buggyTrees.setLength(0);
 					tokens.setLength(0);
+					log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
 				}
 			}
 			
@@ -86,7 +85,8 @@ public class ParseFixPatternWorker extends UntypedActor {
 			FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
 //			FileHelper.outputToFile(buggyTreesFilePath + "buggyTrees_" + id + ".list", buggyTrees, true);
 			FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
-			
+
+			log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
 			log.info("Worker #" + id + " finished the work...");
 			this.getSender().tell("STOP", getSelf());
 		} else {

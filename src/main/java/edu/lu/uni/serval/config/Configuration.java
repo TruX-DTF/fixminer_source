@@ -47,4 +47,9 @@ public class Configuration {
 	// the output path of fix patterns mining.
 	private static final String MINING_OUTPUT = ROOT_PATH + "MiningOutput/";
 	public static final String CLUSTER_OUTPUT = MINING_OUTPUT + "ClusteringOutput/clusterResults.list";
+
+	// evaluation data
+	public static final String TEST_INPUT = ROOT_PATH + "TestProjects/";
+	public static final String TEST_LOCALIZATION_FILE = ROOT_PATH + "TestData/Localization.list";
+	public static final String TEST_DATA_FILE = ROOT_PATH + "TestData/TestStatements.list";
 }

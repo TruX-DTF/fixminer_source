@@ -23,6 +23,7 @@ public class ActionFilter {
 		// Filter out non-UPD modifications, and modifications of variable names and method names.
 		uselessActions = findoutUselessActionSets(actionSets, true);
 		actionSets.removeAll(uselessActions);
+		uselessActions.clear();
 		return actionSets;
 	}
 
