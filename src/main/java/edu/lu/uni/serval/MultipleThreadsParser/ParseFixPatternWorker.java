@@ -18,23 +18,23 @@ public class ParseFixPatternWorker extends UntypedActor {
 	private String editScriptsFilePath;
 	private String patchesSourceCodeFilePath;
 	private String editScriptSizesFilePath;
-	private String buggyTreesFilePath;
+	private String buggyTokensFilePath;
 	
-	public ParseFixPatternWorker(String editScriptsFilePath, String patchesSourceCodeFilePath, String buggyTreesFilePath, String editScriptSizesFilePath) {
+	public ParseFixPatternWorker(String editScriptsFilePath, String patchesSourceCodeFilePath, String buggyTokensFilePath, String editScriptSizesFilePath) {
 		this.editScriptsFilePath = editScriptsFilePath;
 		this.patchesSourceCodeFilePath = patchesSourceCodeFilePath;
 		this.editScriptSizesFilePath = editScriptSizesFilePath;
-		this.buggyTreesFilePath = buggyTreesFilePath;
+		this.buggyTokensFilePath = buggyTokensFilePath;
 	}
 
-	public static Props props(final String editScriptsFile, final String patchesSourceCodeFile, final String buggyTreesFilePath, final String editScriptSizesFilePath) {
+	public static Props props(final String editScriptsFile, final String patchesSourceCodeFile, final String buggyTokensFilePath, final String editScriptSizesFilePath) {
 		return Props.create(new Creator<ParseFixPatternWorker>() {
 
 			private static final long serialVersionUID = -7615153844097275009L;
 
 			@Override
 			public ParseFixPatternWorker create() throws Exception {
-				return new ParseFixPatternWorker(editScriptsFile, patchesSourceCodeFile, buggyTreesFilePath, editScriptSizesFilePath);
+				return new ParseFixPatternWorker(editScriptsFile, patchesSourceCodeFile, buggyTokensFilePath, editScriptSizesFilePath);
 			}
 			
 		});
@@ -72,7 +72,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 					FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
 					FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
 //					FileHelper.outputToFile(buggyTreesFilePath + "buggyTrees_" + id + ".list", buggyTrees, true);
-					FileHelper.outputToFile(buggyTreesFilePath + "tokens_" + id + ".list", tokens, true);
+					FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
 					editScripts.setLength(0);
 					patchesSourceCode.setLength(0);
 					sizes.setLength(0);
@@ -85,7 +85,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
 			FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
 //			FileHelper.outputToFile(buggyTreesFilePath + "buggyTrees_" + id + ".list", buggyTrees, true);
-			FileHelper.outputToFile(buggyTreesFilePath + "tokens_" + id + ".list", tokens, true);
+			FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
 			
 			log.info("Worker #" + id + " finished the work...");
 			this.getSender().tell("STOP", getSelf());

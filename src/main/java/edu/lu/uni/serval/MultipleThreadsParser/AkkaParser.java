@@ -25,11 +25,11 @@ public class AkkaParser {
 		// output path
 		final String editScriptsFilePath = Configuration.EDITSCRIPTS_FILE_PATH;
 		final String patchesSourceCodeFilePath = Configuration.PATCH_SOURCECODE_FILE_PATH;
-		final String buggyTreesFilePath = Configuration.BUGGYTREE_FILE_PATH;
+		final String buggyTokensFilePath = Configuration.BUGGY_CODE_TOKEN_FILE_PATH;
 		final String editScriptSizesFilePath = Configuration.EDITSCRIPT_SIZES_FILE_PATH;
 		FileHelper.deleteDirectory(editScriptsFilePath);
 		FileHelper.deleteDirectory(patchesSourceCodeFilePath);
-		FileHelper.deleteDirectory(buggyTreesFilePath);
+		FileHelper.deleteDirectory(buggyTokensFilePath);
 		FileHelper.deleteDirectory(editScriptSizesFilePath);
 		
 		ActorSystem system = null;
@@ -39,7 +39,7 @@ public class AkkaParser {
 		try {
 			log.info("Akka begins...");
 			system = ActorSystem.create("Mining-FixPattern-System");
-			parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath, buggyTreesFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
+			parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
 			parsingActor.tell(msg, ActorRef.noSender());
 		} catch (Exception e) {
 			system.shutdown();

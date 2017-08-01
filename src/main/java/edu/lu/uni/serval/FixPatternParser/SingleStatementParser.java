@@ -150,7 +150,7 @@ public class SingleStatementParser {
 					String patchSourceCode = getPatchSourceCode(hunk, startLine, endLine, startLine2, endLine2);
 					if ("".equals(patchSourceCode)) continue;
 
-					this.patchesSourceCode += Configuration.PATCH_TOKEN +"\n" + revFile.getName() + "\n" + patchSourceCode + "\n";
+					this.patchesSourceCode += Configuration.PATCH_TOKEN + "\n" + patchSourceCode + "\n";
 					this.sizes += size + "\n";
 					this.astEditScripts += astEditScripts + "\n";
 					// 2. source code: raw tokens
@@ -276,10 +276,22 @@ public class SingleStatementParser {
 		}
 
 		if (children.isEmpty()) {
-			tokens += simpleTree.getNodeType() + " " + simpleTree.getLabel() + " ";
+			if ("StringLiteral".equals(astNodeType)) {
+				tokens += astNodeType + " stringLiteral ";
+			} else if ("CharacterLiteral".equals(astNodeType)) {
+				tokens += astNodeType + " charLiteral ";
+			} else if ("ArrayInitializer".equals(astNodeType)) {
+				tokens += astNodeType + " arrayInitializer ";
+			} else {
+				tokens += astNodeType + " " + simpleTree.getLabel() + " ";
+			}
 		} else {
-			for (SimpleTree child : children) {
-				tokens += getTokensDeepFirst(child);
+			if ("ArrayInitializer".equals(astNodeType)) {
+				tokens += astNodeType + " arrayInitializer ";
+			} else {
+				for (SimpleTree child : children) {
+					tokens += getTokensDeepFirst(child);
+				}
 			}
 		}
 		return tokens;

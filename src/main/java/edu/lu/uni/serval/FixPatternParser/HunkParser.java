@@ -165,10 +165,22 @@ public class HunkParser {
 		}
 
 		if (children.isEmpty()) {
-			tokens += simpleTree.getNodeType() + " " + simpleTree.getLabel() + " ";
+			if ("StringLiteral".equals(astNodeType)) {
+				tokens += astNodeType + " stringLiteral ";
+			} else if ("CharacterLiteral".equals(astNodeType)) {
+				tokens += astNodeType + " charLiteral ";
+			} else if ("ArrayInitializer".equals(astNodeType)) {
+				tokens += astNodeType + " arrayInitializer ";
+			} else {
+				tokens += astNodeType + " " + simpleTree.getLabel() + " ";
+			}
 		} else {
-			for (SimpleTree child : children) {
-				tokens += getTokensDeepFirst(child);
+			if ("ArrayInitializer".equals(astNodeType)) {
+				tokens += astNodeType + " arrayInitializer ";
+			} else {
+				for (SimpleTree child : children) {
+					tokens += getTokensDeepFirst(child);
+				}
 			}
 		}
 		return tokens;

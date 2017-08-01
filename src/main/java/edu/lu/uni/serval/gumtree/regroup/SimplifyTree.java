@@ -103,7 +103,7 @@ public class SimplifyTree {
 		return simpleTree;
 	}
 
-	private SimpleTree canonicalizeSourceCodeTree(ITree tree, SimpleTree parent) {
+	public SimpleTree canonicalizeSourceCodeTree(ITree tree, SimpleTree parent) {
 		SimpleTree simpleTree = new SimpleTree();
 
 		String label = tree.getLabel();
