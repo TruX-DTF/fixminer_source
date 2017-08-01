@@ -121,7 +121,7 @@ public class HunkParser {
 				this.astEditScripts += astEditScripts + "\n";
 				
 //				this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
-				this.tokensOfSourceCode += getTokensDeepFirst(simpleTree).trim() + "\n";
+				this.tokensOfSourceCode += Tokenizer.getTokensDeepFirst(simpleTree).trim() + "\n";
 //				this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
 //				this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
 				
@@ -136,54 +136,6 @@ public class HunkParser {
 			str += readActionSet(subAction, line + "---");
 		}
 		return str;
-	}
-
-	private String getTokensDeepFirst(SimpleTree simpleTree) {
-		String tokens = "";
-		List<SimpleTree> children = simpleTree.getChildren();
-		String astNodeType = simpleTree.getNodeType();
-		if ("AssertStatement".equals(astNodeType) || "DoStatement".equals(astNodeType)
-				|| "ForStatement".equals(astNodeType) || "IfStatement".equals(astNodeType)
-				|| "ReturnStatement".equals(astNodeType) || "SwitchStatement".equals(astNodeType) 
-				|| "SynchronizedStatement".equals(astNodeType) || "ThrowStatement".equals(astNodeType)
-				|| "TryStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)) {
-			String label = simpleTree.getLabel();
-			label = label.substring(0, label.lastIndexOf("S")).toLowerCase();
-			tokens += label + " ";
-		} else if ("EnhancedForStatement".equals(astNodeType)) {
-			tokens += "for ";
-		} else if ("CatchClause".equals(astNodeType)) {
-			tokens += "catch ";
-		} else if ("SwitchCase".equals(astNodeType)) {
-			tokens += "case ";
-		} else if ("SuperConstructorInvocation".equals(astNodeType)) {
-			tokens += "super ";
-		} else if ("ConstructorInvocation".equals(astNodeType)) {
-			tokens += "this ";
-		} else if ("FinallyBody".equals(astNodeType)) {
-			tokens += "finally ";
-		}
-
-		if (children.isEmpty()) {
-			if ("StringLiteral".equals(astNodeType)) {
-				tokens += astNodeType + " stringLiteral ";
-			} else if ("CharacterLiteral".equals(astNodeType)) {
-				tokens += astNodeType + " charLiteral ";
-			} else if ("ArrayInitializer".equals(astNodeType)) {
-				tokens += astNodeType + " arrayInitializer ";
-			} else {
-				tokens += astNodeType + " " + simpleTree.getLabel() + " ";
-			}
-		} else {
-			if ("ArrayInitializer".equals(astNodeType)) {
-				tokens += astNodeType + " arrayInitializer ";
-			} else {
-				for (SimpleTree child : children) {
-					tokens += getTokensDeepFirst(child);
-				}
-			}
-		}
-		return tokens;
 	}
 
 	private String getSemiSourceCodeEditScripts(HierarchicalActionSet actionSet) {

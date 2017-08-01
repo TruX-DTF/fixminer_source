@@ -11,5 +11,6 @@ OUTPUT/
 *.csv
 *.pdf
 Dataset/
+src/main/java/edu/lu/uni/serval/FixPatternParser/TestParser.java
 # Package Files #
 *.jar

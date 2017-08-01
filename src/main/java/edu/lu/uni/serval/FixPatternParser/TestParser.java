@@ -12,11 +12,11 @@ import edu.lu.uni.serval.utils.FileHelper;
 public class TestParser {
 	
 	public static void main(String[] args) {
-		String testDataPath = "../../gumtree/gen.jdt/Dataset/"; //DiffEntries  prevFiles  revFiles
+		String testDataPath = "Dataset/"; //DiffEntries  prevFiles  revFiles
 		File inputFileDirector = new File(testDataPath);
 		File[] files = inputFileDirector.listFiles();   // project folders
 		
-		FileHelper.deleteDirectory("OUTPUT/GumTreeResults_Exp/");
+		FileHelper.deleteDirectory("OUTPUT/GumTreeResults_Exp2/");
 		FileHelper.deleteDirectory("OUTPUT/GumTreeResults_Exp_ASTNode/");
 		FileHelper.deleteDirectory("OUTPUT/GumTreeResults_Exp_RawCode/");
 		
@@ -26,6 +26,7 @@ public class TestParser {
 		StringBuilder actionSets = new StringBuilder();
 		StringBuilder tokens = new StringBuilder();
 		StringBuilder sizes = new StringBuilder();
+		StringBuilder patches = new StringBuilder();
 		
 		for (File file : files) {
 			String projectFolder = file.getPath();
@@ -36,8 +37,12 @@ public class TestParser {
 				if (revFile.getName().endsWith(".java")) {
 					File prevFile = new File(projectFolder + "/prevFiles/prev_" + revFile.getName());// previous file
 					File diffentryFile = new File(projectFolder + "/DiffEntries/" + revFile.getName().replace(".java", ".txt")); // DiffEntry file
+					if (revFile.getName().equals("e47d34src#java#org#apache#commons#io#FileCleaner.java")) { // if 的范围
+						System.out.println();
+					}
 					
-					Parser parser = new Parser();
+					SingleStatementParser parser = new SingleStatementParser();
+//					HunkParser parser = new HunkParser();
 					try {
 						parser.parseFixPatterns(prevFile, revFile, diffentryFile);
 						
@@ -47,6 +52,7 @@ public class TestParser {
 						actionSets.append(parser.getActionSets());
 						tokens.append(parser.getTokensOfSourceCode());
 						sizes.append(parser.getSizes());
+						patches.append(parser.getPatchesSourceCode());
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
@@ -54,6 +60,7 @@ public class TestParser {
 					}
 				}
 			}
+//			break;
 		}
 		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/EditScripts.list", astEditScripts, false);
 		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/OriginalTrees.list", originalTrees, false);
@@ -61,5 +68,13 @@ public class TestParser {
 		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/ActionSets.list", actionSets, false);
 		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/Tokens.list", tokens, false);
 		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/Sizes.list", sizes, false);
+		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp/Patches.list", patches, false);
+//		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp2/EditScripts.list", astEditScripts, false);
+//		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp2/OriginalTrees.list", originalTrees, false);
+//		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp2/BuggyTrees.list", buggyTrees, false);
+//		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp2/ActionSets.list", actionSets, false);
+//		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp2/Tokens.list", tokens, false);
+//		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp2/Sizes.list", sizes, false);
+//		FileHelper.outputToFile("OUTPUT/GumTreeResults_Exp2/Patches.list", patches, false);
 	}
 }
