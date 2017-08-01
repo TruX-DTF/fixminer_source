@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
-import edu.lu.uni.serval.FixPatternParser.Parser;
 import edu.lu.uni.serval.FixPatternParser.SingleStatementParser;
 import edu.lu.uni.serval.utils.FileHelper;
 
@@ -49,7 +48,8 @@ public class ParseFixPatternWorker extends UntypedActor {
 			StringBuilder editScripts = new StringBuilder();
 			StringBuilder patchesSourceCode = new StringBuilder();
 			StringBuilder sizes = new StringBuilder();
-			StringBuilder buggyTrees = new StringBuilder();
+//			StringBuilder buggyTrees = new StringBuilder();
+			StringBuilder tokens = new StringBuilder();
 
 			int id = msg.getId();
 			int counter = 0;
@@ -63,25 +63,29 @@ public class ParseFixPatternWorker extends UntypedActor {
 				editScripts.append(parser.getAstEditScripts());
 				patchesSourceCode.append(parser.getPatchesSourceCode());
 				sizes.append(parser.getSizes());
-				buggyTrees.append(parser.getBuggyTrees());
+//				buggyTrees.append(parser.getBuggyTrees());
+				tokens.append(parser.getTokensOfSourceCode());
 				log.info("Finish of parsing file: " + revFile.getPath());
 				counter ++;
 				if (counter % 1000 == 0) {
 					FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
 					FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
 					FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
-					FileHelper.outputToFile(buggyTreesFilePath + "buggyTrees_" + id + ".list", buggyTrees, true);
+//					FileHelper.outputToFile(buggyTreesFilePath + "buggyTrees_" + id + ".list", buggyTrees, true);
+					FileHelper.outputToFile(buggyTreesFilePath + "tokens_" + id + ".list", tokens, true);
 					editScripts.setLength(0);
 					patchesSourceCode.setLength(0);
 					sizes.setLength(0);
-					buggyTrees.setLength(0);
+//					buggyTrees.setLength(0);
+					tokens.setLength(0);
 				}
 			}
 			
 			FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
 			FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
 			FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
-			FileHelper.outputToFile(buggyTreesFilePath + "buggyTrees_" + id + ".list", buggyTrees, true);
+//			FileHelper.outputToFile(buggyTreesFilePath + "buggyTrees_" + id + ".list", buggyTrees, true);
+			FileHelper.outputToFile(buggyTreesFilePath + "tokens_" + id + ".list", tokens, true);
 			
 			log.info("Worker #" + id + " finished the work...");
 			this.getSender().tell("STOP", getSelf());
