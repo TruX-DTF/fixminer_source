@@ -24,13 +24,13 @@ public class Configuration {
 	public static final String BUGGY_CODY_TOKENS_FILE = GUM_TREE_OUTPUT + "tokens.list";
 	public static final String EDITSCRIPT_SIZES_FILE = GUM_TREE_OUTPUT + "editScriptSizes.list";
 	
-	public static int MAX_EDIT_SCRIPT_VECTOR_SIZE = 0; // The max size of edit script vectors.
-	public static int MAX_SOURCE_CODE_TOKEN_VECTOR_SIZE = 0; // The max size of all buggy source code token vectors.
 	public static final int VECTOR_SIZE_OF_EMBEDED_TOKEN1 = 100; // tokens of edit scripts.
 	public static final int VECTOR_SIZE_OF_EMBEDED_TOKEN2 = 200; // tokens of source code
 	
 	// the input path of fix patterns mining.
 	private static final String MINING_INPUT = ROOT_PATH + "MiningInput/";
+	public static final String MAX_TOKEN_VECTORS_SIZE_OF_EDIT_SCRIPTS = MINING_INPUT + "/MaxTokenVectorSizeOfEditScripts.list"; // The max size of edit scripts: upper limitation of max size.
+	public static final String MAX_TOKEN_VECTORS_SIZE_OF_SOURCE_CODE = MINING_INPUT + "/MaxTokenVectorSizeOfBuggySourceCode.list"; // The max size of all buggy source code token vectors.
 	// the input path of token embedding.
 	public static final String EMBEDDING_INPUT = MINING_INPUT + "Embedding/";
 	public static final String SELECTED_PATCHES_SOURE_CODE_FILE = EMBEDDING_INPUT + "patchSourceCode.list";// Selected patches.
@@ -42,7 +42,7 @@ public class Configuration {
 	public static final String EMBEDDED_EDIT_SCRIPT_TOKENS = FEATURE_LEARNING_INPUT + "embeddedEditScriptTokens.list"; // All embedded tokens of selected edit scripts.
 	public static final String VECTORIED_EDIT_SCRIPTS = FEATURE_LEARNING_INPUT + "vectorizedEditScripts.csv"; // Embedded and vectorized edit script vectors.
 	// the input path of clustering.
-	public static final String EXTRACTED_FEATURES = MINING_INPUT + "ExtractedFeatures/"; // Extracted features of edit scripts.
+	public static final String EXTRACTED_FEATURES = MINING_INPUT + "ExtractedFeatures/"; // Extracted features of all edit scripts.
 	public static final String CLUSTER_INPUT = MINING_INPUT + "ClusteringInput/input.arff";
 
 	// the output path of fix patterns mining.
@@ -53,20 +53,28 @@ public class Configuration {
 	
 	// evaluation data
 	public static final String TEST_INPUT = ROOT_PATH + "TestProjects/";
-	public static final String TEST_LOCALIZATION_FILE = ROOT_PATH + "TestData/Localization.list"; // Positions of all test statements.
-	public static final String TEST_DATA_FILE = ROOT_PATH + "TestData/TestStatements.list"; // Token vectors of all test statements.
+	public static final String TEST_POSITION_FILE = ROOT_PATH + "TestData/Positions/"; // Positions of all test statements.
+	public static final String TEST_DATA_FILE = ROOT_PATH + "TestData/TestStatements/"; // Token vectors of all test statements.
+	
+	public static final String NUMBER_OF_TRAINING_DATA = ROOT_PATH + "TestData/NumberOfTrainingData.list";;
 	
 	// data of unsupervised learning
 	public static final String EMBEDDING_DATA_TOKENS1 = ROOT_PATH + "TestData/AllTokenVectorsForEvaluation.list";
 	public static final String EMBEDDED_ALL_TOKENS1 = ROOT_PATH + "TestData/AllEmbeddedTokens.list";
-	public static final String VECTORIED_ALL_SOURCE_CODE1 = ROOT_PATH + "TestData/AllVectorizedSourceCode.list";
-	public static final String EXTRACTED_FEATURES_TESTING = ROOT_PATH + "TestDataExtractedFeatures/";
+	public static final String VECTORIED_ALL_SOURCE_CODE1 = ROOT_PATH + "TestData/AllVectorizedSourceCode/";
+	public static final String EXTRACTED_FEATURES_EVALUATION = ROOT_PATH + "TestDataExtractedFeatures/"; // extracted features of all source code (training data and testing data)
 	
 	// Data of supervised learning
 	public static final String CLUSTERNUMBER_LABEL_MAP = ROOT_PATH + "TestData/clusterMappingLabel.list";
 	public static final String EMBEDDING_DATA_TOKENS2 = ROOT_PATH + "TestData/AllTokenVectorsForSupervisedEvaluation.list";
 	public static final String EMBEDDED_ALL_TOKENS2 = ROOT_PATH + "TestData/AllEmbeddedTokensForSuperVisedEvaluation.list";
 	public static final String TRAINING_DATA = ROOT_PATH + "TestData/TrainingData.csv"; // Training data of supervised learning
-	public static final String TESTING_DATA = ROOT_PATH + "TestData/TestingData.csv";   // testing data of supervised learning
-	
+	public static final String TESTING_DATA = ROOT_PATH + "TestData/SupervisedLearning/"; // testing data of supervised learning
+	public static final String FEATURES_OF_TRAINING_DATA = ROOT_PATH + "TestingOutput/TraingFeatures/";
+	public static final String FEATURES_OF_TESTING_DATA = ROOT_PATH + "TestingOutput/TestingFeatures/";
+	public static final String POSSIBILITIES_OF_TESTING_DATA = ROOT_PATH + "TestingOutput/Posibilities/";
+	public static final String PREDICTED_RESULTS_OF_TESTING_DATA = ROOT_PATH + "TestingOutput/Prediction/";
+
+	public static final String SUPERVISED_LEARNING_MODEL = ROOT_PATH + "TestingOutput/SupervisedLearningModel.zip";
+
 }

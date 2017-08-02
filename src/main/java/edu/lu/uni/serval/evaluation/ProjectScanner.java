@@ -28,23 +28,17 @@ import edu.lu.uni.serval.utils.FileHelper;
  */
 public class ProjectScanner {
 	
-	public static void main(String[] args) {
-		String inputPath = Configuration.TEST_INPUT; //test java projects
-		File inputFileDirector = new File(inputPath);
-		File[] projects = inputFileDirector.listFiles(); // project folders
-		
-		String outputLocalizeFile = Configuration.TEST_LOCALIZATION_FILE;
-		String outputTokensFile = Configuration.TEST_DATA_FILE;
-		
+	private int maxSize = Integer.parseInt(FileHelper.readFile(Configuration.MAX_TOKEN_VECTORS_SIZE_OF_SOURCE_CODE));
+	private int numberOfFiles = 0;
+	private List<SimpleTree> allSimpleTrees = new ArrayList<>();
+	
+	public void scanJavaProject(File[] projects, String outputLocalizeFile, String outputTokensFile, int limitation) {
 		for (File project : projects) {
-			ProjectScanner scanner = new ProjectScanner();
-			scanner.scanJavaProject(project, outputLocalizeFile, outputTokensFile);
+			scanJavaProject(project, outputLocalizeFile, outputTokensFile, limitation);
 		}
 	}
-
-	List<SimpleTree> allSimpleTrees = new ArrayList<>();
 	
-	public void scanJavaProject(File javaProject, String outputLocalizeFile, String outputTokensFile) {
+	public void scanJavaProject(File javaProject, String outputLocalizeFile, String outputTokensFile, int limitation) {
 		List<File> files = new ArrayList<>();
 		files.addAll(FileHelper.getAllFiles(javaProject.getPath(), ".java"));
 		
@@ -60,19 +54,24 @@ public class ProjectScanner {
 			CUCreator cuCreator = new CUCreator();
 			CompilationUnit cUnit = cuCreator.createCompilationUnit(file);
 			getTokenVectorOfAllStatements(tree, cUnit, tokensBuilder, localizationsBuilder, javaProject.getPath(), file.getPath());
-		
-			if (++ counter % 1000 == 0) {
-				FileHelper.outputToFile(outputLocalizeFile, localizationsBuilder, true);
-				FileHelper.outputToFile(outputTokensFile, tokensBuilder, true);
+			++ counter;
+			
+			if ( counter % limitation == 0) {
+				numberOfFiles ++;
+				FileHelper.outputToFile(outputLocalizeFile + "Positions" + numberOfFiles + ".list", localizationsBuilder, true);
+				FileHelper.outputToFile(outputTokensFile + "Tokens" + numberOfFiles + ".list", tokensBuilder, true);
 				localizationsBuilder.setLength(0);
 				tokensBuilder.setLength(0);
 			}
 		}
 		
-		FileHelper.outputToFile(outputLocalizeFile, localizationsBuilder, true);
-		FileHelper.outputToFile(outputTokensFile, tokensBuilder, true);
-		localizationsBuilder.setLength(0);
-		tokensBuilder.setLength(0);
+		if (localizationsBuilder.length() > 0) {
+			numberOfFiles ++;
+			FileHelper.outputToFile(outputLocalizeFile + "Positions" + numberOfFiles + ".list", localizationsBuilder, true);
+			FileHelper.outputToFile(outputTokensFile + "Tokens" + numberOfFiles + ".list", tokensBuilder, true);
+			localizationsBuilder.setLength(0);
+			tokensBuilder.setLength(0);
+		}
 	}
 	
 	private void getTokenVectorOfAllStatements(ITree tree, CompilationUnit unit, StringBuilder tokensBuilder, StringBuilder localizationsBuilder, String projectName, String filePath) {
@@ -98,7 +97,8 @@ public class ProjectScanner {
 				// project name: file name: line number
 				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
 				String[] tokensArray = tokens.split(" ");
-				if (tokensArray.length <= Configuration.MAX_SOURCE_CODE_TOKEN_VECTOR_SIZE) {
+				
+				if (tokensArray.length <= maxSize) {
 					int position = tree.getPos();
 					int lineNum = unit.getLineNumber(position);
 					tokensBuilder.append(tokens).append("\n");
@@ -183,4 +183,5 @@ public class ProjectScanner {
 		simpleTree.setParent(parent);
 		return simpleTree;
 	}
+
 }
