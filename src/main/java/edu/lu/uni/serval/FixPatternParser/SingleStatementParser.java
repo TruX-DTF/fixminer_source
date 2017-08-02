@@ -142,7 +142,7 @@ public class SingleStatementParser {
 					String astEditScripts = getASTEditScripts(actionSet);
 					int size = astEditScripts.split(" ").length;
 					if (size == 1) {
-						System.out.println(actionSet);
+//						System.out.println(actionSet);
 						continue;
 					}
 					
@@ -150,7 +150,7 @@ public class SingleStatementParser {
 					String patchSourceCode = getPatchSourceCode(hunk, startLine, endLine, startLine2, endLine2);
 					if ("".equals(patchSourceCode)) continue;
 
-					this.patchesSourceCode += Configuration.PATCH_TOKEN + "\n" + patchSourceCode + "\n";
+					this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + patchSourceCode + "\n";
 					this.sizes += size + "\n";
 					this.astEditScripts += astEditScripts + "\n";
 					// 2. source code: raw tokens

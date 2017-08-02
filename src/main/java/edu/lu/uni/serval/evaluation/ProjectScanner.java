@@ -38,15 +38,15 @@ public class ProjectScanner {
 		
 		for (File project : projects) {
 			ProjectScanner scanner = new ProjectScanner();
-			scanner.scanJavaProject(project.getPath(), outputLocalizeFile, outputTokensFile);
+			scanner.scanJavaProject(project, outputLocalizeFile, outputTokensFile);
 		}
 	}
 
 	List<SimpleTree> allSimpleTrees = new ArrayList<>();
 	
-	public void scanJavaProject(String javaProject, String outputLocalizeFile, String outputTokensFile) {
+	public void scanJavaProject(File javaProject, String outputLocalizeFile, String outputTokensFile) {
 		List<File> files = new ArrayList<>();
-		files.addAll(FileHelper.getAllFiles(javaProject, ".java"));
+		files.addAll(FileHelper.getAllFiles(javaProject.getPath(), ".java"));
 		
 		StringBuilder tokensBuilder = new StringBuilder();
 		StringBuilder localizationsBuilder = new StringBuilder();
@@ -59,7 +59,7 @@ public class ProjectScanner {
 			
 			CUCreator cuCreator = new CUCreator();
 			CompilationUnit cUnit = cuCreator.createCompilationUnit(file);
-			getTokenVectorOfAllStatements(tree, cUnit, tokensBuilder, localizationsBuilder, javaProject, file.getPath());
+			getTokenVectorOfAllStatements(tree, cUnit, tokensBuilder, localizationsBuilder, javaProject.getPath(), file.getPath());
 		
 			if (++ counter % 1000 == 0) {
 				FileHelper.outputToFile(outputLocalizeFile, localizationsBuilder, true);
@@ -75,7 +75,7 @@ public class ProjectScanner {
 		tokensBuilder.setLength(0);
 	}
 	
-	public void getTokenVectorOfAllStatements(ITree tree, CompilationUnit unit, StringBuilder tokensBuilder, StringBuilder localizationsBuilder, String projectName, String filePath) {
+	private void getTokenVectorOfAllStatements(ITree tree, CompilationUnit unit, StringBuilder tokensBuilder, StringBuilder localizationsBuilder, String projectName, String filePath) {
 		String astNodeType = ASTNodeMap.map.get(tree.getType()); //ignore: SwitchCase, SuperConstructorInvocation, ConstructorInvocation
 		if ((astNodeType.endsWith("Statement") && !astNodeType.equals("TypeDeclarationStatement"))
 				|| astNodeType.equals("FieldDeclaration")) {
@@ -98,7 +98,7 @@ public class ProjectScanner {
 				// project name: file name: line number
 				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
 				String[] tokensArray = tokens.split(" ");
-				if (tokensArray.length <= Configuration.TOKEN_VECTOR_SIZE) {
+				if (tokensArray.length <= Configuration.MAX_SOURCE_CODE_TOKEN_VECTOR_SIZE) {
 					int position = tree.getPos();
 					int lineNum = unit.getLineNumber(position);
 					tokensBuilder.append(tokens).append("\n");
