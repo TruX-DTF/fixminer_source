@@ -115,12 +115,18 @@ public class SimplifyTree {
 			if (astNode.endsWith("Type")) {
 				simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
 			} else {
+				if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation")) && label.startsWith("MethodName:")) {
+					label = label.substring(11);
+					simpleTree.setNodeType("MethodName");
+					simpleTree.setLabel(label);
+				} else {
+					simpleTree.setLabel(astNode);
+				}
 				List<SimpleTree> subTrees = new ArrayList<>();
 				for (ITree child : children) {
 					subTrees.add(canonicalizeSourceCodeTree(child, simpleTree));
 				}
 				simpleTree.setChildren(subTrees);
-				simpleTree.setLabel(astNode);
 			}
 		} else {
 			if (astNode.endsWith("Name")) {
@@ -147,6 +153,12 @@ public class SimplifyTree {
 				simpleTree.setNodeType(astNode);
 				if (astNode.endsWith("Type")) {
 					simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
+				} else if (astNode.startsWith("Type")) {
+					simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
+				} else if (astNode.equals("MethodInvocation") && label.startsWith("MethodName:")) {
+					label = label.substring(11);
+					simpleTree.setNodeType("MethodName");
+					simpleTree.setLabel(label);
 				} else {
 					simpleTree.setLabel(label.replaceAll(" ", ""));
 				}
@@ -189,9 +201,22 @@ public class SimplifyTree {
 				matchStr = matchStatements(parentType, parent, label);
 			} else if (parentType == 55) { // TypeDeclaration: Class Declaration
 				List<ITree> children = parent.getChildren();
-				for (ITree child : children) {
+				int index = children.indexOf(tree);
+				for (int i = index - 1; i >=0; i --) {
+					ITree child = children.get(i);
 					if (child.getType() == 23) { // FieldDeclaration
 						matchStr = matchVariableDeclarationExpression(child, label);
+						if (matchStr != null) break;
+					}
+				}
+			} else if (parentType == 8) { // Block body
+				List<ITree> children = parent.getChildren();
+				int index = children.indexOf(tree);
+				for (int i = index - 1; i >=0; i --) {
+					ITree child = children.get(i);
+					if (child.getType() == 60) { // VariableDeclarationStatement
+						matchStr = matchVariableDeclarationExpression(child, label);
+						if (matchStr != null) break;
 					}
 				}
 			}
