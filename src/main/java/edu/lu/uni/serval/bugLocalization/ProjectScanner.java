@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.evaluation;
+package edu.lu.uni.serval.bugLocalization;
 
 import java.io.File;
 import java.util.ArrayList;

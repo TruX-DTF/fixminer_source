@@ -2,7 +2,6 @@ package edu.lu.uni.serval.FixPatternParser;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class SingleStatementParser {
 	private String originalTree = ""; 		// Guide of generating patches.
 	private String actionSets = ""; 		// Guide of generating patches.
 
-	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) throws FileNotFoundException, IOException {
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) {
 		// GumTree results
 		List<Action> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
 		

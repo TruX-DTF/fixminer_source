@@ -16,7 +16,7 @@ public class Step1 {
 	public static void main(String[] args) {
 		String editScriptsFile = Configuration.EDITSCRIPT_SIZES_FILE;
 		String patchesSourceCodeFile = Configuration.PATCH_SOURCECODE_FILE;
-		String buggyTokensFile = Configuration.BUGGY_CODY_TOKENS_FILE;
+		String buggyTokensFile = Configuration.BUGGY_CODE_TOKENS_FILE;
 		String editScriptSizesFile = Configuration.EDITSCRIPT_SIZES_FILE;
 		FileHelper.deleteFile(editScriptsFile);
 		FileHelper.deleteFile(patchesSourceCodeFile);

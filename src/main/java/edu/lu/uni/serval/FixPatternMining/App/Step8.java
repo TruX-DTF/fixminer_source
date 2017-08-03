@@ -2,8 +2,8 @@ package edu.lu.uni.serval.FixPatternMining.App;
 
 import java.io.File;
 
+import edu.lu.uni.serval.bugLocalization.ProjectScanner;
 import edu.lu.uni.serval.config.Configuration;
-import edu.lu.uni.serval.evaluation.ProjectScanner;
 import edu.lu.uni.serval.utils.FileHelper;
 
 /**

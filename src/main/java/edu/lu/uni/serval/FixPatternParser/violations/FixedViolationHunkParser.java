@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser;
+package edu.lu.uni.serval.FixPatternParser.violations;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.github.gumtreediff.actions.model.Action;
 
+import edu.lu.uni.serval.FixPatternParser.Tokenizer;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
@@ -27,7 +28,7 @@ import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
  * @author kui.liu
  *
  */
-public class HunkParser {
+public class FixedViolationHunkParser {
 	
 	private String astEditScripts = "";     // it will be used for fix patterns mining.
 	private String patchesSourceCode = "";  // testing

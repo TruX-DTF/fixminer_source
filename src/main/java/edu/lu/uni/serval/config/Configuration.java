@@ -1,7 +1,7 @@
 package edu.lu.uni.serval.config;
 
 public class Configuration {
-	private static final String ROOT_PATH = "../";  // The root path of all output data.
+	private static final String ROOT_PATH = "";//"../";  // The root path of all output data.
 
 	public static final int HUNK_SIZE = 7; // The limitation of source code lines of each DiffEntry, which will be selected as training data.
 	public static final String BUGGY_TREE_SIGNAL = "BUGGY_TREE###"; // The starting signal of the tree of buggy source code .
@@ -21,7 +21,7 @@ public class Configuration {
 	public static final String EDITSCRIPTS_FILE = GUM_TREE_OUTPUT + "editScripts.list";
 	public static final String PATCH_SOURCECODE_FILE = GUM_TREE_OUTPUT + "patchSourceCode.list";
 	public static final String BUGGYTREES_FILE = GUM_TREE_OUTPUT + "buggyTrees.list";
-	public static final String BUGGY_CODY_TOKENS_FILE = GUM_TREE_OUTPUT + "tokens.list";
+	public static final String BUGGY_CODE_TOKENS_FILE = GUM_TREE_OUTPUT + "tokens.list";
 	public static final String EDITSCRIPT_SIZES_FILE = GUM_TREE_OUTPUT + "editScriptSizes.list";
 	
 	public static final int VECTOR_SIZE_OF_EMBEDED_TOKEN1 = 100; // tokens of edit scripts.
