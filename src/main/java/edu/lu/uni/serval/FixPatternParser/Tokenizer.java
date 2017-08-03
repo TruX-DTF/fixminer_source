@@ -52,6 +52,10 @@ public class Tokenizer {
 				tokens += astNodeType + " finally ";
 			} else if ("LabeledStatement".equals(astNodeType)) {
 				tokens += "LabeledStatement " + simpleTree.getLabel();
+			} else if ("SuperMethodInvocation".equals(astNodeType)) {
+				tokens += astNodeType + " super ";
+			} else if ("MethodName".equals(astNodeType)) {
+				tokens += "MethodName " + simpleTree.getLabel() + " ";
 			}
 			
 			if ("ArrayInitializer".equals(astNodeType)) {
