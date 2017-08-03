@@ -3,7 +3,6 @@ package edu.lu.uni.serval.FixPatternMining.App;
 import java.io.File;
 import java.util.List;
 
-import edu.lu.uni.serval.FixPatternMining.FeatureLearner;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 
@@ -18,6 +17,7 @@ public class Step13 {
 	public static void main(String[] args) {
 		boolean isSupervisedLearning = true;
 		if (isSupervisedLearning) {// supervised learning
+			// localization file, feature file, 
 			// label --> possibility --> 90, 80, 70, 60 others ignored, level one localization
 			// label: clusterNum, re-compute similarity with each element. 90, 80, 70, 60.
 			// similarity: patches --> fixing bug.

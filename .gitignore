@@ -11,6 +11,8 @@ OUTPUT/
 *.csv
 *.pdf
 Dataset/
+GumTreeInput/
+*TestParser.java
 src/main/java/edu/lu/uni/serval/FixPatternParser/TestParser.java
 # Package Files #
 *.jar

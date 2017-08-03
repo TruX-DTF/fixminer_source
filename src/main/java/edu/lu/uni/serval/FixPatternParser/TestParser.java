@@ -1,8 +1,6 @@
 package edu.lu.uni.serval.FixPatternParser;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import edu.lu.uni.serval.utils.FileHelper;
 
@@ -43,21 +41,15 @@ public class TestParser {
 					
 					SingleStatementParser parser = new SingleStatementParser();
 //					HunkParser parser = new HunkParser();
-					try {
-						parser.parseFixPatterns(prevFile, revFile, diffentryFile);
-						
-						astEditScripts.append(parser.getAstEditScripts());
-						originalTrees.append(parser.getOriginalTree());
-						buggyTrees.append(parser.getBuggyTrees());
-						actionSets.append(parser.getActionSets());
-						tokens.append(parser.getTokensOfSourceCode());
-						sizes.append(parser.getSizes());
-						patches.append(parser.getPatchesSourceCode());
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					parser.parseFixPatterns(prevFile, revFile, diffentryFile);
+					
+					astEditScripts.append(parser.getAstEditScripts());
+					originalTrees.append(parser.getOriginalTree());
+					buggyTrees.append(parser.getBuggyTrees());
+					actionSets.append(parser.getActionSets());
+					tokens.append(parser.getTokensOfSourceCode());
+					sizes.append(parser.getSizes());
+					patches.append(parser.getPatchesSourceCode());
 				}
 			}
 //			break;
