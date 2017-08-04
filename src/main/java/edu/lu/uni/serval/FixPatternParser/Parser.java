@@ -150,7 +150,6 @@ public abstract class Parser implements ParserInterface {
 						singleEdit = singleEdit.replace("SimpleName", "MethodName");
 					} else {
 						if (actionStr.startsWith("Name")) {
-							actionStr = actionStr.substring(5, 6);
 							char c = actionStr.charAt(5);
 							if (Character.isUpperCase(c)) {
 								singleEdit = singleEdit.replace("SimpleName", "Name");
