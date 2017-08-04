@@ -18,7 +18,7 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import edu.lu.uni.serval.FixPatternParser.RunnableParser;
-import edu.lu.uni.serval.FixPatternParser.SingleStatementParser;
+import edu.lu.uni.serval.FixPatternParser.patch.CommitPatchParser;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 
@@ -67,7 +67,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
-				SingleStatementParser parser = new SingleStatementParser();
+				CommitPatchParser parser = new CommitPatchParser();
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work

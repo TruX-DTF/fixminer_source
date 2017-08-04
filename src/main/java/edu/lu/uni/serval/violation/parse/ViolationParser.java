@@ -47,7 +47,7 @@ public class ViolationParser {
 	public void parseViolations(String fixedAlarmFile, List<File> repos) {
 		AlarmsReader reader = new AlarmsReader();
 		Map<String, Violation> violations = reader.readAlarmsList(fixedAlarmFile);
-		
+		int a = 0;
 		for (Map.Entry<String , Violation> entry : violations.entrySet()) {
 			String projectName = entry.getKey();
 			String repoName = "";
@@ -57,7 +57,10 @@ public class ViolationParser {
 					break;
 				}
 			}
-			if ("".equals(repoName)) continue;
+			if ("".equals(repoName)) {
+				a ++;
+				continue;
+			}
 			Violation violation = entry.getValue();
 			List<Alarm> alarms = violation.getAlarms();
 			
@@ -100,6 +103,7 @@ public class ViolationParser {
 				gitRepo.close();
 			}
 		}
+		System.out.println(a);
 	}
 
 	private String readPosition(Map<Integer, Integer> positions) {

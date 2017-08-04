@@ -7,9 +7,9 @@ public class RunnableParser implements Runnable {
 	private File prevFile;
 	private File revFile;
 	private File diffentryFile;
-	SingleStatementParser parser;
+	private Parser parser;
 
-	public RunnableParser(File prevFile, File revFile, File diffentryFile, SingleStatementParser parser) {
+	public RunnableParser(File prevFile, File revFile, File diffentryFile, Parser parser) {
 		this.prevFile = prevFile;
 		this.revFile = revFile;
 		this.diffentryFile = diffentryFile;

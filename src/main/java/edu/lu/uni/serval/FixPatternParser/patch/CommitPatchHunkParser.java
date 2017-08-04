@@ -1,59 +1,39 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.FixPatternParser.patch;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import edu.lu.uni.serval.FixPatternParser.Tokenizer;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
-import edu.lu.uni.serval.gumtree.regroup.ActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HunkActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HunkFixPattern;
 import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
-import edu.lu.uni.serval.utils.MapSorter;
 
 /**
  * Parse fix patterns with GumTree.
  * 
+ * Multiple statements bugs.
+ * 
  * @author kui.liu
  *
  */
-public class FixedViolationHunkParser extends FixedViolationParser {
+public class CommitPatchHunkParser extends CommitPatchParser {
 	
+
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File positionsFile) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) {
 		
 		// GumTree results
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree(prevFile, revFile);
 		
 		if (actionSets.size() > 0) {
-			Map<Integer, Integer> positions = readPositions(positionsFile);
-			if (positions.size() > 1) {
-				MapSorter<Integer, Integer> sorter = new MapSorter<>();
-				positions = sorter.sortByKeyAscending(positions);
-			}
-			
-			for (Map.Entry<Integer, Integer> entry : positions.entrySet()) {
-				// only statements
-				for (HierarchicalActionSet actionSet : actionSets) {
-					String astNodeType = actionSet.getAstNodeType();
-					if (astNodeType.endsWith("Statement") || "FieldDeclaration".equals(astNodeType)) {
-						
-					}
-				}
-			}
-			
-			ActionFilter filter = new ActionFilter();
 			// DiffEntry size: filter out big hunks.
-			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(positionsFile);
+			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(diffEntryFile);
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
 			HunkActionFilter hunkFilter = new HunkActionFilter();
 			List<HunkFixPattern> allHunkFixPatternss = hunkFilter.filterActionsByDiffEntryHunk2(diffentryHunks, actionSets, revFile, prevFile);
@@ -130,52 +110,4 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		}
 	}
 	
-	private String getPatchSourceCode(DiffEntryHunk hunk, int startLineNum, int endLineNum, int startLineNum2, int endLineNum2) {
-		String sourceCode = hunk.getHunk();
-		int bugStartLine = hunk.getBugLineStartNum();
-		int fixStartLine = hunk.getFixLineStartNum();String buggyStatements = "";
-		String fixedStatements = "";
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new StringReader(sourceCode));
-			String line = null;
-			int bugLines = 0;
-			int fixLines = 0;
-			int contextLines = 0; // counter of non-buggy code line.
-			while ((line = reader.readLine()) != null) {
-				int bugLineIndex = bugLines + contextLines;
-				int fixLineIndex = fixLines + contextLines;
-				if (line.startsWith("-")) {
-					if (bugStartLine + bugLineIndex >= startLineNum && bugStartLine + bugLineIndex <= endLineNum) {
-						buggyStatements += line + "\n";
-					}
-					bugLines ++;
-				} else if (line.startsWith("+")) {
-					if (fixStartLine + fixLineIndex >= startLineNum2 && fixStartLine + fixLineIndex <= endLineNum2) {
-						fixedStatements += line + "\n";
-					}
-					fixLines ++;
-				} else {
-					contextLines ++;
-				}
-				
-				if (bugStartLine + bugLineIndex > endLineNum && fixStartLine + fixLineIndex > endLineNum2) {
-					break;
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (reader != null) {
-					reader.close();
-					reader = null;
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return buggyStatements + fixedStatements;
-	}
-
 }
