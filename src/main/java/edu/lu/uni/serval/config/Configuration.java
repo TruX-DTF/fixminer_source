@@ -1,6 +1,9 @@
 package edu.lu.uni.serval.config;
 
 public class Configuration {
+	
+	public static final long SECONDS_TO_WAIT = 60L;
+	
 	private static final String ROOT_PATH = "";//"../";  // The root path of all output data.
 
 	public static final int HUNK_SIZE = 7; // The limitation of source code lines of each DiffEntry, which will be selected as training data.
@@ -83,6 +86,5 @@ public class Configuration {
 	public static final String TESTING_DATA_BUGS80 = ROOT_PATH + "Bugs/bugs80.list";
 	public static final String TESTING_DATA_BUGS70 = ROOT_PATH + "Bugs/bugs70.list";
 	public static final String TESTING_DATA_BUGS60 = ROOT_PATH + "Bugs/bugs60.list";
-
 
 }
