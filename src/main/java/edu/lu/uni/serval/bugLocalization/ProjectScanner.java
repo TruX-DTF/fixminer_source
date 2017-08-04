@@ -28,9 +28,21 @@ import edu.lu.uni.serval.utils.FileHelper;
  */
 public class ProjectScanner {
 	
-	private int maxSize = Integer.parseInt(FileHelper.readFile(Configuration.MAX_TOKEN_VECTORS_SIZE_OF_SOURCE_CODE));
-	private int numberOfFiles = 0;
-	private List<SimpleTree> allSimpleTrees = new ArrayList<>();
+	private int maxSize;
+	private int numberOfFiles;
+	private List<SimpleTree> allSimpleTrees = null;
+
+	private StringBuilder tokensBuilder;
+	private StringBuilder localizationsBuilder;
+	private int counter;
+	
+	public ProjectScanner() {
+		maxSize = Integer.parseInt(FileHelper.readFile(Configuration.MAX_TOKEN_VECTORS_SIZE_OF_SOURCE_CODE));
+		numberOfFiles = 0;
+		tokensBuilder = new StringBuilder();
+		localizationsBuilder = new StringBuilder();
+		counter = 0;
+	}
 	
 	public void scanJavaProject(File[] projects, String outputLocalizeFile, String outputTokensFile, int limitation) {
 		for (File project : projects) {
@@ -41,10 +53,6 @@ public class ProjectScanner {
 	public void scanJavaProject(File javaProject, String outputLocalizeFile, String outputTokensFile, int limitation) {
 		List<File> files = new ArrayList<>();
 		files.addAll(FileHelper.getAllFiles(javaProject.getPath(), ".java"));
-		
-		StringBuilder tokensBuilder = new StringBuilder();
-		StringBuilder localizationsBuilder = new StringBuilder();
-		int counter = 0;
 		for (File file : files) {
 			if (file.getPath().toLowerCase().contains("test")) {
 				continue; // ignore all test-related java files.
@@ -53,28 +61,19 @@ public class ProjectScanner {
 			
 			CUCreator cuCreator = new CUCreator();
 			CompilationUnit cUnit = cuCreator.createCompilationUnit(file);
-			getTokenVectorOfAllStatements(tree, cUnit, tokensBuilder, localizationsBuilder, javaProject.getPath(), file.getPath());
-			++ counter;
-			
-			if ( counter % limitation == 0) {
-				numberOfFiles ++;
-				FileHelper.outputToFile(outputLocalizeFile + "Positions" + numberOfFiles + ".list", localizationsBuilder, true);
-				FileHelper.outputToFile(outputTokensFile + "Tokens" + numberOfFiles + ".list", tokensBuilder, true);
-				localizationsBuilder.setLength(0);
-				tokensBuilder.setLength(0);
-			}
+			getTokenVectorOfAllStatements(tree, cUnit, javaProject.getPath(), file.getPath(), outputLocalizeFile, outputTokensFile, limitation);
 		}
 		
 		if (localizationsBuilder.length() > 0) {
 			numberOfFiles ++;
-			FileHelper.outputToFile(outputLocalizeFile + "Positions" + numberOfFiles + ".list", localizationsBuilder, true);
-			FileHelper.outputToFile(outputTokensFile + "Tokens" + numberOfFiles + ".list", tokensBuilder, true);
+			FileHelper.outputToFile(outputLocalizeFile + "Positions_" + numberOfFiles + ".list", localizationsBuilder, true);
+			FileHelper.outputToFile(outputTokensFile + "Tokens_" + numberOfFiles + ".list", tokensBuilder, true);
 			localizationsBuilder.setLength(0);
 			tokensBuilder.setLength(0);
 		}
 	}
 	
-	private void getTokenVectorOfAllStatements(ITree tree, CompilationUnit unit, StringBuilder tokensBuilder, StringBuilder localizationsBuilder, String projectName, String filePath) {
+	private void getTokenVectorOfAllStatements(ITree tree, CompilationUnit unit, String projectName, String filePath, String outputLocalizeFile, String outputTokensFile, int limitation) {
 		String astNodeType = ASTNodeMap.map.get(tree.getType()); //ignore: SwitchCase, SuperConstructorInvocation, ConstructorInvocation
 		if ((astNodeType.endsWith("Statement") && !astNodeType.equals("TypeDeclarationStatement"))
 				|| astNodeType.equals("FieldDeclaration")) {
@@ -103,6 +102,15 @@ public class ProjectScanner {
 					int lineNum = unit.getLineNumber(position);
 					tokensBuilder.append(tokens).append("\n");
 					localizationsBuilder.append(projectName + ":" + filePath + "LineNum:" + lineNum + "\n"); //project name: file name: line number
+					++ counter;
+					
+					if ( counter % limitation == 0) {
+						numberOfFiles ++;
+						FileHelper.outputToFile(outputLocalizeFile + "Positions_" + numberOfFiles + ".list", localizationsBuilder, true);
+						FileHelper.outputToFile(outputTokensFile + "Tokens_" + numberOfFiles + ".list", tokensBuilder, true);
+						localizationsBuilder.setLength(0);
+						tokensBuilder.setLength(0);
+					}
 				}
 			}
 		} else {
