@@ -41,7 +41,7 @@ public abstract class Parser implements ParserInterface {
 			
 			// Filter out modified actions of changing method names, method parameters, variable names and field names in declaration part.
 			// TODO: variable effects range, sub-actions are these kinds of modification?
-			actionSets = new ActionFilter().filterOutUselessActions(allActionSets);
+			actionSets.addAll(new ActionFilter().filterOutUselessActions(allActionSets));
 		}
 		
 		return actionSets;
@@ -151,7 +151,8 @@ public abstract class Parser implements ParserInterface {
 					} else {
 						if (actionStr.startsWith("Name")) {
 							actionStr = actionStr.substring(5, 6);
-							if (!actionStr.equals(actionStr.toLowerCase())) {
+							char c = actionStr.charAt(5);
+							if (Character.isUpperCase(c)) {
 								singleEdit = singleEdit.replace("SimpleName", "Name");
 							} else {
 								singleEdit = singleEdit.replace("SimpleName", "Variable");
