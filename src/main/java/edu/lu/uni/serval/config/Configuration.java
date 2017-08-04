@@ -50,6 +50,7 @@ public class Configuration {
 	public static final String CLUSTER_OUTPUT = MINING_OUTPUT + "ClusteringOutput/clusterResults.list";
 	public static final String CLUSTERED_PATCHES_FILE = MINING_OUTPUT + "ClusteredPatches/";
 	public static final String CLUSTERED_TOKENSS_FILE = MINING_OUTPUT + "ClusteredTokens/"; // Token vectors of buggy source code.
+	public static final String COMMON_CLUSTERS_SIZES = MINING_OUTPUT + "ClusteringOutput/CommonClusterSizes.list";
 	
 	// evaluation data
 	public static final String TEST_INPUT = ROOT_PATH + "TestProjects/";
@@ -76,5 +77,12 @@ public class Configuration {
 	public static final String PREDICTED_RESULTS_OF_TESTING_DATA = ROOT_PATH + "TestingOutput/Prediction/";
 
 	public static final String SUPERVISED_LEARNING_MODEL = ROOT_PATH + "TestingOutput/SupervisedLearningModel.zip";
+	
+	public static final String FEATURES_OF_COMMON_CLUSTERS = ROOT_PATH + "FeaturesOfCommonClusters/";
+	public static final String TESTING_DATA_BUGS90 = ROOT_PATH + "Bugs/bugs90.list";
+	public static final String TESTING_DATA_BUGS80 = ROOT_PATH + "Bugs/bugs80.list";
+	public static final String TESTING_DATA_BUGS70 = ROOT_PATH + "Bugs/bugs70.list";
+	public static final String TESTING_DATA_BUGS60 = ROOT_PATH + "Bugs/bugs60.list";
+
 
 }
