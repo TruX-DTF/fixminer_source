@@ -1,7 +1,6 @@
 package edu.lu.uni.serval.FixPatternParser;
 
 import static java.lang.System.err;
-import static java.lang.System.out;
 
 import java.io.File;
 import java.util.concurrent.ExecutionException;
@@ -38,20 +37,15 @@ public class TestParser {
 			File revFileFolder = new File(projectFolder + "/revFiles/");// revised file folder
 			File[] revFiles = revFileFolder.listFiles();
 			int a = 0;
-System.out.println(file.getPath());
+			System.out.println(file.getPath());
 			String outputFile = outputPath + file.getName();
 			FileHelper.deleteDirectory(outputFile);
 			for (File revFile : revFiles) {
 				String fileName = revFile.getName();
 				if (fileName.endsWith(".java")) {
-					if (fileName.equals("00a935src#org#apache#xalan#xsltc#compiler#Number.java")) {
-						System.out.println(fileName);
-					}
-//					System.out.println(fileName);
 					
 					File prevFile = new File(projectFolder + "/prevFiles/prev_" + fileName);// previous file
 					File diffentryFile = new File(projectFolder + "/DiffEntries/" + fileName.replace(".java", ".txt")); // DiffEntry file
-					
 					
 					SingleStatementParser parser = new SingleStatementParser();
 //					HunkParser parser = new HunkParser();
@@ -114,24 +108,4 @@ System.out.println(file.getPath());
 		}
 	}
 	
-}
-
-class RunnableParser implements Runnable {
-	
-	private File prevFile;
-	private File revFile;
-	private File diffentryFile;
-	SingleStatementParser parser;
-
-	public RunnableParser(File prevFile, File revFile, File diffentryFile, SingleStatementParser parser) {
-		this.prevFile = prevFile;
-		this.revFile = revFile;
-		this.diffentryFile = diffentryFile;
-		this.parser = parser;
-	}
-
-	@Override
-	public void run() {
-		parser.parseFixPatterns(prevFile, revFile, diffentryFile);
-	}
 }
