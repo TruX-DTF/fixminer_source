@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import edu.lu.uni.serval.FixPatternMining.DataPrepare.DataPreparation;
+import edu.lu.uni.serval.config.Configuration;
+import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.MapSorter;
 
 public class CommonPatterns {
@@ -28,15 +30,20 @@ public class CommonPatterns {
 	
 	private List<Integer> getCommonClustersByNumber(Map<Integer, List<Integer>> clusterMap) {
 		List<Integer> commonClusterNum = new ArrayList<>();
+		String numbersMapStr = "";// numbers of instances in each common cluster.
 		
 		for (Map.Entry<Integer, List<Integer>> entry : clusterMap.entrySet()) {
 			List<Integer> elements = entry.getValue();
 			int size = elements.size();
 			if (size >= LEAST_NUMBER) { // TODO how to set this threshold?
-				commonClusterNum.add(entry.getKey());
+				int key = entry.getKey();
+				commonClusterNum.add(key);
 				totalNumberofTrainingData += size;
+				numbersMapStr += key + ":" + size + "\n";
 			}
 		}
+		
+		FileHelper.outputToFile(Configuration.COMMON_CLUSTERS_SIZES, numbersMapStr, false);
 		
 		return commonClusterNum;
 	}
@@ -50,17 +57,24 @@ public class CommonPatterns {
 			List<Integer> elements = entry.getValue();
 			ratios.put(entry.getKey(), (double) elements.size() / sizes);
 		}
+		
+		String numbersMapStr = "";// numbers of instances in each common cluster.
+		
 		MapSorter<Integer, Double> sorter = new MapSorter<Integer, Double>();
 		ratios = sorter.sortByValueDescending(ratios);
 		double counterRatio = 0.0;
 		for (Map.Entry<Integer, Double> entry : ratios.entrySet()) {
 			counterRatio += entry.getValue();
-			commonClusterNum.add(entry.getKey());
+			int key = entry.getKey();
+			commonClusterNum.add(key);
+			numbersMapStr += key + ":" + clusterMap.get(key).size() + "\n";
 			totalNumberofTrainingData += clusterMap.get(entry.getKey()).size();
 			if (counterRatio >= 0.8) { // TODO: how to set the value of this threshold?
 				break;
 			}
 		}
+		
+		FileHelper.outputToFile(Configuration.COMMON_CLUSTERS_SIZES, numbersMapStr, false);
 		
 		return commonClusterNum;
 	}
