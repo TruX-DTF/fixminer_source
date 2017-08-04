@@ -557,4 +557,105 @@ public class DataPreparation {
 		}
 		return commonClustersMappingLabel;
 	}
+
+	public static void separateTrainingDataFeatures() {
+		String trainingDataFeatures = Configuration.FEATURES_OF_TRAINING_DATA;
+		List<File> featureFiles = FileHelper.getAllFilesInCurrentDiectory(trainingDataFeatures, ".csv");
+		File featureFile = featureFiles.get(0);
+		// File featureFile = new File(Configuration.FEATURES_OF_TRAINING_DATA + "");
+		
+		Map<Integer, Integer> numbersMap = readNumberOfInstances(); // <Integer, Integer>: <clusterNum, numOfInstances>
+		Map<Integer, Integer> orders = new HashMap<>(); //<Integer, Integer> : <order, clusterNum>
+		Map<Integer, String> fileNames = new HashMap<>();
+		String clusteredTokens = Configuration.CLUSTERED_TOKENSS_FILE;
+		List<File> files = FileHelper.getAllFilesInCurrentDiectory(clusteredTokens, ".list");
+		int order = 1;
+		for (File file : files) {
+			String fileName = file.getName();
+			String clusterNumStr = fileName.substring(fileName.lastIndexOf("_") + 1, fileName.lastIndexOf(".list"));
+			int clusterNum = Integer.parseInt(clusterNumStr);
+			if (numbersMap.containsKey(clusterNum)) {
+				orders.put(order, clusterNum);
+				fileNames.put(order, fileName);
+				order ++;
+			}
+		}
+		
+		String featuresOfClusterPath = Configuration.FEATURES_OF_COMMON_CLUSTERS;
+		order = 1;
+		FileInputStream fis = null;
+		Scanner scanner = null;
+		try {
+			fis = new FileInputStream(featureFile);
+			scanner = new Scanner(fis);
+			int counter = 0;
+			StringBuilder features = new StringBuilder();
+			while (scanner.hasNextLine()) {
+				features.append(scanner.nextLine() + "\n");
+				counter ++;
+				if (counter == numbersMap.get(orders.get(order))) {
+					FileHelper.outputToFile(featuresOfClusterPath + fileNames.get(order), features, false);
+					features.setLength(0);
+					counter = 0;
+					order ++;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				scanner.close();
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private static Map<Integer, Integer> readNumberOfInstances() {
+		Map<Integer, Integer> numbersMap = new HashMap<>();
+		String fileContent = FileHelper.readFile(Configuration.COMMON_CLUSTERS_SIZES);
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new StringReader(fileContent));
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] numbers = line.split(":");
+				numbersMap.put(Integer.parseInt(numbers[0]), Integer.parseInt(numbers[1]));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return numbersMap;
+	}
+
+	public static Map<Integer, Integer> readLabelMapClusterNum() {
+		Map<Integer, Integer> labelMapClusterNumMap = new HashMap<>();
+		String fileContent = FileHelper.readFile(Configuration.CLUSTERNUMBER_LABEL_MAP);
+		BufferedReader reader = null;
+		reader = new BufferedReader(new StringReader(fileContent));
+		String line = null;
+		try {
+			while ((line = reader.readLine()) != null) {
+				String[] labelMapClusterNum = line.split(":");
+				labelMapClusterNumMap.put(Integer.parseInt(labelMapClusterNum[0]), Integer.parseInt(labelMapClusterNum[1]));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
 }
