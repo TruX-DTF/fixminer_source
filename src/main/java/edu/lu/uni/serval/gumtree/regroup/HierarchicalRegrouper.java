@@ -98,15 +98,34 @@ public class HierarchicalRegrouper {
 	}
 	
 	private void addToActionSets(HierarchicalActionSet actionSet, Action parentAct, List<HierarchicalActionSet> actionSets) {
+		Action act = actionSet.getAction();
 		for (HierarchicalActionSet actSet : actionSets) {
 			if (actSet.equals(actionSet)) continue;
-			if (actSet.getAction().equals(parentAct)) { // actSet is the parent of actionSet.
+			Action action = actSet.getAction();
+			if (action instanceof Move && !(act instanceof Move)) continue; // If action is MOV, its children must be MOV.
+			if (action instanceof Insert && !(act instanceof Addition)) continue;// If action is INS, its children must be MOV or INS.
+			
+			if (action.equals(parentAct)) { // actSet is the parent of actionSet.
 				actionSet.setParent(actSet);
 				actSet.getSubActions().add(actionSet);
 				ListSorter<HierarchicalActionSet> sorter = new ListSorter<HierarchicalActionSet>(actSet.getSubActions());
 				actSet.setSubActions(sorter.sortAscending());
 				break;
 			} else {
+				if ((!(action instanceof Insert) && !(act instanceof Insert)) 
+						|| (action instanceof Insert && (act instanceof Insert))) {
+					int startPosition = act.getPosition();
+					int length = act.getLength();
+					int startP = action.getPosition();
+					int leng = action.getLength();
+					
+					if (startP > startPosition + length) {
+						break;
+					} else if (startP + leng < startPosition) {
+						continue;
+					}
+				}
+				// SubAction range： startP <= startPosition && startPosition + length <= startP + leng
 				addToActionSets(actionSet, parentAct, actSet.getSubActions());
 			}
 		}
@@ -117,13 +136,11 @@ public class HierarchicalRegrouper {
 		
 		for(HierarchicalActionSet actionSet : actionSets) {
 			Action action = actionSet.getAction();
+			if (action instanceof Move && !(act instanceof Move)) continue; // If action is MOV, its children must be MOV.
+			if (action instanceof Insert && !(act instanceof Addition)) continue;// If action is INS, its children must be MOV or INS.
 			
 			ITree tree = action.getNode();
 			if (tree.equals(parentTree)) { // actionSet is the parent of actSet.
-				if (action instanceof Move && !(act instanceof Move)) {
-					continue;
-				}
-				
 				HierarchicalActionSet actSet = createActionSet(act, actionSet.getAction(), actionSet);
 				actionSet.getSubActions().add(actSet);
 				return true;
@@ -134,12 +151,14 @@ public class HierarchicalRegrouper {
 					int length = act.getLength();
 					int startP = action.getPosition();
 					int leng = action.getLength();
-					if (!(startP <= startPosition) || !(length <= leng)) {
-						continue;
-					} else if (startP > startPosition + length) {
+					
+					if (startP > startPosition + length) {
 						break;
+					} else if (startP + leng < startPosition) {
+						continue;
 					}
 				}
+				// SubAction range： startP <= startPosition && startPosition + length <= startP + leng
 				List<HierarchicalActionSet> subActionSets = actionSet.getSubActions();
 				if (subActionSets.size() > 0) {
 					boolean added = addToAactionSet(act, parentAct, subActionSets);
