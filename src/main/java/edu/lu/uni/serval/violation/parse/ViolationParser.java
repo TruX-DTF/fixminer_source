@@ -2,9 +2,11 @@ package edu.lu.uni.serval.violation.parse;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.errors.RevisionSyntaxException;
 
 import edu.lu.uni.serval.git.exception.GitRepositoryNotFoundException;
 import edu.lu.uni.serval.git.exception.NotValidGitRepositoryException;
@@ -13,38 +15,14 @@ import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.violation.Alarm;
 import edu.lu.uni.serval.violation.Violation;
 
+/**
+ * 
+ * @author kui.liu
+ *
+ */
 public class ViolationParser {
 	
-	private static final String REPO_PATH = "/Volumes/MacBook/repositories/";
-	private static final String revisedFilesPath = "GumTreeInput/revFiles/";
-	private static final String previousFilesPath = "GumTreeInput/prevFiles/";
-	private static final String positions = "GumTreeInput/positions/";
-	
-	public static void main(String[] args) {
-		List<File> repositoriesList = new ArrayList<>();
-		File repositories = new File(REPO_PATH);
-		File[] subFiles = repositories.listFiles();
-		for (File subFile : subFiles) { // repos-a to u
-			if (subFile.isDirectory()) {
-				File[] repos = subFile.listFiles();
-				for (File repo : repos) {
-					if (repo.isDirectory()) {
-						repositoriesList.add(repo);
-					}
-				}
-			}
-		}
-		String fixedAlarmFile = "Dataset/fixed-alarms.list.txt";
-
-		FileHelper.createDirectory(revisedFilesPath);
-		FileHelper.createDirectory(previousFilesPath);
-		FileHelper.createDirectory(positions);
-		
-		ViolationParser parser = new ViolationParser();
-		parser.parseViolations(fixedAlarmFile, repositoriesList);
-	}
-
-	public void parseViolations(String fixedAlarmFile, List<File> repos) {
+	public void parseViolations(String fixedAlarmFile, List<File> repos, String previousFilesPath, String revisedFilesPath, String positionsFilePath, String diffentryFilePath) {
 		AlarmsReader reader = new AlarmsReader();
 		Map<String, Violation> violations = reader.readAlarmsList(fixedAlarmFile);
 		int a = 0;
@@ -59,6 +37,7 @@ public class ViolationParser {
 			}
 			if ("".equals(repoName)) {
 				a ++;
+				System.out.println(projectName);
 				continue;
 			}
 			Violation violation = entry.getValue();
@@ -79,6 +58,9 @@ public class ViolationParser {
 					String fixedFileContent = gitRepo.getFileContentByCommitIdAndFileName(fixedCommitId, fixedFileName);
 					if (fixedFileContent == null || "".equals(fixedFileContent)) continue;
 					
+					String diffentry = gitRepo.getDiffentryByTwoCommitIds(buggyCommitId, fixedCommitId, fixedFileName);
+					if (diffentry == null) continue;
+					
 					String commitId = buggyCommitId.substring(0, 6) + "_" + fixedCommitId.substring(0, 6);
 					String fileName = fixedFileName.replaceAll("/", "#");
 					fileName = projectName + "_" + commitId + fileName;
@@ -88,16 +70,23 @@ public class ViolationParser {
 					}
 					String buggyFile = previousFilesPath + "prev_" + fileName;
 					String fixedFile = revisedFilesPath + fileName;
-					String positionFile = positions + fileName.replace(".java", ".txt");
+					fileName = fileName.replace(".java", ".txt");
+					String positionFile = positionsFilePath + fileName;
+					String diffentryFile = diffentryFilePath + fileName;
 					FileHelper.outputToFile(buggyFile, buggyFileContent, false);
 					FileHelper.outputToFile(fixedFile, fixedFileContent, false);
 					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions()), false);
+					FileHelper.outputToFile(diffentryFile, diffentry, false);
 				}
 			} catch (GitRepositoryNotFoundException e) {
 				e.printStackTrace();
 			} catch (NotValidGitRepositoryException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (RevisionSyntaxException e) {
+				e.printStackTrace();
+			} catch (GitAPIException e) {
 				e.printStackTrace();
 			} finally {
 				gitRepo.close();
