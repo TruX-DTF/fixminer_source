@@ -137,8 +137,8 @@ public class SimplifyTree {
 					simpleTree.setLabel(label);
 				} else if (label.startsWith("Name:")) {
 					label = label.substring(5);
-					String firstChar = label.substring(0, 1);
-					if (firstChar.equals(firstChar.toUpperCase())) {
+					char firstChar = label.charAt(0);
+					if (Character.isUpperCase(firstChar)) {
 						simpleTree.setNodeType("Name");
 						simpleTree.setLabel(label);
 					} else {// variableName: <VariableName, canonicalName>
@@ -191,8 +191,6 @@ public class SimplifyTree {
 						matchStr = matchVariableDeclarationExpression(child, label);
 					} else if (childType == 44) { // SingleVariableDeclaration
 						matchStr = matchSingleVariableDeclaration(child, label);
-					} else if (childType ==70 || childType == 24 ||childType == 12 || childType == 54) {
-						matchStr = matchStatements(childType, child, label);
 					}
 					if (matchStr != null) break;
 				}
