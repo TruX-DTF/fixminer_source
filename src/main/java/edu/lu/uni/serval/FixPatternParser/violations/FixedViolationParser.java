@@ -18,8 +18,14 @@ import edu.lu.uni.serval.utils.FileHelper;
  */
 public class FixedViolationParser extends Parser {
 	
+	File positionFile = null;
+	
+	public void setPositionFile(File positionFile) {
+		this.positionFile = positionFile;
+	}
+	
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File positionFile) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 	}
 	
 	protected boolean inPositions(int startLine, int endLine, Map<Integer, Integer> positions) {
@@ -31,7 +37,7 @@ public class FixedViolationParser extends Parser {
 		return false;
 	}
 
-	protected Map<Integer, Integer> readPositions(File positionFile) {
+	protected Map<Integer, Integer> readPositions() {
 		Map<Integer, Integer> positions = new HashMap<>();
 		String fileContent = FileHelper.readFile(positionFile);
 		BufferedReader reader = null;

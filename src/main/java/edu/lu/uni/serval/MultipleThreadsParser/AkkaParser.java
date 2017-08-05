@@ -55,10 +55,10 @@ public class AkkaParser {
 		List<MessageFile> msgFiles = new ArrayList<>();
 		
 		for (File file : files) {
+			if (!file.isDirectory()) continue;
 			String projectFolder = file.getPath();
 			File revFileFolder = new File(projectFolder + "/revFiles/");// revised file folder
 			File[] revFiles = revFileFolder.listFiles();
-			
 			for (File revFile : revFiles) {
 				if (revFile.getName().endsWith(".java")) {
 					File prevFile = new File(projectFolder + "/prevFiles/prev_" + revFile.getName());// previous file

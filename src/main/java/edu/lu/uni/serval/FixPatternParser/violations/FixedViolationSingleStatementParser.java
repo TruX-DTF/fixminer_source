@@ -19,7 +19,7 @@ import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 
 /**
- * Parse fix patterns with GumTree.
+ * Parse fixed violations with GumTree.
  * 
  * @author kui.liu
  *
@@ -27,13 +27,20 @@ import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 public class FixedViolationSingleStatementParser extends FixedViolationParser {
 	
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File positionFile) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 		// GumTree results
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree(prevFile, revFile);
 		
 		if (actionSets.size() > 0) {
-			// DiffEntry Hunks: filter out big hunks.
-			Map<Integer, Integer> positions = readPositions(positionFile);
+			CUCreator cuCreator = new CUCreator();
+			CompilationUnit prevUnit = cuCreator.createCompilationUnit(prevFile);
+			CompilationUnit revUnit = cuCreator.createCompilationUnit(revFile);
+			if (prevUnit == null || revUnit == null) {
+				return;
+			}
+			
+			// Read the positions of checked violations
+			Map<Integer, Integer> positions = readPositions();
 			for (HierarchicalActionSet actionSet : actionSets) {
 				// position of buggy statements
 				int startPosition = 0;
@@ -76,26 +83,10 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 							endPosition2 = startPosition2 + newNode.getLength();
 						}
 					}
-				}  else if (actionStr.startsWith("MOV")) {// DEL actions and MOV actions: we don't need these actions, as for now.
-					continue;
-//					startPosition = actionSet.getStartPosition();
-//					endPosition = startPosition + actionSet.getLength();
-//					ITree node = actionSet.getNode().getParent();
-//					startPosition2 = node.getPos();
-//					endPosition2 = startPosition2 + node.getLength();
-				} else {
-					startPosition = actionSet.getStartPosition();
-					endPosition = startPosition + actionSet.getLength();
+				}  else {// DEL actions and MOV actions: we don't need these actions, as for now.
 					continue;
 				}
 				if (startPosition == 0 || startPosition2 == 0) {
-					continue;
-				}
-				
-				CUCreator cuCreator = new CUCreator();
-				CompilationUnit prevUnit = cuCreator.createCompilationUnit(prevFile);
-				CompilationUnit revUnit = cuCreator.createCompilationUnit(revFile);
-				if (prevUnit == null || revUnit == null) {
 					continue;
 				}
 				
@@ -138,11 +129,11 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
 				// 2. source code: raw tokens
-				String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
-				// 3. abstract identifiers: 
-				String abstractIdentifiersEditScripts = getAbstractIdentifiersEditScripts(actionSet);
-				// 4. semi-source code: 
-				String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
+//				String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
+//				// 3. abstract identifiers: 
+//				String abstractIdentifiersEditScripts = getAbstractIdentifiersEditScripts(actionSet);
+//				// 4. semi-source code: 
+//				String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
 				
 //				this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
 				this.tokensOfSourceCode += Tokenizer.getTokensDeepFirst(simpleTree).trim() + "\n";

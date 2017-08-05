@@ -12,7 +12,6 @@ import edu.lu.uni.serval.FixPatternParser.Tokenizer;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
-import edu.lu.uni.serval.gumtree.regroup.ActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HunkActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HunkFixPattern;
@@ -21,7 +20,7 @@ import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 import edu.lu.uni.serval.utils.MapSorter;
 
 /**
- * Parse fix patterns with GumTree.
+ * Parse fix violations with GumTree.
  * 
  * @author kui.liu
  *
@@ -29,36 +28,44 @@ import edu.lu.uni.serval.utils.MapSorter;
 public class FixedViolationHunkParser extends FixedViolationParser {
 	
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File positionsFile) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 		
 		// GumTree results
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree(prevFile, revFile);
 		
 		if (actionSets.size() > 0) {
-			Map<Integer, Integer> positions = readPositions(positionsFile);
+			Map<Integer, Integer> positions = readPositions();
 			if (positions.size() > 1) {
 				MapSorter<Integer, Integer> sorter = new MapSorter<>();
 				positions = sorter.sortByKeyAscending(positions);
 			}
 			
+			List<DiffEntryHunk> diffentryHunks1 = new DiffEntryReader().readHunks(diffentryFile);
+			int index = 0;
+			int hunkListSize = diffentryHunks1.size();
+//			Map<Integer, DiffEntryHunk> diffentryHunks = new HashMap<>();
+			// Select hunks by positions of violations.
+			List<DiffEntryHunk> diffentryHunks = new ArrayList<>();
 			for (Map.Entry<Integer, Integer> entry : positions.entrySet()) {
-				// only statements
-				for (HierarchicalActionSet actionSet : actionSets) {
-					String astNodeType = actionSet.getAstNodeType();
-					if (astNodeType.endsWith("Statement") || "FieldDeclaration".equals(astNodeType)) {
-						
-					}
+				int startRange = entry.getKey();
+				int endRange = entry.getValue();
+				for (; index < hunkListSize; index ++) {
+					DiffEntryHunk hunk = diffentryHunks1.get(index);
+					int startLine = hunk.getBugLineStartNum();
+					int range = hunk.getBugRange();
+					if (startRange > startLine + range) continue;
+					if (endRange < startLine) break;
+					// startRange and endRange
+//					diffentryHunks.put(startRange, hunk);
+					diffentryHunks.add(hunk);
 				}
 			}
 			
-			ActionFilter filter = new ActionFilter();
-			// DiffEntry size: filter out big hunks.
-			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(positionsFile);
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
 			HunkActionFilter hunkFilter = new HunkActionFilter();
-			List<HunkFixPattern> allHunkFixPatternss = hunkFilter.filterActionsByDiffEntryHunk2(diffentryHunks, actionSets, revFile, prevFile);
-			
-			for (HunkFixPattern hunkFixPattern : allHunkFixPatternss) {
+			List<HunkFixPattern> allHunkFixPatterns = hunkFilter.filterActionsByDiffEntryHunk2(diffentryHunks, actionSets, revFile, prevFile);
+						
+			for (HunkFixPattern hunkFixPattern : allHunkFixPatterns) {
 				// Range of buggy source code
 				int startLine = 0;
 				int endLine = 0;

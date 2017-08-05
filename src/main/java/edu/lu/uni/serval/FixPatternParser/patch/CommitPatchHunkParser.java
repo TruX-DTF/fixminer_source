@@ -36,9 +36,9 @@ public class CommitPatchHunkParser extends CommitPatchParser {
 			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(diffEntryFile);
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
 			HunkActionFilter hunkFilter = new HunkActionFilter();
-			List<HunkFixPattern> allHunkFixPatternss = hunkFilter.filterActionsByDiffEntryHunk2(diffentryHunks, actionSets, revFile, prevFile);
+			List<HunkFixPattern> allHunkFixPatterns = hunkFilter.filterActionsByDiffEntryHunk2(diffentryHunks, actionSets, revFile, prevFile);
 			
-			for (HunkFixPattern hunkFixPattern : allHunkFixPatternss) {
+			for (HunkFixPattern hunkFixPattern : allHunkFixPatterns) {
 				// Range of buggy source code
 				int startLine = 0;
 				int endLine = 0;

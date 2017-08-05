@@ -37,6 +37,12 @@ public class CommitPatchSingleStatementParser extends CommitPatchParser {
 		if (actionSets.size() > 0) {
 			// DiffEntry Hunks: filter out big hunks.
 			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks(diffEntryFile);
+			CUCreator cuCreator = new CUCreator();
+			CompilationUnit prevUnit = cuCreator.createCompilationUnit(prevFile);
+			CompilationUnit revUnit = cuCreator.createCompilationUnit(revFile);
+			if (prevUnit == null || revUnit == null) {
+				return;
+			}
 			for (HierarchicalActionSet actionSet : actionSets) {
 				// position of buggy statements
 				int startPosition = 0;
@@ -80,18 +86,10 @@ public class CommitPatchSingleStatementParser extends CommitPatchParser {
 							endPosition2 = startPosition2 + newNode.getLength();
 						}
 					}
-				} else {// DEL actions and MOV actions: we don't need these
-						// actions, as for now.
+				} else {// DEL actions and MOV actions: we don't need these actions, as for now.
 					continue;
 				}
 				if (startPosition == 0 || startPosition2 == 0) {
-					continue;
-				}
-
-				CUCreator cuCreator = new CUCreator();
-				CompilationUnit prevUnit = cuCreator.createCompilationUnit(prevFile);
-				CompilationUnit revUnit = cuCreator.createCompilationUnit(revFile);
-				if (prevUnit == null || revUnit == null) {
 					continue;
 				}
 
@@ -100,11 +98,9 @@ public class CommitPatchSingleStatementParser extends CommitPatchParser {
 				int endLine = prevUnit.getLineNumber(endPosition);
 				int startLine2 = revUnit.getLineNumber(startPosition2);
 				int endLine2 = revUnit.getLineNumber(endPosition2);
-				if (endLine - startLine >= Configuration.HUNK_SIZE - 2
-						|| endLine2 - startLine2 >= Configuration.HUNK_SIZE - 2)
+				if (endLine - startLine >= Configuration.HUNK_SIZE - 2 || endLine2 - startLine2 >= Configuration.HUNK_SIZE - 2)
 					continue;
-				// Filter out the modify actions, which are not in the DiffEntry
-				// hunks.
+				// Filter out the modify actions, which are not in the DiffEntry hunks.
 				DiffEntryHunk hunk = matchHunk(startLine, endLine, startLine2, endLine2, actionStr, diffentryHunks);
 				if (hunk == null) {
 					continue;
@@ -117,8 +113,7 @@ public class CommitPatchSingleStatementParser extends CommitPatchParser {
 				SimplifyTree abstractIdentifier = new SimplifyTree();
 				abstractIdentifier.abstractTree(actionSet);
 				SimpleTree simpleTree = actionSet.getSimpleTree();
-				if (simpleTree == null) { // Failed to get the simple tree for
-											// INS actions.
+				if (simpleTree == null) { // Failed to get the simple tree for INS actions.
 					continue;
 				}
 
@@ -142,12 +137,12 @@ public class CommitPatchSingleStatementParser extends CommitPatchParser {
 				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + patchSourceCode + "\n";
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
-				// 2. source code: raw tokens
-				String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
-				// 3. abstract identifiers:
-				String abstractIdentifiersEditScripts = getAbstractIdentifiersEditScripts(actionSet);
-				// 4. semi-source code:
-				String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
+//				// 2. source code: raw tokens
+//				String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
+//				// 3. abstract identifiers:
+//				String abstractIdentifiersEditScripts = getAbstractIdentifiersEditScripts(actionSet);
+//				// 4. semi-source code:
+//				String semiSourceCodeEditScripts = getSemiSourceCodeEditScripts(actionSet);
 
 				// this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" +
 				// simpleTree.toString() + "\n";

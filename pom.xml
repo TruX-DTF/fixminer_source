@@ -16,7 +16,7 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>edu.lu.uni.serval</groupId>
 			<artifactId>MyCluster</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -26,7 +26,7 @@
 			<groupId>edu.lu.uni.serval</groupId>
 			<artifactId>MyFeatureLearner</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		</dependency> -->
 		
 		<dependency>
 			<groupId>edu.lu.uni</groupId>

@@ -12,6 +12,10 @@ OUTPUT/
 *.pdf
 Dataset/
 GumTreeInput/
+GumTreeInput1/
+GumTreeOutput1/
+GumTreeResults/
+
 *TestParser.java
 src/main/java/edu/lu/uni/serval/FixPatternParser/TestParser.java
 # Package Files #
