@@ -83,11 +83,16 @@ public class HierarchicalRegrouper {
 			int index = actStrFrag.lastIndexOf(" ") + 1;
 			String nodeType = actStrFrag.substring(index);
 			if (!"".equals(nodeType)) {
-				try {
-					String type = ASTNodeMap.map.get(Integer.parseInt(nodeType));
-					nodeType = type;
-				} catch (NumberFormatException e) {
-//					nodeType = actStrFrag.substring(index);
+				if (Character.isDigit(nodeType.charAt(0)) || nodeType.startsWith("-")) {
+					try {
+						int typeInt = Integer.parseInt(nodeType);
+						if (ASTNodeMap.map.containsKey(typeInt)) {
+							String type = ASTNodeMap.map.get(Integer.parseInt(nodeType));
+							nodeType = type;
+						}
+					} catch (NumberFormatException e) {
+						nodeType = actStrFrag.substring(index);
+					}
 				}
 			}
 			actStrFrag = actStrFrag.substring(0, index) + nodeType + "@@";
