@@ -20,13 +20,16 @@ public class ParseFixPatternActor extends UntypedActor {
 	private final int numberOfWorkers;
 	private int counter = 0;
 	
-	public ParseFixPatternActor(int numberOfWorkers, String editScriptsFilePath, String patchesSourceCodeFilePath, String buggyTokensFilePath, String editScriptSizesFilePath) {
+	public ParseFixPatternActor(int numberOfWorkers, String editScriptsFilePath, String patchesSourceCodeFilePath, 
+			String buggyTokensFilePath, String editScriptSizesFilePath, String alarmTypesFilePath) {
 		mineRouter = this.getContext().actorOf(new RoundRobinPool(numberOfWorkers)
-				.props(ParseFixPatternWorker.props(editScriptsFilePath, patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath)), "mine-fix-pattern-router");
+				.props(ParseFixPatternWorker.props(editScriptsFilePath, patchesSourceCodeFilePath, 
+						buggyTokensFilePath, editScriptSizesFilePath, alarmTypesFilePath)), "mine-fix-pattern-router");
 		this.numberOfWorkers = numberOfWorkers;
 	}
 
-	public static Props props(final int numberOfWorkers, final String editScriptsFilePath, final String patchesSourceCodeFilePath, final String buggyTokensFilePath, final String editScriptSizesFilePath) {
+	public static Props props(final int numberOfWorkers, final String editScriptsFilePath, final String patchesSourceCodeFilePath,
+			final String buggyTokensFilePath, final String editScriptSizesFilePath, final String alarmTypesFilePath) {
 		
 		return Props.create(new Creator<ParseFixPatternActor>() {
 
@@ -34,12 +37,14 @@ public class ParseFixPatternActor extends UntypedActor {
 
 			@Override
 			public ParseFixPatternActor create() throws Exception {
-				return new ParseFixPatternActor(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath);
+				return new ParseFixPatternActor(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath, 
+						buggyTokensFilePath, editScriptSizesFilePath, alarmTypesFilePath);
 			}
 			
 		});
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Object message) throws Exception {
 		if (message instanceof WorkMessage) {
@@ -61,7 +66,10 @@ public class ParseFixPatternActor extends UntypedActor {
 				logger.info("Assign a task to worker #" + (i + 1) + "...");
 			}
 		} else if ("STOP".equals(message.toString())) {
-			if (++ counter >= numberOfWorkers) {
+			counter ++;
+			logger.info(counter + " workers finished their work...");
+			if (counter >= numberOfWorkers) {
+				logger.info("All workers finished their work...");
 				this.getContext().stop(mineRouter);
 				this.getContext().stop(getSelf());
 				this.getContext().system().shutdown();

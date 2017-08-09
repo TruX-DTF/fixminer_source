@@ -61,8 +61,7 @@ public class CommitPatchSingleStatementParser extends CommitPatchParser {
 						startPosition = firstAndLastMov.get(0).getNode().getPos();
 						ITree lastTree = firstAndLastMov.get(1).getNode();
 						endPosition = lastTree.getPos() + lastTree.getLength();
-					} else { // Ignore the pure insert actions without any move
-								// actions.
+					} else { // Ignore the pure insert actions without any move actions.
 						continue;
 					}
 				} else if (actionStr.startsWith("UPD")) {
@@ -124,7 +123,7 @@ public class CommitPatchSingleStatementParser extends CommitPatchParser {
 				// 1. First level: AST node type.
 				String astEditScripts = getASTEditScripts(actionSet);
 				int size = astEditScripts.split(" ").length;
-				if (size == 1) {
+				if (size < 2) {
 					// System.out.println(actionSet);
 					continue;
 				}

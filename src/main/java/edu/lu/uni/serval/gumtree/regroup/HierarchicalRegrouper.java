@@ -114,7 +114,10 @@ public class HierarchicalRegrouper {
 				actionSet.setParent(actSet);
 				actSet.getSubActions().add(actionSet);
 				ListSorter<HierarchicalActionSet> sorter = new ListSorter<HierarchicalActionSet>(actSet.getSubActions());
-				actSet.setSubActions(sorter.sortAscending());
+				List<HierarchicalActionSet> subActions = sorter.sortAscending();
+				if (subActions != null) {
+					actSet.setSubActions(subActions);
+				}
 				break;
 			} else {
 				if ((!(action instanceof Insert) && !(act instanceof Insert)) 

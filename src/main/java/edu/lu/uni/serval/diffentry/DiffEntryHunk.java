@@ -40,4 +40,9 @@ public class DiffEntryHunk {
 		this.hunk = hunk;
 	}
 
+	@Override
+	public String toString() {
+		return "@@ -" + this.bugLineStartNum + ", " + this.bugRange + " +" + this.fixLineStartNum + ", " + this.fixRange + "\n" + this.hunk;
+	}
+
 }

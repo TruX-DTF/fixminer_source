@@ -26,6 +26,8 @@ public class Tokenizer {
 				tokens += astNodeType + " charLiteral ";
 			} else if ("ArrayInitializer".equals(astNodeType)) {
 				tokens += astNodeType + " arrayInitializer ";
+			} else if ("LambdaExpression".equals(astNodeType)) {
+				tokens += astNodeType + " lambda ";
 			} else {
 				tokens += astNodeType + " " + simpleTree.getLabel() + " ";
 			}

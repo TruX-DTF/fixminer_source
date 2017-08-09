@@ -20,7 +20,7 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> 
 	private String actionString;
 	private int startPosition;
 	private int length;
-	private int bugStartLineNum;
+	private int bugStartLineNum = 0;
 	private int bugEndLineNum;
 	private int fixStartLineNum;
 	private int fixEndLineNum;

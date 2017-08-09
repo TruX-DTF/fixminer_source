@@ -8,7 +8,7 @@ import edu.lu.uni.serval.utils.FileHelper;
 
 public class TestViolationParser {
 
-	private static final String REPO_PATH = "/Volumes/MacBook/repositories/";
+	private static final String REPO_PATH = "/Volumes/MacBook/repos/";
 	private static final String previousFilesPath = "GumTreeInput/prevFiles/";
 	private static final String revisedFilesPath = "GumTreeInput/revFiles/";
 	private static final String positionsFilePath = "GumTreeInput/positions/";

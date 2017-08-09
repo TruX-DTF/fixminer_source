@@ -2,7 +2,6 @@ package edu.lu.uni.serval.FixPatternParser.violations;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
@@ -19,7 +18,7 @@ import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 
 /**
- * Parse fixed violations with GumTree.
+ * Parse fixed violations with GumTree in terms of single statement.
  * 
  * @author kui.liu
  *
@@ -40,7 +39,7 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 			}
 			
 			// Read the positions of checked violations
-			Map<Integer, Integer> positions = readPositions();
+			List<Violation> violations = readPositionsAndAlarmTypes();
 			for (HierarchicalActionSet actionSet : actionSets) {
 				// position of buggy statements
 				int startPosition = 0;
@@ -96,9 +95,9 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 				int startLine2 = revUnit.getLineNumber(startPosition2);
 				int endLine2 = revUnit.getLineNumber(endPosition2);
 				
-				if (!inPositions(startLine, endLine, positions)) {
-					continue;
-				}
+				Violation violation = findViolation(startLine, endLine, violations);
+				if (violation == null) continue;
+				
 				if (endLine - startLine >= Configuration.HUNK_SIZE - 2 || endLine2 - startLine2 >= Configuration.HUNK_SIZE - 2 ) continue;
 				
 				/*
@@ -128,6 +127,7 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + revFile.getName() + "\n" + patchSourceCode + "\n";
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
+				this.alarmTypes += violation.getAlarmType() + "\n";
 				// 2. source code: raw tokens
 //				String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
 //				// 3. abstract identifiers: 
@@ -146,4 +146,12 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 		}
 	}
 	
+	protected Violation findViolation(int startLine, int endLine, List<Violation> violations) {
+		for (Violation violation : violations) {
+			int vStartLine = violation.getStartLineNum();
+			int vEndLine = violation.getEndLineNum();
+			if (!(startLine > vEndLine && endLine< vStartLine)) return violation;
+		}
+		return null;
+	}
 }

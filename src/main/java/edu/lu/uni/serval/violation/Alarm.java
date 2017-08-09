@@ -1,24 +1,21 @@
 package edu.lu.uni.serval.violation;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class Alarm implements Comparable<Alarm> {
+public class Alarm {
 
 	private String buggyCommitId;
 	private String buggyFileName;
-	private Map<Integer, Integer> positions; // <Integer, Integer>: <StartLine, EndLine>
 	private String fixedCommitId;
 	private String fixedFileName;
+	private Map<Integer, String> positions;
 	
-	public Alarm(String buggyCommitId, String buggyFileName, String fixedCommitId,
-			String fixedFileName) {
+	public Alarm(String buggyCommitId, String buggyFileName, String fixedCommitId, String fixedFileName) {
 		super();
 		this.buggyCommitId = buggyCommitId;
 		this.buggyFileName = buggyFileName;
 		this.fixedCommitId = fixedCommitId;
 		this.fixedFileName = fixedFileName;
-		this.positions = new HashMap<>();
 	}
 
 	public String getBuggyCommitId() {
@@ -29,10 +26,6 @@ public class Alarm implements Comparable<Alarm> {
 		return buggyFileName;
 	}
 
-	public Map<Integer, Integer> getPositions() {
-		return positions;
-	}
-
 	public String getFixedCommitId() {
 		return fixedCommitId;
 	}
@@ -41,13 +34,12 @@ public class Alarm implements Comparable<Alarm> {
 		return fixedFileName;
 	}
 
-	@Override
-	public int compareTo(Alarm a) {
-		int compareResult = this.buggyCommitId.compareTo(a.buggyCommitId);
-		if (compareResult == 0) {
-			compareResult = this.buggyFileName.compareTo(a.buggyFileName);
-		}
-		return compareResult;
+	public Map<Integer, String> getPositions() {
+		return positions;
+	}
+
+	public void setPositions(Map<Integer, String> positions) {
+		this.positions = positions;
 	}
 
 	@Override
@@ -61,6 +53,5 @@ public class Alarm implements Comparable<Alarm> {
 		}
 		return false;
 	}
-	
-	
+
 }

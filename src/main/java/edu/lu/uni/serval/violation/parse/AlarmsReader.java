@@ -14,7 +14,7 @@ import edu.lu.uni.serval.violation.Violation;
 public class AlarmsReader {
 
 	public Map<String, Violation> readAlarmsList(String fileName) {
-		Map<String, Violation> violations = new HashMap<>();
+		Map<String, Violation> violationsMap = new HashMap<>();
 		FileInputStream fis = null;
 		Scanner scanner = null;
 		try {
@@ -29,36 +29,35 @@ public class AlarmsReader {
 				String[] buggyElements = buggyInfo.split(":");
 				String[] fixedElements = fixedInfo.split(":");
 				
-				String projectName = buggyElements[0];
-				if (!projectName.equals(fixedElements[0])) continue;
-				
-				String commitId = buggyElements[1];
-				String buggyFile = buggyElements[2];
-				int startLine = Integer.parseInt(buggyElements[3]);
-				int endLine = Integer.parseInt(buggyElements[4]);
+				String projectName = buggyElements[1];
+				String buggyCommitId = buggyElements[2];
+				String buggyFile = buggyElements[3];
+				int startLine = Integer.parseInt(buggyElements[4]);
+				String endLineAndAlarmType = buggyElements[5] + ":" + buggyElements[0];
 				String fixCommitId = fixedElements[1];
 				String fixedFile = fixedElements[2];
 				
-				Alarm alarm = new Alarm(commitId, buggyFile, fixCommitId, fixedFile);
+				Alarm alarm = new Alarm(buggyCommitId, buggyFile, fixCommitId, fixedFile);
 				
 				Violation violation;
-				if (violations.containsKey(projectName)) {
-					violation = violations.get(projectName);
+				if (violationsMap.containsKey(projectName)) {
+					violation = violationsMap.get(projectName);
 				} else {
 					violation = new Violation(projectName);
-					violations.put(projectName, violation);
+					violationsMap.put(projectName, violation);
 				}
 				List<Alarm> alarms = violation.getAlarms();
 				int index = alarms.indexOf(alarm);
-				if (index != -1) {
-					Alarm tempA = alarms.get(index);
-					Map<Integer, Integer> positions = tempA.getPositions();
-					positions.put(startLine, endLine);
+				if (index >= 0) {
+					Alarm tempAlarm = alarms.get(index);
+					Map<Integer, String> positions = tempAlarm.getPositions();
+					positions.put(startLine, endLineAndAlarmType);
 				} else {
-					alarm.getPositions().put(startLine, endLine);
+					Map<Integer, String> positions = new HashMap<>();
+					positions.put(startLine, endLineAndAlarmType);
+					alarm.setPositions(positions);
 					alarms.add(alarm);
 				}
-				
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -70,6 +69,7 @@ public class AlarmsReader {
 				e.printStackTrace();
 			}
 		}
-		return violations;
+		return violationsMap;
 	}
+	
 }

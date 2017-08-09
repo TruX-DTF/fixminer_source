@@ -116,8 +116,9 @@ public class SimplifyTree {
 				simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
 			} else {
 				if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation")) && label.startsWith("MethodName:")) {
-					label = label.substring(11);
 					simpleTree.setNodeType("MethodName");
+					label = label.substring(11);
+					label = label.substring(0, label.indexOf(":["));
 					simpleTree.setLabel(label);
 				} else {
 					simpleTree.setLabel(astNode);
@@ -132,8 +133,9 @@ public class SimplifyTree {
 			if (astNode.endsWith("Name")) {
 				// variableName, methodName, QualifiedName
 				if (label.startsWith("MethodName:")) { // <MethodName, name>
-					label = label.substring(11);
 					simpleTree.setNodeType("MethodName");
+					label = label.substring(11);
+					label = label.substring(0, label.indexOf(":["));
 					simpleTree.setLabel(label);
 				} else if (label.startsWith("Name:")) {
 					label = label.substring(5);
@@ -155,9 +157,10 @@ public class SimplifyTree {
 					simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
 				} else if (astNode.startsWith("Type")) {
 					simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
-				} else if (astNode.equals("MethodInvocation") && label.startsWith("MethodName:")) {
-					label = label.substring(11);
+				} else if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation")) && label.startsWith("MethodName:")) {
 					simpleTree.setNodeType("MethodName");
+					label = label.substring(11);
+					label = label.substring(0, label.indexOf(":["));
 					simpleTree.setLabel(label);
 				} else {
 					simpleTree.setLabel(label.replaceAll(" ", ""));
@@ -591,7 +594,10 @@ public class SimplifyTree {
 			List<Action> allMoveActions = getAllMoveActions2(actionSet);
 			if (allMoveActions != null && allMoveActions.size() > 0) {
 				ListSorter<Action> sorter = new ListSorter<Action>(allMoveActions);
-				allMoveActions = sorter.sortAscending();
+				List<Action> moveActions = sorter.sortAscending();
+				if (moveActions != null) {
+					allMoveActions = moveActions;
+				}
 				return allMoveActions;
 			} else {// FIXME: pure INS actions.
 				return null;
