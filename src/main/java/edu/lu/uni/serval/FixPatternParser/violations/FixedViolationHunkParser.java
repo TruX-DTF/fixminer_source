@@ -23,6 +23,12 @@ import edu.lu.uni.serval.utils.ListSorter;
 public class FixedViolationHunkParser extends FixedViolationParser {
 	int counter;
 	
+	public FixedViolationHunkParser() {
+	}
+
+	public FixedViolationHunkParser(File positionFile) {
+		setPositionFile(positionFile);
+	}
 	@Override
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 		// GumTree results 

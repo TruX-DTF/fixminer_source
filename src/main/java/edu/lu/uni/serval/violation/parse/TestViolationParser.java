@@ -28,7 +28,7 @@ public class TestViolationParser {
 				}
 			}
 		}
-		String fixedAlarmFile = "Dataset/fixed-alarms.list.txt";
+		String fixedAlarmFile = "Dataset/fixed-alarms-v0.2.list";
 
 		FileHelper.createDirectory(previousFilesPath);
 		FileHelper.createDirectory(revisedFilesPath);

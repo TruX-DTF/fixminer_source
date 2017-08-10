@@ -63,8 +63,7 @@ public class TestHunkParser {
 					msgFile.getRevFile(), msgFile.getDiffEntryFile(), parser));
 			try {
 				// where we wait for task to complete
-//				future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
-				future.get(20L, TimeUnit.SECONDS);
+				future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
 				String editScripts = parser.getAstEditScripts();
 				if (!editScripts.equals("")) {
 					astEditScripts.append(editScripts);

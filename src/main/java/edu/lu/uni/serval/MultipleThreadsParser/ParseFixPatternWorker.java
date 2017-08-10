@@ -72,17 +72,16 @@ public class ParseFixPatternWorker extends UntypedActor {
 			int counter = 0;
 			boolean containsAlarmTypes = false;
 			for (MessageFile msgFile : files) {
-				counter ++;
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
 				File positionFile = msgFile.getPositionFile();
 				Parser parser = null;
-				if (positionFile == null) {
-					parser = new CommitPatchSingleStatementParser();
-				} else {
-					parser = new FixedViolationHunkParser();
+				if (containsAlarmTypes || positionFile != null) {
+					parser = new FixedViolationHunkParser(positionFile);
 					containsAlarmTypes = true;
+				} else {
+					parser = new CommitPatchSingleStatementParser();
 				}
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -98,8 +97,10 @@ public class ParseFixPatternWorker extends UntypedActor {
 						patchesSourceCode.append(parser.getPatchesSourceCode());
 						sizes.append(parser.getSizes());
 						tokens.append(parser.getTokensOfSourceCode());
-						if (positionFile == null) alarmTypes.append(((FixedViolationHunkParser) parser).getAlarmTypes());
-						
+						if (containsAlarmTypes) {
+							alarmTypes.append(((FixedViolationHunkParser) parser).getAlarmTypes());
+						}
+						counter ++;
 						if (counter % 100 == 0) {
 							FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
 							FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);

@@ -27,7 +27,7 @@ public class AkkaParser {
 		// input data
 		log.info("Get the input data...");
 //		final List<MessageFile> msgFiles = getMessageFiles();
-		final List<MessageFile> msgFiles = getMessageFiles("GumTreeInput/");
+		final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT);
 		log.info("MessageFiles: " + msgFiles.size());
 		
 		// output path
@@ -44,7 +44,7 @@ public class AkkaParser {
 
 		ActorSystem system = null;
 		ActorRef parsingActor = null;
-		int numberOfWorkers = 20;
+		int numberOfWorkers = 30;
 		final WorkMessage msg = new WorkMessage(0, msgFiles);
 		try {
 			log.info("Akka begins...");
