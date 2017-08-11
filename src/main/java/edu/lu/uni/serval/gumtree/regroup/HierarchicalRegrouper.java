@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.actions.model.Addition;
+import com.github.gumtreediff.actions.model.Delete;
 import com.github.gumtreediff.actions.model.Insert;
 import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.tree.ITree;
@@ -109,6 +110,7 @@ public class HierarchicalRegrouper {
 			Action action = actSet.getAction();
 			if (action instanceof Move && !(act instanceof Move)) continue; // If action is MOV, its children must be MOV.
 			if (action instanceof Insert && !(act instanceof Addition)) continue;// If action is INS, its children must be MOV or INS.
+			if (action instanceof Delete && !(act instanceof Delete)) continue;// If action is DEL, its children must be DEL.
 			
 			if (action.equals(parentAct)) { // actSet is the parent of actionSet.
 				actionSet.setParent(actSet);
@@ -146,6 +148,7 @@ public class HierarchicalRegrouper {
 			Action action = actionSet.getAction();
 			if (action instanceof Move && !(act instanceof Move)) continue; // If action is MOV, its children must be MOV.
 			if (action instanceof Insert && !(act instanceof Addition)) continue;// If action is INS, its children must be MOV or INS.
+			if (action instanceof Delete && !(act instanceof Delete)) continue;// If action is DEL, its children must be DEL.
 			
 			ITree tree = action.getNode();
 			if (tree.equals(parentTree)) { // actionSet is the parent of actSet.
@@ -190,6 +193,9 @@ public class HierarchicalRegrouper {
 		for (Action act : actions) {
 			if (act.getNode().equals(parent)) {
 				if (act instanceof Move && !(action instanceof Move)) {
+					continue;
+				}
+				if (act instanceof Delete && !(action instanceof Delete)) {
 					continue;
 				}
 				return act;
