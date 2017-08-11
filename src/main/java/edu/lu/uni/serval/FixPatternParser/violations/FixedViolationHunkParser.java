@@ -133,8 +133,12 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					int actionFixEnd = hunkActionSet.getFixEndLineNum();
 					if (bugStartLine == 0) {
 						bugStartLine = actionBugStart;
+					} else if (actionBugStart != 0 && actionBugStart < bugStartLine) {
+						bugStartLine = actionBugStart;
 					}
 					if (fixStartLine == 0) {
+						fixStartLine = actionFixStart;
+					} else if (actionFixStart != 0 && actionFixStart < fixStartLine) {
 						fixStartLine = actionFixStart;
 					}
 					if (bugEndLine < actionBugEnd) bugEndLine = actionBugEnd;
@@ -164,10 +168,12 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				// Source Code of patches.
 				String patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isInsert);
 				if ("".equals(patchSourceCode)) continue;
+				int size = astEditScripts.split(" ").length;
+				if (size == 1) continue;
+				
 				counter ++;
 				String patchPosition = "";//"###:" + counter + "\n" + revFile.getName() + "\nPosition: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
 				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchSourceCode + "\nAST diff:\n" + getAstEditScripts(hunkActionSets) + "\n";
-				int size = astEditScripts.split(" ").length;
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
 				this.alarmTypes += violation.getAlarmType() + "\n";
