@@ -76,6 +76,9 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
 				File positionFile = msgFile.getPositionFile();
+				if (revFile.getName().toLowerCase().contains("test")) {
+					continue;
+				}
 				Parser parser = null;
 				if (containsAlarmTypes || positionFile != null) {
 					parser = new FixedViolationHunkParser(positionFile);
