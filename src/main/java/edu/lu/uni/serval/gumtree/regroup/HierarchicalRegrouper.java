@@ -122,8 +122,8 @@ public class HierarchicalRegrouper {
 				}
 				break;
 			} else {
-				if ((!(action instanceof Insert) && !(act instanceof Insert)) 
-						|| (action instanceof Insert && (act instanceof Insert))) {
+				if (!(action instanceof Addition) && !(act instanceof Addition)) {
+//						|| (action instanceof Insert && (act instanceof Insert))) {
 					int startPosition = act.getPosition();
 					int length = act.getLength();
 					int startP = action.getPosition();
@@ -156,8 +156,8 @@ public class HierarchicalRegrouper {
 				actionSet.getSubActions().add(actSet);
 				return true;
 			} else {
-				if ((!(act instanceof Insert) && !(action instanceof Insert)) 
-						|| (act instanceof Insert && action instanceof Insert)) {
+				if (!(action instanceof Addition) && !(act instanceof Addition)) {
+//					|| (action instanceof Insert && (act instanceof Insert))) {
 					int startPosition = act.getPosition();
 					int length = act.getLength();
 					int startP = action.getPosition();
