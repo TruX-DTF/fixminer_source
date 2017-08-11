@@ -612,7 +612,8 @@ public class SimplifyTree {
 
 	private List<Action> getAllMoveActions2(HierarchicalActionSet actionSet) {
 		List<Action> allMoveActions = new ArrayList<>();
-		List<HierarchicalActionSet> actions = actionSet.getSubActions();
+		List<HierarchicalActionSet> actions = new ArrayList<>();
+		actions.addAll(actionSet.getSubActions());
 		if (actions.size() == 0) {
 			return null;
 		}
