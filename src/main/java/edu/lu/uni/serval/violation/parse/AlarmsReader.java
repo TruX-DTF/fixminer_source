@@ -28,12 +28,13 @@ public class AlarmsReader {
 				String fixedInfo = line.substring(arrowIndex + 2);
 				String[] buggyElements = buggyInfo.split(":");
 				String[] fixedElements = fixedInfo.split(":");
-				
+
+				String alarmType = buggyElements[0];
 				String projectName = buggyElements[1];
 				String buggyCommitId = buggyElements[2];
 				String buggyFile = buggyElements[3];
 				int startLine = Integer.parseInt(buggyElements[4]);
-				String endLineAndAlarmType = buggyElements[5] + ":" + buggyElements[0];
+				int endLine = Integer.parseInt(buggyElements[5]);
 				String fixCommitId = fixedElements[1];
 				String fixedFile = fixedElements[2];
 				
@@ -50,11 +51,23 @@ public class AlarmsReader {
 				int index = alarms.indexOf(alarm);
 				if (index >= 0) {
 					Alarm tempAlarm = alarms.get(index);
-					Map<Integer, String> positions = tempAlarm.getPositions();
-					positions.put(startLine, endLineAndAlarmType);
+					Map<Integer, Integer> positions = tempAlarm.getPositions();
+					if (positions.containsKey(startLine)) {
+						int end = positions.get(startLine);
+						if (endLine < end) {
+							positions.put(startLine, endLine);
+							tempAlarm.getAlarmTypes().put(startLine, alarmType);
+						}
+					} else {
+						positions.put(startLine, endLine);
+						tempAlarm.getAlarmTypes().put(startLine, alarmType);
+					}
 				} else {
-					Map<Integer, String> positions = new HashMap<>();
-					positions.put(startLine, endLineAndAlarmType);
+					Map<Integer, String> alarmTypes = new HashMap<>();
+					alarmTypes.put(startLine, alarmType);
+					alarm.setAlarmTypes(alarmTypes);
+					Map<Integer, Integer> positions = new HashMap<>();
+					positions.put(startLine, endLine);
 					alarm.setPositions(positions);
 					alarms.add(alarm);
 				}

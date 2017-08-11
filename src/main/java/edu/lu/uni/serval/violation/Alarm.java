@@ -8,7 +8,8 @@ public class Alarm {
 	private String buggyFileName;
 	private String fixedCommitId;
 	private String fixedFileName;
-	private Map<Integer, String> positions;
+	private Map<Integer, String> alarmTypes;
+	private Map<Integer, Integer> positions;
 	
 	public Alarm(String buggyCommitId, String buggyFileName, String fixedCommitId, String fixedFileName) {
 		super();
@@ -34,11 +35,19 @@ public class Alarm {
 		return fixedFileName;
 	}
 
-	public Map<Integer, String> getPositions() {
+	public Map<Integer, String> getAlarmTypes() {
+		return alarmTypes;
+	}
+
+	public void setAlarmTypes(Map<Integer, String> alarmTypes) {
+		this.alarmTypes = alarmTypes;
+	}
+
+	public Map<Integer, Integer> getPositions() {
 		return positions;
 	}
 
-	public void setPositions(Map<Integer, String> positions) {
+	public void setPositions(Map<Integer, Integer> positions) {
 		this.positions = positions;
 	}
 
