@@ -29,6 +29,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 	public FixedViolationHunkParser(File positionFile) {
 		setPositionFile(positionFile);
 	}
+	
 	@Override
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 		// GumTree results 
@@ -70,35 +71,35 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 						
 			for (Violation violation : selectedViolations) {
 				List<HierarchicalActionSet> hunkActionSets = violation.getActionSets();
-				// Remove overlapped UPD and INS 
-				List<HierarchicalActionSet> addActions = new ArrayList<>();
-				List<HierarchicalActionSet> insertActions = new ArrayList<>();
-				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-					if (hunkActionSet.getActionString().startsWith("INS")) insertActions.add(hunkActionSet);
-					if (hunkActionSet.getActionString().startsWith("UPD")) addActions.add(hunkActionSet);
-				}
-				List<HierarchicalActionSet> selectedActionSets = new ArrayList<>();
-				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-					if (insertActions.contains(hunkActionSet)) {
-						boolean isIntersection = false;
-						int bugStartL1 = hunkActionSet.getBugStartLineNum();
-						int bugEndL1 = hunkActionSet.getBugEndLineNum();
-						for (HierarchicalActionSet addAction : addActions) {
-							int bugStartL = addAction.getBugStartLineNum();
-							int bugEndL = addAction.getBugEndLineNum();
-							if (bugEndL1 < bugStartL || bugStartL1 > bugEndL) {
-								continue;
-							}
-							isIntersection = true;
-							break;
-						}
-						if (!isIntersection) {
-							selectedActionSets.add(hunkActionSet);
-						}
-						continue;
-					}
-					selectedActionSets.add(hunkActionSet);
-				}
+//				// Remove overlapped UPD and INS, MOV
+//				List<HierarchicalActionSet> addActions = new ArrayList<>();
+//				List<HierarchicalActionSet> insertActions = new ArrayList<>();
+//				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
+//					if (hunkActionSet.getActionString().startsWith("INS")) insertActions.add(hunkActionSet);
+//					if (hunkActionSet.getActionString().startsWith("UPD")) addActions.add(hunkActionSet);
+//				}
+//				List<HierarchicalActionSet> selectedActionSets = new ArrayList<>();
+//				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
+//					if (insertActions.contains(hunkActionSet)) {
+//						boolean isIntersection = false;
+//						int bugStartL1 = hunkActionSet.getBugStartLineNum();
+//						int bugEndL1 = hunkActionSet.getBugEndLineNum();
+//						for (HierarchicalActionSet addAction : addActions) {
+//							int bugStartL = addAction.getBugStartLineNum();
+//							int bugEndL = addAction.getBugEndLineNum();
+//							if (bugEndL1 < bugStartL || bugStartL1 > bugEndL) {
+//								continue;
+//							}
+//							isIntersection = true;
+//							break;
+//						}
+//						if (!isIntersection) {
+//							selectedActionSets.add(hunkActionSet);
+//						}
+//						continue;
+//					}
+//					selectedActionSets.add(hunkActionSet);
+//				}
 				
 				// Range of buggy source code
 				int bugStartLine = 0;
@@ -115,15 +116,10 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				simpleTree.setNodeType("Block");
 				List<SimpleTree> children = new ArrayList<>();
 				String astEditScripts = "";
-				for (HierarchicalActionSet hunkActionSet : selectedActionSets) {
-					SimplifyTree abstractIdentifier = new SimplifyTree();
-					abstractIdentifier.abstractTree(hunkActionSet);
-					SimpleTree simpleT = hunkActionSet.getSimpleTree();
-					if (simpleT == null) { // Failed to get the simple tree for INS actions.
-						continue;
-					} 
-					children.add(simpleT);
-					
+				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
+					if (hunkActionSet.getActionString().startsWith("INS")) {
+						System.out.println();
+					}
 					/**
 					 * Select edit scripts for deep learning. 
 					 * Edit scripts will be used to mine common fix patterns.
@@ -146,13 +142,22 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					}
 					if (bugEndLine < actionBugEnd) bugEndLine = actionBugEnd;
 					if (fixEndLine < actionFixEnd) fixEndLine = actionFixEnd;
+					
+					SimplifyTree abstractIdentifier = new SimplifyTree();
+					abstractIdentifier.abstractTree(hunkActionSet);
+					SimpleTree simpleT = hunkActionSet.getSimpleTree();
+					if (simpleT == null) { // Failed to get the simple tree for INS actions.
+						continue;
+					} 
+					children.add(simpleT);
 				}
 				
-				if (children.size() == 0) continue;
-
+//				if (children.size() == 0) continue;
+				boolean isInsert = false;
 				if (bugStartLine == 0) {
 					bugStartLine = violation.getStartLineNum();
-					if (bugEndLine < bugStartLine) bugEndLine = violation.getEndLineNum();
+					bugEndLine = violation.getEndLineNum();
+					isInsert = true;
 				}
 				if (bugEndLine - bugStartLine >= Configuration.HUNK_SIZE || fixEndLine - fixStartLine >= Configuration.HUNK_SIZE) continue;
 
@@ -160,11 +165,11 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				simpleTree.setParent(null);
 				
 				// Source Code of patches.
-				String patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine);
+				String patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isInsert);
 				if ("".equals(patchSourceCode)) continue;
 				counter ++;
 				String patchPosition = "";//"###:" + counter + "\n" + revFile.getName() + "\nPosition: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
-				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchSourceCode + "\n";
+				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchSourceCode + "\nAST diff:\n" + getAstEditScripts(hunkActionSets) + "\n";
 				int size = astEditScripts.split(" ").length;
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
@@ -176,6 +181,14 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				
 			}
 		}
+	}
+
+	private String getAstEditScripts(List<HierarchicalActionSet> actionSets) {
+		String editScripts = "";
+		for (HierarchicalActionSet actionSet : actionSets) {
+			editScripts += actionSet.toString();
+		}
+		return editScripts;
 	}
 	
 }
