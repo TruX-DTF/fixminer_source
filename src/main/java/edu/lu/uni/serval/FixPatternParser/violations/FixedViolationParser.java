@@ -92,6 +92,17 @@ public class FixedViolationParser extends Parser {
 		String fixedStatements = readSourceCode(revFile, startLineNum2, endLineNum2, "+");
 		return buggyStatements + fixedStatements;
 	}
+	
+	protected String getPatchSourceCode(File prevFile, File revFile, int startLineNum, int endLineNum, int startLineNum2, int endLineNum2, boolean isInsert) {
+		String buggyStatements = "";
+		if (isInsert) {
+			buggyStatements = readSourceCode(prevFile, startLineNum, endLineNum, "");
+		} else {
+			buggyStatements = readSourceCode(prevFile, startLineNum, endLineNum, "-");
+		}
+		String fixedStatements = readSourceCode(revFile, startLineNum2, endLineNum2, "+");
+		return buggyStatements + fixedStatements;
+	}
 
 	protected String readSourceCode(File file, int startLineNum, int endLineNum, String type) {
 		String sourceCode = "";
