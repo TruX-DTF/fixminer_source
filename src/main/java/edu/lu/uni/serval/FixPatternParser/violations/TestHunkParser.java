@@ -28,15 +28,15 @@ public class TestHunkParser {
 
 	public static void main(String[] args) {
 		// input data
-		final List<MessageFile> msgFiles = getMessageFiles("GumTreeInput/");
+		final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT);
 		System.out.println(msgFiles.size());
 
 		// output path
-		final String editScriptsFilePath = "GumTreeResults/editScripts.list";
-		final String patchesSourceCodeFilePath = "GumTreeResults/patchSourceCode.list";
-		final String buggyTokensFilePath = "GumTreeResults/tokens.list";
-		final String editScriptSizesFilePath = "GumTreeResults/editScriptSizes.list";
-		final String alarmTypesFilePath = "GumTreeResults/alarmTypes.list";
+		final String editScriptsFilePath = Configuration.EDITSCRIPTS_FILE;
+		final String patchesSourceCodeFilePath = Configuration.PATCH_SOURCECODE_FILE;
+		final String buggyTokensFilePath = Configuration.BUGGY_CODE_TOKEN_FILE_PATH;
+		final String editScriptSizesFilePath = Configuration.EDITSCRIPT_SIZES_FILE;
+		final String alarmTypesFilePath = Configuration.ALARM_TYPES_FILE;
 
 		FileHelper.deleteDirectory(editScriptsFilePath);
 		FileHelper.deleteDirectory(patchesSourceCodeFilePath);

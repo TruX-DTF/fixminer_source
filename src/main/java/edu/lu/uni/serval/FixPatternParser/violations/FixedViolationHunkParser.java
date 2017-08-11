@@ -117,9 +117,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				List<SimpleTree> children = new ArrayList<>();
 				String astEditScripts = "";
 				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-					if (hunkActionSet.getActionString().startsWith("INS")) {
-						System.out.println();
-					}
 					/**
 					 * Select edit scripts for deep learning. 
 					 * Edit scripts will be used to mine common fix patterns.
