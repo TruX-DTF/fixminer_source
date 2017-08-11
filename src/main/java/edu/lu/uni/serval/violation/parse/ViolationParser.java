@@ -92,7 +92,7 @@ public class ViolationParser {
 					String diffentryFile = diffentryFilePath + fileName;
 					FileHelper.outputToFile(buggyFile, buggyFileContent, false);
 					FileHelper.outputToFile(fixedFile, fixedFileContent, false);
-					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions()), false);
+					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions(), alarm.getAlarmTypes()), false);
 					FileHelper.outputToFile(diffentryFile, diffentry, false);
 				}
 			} catch (GitRepositoryNotFoundException e) {
@@ -194,7 +194,7 @@ public class ViolationParser {
 					String diffentryFile = diffentryFilePath + fileName;
 					FileHelper.outputToFile(buggyFile, buggyFileContent, false);
 					FileHelper.outputToFile(fixedFile, fixedFileContent, false);
-					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions()), false);
+					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions(), alarm.getAlarmTypes()), false);
 					FileHelper.outputToFile(diffentryFile, diffentry, false);
 				}
 			} catch (GitRepositoryNotFoundException e) {
@@ -216,12 +216,12 @@ public class ViolationParser {
 		System.out.println(a);
 	}
 
-	private String readPosition(Map<Integer, String> positions) {
+	private String readPosition(Map<Integer, Integer> positions, Map<Integer, String> alarmTypes) {
 		String positionsStr = "";
-		for (Map.Entry<Integer, String> entry : positions.entrySet()) {
-			positionsStr += entry.getKey() + ":" + entry.getValue() + "\n";
+		for (Map.Entry<Integer, String> entry : alarmTypes.entrySet()) {
+			int key = entry.getKey();
+			positionsStr += key + ":" + positions.get(key) + ":" + entry.getValue() + "\n";
 		}
 		return positionsStr;
 	}
-
 }

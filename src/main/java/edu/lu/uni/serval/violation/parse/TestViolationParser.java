@@ -4,15 +4,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 
 public class TestViolationParser {
 
 	private static final String REPO_PATH = "/Volumes/MacBook/repos/";
-	private static final String previousFilesPath = "GumTreeInput/prevFiles/";
-	private static final String revisedFilesPath = "GumTreeInput/revFiles/";
-	private static final String positionsFilePath = "GumTreeInput/positions/";
-	private static final String diffentryFilePath = "GumTreeInput/diffentries/";
 	
 	public static void main(String[] args) {
 		List<File> repositoriesList = new ArrayList<>();
@@ -30,6 +27,11 @@ public class TestViolationParser {
 		}
 		String fixedAlarmFile = "Dataset/fixed-alarms-v0.2.list";
 
+
+		final String previousFilesPath = Configuration.GUM_TREE_INPUT + "prevFiles/";
+		final String revisedFilesPath = Configuration.GUM_TREE_INPUT + "revFiles/";
+		final String positionsFilePath = Configuration.GUM_TREE_INPUT + "positions/";
+		final String diffentryFilePath = Configuration.GUM_TREE_INPUT + "diffentries/";
 		FileHelper.createDirectory(previousFilesPath);
 		FileHelper.createDirectory(revisedFilesPath);
 		FileHelper.createDirectory(positionsFilePath);
