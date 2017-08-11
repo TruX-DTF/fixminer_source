@@ -236,7 +236,8 @@ public class HunkActionFilter {
 
 	private List<Move> getFirstAndLastMoveAction(HierarchicalActionSet gumTreeResult) {
 		List<Move> firstAndLastMoveActions = new ArrayList<>();
-		List<HierarchicalActionSet> actions = gumTreeResult.getSubActions();
+		List<HierarchicalActionSet> actions = new ArrayList<>();
+		actions.addAll(gumTreeResult.getSubActions());
 		if (actions.size() == 0) {
 			return null;
 		}
@@ -368,12 +369,12 @@ public class HunkActionFilter {
 		}
 		
 		for (Violation violation : violations) {
-			int startLine = violation.getStartLineNum();
-			int endLine = violation.getEndLineNum();
-			int bugStartLine = violation.getBugStartLineNum();
-			int bugEndLine = violation.getBugEndLineNum();
-			int fixStartLine = violation.getFixStartLineNum();
-			int fixEndLine = violation.getFixEndLineNum();
+			int violationStartLine = violation.getStartLineNum();
+			int violationEndLine = violation.getEndLineNum();
+			int bugHunkStartLine = violation.getBugStartLineNum();
+			int bugHunkEndLine = violation.getBugEndLineNum();
+			int fixHunkStartLine = violation.getFixStartLineNum();
+			int fixHunkEndLine = violation.getFixEndLineNum();
 			
 			for (HierarchicalActionSet actionSet : actionSets) {
 				int actionBugStartLine = actionSet.getBugStartLineNum();
@@ -386,21 +387,23 @@ public class HunkActionFilter {
 
 				String actionStr = actionSet.getActionString();
 				if (actionStr.startsWith("INS")) {
-					if (fixStartLine <= actionFixStartLine && actionFixEndLine <= fixEndLine) {
+					if (fixHunkStartLine <= actionFixStartLine && actionFixEndLine <= fixHunkEndLine) {
 						if (actionBugStartLine != 0) {
-							if (startLine <= actionBugEndLine && endLine >= actionBugStartLine) {
+							if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
 								violation.getActionSets().add(actionSet);
 							}
 						} else {
-							if (isRanged(actionSet, violation)) violation.getActionSets().add(actionSet);
+							if (isRanged(actionSet, violation)) {
+								violation.getActionSets().add(actionSet);
+							}
 						}
 					}
 				} else {
-					if (bugEndLine < actionBugStartLine)  {
+					if (bugHunkEndLine < actionBugStartLine) {
 						break;
 					}
-					if (bugStartLine <= actionBugStartLine && actionBugEndLine <= bugEndLine) {
-						if (startLine <= actionBugEndLine && endLine >= actionBugStartLine) {
+					if (bugHunkStartLine <= actionBugStartLine && actionBugEndLine <= bugHunkEndLine) {
+						if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
 							violation.getActionSets().add(actionSet);
 						}
 					}
@@ -582,7 +585,7 @@ public class HunkActionFilter {
 	}
 
 	private int setLineNumbers(HierarchicalActionSet actionSet, CompilationUnit prevUnit, CompilationUnit revUnit) {
-		int actionBugStartLine = actionSet.getBugStartLineNum();
+		int actionBugStartLine;
 		int actionBugEndLine;
 		int actionFixStartLine;
 		int actionFixEndLine;
