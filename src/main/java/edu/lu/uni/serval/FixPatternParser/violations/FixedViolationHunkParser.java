@@ -153,6 +153,8 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					}
 				}
 				
+				if (fixStartLine == 0) continue;
+				
 				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
 					SimplifyTree abstractIdentifier = new SimplifyTree();
 					abstractIdentifier.abstractTree(hunkActionSet, bugEndPosition);
