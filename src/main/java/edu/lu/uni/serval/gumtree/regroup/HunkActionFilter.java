@@ -394,7 +394,10 @@ public class HunkActionFilter {
 							}
 						} else {
 							if (isRanged(actionSet, violation)) {
-								violation.getActionSets().add(actionSet);
+								if (Math.abs(violationStartLine - actionFixStartLine) <= 5 
+										&& Math.abs(violationEndLine - actionFixEndLine) <= 5) {
+									violation.getActionSets().add(actionSet);
+								}
 							}
 						}
 					}
@@ -491,6 +494,7 @@ public class HunkActionFilter {
 								fixStarts = 0;
 								continue;
 							}
+							
 							return true;
 						}
 					}
@@ -644,6 +648,8 @@ public class HunkActionFilter {
 		actionSet.setBugEndLineNum(actionBugEndLine);
 		actionSet.setFixStartLineNum(actionFixStartLine);
 		actionSet.setFixEndLineNum(actionFixEndLine);
+		actionSet.setBugEndPosition(bugEndPosition);
+		actionSet.setFixEndPosition(fixEndPosition);
 		
 		return actionBugStartLine;
 	}
