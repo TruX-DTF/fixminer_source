@@ -170,6 +170,68 @@ public abstract class Parser implements ParserInterface {
 		return editScript;
 	}
 	
+
+	/**
+	 * 
+	 * @param hunkActionSets
+	 * @param bugStartLine
+	 * @param bugEndLine
+	 * @param fixStartLine
+	 * @param fixEndLine
+	 * @return
+	 */
+	protected String getASTEditScripts(List<HierarchicalActionSet> hunkActionSets, int bugEndPosition, int fixEndPosition) {
+		String editScript = "";
+		
+		for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
+			editScript += getASTEditScripts(hunkActionSet, bugEndPosition, fixEndPosition);
+		}
+		return editScript;
+	}
+	
+	private String getASTEditScripts(HierarchicalActionSet hunkActionSet, int bugEndPosition, int fixEndPosition) {
+		String editScript = "";
+		List<HierarchicalActionSet> actionSets = new ArrayList<>();
+		actionSets.add(hunkActionSet);
+		while (actionSets.size() != 0) {
+			List<HierarchicalActionSet> subSets = new ArrayList<>();
+			for (HierarchicalActionSet set : actionSets) {
+				int bugS = set.getStartPosition();
+				int fixS = set.getFixStartLineNum();
+				
+				if (bugS > bugEndPosition || fixS > fixEndPosition) continue;
+				
+				subSets.addAll(set.getSubActions());
+				String actionStr = set.getActionString();
+				int index = actionStr.indexOf("@@");
+				String singleEdit = actionStr.substring(0, index).replace(" ", "");
+				
+				if (singleEdit.endsWith("SimpleName")) {
+					actionStr = actionStr.substring(index + 2);
+					if (actionStr.startsWith("MethodName")) {
+						singleEdit = singleEdit.replace("SimpleName", "MethodName");
+					} else {
+						if (actionStr.startsWith("Name")) {
+							char c = actionStr.charAt(5);
+							if (Character.isUpperCase(c)) {
+								singleEdit = singleEdit.replace("SimpleName", "Name");
+							} else {
+								singleEdit = singleEdit.replace("SimpleName", "Variable");
+							}
+						} else {
+							singleEdit = singleEdit.replace("SimpleName", "Variable");
+						}
+					}
+				}
+				
+				editScript += singleEdit + " ";
+			}
+			actionSets.clear();
+			actionSets.addAll(subSets);
+		}
+		return editScript;
+	}
+
 	protected void clearITree(HierarchicalActionSet actionSet) {
 		actionSet.getAction().setNode(null);
 		for (HierarchicalActionSet subActionSet : actionSet.getSubActions()) {

@@ -27,7 +27,7 @@ public class Configuration {
 	public static final String PATCH_SOURCECODE_FILE = GUM_TREE_OUTPUT + "patchSourceCode.list";
 	public static final String BUGGYTREES_FILE = GUM_TREE_OUTPUT + "buggyTrees.list";
 	public static final String BUGGY_CODE_TOKENS_FILE = GUM_TREE_OUTPUT + "tokens.list";
-	public static final String EDITSCRIPT_SIZES_FILE = GUM_TREE_OUTPUT + "editScriptSizes.list";
+	public static final String EDITSCRIPT_SIZES_FILE = GUM_TREE_OUTPUT + "editScriptSizes.csv";
 	public static final String ALARM_TYPES_FILE = GUM_TREE_OUTPUT + "alarmTypes.list";
 	
 	public static final int VECTOR_SIZE_OF_EMBEDED_TOKEN1 = 100; // tokens of edit scripts.

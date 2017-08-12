@@ -32,6 +32,9 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> 
 	private SimpleTree abstractIdentifierTree = null;  // abstract identifier tree
 	private SimpleTree simpleTree = null;  			   // source code tree and AST node type tree
 	private SimpleTree originalTree = null;            // source code tree.
+	
+	private int bugEndPosition;
+	private int fixEndPosition;
 
 	public ITree getNode() {
 		return node;
@@ -169,6 +172,22 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> 
 
 	public void setOriginalTree(SimpleTree originalTree) {
 		this.originalTree = originalTree;
+	}
+
+	public int getBugEndPosition() {
+		return bugEndPosition;
+	}
+
+	public void setBugEndPosition(int bugEndPosition) {
+		this.bugEndPosition = bugEndPosition;
+	}
+
+	public int getFixEndPosition() {
+		return fixEndPosition;
+	}
+
+	public void setFixEndPosition(int fixEndPosition) {
+		this.fixEndPosition = fixEndPosition;
 	}
 
 	@Override
