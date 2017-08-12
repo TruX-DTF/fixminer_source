@@ -227,11 +227,15 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		for (HierarchicalActionSet subActionSet : actionSet.getSubActions()) {
 			int bugS = subActionSet.getStartPosition();
 			int fixS = subActionSet.getFixStartLineNum();
-			if (bugS > bugEndPosition || fixS > fixEndPosition) {
+			
+			if (subActionSet.getActionString().startsWith("INS")) {
+				if (fixS > fixEndPosition) {
+					continue;
+				}
+			} else if (!subActionSet.getActionString().startsWith("MOV") && bugS > bugEndPosition) {
 				continue;
-			} else {
-				editScripts += getActionString(subActionSet, bugEndPosition, fixEndPosition, startStr + "---");
 			}
+			editScripts += getActionString(subActionSet, bugEndPosition, fixEndPosition, startStr + "---");
 
 		}
 

@@ -199,7 +199,13 @@ public abstract class Parser implements ParserInterface {
 				int bugS = set.getStartPosition();
 				int fixS = set.getFixStartLineNum();
 				
-				if (bugS > bugEndPosition || fixS > fixEndPosition) continue;
+				if (set.getActionString().startsWith("INS")) {
+					if (fixS > fixEndPosition) {
+						continue;
+					}
+				} else if (!set.getActionString().startsWith("MOV") && bugS > bugEndPosition) {
+					continue;
+				}
 				
 				subSets.addAll(set.getSubActions());
 				String actionStr = set.getActionString();
