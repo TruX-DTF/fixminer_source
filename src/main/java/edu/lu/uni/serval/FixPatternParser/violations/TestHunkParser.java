@@ -34,7 +34,7 @@ public class TestHunkParser {
 		// output path
 		final String editScriptsFilePath = Configuration.EDITSCRIPTS_FILE;
 		final String patchesSourceCodeFilePath = Configuration.PATCH_SOURCECODE_FILE;
-		final String buggyTokensFilePath = Configuration.BUGGY_CODE_TOKEN_FILE_PATH;
+		final String buggyTokensFilePath = Configuration.BUGGY_CODE_TOKENS_FILE;
 		final String editScriptSizesFilePath = Configuration.EDITSCRIPT_SIZES_FILE;
 		final String alarmTypesFilePath = Configuration.ALARM_TYPES_FILE;
 
