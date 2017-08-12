@@ -196,14 +196,13 @@ public abstract class Parser implements ParserInterface {
 		while (actionSets.size() != 0) {
 			List<HierarchicalActionSet> subSets = new ArrayList<>();
 			for (HierarchicalActionSet set : actionSets) {
-				int bugS = set.getStartPosition();
-				int fixS = set.getFixStartLineNum();
+				int position = set.getAction().getPosition();
 				
 				if (set.getActionString().startsWith("INS")) {
-					if (fixS > fixEndPosition) {
+					if (position > fixEndPosition) {
 						continue;
 					}
-				} else if (!set.getActionString().startsWith("MOV") && bugS > bugEndPosition) {
+				} else if (!set.getActionString().startsWith("MOV") && position > bugEndPosition) {
 					continue;
 				}
 				

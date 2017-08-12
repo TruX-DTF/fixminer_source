@@ -89,6 +89,69 @@ public class SimplifyTree {
 		actionSet.setOriginalTree(sourceCodeSimpleTree);
 	}
 	
+	/**
+	 * Convert ITree to a source code simple tree, an abstract identifier simple tree, and a semi-source code simple tree.
+	 * 
+	 * @param actionSet
+	 */
+	public void abstractTree(HierarchicalActionSet actionSet, int bugEndPosition) {
+		SimpleTree sourceCodeSimpleTree = null;    // source code tree and AST node type tree
+		SimpleTree abstractIdentifierTree = null;  // abstract identifier tree
+		SimpleTree abstractSimpleTree =  null;     // semi-source code tree. and AST node type tree
+		SimpleTree simpleTree = null; // source code tree with canonical variable names.
+		
+		if (actionSet.getActionString().startsWith("INS")) {
+			List<Action> allMoveActions = getAllMoveActions(actionSet);
+			if (allMoveActions != null) {
+				List<Action> actions = new ArrayList<>();
+				for (Action action : allMoveActions) {
+					boolean hasParent = false;
+					ITree parent = action.getNode().getParent();
+					for (Action act : allMoveActions) {
+						if (act == action)  continue;
+						ITree actNode = act.getNode();
+						if (actNode.equals(parent)) {
+							hasParent = true;
+							break;
+						}
+					}
+					if (!hasParent) {
+						actions.add(action);
+					}
+				}
+//				sourceCodeSimpleTree = sourceCodeTree(actions);
+				simpleTree = canonicalizeSourceCodeTree(actions, null);
+			}
+		} else {
+			ITree tree = actionSet.getNode();
+//			String astNodeType = actionSet.getAstNodeType();
+//			if (Checker.containsBodyBlock(astNodeType)) {
+//				// delete the body block.
+//				List<ITree> children = tree.getChildren();
+//				List<ITree> newChildren = new ArrayList<>();
+//				for (ITree child : children) {
+//					if (!child.getLabel().endsWith("Body")) {
+//						newChildren.add(child);
+//					}
+//				}
+//				tree.setChildren(newChildren);
+//			}
+//			sourceCodeSimpleTree = originalSourceCodeTree(tree, null);
+//			abstractIdentifierTree = abstractIdentifierTree(actionSet, tree, null);
+//			abstractSimpleTree = semiSourceCodeTree(actionSet, tree, null);
+			if (actionSet.getActionString().startsWith("UPD")) {
+				simpleTree = canonicalizeSourceCodeTree(tree, null, bugEndPosition);
+			} else {
+				simpleTree = canonicalizeSourceCodeTree(tree, null);
+			}
+		}
+		
+		actionSet.setAbstractSimpleTree(abstractSimpleTree);
+		actionSet.setAbstractIdentifierTree(abstractIdentifierTree);
+		actionSet.setSimpleTree(simpleTree);
+		actionSet.setOriginalTree(sourceCodeSimpleTree);
+	}
+	
 	private SimpleTree canonicalizeSourceCodeTree(List<Action> actions, SimpleTree parent) {
 		SimpleTree simpleTree = new SimpleTree();
 		simpleTree.setLabel("Block");
@@ -125,6 +188,76 @@ public class SimplifyTree {
 				}
 				List<SimpleTree> subTrees = new ArrayList<>();
 				for (ITree child : children) {
+					subTrees.add(canonicalizeSourceCodeTree(child, simpleTree));
+				}
+				simpleTree.setChildren(subTrees);
+			}
+		} else {
+			if (astNode.endsWith("Name")) {
+				// variableName, methodName, QualifiedName
+				if (label.startsWith("MethodName:")) { // <MethodName, name>
+					simpleTree.setNodeType("MethodName");
+					label = label.substring(11);
+					label = label.substring(0, label.indexOf(":["));
+					simpleTree.setLabel(label);
+				} else if (label.startsWith("Name:")) {
+					label = label.substring(5);
+					char firstChar = label.charAt(0);
+					if (Character.isUpperCase(firstChar)) {
+						simpleTree.setNodeType("Name");
+						simpleTree.setLabel(label);
+					} else {// variableName: <VariableName, canonicalName>
+						simpleTree.setNodeType("VariableName");
+						simpleTree.setLabel(canonicalVariableName(label, tree));
+					}
+				} else {// variableName: <VariableName, canonicalName>
+					simpleTree.setNodeType("VariableName");
+					simpleTree.setLabel(canonicalVariableName(label, tree));
+				}
+			} else {
+				simpleTree.setNodeType(astNode);
+				if (astNode.endsWith("Type")) {
+					simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
+				} else if (astNode.startsWith("Type")) {
+					simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
+				} else if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation")) && label.startsWith("MethodName:")) {
+					simpleTree.setNodeType("MethodName");
+					label = label.substring(11);
+					label = label.substring(0, label.indexOf(":["));
+					simpleTree.setLabel(label);
+				} else {
+					simpleTree.setLabel(label.replaceAll(" ", ""));
+				}
+			}
+		}
+		
+		simpleTree.setParent(parent);
+		return simpleTree;
+	}
+	
+	public SimpleTree canonicalizeSourceCodeTree(ITree tree, SimpleTree parent, int bugEndPosition) {
+		SimpleTree simpleTree = new SimpleTree();
+
+		String label = tree.getLabel();
+		String astNode = ASTNodeMap.map.get(tree.getType());
+
+		List<ITree> children = tree.getChildren();
+		if (children.size() > 0) {
+			simpleTree.setNodeType(astNode);
+			if (astNode.endsWith("Type")) {
+				simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
+			} else {
+				if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation")) && label.startsWith("MethodName:")) {
+					simpleTree.setNodeType("MethodName");
+					label = label.substring(11);
+					label = label.substring(0, label.indexOf(":["));
+					simpleTree.setLabel(label);
+				} else {
+					simpleTree.setLabel(astNode);
+				}
+				List<SimpleTree> subTrees = new ArrayList<>();
+				for (ITree child : children) {
+					if (child.getPos() > bugEndPosition) continue;
 					subTrees.add(canonicalizeSourceCodeTree(child, simpleTree));
 				}
 				simpleTree.setChildren(subTrees);

@@ -151,9 +151,11 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 						fixEndLine = actionFixEnd;
 						fixEndPosition = hunkActionSet.getFixEndPosition();
 					}
-					
+				}
+				
+				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
 					SimplifyTree abstractIdentifier = new SimplifyTree();
-					abstractIdentifier.abstractTree(hunkActionSet);
+					abstractIdentifier.abstractTree(hunkActionSet, bugEndPosition);
 					SimpleTree simpleT = hunkActionSet.getSimpleTree();
 					if (simpleT == null) { // Failed to get the simple tree for INS actions.
 						continue;
@@ -190,7 +192,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				if (size == 1) continue;
 				
 				counter ++;
-				String patchPosition = "";//"###:" + counter + "\n" + revFile.getName() + "\nPosition: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
+				String patchPosition = "###:" + counter + "\n" + revFile.getName() + "\nPosition: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
 				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchSourceCode + "\nAST diff:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
@@ -225,14 +227,13 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 
 		editScripts += startStr + actionSet.getActionString() + "\n";
 		for (HierarchicalActionSet subActionSet : actionSet.getSubActions()) {
-			int bugS = subActionSet.getStartPosition();
-			int fixS = subActionSet.getFixStartLineNum();
+			int position = subActionSet.getAction().getPosition();
 			
 			if (subActionSet.getActionString().startsWith("INS")) {
-				if (fixS > fixEndPosition) {
+				if (position > fixEndPosition) {
 					continue;
 				}
-			} else if (!subActionSet.getActionString().startsWith("MOV") && bugS > bugEndPosition) {
+			} else if (!subActionSet.getActionString().startsWith("MOV") && position > bugEndPosition) {
 				continue;
 			}
 			editScripts += getActionString(subActionSet, bugEndPosition, fixEndPosition, startStr + "---");
