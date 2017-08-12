@@ -122,19 +122,19 @@ public class HierarchicalRegrouper {
 				}
 				break;
 			} else {
-				if (!(action instanceof Addition) && !(act instanceof Addition)) {
-//						|| (action instanceof Insert && (act instanceof Insert))) {
-					int startPosition = act.getPosition();
-					int length = act.getLength();
-					int startP = action.getPosition();
-					int leng = action.getLength();
-					
-					if (startP > startPosition + length) {
-						break;
-					} else if (startP + leng < startPosition) {
-						continue;
-					}
-				}
+//				if (!(action instanceof Addition) && !(act instanceof Addition)) {
+////						|| (action instanceof Insert && (act instanceof Insert))) {
+//					int startPosition = act.getPosition();
+//					int length = act.getLength();
+//					int startP = action.getPosition();
+//					int leng = action.getLength();
+//					
+//					if (startP > startPosition + length) {
+//						break;
+//					} else if (startP + leng < startPosition) {
+//						continue;
+//					}
+//				}
 				// SubAction range： startP <= startPosition && startPosition + length <= startP + leng
 				addToActionSets(actionSet, parentAct, actSet.getSubActions());
 			}
@@ -156,19 +156,19 @@ public class HierarchicalRegrouper {
 				actionSet.getSubActions().add(actSet);
 				return true;
 			} else {
-				if (!(action instanceof Addition) && !(act instanceof Addition)) {
-//					|| (action instanceof Insert && (act instanceof Insert))) {
-					int startPosition = act.getPosition();
-					int length = act.getLength();
-					int startP = action.getPosition();
-					int leng = action.getLength();
-					
-					if (startP > startPosition + length) {
-						break;
-					} else if (startP + leng < startPosition) {
-						continue;
-					}
-				}
+//				if (!(action instanceof Addition) && !(act instanceof Addition)) {
+////					|| (action instanceof Insert && (act instanceof Insert))) {
+//					int startPosition = act.getPosition();
+//					int length = act.getLength();
+//					int startP = action.getPosition();
+//					int leng = action.getLength();
+//					
+//					if (startP > startPosition + length) {
+//						break;
+//					} else if (startP + leng < startPosition) {
+//						continue;
+//					}
+//				}
 				// SubAction range： startP <= startPosition && startPosition + length <= startP + leng
 				List<HierarchicalActionSet> subActionSets = actionSet.getSubActions();
 				if (subActionSets.size() > 0) {

@@ -329,9 +329,9 @@ public class HunkActionFilter {
 						}
 					}
 				} else {
-					if (bugEndLine < actionBugStartLine)  {
-						break;
-					}
+//					if (bugEndLine < actionBugStartLine)  {
+//						break;
+//					}
 					if (bugStartLine <= actionBugStartLine && actionBugEndLine <= bugEndLine) {
 						if (startLine <= actionBugEndLine && endLine >= actionBugStartLine) {
 							violation.getActionSets().add(actionSet);
@@ -402,9 +402,9 @@ public class HunkActionFilter {
 						}
 					}
 				} else {
-					if (bugHunkEndLine < actionBugStartLine) {
-						break;
-					}
+//					if (bugHunkEndLine < actionBugStartLine) {
+//						break;
+//					}
 					if (bugHunkStartLine <= actionBugStartLine && actionBugEndLine <= bugHunkEndLine) {
 						if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
 							violation.getActionSets().add(actionSet);
@@ -570,9 +570,9 @@ public class HunkActionFilter {
 						}
 					}
 				} else {
-					if (endLine < actionBugStartLine)  {
-						break;
-					}
+//					if (endLine < actionBugStartLine)  {
+//						break;
+//					}
 					if (startLine <= actionBugStartLine && actionBugEndLine <= endLine) {
 						if (startLine <= actionBugEndLine && endLine >= actionBugStartLine) {
 							violation.getActionSets().add(actionSet);
