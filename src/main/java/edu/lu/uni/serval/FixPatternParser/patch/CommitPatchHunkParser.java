@@ -69,7 +69,7 @@ public class CommitPatchHunkParser extends CommitPatchParser {
 					 * Edit scripts will be used to mine common fix patterns.
 					 */
 					// 1. First level: AST node type.
-					astEditScripts += getASTEditScripts(hunkActionSet);
+					astEditScripts += getASTEditScriptsBreadthFirst(hunkActionSet);
 					// 2. source code: raw tokens
 					// 3. abstract identifiers: 
 					// 4. semi-source code: 

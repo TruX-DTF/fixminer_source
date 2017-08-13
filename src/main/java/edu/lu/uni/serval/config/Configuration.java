@@ -15,7 +15,7 @@ public class Configuration {
 	
 
 	// the output path of GumTree results.
-	private static final String GUM_TREE_OUTPUT = ROOT_PATH + "GumTreeResults/";
+	private static final String GUM_TREE_OUTPUT = ROOT_PATH + "GumTreeResults_2/";
 	public static final String EDITSCRIPTS_FILE_PATH = GUM_TREE_OUTPUT + "editScripts/";
 	public static final String PATCH_SOURCECODE_FILE_PATH = GUM_TREE_OUTPUT + "sourceCode/";
 	public static final String BUGGYTREE_FILE_PATH = GUM_TREE_OUTPUT + "buggyTrees/";

@@ -121,7 +121,7 @@ public class CommitPatchSingleStatementParser extends CommitPatchParser {
 				 * used to mine common fix patterns.
 				 */
 				// 1. First level: AST node type.
-				String astEditScripts = getASTEditScripts(actionSet);
+				String astEditScripts = getASTEditScriptsBreadthFirst(actionSet);
 				int size = astEditScripts.split(" ").length;
 				if (size < 2) {
 					// System.out.println(actionSet);

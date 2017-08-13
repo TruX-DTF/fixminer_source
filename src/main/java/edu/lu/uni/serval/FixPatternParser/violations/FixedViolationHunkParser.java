@@ -186,7 +186,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				 * Edit scripts will be used to mine common fix patterns.
 				 */
 				// 1. First level: AST node type.
-				astEditScripts += getASTEditScripts(hunkActionSets, bugEndPosition, fixEndPosition);
+				astEditScripts += getASTEditScriptsDeepFirst(hunkActionSets, bugEndPosition, fixEndPosition);
 				// 2. source code: raw tokens
 				// 3. abstract identifiers: 
 				// 4. semi-source code: 
@@ -194,8 +194,8 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				if (size == 1) continue;
 				
 				counter ++;
-				String patchPosition = "###:" + counter + "\n" + revFile.getName() + "\nPosition: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
-				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchSourceCode + "\nAST diff:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
+				String patchPosition = "###:" + counter + "\n" + revFile.getName() + "Position: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
+				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\nAlarm Type :" + violation.getAlarmType() + "\n" + patchPosition + patchSourceCode + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
 				this.alarmTypes += violation.getAlarmType() + "\n";
@@ -206,43 +206,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				
 			}
 		}
-	}
-
-	private String getAstEditScripts(List<HierarchicalActionSet> actionSets) {
-		String editScripts = "";
-		for (HierarchicalActionSet actionSet : actionSets) {
-			editScripts += actionSet.toString();
-		}
-		return editScripts;
-	}
-	
-	private String getAstEditScripts(List<HierarchicalActionSet> actionSets, int bugEndLine, int fixEndLine) {
-		String editScripts = "";
-		for (HierarchicalActionSet actionSet : actionSets) {
-			editScripts += getActionString(actionSet, bugEndLine, fixEndLine, "");
-		}
-		return editScripts;
-	}
-
-	private String getActionString(HierarchicalActionSet actionSet, int bugEndPosition, int fixEndPosition, String startStr) {
-		String editScripts = "";
-
-		editScripts += startStr + actionSet.getActionString() + "\n";
-		for (HierarchicalActionSet subActionSet : actionSet.getSubActions()) {
-			int position = subActionSet.getAction().getPosition();
-			
-			if (subActionSet.getActionString().startsWith("INS")) {
-				if (position > fixEndPosition) {
-					continue;
-				}
-			} else if (!subActionSet.getActionString().startsWith("MOV") && position > bugEndPosition) {
-				continue;
-			}
-			editScripts += getActionString(subActionSet, bugEndPosition, fixEndPosition, startStr + "---");
-
-		}
-
-		return editScripts;
 	}
 	
 }
