@@ -44,7 +44,7 @@ public class AkkaParser {
 
 		ActorSystem system = null;
 		ActorRef parsingActor = null;
-		int numberOfWorkers = 30;
+		int numberOfWorkers = 100;
 		final WorkMessage msg = new WorkMessage(0, msgFiles);
 		try {
 			log.info("Akka begins...");
