@@ -13,6 +13,8 @@ import edu.lu.uni.serval.violation.Violation;
 
 public class AlarmsReader {
 
+	int counter = 0;
+	
 	public Map<String, Violation> readAlarmsList(String fileName) {
 		Map<String, Violation> violationsMap = new HashMap<>();
 		FileInputStream fis = null;
@@ -61,6 +63,7 @@ public class AlarmsReader {
 					} else {
 						positions.put(startLine, endLine);
 						tempAlarm.getAlarmTypes().put(startLine, alarmType);
+						counter ++;
 					}
 				} else {
 					Map<Integer, String> alarmTypes = new HashMap<>();
@@ -70,6 +73,7 @@ public class AlarmsReader {
 					positions.put(startLine, endLine);
 					alarm.setPositions(positions);
 					alarms.add(alarm);
+					counter ++;
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -82,6 +86,8 @@ public class AlarmsReader {
 				e.printStackTrace();
 			}
 		}
+		
+		System.out.println(counter);
 		return violationsMap;
 	}
 	

@@ -3,15 +3,19 @@ package edu.lu.uni.serval.violation.parse;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jgit.errors.RevisionSyntaxException;
 
+import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.git.exception.GitRepositoryNotFoundException;
 import edu.lu.uni.serval.git.exception.NotValidGitRepositoryException;
 import edu.lu.uni.serval.git.travel.GitRepository;
+import edu.lu.uni.serval.utils.Exporter;
 import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.utils.MapSorter;
 import edu.lu.uni.serval.violation.Alarm;
 import edu.lu.uni.serval.violation.Violation;
 
@@ -22,12 +26,16 @@ import edu.lu.uni.serval.violation.Violation;
  */
 public class ViolationParser {
 	
+	Map<String, Integer> alarmTypesCounter = new HashMap<>();
+	
 	public void parseViolations(String fixedAlarmFile, List<File> repos, String previousFilesPath, String revisedFilesPath, String positionsFilePath, String diffentryFilePath) {
 		AlarmsReader reader = new AlarmsReader();
 		Map<String, Violation> violations = reader.readAlarmsList(fixedAlarmFile);
 		List<String> throwExpProjs = new ArrayList<>();
 		int a = 0;
 		int exceptionsCounter = 0;
+		int violationsAmount = 0;
+		System.out.println(violations.size());
 		for (Map.Entry<String , Violation> entry : violations.entrySet()) {
 			String projectName = entry.getKey();
 			String repoName = "";
@@ -94,6 +102,8 @@ public class ViolationParser {
 					FileHelper.outputToFile(fixedFile, fixedFileContent, false);
 					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions(), alarm.getAlarmTypes()), false);
 					FileHelper.outputToFile(diffentryFile, diffentry, false);
+
+					violationsAmount += counter(alarm);
 				}
 			} catch (GitRepositoryNotFoundException e) {
 				System.out.println("Exception: " + projectName);
@@ -120,8 +130,29 @@ public class ViolationParser {
 		System.out.println(throwExpProjs.size());
 		System.out.println(throwExpProjs);
 		
+		System.out.println("### Violations amount: " + violationsAmount);
+		
+		MapSorter<String, Integer> sorter = new MapSorter<String, Integer>();
+		alarmTypesCounter = sorter.sortByKeyAscending(alarmTypesCounter);
+		String[] columns = { "Alarm Type", "amount" };
+		Exporter.exportOutliers(alarmTypesCounter, new File(Configuration.GUM_TREE_INPUT + "AlarmTypes.xls"), 1, columns);
 	}
 	
+	private int counter(Alarm alarm) {
+		int counter = 0;
+		Map<Integer, String> alarmTypes = alarm.getAlarmTypes();
+		counter += alarmTypes.size();
+		for (Map.Entry<Integer, String> entry : alarmTypes.entrySet()) {
+			String type = entry.getValue();
+			if (this.alarmTypesCounter.containsKey(entry.getValue())) {
+				this.alarmTypesCounter.put(type, this.alarmTypesCounter.get(type) + 1);
+			} else {
+				this.alarmTypesCounter.put(type, 1);
+			}
+		}
+		return counter;
+	}
+
 	/**
 	 * Output data in terms of alarm types.
 	 * 

@@ -2,7 +2,10 @@ package edu.lu.uni.serval.MultipleThreadsParser;
 
 import static java.lang.System.err;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -70,22 +73,30 @@ public class ParseFixPatternWorker extends UntypedActor {
 
 			int id = msg.getId();
 			int counter = 0;
-			boolean containsAlarmTypes = false;
+			
+			int testAlarms = 0;
+			int nullGumTreeResults = 0;
+			int nullMappingGumTreeResults = 0;
+			int pureDeletion = 0;
+			int expNums = 0;
+			
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
 				File positionFile = msgFile.getPositionFile();
 				if (revFile.getName().toLowerCase().contains("test")) {
+					testAlarms += countAlarms(positionFile);
 					continue;
 				}
-				Parser parser = null;
-				if (containsAlarmTypes || positionFile != null) {
-					parser = new FixedViolationHunkParser(positionFile);
-					containsAlarmTypes = true;
-				} else {
-					parser = new CommitPatchSingleStatementParser();
-				}
+//				Parser parser = null;
+//				if (containsAlarmTypes || positionFile != null) {
+//					parser = new FixedViolationHunkParser(positionFile);
+//					containsAlarmTypes = true;
+//				} else {
+//					parser = new CommitPatchSingleStatementParser();
+//				}
+				FixedViolationHunkParser parser =  new FixedViolationHunkParser(positionFile);
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work
@@ -94,15 +105,22 @@ public class ParseFixPatternWorker extends UntypedActor {
 					// wait for task to complete
 					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
 					
+					nullMappingGumTreeResults += parser.nullMappingGumTreeResult;
+					pureDeletion += parser.pureDeletions;
+					
 					String editScript = parser.getAstEditScripts();
-					if (!"".equals(editScript)) {
+					if ("".equals(editScript)) {
+						if (parser.resultType == 1) {
+							nullGumTreeResults += countAlarms(positionFile);
+						}
+					} else {
 						editScripts.append(editScript);
 						patchesSourceCode.append(parser.getPatchesSourceCode());
 						sizes.append(parser.getSizes());
+//						tokens.append(parser.getTokensOfSourceCode());
+						alarmTypes.append(parser.getAlarmTypes());
 						tokens.append(parser.getTokensOfSourceCode());
-						if (containsAlarmTypes) {
-							alarmTypes.append(((FixedViolationHunkParser) parser).getAlarmTypes());
-						}
+						
 						counter ++;
 						if (counter % 100 == 0) {
 							FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
@@ -113,19 +131,20 @@ public class ParseFixPatternWorker extends UntypedActor {
 							patchesSourceCode.setLength(0);
 							sizes.setLength(0);
 							tokens.setLength(0);
-							if (containsAlarmTypes) {
-								FileHelper.outputToFile(alarmTypesFilePath + "alarmTypes_" + id + ".list", alarmTypes, true);
-								alarmTypes.setLength(0);
-							}
+							FileHelper.outputToFile(alarmTypesFilePath + "alarmTypes_" + id + ".list", alarmTypes, true);
+							alarmTypes.setLength(0);
 							log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
 						}
 					}
 				} catch (TimeoutException e) {
 					err.println("task timed out");
 					future.cancel(true);
+					expNums ++;
 				} catch (InterruptedException e) {
+					expNums ++;
 					err.println("task interrupted");
 				} catch (ExecutionException e) {
+					expNums ++;
 					err.println("task aborted");
 				} finally {
 					executor.shutdownNow();
@@ -141,11 +160,12 @@ public class ParseFixPatternWorker extends UntypedActor {
 				patchesSourceCode.setLength(0);
 				sizes.setLength(0);
 				tokens.setLength(0);
-				if (containsAlarmTypes) {
-					FileHelper.outputToFile(alarmTypesFilePath + "alarmTypes_" + id + ".list", alarmTypes, true);
-					alarmTypes.setLength(0);
-				}
+				
+				FileHelper.outputToFile(alarmTypesFilePath + "alarmTypes_" + id + ".list", alarmTypes, true);
+				alarmTypes.setLength(0);
 			}
+			String statistic = "testAlarms: " + testAlarms + "\nnullGumTreeResults: " + nullGumTreeResults + "\nnullMappingGumTreeResults: " + nullMappingGumTreeResults + "\npureDeletion: " + pureDeletion + "\nTimeout: " + expNums;
+			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
 
 			log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
 			log.info("Worker #" + id + " finished the work...");
@@ -153,5 +173,25 @@ public class ParseFixPatternWorker extends UntypedActor {
 		} else {
 			unhandled(message);
 		}
+	}
+
+	private int countAlarms(File positionFile) {
+		int counter = 0;
+		String content = FileHelper.readFile(positionFile);
+		BufferedReader reader = new BufferedReader(new StringReader(content));
+		try {
+			while (reader.readLine() != null) {
+				counter ++;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return counter;
 	}
 }

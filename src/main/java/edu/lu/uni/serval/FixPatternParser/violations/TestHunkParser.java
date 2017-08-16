@@ -54,7 +54,6 @@ public class TestHunkParser {
 		int counter = 0;
 		for (MessageFile msgFile : msgFiles) {
 			FixedViolationHunkParser parser = new FixedViolationHunkParser();
-			parser.counter = counter;
 			parser.setPositionFile(msgFile.getPositionFile());
 			
 			final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -71,7 +70,6 @@ public class TestHunkParser {
 					sizes.append(parser.getSizes());
 					patches.append(parser.getPatchesSourceCode());
 					alarmTypes.append(parser.getAlarmTypes());
-					counter = parser.counter;
 
 					a ++;
 					if (a % 100 == 0) {

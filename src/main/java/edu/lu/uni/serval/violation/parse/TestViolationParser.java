@@ -15,7 +15,7 @@ public class TestViolationParser {
 		List<File> repositoriesList = new ArrayList<>();
 		File repositories = new File(REPO_PATH);
 		File[] subFiles = repositories.listFiles();
-		for (File subFile : subFiles) { // repos-a to u
+		for (File subFile : subFiles) {
 			if (subFile.isDirectory()) {
 				File[] repos = subFile.listFiles();
 				for (File repo : repos) {
@@ -25,8 +25,19 @@ public class TestViolationParser {
 				}
 			}
 		}
-		String fixedAlarmFile = "Dataset/fixed-alarms-v0.2.list";
+		String fixedAlarmFile = "Dataset/fixed-alarms-v0.3.list.txt";
 
+		/**
+		 * 544 projects.
+		 * 84103 alarms.
+		 * 
+		 * cd ../../7/buggy/
+		 * mvn compile
+		 * mvn package -Dmaven.test.skip=true
+		 * 
+		 * Lang 54, 56-65
+		 * Math 105 and 106
+		 */
 
 		final String previousFilesPath = Configuration.GUM_TREE_INPUT + "prevFiles/";
 		final String revisedFilesPath = Configuration.GUM_TREE_INPUT + "revFiles/";
