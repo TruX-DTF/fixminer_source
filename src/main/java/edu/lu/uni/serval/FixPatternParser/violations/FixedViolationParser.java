@@ -45,7 +45,11 @@ public class FixedViolationParser extends Parser {
 		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		// GumTree results
 		List<Action> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
-		if (gumTreeResults != null && gumTreeResults.size() > 0) {
+		if (gumTreeResults == null) {
+			return null;
+		} else if (gumTreeResults.size() == 0){
+			return actionSets;
+		} else {
 			// Regroup GumTre results.
 			List<HierarchicalActionSet> allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
 			for (HierarchicalActionSet actionSet : allActionSets) {
@@ -54,9 +58,9 @@ public class FixedViolationParser extends Parser {
 					actionSets.add(actionSet);
 				}
 			}
+			
+			return actionSets;
 		}
-		
-		return actionSets;
 	}
 
 	protected List<Violation> readPositionsAndAlarmTypes() {

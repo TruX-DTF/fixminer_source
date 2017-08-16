@@ -393,11 +393,11 @@ public class HunkActionFilter {
 								violation.getActionSets().add(actionSet);
 							}
 						} else {
-							if (isRanged(actionSet, violation)) {
-								if (Math.abs(violationStartLine - actionFixStartLine) <= 5 
-										&& Math.abs(violationEndLine - actionFixEndLine) <= 5) {
-									violation.getActionSets().add(actionSet);
-								}
+//							if (isRanged(actionSet, violation)) {
+//							}
+							if (Math.abs(violationStartLine - actionFixStartLine) <= 5 
+									&& Math.abs(violationEndLine - actionFixEndLine) <= 5) {
+								violation.getActionSets().add(actionSet);
 							}
 						}
 					}
@@ -432,7 +432,7 @@ public class HunkActionFilter {
 			int bugEndLine = bugStartLine + hunk.getBugRange();
 			int fixStartLine = hunk.getFixLineStartNum();
 			int fixEndLine = fixStartLine + hunk.getFixRange();
-			if (fixStartLine > actionEndLine || bugStartLine > violationEndLine) break;
+//			if (fixStartLine > actionEndLine || bugStartLine > violationEndLine) break;
 			if (fixEndLine < actionStartLine || bugEndLine < violationStartLine) continue;
 			
 			String hunkContent = hunk.getHunk();

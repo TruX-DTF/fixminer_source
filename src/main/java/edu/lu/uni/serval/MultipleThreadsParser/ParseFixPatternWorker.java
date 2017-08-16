@@ -70,6 +70,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			StringBuilder sizes = new StringBuilder();
 			StringBuilder tokens = new StringBuilder();
 			StringBuilder alarmTypes = new StringBuilder();
+			StringBuilder testingInfo = new StringBuilder();
 
 			int id = msg.getId();
 			int counter = 0;
@@ -77,8 +78,11 @@ public class ParseFixPatternWorker extends UntypedActor {
 			int testAlarms = 0;
 			int nullGumTreeResults = 0;
 			int nullMappingGumTreeResults = 0;
+			int noSourceCodeChagnes = 0;
 			int pureDeletion = 0;
 			int expNums = 0;
+			int largeHunk = 0;
+			int nullSourceCode = 0;
 			
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
@@ -107,11 +111,16 @@ public class ParseFixPatternWorker extends UntypedActor {
 					
 					nullMappingGumTreeResults += parser.nullMappingGumTreeResult;
 					pureDeletion += parser.pureDeletions;
+					largeHunk += parser.largeHunk;
+					nullSourceCode += parser.nullSourceCode;
+					testingInfo.append(parser.testingInfo);
 					
 					String editScript = parser.getAstEditScripts();
 					if ("".equals(editScript)) {
 						if (parser.resultType == 1) {
 							nullGumTreeResults += countAlarms(positionFile);
+						} else if (parser.resultType == 2) {
+							noSourceCodeChagnes += countAlarms(positionFile);
 						}
 					} else {
 						editScripts.append(editScript);
@@ -134,17 +143,19 @@ public class ParseFixPatternWorker extends UntypedActor {
 							FileHelper.outputToFile(alarmTypesFilePath + "alarmTypes_" + id + ".list", alarmTypes, true);
 							alarmTypes.setLength(0);
 							log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
+							FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
+							testingInfo.setLength(0);
 						}
 					}
 				} catch (TimeoutException e) {
 					err.println("task timed out");
 					future.cancel(true);
-					expNums ++;
+					expNums += countAlarms(positionFile);
 				} catch (InterruptedException e) {
-					expNums ++;
+					expNums += countAlarms(positionFile);
 					err.println("task interrupted");
 				} catch (ExecutionException e) {
-					expNums ++;
+					expNums += countAlarms(positionFile);
 					err.println("task aborted");
 				} finally {
 					executor.shutdownNow();
@@ -163,8 +174,12 @@ public class ParseFixPatternWorker extends UntypedActor {
 				
 				FileHelper.outputToFile(alarmTypesFilePath + "alarmTypes_" + id + ".list", alarmTypes, true);
 				alarmTypes.setLength(0);
+				FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
+				testingInfo.setLength(0);
 			}
-			String statistic = "testAlarms: " + testAlarms + "\nnullGumTreeResults: " + nullGumTreeResults + "\nnullMappingGumTreeResults: " + nullMappingGumTreeResults + "\npureDeletion: " + pureDeletion + "\nTimeout: " + expNums;
+			String statistic = "testAlarms: " + testAlarms + "\nnullGumTreeResults: " + nullGumTreeResults + "\nnullMappingGumTreeResults: " + nullMappingGumTreeResults +
+					"\nnoSourceCodeChagnes: " + noSourceCodeChagnes + "\npureDeletion: " + pureDeletion + "\nTimeout: " + expNums +
+					"\nlargeHunk: " + largeHunk + "\nnullSourceCode: " + nullSourceCode;
 			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
 
 			log.info("Worker #" + id +"Finish of parsing " + counter + " files...");

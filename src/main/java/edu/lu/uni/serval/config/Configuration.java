@@ -6,7 +6,7 @@ public class Configuration {
 	
 	private static final String ROOT_PATH = "../FPM_Violations/"; // The root path of all output data.
 
-	public static final int HUNK_SIZE = 7; // The limitation of source code lines of each DiffEntry, which will be selected as training data.
+	public static final int HUNK_SIZE = 10; // The limitation of source code lines of each DiffEntry, which will be selected as training data.
 	public static final String BUGGY_TREE_SIGNAL = "BUGGY_TREE###"; // The starting signal of the tree of buggy source code .
 	public static final String PATCH_SIGNAL = "PATCH###"; // The starting signal of each patch.
 	
