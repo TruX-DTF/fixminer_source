@@ -12,11 +12,15 @@ public class Statistic {
 	public static void main(String[] args) {
 		String statistic = "../FPM_Violations/OUTPUT";
 		List<File> files = FileHelper.getAllFiles(statistic, ".list");
+		
 		int testAlarms = 0;
 		int nullGumTreeResults = 0;
 		int nullMappingGumTreeResults = 0;
 		int pureDeletion = 0;
 		int timeout = 0;
+		int noSourceCodeChagnes = 0;
+		int largeHunk = 0;
+		int nullSourceCode = 0;
 		for (File file : files) {
 			String content = FileHelper.readFile(file);
 			BufferedReader reader = new BufferedReader(new StringReader(content));
@@ -33,6 +37,12 @@ public class Statistic {
 						pureDeletion += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
 					} else if (line.startsWith("Time")) {
 						timeout += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("noSourceCodeChagnes")) {
+						noSourceCodeChagnes += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("largeHunk")) {
+						largeHunk += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("nullSourceCode")) {
+						nullSourceCode += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
 					} 
 				}
 			} catch (IOException e) {
@@ -57,5 +67,8 @@ public class Statistic {
 		System.out.println("nullMappingGumTreeResults: " + nullMappingGumTreeResults);
 		System.out.println("pureDeletion: " + pureDeletion);
 		System.out.println("Timeout: " + timeout);
+		System.out.println("noSourceCodeChagnes: " + noSourceCodeChagnes);
+		System.out.println("largeHunk: " + largeHunk);
+		System.out.println("nullSourceCode: " + nullSourceCode);
 	}
 }

@@ -156,16 +156,16 @@ public class ViolationParser {
 	/**
 	 * Output data in terms of alarm types.
 	 * 
-	 * @param fixedAlarmFile
+	 * @param alarmsInfo
 	 * @param repos
 	 * @param previousFilesPath
 	 * @param revisedFilesPath
 	 * @param positionsFilePath
 	 * @param diffentryFilePath
 	 */
-	public void parseViolations2(String fixedAlarmFile, List<File> repos, String previousFilesPath, String revisedFilesPath, String positionsFilePath, String diffentryFilePath) {
+	public void parseViolations(File alarmsInfo, List<File> repos, String violationFilesPath, String positionsFilePath) {
 		AlarmsReader reader = new AlarmsReader();
-		Map<String, Violation> violations = reader.readAlarmsList(fixedAlarmFile);
+		Map<String, Violation> violations = reader.readAlarmsList2(alarmsInfo.getPath());
 		int a = 0;
 		for (Map.Entry<String , Violation> entry : violations.entrySet()) {
 			String projectName = entry.getKey();
@@ -185,7 +185,7 @@ public class ViolationParser {
 			List<Alarm> alarms = violation.getAlarms();
 			
 			String repoPath = repoName + "/.git";
-			GitRepository gitRepo = new GitRepository(repoPath, revisedFilesPath, previousFilesPath);
+			GitRepository gitRepo = new GitRepository(repoPath, "", "");
 			try {
 				gitRepo.open();
 				for (Alarm alarm : alarms) {
@@ -197,36 +197,18 @@ public class ViolationParser {
 						continue;
 					}
 					
-					String fixedCommitId = alarm.getFixedCommitId();
-					String fixedFileName = alarm.getFixedFileName();
-					String fixedFileContent = gitRepo.getFileContentByCommitIdAndFileName(fixedCommitId, fixedFileName);
-					if (fixedFileContent == null || "".equals(fixedFileContent)) {
-						System.out.println(projectName);
-						continue;
-					}
-					
-					String diffentry = gitRepo.getDiffentryByTwoCommitIds(buggyCommitId, fixedCommitId, fixedFileName);
-					if (diffentry == null) {
-						System.out.println(projectName);
-						continue;
-					}
-					
-					String commitId = buggyCommitId.substring(0, 6) + "_" + fixedCommitId.substring(0, 6);
-					String fileName = fixedFileName.replaceAll("/", "#");
+					String commitId = buggyCommitId.substring(0, 6) + "_";
+					String fileName = buggyFileName.replaceAll("/", "#");
 					fileName = projectName + "_" + commitId + fileName;
 					if (fileName.length() > 240) {
-						List<File> files = FileHelper.getAllFilesInCurrentDiectory(revisedFilesPath, ".java");
+						List<File> files = FileHelper.getAllFilesInCurrentDiectory(violationFilesPath, ".java");
 						fileName = files.size() + "TooLongFileName.java";
 					}
-					String buggyFile = previousFilesPath + "prev_" + fileName;
-					String fixedFile = revisedFilesPath + fileName;
+					String buggyFile = violationFilesPath + "unfixed_" + fileName;
 					fileName = fileName.replace(".java", ".txt");
 					String positionFile = positionsFilePath + fileName;
-					String diffentryFile = diffentryFilePath + fileName;
 					FileHelper.outputToFile(buggyFile, buggyFileContent, false);
-					FileHelper.outputToFile(fixedFile, fixedFileContent, false);
 					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions(), alarm.getAlarmTypes()), false);
-					FileHelper.outputToFile(diffentryFile, diffentry, false);
 				}
 			} catch (GitRepositoryNotFoundException e) {
 				System.out.println("Exception: " + projectName);
