@@ -8,6 +8,7 @@ import com.github.gumtreediff.actions.model.Addition;
 import com.github.gumtreediff.actions.model.Delete;
 import com.github.gumtreediff.actions.model.Insert;
 import com.github.gumtreediff.actions.model.Move;
+import com.github.gumtreediff.actions.model.Update;
 import com.github.gumtreediff.tree.ITree;
 
 import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
@@ -21,14 +22,14 @@ import edu.lu.uni.serval.utils.ListSorter;
  */
 public class HierarchicalRegrouper {
 	
-	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actionsArgu) {
+	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actions) {
 		/*
 		 * First, sort actions by their positions.
 		 */
-		List<Action> actions = new ListSorter<Action>(actionsArgu).sortAscending();
-		if (actions == null) {
-			actions = actionsArgu;
-		}
+//		List<Action> actions = new ListSorter<Action>(actionsArgu).sortAscending();
+//		if (actions == null) {
+//			actions = actionsArgu;
+//		}
 		
 		/*
 		 * Second, group actions by their positions.
@@ -84,7 +85,7 @@ public class HierarchicalRegrouper {
 			int index = actStrFrag.lastIndexOf(" ") + 1;
 			String nodeType = actStrFrag.substring(index);
 			if (!"".equals(nodeType)) {
-				if (Character.isDigit(nodeType.charAt(0)) || nodeType.startsWith("-")) {
+				if (Character.isDigit(nodeType.charAt(0)) || (nodeType.startsWith("-") && Character.isDigit(nodeType.charAt(1)))) {
 					try {
 						int typeInt = Integer.parseInt(nodeType);
 						if (ASTNodeMap.map.containsKey(typeInt)) {
@@ -108,36 +109,39 @@ public class HierarchicalRegrouper {
 		for (HierarchicalActionSet actSet : actionSets) {
 			if (actSet.equals(actionSet)) continue;
 			Action action = actSet.getAction();
-			if (action instanceof Move && !(act instanceof Move)) continue; // If action is MOV, its children must be MOV.
-			if (action instanceof Insert && !(act instanceof Addition)) continue;// If action is INS, its children must be MOV or INS.
-			if (action instanceof Delete && !(act instanceof Delete)) continue;// If action is DEL, its children must be DEL.
+			
+			if (!areRelatedActions(action, act)) continue;
 			
 			if (action.equals(parentAct)) { // actSet is the parent of actionSet.
 				actionSet.setParent(actSet);
 				actSet.getSubActions().add(actionSet);
-				ListSorter<HierarchicalActionSet> sorter = new ListSorter<HierarchicalActionSet>(actSet.getSubActions());
-				List<HierarchicalActionSet> subActions = sorter.sortAscending();
-				if (subActions != null) {
-					actSet.setSubActions(subActions);
-				}
+				sortSubActions(actSet);
 				break;
 			} else {
-//				if (!(action instanceof Addition) && !(act instanceof Addition)) {
-////						|| (action instanceof Insert && (act instanceof Insert))) {
-//					int startPosition = act.getPosition();
-//					int length = act.getLength();
-//					int startP = action.getPosition();
-//					int leng = action.getLength();
-//					
-//					if (startP > startPosition + length) {
-//						break;
-//					} else if (startP + leng < startPosition) {
-//						continue;
-//					}
-//				}
-				// SubAction range： startP <= startPosition && startPosition + length <= startP + leng
+				if ((action instanceof Update && !(act instanceof Addition))
+						|| (action instanceof Delete && act instanceof Delete)
+						|| (action instanceof Insert && (act instanceof Insert))) {
+						int startPosition = act.getPosition();
+						int length = act.getLength();
+						int startPosition2 = action.getPosition();
+						int length2 = action.getLength();
+						
+						if (!(startPosition2 >= startPosition && startPosition + length <= startPosition2 + length2)) {
+							// when act is not the sub-set of action.
+							continue;
+						}
+				}
+				// SubAction range： startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2
 				addToActionSets(actionSet, parentAct, actSet.getSubActions());
 			}
+		}
+	}
+
+	private void sortSubActions(HierarchicalActionSet actionSet) {
+		ListSorter<HierarchicalActionSet> sorter = new ListSorter<HierarchicalActionSet>(actionSet.getSubActions());
+		List<HierarchicalActionSet> subActions = sorter.sortAscending();
+		if (subActions != null) {
+			actionSet.setSubActions(subActions);
 		}
 	}
 
@@ -146,30 +150,30 @@ public class HierarchicalRegrouper {
 		
 		for(HierarchicalActionSet actionSet : actionSets) {
 			Action action = actionSet.getAction();
-			if (action instanceof Move && !(act instanceof Move)) continue; // If action is MOV, its children must be MOV.
-			if (action instanceof Insert && !(act instanceof Addition)) continue;// If action is INS, its children must be MOV or INS.
-			if (action instanceof Delete && !(act instanceof Delete)) continue;// If action is DEL, its children must be DEL.
+			
+			if (!areRelatedActions(action, act)) continue;
 			
 			ITree tree = action.getNode();
 			if (tree.equals(parentTree)) { // actionSet is the parent of actSet.
 				HierarchicalActionSet actSet = createActionSet(act, actionSet.getAction(), actionSet);
 				actionSet.getSubActions().add(actSet);
+				sortSubActions(actionSet);
 				return true;
 			} else {
-//				if (!(action instanceof Addition) && !(act instanceof Addition)) {
-////					|| (action instanceof Insert && (act instanceof Insert))) {
-//					int startPosition = act.getPosition();
-//					int length = act.getLength();
-//					int startP = action.getPosition();
-//					int leng = action.getLength();
-//					
-//					if (startP > startPosition + length) {
-//						break;
-//					} else if (startP + leng < startPosition) {
-//						continue;
-//					}
-//				}
-				// SubAction range： startP <= startPosition && startPosition + length <= startP + leng
+				if ((action instanceof Update && !(act instanceof Addition))
+					|| (action instanceof Delete && act instanceof Delete)
+					|| (action instanceof Insert && (act instanceof Insert))) {
+					int startPosition = act.getPosition();
+					int length = act.getLength();
+					int startPosition2 = action.getPosition();
+					int length2 = action.getLength();
+					
+					if (!(startPosition2 >= startPosition && startPosition + length <= startPosition2 + length2)) {
+						// when act is not the sub-set of action.
+						continue;
+					}
+				}
+				// SubAction range： startPosition2 <= startPosition && startPosition + length <= startP + length2
 				List<HierarchicalActionSet> subActionSets = actionSet.getSubActions();
 				if (subActionSets.size() > 0) {
 					boolean added = addToAactionSet(act, parentAct, subActionSets);
@@ -192,15 +196,24 @@ public class HierarchicalRegrouper {
 		}
 		for (Action act : actions) {
 			if (act.getNode().equals(parent)) {
-				if (act instanceof Move && !(action instanceof Move)) {
-					continue;
+				if (areRelatedActions(act, action)) {
+					return act;
 				}
-				if (act instanceof Delete && !(action instanceof Delete)) {
-					continue;
-				}
-				return act;
 			}
 		}
 		return null;
+	}
+	
+	private boolean areRelatedActions(Action parent, Action child) {
+		if (parent instanceof Move && !(child instanceof Move)) {// If action is MOV, its children must be MOV.
+			return false;
+		}
+		if (parent instanceof Delete && !(child instanceof Delete)) {// If action is INS, its children must be MOV or INS.
+			return false;
+		}
+		if (parent instanceof Insert && !(child instanceof Addition)) {// If action is DEL, its children must be DEL.
+			return false;
+		}
+		return true;
 	}
 }
