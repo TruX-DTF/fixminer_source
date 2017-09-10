@@ -18,8 +18,8 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> 
 	private Action action;
 	private Action parentAction;
 	private String actionString;
-	private int startPosition;
-	private int length;
+	private Integer startPosition;
+	private Integer length;
 	private int bugStartLineNum = 0;
 	private int bugEndLineNum;
 	private int fixStartLineNum;
@@ -192,7 +192,11 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> 
 
 	@Override
 	public int compareTo(HierarchicalActionSet o) {
-		return this.action.compareTo(o.action);
+//		int result = this.startPosition.compareTo(o.startPosition);
+//		if (result == 0) {
+//			result = this.length >= o.length ? -1 : 1;
+//		}
+		return this.startPosition.compareTo(o.startPosition);//this.action.compareTo(o.action);
 	}
 	
 	private List<String> strList = new ArrayList<>();
