@@ -72,9 +72,9 @@ public class FixedViolationParser extends Parser {
 		try {
 			while ((line = reader.readLine()) != null) {
 				String[] positionStr = line.split(":");
-				int startLine = Integer.parseInt(positionStr[0]);
-				int endLine = Integer.parseInt(positionStr[1]);
-				String alarmType = positionStr[2];
+				int startLine = Integer.parseInt(positionStr[1]);
+				int endLine = Integer.parseInt(positionStr[2]);
+				String alarmType = positionStr[0];
 				
 				Violation violation = new Violation(startLine, endLine, alarmType);
 				violations.add(violation);
