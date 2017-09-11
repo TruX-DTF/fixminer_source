@@ -28,6 +28,16 @@ public class ViolationParser {
 	
 	Map<String, Integer> alarmTypesCounter = new HashMap<>();
 	
+	/**
+	 * Travel Git repositories to get the violation-localized java files, violation-removed java files, and violation types and positions.
+	 * 
+	 * @param fixedAlarmFile
+	 * @param repos
+	 * @param previousFilesPath
+	 * @param revisedFilesPath
+	 * @param positionsFilePath
+	 * @param diffentryFilePath
+	 */
 	public void parseViolations(String fixedAlarmFile, List<File> repos, String previousFilesPath, String revisedFilesPath, String positionsFilePath, String diffentryFilePath) {
 		AlarmsReader reader = new AlarmsReader();
 		Map<String, Violation> violations = reader.readAlarmsList(fixedAlarmFile);
@@ -35,7 +45,7 @@ public class ViolationParser {
 		int a = 0;
 		int exceptionsCounter = 0;
 		int violationsAmount = 0;
-		System.out.println(violations.size());
+//		System.out.println(violations.size());
 		for (Map.Entry<String , Violation> entry : violations.entrySet()) {
 			String projectName = entry.getKey();
 			String repoName = "";
@@ -100,7 +110,8 @@ public class ViolationParser {
 					String diffentryFile = diffentryFilePath + fileName;
 					FileHelper.outputToFile(buggyFile, buggyFileContent, false);
 					FileHelper.outputToFile(fixedFile, fixedFileContent, false);
-					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions(), alarm.getAlarmTypes()), false);
+//					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions(), alarm.getAlarmTypes()), false);
+					FileHelper.outputToFile(positionFile, readAlarmTypeAndPosition(alarm.getAlarmTypesAndPositions()), false);
 					FileHelper.outputToFile(diffentryFile, diffentry, false);
 
 					violationsAmount += counter(alarm);
@@ -135,21 +146,33 @@ public class ViolationParser {
 		MapSorter<String, Integer> sorter = new MapSorter<String, Integer>();
 		alarmTypesCounter = sorter.sortByKeyAscending(alarmTypesCounter);
 		String[] columns = { "Alarm Type", "amount" };
-		Exporter.exportOutliers(alarmTypesCounter, new File(Configuration.GUM_TREE_INPUT + "AlarmTypes.xls"), 1, columns);
+		Exporter.exportOutliers(alarmTypesCounter, new File(Configuration.GUM_TREE_INPUT + "FixedAlarmTypes.xls"), 1, columns);
 	}
 	
 	private int counter(Alarm alarm) {
 		int counter = 0;
-		Map<Integer, String> alarmTypes = alarm.getAlarmTypes();
-		counter += alarmTypes.size();
-		for (Map.Entry<Integer, String> entry : alarmTypes.entrySet()) {
-			String type = entry.getValue();
-			if (this.alarmTypesCounter.containsKey(entry.getValue())) {
-				this.alarmTypesCounter.put(type, this.alarmTypesCounter.get(type) + 1);
+//		Map<Integer, String> alarmTypes = alarm.getAlarmTypes();
+//		counter += alarmTypes.size();
+//		for (Map.Entry<Integer, String> entry : alarmTypes.entrySet()) {
+//			String type = entry.getValue();
+//			if (this.alarmTypesCounter.containsKey(entry.getValue())) {
+//				this.alarmTypesCounter.put(type, this.alarmTypesCounter.get(type) + 1);
+//			} else {
+//				this.alarmTypesCounter.put(type, 1);
+//			}
+//		}
+		
+		List<String> alarmTypesAndPositions = alarm.getAlarmTypesAndPositions();
+		for (String alarmTypeAndPosition : alarmTypesAndPositions) {
+			String[] elements = alarmTypeAndPosition.split(":");
+			String alarmType = elements[0];
+			if (this.alarmTypesCounter.containsKey(alarmType)) {
+				this.alarmTypesCounter.put(alarmType, this.alarmTypesCounter.get(alarmType) + 1);
 			} else {
-				this.alarmTypesCounter.put(type, 1);
+				this.alarmTypesCounter.put(alarmType, 1);
 			}
 		}
+		counter += alarmTypesAndPositions.size();
 		return counter;
 	}
 
@@ -208,7 +231,7 @@ public class ViolationParser {
 					fileName = fileName.replace(".java", ".txt");
 					String positionFile = positionsFilePath + fileName;
 					FileHelper.outputToFile(buggyFile, buggyFileContent, false);
-					FileHelper.outputToFile(positionFile, readPosition(alarm.getPositions(), alarm.getAlarmTypes()), false);
+					FileHelper.outputToFile(positionFile, readAlarmTypeAndPosition(alarm.getAlarmTypesAndPositions()), false);
 				}
 			} catch (GitRepositoryNotFoundException e) {
 				System.out.println("Exception: " + projectName);
@@ -229,7 +252,17 @@ public class ViolationParser {
 		System.out.println(a);
 	}
 
-	private String readPosition(Map<Integer, Integer> positions, Map<Integer, String> alarmTypes) {
+	private String readAlarmTypeAndPosition(List<String> alarmTypesAndPositions) {
+		String positionsStr = "";
+		for (String element : alarmTypesAndPositions) {
+			positionsStr += element + "\n";
+		}
+		return positionsStr;
+	}
+	
+	@SuppressWarnings("unused")
+	@Deprecated
+	private String readAlarmTypeAndPosition(Map<Integer, Integer> positions, Map<Integer, String> alarmTypes) {
 		String positionsStr = "";
 		for (Map.Entry<Integer, String> entry : alarmTypes.entrySet()) {
 			int key = entry.getKey();
@@ -237,4 +270,5 @@ public class ViolationParser {
 		}
 		return positionsStr;
 	}
+	
 }
