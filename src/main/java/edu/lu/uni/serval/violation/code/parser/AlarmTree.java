@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.bugLocalization;
+package edu.lu.uni.serval.violation.code.parser;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class AlarmTree {
 	public int getAlarmFinalEndLine() {
 		return alarmFinalEndLine;
 	}
-
+	
 	public void extract() {
 		ITree rootTree = new GumTreeGenerator().generateITreeForJavaFile(file, GumTreeType.EXP_JDT);
 		
@@ -62,7 +62,7 @@ public class AlarmTree {
 			}
 			
 			int endPosition = startPosition + tree.getLength();
-			int endLine = cUnit.getLineNumber(endPosition);
+			int endLine = cUnit.getLineNumber(endPosition - 1);
 			if (endLine < alarmStartLine) continue;
 			
 			matchTrees(tree.getChildren());
@@ -73,6 +73,38 @@ public class AlarmTree {
 			this.alarmFinalStartLine = cUnit.getLineNumber(this.matchedTrees.get(0).getPos());
 			ITree lastTree = matchedTrees.get(size - 1);
 			this.alarmFinalEndLine = cUnit.getLineNumber(lastTree.getPos() + lastTree.getLength());
+		} else {
+			System.err.println(this.file.getName() + "===" + this.alarmStartLine + ":" + this.alarmEndLine);
+		}
+		
+	}
+
+	public void extract(String type) {
+		ITree rootTree = new GumTreeGenerator().generateITreeForJavaFile(file, GumTreeType.EXP_JDT);
+		
+		List<ITree> trees = rootTree.getChildren();
+		for (ITree tree : trees) {
+			int startPosition = tree.getPos();
+			int startLine = cUnit.getLineNumber(startPosition);
+			if (startLine > alarmEndLine) {
+				break;
+			}
+			
+			int endPosition = startPosition + tree.getLength();
+			int endLine = cUnit.getLineNumber(endPosition - 1);
+			if (endLine < alarmStartLine) continue;
+			
+			matchTrees(tree.getChildren());
+		}
+		
+		int size = matchedTrees.size();
+		if (size > 0) {
+			this.alarmFinalStartLine = cUnit.getLineNumber(this.matchedTrees.get(0).getPos());
+			ITree lastTree = matchedTrees.get(size - 1);
+			this.alarmFinalEndLine = cUnit.getLineNumber(lastTree.getPos() + lastTree.getLength());
+		} else {
+			System.err.println(type);
+			System.err.println(this.file.getName() + "===" + this.alarmStartLine + ":" + this.alarmEndLine);
 		}
 		
 	}
@@ -89,28 +121,65 @@ public class AlarmTree {
 			int endLine = cUnit.getLineNumber(endPosition);
 			if (endLine < alarmStartLine) continue;
 			
-			if (startLine >= alarmStartLine) {
-				if (!isStatement(tree)) {
+			if (endLine == alarmEndLine) {
+				if (tree.getType() == 31) { // MethodDeclaration
+					matchTrees(tree.getChildren());
+				} else if (isStatement(tree)) {
+					addToMatchedTrees(tree);
+				} else {
 					ITree parent = getParentStatement(tree);
 					if (parent == null) {
-						if (tree.getLabel().equals("MethodBody") || tree.getType() == 8) {
+						if (tree.getType() == 8) { // 8: Block
 							matchTrees(tree.getChildren());
 						}
 						continue;
 					}
-					tree = parent;
+					addToMatchedTrees(parent);
 				}
-				if (!matchedTrees.contains(tree)) {
-					matchedTrees.add(tree);
-				}
-				if (containsBlockStatement(tree)) {
-					endLine = cUnit.getLineNumber(tree.getPos() + tree.getLength());
-					if (endLine > alarmEndLine) {
-						tree = removeBlock(tree);
+				continue;
+			}
+			
+			if (startLine >= alarmStartLine) {
+				if (isStatement(tree)) {
+					addToMatchedTrees(tree);
+				} else {
+					ITree parent = getParentStatement(tree);
+					if (parent == null) {
+						if (tree.getType() == 8) {
+							matchTrees(tree.getChildren());
+						}
+						continue;
 					}
+					addToMatchedTrees(parent);
 				}
 			} else {
+//				if (tree.getType() == 14) {
+//					ITree parent = getParentStatement(tree);
+//					if (parent == null) {
+//						matchTrees(tree.getChildren());
+//					} else {
+//						addToMatchedTrees(parent);
+//					}
+//				} else {
+//					matchTrees(tree.getChildren());
+//				}
 				matchTrees(tree.getChildren());
+			}
+		}
+	}
+
+	private void addToMatchedTrees(ITree tree) {
+		if (!matchedTrees.contains(tree)) {
+			/*
+			 *  TODO with the same parent, or the sub trees.
+			 *  	 In the same method body.
+			 */
+			matchedTrees.add(tree);
+		}
+		if (containsBlockStatement(tree)) {
+			int endLine = cUnit.getLineNumber(tree.getPos() + tree.getLength());
+			if (endLine > alarmEndLine) {
+				tree = removeBlock(tree);
 			}
 		}
 	}
@@ -127,7 +196,7 @@ public class AlarmTree {
 			int endPosition = startPosition + child.getLength();
 			int endLine = cUnit.getLineNumber(endPosition);
 			if (endLine > this.alarmEndLine) {
-				if (child.getType() == 8 || containsBlockStatement(child)) {
+				if (child.getType() == 8 || containsBlockStatement(child)) { // 8: Block
 					child = removeBlock(child);
 					if (child.getChildren().size() == 0) {
 						continue;
@@ -144,8 +213,12 @@ public class AlarmTree {
 		ITree parent = tree;
 		do {
 			parent = parent.getParent();
+			if (parent == null) {
+				return null;
+			}
+			
 			int type = parent.getType();
-			if (type == 1 || type == 31 || type == 55) {
+			if (type == 1 || type == 31 || type == 55 || type == 71) {
 				// AnonymousClassDeclaration
 				// MethodDeclaration  Initializer (type == 28)
 				// TypeDeclaration
