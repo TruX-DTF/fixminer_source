@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -22,6 +23,7 @@ import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import edu.lu.uni.serval.FixPatternParser.RunnableParser;
 import edu.lu.uni.serval.FixPatternParser.violations.FixedViolationHunkParser;
+import edu.lu.uni.serval.FixPatternParser.violations.Violation;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 
@@ -99,6 +101,9 @@ public class ParseFixPatternWorker extends UntypedActor {
 //					parser = new CommitPatchSingleStatementParser();
 //				}
 				FixedViolationHunkParser parser =  new FixedViolationHunkParser(positionFile);
+				// Read violations with Null_Violation_Hunk or Illegal_Line_Position
+				List<Violation> uselessViolations = readUselessViolations("logs/FixedViolationCodeParseResults.log");
+				parser.setUselessViolations(uselessViolations);
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work
@@ -186,6 +191,38 @@ public class ParseFixPatternWorker extends UntypedActor {
 		} else {
 			unhandled(message);
 		}
+	}
+
+	private List<Violation> readUselessViolations(String filePath) {
+		List<Violation> uselessViolations = new ArrayList<>();
+		
+		String content = FileHelper.readFile(filePath);
+		BufferedReader reader = new BufferedReader(new StringReader(content));
+		String line = null;
+		try {
+			while ((line = reader.readLine()) != null) {
+				if (line.startsWith("#")) {
+					String[] elements = line.split(":");
+					String fileName = elements[1];
+					int startLine = Integer.parseInt(elements[2]);
+					int endLine = Integer.parseInt(elements[3]);
+					String violationType = elements[4];
+					
+					Violation violation = new Violation(startLine, endLine, violationType);
+					violation.setFileName(fileName);
+					uselessViolations.add(violation);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return uselessViolations;
 	}
 
 	private int countAlarms(File positionFile) {
