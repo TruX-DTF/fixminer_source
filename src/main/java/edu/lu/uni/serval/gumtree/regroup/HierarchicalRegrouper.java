@@ -118,23 +118,29 @@ public class HierarchicalRegrouper {
 				sortSubActions(actSet);
 				break;
 			} else {
-				if ((action instanceof Update && !(act instanceof Addition))
-						|| (action instanceof Delete && act instanceof Delete)
-						|| (action instanceof Insert && (act instanceof Insert))) {
-						int startPosition = act.getPosition();
-						int length = act.getLength();
-						int startPosition2 = action.getPosition();
-						int length2 = action.getLength();
-						
-						if (!(startPosition2 >= startPosition && startPosition + length <= startPosition2 + length2)) {
-							// when act is not the sub-set of action.
-							continue;
-						}
+				if (isPossibileSubAction(action, act)) {
+					// SubAction range： startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2
+					addToActionSets(actionSet, parentAct, actSet.getSubActions());
 				}
-				// SubAction range： startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2
-				addToActionSets(actionSet, parentAct, actSet.getSubActions());
 			}
 		}
+	}
+
+	private boolean isPossibileSubAction(Action parent, Action child) {
+		if ((parent instanceof Update && !(child instanceof Addition))
+				|| (parent instanceof Delete && child instanceof Delete)
+				|| (parent instanceof Insert && (child instanceof Insert))) {
+				int startPosition = child.getPosition();
+				int length = child.getLength();
+				int startPosition2 = parent.getPosition();
+				int length2 = parent.getLength();
+				
+				if (!(startPosition2 >= startPosition && startPosition + length <= startPosition2 + length2)) {
+					// when act is not the sub-set of action.
+					return false;
+				}
+		}
+		return true;
 	}
 
 	private void sortSubActions(HierarchicalActionSet actionSet) {
@@ -160,27 +166,16 @@ public class HierarchicalRegrouper {
 				sortSubActions(actionSet);
 				return true;
 			} else {
-				if ((action instanceof Update && !(act instanceof Addition))
-					|| (action instanceof Delete && act instanceof Delete)
-					|| (action instanceof Insert && (act instanceof Insert))) {
-					int startPosition = act.getPosition();
-					int length = act.getLength();
-					int startPosition2 = action.getPosition();
-					int length2 = action.getLength();
-					
-					if (!(startPosition2 >= startPosition && startPosition + length <= startPosition2 + length2)) {
-						// when act is not the sub-set of action.
-						continue;
-					}
-				}
-				// SubAction range： startPosition2 <= startPosition && startPosition + length <= startP + length2
-				List<HierarchicalActionSet> subActionSets = actionSet.getSubActions();
-				if (subActionSets.size() > 0) {
-					boolean added = addToAactionSet(act, parentAct, subActionSets);
-					if (added) {
-						return true;
-					} else {
-						continue;
+				if (isPossibileSubAction(action, act)) {
+					// SubAction range： startPosition2 <= startPosition && startPosition + length <= startP + length2
+					List<HierarchicalActionSet> subActionSets = actionSet.getSubActions();
+					if (subActionSets.size() > 0) {
+						boolean added = addToAactionSet(act, parentAct, subActionSets);
+						if (added) {
+							return true;
+						} else {
+							continue;
+						}
 					}
 				}
 			}
