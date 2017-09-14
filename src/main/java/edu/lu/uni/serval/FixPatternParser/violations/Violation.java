@@ -7,7 +7,8 @@ import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 
 public class Violation implements Comparable<Violation> {
-
+	
+	private String fileName = "";
 	private Integer startLineNum;
 	private int endLineNum;
 	private int bugStartLineNum;
@@ -24,6 +25,14 @@ public class Violation implements Comparable<Violation> {
 		this.endLineNum = endLineNum;
 		this.alarmType = alarmType;
 		this.actionSets = new ArrayList<>();
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public Integer getStartLineNum() {
@@ -90,6 +99,17 @@ public class Violation implements Comparable<Violation> {
 	@Override
 	public String toString() {
 		return this.startLineNum + " : " + this.endLineNum + " : " + this.alarmType;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Violation) {
+			Violation v = (Violation) obj;
+			if (this.fileName.equals(v.fileName) && this.alarmType.equals(v.alarmType) && this.startLineNum == v.startLineNum && this.endLineNum == v.endLineNum) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
