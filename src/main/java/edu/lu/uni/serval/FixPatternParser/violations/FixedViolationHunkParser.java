@@ -51,9 +51,26 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		// GumTree results 
 		// TODO remove the modification of variable names or not? FIXME
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile); // only remove non-statement source code, eg. method declaration 
-		
-		if (actionSets != null && actionSets.size() != 0) {
-			List<Violation> violations = readViolations(revFile.getName());
+		List<Violation> violations = readViolations(revFile.getName());
+		if (this.resultType != 0) {
+			String type = "";
+			switch (this.resultType) {
+			case 1:
+				type = "#NullGumTreeResult:";
+				break;
+			case 2:
+				type = "#NoSourceCodeChange:";
+				break;
+			case 3:
+				type = "#NoStatementChange:";
+				break;
+			}
+			for (Violation v : violations) {
+				System.err.println(type + revFile.getName().replace("#", "/") + ":" + v.getStartLineNum() + ":" + v.getEndLineNum() + ":" + v.getAlarmType());				
+			}
+		} else {
+//		}
+//		if (actionSets != null && actionSets.size() != 0) {
 			if (violations.size() == 0) {
 				this.resultType = 4;
 				return;
@@ -180,6 +197,8 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				if (fixStartLine == 0) {
 					// pure delete actions.
 					this.pureDeletions ++;
+					System.err.println("#PureDeletion: " + revFile.getName().replace("#", "/") + ":" + violation.getStartLineNum() 
+					+ ":" + violation.getEndLineNum() + ":" + violation.getAlarmType());
 //					continue;
 				}
 				
@@ -203,7 +222,10 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				}
 				if (bugEndLine - bugStartLine > Configuration.HUNK_SIZE || fixEndLine - fixStartLine > Configuration.HUNK_SIZE) {
 					this.largeHunk ++;
-					System.err.println("#LargeHunk: " + revFile.getName());
+					if (fixStartLine != 0) {
+						System.err.println("#LargeHunk:" + revFile.getName().replace("#", "/") + ":" + violation.getStartLineNum() 
+						+ ":" + violation.getEndLineNum() + ":" + violation.getAlarmType());
+					}
 					continue;
 				}
 
@@ -214,6 +236,10 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				String patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isInsert);
 				if ("".equals(patchSourceCode)) {
 					this.nullSourceCode ++;
+					if (fixStartLine != 0) {
+						System.err.println("#NullSourceCode:" + revFile.getName().replace("#", "/") + ":" + violation.getStartLineNum() 
+						+ ":" + violation.getEndLineNum() + ":" + violation.getAlarmType());
+					}
 					continue;
 				}
 				
@@ -243,8 +269,12 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					
 					if (!"SE_NO_SERIALVERSIONID".equals(alarmType)) {
 						if (containsFiledDeclaration(hunkActionSets)) {
-							this.nullMappingGumTreeResult ++;
+//							this.nullMappingGumTreeResult ++; //TODO
 							this.testingInfo += info + revFile.getName() + "\n";
+							if (fixStartLine != 0) {
+								this.testingInfo += "#TestingInfo: " + revFile.getName().replace("#", "/") + ":" + violation.getStartLineNum() 
+								+ ":" + violation.getEndLineNum() + ":" + violation.getAlarmType();
+							}
 							continue;
 						}
 					}
@@ -262,8 +292,12 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					} else  if (containSpecialStmt(hunkActionSets, bugEndPosition, fixEndPosition)) {
 						
 					} else {
-						this.nullMappingGumTreeResult ++;
+//						this.nullMappingGumTreeResult ++; // TODO
 						this.testingInfo += info + revFile.getName() + "\n";
+						if (fixStartLine != 0) {
+							this.testingInfo += "#TestingInfo: " + revFile.getName().replace("#", "/") + ":" + violation.getStartLineNum() 
+							+ ":" + violation.getEndLineNum() + ":" + violation.getAlarmType();
+						}
 						continue;
 					}
 				}

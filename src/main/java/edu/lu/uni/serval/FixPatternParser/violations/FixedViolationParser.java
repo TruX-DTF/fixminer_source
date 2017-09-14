@@ -66,7 +66,6 @@ public class FixedViolationParser extends Parser {
 			this.resultType = 1;
 			return null;
 		} else if (gumTreeResults.size() == 0){
-			System.err.println("#NoSourceCodeChange: " + revFile.getName());
 			this.resultType = 2;
 			return actionSets;
 		} else {
@@ -88,7 +87,6 @@ public class FixedViolationParser extends Parser {
 			
 			if (actionSets.size() == 0) {
 				this.resultType = 3;
-				System.err.println("#NoStatementChange: " + revFile.getName());
 			}
 			
 			return actionSets;

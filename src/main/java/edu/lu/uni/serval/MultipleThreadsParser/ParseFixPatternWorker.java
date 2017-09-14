@@ -82,6 +82,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			int expNums = 0;
 			int largeHunk = 0;
 			int nullSourceCode = 0;
+			int illegalV = 0;
 			
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
@@ -89,8 +90,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File diffentryFile = msgFile.getDiffEntryFile();
 				File positionFile = msgFile.getPositionFile();
 				if (revFile.getName().toLowerCase().contains("test")) {
-					testAlarms += countAlarms(positionFile);
-					System.err.println("#TestViolation: " + revFile.getName());
+					testAlarms += countAlarms(positionFile, "#TestViolation:");
 //					continue;
 				}
 //				Parser parser = null;
@@ -121,12 +121,14 @@ public class ParseFixPatternWorker extends UntypedActor {
 					String editScript = parser.getAstEditScripts();
 					if ("".equals(editScript)) {
 						if (parser.resultType == 1) {
-							nullGumTreeResults += countAlarms(positionFile);
-							System.err.println("#NullGumTreeResult: " + revFile.getName());
+							nullGumTreeResults += countAlarms(positionFile, "");
+//							System.err.println("#NullGumTreeResult:" + revFile.getName());
 						} else if (parser.resultType == 2) {
-							noSourceCodeChanges += countAlarms(positionFile);
+							noSourceCodeChanges += countAlarms(positionFile, "");
 						} else if (parser.resultType == 3) {
-							noStatementChanges += countAlarms(positionFile);
+							noStatementChanges += countAlarms(positionFile, "");
+						} else if (parser.resultType == 4) {
+							illegalV += countAlarms(positionFile, "");
 						}
 					} else {
 						editScripts.append(editScript);
@@ -156,16 +158,16 @@ public class ParseFixPatternWorker extends UntypedActor {
 				} catch (TimeoutException e) {
 //					err.println("task timed out");
 					future.cancel(true);
-					expNums += countAlarms(positionFile);
-					System.err.println("#Timeout: " + revFile.getName());
+					expNums += countAlarms(positionFile, "#Timeout:");
+//					System.err.println("#Timeout: " + revFile.getName());
 				} catch (InterruptedException e) {
-					expNums += countAlarms(positionFile);
+					expNums += countAlarms(positionFile, "#TimeInterrupted:");
 //					err.println("task interrupted");
-					System.err.println("#TimeInterrupted: " + revFile.getName());
+//					System.err.println("#TimeInterrupted: " + revFile.getName());
 				} catch (ExecutionException e) {
-					expNums += countAlarms(positionFile);
+					expNums += countAlarms(positionFile, "#TimeAborted:");
 //					err.println("task aborted");
-					System.err.println("#TimeAborted: " + revFile.getName());
+//					System.err.println("#TimeAborted: " + revFile.getName());
 				} finally {
 					executor.shutdownNow();
 				}
@@ -188,7 +190,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			}
 			String statistic = "testAlarms: " + testAlarms + "\nnullGumTreeResults: " + nullGumTreeResults + "\nnullMappingGumTreeResults: " + nullMappingGumTreeResults +
 					"\nnoSourceCodeChanges: " + noSourceCodeChanges + "\npureDeletion: " + pureDeletion + "\nTimeout: " + expNums +
-					"\nlargeHunk: " + largeHunk + "\nnullSourceCode: " + nullSourceCode + "\nnoStatementChanges: " + noStatementChanges;
+					"\nlargeHunk: " + largeHunk + "\nnullSourceCode: " + nullSourceCode + "\nnoStatementChanges: " + noStatementChanges + "\nIllegalV: " + illegalV;
 			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
 
 			log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
@@ -231,13 +233,18 @@ public class ParseFixPatternWorker extends UntypedActor {
 		return uselessViolations;
 	}
 
-	private int countAlarms(File positionFile) {
+	private int countAlarms(File positionFile, String type) {
 		int counter = 0;
 		String content = FileHelper.readFile(positionFile);
 		BufferedReader reader = new BufferedReader(new StringReader(content));
+		String line = null;
 		try {
-			while (reader.readLine() != null) {
+			while ((line = reader.readLine()) != null) {
 				counter ++;
+				if (!"".equals(type)) {
+					String[] elements = line.split(":");
+					System.err.println(type + positionFile.getName().replaceAll("#", "/").replace(".txt", ".java") + ":" + elements[1] + ":" + elements[2] + ":" + elements[0]);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
