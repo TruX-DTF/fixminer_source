@@ -440,7 +440,7 @@ public class HunkActionFilter {
 				violation.getActionSets().addAll(matchedActionSets);
 				selectedViolations.add(violation);
 			} else {
-				log.error("#NullMatchedGumTreeResult: "  + revFile.getName().replace("#", "/") + "  :  " +violation.getStartLineNum() + " : " + 
+				System.err.println("#NullMatchedGumTreeResult: "  + revFile.getName().replace("#", "/") + "  :  " +violation.getStartLineNum() + " : " + 
 						violation.getEndLineNum() + " : " + violation.getAlarmType());
 			}
 		}

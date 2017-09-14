@@ -214,7 +214,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				}
 				if (bugEndLine - bugStartLine > Configuration.HUNK_SIZE || fixEndLine - fixStartLine > Configuration.HUNK_SIZE) {
 					this.largeHunk ++;
-					log.error("#LargeHunk: " + revFile.getName());
+					System.err.println("#LargeHunk: " + revFile.getName());
 					continue;
 				}
 

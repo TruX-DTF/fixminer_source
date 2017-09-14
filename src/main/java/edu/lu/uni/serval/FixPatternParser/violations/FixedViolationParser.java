@@ -55,7 +55,7 @@ public class FixedViolationParser extends Parser {
 		if (gumTreeResults == null) {
 			return null;
 		} else if (gumTreeResults.size() == 0){
-			log.error("#NoSourceCodeChange: " + revFile.getName());
+			System.err.println("#NoSourceCodeChange: " + revFile.getName());
 			return actionSets;
 		} else {
 			// Regroup GumTre results.
@@ -75,7 +75,7 @@ public class FixedViolationParser extends Parser {
 			actionSets = sorter.sortAscending();
 			
 			if (actionSets.size() == 0) {
-				log.error("#NoStatementChange: " + revFile.getName());
+				System.err.println("#NoStatementChange: " + revFile.getName());
 			}
 			
 			return actionSets;

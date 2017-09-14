@@ -89,7 +89,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File positionFile = msgFile.getPositionFile();
 				if (revFile.getName().toLowerCase().contains("test")) {
 					testAlarms += countAlarms(positionFile);
-					log.error("#TestViolation: " + revFile.getName());
+					System.err.println("#TestViolation: " + revFile.getName());
 //					continue;
 				}
 //				Parser parser = null;
@@ -121,7 +121,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 					if ("".equals(editScript)) {
 						if (parser.resultType == 1) {
 							nullGumTreeResults += countAlarms(positionFile);
-							log.error("#NullGumTreeResult: " + revFile.getName());
+							System.err.println("#NullGumTreeResult: " + revFile.getName());
 						} else if (parser.resultType == 2) {
 							noSourceCodeChanges += countAlarms(positionFile);
 						}
@@ -154,15 +154,15 @@ public class ParseFixPatternWorker extends UntypedActor {
 //					err.println("task timed out");
 					future.cancel(true);
 					expNums += countAlarms(positionFile);
-					log.error("#Timeout: " + revFile.getName());
+					System.err.println("#Timeout: " + revFile.getName());
 				} catch (InterruptedException e) {
 					expNums += countAlarms(positionFile);
 //					err.println("task interrupted");
-					log.error("#TimeInterrupted: " + revFile.getName());
+					System.err.println("#TimeInterrupted: " + revFile.getName());
 				} catch (ExecutionException e) {
 					expNums += countAlarms(positionFile);
 //					err.println("task aborted");
-					log.error("#TimeAborted: " + revFile.getName());
+					System.err.println("#TimeAborted: " + revFile.getName());
 				} finally {
 					executor.shutdownNow();
 				}
