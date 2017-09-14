@@ -441,7 +441,7 @@ public class HunkActionFilter {
 				selectedViolations.add(violation);
 			} else {
 				log.warn("#Null-GumTree-Result: "  + revFile.getName().replace("#", "/") + "  :  " +violation.getStartLineNum() + " : " + 
-						violation.getBugEndLineNum() + " : " + violation.getAlarmType());
+						violation.getEndLineNum() + " : " + violation.getAlarmType());
 			}
 		}
 		return selectedViolations;
