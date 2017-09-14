@@ -7,6 +7,9 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.github.gumtreediff.actions.model.Action;
 
 import edu.lu.uni.serval.FixPatternParser.Parser;
@@ -23,6 +26,8 @@ import edu.lu.uni.serval.utils.ListSorter;
  *
  */
 public class FixedViolationParser extends Parser {
+	
+	private static Logger log = LoggerFactory.getLogger(FixedViolationParser.class);
 	
 	private File positionFile = null;
 	protected String alarmTypes = "";
@@ -50,6 +55,7 @@ public class FixedViolationParser extends Parser {
 		if (gumTreeResults == null) {
 			return null;
 		} else if (gumTreeResults.size() == 0){
+			log.error("#NoSourceCodeChange: " + revFile.getName());
 			return actionSets;
 		} else {
 			// Regroup GumTre results.
@@ -67,6 +73,10 @@ public class FixedViolationParser extends Parser {
 			
 			ListSorter<HierarchicalActionSet> sorter = new ListSorter<>(actionSets);
 			actionSets = sorter.sortAscending();
+			
+			if (actionSets.size() == 0) {
+				log.error("#NoStatementChange: " + revFile.getName());
+			}
 			
 			return actionSets;
 		}
