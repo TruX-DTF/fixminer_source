@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.actions.model.Update;
@@ -18,6 +20,10 @@ import edu.lu.uni.serval.FixPatternParser.violations.Violation;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 
 public class HunkActionFilter {
+	
+	private static final int LIMITATION_OF_LINE_NUMBERS = 5;
+	
+	private static Logger log = LoggerFactory.getLogger(HunkActionFilter.class);
 
 	/**
 	 * Filter out the modify actions, which are not in the DiffEntry hunks, without considering the same parent node.
@@ -371,10 +377,10 @@ public class HunkActionFilter {
 		for (Violation violation : violations) {
 			int violationStartLine = violation.getStartLineNum();
 			int violationEndLine = violation.getEndLineNum();
-			int bugHunkStartLine = violation.getBugStartLineNum();
-			int bugHunkEndLine = violation.getBugEndLineNum();
-			int fixHunkStartLine = violation.getFixStartLineNum();
-			int fixHunkEndLine = violation.getFixEndLineNum();
+//			int bugHunkStartLine = violation.getBugStartLineNum();
+//			int bugHunkEndLine = violation.getBugEndLineNum();
+//			int fixHunkStartLine = violation.getFixStartLineNum();
+//			int fixHunkEndLine = violation.getFixEndLineNum();
 			
 			for (HierarchicalActionSet actionSet : actionSets) {
 				int actionBugStartLine = actionSet.getBugStartLineNum();
@@ -384,42 +390,84 @@ public class HunkActionFilter {
 				int actionBugEndLine = actionSet.getBugEndLineNum();
 				int actionFixStartLine = actionSet.getFixStartLineNum();
 				int actionFixEndLine = actionSet.getFixEndLineNum();
+				
+//				if (actionBugStartLine > violationEndLine && actionFixStartLine > fixHunkEndLine) break;
 
 				String actionStr = actionSet.getActionString();
 				if (actionStr.startsWith("INS")) {
-					if (fixHunkStartLine <= actionFixStartLine && actionFixEndLine <= fixHunkEndLine) {
-						if (actionBugStartLine != 0) {
-							if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
-								violation.getActionSets().add(actionSet);
-							}
-						} else {
-//							if (isRanged(actionSet, violation)) {
+//					if (fixHunkStartLine <= actionFixStartLine && actionFixEndLine <= fixHunkEndLine) {
+//						if (actionBugStartLine != 0) {
+//							if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
+//								violation.getActionSets().add(actionSet);
 //							}
-							if (Math.abs(violationStartLine - actionFixStartLine) <= 5 
-									&& Math.abs(violationEndLine - actionFixEndLine) <= 5) {
-								violation.getActionSets().add(actionSet);
-							}
-						}
-					}
-				} else {
-//					if (bugHunkEndLine < actionBugStartLine) {
-//						break;
+//						} else {
+////							if (isRanged(actionSet, violation)) {
+////							}
+//							if (Math.abs(violationStartLine - actionFixStartLine) <= LIMITATION_OF_LINE_NUMBERS 
+//									&& Math.abs(violationEndLine - actionFixEndLine) <= LIMITATION_OF_LINE_NUMBERS) {
+//								violation.getActionSets().add(actionSet);
+//							}
+//						}
 //					}
-					if (bugHunkStartLine <= actionBugStartLine && actionBugEndLine <= bugHunkEndLine) {
+					if (actionBugStartLine != 0) {
 						if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
 							violation.getActionSets().add(actionSet);
 						}
+					} else {
+//						if (isRanged(actionSet, violation)) {
+//						}
+						if (Math.abs(violationStartLine - actionFixStartLine) <= LIMITATION_OF_LINE_NUMBERS 
+								&& Math.abs(violationEndLine - actionFixEndLine) <= LIMITATION_OF_LINE_NUMBERS) {
+							violation.getActionSets().add(actionSet);
+						}
+					}
+				} else {
+//					if (bugHunkStartLine <= actionBugStartLine && actionBugEndLine <= bugHunkEndLine) {
+//						if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
+//							violation.getActionSets().add(actionSet);
+//						}
+//					}
+					if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
+						violation.getActionSets().add(actionSet);
 					}
 				}
 			}
 			
 			if (violation.getActionSets().size() > 0) {
+				// FieldDeclaration: single insert, move, delete or update.
+				List<HierarchicalActionSet> matchedActionSets = filterActionSets(violation.getActionSets());
+				violation.getActionSets().clear();
+				violation.getActionSets().addAll(matchedActionSets);
 				selectedViolations.add(violation);
+			} else {
+				log.warn("#Null-GumTree-Result: "  + revFile.getName().replace("#", "/") + "  :  " +violation.getStartLineNum() + " : " + 
+						violation.getBugEndLineNum() + " : " + violation.getAlarmType());
 			}
 		}
 		return selectedViolations;
 	}
 	
+	private List<HierarchicalActionSet> filterActionSets(List<HierarchicalActionSet> actionSets) {
+		List<HierarchicalActionSet> matchedActionSets = new ArrayList<>();
+		// find the update
+		HierarchicalActionSet updateActionSet = null;
+		for (HierarchicalActionSet actionSet :actionSets) {
+			if (actionSet.getAction() instanceof Update) {
+				updateActionSet = actionSet;
+			}
+		}
+		
+		if (updateActionSet != null) {
+			if (updateActionSet.getAstNodeType().equals("FieldDeclaration")) {
+				matchedActionSets.clear();
+				matchedActionSets.add(updateActionSet);
+				return matchedActionSets;
+			}
+		}
+		
+		return actionSets;
+	}
+
 	private boolean isRanged(HierarchicalActionSet actionSet, Violation violation) {
 		int actionStartLine = actionSet.getFixStartLineNum();
 		int actionEndLine = actionSet.getFixEndLineNum();
