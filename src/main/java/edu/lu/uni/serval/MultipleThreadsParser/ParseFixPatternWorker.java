@@ -20,9 +20,7 @@ import org.slf4j.LoggerFactory;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
-import edu.lu.uni.serval.FixPatternParser.Parser;
 import edu.lu.uni.serval.FixPatternParser.RunnableParser;
-import edu.lu.uni.serval.FixPatternParser.patch.CommitPatchSingleStatementParser;
 import edu.lu.uni.serval.FixPatternParser.violations.FixedViolationHunkParser;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
@@ -91,7 +89,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File positionFile = msgFile.getPositionFile();
 				if (revFile.getName().toLowerCase().contains("test")) {
 					testAlarms += countAlarms(positionFile);
-					continue;
+//					continue;
 				}
 //				Parser parser = null;
 //				if (containsAlarmTypes || positionFile != null) {
