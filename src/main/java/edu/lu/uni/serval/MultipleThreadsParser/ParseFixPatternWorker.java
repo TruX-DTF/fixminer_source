@@ -77,6 +77,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			int nullGumTreeResults = 0;
 			int nullMappingGumTreeResults = 0;
 			int noSourceCodeChanges = 0;
+			int noStatementChanges = 0;
 			int pureDeletion = 0;
 			int expNums = 0;
 			int largeHunk = 0;
@@ -124,6 +125,8 @@ public class ParseFixPatternWorker extends UntypedActor {
 							System.err.println("#NullGumTreeResult: " + revFile.getName());
 						} else if (parser.resultType == 2) {
 							noSourceCodeChanges += countAlarms(positionFile);
+						} else if (parser.resultType == 3) {
+							noStatementChanges += countAlarms(positionFile);
 						}
 					} else {
 						editScripts.append(editScript);
@@ -185,7 +188,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			}
 			String statistic = "testAlarms: " + testAlarms + "\nnullGumTreeResults: " + nullGumTreeResults + "\nnullMappingGumTreeResults: " + nullMappingGumTreeResults +
 					"\nnoSourceCodeChanges: " + noSourceCodeChanges + "\npureDeletion: " + pureDeletion + "\nTimeout: " + expNums +
-					"\nlargeHunk: " + largeHunk + "\nnullSourceCode: " + nullSourceCode;
+					"\nlargeHunk: " + largeHunk + "\nnullSourceCode: " + nullSourceCode + "\nnoStatementChanges: " + noStatementChanges;
 			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
 
 			log.info("Worker #" + id +"Finish of parsing " + counter + " files...");

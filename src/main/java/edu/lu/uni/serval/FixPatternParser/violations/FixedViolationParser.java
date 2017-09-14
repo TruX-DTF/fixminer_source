@@ -29,6 +29,16 @@ public class FixedViolationParser extends Parser {
 	
 	private static Logger log = LoggerFactory.getLogger(FixedViolationParser.class);
 	
+	/*
+	 * ResultType:
+	 * 0: normal GumTree results.
+	 * 1: null GumTree result.
+	 * 2: No source code changes.
+	 * 3: No Statement Change.
+	 * 4: useless violations
+	 */
+	public int resultType = 0;
+	
 	private File positionFile = null;
 	protected String alarmTypes = "";
 	protected List<Violation> uselessViolations;
@@ -53,9 +63,11 @@ public class FixedViolationParser extends Parser {
 		// GumTree results
 		List<Action> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
 		if (gumTreeResults == null) {
+			this.resultType = 1;
 			return null;
 		} else if (gumTreeResults.size() == 0){
 			System.err.println("#NoSourceCodeChange: " + revFile.getName());
+			this.resultType = 2;
 			return actionSets;
 		} else {
 			// Regroup GumTre results.
@@ -75,6 +87,7 @@ public class FixedViolationParser extends Parser {
 			actionSets = sorter.sortAscending();
 			
 			if (actionSets.size() == 0) {
+				this.resultType = 3;
 				System.err.println("#NoStatementChange: " + revFile.getName());
 			}
 			

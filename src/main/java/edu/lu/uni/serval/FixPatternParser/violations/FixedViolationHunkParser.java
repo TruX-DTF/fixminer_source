@@ -32,14 +32,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 	@SuppressWarnings("unused")
 	private static Logger log = LoggerFactory.getLogger(FixedViolationHunkParser.class);
 	public String testingInfo = "";
-	/*
-	 * ResultType:
-	 * 0: normal GumTree results.
-	 * 1: null GumTree result.
-	 * 2: No source code changes.
-	 * 3: useless violations
-	 */
-	public int resultType = 0;
+	
 	public int nullMappingGumTreeResult = 0;
 	public int pureDeletions = 0;
 	public int largeHunk = 0;
@@ -59,14 +52,10 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		// TODO remove the modification of variable names or not? FIXME
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile); // only remove non-statement source code, eg. method declaration 
 		
-		if (actionSets == null) {
-			this.resultType = 1;
-		} else if (actionSets.size() == 0) {
-			this.resultType = 2;
-		} else {
+		if (actionSets != null && actionSets.size() != 0) {
 			List<Violation> violations = readViolations(revFile.getName());
 			if (violations.size() == 0) {
-				this.resultType = 3;
+				this.resultType = 4;
 				return;
 			}
 //			List<DiffEntryHunk> diffentryHunks1 = new DiffEntryReader().readHunks2(diffentryFile);

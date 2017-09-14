@@ -63,6 +63,7 @@ public class Statistic {
 		int noSourceCodeChagnes = 0;
 		int largeHunk = 0;
 		int nullSourceCode = 0;
+		int noStatementChanges = 0;
 		for (File file : files) {
 			String content = FileHelper.readFile(file);
 			BufferedReader reader = new BufferedReader(new StringReader(content));
@@ -85,7 +86,9 @@ public class Statistic {
 						largeHunk += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
 					} else if (line.startsWith("nullSourceCode")) {
 						nullSourceCode += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} 
+					} else if (line.startsWith("noStatementChanges")) {
+						noStatementChanges += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -121,6 +124,7 @@ public class Statistic {
 		System.out.println("noSourceCodeChange: " + noSourceCodeChagnes);
 		System.out.println("largeHunk: " + largeHunk);
 		System.out.println("nullSourceCode: " + nullSourceCode);
+		System.out.println("noStatementChanges: " + noStatementChanges);
 	}
 
 	public static void statistics(String fileName, String type) throws IOException {
