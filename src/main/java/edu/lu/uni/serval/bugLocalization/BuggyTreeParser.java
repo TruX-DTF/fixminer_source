@@ -14,6 +14,7 @@ import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.violation.code.parser.AlarmTree;
 
 /**
  * 
@@ -49,7 +50,7 @@ public class BuggyTreeParser {
         	String[] bugIdInfo = bugId.split("_");
         	String projectName = bugIdInfo[0];
         	String bugIdSt = bugIdInfo[1];
-        	String path = "../FPM_Violations/Testing/CheckedOut/" + projectName + "/" + bugIdSt + "/buggy/";
+        	String path = "../FPM_Violations/Testing/projects/" + projectName + "/" + bugIdSt + "/buggy/";
         	if ("Chart".equals(projectName)) {
         		path += "source/";
         	} else {
@@ -58,6 +59,7 @@ public class BuggyTreeParser {
         	List<File> javaFiles = FileHelper.getAllFiles(path, ".java");
         	for (File javaFile : javaFiles) {
         		if (javaFile.getPath().endsWith(fileName)) {
+        			
         			AlarmTree alarmTree = new AlarmTree(javaFile, startLine, endLine);
         			alarmTree.extract();
         			List<ITree> matchedTrees = alarmTree.getAlarmTrees();
