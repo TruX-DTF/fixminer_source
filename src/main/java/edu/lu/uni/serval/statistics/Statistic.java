@@ -64,7 +64,9 @@ public class Statistic {
 		int largeHunk = 0;
 		int nullSourceCode = 0;
 		int noStatementChanges = 0;
+		int IllegalV = 0;
 		for (File file : files) {
+			if (file.getName().startsWith("test")) continue;
 			String content = FileHelper.readFile(file);
 			BufferedReader reader = new BufferedReader(new StringReader(content));
 			String line = null;
@@ -88,6 +90,8 @@ public class Statistic {
 						nullSourceCode += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
 					} else if (line.startsWith("noStatementChanges")) {
 						noStatementChanges += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("IllegalV")) {
+						IllegalV +=Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
 					}
 				}
 			} catch (IOException e) {
@@ -110,12 +114,14 @@ public class Statistic {
 //			Statistics:
 //			TestAlarms: 5696
 //			nullGumTreeResults: 0
-//			nullMappingGumTreeResults: 26366
-//			pureDeletion: 38158
-//			Timeout: 6090
-//			noSourceCodeChange: 14442
-//			largeHunk: 232
+//			nullMappingGumTreeResults: 29056   29078
+//			pureDeletion: 40728
+//			Timeout: 135
+//			noSourceCodeChange: 7496
+//			largeHunk: 2584
 //			nullSourceCode: 0
+//			noStatementChanges: 7567
+//			IllegalV: 1194
 		System.out.println("\n\nStatistics:\nTestAlarms: " + testAlarms);
 		System.out.println("nullGumTreeResults: " + nullGumTreeResults);
 		System.out.println("nullMappingGumTreeResults: " + nullMappingGumTreeResults);
@@ -125,6 +131,7 @@ public class Statistic {
 		System.out.println("largeHunk: " + largeHunk);
 		System.out.println("nullSourceCode: " + nullSourceCode);
 		System.out.println("noStatementChanges: " + noStatementChanges);
+		System.out.println("IllegalV: " + IllegalV);
 	}
 
 	public static void statistics(String fileName, String type) throws IOException {
