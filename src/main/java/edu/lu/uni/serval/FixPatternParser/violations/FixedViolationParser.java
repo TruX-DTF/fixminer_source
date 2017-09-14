@@ -14,6 +14,7 @@ import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
 import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.utils.ListSorter;
 
 /**
  * Parse fix patterns with GumTree.
@@ -25,6 +26,7 @@ public class FixedViolationParser extends Parser {
 	
 	private File positionFile = null;
 	protected String alarmTypes = "";
+	protected List<Violation> uselessViolations;
 	
 	public void setPositionFile(File positionFile) {
 		this.positionFile = positionFile;
@@ -59,11 +61,18 @@ public class FixedViolationParser extends Parser {
 				}
 			}
 			
+			// Filter out modified actions of changing method names, method parameters, variable names and field names in declaration part.
+			// TODO: variable effects range, sub-actions are these kinds of modification?
+//			actionSets.addAll(new ActionFilter().filterOutUselessActions(allActionSets));
+			
+			ListSorter<HierarchicalActionSet> sorter = new ListSorter<>(actionSets);
+			actionSets = sorter.sortAscending();
+			
 			return actionSets;
 		}
 	}
 
-	protected List<Violation> readPositionsAndAlarmTypes() {
+	protected List<Violation> readViolations(String fileName) {
 		List<Violation> violations = new ArrayList<>();
 		String fileContent = FileHelper.readFile(positionFile);
 		BufferedReader reader = null;
@@ -77,6 +86,10 @@ public class FixedViolationParser extends Parser {
 				String alarmType = positionStr[0];
 				
 				Violation violation = new Violation(startLine, endLine, alarmType);
+				violation.setFileName(fileName.replaceAll("#", "/"));
+				if (uselessViolations.contains(violation)) {
+					continue;
+				}
 				violations.add(violation);
 			}
 		} catch (IOException e) {
@@ -138,5 +151,8 @@ public class FixedViolationParser extends Parser {
 	public String getAlarmTypes() {
 		return alarmTypes;
 	}
-
+	
+	public void setUselessViolations(List<Violation> uselessViolations) {
+		this.uselessViolations = uselessViolations;
+	}
 }

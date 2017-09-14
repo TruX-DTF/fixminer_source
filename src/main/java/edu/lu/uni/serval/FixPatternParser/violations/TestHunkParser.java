@@ -51,7 +51,7 @@ public class TestHunkParser {
 		StringBuilder alarmTypes = new StringBuilder();
 		
 		int a = 0;
-		int counter = 0;
+//		int counter = 0;
 		for (MessageFile msgFile : msgFiles) {
 			FixedViolationHunkParser parser = new FixedViolationHunkParser();
 			parser.setPositionFile(msgFile.getPositionFile());

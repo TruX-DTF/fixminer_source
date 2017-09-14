@@ -39,7 +39,7 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 			}
 			
 			// Read the positions of checked violations
-			List<Violation> violations = readPositionsAndAlarmTypes();
+			List<Violation> violations = readViolations(revFile.getName());
 			for (HierarchicalActionSet actionSet : actionSets) {
 				// position of buggy statements
 				int startPosition = 0;

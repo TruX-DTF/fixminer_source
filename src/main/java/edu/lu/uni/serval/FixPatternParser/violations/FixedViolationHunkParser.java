@@ -7,12 +7,13 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.github.gumtreediff.tree.ITree;
 
 import edu.lu.uni.serval.FixPatternParser.Tokenizer;
 import edu.lu.uni.serval.config.Configuration;
-import edu.lu.uni.serval.diffentry.DiffEntryHunk;
-import edu.lu.uni.serval.diffentry.DiffEntryReader;
 import edu.lu.uni.serval.gumtree.GumTreeGenerator;
 import edu.lu.uni.serval.gumtree.GumTreeGenerator.GumTreeType;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
@@ -27,18 +28,23 @@ import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
  *
  */
 public class FixedViolationHunkParser extends FixedViolationParser {
+	
+	@SuppressWarnings("unused")
+	private static Logger log = LoggerFactory.getLogger(FixedViolationHunkParser.class);
 	public String testingInfo = "";
 	/*
 	 * ResultType:
 	 * 0: normal GumTree results.
 	 * 1: null GumTree result.
 	 * 2: No source code changes.
+	 * 3: useless violations
 	 */
 	public int resultType = 0;
 	public int nullMappingGumTreeResult = 0;
 	public int pureDeletions = 0;
 	public int largeHunk = 0;
 	public int nullSourceCode = 0;
+	public int nullMatchedDiffEntry = 0;
 	
 	public FixedViolationHunkParser() {
 	}
@@ -50,7 +56,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 	@Override
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 		// GumTree results 
-		// TODO remove the modification of variable names or not?
+		// TODO remove the modification of variable names or not? FIXME
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile); // only remove non-statement source code, eg. method declaration 
 		
 		if (actionSets == null) {
@@ -58,32 +64,38 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		} else if (actionSets.size() == 0) {
 			this.resultType = 2;
 		} else {
-			List<Violation> violations = readPositionsAndAlarmTypes();
-			
-			List<DiffEntryHunk> diffentryHunks1 = new DiffEntryReader().readHunks2(diffentryFile);
-			// Select hunks by positions of violations.
-			for (Violation violation : violations) {
-				int violationStartLineNum = violation.getStartLineNum();
-				int violationEndLineNum = violation.getEndLineNum();
-				for (int index = 0, hunkListSize = diffentryHunks1.size(); index < hunkListSize; index ++) {
-					DiffEntryHunk hunk = diffentryHunks1.get(index);
-					int startLine = hunk.getBugLineStartNum();
-					int range = hunk.getBugRange();
-					if (violationStartLineNum > startLine + range - 1) continue;
-					if (violationEndLineNum < startLine) break;
-					
-					if (violation.getBugStartLineNum() == 0) {
-						violation.setBugStartLineNum(startLine);
-						violation.setFixStartLineNum(hunk.getFixLineStartNum());
-					}
-					violation.setBugEndLineNum(startLine + range - 1);
-					violation.setFixEndLineNum(hunk.getFixLineStartNum() + hunk.getFixRange() - 1);
-					violation.getHunks().add(hunk);
-				}
-				if (violation.getBugStartLineNum() == 0 && violation.getBugEndLineNum() == 0) {
-					System.err.println("WRONG");
-				}
+			List<Violation> violations = readViolations(revFile.getName());
+			if (violations.size() == 0) {
+				this.resultType = 3;
+				return;
 			}
+//			List<DiffEntryHunk> diffentryHunks1 = new DiffEntryReader().readHunks2(diffentryFile);
+//			// Select hunks by positions of violations.
+//			for (Violation violation : violations) {
+//				int violationStartLineNum = violation.getStartLineNum();
+//				int violationEndLineNum = violation.getEndLineNum();
+//				for (int index = 0, hunkListSize = diffentryHunks1.size(); index < hunkListSize; index ++) {
+//					DiffEntryHunk hunk = diffentryHunks1.get(index);
+//					int startLine = hunk.getBugLineStartNum();
+//					int range = hunk.getBugRange();
+//					if (violationStartLineNum > startLine + range - 1) continue;
+//					if (violationEndLineNum < startLine) break;
+//					
+//					if (violation.getBugStartLineNum() == 0) {
+//						violation.setBugStartLineNum(startLine);
+//						violation.setFixStartLineNum(hunk.getFixLineStartNum());
+//					}
+//					violation.setBugEndLineNum(startLine + range - 1);
+//					violation.setFixEndLineNum(hunk.getFixLineStartNum() + hunk.getFixRange() - 1);
+//					violation.getHunks().add(hunk);
+//				}
+//				if (violation.getBugStartLineNum() == 0 && violation.getBugEndLineNum() == 0) {
+//					// This fixed violation cannot be matched with a DiffEntry, it is difficult to identify related source code change for it.
+//					nullMatchedDiffEntry ++;
+//					log.warn("#Null-DiffEntry: " + revFile.getName().replace("#", "/") + "  :  " +violation.getStartLineNum() + " : " + 
+//							violation.getBugEndLineNum() + " : " + violation.getAlarmType());
+//				}
+//			}
 			
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
 			HunkActionFilter hunkFilter = new HunkActionFilter();
@@ -233,8 +245,10 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				String alarmType = violation.getAlarmType();
 				
 //				String patchPosition = "\n" + revFile.getName() + "Position: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
+//				String patchPosition = "\n" + "Position: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
+//				String info = Configuration.PATCH_SIGNAL + "\nAlarm Type :" + violation.getAlarmType() + "\n" + patchPosition + patchSourceCode + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
 				String patchPosition = "\n" + "Position: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
-				String info = Configuration.PATCH_SIGNAL + "\nAlarm Type :" + violation.getAlarmType() + "\n" + patchPosition + patchSourceCode + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
+				String info = Configuration.PATCH_SIGNAL + "\nAlarm Type :" + violation.getAlarmType() + "\n" + patchSourceCode + "\n" + patchPosition + revFile.getName() + "\n";
 				if (noUpdate(editScriptTokens)) {
 					
 					if (!"SE_NO_SERIALVERSIONID".equals(alarmType)) {
@@ -352,5 +366,5 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		}
 		return true;
 	}
-	
+
 }
