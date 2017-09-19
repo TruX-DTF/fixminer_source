@@ -39,7 +39,7 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 			}
 			
 			// Read the positions of checked violations
-			List<Violation> violations = readViolations(revFile.getName());
+			List<Violation> violations = readViolations(prevFile, revFile);
 			for (HierarchicalActionSet actionSet : actionSets) {
 				// position of buggy statements
 				int startPosition = 0;
@@ -127,7 +127,7 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + revFile.getName() + "\n" + patchSourceCode + "\n";
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
-				this.alarmTypes += violation.getAlarmType() + "\n";
+				this.violationTypes += violation.getViolationType() + "\n";
 				// 2. source code: raw tokens
 //				String rawTokenEditScripts = getRawTokenEditScripts(actionSet);
 //				// 3. abstract identifiers: 

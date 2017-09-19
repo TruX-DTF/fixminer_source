@@ -14,7 +14,7 @@ import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 import edu.lu.uni.serval.utils.FileHelper;
-import edu.lu.uni.serval.violation.code.parser.AlarmTree;
+import edu.lu.uni.serval.violation.code.parser.ViolationSourceCodeTree;
 
 /**
  * 
@@ -60,9 +60,9 @@ public class BuggyTreeParser {
         	for (File javaFile : javaFiles) {
         		if (javaFile.getPath().endsWith(fileName)) {
         			
-        			AlarmTree alarmTree = new AlarmTree(javaFile, startLine, endLine);
+        			ViolationSourceCodeTree alarmTree = new ViolationSourceCodeTree(javaFile, startLine, endLine);
         			alarmTree.extract();
-        			List<ITree> matchedTrees = alarmTree.getAlarmTrees();
+        			List<ITree> matchedTrees = alarmTree.getViolationSourceCodeTrees();
         			SimpleTree simpleTree = new SimpleTree();
         			simpleTree.setLabel("Block");
     				simpleTree.setNodeType("Block");

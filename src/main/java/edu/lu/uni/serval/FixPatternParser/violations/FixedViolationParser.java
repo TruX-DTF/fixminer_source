@@ -15,6 +15,7 @@ import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
 import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.ListSorter;
+import edu.lu.uni.serval.violation.code.parser.ViolationSourceCodeTree;
 
 /**
  * Parse fix patterns with GumTree.
@@ -35,8 +36,8 @@ public class FixedViolationParser extends Parser {
 	public int resultType = 0;
 	
 	private File positionFile = null;
-	protected String alarmTypes = "";
-	protected List<Violation> uselessViolations;
+	protected String violationTypes = "";
+//	protected List<Violation> uselessViolations;
 	
 	public void setPositionFile(File positionFile) {
 		this.positionFile = positionFile;
@@ -66,18 +67,18 @@ public class FixedViolationParser extends Parser {
 		} else {
 			// Regroup GumTre results.
 			List<HierarchicalActionSet> allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
-			for (HierarchicalActionSet actionSet : allActionSets) {
-				String astNodeType = actionSet.getAstNodeType();
-				if (astNodeType.endsWith("Statement") || "FieldDeclaration".equals(astNodeType)) {
-					actionSets.add(actionSet);
-				}
-			}
+//			for (HierarchicalActionSet actionSet : allActionSets) {
+//				String astNodeType = actionSet.getAstNodeType();
+//				if (astNodeType.endsWith("Statement") || "FieldDeclaration".equals(astNodeType)) {
+//					actionSets.add(actionSet);
+//				}
+//			}
 			
 			// Filter out modified actions of changing method names, method parameters, variable names and field names in declaration part.
-			// TODO: variable effects range, sub-actions are these kinds of modification?
+			// variable effects range, sub-actions are these kinds of modification?
 //			actionSets.addAll(new ActionFilter().filterOutUselessActions(allActionSets));
 			
-			ListSorter<HierarchicalActionSet> sorter = new ListSorter<>(actionSets);
+			ListSorter<HierarchicalActionSet> sorter = new ListSorter<>(allActionSets);
 			actionSets = sorter.sortAscending();
 			
 			if (actionSets.size() == 0) {
@@ -88,7 +89,8 @@ public class FixedViolationParser extends Parser {
 		}
 	}
 
-	protected List<Violation> readViolations(String fileName) {
+	protected List<Violation> readViolations(File prevFile, File revFile) {
+		String fileName = revFile.getName();
 		List<Violation> violations = new ArrayList<>();
 		String fileContent = FileHelper.readFile(positionFile);
 		BufferedReader reader = null;
@@ -99,12 +101,24 @@ public class FixedViolationParser extends Parser {
 				String[] positionStr = line.split(":");
 				int startLine = Integer.parseInt(positionStr[1]);
 				int endLine = Integer.parseInt(positionStr[2]);
-				String alarmType = positionStr[0];
+				String violationType = positionStr[0];
 				
-				Violation violation = new Violation(startLine, endLine, alarmType);
-				violation.setFileName(fileName.replaceAll("#", "/"));
-				if (uselessViolations.contains(violation)) {
-					continue;
+//				if ("UPM_UNCALLED_PRIVATE_METHOD".equals(violationType)) continue;
+				
+				Violation violation = new Violation(startLine, endLine, violationType);
+				violation.setFileName(fileName);
+
+				/*
+				 *  Get the parent range of a violation.
+				 *  Read DiffEntries with this range to get the start line and end line of a violation.
+				 */
+				ViolationSourceCodeTree alarmTree = new ViolationSourceCodeTree(prevFile, startLine, endLine);
+				alarmTree.locateParentNode(violationType);
+				int violationStartLine = alarmTree.getViolationFinalStartLine();
+				violation.setBugStartLineNum(violationStartLine);
+				if (violationStartLine > 0) {// 0: no source code, -1: range is too large, which contains several inner classes, methods or fields.
+//					FileHelper.outputToFile("logs/testV3.txt", "\n", true);
+					violation.setBugEndLineNum(alarmTree.getViolationFinalEndLine());
 				}
 				violations.add(violation);
 			}
@@ -165,10 +179,10 @@ public class FixedViolationParser extends Parser {
 	}
 
 	public String getAlarmTypes() {
-		return alarmTypes;
+		return violationTypes;
 	}
 	
-	public void setUselessViolations(List<Violation> uselessViolations) {
-		this.uselessViolations = uselessViolations;
-	}
+//	public void setUselessViolations(List<Violation> uselessViolations) {
+//		this.uselessViolations = uselessViolations;
+//	}
 }

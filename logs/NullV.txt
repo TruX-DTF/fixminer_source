@@ -1,0 +1,3130 @@
+1
+    BC_VACUOUS_INSTANCEOF
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#population#OldPopulator.java
+1750 : 1750
+    CN_IDIOM_NO_SUPER_CALL
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#ParameterVarDec.java
+133 : 137
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#VarExp.java
+314 : 324
+    CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#data#Location.java
+145 : 147
+    DLS_DEAD_LOCAL_STORE
+prev_ClemsonRSRG-RESOLVE_6a59d3_f2823esrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#NormalizedAtomicExpressionMapImpl.java
+178 : 178
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.java
+5789 : 5789
+    DM_DEFAULT_ENCODING
+prev_ClemsonRSRG-RESOLVE_64c586_d41ac9src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.java
+499 : 499
+prev_ClemsonRSRG-RESOLVE_6adf7f_573169src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.java
+400 : 400
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#data#Location.java
+88 : 88
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#errors#ErrorHandler.java
+58 : 58
+    DM_NUMBER_CTOR
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#CharExp.java
+91 : 91
+    DM_STRING_CTOR
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#errors#ErrorHandler.java
+66 : 66
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#type#VoidType.java
+67 : 67
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#type#VoidType.java
+63 : 63
+    DM_STRING_VOID_CTOR
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#Dec.java
+43 : 43
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#MathVarDec.java
+129 : 129
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#Statement.java
+39 : 39
+    DP_DO_INSIDE_DO_PRIVILEGED
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#ResolveConceptualElement.java
+90 : 90
+    EI_EXPOSE_REP
+prev_ClemsonRSRG-RESOLVE_4c94b0_0a304dsrc#main#java#edu#clemson#cs#r2jt#archiving#Archiver.java
+524 : 524
+    EQ_COMPARETO_USE_OBJECT_EQUALS
+prev_belaban-JGroups_6c80eb_1f6473src#org#jgroups#util#ProxyAddress.java
+12 : 12
+prev_Bombe-Sone_0797df_a80191src#main#java#net#pterodactylus#sone#data#impl#IdOnlySone.java
+27 : 27
+prev_Bombe-Sone_0cefad_cb0161src#main#java#net#pterodactylus#sone#data#impl#IdOnlySone.java
+27 : 27
+prev_Bombe-Sone_7a858f_4804cfsrc#main#java#net#pterodactylus#sone#data#impl#IdOnlySone.java
+27 : 27
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#proving2#proofsteps#StrengthenConsequentStep.java
+96 : 96
+prev_gertvv-addis_112427_e45403src#main#java#org#drugis#addis#entities#metaanalysis#AbstractMetaAnalysis.java
+22 : 22
+prev_gertvv-addis_a3c2ed_dbfd2dsrc#main#java#org#drugis#addis#entities#metaanalysis#NetworkMetaAnalysis.java
+9 : 9
+prev_gertvv-addis_bd9215_a3c2edsrc#main#java#org#drugis#addis#entities#metaanalysis#RandomEffectsMetaAnalysis.java
+28 : 28
+prev_jcabi-jcabi-github_1cfc4d_a7d703src#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_47050c_1dcb5fsrc#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_55d31d_8f76d5src#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_75d449_c4724dsrc#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_7721b1_be9f87src#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_8707c4_be49edsrc#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_91a5ed_dd6b62src#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_af0de5_07aa91src#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_b6a619_733132src#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_b6e0ea_8e1b84src#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_cc75c4_e85dffsrc#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_dd0d77_4563a6src#main#java#com#jcabi#github#RtStatuses.java
+47 : 47
+prev_jcabi-jcabi-github_de398c_ee340csrc#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jcabi-jcabi-github_fdf5d6_258801src#main#java#com#jcabi#github#RtOrganization.java
+48 : 48
+prev_jensnerche-plantuml_15ff58_5e4772src#net#sourceforge#plantuml#cucadiagram#EntityMutable.java
+45 : 45
+prev_jgheerardyn-yields_05c880_c2aeb3foundations#src#main#java#io#yields#math#framework#impl#VariableDefinitionImpl.java
+12 : 12
+prev_jgheerardyn-yields_f93107_03463ffoundations#src#main#java#io#yields#math#framework#impl#DoubleVariableDefinition.java
+12 : 12
+prev_protegeproject-swrlapi_67292a_a413a4src#main#java#org#swrlapi#xsd#XSDDate.java
+7 : 7
+prev_protegeproject-swrlapi_67292a_a413a4src#main#java#org#swrlapi#xsd#XSDDateTime.java
+7 : 7
+prev_protegeproject-swrlapi_67292a_a413a4src#main#java#org#swrlapi#xsd#XSDDuration.java
+5 : 5
+prev_protegeproject-swrlapi_67292a_a413a4src#main#java#org#swrlapi#xsd#XSDTime.java
+5 : 5
+prev_protegeproject-swrlapi_cd352f_ec8d90src#main#java#org#swrlapi#core#arguments#impl#SWRLBuiltInArgumentImpl.java
+23 : 23
+prev_rasto-lcmc_46525d_e8647asrc#main#java#lcmc#gui#resources#drbd#BlockDevInfo.java
+75 : 75
+prev_rasto-lcmc_aeaac1_4b3831src#main#java#lcmc#gui#resources#drbd#BlockDevInfo.java
+79 : 79
+prev_rinde-RinSim_d59ab7_947d5aexperiment-base#src#main#java#com#github#rinde#rinsim#experiment#base#DefaultScenario.java
+25 : 25
+prev_thinkaurelius-titan_99e32d_74a81csrc#main#java#com#thinkaurelius#faunus#io#graph#FaunusElement.java
+17 : 17
+    EQ_DOESNT_OVERRIDE_EQUALS
+prev_allanbank-mongodb-async-driver_cfb78d_436794src#main#java#com#allanbank#mongodb#client#message#AggregateCommand.java
+1 : 1
+prev_apache-commons-lang_66e42d_249788src#main#java#org#apache#commons#lang3#text#ExtendedMessageFormat.java
+1 : 1
+prev_apache-commons-lang_ef07c7_2842fdsrc#main#java#org#apache#commons#lang#text#ExtendedMessageFormat.java
+1 : 1
+prev_Bombe-Sone_cf563e_ee05a6src#main#java#net#pterodactylus#sone#freenet#wot#DefaultOwnIdentity.java
+1 : 1
+prev_BroadleafCommerce-BroadleafCommerce_413685_612fe8common#src#main#java#org#broadleafcommerce#common#resource#GeneratedResource.java
+1 : 1
+prev_digipost-digipost-api-client-java_939e59_8e8474src#main#java#no#digipost#api#client#representations#Invoice.java
+1 : 1
+prev_droolsjbpm-optaplanner_15f1a4_4def4cdrools-planner-core#src#main#java#org#drools#planner#core#move#generic#GenericChainedChangeMove.java
+1 : 1
+prev_ESAPI-esapi-java-legacy_533a22_f30905src#main#java#org#owasp#esapi#SafeFile.java
+1 : 1
+prev_ESAPI-esapi-java-legacy_7bfb08_7c10dcsrc#main#java#org#owasp#esapi#SafeFile.java
+1 : 1
+prev_jahlborn-jackcess_651986_eaccccsrc#java#com#healthmarketscience#jackcess#complex#AttachmentColumnInfo.java
+1 : 1
+prev_jahlborn-jackcess_651986_eaccccsrc#java#com#healthmarketscience#jackcess#complex#MultiValueColumnInfo.java
+1 : 1
+prev_jahlborn-jackcess_651986_eaccccsrc#java#com#healthmarketscience#jackcess#complex#UnsupportedColumnInfo.java
+1 : 1
+prev_jahlborn-jackcess_651986_eaccccsrc#java#com#healthmarketscience#jackcess#complex#VersionHistoryColumnInfo.java
+1 : 1
+prev_jahlborn-jackcess_b6276a_a4aaebsrc#java#com#healthmarketscience#jackcess#Index.java
+1 : 1
+prev_jenkinsci-acceptance-test-harness_a1fafd_edd3a9src#main#java#org#jenkinsci#test#acceptance#po#WorkflowJob.java
+1 : 1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHRepository.java
+1 : 1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHRepository.java
+1 : 1
+prev_marylinh-ESAPI_JAVA_ALL_0b94bc_d6915fsrc#main#java#org#owasp#esapi#SafeFile.java
+1 : 1
+prev_marylinh-ESAPI_JAVA_ALL_fb3cde_2ba17fsrc#main#java#org#owasp#esapi#SafeFile.java
+1 : 1
+prev_mrniko-redisson_f4424a_e4a325src#main#java#org#redisson#reactive#RedissonListReactive.java
+1 : 1
+prev_mrniko-redisson_f4424a_e4a325src#main#java#org#redisson#reactive#RedissonSetReactive.java
+1 : 1
+prev_Omertron-api-themoviedb_d0ec5c_aa6bb1src#main#java#com#omertron#themoviedbapi#model2#artwork#ArtworkMedia.java
+1 : 1
+prev_omnifaces-omnifaces_121a37_7c1a29src#main#java#org#omnifaces#component#output#cache#el#CachingValueExpression.java
+1 : 1
+prev_omnifaces-omnifaces_121a37_7c1a29src#main#java#org#omnifaces#taghandler#ImportConstants.java
+1 : 1
+prev_omnifaces-omnifaces_acebe3_54a7f7src#main#java#org#omnifaces#component#output#cache#el#CachingValueExpression.java
+1 : 1
+prev_omnifaces-omnifaces_acebe3_54a7f7src#main#java#org#omnifaces#taghandler#ImportConstants.java
+1 : 1
+prev_spring-projects-spring-data-commons_0f448d_71f159src#main#java#org#springframework#data#geo#GeoPage.java
+1 : 1
+    EQ_SELF_USE_OBJECT
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#data#Pos.java
+68 : 68
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#data#Symbol.java
+59 : 59
+    HE_EQUALS_USE_HASHCODE
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#data#Pos.java
+68 : 68
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#data#Symbol.java
+59 : 59
+    HE_HASHCODE_USE_OBJECT_EQUALS
+prev_ClemsonRSRG-RESOLVE_84220c_70e2basrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#NormalizedAtomicExpressionMapImpl.java
+225 : 225
+    HE_INHERITS_EQUALS_USE_HASHCODE
+prev_LEDS-sincap-entities_69e43e_8b9a01src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+22 : 22
+prev_LEDS-sincap-entities_69e43e_8b9a01src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#InstituicaoNotificadora.java
+10 : 10
+prev_LEDS-sincap-entities_6adc1b_8dfb6csrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+16 : 16
+prev_LEDS-sincap-entities_706d25_4570aasrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+22 : 22
+prev_LEDS-sincap-entities_706d25_4570aasrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#InstituicaoNotificadora.java
+10 : 10
+prev_LEDS-sincap-entities_83a062_9977e8src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+21 : 21
+prev_LEDS-sincap-entities_acb6ca_de9889src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+21 : 21
+prev_LEDS-sincap-entities_c27272_01b57bsrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+22 : 22
+prev_LEDS-sincap-entities_c27272_01b57bsrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#InstituicaoNotificadora.java
+10 : 10
+prev_LEDS-sincap-entities_e711e4_232617src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+22 : 22
+prev_LEDS-sincap-entities_e711e4_232617src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#InstituicaoNotificadora.java
+10 : 10
+prev_LEDS-sincap-entities_f15599_4f19f6src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+21 : 21
+    IS2_INCONSISTENT_SYNC
+prev_apache-commons-dbcp_37c3dd_5d4ab5src#java#org#apache#commons#dbcp2#BasicDataSource.java
+196 : 196
+    MS_CANNOT_BE_FINAL
+prev_h2oai-h2o_4f392e_6a6dc6src#main#java#water#H2O.java
+21 : 21
+prev_h2oai-h2o_7744fc_f5d524src#main#java#water#H2O.java
+21 : 21
+prev_h2oai-h2o_9286b3_694efasrc#main#java#water#H2O.java
+21 : 21
+prev_h2oai-h2o_affc07_9b08bcsrc#main#java#water#H2O.java
+148 : 148
+prev_Razz0991-Minigames_6451fb_edd374Minigames#src#au#com#mineauz#minigames#Minigames.java
+25 : 25
+prev_Razz0991-Minigames_ed57f0_50486bMinigames#src#au#com#mineauz#minigames#Minigames.java
+25 : 25
+prev_Razz0991-Minigames_f18777_b8ef5aMinigames#src#au#com#mineauz#minigames#Minigames.java
+14 : 14
+prev_Razz0991-Minigames_fce53f_32c059Minigames#src#au#com#mineauz#minigames#Minigames.java
+23 : 23
+prev_Xephi-AuthMeReloaded_6c8ba0_bad44fsrc#main#java#uk#org#whoami#authme#settings#Settings.java
+18 : 18
+prev_Xephi-AuthMeReloaded_8933c5_8b08b1src#main#java#fr#xephi#authme#settings#Settings.java
+25 : 25
+prev_Xephi-AuthMeReloaded_adcd70_118c79src#main#java#fr#xephi#authme#settings#Settings.java
+25 : 25
+prev_Xephi-AuthMeReloaded_e50976_ac5d2fsrc#main#java#fr#xephi#authme#settings#Settings.java
+25 : 25
+    MS_MUTABLE_ARRAY
+prev_optimizationBenchmarking-optimizationBenchmarking_6d438b_f1a471src#main#java#examples#org#optimizationBenchmarking#utils#graphics#GraphicsExample.java
+30 : 30
+prev_optimizationBenchmarking-optimizationBenchmarking_f1a471_0e1bb2src#main#java#examples#org#optimizationBenchmarking#utils#graphics#GraphicsExample.java
+32 : 32
+    MS_PKGPROTECT
+prev_julianhyde-optiq_e60ee3_f4b648src#main#java#org#eigenbase#sql#type#SqlTypeName.java
+88 : 88
+prev_TheCoder4eu-BootsFaces-OSP_262b14_6ea2a6src#main#java#net#bootsfaces#render#H.java
+173 : 173
+prev_TheCoder4eu-BootsFaces-OSP_262b14_6ea2a6src#main#java#net#bootsfaces#render#H.java
+169 : 169
+prev_TheCoder4eu-BootsFaces-OSP_262b14_6ea2a6src#main#java#net#bootsfaces#render#H.java
+174 : 174
+prev_TheCoder4eu-BootsFaces-OSP_262b14_6ea2a6src#main#java#net#bootsfaces#render#H.java
+170 : 170
+prev_TheCoder4eu-BootsFaces-OSP_262b14_6ea2a6src#main#java#net#bootsfaces#render#H.java
+172 : 172
+prev_TheCoder4eu-BootsFaces-OSP_3b207b_074c39src#main#java#net#bootsfaces#render#H.java
+175 : 175
+prev_TheCoder4eu-BootsFaces-OSP_3b207b_074c39src#main#java#net#bootsfaces#render#H.java
+169 : 169
+prev_TheCoder4eu-BootsFaces-OSP_3b207b_074c39src#main#java#net#bootsfaces#render#H.java
+172 : 172
+prev_TheCoder4eu-BootsFaces-OSP_3b207b_074c39src#main#java#net#bootsfaces#render#H.java
+173 : 173
+prev_TheCoder4eu-BootsFaces-OSP_3b207b_074c39src#main#java#net#bootsfaces#render#H.java
+171 : 171
+prev_TheCoder4eu-BootsFaces-OSP_b55074_210515src#main#java#net#bootsfaces#render#H.java
+171 : 171
+prev_TheCoder4eu-BootsFaces-OSP_b55074_210515src#main#java#net#bootsfaces#render#H.java
+175 : 175
+prev_TheCoder4eu-BootsFaces-OSP_b55074_210515src#main#java#net#bootsfaces#render#H.java
+173 : 173
+prev_TheCoder4eu-BootsFaces-OSP_b55074_210515src#main#java#net#bootsfaces#render#H.java
+172 : 172
+prev_TheCoder4eu-BootsFaces-OSP_b55074_210515src#main#java#net#bootsfaces#render#H.java
+174 : 174
+prev_TheCoder4eu-BootsFaces-OSP_b55074_210515src#main#java#net#bootsfaces#render#H.java
+169 : 169
+prev_TheCoder4eu-BootsFaces-OSP_f05180_8385b7src#main#java#net#bootsfaces#render#H.java
+174 : 174
+prev_TheCoder4eu-BootsFaces-OSP_f05180_8385b7src#main#java#net#bootsfaces#render#H.java
+169 : 169
+prev_TheCoder4eu-BootsFaces-OSP_f05180_8385b7src#main#java#net#bootsfaces#render#H.java
+171 : 171
+prev_TheCoder4eu-BootsFaces-OSP_f05180_8385b7src#main#java#net#bootsfaces#render#H.java
+170 : 170
+prev_TheCoder4eu-BootsFaces-OSP_f05180_8385b7src#main#java#net#bootsfaces#render#H.java
+172 : 172
+    MS_SHOULD_BE_FINAL
+prev_Activiti-Activiti_7dce14_94b753modules#activiti-engine#src#main#java#org#activiti#engine#impl#calendar#DurationBusinessCalendar.java
+22 : 22
+prev_Activiti-Activiti_90446c_2d592dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#calendar#DurationBusinessCalendar.java
+22 : 22
+prev_Activiti-Activiti_f6c242_fc85e3modules#activiti-engine#src#main#java#org#activiti#engine#impl#calendar#DurationBusinessCalendar.java
+22 : 22
+prev_ArcBees-gwtquery_c05283_678d43gwtquery-core#src#main#super#com#google#gwt#query#super#com#google#gwt#query#client#GQ.java
+29 : 29
+prev_BroadleafCommerce-BroadleafCommerce_413685_612fe8core#broadleaf-framework#src#main#java#org#broadleafcommerce#core#search#service#solr#SolrIndexServiceImpl.java
+59 : 59
+prev_Bukkit-Bukkit_0b3a14_184d57src#main#java#org#bukkit#fillr#Fillr.java
+9 : 9
+prev_Bukkit-Bukkit_105925_8e142esrc#main#java#org#bukkit#fillr#Fillr.java
+9 : 9
+prev_eXistence-TeeTime_088233_0b650csrc#main#java#teetime#framework#pipe#PipeFactoryRegistry.java
+12 : 12
+prev_eXistence-TeeTime_c583f8_49c92fsrc#main#java#teetime#framework#pipe#PipeFactoryRegistry.java
+10 : 10
+prev_IDPF-epubcheck_820b19_a5c54asrc#main#java#com#adobe#epubcheck#vocab#PackageVocabs.java
+66 : 66
+prev_sannies-mp4parser_6e3278_d72143src#main#java#com#googlecode#mp4parser#contentprotection#PlayReadyHeader.java
+25 : 25
+prev_SpigotMC-Spigot-API_0b3a14_184d57src#main#java#org#bukkit#fillr#Fillr.java
+9 : 9
+prev_SpigotMC-Spigot-API_105925_8e142esrc#main#java#org#bukkit#fillr#Fillr.java
+9 : 9
+    NM_CLASS_NAMING_CONVENTION
+prev_minusone13-InvoicingSystem_191470_9607bdsrc#main#java#businesslogic#salebillbl#salebillList.java
+3 : 3
+prev_minusone13-InvoicingSystem_667c1d_1a5283src#main#java#businesslogic#customerbl#customerList.java
+7 : 7
+    NM_CLASS_NOT_EXCEPTION
+prev_checkstyle-checkstyle_e7547b_d220d7src#test#resources#com#puppycrawl#tools#checkstyle#javadoc#InputTestNumberFormatException.java
+4 : 4
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREBadEntityException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREBadEntityTypeException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREBindException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CRECastException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREEnchantmentException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREFormatException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREIllegalArgumentException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREIncludeException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREIndexOverflowException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREInsufficientArgumentsException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREInsufficientPermissionException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidPluginException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidProcedureException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidWorldException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREIOException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CRELengthException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CRENotFoundException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CRENullPointerException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREPlayerOfflineException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREPluginChannelException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREPluginInternalException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CRERangeException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREReadOnlyException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREScoreboardException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CRESecurityException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREShellException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CRESQLException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREUnageableMobException.java
+6 : 6
+prev_EngineHub-CommandHelper_2100ea_92a989src#main#java#com#laytonsmith#core#exceptions#CRE#CREUntameableMobException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREBadEntityException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREBadEntityTypeException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREBindException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CRECastException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREEnchantmentException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREFormatException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREIllegalArgumentException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREIncludeException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREIndexOverflowException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREInsufficientArgumentsException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREInsufficientPermissionException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidPluginException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidProcedureException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidWorldException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREIOException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CRELengthException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CRENotFoundException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CRENullPointerException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREPlayerOfflineException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREPluginChannelException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREPluginInternalException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CRERangeException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREReadOnlyException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREScoreboardException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CRESecurityException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREShellException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CRESQLException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREUnageableMobException.java
+6 : 6
+prev_EngineHub-CommandHelper_6a2223_33e658src#main#java#com#laytonsmith#core#exceptions#CRE#CREUntameableMobException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREBadEntityException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREBadEntityTypeException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREBindException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CRECastException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREEnchantmentException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREFormatException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREIllegalArgumentException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREIncludeException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREIndexOverflowException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREInsufficientArgumentsException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREInsufficientPermissionException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidPluginException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidProcedureException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidWorldException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREIOException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CRELengthException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CRENotFoundException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CRENullPointerException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREPlayerOfflineException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREPluginChannelException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREPluginInternalException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CRERangeException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREReadOnlyException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREScoreboardException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CRESecurityException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREShellException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CRESQLException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREUnageableMobException.java
+6 : 6
+prev_EngineHub-CommandHelper_a97663_773f13src#main#java#com#laytonsmith#core#exceptions#CRE#CREUntameableMobException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREBadEntityException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREBadEntityTypeException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREBindException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CRECastException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREEnchantmentException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREFormatException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREIllegalArgumentException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREIncludeException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREIndexOverflowException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREInsufficientArgumentsException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREInsufficientPermissionException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidPluginException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidProcedureException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREInvalidWorldException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREIOException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CRELengthException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CRENotFoundException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CRENullPointerException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREPlayerOfflineException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREPluginChannelException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREPluginInternalException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CRERangeException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREReadOnlyException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREScoreboardException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CRESecurityException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREShellException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CRESQLException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREUnageableMobException.java
+6 : 6
+prev_EngineHub-CommandHelper_cd7172_ab76f4src#main#java#com#laytonsmith#core#exceptions#CRE#CREUntameableMobException.java
+6 : 6
+prev_ovgu-ccd-jchess_c3f4a0_bdca7bjchess#util#PixelCoordinateNotOnBoardException.java
+6 : 6
+    NM_SAME_SIMPLE_NAME_AS_SUPERCLASS
+prev_gwtbootstrap3-gwtbootstrap3_40790e_f5b339gwtbootstrap3#src#main#java#org#gwtbootstrap3#client#ui#ValueListBox.java
+42 : 52
+prev_gwtbootstrap3-gwtbootstrap3_985b26_357b70gwtbootstrap3#src#main#java#org#gwtbootstrap3#client#ui#ValueListBox.java
+42 : 52
+    OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE
+prev_ClemsonRSRG-RESOLVE_64c586_d41ac9src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.java
+499 : 499
+    OS_OPEN_STREAM
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#data#Location.java
+89 : 89
+    OS_OPEN_STREAM_EXCEPTION_PATH
+prev_ClemsonRSRG-RESOLVE_64c586_d41ac9src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.java
+499 : 499
+    RI_REDUNDANT_INTERFACES
+prev_cdi-spec-cdi-tck_08b25b_73b89cimpl#src#main#java#org#jboss#jsr299#tck#tests#event#observer#enterprise#IndirectStockWatcher.java
+21 : 21
+prev_cdi-spec-cdi-tck_08b25b_73b89cimpl#src#main#java#org#jboss#jsr299#tck#tests#event#observer#enterprise#LazyFarmer.java
+21 : 21
+    SA_FIELD_DOUBLE_ASSIGNMENT
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#InitItem.java
+75 : 75
+    SE_COMPARATOR_SHOULD_BE_SERIALIZABLE
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#proving2#model#PerVCProverModel.java
+1098 : 1107
+    SE_NO_SERIALVERSIONID
+prev_Activiti-Activiti_0ea44a_749e0fmodules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_16e877_a6698bmodules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_724655_206c08modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_7dce14_94b753modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_90446c_2d592dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_ad0c9e_36f30cmodules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_cac168_19fad0modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#IntermediateThrowNoneEventActivityBehavior.java
+15 : 15
+prev_Activiti-Activiti_cac168_19fad0modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#ManualTaskActivityBehavior.java
+23 : 23
+prev_Activiti-Activiti_cac168_19fad0modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#NoneStartEventActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_cac168_19fad0modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TaskActivityBehavior.java
+22 : 22
+prev_Activiti-Activiti_d3b514_31807dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+19 : 19
+prev_Activiti-Activiti_d626cc_0014d1modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_e57bd9_bc87a6modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_edec53_33ff3fmodules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_f6c242_fc85e3modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_Activiti-Activiti_fce83e_08c2b8modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#behavior#TransactionActivityBehavior.java
+21 : 21
+prev_ansell-owlapi_0b8d35_8e556coboformat#src#main#java#org#obolibrary#owl#LabelFunctionalFormat.java
+13 : 13
+prev_AugGroup-hr-db_411aa8_ad1a58src#main#java#com#aug#hrdb#interceptor#AuditInterceptor.java
+26 : 26
+prev_AugGroup-hr-db_d3b9d5_ea245dsrc#main#java#com#aug#hrdb#interceptor#AuditInterceptor.java
+26 : 26
+prev_cdi-spec-cdi-tck_663aa2_3089a2impl#src#main#java#org#jboss#jsr299#tck#tests#event#resolve#binding#BindingTypeABinding.java
+21 : 21
+prev_cdi-spec-cdi-tck_663aa2_3089a2impl#src#main#java#org#jboss#jsr299#tck#tests#extensions#bean#bytype#TameLiteral.java
+21 : 21
+prev_cdi-spec-cdi-tck_83a7e7_07365fimpl#src#main#java#org#jboss#cdi#tck#tests#definition#qualifier#TameLiteral.java
+21 : 21
+prev_cdi-spec-cdi-tck_a08b80_fe2cf9impl#src#main#java#org#jboss#jsr299#tck#tests#context#passivating#broken#enterpriseBeanWithNonPassivatingInjectedFieldInDecorator#BrokenDecorator.java
+26 : 26
+prev_LEDS-sincap-entities_69e43e_8b9a01src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+22 : 22
+prev_LEDS-sincap-entities_69e43e_8b9a01src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#InstituicaoNotificadora.java
+10 : 10
+prev_LEDS-sincap-entities_6adc1b_8dfb6csrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+16 : 16
+prev_LEDS-sincap-entities_706d25_4570aasrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+22 : 22
+prev_LEDS-sincap-entities_706d25_4570aasrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#InstituicaoNotificadora.java
+10 : 10
+prev_LEDS-sincap-entities_83a062_9977e8src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+21 : 21
+prev_LEDS-sincap-entities_acb6ca_de9889src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+21 : 21
+prev_LEDS-sincap-entities_c27272_01b57bsrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+22 : 22
+prev_LEDS-sincap-entities_c27272_01b57bsrc#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#InstituicaoNotificadora.java
+10 : 10
+prev_LEDS-sincap-entities_e711e4_232617src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+22 : 22
+prev_LEDS-sincap-entities_f15599_4f19f6src#main#java#br#ifes#leds#sincap#controleInterno#cln#cdp#AnalistaCNCDO.java
+21 : 21
+prev_lightblue-platform-lightblue-core_1160e7_458c9ametadata#src#main#java#com#redhat#lightblue#metadata#parser#ParserRegistry.java
+27 : 27
+prev_minusone13-InvoicingSystem_667c1d_1a5283src#main#java#businesslogic#customerbl#customerList.java
+7 : 7
+prev_minusone13-InvoicingSystem_6e1fb8_73a4d1src#main#java#data#commoditydata#StubCommodityList.java
+6 : 6
+prev_Omertron-api-themoviedb_28c814_8e11e9src#main#java#com#omertron#themoviedbapi#model#Genre.java
+28 : 28
+prev_Omertron-api-themoviedb_28c814_8e11e9src#main#java#com#omertron#themoviedbapi#model#keyword#Keyword.java
+29 : 29
+prev_Omertron-api-themoviedb_28c814_8e11e9src#main#java#com#omertron#themoviedbapi#model#movie#ProductionCompany.java
+29 : 29
+prev_owlcs-owlapi_0b8d35_8e556coboformat#src#main#java#org#obolibrary#owl#LabelFunctionalFormat.java
+13 : 13
+prev_SpoutDev-Spout_4e46cc_ce20acsrc#main#java#org#spout#math#Matrix4.java
+583 : 591
+    SIO_SUPERFLUOUS_INSTANCEOF
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#population#OldPopulator.java
+1750 : 1750
+    UCF_USELESS_CONTROL_FLOW
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#scope#ScopeID.java
+68 : 68
+    UG_SYNC_SET_UNSYNC_GET
+prev_jenkinsci-junit-plugin_520cba_905451src#main#java#hudson#tasks#junit#TestResultAction.java
+56 : 56
+    UPM_UNCALLED_PRIVATE_METHOD
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#population#OldPopulator.java
+1360 : 1361
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#scope#OldSymbolTable.java
+836 : 836
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyJavaTranslator.java
+4108 : 4108
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyJavaTranslator.java
+3723 : 3733
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyJavaTranslator.java
+2059 : 2059
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyJavaTranslator.java
+4101 : 4104
+prev_ClemsonRSRG-RESOLVE_da9566_62e445src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.java
+122 : 122
+    URF_UNREAD_FIELD
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#entry#TypeEntry.java
+52 : 52
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#location#DefinitionLocator.java
+54 : 54
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#proving2#proofsteps#LabelStep.java
+36 : 36
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#verification#PrintAssertions.java
+57 : 57
+prev_cloudera-cdk_531a3a_95fb35src#main#java#com#cloudera#data#hdfs#HDFSDataset.java
+14 : 14
+prev_cloudera-cdk_b9e00a_97027csrc#main#java#com#cloudera#data#hdfs#HDFSDataset.java
+14 : 14
+prev_cloudera-cdk_e16e06_c53778src#main#java#com#cloudera#data#hdfs#HDFSDataset.java
+13 : 13
+prev_cloudera-cdk_ff00ea_81d4a8src#main#java#com#cloudera#data#hdfs#HDFSDataset.java
+14 : 14
+prev_FallenMoonNetwork-CanaryLib_e6ac81_74f4d5src#main#java#net#canarymod#backbone#GroupAccess.java
+48 : 48
+    URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD
+prev_ArcBees-gwtquery_4b3e9b_65b737gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+34 : 34
+prev_ArcBees-gwtquery_4b3e9b_65b737gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+44 : 44
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+30 : 30
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+35 : 35
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+69 : 69
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+40 : 40
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+62 : 62
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+45 : 45
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+76 : 76
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+81 : 81
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#parsing#ColsToken.java
+54 : 54
+prev_dbsoftcombr-dbssdk_0b5827_8f2003src#main#java#br#com#dbsoft#startup#DBSApp.java
+138 : 138
+prev_dbsoftcombr-dbssdk_0b5827_8f2003src#main#java#br#com#dbsoft#startup#DBSApp.java
+141 : 141
+prev_GrizzlyNIO-grizzly-mirror_ff4d6f_62c731modules#http-server#src#main#java#org#glassfish#grizzly#http#server#filecache#FileCacheEntry.java
+263 : 263
+prev_kaazing-gateway_48083b_f4cbe4src#main#java#org#kaazing#gateway#server#windowsservice#ExtendedAdvapi32.java
+37 : 37
+prev_kaazing-gateway_48083b_f4cbe4src#main#java#org#kaazing#gateway#server#windowsservice#ExtendedAdvapi32.java
+36 : 36
+prev_kuujo-vertigo_aafc57_6432e1src#main#java#net#kuujo#vertigo#cluster#AbstractCluster.java
+33 : 33
+prev_mrniko-netty-socketio_623c9f_a0d2b1src#main#java#com#corundumstudio#socketio#transport#WebSocketTransport.java
+41 : 41
+prev_msokolov-lux_1406a5_8b7895src#main#java#lux#api#QueryStats.java
+39 : 39
+prev_msokolov-lux_8b85f7_ec3933src#main#java#lux#api#QueryStats.java
+35 : 35
+prev_msokolov-lux_b7b96e_e177fdsrc#main#java#lux#api#QueryStats.java
+118 : 118
+prev_msokolov-lux_b7b96e_e177fdsrc#main#java#lux#api#QueryStats.java
+116 : 116
+prev_msokolov-lux_d27d0d_bd7b6esrc#main#java#lux#api#QueryStats.java
+142 : 142
+prev_OpenTreeOfLife-taxomachine_70d238_fbfd49src#main#java#opentree#TaxonomyBase.java
+41 : 41
+prev_OpenTreeOfLife-treemachine_5bb246_fab7c3src#main#java#opentree#TaxonomyBase.java
+46 : 46
+prev_phax-as2-lib_f59f40_008f00src#main#java#com#helger#as2lib#client#AS2Response.java
+147 : 147
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+98 : 98
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+234 : 234
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+84 : 84
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+101 : 101
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+109 : 109
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+141 : 141
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+58 : 58
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+66 : 66
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+112 : 112
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+130 : 130
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+155 : 155
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+139 : 139
+prev_sannies-mp4parser_fa213e_bd5e43src#main#java#com#googlecode#mp4parser#h264#model#SliceHeader.java
+133 : 133
+prev_TeamExodus-external_gson_7a5632_8e3a24src#main#java#com#google#gson#Token.java
+1087 : 1087
+prev_TeamExodus-external_gson_7a5632_8e3a24src#main#java#com#google#gson#Token.java
+1085 : 1085
+prev_teanutella-AppEmployee_83fc11_3e082bsrc#main#java#ca#ulaval#glo4003#appemployee#web#dto#UserDto.java
+17 : 17
+    UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR
+prev_Activiti-Activiti_11bc1d_6c37a5modules#activiti-engine#src#main#java#org#activiti#engine#ProcessEngineConfiguration.java
+390 : 390
+prev_Activiti-Activiti_8646b1_b13e7cmodules#activiti-engine#src#main#java#org#activiti#engine#ProcessEngineConfiguration.java
+507 : 507
+prev_aherbert-GDSC-SMLM_e23773_c6e912src#main#java#gdsc#smlm#fitting#function#gaussian#FreeCircularGaussian2DFunction.java
+59 : 59
+prev_alibaba-druid_3eb0b6_aaf1f2src#main#java#com#alibaba#druid#sql#ast#statement#SQLJoinTableSource.java
+73 : 73
+prev_apache-archiva_f5fd46_58d71dmaven-repository-indexer#src#main#java#org#apache#maven#repository#indexing#AbstractRepositoryIndexer.java
+91 : 91
+prev_apache-archiva_f5fd46_58d71dmaven-repository-indexer#src#main#java#org#apache#maven#repository#indexing#AbstractRepositoryIndexer.java
+104 : 104
+prev_apache-pdfbox_4d4e29_e9e653preflight#src#main#java#org#apache#pdfbox#preflight#font#descriptor#FontDescriptorHelper.java
+55 : 55
+prev_FIWARE-Middleware-KIARA_d42abe_0cef58src#main#java#org#fiware#kiara#dynamic#impl#data#DynamicContainerImpl.java
+41 : 41
+prev_FIWARE-Middleware-KIARA_d42abe_0cef58src#main#java#org#fiware#kiara#dynamic#impl#data#DynamicContainerImpl.java
+92 : 92
+prev_graphhopper-graphhopper_4c19e0_49fbd7tools#src#main#java#com#graphhopper#tools#QueryTorture.java
+35 : 35
+prev_graphhopper-graphhopper_4c19e0_49fbd7tools#src#main#java#com#graphhopper#tools#QueryTorture.java
+36 : 36
+prev_graphhopper-graphhopper_6d8e7e_aa42adtools#src#main#java#com#graphhopper#tools#QueryTorture.java
+36 : 36
+prev_graphhopper-graphhopper_6d8e7e_aa42adtools#src#main#java#com#graphhopper#tools#QueryTorture.java
+35 : 35
+prev_mbosecke-pebble_045797_d4228esrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+27 : 27
+prev_mbosecke-pebble_045797_d4228esrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+20 : 20
+prev_mbosecke-pebble_057d69_1ccb4esrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+20 : 20
+prev_mbosecke-pebble_057d69_1ccb4esrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+27 : 27
+prev_mbosecke-pebble_1b464d_6ebceasrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+27 : 27
+prev_mbosecke-pebble_1b464d_6ebceasrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+20 : 20
+prev_mbosecke-pebble_2d9f7b_28db22src#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+20 : 20
+prev_mbosecke-pebble_2d9f7b_28db22src#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+27 : 27
+prev_mbosecke-pebble_57e397_da326asrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+20 : 20
+prev_mbosecke-pebble_57e397_da326asrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+27 : 27
+prev_mbosecke-pebble_6f7b1f_bde07csrc#main#java#com#mitchellbosecke#pebble#node#expression#NodeExpressionBinary.java
+23 : 23
+prev_mbosecke-pebble_7e0046_6e5994src#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+27 : 27
+prev_mbosecke-pebble_7e0046_6e5994src#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+20 : 20
+prev_mbosecke-pebble_c13417_2396b4src#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+27 : 27
+prev_mbosecke-pebble_c13417_2396b4src#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+20 : 20
+prev_mbosecke-pebble_d6a410_549bdesrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+20 : 20
+prev_mbosecke-pebble_d6a410_549bdesrc#main#java#com#mitchellbosecke#pebble#extension#AbstractNodeVisitor.java
+27 : 27
+prev_minusone13-InvoicingSystem_667c1d_1a5283src#main#java#businesslogic#customerbl#Customer.java
+67 : 67
+prev_plutext-docx4j_547d06_56ac6esrc#main#java#org#docx4j#convert#out#ModelConverter.java
+65 : 65
+prev_slipcor-pvparena_0df1a3_c78b23src#net#slipcor#pvparena#arena#Arena.java
+23 : 23
+prev_SophieKoonin-JavaDecaf_5b8507_545859src#main#java#ast#SimpleNode.java
+30 : 30
+prev_tomp2p-TomP2P_4a6971_6f2a7csrc#main#java#net#tomp2p#p2p#builder#DHTBuilder.java
+237 : 237
+prev_webbit-webbit_a307e8_33e7aesrc#main#java#org#webbitserver#handler#AbstractResourceHandler.java
+80 : 80
+prev_webbit-webbit_f98005_3ec690src#main#java#org#webbitserver#handler#AbstractResourceHandler.java
+80 : 80
+    UWF_UNWRITTEN_FIELD
+prev_basho-riak-java-client_4d59c2_cb2a5csrc#main#java#com#basho#riak#client#operations#StoreObject.java
+41 : 41
+prev_ClemsonRSRG-RESOLVE_9ee405_202d6dsrc#main#java#edu#clemson#cs#r2jt#absyn#InitItem.java
+119 : 119
+prev_FIWARE-Middleware-KIARA_4f7fb7_5d4c0dsrc#main#java#org#fiware#kiara#ps#publisher#Publisher.java
+13 : 13
+prev_FIWARE-Middleware-KIARA_ecc6c9_132cb4src#main#java#org#fiware#kiara#ps#publisher#Publisher.java
+13 : 13
+prev_graphhopper-graphhopper_3200cb_a2090csrc#main#java#com#graphhopper#ui#MiniGraphUI.java
+54 : 54
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#SearchResult.java
+27 : 27
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#SearchResult.java
+32 : 32
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#SearchResult.java
+27 : 27
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#SearchResult.java
+32 : 32
+prev_lrozenblyum-chess_526c4d_14ab03src#main#java#com#leokom#chess#gui#winboard#WinboardPlayer.java
+14 : 14
+prev_notthebees-languagegames_7b767e_ad7cefsrc#test#java#paddy#conceptual#TestInteractAgentsIterationProcedure.java
+17 : 17
+prev_rhuss-docker-maven-plugin_060338_bb6123src#main#java#org#jolokia#docker#maven#WatchMojo.java
+54 : 54
+prev_rhuss-docker-maven-plugin_786ebd_e5f01asrc#main#java#org#jolokia#docker#maven#WatchMojo.java
+53 : 53
+prev_rhuss-docker-maven-plugin_84a19b_0ae55asrc#main#java#org#jolokia#docker#maven#WatchMojo.java
+54 : 54
+prev_rhuss-docker-maven-plugin_bb97f1_f236dasrc#main#java#org#jolokia#docker#maven#WatchMojo.java
+53 : 53
+prev_rhuss-docker-maven-plugin_d33bc9_895828src#main#java#org#jolokia#docker#maven#WatchMojo.java
+58 : 58
+prev_rhuss-docker-maven-plugin_e0e618_ab3f52src#main#java#org#jolokia#docker#maven#WatchMojo.java
+52 : 52
+prev_rhuss-docker-maven-plugin_f8e572_8c800csrc#main#java#org#jolokia#docker#maven#WatchMojo.java
+52 : 52
+    UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD
+prev_aht-group-ofx_0e06e8_180211core#src#main#java#org#openfuxml#renderer#latex#AbstractOfxLatexRenderer.java
+113 : 113
+prev_kotcrab-VisEditor_38fd11_2c6ed3src#pl#kotcrab#vis#sceneeditor#EditorState.java
+69 : 69
+prev_kotcrab-VisEditor_94e9c9_d892d3src#main#java#pl#kotcrab#vis#sceneeditor#SceneEditorConfig.java
+99 : 99
+prev_mebigfatguy-fb-contrib_ed3c9f_72b7ddsrc#com#mebigfatguy#fbcontrib#utils#Values.java
+312 : 312
+prev_mebigfatguy-fb-contrib_ed3c9f_72b7ddsrc#com#mebigfatguy#fbcontrib#utils#Values.java
+237 : 237
+prev_nuxeo-nuxeo-platform-document-routing_1909c9_90a357nuxeo-platform-document-routing-core#src#main#java#org#nuxeo#ecm#platform#routing#core#impl#GraphNode.java
+179 : 179
+prev_ovgu-ccd-jchess_033a9a_1f173djchess#gui#GameTab.java
+128 : 128
+prev_ovgu-ccd-jchess_17eeb8_3517dbjchess#gui#GameTab.java
+128 : 128
+prev_ovgu-ccd-jchess_191416_0831a9jchess#gui#GameTab.java
+128 : 128
+prev_ovgu-ccd-jchess_77796f_679f5djchess#gui#GameTab.java
+128 : 128
+prev_ovgu-ccd-jchess_adfe39_d8d917jchess#gui#GameTab.java
+128 : 128
+prev_phax-as2-lib_5b843a_bc7af7src#main#java#com#helger#as2lib#client#AS2ConnectionSettings.java
+128 : 128
+prev_phax-as2-lib_5b843a_bc7af7src#main#java#com#helger#as2lib#client#AS2ConnectionSettings.java
+129 : 129
+prev_SpigotMC-BungeeCord_e12bc1_4fb857proxy#src#main#java#net#md_5#bungee#UserConnection.java
+25 : 25
+prev_veraPDF-veraPDF-library_23b737_3be2d4modelimplementation#src#main#java#org#verapdf#model#impl#pb#xmp#schemas#PBXMPPredefinedSchema.java
+35 : 35
+prev_veraPDF-veraPDF-library_8b1871_0d8547modelimplementation#src#main#java#org#verapdf#model#impl#pb#xmp#schemas#PBXMPPredefinedSchema.java
+35 : 35
+prev_veraPDF-veraPDF-library_c68658_013c62modelimplementation#src#main#java#org#verapdf#model#impl#pb#xmp#schemas#PBXMPPredefinedSchema.java
+35 : 35
+prev_veraPDF-veraPDF-library_c7ff64_e2ccb4modelimplementation#src#main#java#org#verapdf#model#impl#pb#xmp#schemas#PBXMPPredefinedSchema.java
+35 : 35
+prev_veraPDF-veraPDF-library_eda06a_0f8312modelimplementation#src#main#java#org#verapdf#model#impl#pb#xmp#schemas#PBXMPPredefinedSchema.java
+35 : 35
+    WMI_WRONG_MAP_ITERATOR
+prev_ClemsonRSRG-RESOLVE_f2823e_c15b01src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.java
+124 : 124
+prev_TridentSDK-TridentSDK_98d727_daa2f0src#main#java#net#tridentsdk#util#WeakEntity.java
+593 : 593
+-1
+    CI_CONFUSED_INHERITANCE
+prev_allanbank-mongodb-async-driver_98a1be_348fccsrc#main#java#com#allanbank#mongodb#connection#FutureCallback.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_98a1be_348fccsrc#main#java#com#allanbank#mongodb#connection#FutureCallback.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_98a901_e8cac9src#main#java#com#allanbank#mongodb#builder#AggregationGeoNear.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_98a901_e8cac9src#main#java#com#allanbank#mongodb#builder#GeoJson.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_a264bd_c87300src#main#java#com#allanbank#mongodb#builder#AggregationGeoNear.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_a264bd_c87300src#main#java#com#allanbank#mongodb#builder#GeoJson.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#bson#io#SizeOfVisitor.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#commands#Distinct.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#commands#Find.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#commands#FindAndModify.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#commands#GroupBy.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#commands#MapReduce.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#util#IOUtils.java
+-1 : -1
+prev_ansell-owlapi_0b2270_b20fe9oboformat#src#main#java#org#obolibrary#oboformat#writer#OBOFormatWriter.java
+-1 : -1
+prev_ansell-owlapi_3221dd_f67b95oboformat#src#main#java#org#obolibrary#oboformat#writer#OBOFormatWriter.java
+-1 : -1
+prev_apache-commons-fileupload_0ddfcd_4a1e17src#main#java#org#apache#commons#fileupload#util#mime#QuotedPrintableDecoder.java
+-1 : -1
+prev_apache-commons-fileupload_364a50_be46easrc#main#java#org#apache#commons#fileupload#util#mime#QuotedPrintableDecoder.java
+-1 : -1
+prev_datanucleus-datanucleus-core_5f1d15_1fdc5bsrc#java#org#datanucleus#enhancer#EnhanceUtils.java
+-1 : -1
+prev_FasterXML-jackson-core_4646ed_a8bc72src#main#java#com#fasterxml#jackson#core#io#IOContext.java
+-1 : -1
+prev_FasterXML-jackson-core_594a75_e574b3src#main#java#com#fasterxml#jackson#core#json#UTF8StreamJsonParser.java
+-1 : -1
+prev_FasterXML-jackson-databind_4312a2_5d2b25src#main#java#com#fasterxml#jackson#databind#deser#DeserializerCache.java
+-1 : -1
+prev_FasterXML-jackson-databind_726b6e_e2abd0src#main#java#com#fasterxml#jackson#databind#cfg#BaseSettings.java
+-1 : -1
+prev_FasterXML-jackson-databind_726b6e_e2abd0src#main#java#com#fasterxml#jackson#databind#deser#impl#PropertyBasedCreator.java
+-1 : -1
+prev_FasterXML-jackson-databind_726b6e_e2abd0src#main#java#com#fasterxml#jackson#databind#util#TokenBuffer.java
+-1 : -1
+prev_FasterXML-jackson-databind_73f54a_be2bb2src#main#java#com#fasterxml#jackson#databind#cfg#BaseSettings.java
+-1 : -1
+prev_FasterXML-jackson-databind_73f54a_be2bb2src#main#java#com#fasterxml#jackson#databind#introspect#AnnotatedField.java
+-1 : -1
+prev_FasterXML-jackson-databind_73f54a_be2bb2src#main#java#com#fasterxml#jackson#databind#type#TypeFactory.java
+-1 : -1
+prev_FasterXML-jackson-databind_9317e5_b830c5src#main#java#com#fasterxml#jackson#databind#deser#impl#MethodProperty.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_8a9034_94b156src#main#java#fr#ens#transcriptome#eoulsan#core#SimpleContext.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_b2c3c1_797a14src#main#java#fr#ens#transcriptome#eoulsan#core#SimpleContext.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_defb0f_23785bsrc#main#java#fr#ens#transcriptome#eoulsan#core#workflow#WorkflowContext.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_e25f80_407ba1src#main#java#fr#ens#transcriptome#eoulsan#core#workflow#WorkflowContext.java
+-1 : -1
+prev_GrizzlyNIO-grizzly-mirror_df8a10_1007admodules#grizzly#src#main#java#org#glassfish#grizzly#nio#transport#UDPNIOTransport.java
+-1 : -1
+prev_imglib-imglib2_15fec0_2e6fb7core#src#main#java#net#imglib2#type#numeric#ARGBType.java
+-1 : -1
+prev_imglib-imglib2_772e25_65277bsrc#main#java#net#imglib2#type#numeric#integer#LongType.java
+-1 : -1
+prev_imglib-imglib2_af91a5_c70ce9core#src#main#java#net#imglib2#RandomAccessibleOnRealRandomAccessible.java
+-1 : -1
+prev_imglib-imglib2_eeab2b_1fb58ccore#src#main#java#net#imglib2#converter#read#ConvertedRandomAccess.java
+-1 : -1
+prev_imglib-imglib2_eeab2b_1fb58ccore#src#main#java#net#imglib2#ExtendedRandomAccessibleInterval.java
+-1 : -1
+prev_jankotek-MapDB_05f432_1c9bf3src#main#java#org#mapdb#ByteBuffer2.java
+-1 : -1
+prev_jankotek-MapDB_5cbae4_ab1c6esrc#main#java#org#mapdb#Volume.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#BTreeMap.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#BTreeMap.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#lucene#index#TestIndexDataProvider.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#lucene#scoring#clarity#DefaultClarityScore.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#lucene#scoring#clarity#ImprovedClarityScore.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#lucene#scoring#clarity#ImprovedClarityScore.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#lucene#scoring#clarity#SimplifiedClarityScore.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#lucene#scoring#clarity#SimplifiedClarityScore.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#Persistence.java
+-1 : -1
+prev_JensBee-QueryClarity_529a32_a067bdsrc#main#java#de#unihildesheim#Persistence.java
+-1 : -1
+prev_JensBee-QueryClarity_dc5848_c1bd49src#main#java#de#unihildesheim#iw#lucene#index#DirectIndexDataProvider.java
+-1 : -1
+prev_jeremylong-DependencyCheck_00a35c_d6e387src#main#java#org#owasp#dependencycheck#data#lucene#VersionTokenizingFilter.java
+-1 : -1
+prev_jeremylong-DependencyCheck_13eb2b_772b0csrc#main#java#org#owasp#dependencycheck#data#lucene#VersionTokenizingFilter.java
+-1 : -1
+prev_msokolov-lux_019449_c246dasrc#main#java#lux#index#analysis#XmlTextTokenStream.java
+-1 : -1
+prev_msokolov-lux_3ac888_5408eesrc#main#java#lux#index#analysis#XmlTextTokenStream.java
+-1 : -1
+prev_myui-hivemall_03ad62_eb9824core#src#main#java#hivemall#common#ConversionState.java
+-1 : -1
+prev_myui-hivemall_03ad62_eb9824core#src#main#java#hivemall#utils#collections#OpenHashTable.java
+-1 : -1
+prev_myui-hivemall_03ad62_eb9824core#src#main#java#hivemall#utils#io#FastByteArrayInputStream.java
+-1 : -1
+prev_owlcs-owlapi_0b2270_b20fe9oboformat#src#main#java#org#obolibrary#oboformat#writer#OBOFormatWriter.java
+-1 : -1
+prev_owlcs-owlapi_3221dd_f67b95oboformat#src#main#java#org#obolibrary#oboformat#writer#OBOFormatWriter.java
+-1 : -1
+prev_perfectsense-dari_0650ca_bae484util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_0650ca_bae484util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_0650ca_bae484util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_0650ca_bae484util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_0d13d0_bbe905util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_0d13d0_bbe905util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_0d13d0_bbe905util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_0d13d0_bbe905util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_3b5950_fff36autil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_3b5950_fff36autil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_3b5950_fff36autil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_3b5950_fff36autil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_3feda7_e2fe7butil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_3feda7_e2fe7butil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_3feda7_e2fe7butil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_3feda7_e2fe7butil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_407b5b_1e7f6futil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_407b5b_1e7f6futil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_407b5b_1e7f6futil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_407b5b_1e7f6futil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_4348ea_534f66util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_4348ea_534f66util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_4348ea_534f66util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_4348ea_534f66util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_443eec_1133bcutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_443eec_1133bcutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_443eec_1133bcutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_443eec_1133bcutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_493d4c_fc3525util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_493d4c_fc3525util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_493d4c_fc3525util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_493d4c_fc3525util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_4d578e_d01932util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_4d578e_d01932util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_4d578e_d01932util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_4d578e_d01932util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_674489_17da2eutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_674489_17da2eutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_674489_17da2eutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_674489_17da2eutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_70dbb9_ee4b75util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_70dbb9_ee4b75util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_70dbb9_ee4b75util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_70dbb9_ee4b75util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_7317b7_72698eutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_7317b7_72698eutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_7317b7_72698eutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_743d6d_cdfb1dutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_743d6d_cdfb1dutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_743d6d_cdfb1dutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_743d6d_cdfb1dutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_7bd889_9f62acutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_7bd889_9f62acutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_7bd889_9f62acutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_7bd889_9f62acutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_954c97_897019util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_954c97_897019util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_954c97_897019util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_954c97_897019util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_97ef7c_4d7401util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_97ef7c_4d7401util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_97ef7c_4d7401util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_97ef7c_4d7401util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_99b1d8_59385eutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_99b1d8_59385eutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_99b1d8_59385eutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_99b1d8_59385eutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_9d26db_d0badeutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_9d26db_d0badeutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_9d26db_d0badeutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_9d26db_d0badeutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_9e8f38_9c7a55util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_9e8f38_9c7a55util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_9e8f38_9c7a55util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_9e8f38_9c7a55util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_a85606_97d787util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_a85606_97d787util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_a85606_97d787util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_a85606_97d787util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_ab0e3a_2d3b35util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_ab0e3a_2d3b35util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_ab0e3a_2d3b35util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_ab0e3a_2d3b35util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_b1dd68_38e97autil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_b1dd68_38e97autil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_b1dd68_38e97autil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_b1dd68_38e97autil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_b37d2f_d3fa3autil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_b37d2f_d3fa3autil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_b37d2f_d3fa3autil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_b37d2f_d3fa3autil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_b7a3e0_ebadecutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_b7a3e0_ebadecutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_b7a3e0_ebadecutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_b7a3e0_ebadecutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_bdfb14_5d0fddutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_bdfb14_5d0fddutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_bdfb14_5d0fddutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_bdfb14_5d0fddutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_bf5f03_4d11f2util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_bf5f03_4d11f2util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_bf5f03_4d11f2util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_bf5f03_4d11f2util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_c6f2e2_c568ffutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_c6f2e2_c568ffutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_c6f2e2_c568ffutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_c6f2e2_c568ffutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_d1d982_f87574util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_d1d982_f87574util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_d1d982_f87574util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_d1d982_f87574util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_d2c826_cd65e6util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_d2c826_cd65e6util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_d2c826_cd65e6util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_d2c826_cd65e6util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_ddc6eb_6233bfutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_ddc6eb_6233bfutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_ddc6eb_6233bfutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_ddc6eb_6233bfutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_e16902_c6ca78util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_e16902_c6ca78util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_e16902_c6ca78util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_e16902_c6ca78util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_e1af9d_e5295dutil#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_e1af9d_e5295dutil#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_e1af9d_e5295dutil#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_e1af9d_e5295dutil#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_eda3de_3bbe51util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_eda3de_3bbe51util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_eda3de_3bbe51util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_eda3de_3bbe51util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_f3eb97_5bffe4util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_f3eb97_5bffe4util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_f3eb97_5bffe4util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_f3eb97_5bffe4util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_perfectsense-dari_f56822_6f3e52util#src#main#java#com#psddev#dari#util#AuthenticationPolicy.java
+-1 : -1
+prev_perfectsense-dari_f56822_6f3e52util#src#main#java#com#psddev#dari#util#MailProvider.java
+-1 : -1
+prev_perfectsense-dari_f56822_6f3e52util#src#main#java#com#psddev#dari#util#PasswordPolicy.java
+-1 : -1
+prev_perfectsense-dari_f56822_6f3e52util#src#main#java#com#psddev#dari#util#SmsProvider.java
+-1 : -1
+prev_rasto-lcmc_07b20c_656559src#main#java#lcmc#gui#resources#CRMInfo.java
+-1 : -1
+prev_rasto-lcmc_672912_cd9023src#main#java#lcmc#gui#resources#CRMInfo.java
+-1 : -1
+prev_simon-eastwood-DependencyCheckCM_193bba_e307cesrc#main#java#org#owasp#dependencycheck#data#lucene#VersionTokenizingFilter.java
+-1 : -1
+prev_simon-eastwood-DependencyCheckCM_836c1b_ab27a7src#main#java#org#owasp#dependencycheck#data#lucene#VersionTokenizingFilter.java
+-1 : -1
+prev_sk89q-CommandBook_2039e3_8d4224src#main#java#com#sk89q#commandbook#CommandBook.java
+-1 : -1
+prev_TeamExodus-external_gson_7a5632_8e3a24src#main#java#com#google#gson#SimpleCharStream.java
+-1 : -1
+prev_xetorthio-jedis_aed824_f9e788src#main#java#redis#clients#util#RedisOutputStream.java
+-1 : -1
+    CO_ABSTRACT_SELF
+prev_protegeproject-swrlapi_1b924c_232b58src#main#java#org#swrlapi#sqwrl#values#SQWRLResultValue.java
+-1 : -1
+    DMI_COLLECTION_OF_URLS
+prev_cismet-cismet-gui-commons_03b9eb_7c65a1src#main#java#de#cismet#security#handler#HTTPBasedAccessHandler.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHRepository.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHRepository.java
+-1 : -1
+prev_SomMeri-less4j_f87f95_1d10easrc#main#java#com#github#sommeri#less4j#core#compiler#stages#SimpleImportsSolver.java
+-1 : -1
+    EQ_ABSTRACT_SELF
+prev_airlift-airlift_dd0c0a_a06897src#main#java#com#facebook#presto#Cursor.java
+-1 : -1
+    HE_SIGNATURE_DECLARES_HASHING_OF_UNHASHABLE_CLASS
+prev_jankotek-MapDB_f4c4a0_e7bc8bsrc#main#java#org#mapdb#AsyncWriteEngine.java
+-1 : -1
+    JCIP_FIELD_ISNT_FINAL_IN_IMMUTABLE_CLASS
+prev_mtedone-podam_26b100_e26a0fsrc#main#java#uk#co#jemos#podam#api#PodamFactoryImpl.java
+-1 : -1
+prev_mtedone-podam_37ffb4_a80d18src#main#java#uk#co#jemos#podam#api#PodamFactoryImpl.java
+-1 : -1
+prev_mtedone-podam_4443d0_c27e77src#main#java#uk#co#jemos#podam#api#PodamFactoryImpl.java
+-1 : -1
+prev_mtedone-podam_5c0d09_c6bf1csrc#main#java#uk#co#jemos#podam#api#PodamFactoryImpl.java
+-1 : -1
+prev_mtedone-podam_84270a_a87249src#main#java#uk#co#jemos#podam#api#PodamFactoryImpl.java
+-1 : -1
+prev_mtedone-podam_d9eb9b_1e68efsrc#main#java#uk#co#jemos#podam#api#PodamFactoryImpl.java
+-1 : -1
+prev_void256-nifty-gui_a98255_cda25enifty-core#src#main#java#de#lessvoid#nifty#tools#SizeValue.java
+-1 : -1
+    ME_MUTABLE_ENUM_FIELD
+prev_Xephi-AuthMeReloaded_6422f9_16a69dsrc#main#java#fr#xephi#authme#permission#PermissionsManager.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_83e5d7_82bf0fsrc#main#java#fr#xephi#authme#permission#PermissionsManager.java
+-1 : -1
+    MF_CLASS_MASKS_FIELD
+prev_Activiti-Activiti_0ea44a_749e0fmodules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#SubmitTaskFormCmd.java
+-1 : -1
+prev_Activiti-Activiti_16e877_a6698bmodules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#SubmitTaskFormCmd.java
+-1 : -1
+prev_Activiti-Activiti_542d1e_88f123modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#parser#BpmnParse.java
+-1 : -1
+prev_Activiti-Activiti_649746_dbff76modules#activiti-engine#src#main#java#org#activiti#engine#impl#ProcessInstanceQueryImpl.java
+-1 : -1
+prev_Activiti-Activiti_724655_206c08modules#activiti-engine#src#main#java#org#activiti#engine#impl#AbstractQuery.java
+-1 : -1
+prev_Activiti-Activiti_7dce14_94b753modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#helper#MessageThrowingEventListener.java
+-1 : -1
+prev_Activiti-Activiti_90446c_2d592dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#SubmitTaskFormCmd.java
+-1 : -1
+prev_Activiti-Activiti_92f723_3e6b34modules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ProcessDefinitionEntity.java
+-1 : -1
+prev_Activiti-Activiti_ad0c9e_36f30cmodules#activiti-engine#src#main#java#org#activiti#engine#impl#AbstractQuery.java
+-1 : -1
+prev_Activiti-Activiti_d626cc_0014d1modules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#SubmitTaskFormCmd.java
+-1 : -1
+prev_Activiti-Activiti_e57bd9_bc87a6modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#helper#MessageThrowingEventListener.java
+-1 : -1
+prev_Activiti-Activiti_edec53_33ff3fmodules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ProcessDefinitionEntity.java
+-1 : -1
+prev_Activiti-Activiti_f6c242_fc85e3modules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#SubmitTaskFormCmd.java
+-1 : -1
+prev_Activiti-Activiti_fce83e_08c2b8modules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#helper#MessageThrowingEventListener.java
+-1 : -1
+prev_buddycloud-buddycloud-server-java_581f6a_9b0628src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#get#NodeConfigureGet.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerPortalEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_380b5c_0b03f7src#main#java#org#bukkit#event#player#PlayerBlockItemEvent.java
+-1 : -1
+prev_chapmajs-shiro_087bbe_539f76src#org#jsecurity#web#tags#PrincipalTag.java
+-1 : -1
+prev_chapmajs-shiro_667ebd_a8c4a4src#org#jsecurity#web#attr#AbstractWebAttribute.java
+-1 : -1
+prev_digipost-digipost-api-client-java_0bda96_6e19c7src#main#java#no#digipost#api#client#representations#print#PrintMessage.java
+-1 : -1
+prev_digipost-digipost-api-client-java_44ae2e_14a0adsrc#main#java#no#digipost#api#client#representations#print#PrintMessage.java
+-1 : -1
+prev_fcrepo4-fcrepo4_158f16_2e7fe7fcrepo-dc#src#main#java#org#fcrepo#generator#DublinCore.java
+-1 : -1
+prev_fcrepo4-fcrepo4_395186_01a2b1fcrepo-webhooks#src#main#java#org#fcrepo#webhooks#FedoraWebhooks.java
+-1 : -1
+prev_jankotek-MapDB_a302a8_dbe4fesrc#main#java#org#mapdb#StoreWAL.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#lucene#scoring#clarity#SimplifiedClarityScore.java
+-1 : -1
+prev_nuxeo-nuxeo-chemistry_79fb13_05c1ffnuxeo-opencmis-tests#src#test#java#org#nuxeo#ecm#core#opencmis#impl#CmisSuiteSession.java
+-1 : -1
+prev_rhuss-docker-maven-plugin_65f42c_8c423asrc#main#java#org#jolokia#docker#maven#BuildMojo.java
+-1 : -1
+prev_sannies-mp4parser_e15acd_db53c5src#main#java#com#coremedia#iso#IsoFile.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerPortalEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_380b5c_0b03f7src#main#java#org#bukkit#event#player#PlayerBlockItemEvent.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_246cea_0bf9a1plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#SingleColumnCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_487abb_1fe6c6plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#FuzzyCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_487abb_1fe6c6plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#MatchCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_487abb_1fe6c6plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#PrefixCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_487abb_1fe6c6plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#RangeCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_487abb_1fe6c6plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#WildcardCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_8951d4_688ec9plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#ContainsCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_8951d4_688ec9plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#FuzzyCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_8951d4_688ec9plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#MatchCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_8951d4_688ec9plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#PrefixCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_8951d4_688ec9plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#RegexpCondition.java
+-1 : -1
+prev_Stratio-cassandra-lucene-index_8951d4_688ec9plugin#src#main#java#com#stratio#cassandra#lucene#search#condition#WildcardCondition.java
+-1 : -1
+prev_telefonicaid-fiware-cygnus_d87281_adc7d9src#main#java#com#telefonica#iot#cygnus#sinks#OrionMongoBaseSink.java
+-1 : -1
+prev_twilio-twilio-java_6e52b6_8d9c16src#main#java#com#twilio#sdk#taskrouter#TaskRouterCapability.java
+-1 : -1
+prev_veraPDF-veraPDF-library_c7ff64_e2ccb4modelimplementation#src#main#java#org#verapdf#model#impl#pb#xmp#schemas#PBXMPPredefinedSchema.java
+-1 : -1
+    MS_CANNOT_BE_FINAL
+prev_aherbert-GDSC-SMLM_b6538a_2db8f3src#main#java#gdsc#smlm#ij#utils#Utils.java
+-1 : -1
+prev_BattleNight-BattleNight-Core_1ce264_a60ea2src#main#java#me#limebyte#battlenight#core#BattleNight.java
+-1 : -1
+prev_BattleNight-BattleNight-Core_295ce8_e9231asrc#main#java#me#limebyte#battlenight#core#BattleNight.java
+-1 : -1
+prev_BattleNight-BattleNight-Core_3a4356_666d6csrc#main#java#me#limebyte#battlenight#core#BattleNight.java
+-1 : -1
+prev_BattleNight-BattleNight-Core_53ed8e_b6dbd1src#main#java#me#limebyte#battlenight#core#BattleNight.java
+-1 : -1
+prev_BattleNight-BattleNight-Core_e9231a_a63af4src#main#java#me#limebyte#battlenight#core#BattleNight.java
+-1 : -1
+prev_ClemsonRSRG-RESOLVE_cdeb70_e13e1asrc#main#java#edu#clemson#cs#r2jt#ResolveCompiler.java
+-1 : -1
+prev_ClemsonRSRG-RESOLVE_d40c02_a996acsrc#main#java#edu#clemson#cs#r2jt#ResolveCompiler.java
+-1 : -1
+prev_figarocms-cucumber-jvm-fixtures_f8976f_edb797src#main#java#fixtures#common#transformers#AbstractDataTableBuilder.java
+-1 : -1
+prev_kotcrab-VisEditor_c2157c_d8a88csrc#main#java#pl#kotcrab#vis#sceneeditor#SceneEditorConfig.java
+-1 : -1
+prev_kotcrab-VisEditor_d8a88c_38fd11src#pl#kotcrab#vis#sceneeditor#SceneEditorConfig.java
+-1 : -1
+prev_mafagafogigante-dungeon_af643b_c60ff8src#main#java#org#dungeon#game#GameData.java
+-1 : -1
+prev_mafagafogigante-dungeon_e20f68_7c2d68src#main#java#org#dungeon#game#GameData.java
+-1 : -1
+prev_mafagafogigante-dungeon_e9ac18_c367f7src#main#java#org#dungeon#game#GameData.java
+-1 : -1
+prev_openpnp-openpnp_9f6532_800eecsrc#main#java#org#openpnp#gui#MainFrame.java
+-1 : -1
+prev_plutext-docx4j_b403cc_9d15a3src#main#java#org#docx4j#XmlUtils.java
+-1 : -1
+prev_rasto-lcmc_227005_94d58esrc#main#java#lcmc#LCMC.java
+-1 : -1
+prev_sdl-Testy_c077e3_4d851bsrc#main#java#com#sdl#selenium#web#WebLocator.java
+-1 : -1
+prev_sugarcrm-candybean_187691_1bc68csrc#main#java#com#sugarcrm#candybean#automation#Candybean.java
+-1 : -1
+prev_sugarcrm-candybean_564541_cda4d6src#main#java#com#sugarcrm#candybean#automation#Candybean.java
+-1 : -1
+prev_tastybento-askyblock_340671_3d8c98src#com#wasteofplastic#askyblock#Settings.java
+-1 : -1
+prev_tubav-fiteagle_47ed2a_20e3a1core#src#main#java#org#fiteagle#core#persistence#SQLiteDatabase.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_4324a1_5576b1src#main#java#fr#xephi#authme#settings#Settings.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_638374_81de64src#main#java#fr#xephi#authme#settings#Settings.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_69a09a_9ec2d6src#main#java#fr#xephi#authme#settings#Settings.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_8b08b1_8fe000src#main#java#fr#xephi#authme#settings#Settings.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_923020_b7ede1src#main#java#fr#xephi#authme#settings#Settings.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_a8f3a4_35d73bsrc#main#java#fr#xephi#authme#settings#Settings.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_c288d3_f698c9src#main#java#fr#xephi#authme#settings#Settings.java
+-1 : -1
+    MS_PKGPROTECT
+prev_apache-wss4j_afb2b1_63f1bfsrc#org#apache#ws#security#components#crypto#CryptoBase.java
+-1 : -1
+prev_ArcBees-gwtquery_4be89b_8a4528gwtquery-core#src#main#java#com#google#gwt#query#client#css#CSS.java
+-1 : -1
+prev_BattleNight-BattleNight-Core_1ce264_a60ea2src#main#java#me#limebyte#battlenight#core#util#Configuration.java
+-1 : -1
+prev_BattleNight-BattleNight-Core_295ce8_e9231asrc#main#java#me#limebyte#battlenight#core#util#Configuration.java
+-1 : -1
+prev_biojava-biojava_c01faa_1fd8e7biojava3-aa-prop#src#main#java#org#biojava3#aaproperties#Constraints.java
+-1 : -1
+prev_dankurka-mgwt_521c03_e1a6f7src#main#java#com#googlecode#mgwt#dom#client#event#animation#AnimationEndEvent.java
+-1 : -1
+prev_dankurka-mgwt_521c03_e1a6f7src#main#java#com#googlecode#mgwt#dom#client#event#animation#TransitionEndEvent.java
+-1 : -1
+prev_dbsoftcombr-dbssdk_0b5827_8f2003src#main#java#br#com#dbsoft#startup#DBSApp.java
+-1 : -1
+prev_eileenzheng-playground_71ca2a_ab8c16vitals#src#main#java#com#vitals#WebDriverListener.java
+-1 : -1
+prev_EngineHub-CommandHelper_1ec116_f8953esrc#main#java#com#laytonsmith#commandhelper#CommandHelperPlugin.java
+-1 : -1
+prev_figarocms-cucumber-jvm-fixtures_ffb4bf_4fea54src#main#java#fixtures#common#transformers#AbstractDataTableBuilder.java
+-1 : -1
+prev_JensBee-QueryClarity_053a02_3a4f33src#main#java#de#unihildesheim#iw#lucene#index#TestIndexDataProvider.java
+-1 : -1
+prev_JensBee-QueryClarity_529a32_a067bdsrc#main#java#de#unihildesheim#lucene#index#TestIndexDataProvider.java
+-1 : -1
+prev_jensnerche-plantuml_d0f090_aebe49src#net#sourceforge#plantuml#graph2#RectanglesCollection.java
+-1 : -1
+prev_JolantaWojcik-biojavaOwn_c01faa_1fd8e7biojava3-aa-prop#src#main#java#org#biojava3#aaproperties#Constraints.java
+-1 : -1
+prev_kotcrab-VisEditor_38fd11_2c6ed3src#pl#kotcrab#vis#sceneeditor#SceneEditorConfig.java
+-1 : -1
+prev_liferay-liferay-maven-support_857591_e4a1adplugins#liferay-maven-plugin#src#main#java#com#liferay#maven#plugins#AbstractLiferayMojo.java
+-1 : -1
+prev_mafagafogigante-dungeon_a38a92_b2fe78src#main#java#org#dungeon#game#GameData.java
+-1 : -1
+prev_mafagafogigante-dungeon_e40e2a_169c11src#main#java#org#dungeon#game#GameData.java
+-1 : -1
+prev_mafagafogigante-dungeon_e7efde_b32ab0src#main#java#org#dungeon#game#GameData.java
+-1 : -1
+prev_openpnp-openpnp_0bb975_4588ddsrc#main#java#org#openpnp#gui#MainFrame.java
+-1 : -1
+prev_openpnp-openpnp_4a4d3c_6a9a72src#main#java#org#openpnp#gui#MainFrame.java
+-1 : -1
+prev_openpnp-openpnp_6a9a72_5c5eb0src#main#java#org#openpnp#gui#MainFrame.java
+-1 : -1
+prev_openpnp-openpnp_98d022_0bb975src#main#java#org#openpnp#gui#MainFrame.java
+-1 : -1
+prev_openpnp-openpnp_ba1f6c_4550e9src#main#java#org#openpnp#gui#MainFrame.java
+-1 : -1
+prev_OpenTreeOfLife-taxomachine_70d238_fbfd49src#main#java#opentree#TaxonomyBase.java
+-1 : -1
+prev_OpenTreeOfLife-taxomachine_75ab8c_16020fsrc#main#java#opentree#TaxonomyBase.java
+-1 : -1
+prev_perfectsense-dari_0650ca_bae484util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_3b5950_fff36autil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_3feda7_e2fe7butil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_407b5b_1e7f6futil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_4348ea_534f66util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_443eec_1133bcutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_674489_17da2eutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_70dbb9_ee4b75util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_7317b7_72698eutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_743d6d_cdfb1dutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_7bd889_9f62acutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_97ef7c_4d7401util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_99b1d8_59385eutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_9d26db_d0badeutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_a85606_97d787util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_b1dd68_38e97autil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_b37d2f_d3fa3autil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_b7a3e0_ebadecutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_bbe905_c6bb2futil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_bdfb14_5d0fddutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_d1d982_f87574util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_d2c826_cd65e6util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_ddc6eb_6233bfutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_e16902_c6ca78util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_e1af9d_e5295dutil#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_eda3de_3bbe51util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_perfectsense-dari_f56822_6f3e52util#src#main#java#com#psddev#dari#util#CodeUtils.java
+-1 : -1
+prev_plutext-docx4j_57404d_eb2b36src#main#java#org#docx4j#XmlUtils.java
+-1 : -1
+prev_SophieKoonin-JavaDecaf_cf3fa7_18d909src#main#java#parser#JavaCharStream.java
+-1 : -1
+prev_SophieKoonin-JavaDecaf_cf3fa7_18d909src#main#java#parser#JDCParser.java
+-1 : -1
+prev_SophieKoonin-JavaDecaf_cf3fa7_18d909src#main#java#parser#JDCParserTokenManager.java
+-1 : -1
+prev_tastybento-askyblock_340671_3d8c98src#com#wasteofplastic#askyblock#Settings.java
+-1 : -1
+prev_tastybento-askyblock_81b3c3_3686c1src#com#wasteofplastic#askyblock#Settings.java
+-1 : -1
+prev_tehbeard-BeardStat_a5e66c_44371csrc#main#java#me#tehbeard#BeardStat#DataProviders#MysqlStatDataProvider.java
+-1 : -1
+prev_tehbeard-BeardStat_a5e66c_44371csrc#main#java#me#tehbeard#BeardStat#DataProviders#SQLiteStatDataProvider.java
+-1 : -1
+prev_Xephi-AuthMeReloaded_0d4757_d699f8src#main#java#uk#org#whoami#authme#settings#Settings.java
+-1 : -1
+    MS_SHOULD_BE_FINAL
+prev_BattleNight-BattleNight-Core_e9231a_a63af4src#main#java#me#limebyte#battlenight#core#util#Configuration.java
+-1 : -1
+prev_kotcrab-VisEditor_94e9c9_d892d3src#main#java#pl#kotcrab#vis#sceneeditor#SceneEditorConfig.java
+-1 : -1
+prev_OpenTreeOfLife-taxomachine_70d238_fbfd49src#main#java#opentree#TaxonomyBase.java
+-1 : -1
+prev_renepickhardt-generalized-language-modeling-toolkit_d8e140_4ccd9dsrc#de#typology#utils#Config.java
+-1 : -1
+    NM_FIELD_NAMING_CONVENTION
+prev_aaron-santos-lanterna_4eac0e_33c490src#main#java#com#googlecode#lanterna#gui#component#TextGrid.java
+-1 : -1
+prev_aaron-santos-lanterna_4eac0e_33c490src#main#java#com#googlecode#lanterna#gui#component#TextGrid.java
+-1 : -1
+prev_aaron-santos-lanterna_5385e9_6e7be4src#main#java#com#googlecode#lanterna#gui#component#TextGrid.java
+-1 : -1
+prev_anba-es6draft_328b5c_efa31bsrc#main#java#com#github#anba#es6draft#compiler#Types.java
+-1 : -1
+prev_anba-es6draft_ee6725_3d5774src#main#java#com#github#anba#es6draft#compiler#Types.java
+-1 : -1
+prev_ArcBees-gwtquery_8fa8fa_ac3521gwtquery-core#src#main#java#com#google#gwt#query#client#GQuery.java
+-1 : -1
+prev_LEDS-sincap-entities_477e17_b18244src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#cdp#DTO#ProcessoNotificacaoDTO.java
+-1 : -1
+prev_lemire-RoaringBitmap_f3ac3c_9bbdb6src#main#java#me#lemire#roaringbitmap#experiments#StarSchemaBenchmark.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_c95ac8_40f0c1lightblue-rdbms#crud#src#main#java#com#redhat#lightblue#crud#rdbms#RDBMSContext.java
+-1 : -1
+prev_minusone13-InvoicingSystem_523a4c_ed2410src#main#java#presentation#commodityui#JPmanageBills2.java
+-1 : -1
+prev_mkovatsc-Californium_a42a48_fc751ccf-plugtest-client#src#main#java#ch#ethz#inf#vs#californium#examples#PlugtestClient.java
+-1 : -1
+prev_mkovatsc-Californium_c3693c_f9ea4ccf-plugtest-client#src#main#java#ch#ethz#inf#vs#californium#examples#PlugtestClient.java
+-1 : -1
+prev_mtedone-podam_a00b9b_42e311src#main#java#uk#co#jemos#podam#api#RandomDataProviderStrategy.java
+-1 : -1
+prev_nuxeo-nuxeo-platform-document-routing_b98db8_2b214anuxeo-platform-document-routing-dm#src#main#java#org#nuxeo#ecm#platform#routing#dm#operation#CreateRoutingTask.java
+-1 : -1
+prev_phillipsic-SeleniumDriverFramework_c5bab1_ca8629src#main#java#com#comverse#css#commonpages#MoveMemberCommon.java
+-1 : -1
+prev_robovm-robovm_23cfac_a20267cocoatouch#src#main#java#org#robovm#apple#uikit#UIFontDescriptorAttribute.java
+-1 : -1
+prev_robovm-robovm_23cfac_a20267cocoatouch#src#main#java#org#robovm#apple#uikit#UIFontTextStyle.java
+-1 : -1
+prev_robovm-robovm_640595_6fe06ecocoatouch#src#main#java#org#robovm#apple#uikit#UIFontDescriptorAttribute.java
+-1 : -1
+prev_robovm-robovm_640595_6fe06ecocoatouch#src#main#java#org#robovm#apple#uikit#UIFontTextStyle.java
+-1 : -1
+prev_robovm-robovm_e96bf5_17e813cocoatouch#src#main#java#org#robovm#apple#uikit#UIFontDescriptorAttribute.java
+-1 : -1
+prev_robovm-robovm_e96bf5_17e813cocoatouch#src#main#java#org#robovm#apple#uikit#UIFontTextStyle.java
+-1 : -1
+prev_sboesebeck-morphium_0919e4_113020src#de#caluga#morphium#ConfigElement.java
+-1 : -1
+prev_sboesebeck-morphium_2d2d40_037703src#de#caluga#morphium#ConfigElement.java
+-1 : -1
+prev_SpoutDev-Spout_d3e912_9f07c9src#main#java#org#getspout#api#math#Vector3.java
+-1 : -1
+prev_SpoutDev-Spout_e693d9_8bd6f8src#main#java#org#getspout#api#math#Vector3.java
+-1 : -1
+prev_void256-nifty-gui_92a88f_aa172fsrc#main#java#de#lessvoid#nifty#builder#ElementBuilder.java
+-1 : -1
+prev_void256-nifty-gui_92a88f_aa172fsrc#main#java#de#lessvoid#nifty#builder#ElementBuilder.java
+-1 : -1
+prev_void256-nifty-gui_92a88f_aa172fsrc#main#java#de#lessvoid#nifty#builder#ElementBuilder.java
+-1 : -1
+prev_zycgit-hasor_52c540_84ca6fsrc#main#java#net#hasor#plugins#resource#ResourceHttpServlet.java
+-1 : -1
+prev_zycgit-hasor_bd03be_a5f8cesrc#main#java#net#hasor#plugins#resource#ResourceHttpServlet.java
+-1 : -1
+prev_zycgit-hasor_bd03be_a5f8cesrc#main#java#net#hasor#web#startup#RuntimeListener.java
+-1 : -1
+    NM_SAME_SIMPLE_NAME_AS_INTERFACE
+prev_apache-httpclient_137da8_4f6599module-client#src#main#java#org#apache#http#conn#ssl#X509HostnameVerifier.java
+-1 : -1
+prev_lviggiano-owner_d99778_a0a724src#main#java#org#aeonbits#owner#event#TransactionalPropertyChangeListener.java
+-1 : -1
+prev_reinert-requestor_8549b0_505029src#main#java#io#reinert#requestor#RequestProgress.java
+-1 : -1
+    SE_BAD_FIELD
+prev_allanbank-mongodb-async-driver_5ca324_112eb3src#main#java#com#allanbank#mongodb#bson#builder#impl#AbstractBuilder.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_98a901_e8cac9src#main#java#com#allanbank#mongodb#Credential.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_98a901_e8cac9src#main#java#com#allanbank#mongodb#error#MongoClientClosedException.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_a264bd_c87300src#main#java#com#allanbank#mongodb#Credential.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_a264bd_c87300src#main#java#com#allanbank#mongodb#error#MongoClientClosedException.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#error#ReplyException.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_c760f4_8c7984src#main#java#com#allanbank#mongodb#MongoDbConfiguration.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_e9d4ca_c3ef67src#main#java#com#allanbank#mongodb#error#ServerVersionException.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4api#src#main#java#org#semanticweb#owlapi#io#RDFParserMetaData.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4api#src#main#java#org#semanticweb#owlapi#util#DefaultPrefixManager.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4api#src#main#java#org#semanticweb#owlapi#util#HornAxiomVisitorEx.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4api#src#main#java#org#semanticweb#owlapi#util#OWLEntityComparator.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4impl#src#main#java#uk#ac#manchester#cs#owl#owlapi#MapPointer.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4impl#src#main#java#uk#ac#manchester#cs#owl#owlapi#OWLOntologyManagerImpl.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4impl#src#main#java#uk#ac#manchester#cs#owl#owlapi#SWRLRuleImpl.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4rio#src#main#java#org#semanticweb#owlapi#formats#RioRDFOntologyFormat.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4rio#src#main#java#org#semanticweb#owlapi#rio#RioOntologyStorer.java
+-1 : -1
+prev_ansell-owlapi_b4ba8c_e696d4rio#src#main#java#org#semanticweb#owlapi#rio#RioParserImpl.java
+-1 : -1
+prev_apache-commons-configuration_439052_a24375src#main#java#org#apache#commons#configuration#BaseHierarchicalConfiguration.java
+-1 : -1
+prev_apache-commons-configuration_439052_a24375src#main#java#org#apache#commons#configuration#CombinedConfiguration.java
+-1 : -1
+prev_apache-commons-configuration_439052_a24375src#main#java#org#apache#commons#configuration#DataConfiguration.java
+-1 : -1
+prev_apache-commons-configuration_439052_a24375src#main#java#org#apache#commons#configuration#DynamicCombinedConfiguration.java
+-1 : -1
+prev_apache-commons-configuration_439052_a24375src#main#java#org#apache#commons#configuration#plist#XMLPropertyListConfiguration.java
+-1 : -1
+prev_apache-commons-configuration_439052_a24375src#main#java#org#apache#commons#configuration#SubnodeConfiguration.java
+-1 : -1
+prev_apache-commons-configuration_439052_a24375src#main#java#org#apache#commons#configuration#XMLConfiguration.java
+-1 : -1
+prev_apache-commons-lang_c21e66_509e3dsrc#java#org#apache#commons#lang#text#ExtendedMessageFormat.java
+-1 : -1
+prev_apache-hadoop-common_6ceadd_221e8asrc#main#java#org#apache#hadoop#hbase#avro#generated#AIllegalArgument.java
+-1 : -1
+prev_apache-hadoop-common_6ceadd_221e8asrc#main#java#org#apache#hadoop#hbase#avro#generated#AIOError.java
+-1 : -1
+prev_apache-hadoop-common_6ceadd_221e8asrc#main#java#org#apache#hadoop#hbase#avro#generated#AMasterNotRunning.java
+-1 : -1
+prev_apache-httpclient_b1134f_e2da28httpclient-cache#src#main#java#org#apache#http#impl#client#cache#FileResource.java
+-1 : -1
+prev_belaban-JGroups_8797b1_db28afsrc#org#jgroups#auth#X509Token.java
+-1 : -1
+prev_biojava-biojava_7f98fc_60643ebiojava3-survival#src#main#java#org#biojava3#survival#kaplanmeier#figure#ExpressionFigure.java
+-1 : -1
+prev_bitcoinj-bitcoinj_3caa41_a95518src#com#google#bitcoin#core#InventoryMessage.java
+-1 : -1
+prev_bitcoinj-bitcoinj_a5fc1c_0a4dbbsrc#com#google#bitcoin#core#Wallet.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockBreakEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockDamageEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockDispenseEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockFormEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockFromToEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockIgniteEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockPistonExtendEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockSpreadEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#enchantment#EnchantItemEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#enchantment#PrepareItemEnchantEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityChangeBlockEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityCombustByBlockEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityCombustByEntityEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityDamageByBlockEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityDamageByEntityEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityDeathEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityTameEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityTargetEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#ItemSpawnEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#entity#PigZapEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#inventory#FurnaceSmeltEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#painting#PaintingPlaceEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerBedLeaveEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerChatEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerFishEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerInteractEntityEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerInteractEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerMoveEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerPortalEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerRespawnEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#vehicle#VehicleBlockCollisionEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#vehicle#VehicleDestroyEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#vehicle#VehicleEnterEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#vehicle#VehicleEntityCollisionEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#weather#LightningStrikeEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#world#PortalCreateEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_219d00_ca71besrc#main#java#org#bukkit#event#world#StructureGrowEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_5c8bc6_e35037src#main#java#org#bukkit#event#player#PlayerChatEvent.java
+-1 : -1
+prev_Bukkit-Bukkit_5c8bc6_e35037src#main#java#org#bukkit#event#vehicle#VehicleEntityCollisionEvent.java
+-1 : -1
+prev_cdi-spec-cdi-tck_a08b80_fe2cf9impl#src#main#java#org#jboss#jsr299#tck#tests#context#passivating#broken#enterpriseBeanWithNonPassivatingInjectedFieldInDecorator#BrokenDecorator.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_0fc0fb_9e52b8swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#ExistentialRuleformPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_0fc0fb_9e52b8swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#JobPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_0fc0fb_9e52b8swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#MetaProtocolPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_0fc0fb_9e52b8swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#ProtocolPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_0fc0fb_9e52b8swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#RelationshipPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_0fc0fb_9e52b8swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#SequencingPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_0fc0fb_9e52b8swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#WorkspaceBackedView.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_2c7537_5b5546swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#ExistentialRuleformPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_2c7537_5b5546swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#JobPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_2c7537_5b5546swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#MetaProtocolPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_2c7537_5b5546swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#ProtocolPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_2c7537_5b5546swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#RelationshipPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_2c7537_5b5546swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#SequencingPane.java
+-1 : -1
+prev_ChiralBehaviors-Ultrastructure_2c7537_5b5546swing-ui#src#main#java#com#chiralbehaviors#CoRE#workspace#swing#WorkspaceBackedView.java
+-1 : -1
+prev_cojen-Tupl_4f8449_e4bf69src#main#java#org#cojen#tupl#BufferPool.java
+-1 : -1
+prev_cojen-Tupl_4f8449_e4bf69src#main#java#org#cojen#tupl#DirectPageCache.java
+-1 : -1
+prev_cojen-Tupl_4f8449_e4bf69src#main#java#org#cojen#tupl#Node.java
+-1 : -1
+prev_cojen-Tupl_746892_9c3f03src#main#java#org#cojen#tupl#BufferPool.java
+-1 : -1
+prev_cojen-Tupl_746892_9c3f03src#main#java#org#cojen#tupl#LockManager.java
+-1 : -1
+prev_cojen-Tupl_746892_9c3f03src#main#java#org#cojen#tupl#Node.java
+-1 : -1
+prev_ColoradoSchoolOfMines-interface_sdk_adc45d_85365dsrc#main#java#edu#mines#acmX#exhibit#module_manager#AWTModule.java
+-1 : -1
+prev_dakusui-jcunit_e53674_9c96ffsrc#main#java#com#github#dakusui#jcunit#core#factor#FactorLoader.java
+-1 : -1
+prev_dankurka-mgwt_c5552f_82ac48src#main#java#com#googlecode#mgwt#linker#server#Html5ManifestServlet.java
+-1 : -1
+prev_DataTorrent-Apex_3edb63_f411f8src#main#java#com#malhartech#stram#StreamingNodeUmbilicalProtocol.java
+-1 : -1
+prev_droolsjbpm-optaplanner_68d3d7_be75f2drools-planner-core#src#main#java#org#drools#planner#core#domain#solution#SolutionDescriptor.java
+-1 : -1
+prev_eXistence-TeeTime_8b598c_b1d8f7src#main#java#teetime#framework#exceptionHandling#TerminateException.java
+-1 : -1
+prev_fiji-TrackMate3_e08396_8b80bbsrc#main#java#net#trackmate#trackscheme#ActionBank.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_5687bd_ed8a34src#main#java#fr#ens#transcriptome#eoulsan#core#workflow#CommandWorkflowModel.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_c4d21d_6b476esrc#main#java#fr#ens#transcriptome#eoulsan#core#workflow#DataList.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_c4d21d_6b476esrc#main#java#fr#ens#transcriptome#eoulsan#core#workflow#TaskContext.java
+-1 : -1
+prev_GoogleCloudPlatform-gcloud-java_98b239_86201csrc#main#java#com#google#gcloud#datastore#Value.java
+-1 : -1
+prev_GoogleCloudPlatform-gcloud-java_a43992_f04010gcloud-java-storage#src#main#java#com#google#gcloud#storage#BatchRequest.java
+-1 : -1
+prev_GoogleCloudPlatform-gcloud-java_a43992_f04010gcloud-java-storage#src#main#java#com#google#gcloud#storage#ListResult.java
+-1 : -1
+prev_GoogleCloudPlatform-gcloud-java_af43ec_570791src#main#java#com#google#gcloud#datastore#DatastoreServiceOptions.java
+-1 : -1
+prev_GoogleCloudPlatform-gcloud-java_fa9a60_d85e31src#main#java#com#google#gcloud#datastore#Value.java
+-1 : -1
+prev_graphhopper-graphhopper_3200cb_a2090csrc#main#java#com#graphhopper#ui#MiniGraphUI.java
+-1 : -1
+prev_instance01-MinigamesAPI_7909ad_a7d507API#src#main#java#com#comze_instancelabs#minigamesapi#util#ArenaBlock.java
+-1 : -1
+prev_jahlborn-jackcess_324f49_2e5d00src#main#java#com#healthmarketscience#jackcess#impl#RowImpl.java
+-1 : -1
+prev_jahlborn-jackcess_cf6233_012405src#java#com#healthmarketscience#jackcess#complex#ComplexValueForeignKey.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_jankotek-MapDB_716dbc_64f801src#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#BTreeKeySerializer.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_jankotek-MapDB_8dee37_dacbbfsrc#main#java#org#mapdb#Fun.java
+-1 : -1
+prev_jbossas-jboss-ejb-client_119bc7_f59701src#main#java#org#jboss#ejb#client#EJBInvocationHandler.java
+-1 : -1
+prev_jenkinsci-git-client-plugin_1770d8_8bf0f4src#main#java#org#jenkinsci#plugins#gitclient#JGitAPIImpl.java
+-1 : -1
+prev_jenkinsci-git-client-plugin_177334_eee5b5src#main#java#org#jenkinsci#plugins#gitclient#CliGitAPIImpl.java
+-1 : -1
+prev_jenkinsci-git-client-plugin_41c401_c0647esrc#main#java#org#jenkinsci#plugins#gitclient#JGitAPIImpl.java
+-1 : -1
+prev_jenkinsci-git-client-plugin_4ba836_f5f1fesrc#main#java#org#jenkinsci#plugins#gitclient#JGitAPIImpl.java
+-1 : -1
+prev_jenkinsci-git-client-plugin_5e816b_f759bcsrc#main#java#org#jenkinsci#plugins#gitclient#CliGitAPIImpl.java
+-1 : -1
+prev_jenkinsci-git-client-plugin_5e816b_f759bcsrc#main#java#org#jenkinsci#plugins#gitclient#JGitAPIImpl.java
+-1 : -1
+prev_jenkinsci-git-client-plugin_7fd8d1_8ffb0esrc#main#java#org#jenkinsci#plugins#gitclient#JGitAPIImpl.java
+-1 : -1
+prev_jenkinsci-xunit-plugin_cfcbac_382868src#main#java#org#jenkinsci#plugins#xunit#XUnitPublisher.java
+-1 : -1
+prev_jeremylong-DependencyCheck_7d9fa7_ff4e40src#main#java#org#codesecure#dependencycheck#dependency#VulnerableSoftware.java
+-1 : -1
+prev_jeremylong-DependencyCheck_f6cdf3_30ea51src#main#java#org#codesecure#dependencycheck#dependency#VulnerableSoftware.java
+-1 : -1
+prev_JolantaWojcik-biojavaOwn_a9e64c_be1e86biojava3-survival#src#main#java#org#biojava3#survival#kaplanmeier#figure#KaplanMeierFigure.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_1becc2_1d9d53config#src#main#java#com#redhat#lightblue#config#DataSourcesConfiguration.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_1becc2_1d9d53config#src#main#java#com#redhat#lightblue#config#LightblueFactory.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_3eccdb_954742config#src#main#java#com#redhat#lightblue#config#DataSourcesConfiguration.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_3eccdb_954742crud#src#main#java#com#redhat#lightblue#crud#Factory.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_3eccdb_954742crud#src#main#java#com#redhat#lightblue#interceptor#InterceptorManager.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_ad50da_b911d4config#src#main#java#com#redhat#lightblue#config#DataSourcesConfiguration.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_ad50da_b911d4config#src#main#java#com#redhat#lightblue#config#LightblueFactory.java
+-1 : -1
+prev_lviggiano-owner_99f038_85ad36owner#src#main#java#org#aeonbits#owner#loaders#XMLLoader.java
+-1 : -1
+prev_maartentbm-ContextPL1_7779ae_cecb83src#main#java#nl#tudelft#ti2806#pl1#gui#contentpane#Content.java
+-1 : -1
+prev_marylinh-ESAPI_JAVA_ALL_318c83_ce7767src#main#java#org#owasp#esapi#reference#DefaultUser.java
+-1 : -1
+prev_minusone13-InvoicingSystem_11a8fe_94ce08src#main#java#po#SaleBackSheetPO.java
+-1 : -1
+prev_minusone13-InvoicingSystem_11a8fe_94ce08src#main#java#presentation#managerui#JPBill.java
+-1 : -1
+prev_minusone13-InvoicingSystem_34ac0d_94ce08src#main#java#po#PurBackSheetPO.java
+-1 : -1
+prev_minusone13-InvoicingSystem_73a4d1_dbdc77src#main#java#data#commoditydata#StubCommodityList.java
+-1 : -1
+prev_mrniko-netty-socketio_2525d5_f7da1asrc#main#java#com#corundumstudio#socketio#protocol#JacksonJsonSupport.java
+-1 : -1
+prev_mrniko-netty-socketio_5e9ffb_512968src#main#java#com#corundumstudio#socketio#protocol#JacksonJsonSupport.java
+-1 : -1
+prev_msokolov-lux_610c03_e392dbsrc#main#java#lux#XPathQuery.java
+-1 : -1
+prev_msokolov-lux_b7b96e_e177fdsrc#main#java#lux#saxon#LuxSearch.java
+-1 : -1
+prev_msokolov-lux_b7b96e_e177fdsrc#main#java#lux#saxon#XdmResultSet.java
+-1 : -1
+prev_mtedone-podam_00b936_a380b3src#main#java#uk#co#jemos#podam#api#MapKeyOrElementsArguments.java
+-1 : -1
+prev_mysticfall-pivot4j_fefc84_642be1src#main#java#com#eyeq#pivot4j#mdx#MdxStatement.java
+-1 : -1
+prev_nuxeo-nuxeo-diff_3af239_9c792dsrc#main#java#org#nuxeo#ecm#diff#service#impl#DiffDisplayServiceImpl.java
+-1 : -1
+prev_nuxeo-nuxeo-platform-forms-layout-demo_ddd2b5_477782nuxeo-platform-forms-layout-demo#src#main#java#org#nuxeo#ecm#platform#forms#layout#demo#jsf#LayoutDemoContext.java
+-1 : -1
+prev_objectify-objectify_3ca77e_1894b7src#main#java#com#googlecode#objectify#impl#engine#LoadEngine.java
+-1 : -1
+prev_objectify-objectify_3ca77e_1894b7src#main#java#com#googlecode#objectify#impl#engine#LoadEngine.java
+-1 : -1
+prev_oboformat-oboformat_9b4522_2ffcf2src#main#java#org#obolibrary#gui#GuiMainFrame.java
+-1 : -1
+prev_Omertron-api-themoviedb_2ef414_1ac805src#main#java#com#omertron#themoviedbapi#model#MovieDb.java
+-1 : -1
+prev_Omertron-api-themoviedb_3e1b0f_e4dc8esrc#main#java#com#omertron#themoviedbapi#wrapper#WrapperGenericList.java
+-1 : -1
+prev_Omertron-api-themoviedb_e00d93_8451a4src#main#java#com#omertron#themoviedbapi#model#account#Account.java
+-1 : -1
+prev_omnifaces-omnifaces_15adb1_54a7f7src#main#java#org#omnifaces#component#output#Cache.java
+-1 : -1
+prev_omnifaces-omnifaces_320287_c171dcsrc#main#java#org#omnifaces#util#Events.java
+-1 : -1
+prev_omnifaces-omnifaces_38d033_fedc70src#main#java#org#omnifaces#util#concurrentlinkedhashmap#ConcurrentLinkedHashMap.java
+-1 : -1
+prev_omnifaces-omnifaces_60021d_b4850csrc#main#java#org#omnifaces#component#output#Cache.java
+-1 : -1
+prev_omnifaces-omnifaces_685ab5_110570src#main#java#org#omnifaces#util#Events.java
+-1 : -1
+prev_OpenHFT-Java-Lang_87816f_6053cflang#src#main#java#net#openhft#lang#io#serialization#impl#StringMarshaller.java
+-1 : -1
+prev_ovgu-ccd-jchess_77796f_679f5djchess#gui#JChessTabbedPane.java
+-1 : -1
+prev_owlcs-owlapi_b46875_8df833impl#src#main#java#uk#ac#manchester#cs#owl#owlapi#OWLOntologyManagerImpl.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4api#src#main#java#org#semanticweb#owlapi#io#RDFParserMetaData.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4api#src#main#java#org#semanticweb#owlapi#util#DefaultPrefixManager.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4api#src#main#java#org#semanticweb#owlapi#util#HornAxiomVisitorEx.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4api#src#main#java#org#semanticweb#owlapi#util#OWLEntityComparator.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4impl#src#main#java#uk#ac#manchester#cs#owl#owlapi#MapPointer.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4impl#src#main#java#uk#ac#manchester#cs#owl#owlapi#OWLOntologyManagerImpl.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4impl#src#main#java#uk#ac#manchester#cs#owl#owlapi#SWRLRuleImpl.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4rio#src#main#java#org#semanticweb#owlapi#formats#RioRDFOntologyFormat.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4rio#src#main#java#org#semanticweb#owlapi#rio#RioOntologyStorer.java
+-1 : -1
+prev_owlcs-owlapi_b4ba8c_e696d4rio#src#main#java#org#semanticweb#owlapi#rio#RioParserImpl.java
+-1 : -1
+prev_paul-hammant-qdox_2990cb_f4747asrc#java#com#thoughtworks#qdox#JavaDocBuilder.java
+-1 : -1
+prev_pendelhaven3-magic_12bf66_79bf6asrc#main#java#com#pj#magic#gui#itemstable#ItemsTable.java
+-1 : -1
+prev_pendelhaven3-magic_c89716_d7f052src#main#java#com#pj#magic#ItemsTable.java
+-1 : -1
+prev_PerfCake-PerfCake_050992_32c683src#main#java#org#perfcake#message#MessageTemplate.java
+-1 : -1
+prev_PerfCake-PerfCake_230523_8e471fsrc#main#java#org#perfcake#message#MessageTemplate.java
+-1 : -1
+prev_PerfCake-PerfCake_759c50_e9a291src#main#java#org#perfcake#message#MessageTemplate.java
+-1 : -1
+prev_PerfCake-PerfCake_cd0e97_87572asrc#main#java#org#perfcake#message#MessageTemplate.java
+-1 : -1
+prev_phax-as2-lib_e87768_2e6b75src#main#java#com#helger#as2lib#partner#Partnership.java
+-1 : -1
+prev_rinde-RinSim_d59ab7_947d5aexperiment-base#src#test#java#com#github#rinde#rinsim#experiment#base#ExperimentTest.java
+-1 : -1
+prev_roberth-pitest_329fb0_ca4f4csrc#main#java#org#pitest#junit#RunnerAdapterTestUnit.java
+-1 : -1
+prev_rovo89-public-transport-enabler-fork_e28210_9c7150src#de#schildbach#pte#dto#QueryConnectionsResult.java
+-1 : -1
+prev_simon-eastwood-DependencyCheckCM_ae279d_065a80src#main#java#org#codesecure#dependencycheck#dependency#VulnerableSoftware.java
+-1 : -1
+prev_simon-eastwood-DependencyCheckCM_e31086_c177ffsrc#main#java#org#codesecure#dependencycheck#dependency#VulnerableSoftware.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockBreakEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockDamageEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockDispenseEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockFormEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockFromToEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockIgniteEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockPistonExtendEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#block#BlockSpreadEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#enchantment#EnchantItemEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#enchantment#PrepareItemEnchantEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityChangeBlockEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityCombustByBlockEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityCombustByEntityEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityDamageByBlockEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityDamageByEntityEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityDeathEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityTameEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#EntityTargetEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#ItemSpawnEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#entity#PigZapEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#inventory#FurnaceSmeltEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#painting#PaintingPlaceEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerBedLeaveEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerChatEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerFishEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerInteractEntityEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerInteractEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerMoveEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerPortalEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#player#PlayerRespawnEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#vehicle#VehicleBlockCollisionEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#vehicle#VehicleDestroyEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#vehicle#VehicleEnterEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#vehicle#VehicleEntityCollisionEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#weather#LightningStrikeEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#world#PortalCreateEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_219d00_ca71besrc#main#java#org#bukkit#event#world#StructureGrowEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_5c8bc6_e35037src#main#java#org#bukkit#event#entity#ItemSpawnEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_5c8bc6_e35037src#main#java#org#bukkit#event#player#PlayerChatEvent.java
+-1 : -1
+prev_SpigotMC-Spigot-API_5c8bc6_e35037src#main#java#org#bukkit#event#vehicle#VehicleEntityCollisionEvent.java
+-1 : -1
+prev_TeamExodus-external_gson_24d67a_cc7708src#test#java#com#google#gson#internal#LinkedHashTreeMap.java
+-1 : -1
+prev_TeamExodus-external_gson_7a5632_8e3a24src#main#java#com#google#gson#ParseException.java
+-1 : -1
+prev_TeamExodus-external_gson_f4ae65_1d73cfsrc#main#java#com#google#gson#internal#LinkedTreeMap.java
+-1 : -1
+prev_tomp2p-TomP2P_77ad45_6f71a2core#src#main#java#net#tomp2p#storage#Data.java
+-1 : -1
+prev_tomp2p-TomP2P_c2f081_ed8a9acore#src#main#java#net#tomp2p#message#Message.java
+-1 : -1
+prev_tomp2p-TomP2P_c2f081_ed8a9acore#src#main#java#net#tomp2p#storage#Data.java
+-1 : -1
+prev_TridentSDK-TridentSDK_c784df_3a2feesrc#main#java#net#tridentsdk#api#Location.java
+-1 : -1
+prev_valis-vclang_758c50_fff66asrc#main#java#com#jetbrains#jetpad#vclang#serialization#ModuleDeserialization.java
+-1 : -1
+prev_valis-vclang_758c50_fff66asrc#main#java#com#jetbrains#jetpad#vclang#serialization#ModuleDeserialization.java
+-1 : -1
+prev_valis-vclang_e7d68a_160406src#main#java#com#jetbrains#jetpad#vclang#serialization#ModuleDeserialization.java
+-1 : -1
+prev_valis-vclang_e7d68a_160406src#main#java#com#jetbrains#jetpad#vclang#serialization#ModuleDeserialization.java
+-1 : -1
+prev_valis-vclang_fd4077_91ba71src#main#java#com#jetbrains#jetpad#vclang#serialization#ModuleDeserialization.java
+-1 : -1
+prev_valis-vclang_fd4077_91ba71src#main#java#com#jetbrains#jetpad#vclang#serialization#ModuleDeserialization.java
+-1 : -1
+prev_yuchaosydney-kouchat_7c13ad_e84688src#main#java#net#usikkert#kouchat#ui#swing#ButtonPanel.java
+-1 : -1
+prev_yuchaosydney-kouchat_7c13ad_e84688src#main#java#net#usikkert#kouchat#ui#swing#KouChatFrame.java
+-1 : -1
+prev_yuchaosydney-kouchat_7c13ad_e84688src#main#java#net#usikkert#kouchat#ui#swing#PrivateChatFrame.java
+-1 : -1
+prev_yuchaosydney-kouchat_7c13ad_e84688src#main#java#net#usikkert#kouchat#ui#swing#settings#SettingsDialog.java
+-1 : -1
+prev_yuchaosydney-kouchat_7c13ad_e84688src#main#java#net#usikkert#kouchat#ui#swing#SidePanel.java
+-1 : -1
+prev_yuchaosydney-kouchat_7c13ad_e84688src#main#java#net#usikkert#kouchat#ui#swing#TransferDialog.java
+-1 : -1
+    SE_TRANSIENT_FIELD_NOT_RESTORED
+prev_allanbank-mongodb-async-driver_222a77_541915src#main#java#com#allanbank#mongodb#Credential.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_2df4f3_405b07src#main#java#com#allanbank#mongodb#MongoClientConfiguration.java
+-1 : -1
+prev_allanbank-mongodb-async-driver_4481cc_2bbf92src#main#java#com#allanbank#mongodb#bson#impl#RootDocument.java
+-1 : -1
+prev_belaban-JGroups_b7528c_f43e3bsrc#org#jgroups#blocks#executor#ExecutionService.java
+-1 : -1
+prev_bitcoinj-bitcoinj_dff3b2_3a463esrc#com#google#bitcoin#core#Transaction.java
+-1 : -1
+prev_bitcoinj-bitcoinj_dff3b2_3a463esrc#com#google#bitcoin#core#TransactionOutput.java
+-1 : -1
+prev_chapmajs-shiro_087bbe_539f76src#org#jsecurity#authc#SimpleAccount.java
+-1 : -1
+prev_chapmajs-shiro_087bbe_539f76src#org#jsecurity#web#tags#PrincipalTag.java
+-1 : -1
+prev_clojure-clojure_1d5237_bd6e90src#jvm#clojure#lang#ASeq.java
+-1 : -1
+prev_datanucleus-datanucleus-core_8e256b_2c96d8src#main#java#org#datanucleus#store#types#wrappers#backed#Hashtable.java
+-1 : -1
+prev_datanucleus-datanucleus-core_8e256b_2c96d8src#main#java#org#datanucleus#store#types#wrappers#backed#LinkedHashMap.java
+-1 : -1
+prev_datanucleus-datanucleus-core_8e256b_2c96d8src#main#java#org#datanucleus#store#types#wrappers#backed#LinkedHashSet.java
+-1 : -1
+prev_datanucleus-datanucleus-core_8e256b_2c96d8src#main#java#org#datanucleus#store#types#wrappers#backed#Map.java
+-1 : -1
+prev_datanucleus-datanucleus-core_8e256b_2c96d8src#main#java#org#datanucleus#store#types#wrappers#backed#SortedSet.java
+-1 : -1
+prev_datanucleus-datanucleus-core_8e256b_2c96d8src#main#java#org#datanucleus#store#types#wrappers#backed#Stack.java
+-1 : -1
+prev_datanucleus-datanucleus-core_8e256b_2c96d8src#main#java#org#datanucleus#store#types#wrappers#backed#TreeMap.java
+-1 : -1
+prev_datanucleus-datanucleus-core_8e256b_2c96d8src#main#java#org#datanucleus#store#types#wrappers#backed#TreeSet.java
+-1 : -1
+prev_EngineHub-CommandHelper_834b23_ccd7d2src#main#java#com#laytonsmith#aliasengine#Constructs#Construct.java
+-1 : -1
+prev_EngineHub-CommandHelper_85080f_6235ebsrc#main#java#com#laytonsmith#aliasengine#Constructs#Construct.java
+-1 : -1
+prev_ESAPI-esapi-java-legacy_4941f5_5d38d1src#main#java#org#owasp#esapi#crypto#CipherSpec.java
+-1 : -1
+prev_GoogleCloudPlatform-gcloud-java_41422a_761fd0src#main#java#com#google#gcloud#datastore#StructuredQuery.java
+-1 : -1
+prev_GoogleCloudPlatform-gcloud-java_a43992_f04010gcloud-java-datastore#src#main#java#com#google#gcloud#datastore#GqlQuery.java
+-1 : -1
+prev_GoogleCloudPlatform-gcloud-java_a43992_f04010gcloud-java-datastore#src#main#java#com#google#gcloud#datastore#StructuredQuery.java
+-1 : -1
+prev_lightblue-platform-lightblue-core_7f462f_015fc1util#src#main#java#com#redhat#lightblue#util#Path.java
+-1 : -1
+prev_lviggiano-owner_2e1390_2f4caesrc#main#java#org#aeonbits#owner#ConfigURLFactory.java
+-1 : -1
+prev_mafagafogigante-dungeon_b9a1c6_66e9e8src#main#java#org#dungeon#game#GameState.java
+-1 : -1
+prev_marylinh-ESAPI_JAVA_ALL_692c16_3c6e1bsrc#main#java#org#owasp#esapi#crypto#CipherSpec.java
+-1 : -1
+prev_omnifaces-omnifaces_afb3d8_ff18bbsrc#main#java#org#omnifaces#cdi#param#ParamValue.java
+-1 : -1
+prev_rasto-lcmc_19ace1_647956src#main#java#lcmc#view#MainPanel.java
+-1 : -1
+prev_sboesebeck-morphium_281fca_3aa6ecsrc#de#caluga#morphium#LazyDeReferencingProxy.java
+-1 : -1
+prev_sboesebeck-morphium_eeb738_b7b13csrc#de#caluga#morphium#PartiallyUpdateableProxy.java
+-1 : -1
+prev_soluvas-soluvas-framework_5d8924_ad85cdjson#src#main#java#org#soluvas#json#LowerEnumDeserializer.java
+-1 : -1
+prev_tomp2p-TomP2P_c2f081_ed8a9acore#src#main#java#net#tomp2p#message#Message.java
+-1 : -1
+    STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE
+prev_GenomicParisCentre-aozan_2eeaf7_4d392esrc#main#java#fr#ens#transcriptome#aozan#Globals.java
+-1 : -1
+prev_GenomicParisCentre-aozan_b0fb79_28f573src#main#java#fr#ens#transcriptome#aozan#Globals.java
+-1 : -1
+prev_mafagafogigante-dungeon_fdedc4_d53821src#main#java#org#dungeon#util#Constants.java
+-1 : -1
+prev_stackmob-stackmob-java-client-sdk_bc7d77_641192src#main#java#com#stackmob#sdk#api#StackMobCookieStore.java
+-1 : -1
+prev_stackmob-stackmob-java-client-sdk_fccb90_d1c762src#main#java#com#stackmob#sdk#api#StackMobSession.java
+-1 : -1
+prev_twilio-twilio-java_482120_2c8b2dsrc#main#java#com#twilio#sdk#resource#NextGenInstanceResource.java
+-1 : -1
+prev_twilio-twilio-java_531510_e63ae5src#main#java#com#twilio#sdk#resource#InstanceResource.java
+-1 : -1
+prev_twilio-twilio-java_761e45_378c17src#main#java#com#twilio#sdk#resource#InstanceResource.java
+-1 : -1
+    UPM_UNCALLED_PRIVATE_METHOD
+prev_ArcBees-gwtquery_7955d1_2b45e3gwtquery-core#src#main#java#com#google#gwt#query#client#impl#ConsoleBrowser.java
+-1 : -1
+prev_gwtbootstrap-gwt-bootstrap_e019ab_1e3fc4src#main#java#com#github#gwtbootstrap#client#ui#TooltipCellDecorator.java
+-1 : -1
+prev_KittehOrg-KittehIRCClientLib_1e140b_c0eb7csrc#main#java#org#kitteh#irc#IRCBot.java
+-1 : -1
+prev_pcpratts-rootbeer1_645d80_b8edeasrc#org#trifort#rootbeer#runtime#nemu#NativeCpuDevice.java
+-1 : -1
+    UUF_UNUSED_FIELD
+prev_0xCopy-RelaxFactory_aa9d34_931213rxf-couch#src#main#java#rxf#couch#driver#CouchMetaDriver.java
+-1 : -1
+prev_adangel-pmd_3aa04a_ddacf7pmd#src#main#java#net#sourceforge#pmd#util#datasource#ReaderDataSource.java
+-1 : -1
+prev_adangel-pmd_4f50ec_4a49e6pmd#src#main#java#net#sourceforge#pmd#lang#plsql#rule#codesize#TooManyFieldsRule.java
+-1 : -1
+prev_aeshell-aesh_1780ee_938c76src#test#java#org#jboss#aesh#console#aesh#AeshCommandDynamicTest.java
+-1 : -1
+prev_ansell-owlapi_e15cc9_4cd590oboformat#src#main#java#org#coode#owlapi#oboformat#OBOFormatRenderer.java
+-1 : -1
+prev_antoine-tran-Hedera_4363df_8b88eajava#experiments#org#hedera#io#RevisionConcatText.java
+-1 : -1
+prev_antoine-tran-Hedera_4363df_8b88eajava#experiments#org#hedera#mapreduce#WikiRevisionSolrIndexer.java
+-1 : -1
+prev_antoine-tran-Hedera_d2b63f_f829aejava#main#org#hedera#mapreduce#io#wikipedia#WikiRevisionSamplePairReader.java
+-1 : -1
+prev_apache-archiva_31515d_fdc941maven-repository-indexer#src#main#java#org#apache#maven#repository#indexing#ArtifactRepositoryIndexSearcher.java
+-1 : -1
+prev_apache-archiva_70bbe7_911feemaven-repository-reports-standard#src#main#java#org#apache#maven#repository#reporting#CachedRepositoryQueryLayer.java
+-1 : -1
+prev_apache-commons-configuration_6cb034_374421src#main#java#org#apache#commons#configuration2#plist#PropertyListParser.java
+-1 : -1
+prev_apache-mina-sshd_231556_304d84src#main#java#org#apache#sshd#client#kex#AbstractDHGClient.java
+-1 : -1
+prev_ArcBees-gwtquery_1094cf_e163e1gwtquery-core#src#main#java#com#google#gwt#query#client#plugins#effects#ClipAnimation.java
+-1 : -1
+prev_ArcBees-gwtquery_fd07d4_c5eadegwtquery-core#src#main#java#com#google#gwt#query#client#plugins#effects#ClipAnimation.java
+-1 : -1
+prev_arjovanramshorst-bubble-bobble-sem_e7546b_aaa245core#src#main#java#sem#group15#bubblebobble#core#BubbleBobble.java
+-1 : -1
+prev_basho-riak-java-client_1bb688_fd4c6dsrc#main#java#com#basho#riak#client#query#RiakObject.java
+-1 : -1
+prev_basho-riak-java-client_75f021_79a975src#main#java#com#basho#riak#client#core#ConnectionPool.java
+-1 : -1
+prev_basho-riak-java-client_d3cc30_d53f18src#main#java#com#basho#riak#client#query#RiakObject.java
+-1 : -1
+prev_basho-riak-java-client_dd1d26_7a6004src#main#java#com#basho#riak#client#query#RiakObject.java
+-1 : -1
+prev_bcdev-ceres_aa498c_c8f4c1ceres-binding#src#main#java#com#bc#ceres#binding#swing#internal#BindingImpl.java
+-1 : -1
+prev_biojava-biojava_478a2f_33b355biojava3-structure#src#main#java#org#biojava#bio#structure#align#fatcat#FatCatUserArgumentProcessor.java
+-1 : -1
+prev_buddycloud-buddycloud-server-java_4263c5_b1f9a5src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#discoitems#DiscoItemsGet.java
+-1 : -1
+prev_buddycloud-buddycloud-server-java_4263c5_b1f9a5src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#discoitems#DiscoResult.java
+-1 : -1
+prev_buddycloud-buddycloud-server-java_4263c5_b1f9a5src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#get#RepliesGet.java
+-1 : -1
+prev_buddycloud-buddycloud-server-java_4263c5_b1f9a5src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#get#ThreadGet.java
+-1 : -1
+prev_caprica-vlcj_322287_1ed4efsrc#main#java#uk#co#caprica#vlcj#binding#internal#libvlc_title_description_t.java
+-1 : -1
+prev_Carboni-zebedee_5bb4a5_4a49efsrc#main#java#com#github#onsdigital#zebedee#Permissions.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_1d9be7_3811d5src#main#java#org#group17#bubblebobble#GUI.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_1d9be7_3811d5src#main#java#org#group17#bubblebobble#Main.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_3b682e_66a57csrc#main#java#org#group17#Gui#GUI.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_5de69a_26e8aasrc#main#java#org#group17#bubblebobble#GUI.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_5de69a_26e8aasrc#main#java#org#group17#bubblebobble#Main.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_aa7fec_f2b089src#main#java#org#group17#Gui#GUI.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_e1fec5_c04b35src#main#java#org#group17#bubblebobble#GUI.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_e1fec5_c04b35src#main#java#org#group17#bubblebobble#Main.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_ee94f4_c2127fsrc#main#java#org#group17#bubblebobble#GUI.java
+-1 : -1
+prev_Cas-B-Group17-BubbleBobble_ee94f4_c2127fsrc#main#java#org#group17#bubblebobble#Main.java
+-1 : -1
+prev_cjdev-versions-maven-plugin_5f8c44_04af5dsrc#main#java#org#codehaus#mojo#versions#UpdateChildModulesMojo.java
+-1 : -1
+prev_contextproject-discover_4af3b2_8196deapp#models#database#Processor#FeatureProcessor.java
+-1 : -1
+prev_contextproject-discover_4af3b2_8196deapp#models#seeker#RandomSeeker.java
+-1 : -1
+prev_contextproject-discover_590f01_0cbac4app#models#database#Processor#FeatureProcessor.java
+-1 : -1
+prev_contextproject-discover_8eea36_876decapp#models#profile#SoundcloudProfile.java
+-1 : -1
+prev_contextproject-discover_b1a48d_0775c2app#models#profile#SoundcloudProfile.java
+-1 : -1
+prev_contextproject-discover_e37d81_bc92e5app#models#database#Processor#FeatureProcessor.java
+-1 : -1
+prev_contextproject-discover_e37d81_bc92e5app#models#seeker#RandomSeeker.java
+-1 : -1
+prev_cylong1016-NJULily_d39d82_68dd33src#main#java#businesslogic#userbl#UserBLService_Stub.java
+-1 : -1
+prev_dakusui-jcunit_50af45_45b23dsrc#main#java#com#github#dakusui#jcunit#constraints#constraintmanagers#ccs#CCSConstraintManager.java
+-1 : -1
+prev_dakusui-jcunit_728933_961a58src#main#java#com#github#dakusui#lisj#FormResult.java
+-1 : -1
+prev_dakusui-jcunit_7ba222_d44767src#main#java#com#github#dakusui#jcunit#core#FrameworkMethodUtils.java
+-1 : -1
+prev_dankurka-mgwt_95deaf_9ceef3src#main#java#com#googlecode#mgwt#ui#client#dialog#AnimatableDialogBase.java
+-1 : -1
+prev_datanucleus-datanucleus-core_368c44_4e090dsrc#java#org#datanucleus#store#schema#table#CompleteClassTable.java
+-1 : -1
+prev_DerPavlov-Cannons_3c34e5_9fa1efsrc#main#java#at#pavlov#cannons#cannon#Cannon.java
+-1 : -1
+prev_DerPavlov-Cannons_66d491_848cdcsrc#main#java#at#pavlov#cannons#projectile#FlyingProjectile.java
+-1 : -1
+prev_DerPavlov-Cannons_7a31ec_5c7934src#main#java#at#pavlov#cannons#cannon#CannonDesign.java
+-1 : -1
+prev_doanduyhai-Achilles_282b45_cd7e60src#main#java#fr#doan#achilles#entity#metadata#JoinWideMapMeta.java
+-1 : -1
+prev_drnoa-schemaspy_5be17e_0578e0src#main#java#net#sourceforge#schemaspy#view#HtmlTablePage.java
+-1 : -1
+prev_dropwizard-metrics_c8fbf4_7a0aa2metrics-core#src#main#java#com#yammer#metrics#reporting#AbstractPollingReporter.java
+-1 : -1
+prev_ebean-orm-avaje-ebeanorm_41f317_8c8442src#main#java#com#avaje#ebeaninternal#server#query#SqlTreeProperties.java
+-1 : -1
+prev_elki-project-elki_6e43e6_2fa6e2elki#src#main#java#de#lmu#ifi#dbs#elki#index#lsh#hashfamilies#CosineHashFunctionFamily.java
+-1 : -1
+prev_Eluinhost-ultrahardcore_670adf_621d9esrc#main#java#com#publicuhc#ultrahardcore#pluginfeatures#playerfreeze#FreezeRunnable.java
+-1 : -1
+prev_Eluinhost-ultrahardcore_c661a8_87c631src#main#java#com#publicuhc#ultrahardcore#pluginfeatures#playerfreeze#FreezeRunnable.java
+-1 : -1
+prev_eXistence-TeeTime_b12b6f_6a869fsrc#main#java#teetime#stage#basic#merger#Merger.java
+-1 : -1
+prev_figarocms-cucumber-jvm-fixtures_e83a29_b99812src#main#java#fixtures#common#transformers#AbstractDataTableBuilder.java
+-1 : -1
+prev_finmath-finmath-lib_3b593c_7b73cfsrc#main#java6#net#finmath#montecarlo#interestrate#LIBORMarketModelStandard.java
+-1 : -1
+prev_finmath-finmath-lib_f4530d_b61ebdsrc#main#java6#net#finmath#montecarlo#interestrate#LIBORMarketModel.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_46c36c_45e5acsrc#main#java#org#fiware#kiara#ps#rtps#resources#SendResource.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_4f7fb7_5d4c0dsrc#main#java#org#fiware#kiara#ps#rtps#resources#SendResource.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_5de1e0_de120esrc#main#java#org#fiware#kiara#ps#rtps#resources#ListenResource.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_60989b_d7ae89src#main#java#org#fiware#kiara#ps#publisher#WriterProxy.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_a275f1_ce1279src#main#java#org#fiware#kiara#ps#publisher#WriterProxy.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_b08d38_e17f40src#main#java#org#fiware#kiara#ps#rtps#resources#SendResource.java
+-1 : -1
+prev_forcedotcom-phoenix_05bc6f_806d11src#main#java#com#salesforce#phoenix#compile#JoinCompiler.java
+-1 : -1
+prev_FoxDev-FoxBot_066f03_7650besrc#main#java#uk#co#revthefox#foxbot#config#BotConfig.java
+-1 : -1
+prev_FoxDev-FoxBot_619970_7de647src#main#java#uk#co#revthefox#foxbot#config#BotConfig.java
+-1 : -1
+prev_FoxDev-FoxBot_7650be_8a59edsrc#main#java#uk#co#revthefox#foxbot#config#BotConfig.java
+-1 : -1
+prev_FoxDev-FoxBot_f29721_602175src#main#java#uk#co#revthefox#foxbot#config#BotConfig.java
+-1 : -1
+prev_GenomicParisCentre-aozan_6eac2f_53a179src#main#java#fr#ens#transcriptome#aozan#illumina#io#SampleSheetLineReaderV1.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_0cd9ac_786ab4src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#HTSeqCountReducer.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_1f4a24_9bac55src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#HTSeqCountReducer.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_46cfa3_b0c06dsrc#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#HTSeqCountReducer.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_68e564_4ecf5esrc#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#HTSeqCountReducer.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_97c6a4_cc0eb8src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#HTSeqCountReducer.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_d54204_191f98src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#HTSeqCountReducer.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_d5f5bd_66bdfbsrc#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#HTSeqCountReducer.java
+-1 : -1
+prev_GenomicParisCentre-eoulsan_def15a_7905e7src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#HTSeqCountReducer.java
+-1 : -1
+prev_Gigaspaces-mongo-datasource_bcdba8_712d22src#main#java#com#gigaspaces#persistency#metadata#MongoMetadataInspector.java
+-1 : -1
+prev_graphhopper-graphhopper_38a5f0_b51401core#src#main#java#com#graphhopper#GraphHopper.java
+-1 : -1
+prev_graphhopper-graphhopper_5078aa_f30c2fcore#src#main#java#com#graphhopper#routing#util#ConsistentWeightApproximator.java
+-1 : -1
+prev_graphhopper-graphhopper_622b28_0d9eaccore#src#main#java#com#graphhopper#routing#util#ConsistentWeightApproximator.java
+-1 : -1
+prev_graphhopper-graphhopper_7a6e06_ac13c0tools#src#main#java#com#graphhopper#ui#MiniGraphUI.java
+-1 : -1
+prev_greese-dasein-cloud-core_043c84_a491a6src#main#java#org#dasein#cloud#network#NICCreateOptions.java
+-1 : -1
+prev_greese-dasein-cloud-core_2503bd_1163e4src#main#java#org#dasein#cloud#network#SSLCertificate.java
+-1 : -1
+prev_greese-dasein-cloud-core_2503bd_1163e4src#main#java#org#dasein#cloud#network#SSLCertificateMetadata.java
+-1 : -1
+prev_greese-dasein-cloud-core_a070df_416cb3src#main#java#org#dasein#cloud#platform#bigdata#DataClusterSnapshot.java
+-1 : -1
+prev_greese-dasein-cloud-core_adc5dd_4ac877src#main#java#org#dasein#cloud#platform#bigdata#DataCluster.java
+-1 : -1
+prev_greese-dasein-cloud-google_b165f0_71e036src#main#java#org#dasein#cloud#google#network#LoadBalancerSupport.java
+-1 : -1
+prev_hector-client-hector_349604_e241e7src#main#java#me#prettyprint#cassandra#service#CassandraClientImpl.java
+-1 : -1
+prev_hector-client-hector_e241e7_d238f2src#main#java#me#prettyprint#cassandra#service#CassandraClientImpl.java
+-1 : -1
+prev_ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_2643f1_90ce03src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.java
+-1 : -1
+prev_ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_55430e_6c9235src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.java
+-1 : -1
+prev_ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_f79617_778503src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.java
+-1 : -1
+prev_IDPF-epubcheck_376a72_823917src#main#java#com#adobe#epubcheck#ocf#OCFPackage.java
+-1 : -1
+prev_IDPF-epubcheck_bc31d4_fcbb96src#main#java#com#adobe#epubcheck#ocf#OCFPackage.java
+-1 : -1
+prev_jamesagnew-hapi-fhir_5296e8_d09755hapi-fhir-base#src#main#java#ca#uhn#fhir#context#RuntimeChildResourceDefinition.java
+-1 : -1
+prev_jankotek-MapDB_669534_fa6141src#main#java#org#mapdb#SerializerPojo.java
+-1 : -1
+prev_JensBee-QueryClarity_a067bd_1a4521src#test#java#de#unihildesheim#lucene#index#IndexTestUtil.java
+-1 : -1
+prev_jeremylong-DependencyCheck_0ad97d_dba1e0src#main#java#org#owasp#dependencycheck#analyzer#FalsePositiveAnalyzer.java
+-1 : -1
+prev_jeremylong-DependencyCheck_b078d8_d7af14src#main#java#org#owasp#dependencycheck#analyzer#FalsePositiveAnalyzer.java
+-1 : -1
+prev_jline-jline2_6fcb72_5c0e40src#test#java#jline#internal#TerminalLineSettingsTest.java
+-1 : -1
+prev_jline-jline2_768328_677269src#main#java#jline#UnixTerminal.java
+-1 : -1
+prev_jline-jline2_dad3b5_1d493fsrc#test#java#jline#internal#TerminalLineSettingsTest.java
+-1 : -1
+prev_johan-martenson-settlers_5f8e28_64f70esrc#main#java#org#appland#settlers#model#Player.java
+-1 : -1
+prev_johan-martenson-settlers_8358bc_78003bsrc#main#java#org#appland#settlers#model#MapPoint.java
+-1 : -1
+prev_junkdog-artemis-odb_79ad48_7fd390artemis-test#src#main#java#com#artemis#component#TransPackedFloatReferencel.java
+-1 : -1
+prev_junkdog-artemis-odb_e43739_8c5a4bartemis-test#src#main#java#com#artemis#component#TransPackedFloatReferencel.java
+-1 : -1
+prev_juzu-juzu_eddf91_97ba92src#main#java#org#juzu#impl#classloading#FileSystemClassLoader.java
+-1 : -1
+prev_juzu-juzu_eddf91_97ba92src#main#java#org#juzu#impl#spi#fs#ram#RAMDir.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHBranch.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHCommit.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHCommit.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHCommitComment.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHEventInfo.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHPullRequestCommitDetail.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#GHThread.java
+-1 : -1
+prev_kohsuke-github-api_340fb3_202cffsrc#main#java#org#kohsuke#github#GHIssueComment.java
+-1 : -1
+prev_kohsuke-github-api_5159a2_e66536src#main#java#org#kohsuke#github#GHOrganization.java
+-1 : -1
+prev_kohsuke-github-api_e239ef_4660c6src#main#java#org#kohsuke#github#GHIssueComment.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHBranch.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHCommit.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHCommit.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHCommitComment.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHEventInfo.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHPullRequestCommitDetail.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#GHThread.java
+-1 : -1
+prev_LEDS-sincap-entities_2a3fbd_3024f8src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#cgt#AplRelatorio.java
+-1 : -1
+prev_LEDS-sincap-entities_4eb004_cd7ee4src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#PacienteData.java
+-1 : -1
+prev_LEDS-sincap-entities_4eb004_cd7ee4src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#ResponsavelData.java
+-1 : -1
+prev_LEDS-sincap-entities_687bf5_6fc7c2src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#CaptacaoData.java
+-1 : -1
+prev_LEDS-sincap-entities_687bf5_6fc7c2src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#ProcessoNotificacaoData.java
+-1 : -1
+prev_LEDS-sincap-entities_8ba099_59fbbbsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#cdp#relatorios#ObitoCardio.java
+-1 : -1
+prev_LEDS-sincap-entities_9eb393_fe8f4esrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#CaptacaoData.java
+-1 : -1
+prev_LEDS-sincap-entities_9eb393_fe8f4esrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#ProcessoNotificacaoData.java
+-1 : -1
+prev_LEDS-sincap-entities_a282f1_f7d8e4src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#cdp#relatorios#RelEntrevistaFamiliar.java
+-1 : -1
+prev_LEDS-sincap-entities_e19d06_a843c9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#cdp#DTO#EntrevistaDTO.java
+-1 : -1
+prev_LEDS-sincap-entities_e69070_59fbbbsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#cdp#relatorios#RelEntrevistaFamiliar.java
+-1 : -1
+prev_lexicalscope-svm_7458b3_196a46src#main#java#com#lexicalscope#symb#vm#StackFrame.java
+-1 : -1
+prev_lkroesen-BubbleBobble_248bb7_0ddc9csrc#main#java#website#frontrow#Board#Unit.java
+-1 : -1
+prev_lkroesen-BubbleBobble_9c4f06_845786src#main#java#website#frontrow#board#Unit.java
+-1 : -1
+prev_lkroesen-BubbleBobble_9d17cb_7da454src#main#java#website#frontrow#board#Unit.java
+-1 : -1
+prev_lkroesen-BubbleBobble_be1350_05fedfsrc#main#java#website#frontrow#Game.java
+-1 : -1
+prev_lkroesen-BubbleBobble_cacac9_9656d4src#main#java#website#frontrow#board#Unit.java
+-1 : -1
+prev_maartentbm-ContextPL1_5ebc69_aee5c1src#main#java#nl#tudelft#ti2806#pl1#DGraph#BasicDNode.java
+-1 : -1
+prev_marklogic-java-client-api_aae966_797ec5src#main#java#com#marklogic#client#query#StructuredQueryBuilder.java
+-1 : -1
+prev_marschraner-svm_2e18c6_4d9f9bsrc#main#java#ch#metzenthin#svm#domain#commands#ValidateSchuelerCommand.java
+-1 : -1
+prev_mebigfatguy-fb-contrib_1555c2_7c04d4src#com#mebigfatguy#fbcontrib#detect#ImmatureClass.java
+-1 : -1
+prev_minusone13-InvoicingSystem_191470_9607bdsrc#main#java#businesslogic#customerbl#StubCustomer.java
+-1 : -1
+prev_minusone13-InvoicingSystem_191470_9607bdsrc#main#java#businesslogic#salebillbl#salebillController.java
+-1 : -1
+prev_minusone13-InvoicingSystem_191470_9607bdsrc#main#java#businesslogic#salebillbl#StubPurBackSheet.java
+-1 : -1
+prev_minusone13-InvoicingSystem_191470_9607bdsrc#main#java#businesslogic#salebillbl#StubPurSheet.java
+-1 : -1
+prev_minusone13-InvoicingSystem_191470_9607bdsrc#main#java#businesslogic#salebillbl#StubSaleBackSheet.java
+-1 : -1
+prev_minusone13-InvoicingSystem_191470_9607bdsrc#main#java#businesslogic#salebillbl#StubSaleSheet.java
+-1 : -1
+prev_minusone13-InvoicingSystem_191470_9607bdsrc#main#java#po#CustomerPO.java
+-1 : -1
+prev_minusone13-InvoicingSystem_2b7622_624a17src#main#java#vo#VO.java
+-1 : -1
+prev_minusone13-InvoicingSystem_4ace6d_96265bsrc#main#java#po#CommodityPO.java
+-1 : -1
+prev_minusone13-InvoicingSystem_73110d_671c5asrc#main#java#po#PO.java
+-1 : -1
+prev_minusone13-InvoicingSystem_99e086_8fd37bsrc#main#java#po#PO.java
+-1 : -1
+prev_minusone13-InvoicingSystem_cfa646_94c68csrc#main#java#businesslogic#examinebl#StubBillPool.java
+-1 : -1
+prev_minusone13-InvoicingSystem_f7ae52_8f53e3src#main#java#businesslogic#salebillbl#salebillController.java
+-1 : -1
+prev_mkovatsc-Californium_42eedf_a63ee5californium#src#main#java#ch#ethz#inf#vs#californium#endpoint#resources#ProxyCacheResource.java
+-1 : -1
+prev_mojohaus-nbm-maven-plugin_40c5a1_054d80src#main#java#org#codehaus#mojo#nbm#CreateClusterMojo.java
+-1 : -1
+prev_mojohaus-nbm-maven-plugin_40c5a1_054d80src#main#java#org#codehaus#mojo#nbm#RunNetBeansMojo.java
+-1 : -1
+prev_movsim-movsim_0d3876_e07086src#main#java#org#movsim#simulator#roadSection#impl#OnrampMobilImpl.java
+-1 : -1
+prev_movsim-movsim_4202b6_b271a9src#main#java#org#movsim#simulator#roadSection#impl#OnrampMobilImpl.java
+-1 : -1
+prev_movsim-movsim_4202b6_b271a9src#main#java#org#movsim#simulator#vehicles#lanechanging#impl#LaneChangingModelImpl.java
+-1 : -1
+prev_movsim-movsim_92717c_c45a8csrc#main#java#org#movsim#simulator#roadSection#impl#OnrampMobilImpl.java
+-1 : -1
+prev_mrniko-redisson_925f14_2b06casrc#main#java#org#redisson#RedissonTopic.java
+-1 : -1
+prev_msokolov-lux_60f4ba_af3c39src#main#java#lux#index#field#QNameTextTokenStream.java
+-1 : -1
+prev_msokolov-lux_60f4ba_af3c39src#main#java#lux#index#XmlIndexer.java
+-1 : -1
+prev_OpenTreeOfLife-taxomachine_0c184a_ea3d70src#main#java#opentree#tnrs#TNRSMatchSet.java
+-1 : -1
+prev_OpenTreeOfLife-treemachine_018d88_aa97f6src#main#java#opentree#GraphInitializer.java
+-1 : -1
+prev_ovgu-ccd-jchess_accad2_956deejchess#tests#game#MoveTest.java
+-1 : -1
+prev_ovgu-ccd-jchess_be45d3_c60cdcjchess#Game.java
+-1 : -1
+prev_ovgu-ccd-jchess_e1f7fd_117abajchess#Game.java
+-1 : -1
+prev_ovgu-ccd-jchess_e4ff68_4cbaa5jchess#Game.java
+-1 : -1
+prev_owlcs-owlapi_e15cc9_4cd590oboformat#src#main#java#org#coode#owlapi#oboformat#OBOFormatRenderer.java
+-1 : -1
+prev_pcpratts-rootbeer1_1db7e7_8b7355src#edu#syr#pcpratts#rootbeer#generate#bytecode#MethodCodeSegment.java
+-1 : -1
+prev_pcpratts-rootbeer1_645d80_b8edeasrc#org#trifort#rootbeer#generate#bytecode#VisitorGen.java
+-1 : -1
+prev_pcpratts-rootbeer1_645d80_b8edeasrc#org#trifort#rootbeer#runtime#Rootbeer.java
+-1 : -1
+prev_pcpratts-rootbeer1_aae28d_49574fsrc#org#trifort#rootbeer#runtime#Rootbeer.java
+-1 : -1
+prev_pcpratts-rootbeer1_f1429d_32ed9csrc#org#trifort#rootbeer#runtime#Rootbeer.java
+-1 : -1
+prev_pendelhaven3-magic_89a77d_8da63esrc#main#java#com#pj#magic#service#impl#ProductServiceImpl.java
+-1 : -1
+prev_phillipsic-SeleniumDriverFramework_e8bb23_e1cf36src#main#java#com#framework#common#User.java
+-1 : -1
+prev_plutext-docx4j_7f35ea_8ee97csrc#main#java#org#docx4j#openpackaging#packages#WordprocessingMLPackage.java
+-1 : -1
+prev_rage-tmc-cli_1dab81_d146d1src#main#java#hy#tmc#cli#frontend#communication#commands#Command.java
+-1 : -1
+prev_rage-tmc-cli_38131b_341296src#main#java#hy#tmc#cli#frontend#communication#commands#Command.java
+-1 : -1
+prev_rage-tmc-cli_b18a6f_fb2466src#main#java#hy#tmc#cli#frontend#communication#commands#Command.java
+-1 : -1
+prev_rage-tmc-cli_b1cc26_f92075src#main#java#hy#tmc#cli#frontend#communication#server#Server.java
+-1 : -1
+prev_rage-tmc-cli_f7c957_817857src#main#java#hy#tmc#cli#frontend#communication#commands#Command.java
+-1 : -1
+prev_rasto-lcmc_572003_d18cdcsrc#main#java#lcmc#gui#resources#drbd#HostDrbdMenu.java
+-1 : -1
+prev_renepickhardt-generalized-language-modeling-toolkit_92c300_15e6absrc#de#typology#smoother#KneserNeyResultAggregator.java
+-1 : -1
+prev_renepickhardt-generalized-language-modeling-toolkit_b97586_0e78a5src#de#typology#splitter#SplitterTask.java
+-1 : -1
+prev_renepickhardt-generalized-language-modeling-toolkit_fda5b9_271ddfsrc#de#typology#smoother#KneserNeyResultAggregator.java
+-1 : -1
+prev_Requinard-TeamTab_6fc0b8_e25afbsrc#main#java#Game#Instruction.java
+-1 : -1
+prev_Requinard-TeamTab_add6b1_616f86src#main#java#Game#Instruction.java
+-1 : -1
+prev_rhuss-docker-maven-plugin_026ffb_65f42csrc#main#java#org#jolokia#docker#maven#AbstractDockerMojo.java
+-1 : -1
+prev_rhuss-docker-maven-plugin_2d1bd9_60eb31src#main#java#org#jolokia#docker#maven#AbstractDockerMojo.java
+-1 : -1
+prev_rhuss-docker-maven-plugin_3b4574_670e55src#main#java#org#jolokia#docker#maven#config#WatchConfiguration.java
+-1 : -1
+prev_rhuss-docker-maven-plugin_b6fca4_670e55src#main#java#org#jolokia#docker#maven#config#WatchConfiguration.java
+-1 : -1
+prev_rhuss-docker-maven-plugin_e4ae7d_8a32c5src#main#java#org#jolokia#docker#maven#config#RunImageConfiguration.java
+-1 : -1
+prev_rhuss-docker-maven-plugin_ebf8c9_1230a2src#main#java#org#jolokia#maven#docker#assembly#DockerFileBuilder.java
+-1 : -1
+prev_sannies-mp4parser_2430e6_ff7ca9src#main#java#com#googlecode#mp4parser#AbstractContainerBox.java
+-1 : -1
+prev_sannies-mp4parser_5dcfde_1a931esrc#main#java#com#googlecode#mp4parser#authoring#tracks#AACTrackImpl.java
+-1 : -1
+prev_searchbox-io-Jest_4b1801_6281a1src#main#java#io#searchbox#core#MoreLikeThis.java
+-1 : -1
+prev_shabbies-clockwork_85dd0b_db98e1src#main#java#model#PostManager.java
+-1 : -1
+prev_simon-eastwood-DependencyCheckCM_1ead96_ac8920src#main#java#org#owasp#dependencycheck#analyzer#FalsePositiveAnalyzer.java
+-1 : -1
+prev_simon-eastwood-DependencyCheckCM_f91fcb_3ea0d7src#main#java#org#owasp#dependencycheck#analyzer#FalsePositiveAnalyzer.java
+-1 : -1
+prev_sk89q-CommandBook_42fb8d_cd8af1src#main#java#com#sk89q#commandbook#profiles#binary#implementations#BinaryProfile_E1_R0.java
+-1 : -1
+prev_spotify-cassandra-reaper_264985_1b88d4src#main#java#com#spotify#reaper#core#RepairRun.java
+-1 : -1
+prev_spotify-cassandra-reaper_3b1eed_df3952src#main#java#com#spotify#reaper#core#RepairSegment.java
+-1 : -1
+prev_spotify-cassandra-reaper_df3952_5dc93asrc#main#java#com#spotify#reaper#core#Cluster.java
+-1 : -1
+prev_SpoutDev-Spout_2eecae_2a6771src#main#java#org#getspout#api#command#SimpleCommandsManager.java
+-1 : -1
+prev_swagger-api-swagger-core_3964ce_ef2e8bmodules#swagger-models#src#main#java#com#wordnik#swagger#models#Operation.java
+-1 : -1
+prev_swagger-api-swagger-core_e46368_1485e6modules#swagger-models#src#main#java#com#wordnik#swagger#models#Operation.java
+-1 : -1
+prev_swagger-api-swagger-core_ee0b63_db79ccmodules#swagger-models#src#main#java#com#wordnik#swagger#models#Operation.java
+-1 : -1
+prev_swagger-api-swagger-core_ee0b63_db79ccmodules#swagger-models#src#main#java#com#wordnik#swagger#models#SecurityRequirement.java
+-1 : -1
+prev_tananaev-traccar_320d41_eb4ee7src#org#traccar#model#Device.java
+-1 : -1
+prev_tastybento-askyblock_8b89c6_c90cd0src#com#wasteofplastic#askyblock#commands#AdminCmd.java
+-1 : -1
+prev_TeamExodus-external_gson_ad8d90_b664d1src#main#java#com#google#gson#JsonParserImpl.java
+-1 : -1
+prev_teanutella-AppEmployee_1905ad_d6d397src#main#java#ca#ulaval#glo4003#appemployee#domain#Project.java
+-1 : -1
+prev_telefonicaid-fiware-cygnus_be2509_b4640csrc#main#java#com#telefonica#iot#cygnus#sinks#OrionSink.java
+-1 : -1
+prev_telefonicaid-fiware-cygnus_bf99fd_92be37src#main#java#com#telefonica#iot#cygnus#sinks#OrionSink.java
+-1 : -1
+prev_telefonicaid-fiware-cygnus_d0e8cb_8ef4bcsrc#main#java#com#telefonica#iot#cygnus#sinks#OrionSink.java
+-1 : -1
+prev_telefonicaid-fiware-cygnus_fa7d12_5dd173src#main#java#com#telefonica#iot#cygnus#sinks#OrionSink.java
+-1 : -1
+prev_The-Dream-Team-Tardis_f7d98c_c71f75src#main#java#me#dreamteam#tardis#Database.java
+-1 : -1
+prev_TheCoder4eu-BootsFaces-OSP_634812_c80707src#main#java#net#bootsfaces#component#tabView#TabView.java
+-1 : -1
+prev_TridentSDK-TridentSDK_79820f_72357esrc#main#java#net#tridentsdk#api#event#player#PlayerMoveEvent.java
+-1 : -1
+prev_TridentSDK-TridentSDK_d5dc75_c1dbc8src#main#java#net#tridentsdk#api#event#player#PlayerMoveEvent.java
+-1 : -1
+prev_ucam-cl-dtg-urop-2013-questions_583746_1e0e63src#main#java#uk#ac#cam#sup#models#QuestionSet.java
+-1 : -1
+prev_ucam-cl-dtg-urop-2013-questions_72921e_d9311csrc#main#java#uk#ac#cam#sup#models#QuestionSet.java
+-1 : -1
+prev_valis-vclang_8aa57c_bac42dsrc#main#java#com#jetbrains#jetpad#vclang#term#expr#Concrete.java
+-1 : -1
+prev_Weltraumschaf-commons_1eac3c_2424a4src#main#java#de#weltraumschaf#commons#concurrent#ConcurrentQueue.java
+-1 : -1
+prev_wildfly-security-wildfly-elytron_7785c7_26a0aasrc#main#java#org#wildfly#security#sasl#md5digest#MD5DigestSaslServer.java
+-1 : -1
+prev_xetorthio-jedis_22f522_78d9b9src#main#java#redis#clients#jedis#JedisClusterConnectionHandler.java
+-1 : -1
+prev_xetorthio-jedis_454f78_e789fdsrc#main#java#redis#clients#jedis#JedisClusterConnectionHandler.java
+-1 : -1
+prev_xetorthio-jedis_569a09_6c0f07src#main#java#redis#clients#jedis#JedisClusterConnectionHandler.java
+-1 : -1
+prev_xetorthio-jedis_5713b4_7f44d7src#main#java#redis#clients#jedis#JedisClusterConnectionHandler.java
+-1 : -1
+prev_zendesk-maxwell_135a3b_5157f4src#main#java#com#zendesk#maxwell#schema#Table.java
+-1 : -1
+prev_zendesk-maxwell_237049_a94e2fsrc#main#java#com#zendesk#maxwell#schema#Table.java
+-1 : -1
+prev_zyyettie-LaaS_9408eb_91f876laas-core#src#main#java#org#g6#laas#core#log#LogHandler.java
+-1 : -1
+    UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD
+prev_Activiti-Activiti_2744c6_dcc190modules#activiti-engine#src#main#java#org#activiti#engine#impl#test#PluggableActivitiTestCase.java
+-1 : -1
+prev_Activiti-Activiti_301028_ad3bf6modules#activiti-engine#src#main#java#org#activiti#engine#impl#test#PluggableActivitiTestCase.java
+-1 : -1
+prev_Activiti-Activiti_649746_dbff76modules#activiti-engine#src#main#java#org#activiti#engine#impl#ExecutionQueryImpl.java
+-1 : -1
+prev_Activiti-Activiti_649746_dbff76modules#activiti-engine#src#main#java#org#activiti#engine#impl#ProcessInstanceQueryImpl.java
+-1 : -1
+prev_Activiti-Activiti_b41f55_209872modules#activiti-engine#src#main#java#org#activiti#engine#impl#ProcessInstanceQueryImpl.java
+-1 : -1
+prev_ansell-owlapi_3ce0c8_72a28fparsers#src#main#java#org#coode#owlapi#functionalparser#OWLFunctionalSyntaxParser.java
+-1 : -1
+prev_ansell-owlapi_9c42ae_2fab17parsers#src#main#java#org#coode#owlapi#functionalparser#OWLFunctionalSyntaxParser.java
+-1 : -1
+prev_aranega-testgen_173978_518412src#main#java#simple#mypackage#z.java
+-1 : -1
+prev_BattleNight-BattleNight-Core_e9231a_a63af4src#main#java#me#limebyte#battlenight#core#util#Configuration.java
+-1 : -1
+prev_buddycloud-buddycloud-server-java_16c170_750817src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#PubSubElementProcessorAbstract.java
+-1 : -1
+prev_cjdev-versions-maven-plugin_a67ece_51ee9bsrc#main#java#org#codehaus#mojo#versions#UpdateChildModulesMojo.java
+-1 : -1
+prev_cjdev-versions-maven-plugin_e60b49_5c6476src#main#java#org#codehaus#mojo#versions#CompareDependenciesMojo.java
+-1 : -1
+prev_cylong1016-NJULily_8edee3_9e19adsrc#main#java#po#SalesPO.java
+-1 : -1
+prev_cylong1016-NJULily_8edee3_9e19adsrc#main#java#vo#SalesVO.java
+-1 : -1
+prev_digipost-digipost-api-client-java_27a4b3_73ce7asrc#main#java#no#digipost#api#client#representations#Recipient.java
+-1 : -1
+prev_digipost-digipost-api-client-java_33a1b0_5f7f58src#main#java#no#digipost#api#client#representations#Recipient.java
+-1 : -1
+prev_ebean-orm-avaje-ebeanorm_39f528_27afb9src#main#java#com#avaje#ebeaninternal#server#core#PersistRequestBean.java
+-1 : -1
+prev_ebean-orm-avaje-ebeanorm_d8391b_2ddef3src#main#java#com#avaje#ebeaninternal#server#core#PersistRequestBean.java
+-1 : -1
+prev_ebean-orm-avaje-ebeanorm_e1ec0b_1a13fcsrc#main#java#com#avaje#ebeaninternal#server#core#PersistRequestBean.java
+-1 : -1
+prev_fiji-TrackMate3_f4d899_89348esrc#main#java#net#trackmate#trackscheme#ShowTrackScheme.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_60989b_d7ae89src#main#java#org#fiware#kiara#ps#publisher#WriterProxy.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_60989b_d7ae89src#main#java#org#fiware#kiara#ps#rtps#reader#timedevent#WriterProxyLiveliness.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_a275f1_ce1279src#main#java#org#fiware#kiara#ps#publisher#WriterProxy.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_a275f1_ce1279src#main#java#org#fiware#kiara#ps#rtps#reader#timedevent#WriterProxyLiveliness.java
+-1 : -1
+prev_graphhopper-graphhopper_5ac16d_8b501fcore#src#main#java#com#graphhopper#util#Instruction.java
+-1 : -1
+prev_greese-dasein-cloud-azure_8f76d2_98b60bsrc#main#java#org#dasein#cloud#azure#AzureMethod.java
+-1 : -1
+prev_greese-dasein-cloud-azure_8f76d2_98b60bsrc#main#java#org#dasein#cloud#azure#AzureStorageMethod.java
+-1 : -1
+prev_greese-dasein-cloud-core_9fbfe3_654abfsrc#main#java#org#dasein#cloud#compute#VMLaunchOptions.java
+-1 : -1
+prev_ImmobilienScout24-deadcode4j_ae3c49_2eef2esrc#main#java#de#is24#deadcode4j#plugin#UsageStatisticsManager.java
+-1 : -1
+prev_instance01-MinigamesAPI_e2920f_991e47API#src#main#java#com#comze_instancelabs#minigamesapi#PluginInstance.java
+-1 : -1
+prev_jankotek-MapDB_a302a8_dbe4fesrc#main#java#org#mapdb#StoreDirect.java
+-1 : -1
+prev_jenkinsci-git-client-plugin_c1c0e5_2d41edsrc#main#java#org#jenkinsci#plugins#gitclient#JGitAPIImpl.java
+-1 : -1
+prev_kohsuke-github-api_2d45ac_ec450bsrc#main#java#org#kohsuke#github#DeleteToken.java
+-1 : -1
+prev_kohsuke-github-api_ebc97f_79c5b2src#main#java#org#kohsuke#github#DeleteToken.java
+-1 : -1
+prev_lennartj-jaxb2-maven-plugin_0bd1fe_a07f14src#main#java#org#codehaus#mojo#jaxb2#XjcMojo.java
+-1 : -1
+prev_openspim-SPIMAcquisition_89ef59_6a6ccasrc#main#java#spim#SPIMAcquisition.java
+-1 : -1
+prev_openspim-SPIMAcquisition_9d1cee_38886csrc#main#java#spim#SPIMAcquisition.java
+-1 : -1
+prev_OpenTreeOfLife-taxomachine_0c184a_ea3d70src#main#java#opentree#tnrs#adaptersupport#gnr#GNRMatch.java
+-1 : -1
+prev_osiam-connector4java_f39219_110a35src#main#java#org#osiam#client#query#metamodel#Group_.java
+-1 : -1
+prev_osiam-connector4java_f39219_110a35src#main#java#org#osiam#client#query#metamodel#User_.java
+-1 : -1
+prev_owlcs-owlapi_9c42ae_2fab17parsers#src#main#java#org#coode#owlapi#functionalparser#OWLFunctionalSyntaxParser.java
+-1 : -1
+prev_owlcs-owlapi_d1df2f_a1f918parsers#src#main#java#org#semanticweb#owlapi#rdf#turtle#parser#TurtleParser.java
+-1 : -1
+prev_paul-hammant-qdox_0411b3_7ee2f4src#main#java#com#thoughtworks#qdox#parser#structs#LocatedDef.java
+-1 : -1
+prev_renepickhardt-generalized-language-modeling-toolkit_7f97b8_d8e140src#de#typology#splitter#DataSetSplitter.java
+-1 : -1
+prev_swagger-api-swagger-codegen_d1daf3_812520src#main#java#com#wordnik#swagger#codegen#CodegenProperty.java
+-1 : -1
+prev_swagger-api-swagger-core_1485e6_2e65c6modules#swagger-models#src#main#java#com#wordnik#swagger#models#Operation.java
+-1 : -1
+prev_swagger-api-swagger-core_218a68_bfb9d2modules#swagger-models#src#main#java#com#wordnik#swagger#models#Operation.java
+-1 : -1
+prev_TeamExodus-external_gson_7a5632_8e3a24src#main#java#com#google#gson#Token.java
+-1 : -1
+prev_tehbeard-BeardStat_233110_ec664aspigot#src#main#java#com#tehbeard#beardstat#bukkit#identifier#GrahamIdentifierService.java
+-1 : -1
+prev_tehbeard-BeardStat_38428f_525045src#main#java#com#tehbeard#beardstat#bukkit#identifier#GrahamIdentifierService.java
+-1 : -1
+prev_tehbeard-BeardStat_39ec62_ed1ca3src#main#java#com#tehbeard#BeardStat#DataProviders#JDBCStatDataProvider.java
+-1 : -1
+prev_TridentSDK-TridentSDK_79820f_72357esrc#main#java#net#tridentsdk#api#event#player#PlayerInteractEvent.java
+-1 : -1
+prev_TridentSDK-TridentSDK_d5dc75_c1dbc8src#main#java#net#tridentsdk#api#event#player#PlayerInteractEvent.java
+-1 : -1
+prev_UniTime-unitime_78be2f_616163JavaSource#org#unitime#timetable#onlinesectioning#custom#purdue#XEInterface.java
+-1 : -1
+prev_UniTime-unitime_78be2f_616163JavaSource#org#unitime#timetable#onlinesectioning#custom#purdue#XEInterface.java
+-1 : -1
+prev_UniTime-unitime_b6519b_292001JavaSource#org#unitime#timetable#onlinesectioning#custom#purdue#XEInterface.java
+-1 : -1
+prev_UniTime-unitime_b6519b_292001JavaSource#org#unitime#timetable#onlinesectioning#custom#purdue#XEInterface.java
+-1 : -1
+prev_void256-nifty-gui_81184d_a2a4b4nifty-renderer-opengl#src#main#java#de#lessvoid#nifty#renderer#opengl#NiftyInputDeviceOpenGL.java
+-1 : -1
+prev_zendesk-maxwell_01af4c_2c200fsrc#main#java#com#zendesk#maxwell#schema#ddl#TableCreate.java
+-1 : -1
+prev_zendesk-maxwell_24703c_a80a06src#main#java#com#zendesk#maxwell#MaxwellParser.java
+-1 : -1
+prev_zendesk-maxwell_86afd1_dd86c7src#main#java#com#zendesk#maxwell#MaxwellParser.java
+-1 : -1
+prev_zendesk-maxwell_d596a7_59bf67src#main#java#com#zendesk#maxwell#schema#ddl#TableCreate.java
+-1 : -1
+prev_zendesk-maxwell_ec8c95_9d3069src#main#java#com#zendesk#maxwell#schema#ddl#TableCreate.java
+-1 : -1
+    UWF_NULL_FIELD
+prev_adangel-pmd_782135_cb5feapmd#src#main#java#net#sourceforge#pmd#cli#PMDParameters.java
+-1 : -1
+prev_aherbert-GDSC-SMLM_f32d6c_47ab63src#main#java#gdsc#smlm#fitting#function#PoissonGammaGaussianLikelihoodWrapper.java
+-1 : -1
+prev_aherbert-GDSC-SMLM_f32d6c_47ab63src#main#java#gdsc#smlm#fitting#function#PoissonGaussianLikelihoodWrapper.java
+-1 : -1
+prev_anba-es6draft_2c2cc7_74ade4src#main#java#com#github#anba#es6draft#repl#Repl.java
+-1 : -1
+prev_apache-commons-compress_697216_34e939src#main#java#org#apache#commons#compress#archivers#dump#DumpArchiveEntry.java
+-1 : -1
+prev_brooklyncentral-clocker_6a2ab7_0badcbdist#src#main#java#brooklyn#clocker#example#MicroServiceDockerfileImpl.java
+-1 : -1
+prev_brooklyncentral-clocker_80c8d8_d2873ddist#src#main#java#brooklyn#clocker#example#MicroServiceDockerfileImpl.java
+-1 : -1
+prev_brooklyncentral-clocker_dae8d9_b4e125dist#src#main#java#brooklyn#clocker#example#MicroServiceDockerfileImpl.java
+-1 : -1
+prev_charite-jannovar_39e5cb_77a4f3src#main#java#jannovar#reference#Chromosome.java
+-1 : -1
+prev_cjdev-versions-maven-plugin_05818d_53f370src#main#java#org#codehaus#mojo#versions#LockSnapshotsMojo.java
+-1 : -1
+prev_cjdev-versions-maven-plugin_05818d_53f370src#main#java#org#codehaus#mojo#versions#ResolveRangesMojo.java
+-1 : -1
+prev_cjdev-versions-maven-plugin_05818d_53f370src#main#java#org#codehaus#mojo#versions#UnlockSnapshotsMojo.java
+-1 : -1
+prev_cjdev-versions-maven-plugin_05818d_53f370src#main#java#org#codehaus#mojo#versions#UseReleasesMojo.java
+-1 : -1
+prev_ColoradoSchoolOfMines-interface_sdk_ac22b3_85056fsrc#main#java#edu#mines#acmX#exhibit#stdlib#scoring#ScoreSaver.java
+-1 : -1
+prev_ColoradoSchoolOfMines-interface_sdk_b90487_66d817src#main#java#edu#mines#acmX#exhibit#stdlib#scoring#ScoreSaver.java
+-1 : -1
+prev_datasift-datasift-java_06ec00_0e6f0asrc#de#roderick#weberknecht#WebSocketHandshake.java
+-1 : -1
+prev_datasift-datasift-java_27ae5e_cd68a4src#org#datasift#tests#DataForTests.java
+-1 : -1
+prev_datasift-datasift-java_725ef4_8554dcsrc#de#roderick#weberknecht#WebSocketHandshake.java
+-1 : -1
+prev_datasift-datasift-java_bab64e_4c2226src#de#roderick#weberknecht#WebSocketHandshake.java
+-1 : -1
+prev_datasift-datasift-java_f527bc_7b9ba8src#de#roderick#weberknecht#WebSocketHandshake.java
+-1 : -1
+prev_ebean-orm-avaje-ebeanorm_456a1d_8bfa33src#main#java#com#avaje#ebeaninternal#server#expression#DefaultExpressionFactory.java
+-1 : -1
+prev_EngineHub-CommandHelper_2ed314_af92d8src#main#java#com#laytonsmith#core#exceptions#CRE#AbstractCREException.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_4f7fb7_5d4c0dsrc#main#java#org#fiware#kiara#ps#rtps#history#WriterHistoryCache.java
+-1 : -1
+prev_FIWARE-Middleware-KIARA_ecc6c9_132cb4src#main#java#org#fiware#kiara#ps#rtps#history#WriterHistoryCache.java
+-1 : -1
+prev_forcedotcom-phoenix_33f525_56c899src#main#java#com#salesforce#phoenix#coprocessor#ScanProjector.java
+-1 : -1
+prev_forcedotcom-phoenix_997898_0583c7src#main#java#com#salesforce#phoenix#coprocessor#ScanProjector.java
+-1 : -1
+prev_INL-BlackLab_962bd0_897d9bsrc#main#java#nl#inl#blacklab#perdocument#DocResults.java
+-1 : -1
+prev_jankotek-MapDB_99b619_bde4a9src#main#java#org#mapdb#DB.java
+-1 : -1
+prev_jensnerche-plantuml_ba0d28_22372bsrc#net#sourceforge#plantuml#skin#BiColor.java
+-1 : -1
+prev_jmxtrans-jmxtrans_4b927e_f5e3desrc#com#googlecode#jmxtrans#model#output#BaseOutputWriter.java
+-1 : -1
+prev_kotcrab-VisEditor_bf1217_79455asrc#main#java#pl#kotcrab#vis#sceneeditor#SceneEditorConfig.java
+-1 : -1
+prev_ldbc-ldbc_driver_26a25f_ec8b7dsrc#main#java#com#ldbc#driver#workloads#ldbc#snb#bi#LdbcSnbBiWorkload.java
+-1 : -1
+prev_ldbc-ldbc_driver_920ee2_56b0d6src#main#java#com#ldbc#driver#runtime#executor#InitiatedTimeSubmittingOperationRetriever_NEW.java
+-1 : -1
+prev_marklogic-java-client-api_e41113_117b4csrc#main#java#com#marklogic#client#io#SearchHandle.java
+-1 : -1
+prev_marklogic-java-client-api_e41113_117b4csrc#main#java#com#marklogic#client#io#TuplesHandle.java
+-1 : -1
+prev_marschraner-svm_ca5485_a97be6src#main#java#ch#metzenthin#svm#ui#components#SchuelerBereitsInDatenbankDialog.java
+-1 : -1
+prev_metamx-java-util_565992_70db32src#main#java#com#metamx#common#parsers#DelimitedParser.java
+-1 : -1
+prev_neo4j-neo4j-ogm_f335eb_24442fsrc#main#java#org#neo4j#ogm#session#transaction#TransactionManager.java
+-1 : -1
+prev_notthebees-languagegames_fc6bfd_744138src#test#java#paddy#conceptual#TestAgentContainerImpl.java
+-1 : -1
+prev_openpnp-openpnp_357d57_18c1c1src#main#java#org#openpnp#model#Placement.java
+-1 : -1
+prev_openpnp-openpnp_98d022_0bb975src#main#java#org#openpnp#model#Placement.java
+-1 : -1
+prev_openpnp-openpnp_c831ea_2fb767src#main#java#org#openpnp#model#Placement.java
+-1 : -1
+prev_plutext-docx4j_1c96a4_074e1csrc#main#java#org#docx4j#model#datastorage#CustomXmlDataStoragePartSelector.java
+-1 : -1
+prev_protegeproject-swrlapi_c5c1a9_4afae3src#main#java#org#swrlapi#ui#controller#SWRLAPIApplicationController.java
+-1 : -1
+prev_sk89q-CommandBook_bc032d_01bc41src#main#java#com#sk89q#commandbook#profiles#ProfilesComponent.java
+-1 : -1
+prev_SonarSource-jenkins-sonar-plugin_afb60b_b6fbc3src#main#java#hudson#plugins#sonar#SonarPublisher.java
+-1 : -1
+prev_valis-vclang_8d932d_f071a5src#main#java#com#jetbrains#jetpad#vclang#term#definition#ClassDefinition.java
+-1 : -1
+prev_vmi-selenese-runner-java_0330c6_af9a38src#main#java#jp#vmi#selenium#selenese#subcommand#SubCommandMap.java
+-1 : -1
+prev_vmi-selenese-runner-java_aaaf76_fd440bsrc#main#java#jp#vmi#selenium#selenese#subcommand#SubCommandMap.java
+-1 : -1
+prev_Weltraumschaf-commons_0cde07_2f8250src#main#java#de#weltraumschaf#commons#shell#DefaultParser.java
+-1 : -1
+prev_zycgit-hasor_7851e1_1229e8src#main#java#net#hasor#core#environment#AbstractEnvironment.java
+-1 : -1
+    UWF_UNWRITTEN_FIELD
+prev_SpigotMC-BungeeCord_e12bc1_4fb857proxy#src#main#java#net#md_5#bungee#UserConnection.java
+-1 : -1
+    UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD
+prev_junkdog-artemis-odb_723347_7f3576artemis-matrix#src#main#java#com#artemis#model#scan#ArtemisConfigurationData.java
+-1 : -1
+prev_junkdog-artemis-odb_bf4978_5b068eartemis-weaver#src#main#java#com#artemis#meta#ClassMetadata.java
+-1 : -1
+prev_junkdog-artemis-odb_e9b4a7_bf4978artemis-weaver#src#main#java#com#artemis#meta#ClassMetadata.java
+-1 : -1
+    VO_VOLATILE_REFERENCE_TO_ARRAY
+prev_basho-riak-java-client_3c9bca_95c964src#main#java#com#basho#riak#pbc#RiakConnection.java
+-1 : -1
+prev_basho-riak-java-client_734fb7_9a398bsrc#main#java#com#basho#riak#client#DefaultRiakObject.java
+-1 : -1
+prev_basho-riak-java-client_c2dabe_b862e7src#main#java#com#basho#riak#client#util#BranchableInputStream.java
+-1 : -1
+prev_junit-team-junit_1d6914_c099a9src#main#java#org#junit#runner#notification#RunNotifier.java
+-1 : -1
+prev_SonarSource-jenkins-sonar-plugin_067829_1691c4src#main#java#hudson#plugins#sonar#SonarBuildWrapper.java
+-1 : -1

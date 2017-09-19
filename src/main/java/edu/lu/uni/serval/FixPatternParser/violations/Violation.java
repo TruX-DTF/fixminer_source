@@ -13,17 +13,19 @@ public class Violation implements Comparable<Violation> {
 	private int endLineNum;
 	private int bugStartLineNum;
 	private int bugEndLineNum;
-	private int fixStartLineNum;
+	private int fixStartLineNum = 0;
 	private int fixEndLineNum;
-	private String alarmType;
+	private String violationType;
 	private List<DiffEntryHunk> hunks = new ArrayList<>();
 	private List<HierarchicalActionSet> actionSets;
+	private int bugFixStartLineNum = 0; // the heuristic matched fix start line of a violation
+	private int bugFixEndLineNum = 0; // the heuristic matched fix end line of a violation
 
-	public Violation(Integer startLineNum, int endLineNum, String alarmType) {
+	public Violation(Integer startLineNum, int endLineNum, String violationType) {
 		super();
 		this.startLineNum = startLineNum;
 		this.endLineNum = endLineNum;
-		this.alarmType = alarmType;
+		this.violationType = violationType;
 		this.actionSets = new ArrayList<>();
 	}
 
@@ -83,12 +85,28 @@ public class Violation implements Comparable<Violation> {
 		this.hunks = hunks;
 	}
 
-	public String getAlarmType() {
-		return alarmType;
+	public String getViolationType() {
+		return violationType;
 	}
 
 	public List<HierarchicalActionSet> getActionSets() {
 		return actionSets;
+	}
+
+	public int getBugFixStartLineNum() {
+		return bugFixStartLineNum;
+	}
+
+	public void setBugFixStartLineNum(int bugFixStartLineNum) {
+		this.bugFixStartLineNum = bugFixStartLineNum;
+	}
+
+	public int getBugFixEndLineNum() {
+		return bugFixEndLineNum;
+	}
+
+	public void setBugFixEndLineNum(int bugFixEndLineNum) {
+		this.bugFixEndLineNum = bugFixEndLineNum;
 	}
 
 	@Override
@@ -98,14 +116,14 @@ public class Violation implements Comparable<Violation> {
 	
 	@Override
 	public String toString() {
-		return this.startLineNum + " : " + this.endLineNum + " : " + this.alarmType;
+		return this.startLineNum + " : " + this.endLineNum + " : " + this.violationType;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Violation) {
 			Violation v = (Violation) obj;
-			if (this.fileName.equals(v.fileName) && this.alarmType.equals(v.alarmType) && this.startLineNum == v.startLineNum && this.endLineNum == v.endLineNum) {
+			if (this.fileName.equals(v.fileName) && this.violationType.equals(v.violationType) && this.startLineNum == v.startLineNum && this.endLineNum == v.endLineNum) {
 				return true;
 			}
 		}

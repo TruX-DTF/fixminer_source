@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.violation.code.parser;
+package edu.lu.uni.serval.parameters;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.github.gumtreediff.tree.ITree;
 
@@ -18,66 +15,68 @@ import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.violation.code.parser.ViolationSourceCodeTree;
 
-public class ViolationCodeParser {
+/**
+ * Prepare data for tuning parameters of deep learning models.
+ * 
+ * @author kui.liu
+ *
+ */
+public class ParseAlarms {
 
-	private static Logger log = LoggerFactory.getLogger(ViolationCodeParser.class);
-	
 	public static void main(String[] args) {
-		/*
-		 * Fixed violations:
-		 * 		Violation code files.
-		 * 		Position files.
-		 */
-//		String fixedViolationFilesPath = Configuration.GUM_TREE_INPUT + "prevFiles/";
-//		String positionsFilePath = Configuration.GUM_TREE_INPUT + "positions/";
-//		int subIndex = 5;
-//		String outputPath = Configuration.ROOT_PATH + "Alarms_tokens/fixedAlarms.list";
-//		FileHelper.deleteFile(outputPath);
-//		new ViolationCodeParser().parse(fixedViolationFilesPath, positionsFilePath, subIndex, outputPath);
-			
-		/*
-		 * UnFixed violations:
-		 * 		Violation code files.
-		 * 		Position files.
-		 */
-		String unfixedViolationFilesPath = Configuration.GUM_TREE_INPUT + "unfixAlarms/";
-		String un_positionsFilePath = Configuration.GUM_TREE_INPUT + "un_positions/";
-		int subIndex2 = 8;
-		String outputPath2 = Configuration.ROOT_PATH + "Alarms_tokens/unfixedAlarms.list";
+		ParseAlarms parser = new ParseAlarms();
+		
+		String outputPath = Configuration.ROOT_PATH + "TuneParameters/fixedAlarmTokens.list";
+		String outputPath2 = Configuration.ROOT_PATH + "TuneParameters/EmptyStatement/fixedAlarmTokens.list";
+		FileHelper.deleteFile(outputPath);
 		FileHelper.deleteFile(outputPath2);
-		new ViolationCodeParser().parse(unfixedViolationFilesPath, un_positionsFilePath, subIndex2, outputPath2);
+		int subIndex = 5;
+		String fixedAlarmFilesPath = Configuration.GUM_TREE_INPUT + "prevFiles/";
+		String positionsFilePath = Configuration.GUM_TREE_INPUT + "positions/";
+		parser.dataPreparation(fixedAlarmFilesPath, positionsFilePath, subIndex, outputPath, outputPath2);
+		
+		outputPath = Configuration.ROOT_PATH + "TuneParameters/unfixedAlarmTokens.list";
+		outputPath2 = Configuration.ROOT_PATH + "TuneParameters/EmptyStatement/unfixedAlarmTokens.list";
+		FileHelper.deleteFile(outputPath);
+		FileHelper.deleteFile(outputPath2);
+		subIndex = 8;
+		String unfixedAlarmFilesPath = Configuration.GUM_TREE_INPUT + "unfixAlarms/";
+		String unfixedPositionsFilePath = Configuration.GUM_TREE_INPUT + "un_positions/";
+		parser.dataPreparation(unfixedAlarmFilesPath, unfixedPositionsFilePath, subIndex, outputPath, outputPath2);
 	}
 
-	public void parse(String alarmFilesPath, String positionFilesPath, int subIndex, String outputPath) {
+	public void dataPreparation(String sourceCodeFilePath, String positionFilePath, int subIndex, String outputPath, String outputPath2) {
 		StringBuilder tokensBuilder = new StringBuilder();
-		List<File> javaFiles = FileHelper.getAllFilesInCurrentDiectory(alarmFilesPath, ".java");
+		List<File> javaFiles = FileHelper.getAllFilesInCurrentDiectory(sourceCodeFilePath, ".java");
 		int counter = 0;
 		int a = 0;
-		int maxLength = 0;
+		StringBuilder emptyStatements = new StringBuilder();
+		StringBuilder sizes = new StringBuilder();
 		for (File javaFile : javaFiles) {
 			String fileName = javaFile.getName().replace(".java", ".txt");
 			fileName = fileName.substring(subIndex);
 			
-			List<Violation> violations = readViolationInfo(positionFilesPath + fileName);
+//			if (fileName.endsWith("apache-commons-configuration_8c42aa_8b26e6src#java#org#apache#commons#configuration#plist#XMLPropertyListConfiguration.txt")) {
+//				System.out.println();
+//			}
+			
+			List<Violation> violations = readViolations(positionFilePath + fileName);
 			
 			for (Violation violation : violations) {
 				int startLine = violation.getStartLineNum();
 				int endLine = violation.getEndLineNum();
 				String alarmType = violation.getViolationType();
-				
-//				if (endLine > startLine + 5) {
-//					log.warn("#Large_Violation_Hunk: " + fileName.replace("#", "/").replace(".txt", ".java") + ":" + startLine + ":" + endLine + ":" + alarmType);
-//					continue;
-//				}
-				
+
+				if (endLine > startLine + 5) continue;
+
 				ViolationSourceCodeTree alarmTree = new ViolationSourceCodeTree(javaFile, startLine, endLine);
-				alarmTree.extract();
+				alarmTree.extract(alarmType);
 				List<ITree> matchedTrees = alarmTree.getViolationSourceCodeTrees();
 				if (matchedTrees.size() == 0) {
-					System.out.println(fileName + " == " + startLine + " : " + endLine);
+					emptyStatements.append(alarmType + "," + fileName + "," + startLine + "," + endLine + "\n");
 					a ++;
-					log.warn("#Null_Violation_Hunk: " + fileName.replace("#", "/").replace(".txt", ".java") + ":" + startLine + ":" + endLine + ":" + alarmType);
 					continue;
 				}
 				SimpleTree simpleTree = new SimpleTree();
@@ -94,24 +93,25 @@ public class ViolationCodeParser {
 				String tokens = Tokenizer.getTokensDeepFirst(simpleTree);
 				String[] tokensArray = tokens.split(" ");
 				int length = tokensArray.length;
-				if (length > maxLength) maxLength = length;
+				sizes.append(length + "\n");
 				tokensBuilder.append(alarmType + ":" + fileName + ":" + alarmTree.getViolationFinalStartLine() + ":" + alarmTree.getViolationFinalEndLine() + ":" + tokens + "\n");
+				
 				counter ++;
-				if (counter % 5000 == 0) {
+				if (counter % 10000 == 0) {
 					FileHelper.outputToFile(outputPath, tokensBuilder, true);
 					tokensBuilder.setLength(0);
 				}
 			}
 		}
 
-		System.out.println(counter);
-		System.out.println(a);
-		System.out.println("MaxLength: " + maxLength);
+		System.out.println("Volidated Instances: " + counter);
+		System.out.println("Empty Instances: " + a);
+		FileHelper.outputToFile(outputPath2, emptyStatements, false);
+		FileHelper.outputToFile(outputPath.replace(".list", "Sizes.csv"), sizes, false);
 		FileHelper.outputToFile(outputPath, tokensBuilder, true);
-		tokensBuilder.setLength(0);
 	}
 
-	private List<Violation> readViolationInfo(String file) {
+	private List<Violation> readViolations(String file) {
 		List<Violation> violations = new ArrayList<>();
 		
 		String fileContent = FileHelper.readFile(file);
@@ -123,13 +123,11 @@ public class ViolationCodeParser {
 				String[] positionStr = line.split(":");
 				int startLine = Integer.parseInt(positionStr[1]);
 				int endLine = Integer.parseInt(positionStr[2]);
-				String alarmType = positionStr[0];
 				
 				if (startLine == -1 || endLine == -1) {
-					log.warn("#Illegal_Line_Position: " + FileHelper.getFileName(file).replace("#", "/").replace(".txt", ".java") + ":" +  startLine + ":" + endLine + ":" + alarmType);
 					continue;
 				}
-				
+				String alarmType = positionStr[0];
 				Violation violation = new Violation(startLine, endLine, alarmType);
 				violations.add(violation);
 			}

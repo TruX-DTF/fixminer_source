@@ -186,6 +186,8 @@ public class HierarchicalRegrouper {
 	private Action findParentAction(Action action, List<Action> actions) {
 		
 		ITree parent = action.getNode().getParent();
+		if (parent.getType() == 55) return null;
+		
 		if (action instanceof Addition) {
 			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
 		}

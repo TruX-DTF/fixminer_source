@@ -28,6 +28,8 @@ public class Tokenizer {
 				tokens += astNodeType + " arrayInitializer ";
 			} else if ("LambdaExpression".equals(astNodeType)) {
 				tokens += astNodeType + " lambda ";
+			} else if ("NumberLiteral".equals(astNodeType)) {
+				tokens += astNodeType + " numberLiteral ";
 			} else {
 				tokens += astNodeType + " " + simpleTree.getLabel() + " ";
 			}

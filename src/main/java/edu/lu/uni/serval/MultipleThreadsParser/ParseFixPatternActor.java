@@ -50,7 +50,7 @@ public class ParseFixPatternActor extends UntypedActor {
 		if (message instanceof WorkMessage) {
 			List<MessageFile> files = ((WorkMessage) message).getMsgFiles();
 			int size = files.size();
-			int average = size / numberOfWorkers;
+			int average = (int) Math.round((double) size / numberOfWorkers);
 			
 			for (int i = 0; i < numberOfWorkers; i ++) {
 				int fromIndex = i * average;

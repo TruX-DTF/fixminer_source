@@ -1,0 +1,2518 @@
+vi renepickhardt-generalized-language-modeling-toolkit_501d3c_b72164src#main#java#de#glmtk#options#QueryModeFilesOption.txt   
+ :    37   :   39
+vi forcedotcom-phoenix_7f2b08_df0a4dsrc#main#java#com#salesforce#phoenix#flume#serializer#RegexEventSerializer.txt   
+ :    82   :   155
+vi forcedotcom-phoenix_7f2b08_df0a4dsrc#main#java#com#salesforce#phoenix#flume#serializer#RegexEventSerializer.txt   
+ :    82   :   155
+vi forcedotcom-phoenix_7f2b08_df0a4dsrc#main#java#com#salesforce#phoenix#flume#serializer#RegexEventSerializer.txt   
+ :    82   :   155
+vi code4craft-webmagic_b21e20_8c33bewebmagic-core#src#main#java#us#codecraft#webmagic#downloader#HttpClientDownloader.txt   
+ :    134   :   144
+vi LEDS-sincap-entities_b0bc66_50e599src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    37   :   66
+vi LEDS-sincap-entities_b0bc66_50e599src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    37   :   66
+vi LEDS-sincap-entities_b0bc66_50e599src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    32   :   66
+vi LEDS-sincap-entities_b0bc66_50e599src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    32   :   66
+vi LEDS-sincap-entities_b0bc66_50e599src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    30   :   66
+vi LEDS-sincap-entities_b0bc66_50e599src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    30   :   66
+vi perfectsense-dari_443eec_1133bcutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi arjovanramshorst-bubble-bobble-sem_aaa245_8b5cb3core#src#main#java#sem#group15#bubblebobble#core#objects#PlayerObject.txt   
+ :    41   :   46
+vi simon-eastwood-DependencyCheckCM_804e48_240ab0src#main#java#org#codesecure#dependencycheck#data#cpe#Index.txt   
+ :    271   :   287
+vi simon-eastwood-DependencyCheckCM_804e48_240ab0src#main#java#org#codesecure#dependencycheck#data#cpe#Index.txt   
+ :    271   :   287
+vi apache-commons-codec_114830_1a3a1bsrc#main#java#org#apache#commons#codec#binary#Base64.txt   
+ :    337   :   391
+vi apache-commons-codec_114830_1a3a1bsrc#main#java#org#apache#commons#codec#binary#Base64.txt   
+ :    337   :   391
+vi jcabi-jcabi-github_b0b882_f8f107src#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi Bukkit-Bukkit_98d6a3_d5fdc4src#main#java#org#bukkit#plugin#java#JavaPluginLoader.txt   
+ :    122   :   184
+vi Bukkit-Bukkit_98d6a3_d5fdc4src#main#java#org#bukkit#plugin#java#JavaPluginLoader.txt   
+ :    122   :   184
+vi greese-dasein-cloud-core_043c84_a491a6src#main#java#org#dasein#cloud#network#NetworkInterface.txt   
+ :    53   :   58
+vi greese-dasein-cloud-core_043c84_a491a6src#main#java#org#dasein#cloud#network#NetworkInterface.txt   
+ :    52   :   58
+vi greese-dasein-cloud-core_043c84_a491a6src#main#java#org#dasein#cloud#network#NetworkInterface.txt   
+ :    52   :   58
+vi greese-dasein-cloud-core_043c84_a491a6src#main#java#org#dasein#cloud#network#NetworkInterface.txt   
+ :    53   :   58
+vi relayrides-pushy_219812_9747d7src#main#java#com#relayrides#pushy#apns#ApnsConnection.txt   
+ :    135   :   139
+vi EngineHub-CommandHelper_1fc018_2ed314src#main#java#com#laytonsmith#core#functions#BasicLogic.txt   
+ :    2514   :   2515
+vi perfectsense-dari_ddc6eb_6233bfutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi karamelchef-karamel_d8c349_8b52f3karamel-core#src#main#java#se#kth#karamel#backend#ClusterManager.txt   
+ :    209   :   235
+vi forcedotcom-phoenix_170471_21ed44src#main#java#com#salesforce#phoenix#util#CSVLoader.txt   
+ :    99   :   148
+vi forcedotcom-phoenix_170471_21ed44src#main#java#com#salesforce#phoenix#util#CSVLoader.txt   
+ :    99   :   148
+vi jbossas-jboss-ejb-client_fd7126_7a8879src#main#java#org#jboss#ejb#client#remoting#ConfigBasedEJBClientContextSelector.txt   
+ :    100   :   125
+vi jbossas-jboss-ejb-client_fd7126_7a8879src#main#java#org#jboss#ejb#client#remoting#ConfigBasedEJBClientContextSelector.txt   
+ :    100   :   125
+vi jcabi-jcabi-github_0d7f85_99e19csrc#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi karamelchef-karamel_d0c86a_53de33karamel-core#src#main#java#se#kth#karamel#backend#ClusterManager.txt   
+ :    209   :   235
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_420a44_5856desrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    242   :   331
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_420a44_5856desrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    242   :   331
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_420a44_5856desrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    242   :   331
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_420a44_5856desrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    241   :   331
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_420a44_5856desrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    241   :   331
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_420a44_5856desrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    241   :   331
+vi apache-pdfbox_279203_ca50b4examples#src#main#java#org#apache#pdfbox#examples#fdf#PrintFields.txt   
+ :    69   :   124
+vi apache-pdfbox_279203_ca50b4examples#src#main#java#org#apache#pdfbox#examples#fdf#PrintFields.txt   
+ :    69   :   124
+vi apache-pdfbox_279203_ca50b4examples#src#main#java#org#apache#pdfbox#examples#fdf#PrintFields.txt   
+ :    69   :   124
+vi LEDS-sincap-entities_44ba50_a6fb94src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    37   :   80
+vi LEDS-sincap-entities_44ba50_a6fb94src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    37   :   80
+vi LEDS-sincap-entities_303892_7d6de9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    42   :   80
+vi LEDS-sincap-entities_303892_7d6de9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    44   :   80
+vi LEDS-sincap-entities_303892_7d6de9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    41   :   80
+vi aherbert-GDSC-SMLM_5519e2_ffe4f8src#main#java#gdsc#smlm#ij#plugins#PSFDrift.txt   
+ :    479   :   623
+vi aherbert-GDSC-SMLM_5519e2_ffe4f8src#main#java#gdsc#smlm#ij#plugins#PSFDrift.txt   
+ :    479   :   623
+vi aherbert-GDSC-SMLM_5519e2_ffe4f8src#main#java#gdsc#smlm#ij#plugins#PSFDrift.txt   
+ :    479   :   623
+vi ClemsonRSRG-RESOLVE_104e7c_98e349src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#VerificationConditionCongruenceClosureImpl.txt   
+ :    52   :   65
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ImagicReader.txt   
+ :    157   :   330
+vi ClemsonRSRG-RESOLVE_d41ac9_a7cb0bsrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#ConjunctionOfNormalizedAtomicExpressions.txt   
+ :    716   :   753
+vi ClemsonRSRG-RESOLVE_d41ac9_a7cb0bsrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#ConjunctionOfNormalizedAtomicExpressions.txt   
+ :    716   :   753
+vi jankotek-MapDB_806eb8_6c9fa8src#main#java#org#mapdb#DB.txt   
+ :    787   :   823
+vi jankotek-MapDB_806eb8_6c9fa8src#main#java#org#mapdb#DB.txt   
+ :    660   :   693
+vi ClemsonRSRG-RESOLVE_e8fde6_132c70src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    2822   :   3054
+vi ClemsonRSRG-RESOLVE_9887a7_542234src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_9887a7_542234src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_9887a7_542234src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi belaban-JGroups_8797b1_db28afsrc#org#jgroups#demos#Draw.txt   
+ :    300   :   308
+vi ClemsonRSRG-RESOLVE_cd708a_b8f789src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    196   :   204
+vi ClemsonRSRG-RESOLVE_d17ca5_646cdcsrc#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    737   :   770
+vi ClemsonRSRG-RESOLVE_d17ca5_646cdcsrc#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    737   :   770
+vi ClemsonRSRG-RESOLVE_d17ca5_646cdcsrc#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    741   :   770
+vi ClemsonRSRG-RESOLVE_d17ca5_646cdcsrc#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    741   :   770
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#SuspiciousUninitializedArray.txt   
+ :    108   :   270
+vi Studentmediene-Momus_0782ff_df9f0dsrc#main#java#no#dusken#momus#controller#DevController.txt   
+ :    103   :   131
+vi PerfCake-PerfCake_a197a4_3406f5src#main#java#org#perfcake#message#sender#CommandSender.txt   
+ :    141   :   142
+vi PerfCake-PerfCake_a197a4_3406f5src#main#java#org#perfcake#message#sender#CommandSender.txt   
+ :    140   :   142
+vi ArcBees-gwtquery_9b5ecd_5485f3gwtquery-core#src#main#java#com#google#gwt#query#client#plugins#Effects.txt   
+ :    121   :   178
+vi simon-eastwood-DependencyCheckCM_c04702_669fedsrc#main#java#org#codesecure#dependencycheck#utils#Downloader.txt   
+ :    127   :   160
+vi tengstrand-Laja_bdf680_d33074src#main#java#net#sf#laja#parser#cdd#state#StateParser.txt   
+ :    396   :   648
+vi oboformat-oboformat_286cec_8866aasrc#main#java#org#obolibrary#oboformat#parser#XrefExpander.txt   
+ :    58   :   131
+vi oboformat-oboformat_286cec_8866aasrc#main#java#org#obolibrary#oboformat#parser#XrefExpander.txt   
+ :    58   :   131
+vi FIWARE-Middleware-KIARA_7de970_1f3c50src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    89   :   104
+vi FIWARE-Middleware-KIARA_7de970_1f3c50src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    93   :   104
+vi FIWARE-Middleware-KIARA_7de970_1f3c50src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    92   :   104
+vi FIWARE-Middleware-KIARA_7de970_1f3c50src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    97   :   104
+vi named-data-jndn_9fefba_5e170csrc#net#named_data#jndn#util#Blob.txt   
+ :    249   :   253
+vi perfectsense-dari_97ef7c_4d7401util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi SomMeri-less4j_ba7b05_6e1ecdsrc#main#java#com#github#sommeri#less4j#utils#CssPrinter.txt   
+ :    126   :   301
+vi plutext-docx4j_5f2a57_dd79cfsrc#main#java#org#docx4j#utils#JarCheck.txt   
+ :    205   :   249
+vi LEDS-sincap-entities_b21c8b_e711e4src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi LEDS-sincap-entities_b21c8b_e711e4src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi AtlasOfLivingAustralia-spatial-portal_492d6c_da1fe0src#main#java#org#ala#layers#util#Bil2diva.txt   
+ :    164   :   178
+vi perfectsense-dari_109e21_19c5adutil#src#main#java#com#psddev#dari#util#StringUtils.txt   
+ :    276   :   284
+vi renepickhardt-generalized-language-modeling-toolkit_c1ddd0_f1ee89src#de#typology#splitter#Aggregator.txt   
+ :    52   :   154
+vi renepickhardt-generalized-language-modeling-toolkit_c1ddd0_f1ee89src#de#typology#splitter#Aggregator.txt   
+ :    52   :   154
+vi Activiti-Activiti_90446c_2d592dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi vmi-selenese-runner-java_85cc14_08887dsrc#main#java#jp#vmi#selenium#selenese#RunFileInterceptor.txt   
+ :    22   :   36
+vi perfectsense-dari_674489_17da2eutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi keeps-db-preservation-toolkit_4b77dc_adf795src#main#java#pt#gov#dgarq#roda#common#convert#db#modules#siard#in#SIARDImportModule.txt   
+ :    784   :   821
+vi keeps-db-preservation-toolkit_4b77dc_adf795src#main#java#pt#gov#dgarq#roda#common#convert#db#modules#siard#in#SIARDImportModule.txt   
+ :    784   :   821
+vi keeps-db-preservation-toolkit_4b77dc_adf795src#main#java#pt#gov#dgarq#roda#common#convert#db#modules#siard#in#SIARDImportModule.txt   
+ :    784   :   821
+vi GenomicParisCentre-eoulsan_da0a29_689ad1src#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    258   :   308
+vi GenomicParisCentre-eoulsan_da0a29_689ad1src#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    258   :   308
+vi GenomicParisCentre-eoulsan_da0a29_689ad1src#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    115   :   160
+vi Activiti-Activiti_459b79_b7f70dmodules#activiti-bpmn-converter#src#main#java#org#activiti#bpmn#converter#UserTaskXMLConverter.txt   
+ :    274   :   279
+vi jbossas-jboss-ejb-client_ce6280_8a3430src#main#java#org#jboss#ejb#client#remoting#ConfigBasedEJBClientContextSelector.txt   
+ :    100   :   125
+vi jbossas-jboss-ejb-client_ce6280_8a3430src#main#java#org#jboss#ejb#client#remoting#ConfigBasedEJBClientContextSelector.txt   
+ :    100   :   125
+vi marschraner-svm_719c5d_01789esrc#main#java#ch#metzenthin#svm#domain#commands#CommandInvokerImpl.txt   
+ :    63   :   71
+vi xetorthio-jedis_f065b8_833065src#main#java#redis#clients#jedis#Connection.txt   
+ :    55   :   61
+vi xetorthio-jedis_a041cf_8d0bb9src#main#java#redis#clients#jedis#Connection.txt   
+ :    165   :   174
+vi xetorthio-jedis_a041cf_8d0bb9src#main#java#redis#clients#jedis#Connection.txt   
+ :    164   :   174
+vi xetorthio-jedis_a041cf_8d0bb9src#main#java#redis#clients#jedis#Connection.txt   
+ :    166   :   174
+vi karamelchef-karamel_d78fa5_acf89fkaramel-core#src#main#java#se#kth#karamel#backend#ClusterManager.txt   
+ :    209   :   235
+vi rasto-lcmc_d001f9_914faasrc#main#java#lcmc#vm#ui#resource#DomainInfo.txt   
+ :    1640   :   1786
+vi altran-Whydah-UserIdentityBackend_650f82_c75185src#main#java#net#whydah#identity#user#resource#UserAdminHelper.txt   
+ :    120   :   139
+vi GenomicParisCentre-eoulsan_414e96_16c7c6src#main#java#fr#ens#transcriptome#eoulsan#bio#readsmappers#GSNAPReadsMapper.txt   
+ :    152   :   196
+vi UniTime-unitime_3ff5c2_a7fecbJavaSource#org#unitime#timetable#gwt#client#sectioning#DegreePlanTable.txt   
+ :    486   :   501
+vi UniTime-unitime_3ff5c2_a7fecbJavaSource#org#unitime#timetable#gwt#client#sectioning#DegreePlanTable.txt   
+ :    461   :   480
+vi UniTime-unitime_3ff5c2_a7fecbJavaSource#org#unitime#timetable#gwt#client#sectioning#DegreePlanTable.txt   
+ :    507   :   531
+vi jensnerche-plantuml_c4d2ad_8cd0c3src#net#sourceforge#plantuml#hector#CucaDiagramFileMakerHectorB2.txt   
+ :    136   :   161
+vi jensnerche-plantuml_c4d2ad_8cd0c3src#net#sourceforge#plantuml#hector#CucaDiagramFileMakerHectorB2.txt   
+ :    136   :   161
+vi grzegorz2047-OpenGuild2047_69a254_3e4b5asrc#main#java#pl#grzegorz2047#openguild2047#managers#TagManager.txt   
+ :    114   :   128
+vi LEDS-sincap-entities_2eb901_ced803src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    36   :   80
+vi LEDS-sincap-entities_2eb901_ced803src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    36   :   80
+vi mbosecke-pebble_0d8db7_a24e89src#main#java#com#mitchellbosecke#pebble#parser#ParserImpl.txt   
+ :    158   :   224
+vi mbosecke-pebble_0d8db7_a24e89src#main#java#com#mitchellbosecke#pebble#parser#ParserImpl.txt   
+ :    132   :   224
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#SuspiciousCloneAlgorithm.txt   
+ :    123   :   185
+vi apache-pdfbox_e19f1e_13bb6eexamples#src#main#java#org#apache#pdfbox#examples#signature#CreateVisibleSignature.txt   
+ :    120   :   175
+vi apache-pdfbox_e19f1e_13bb6eexamples#src#main#java#org#apache#pdfbox#examples#signature#CreateVisibleSignature.txt   
+ :    120   :   175
+vi rapla-rapla_4b515e_a7bb20src#main#java#org#rapla#framework#ServiceListCreator.txt   
+ :    124   :   194
+vi droolsjbpm-optaplanner_a15eb6_0a29cedrools-planner-core#src#main#java#org#drools#planner#core#localsearch#decider#acceptor#tabu#AbstractTabuAcceptor.txt   
+ :    96   :   143
+vi droolsjbpm-optaplanner_a15eb6_0a29cedrools-planner-core#src#main#java#org#drools#planner#core#localsearch#decider#acceptor#tabu#AbstractTabuAcceptor.txt   
+ :    96   :   143
+vi ClemsonRSRG-RESOLVE_9887a7_542234src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.txt   
+ :    113   :   143
+vi rasto-lcmc_cade3f_25d18asrc#main#java#lcmc#gui#resources#DrbdResourceInfo.txt   
+ :    1099   :   1143
+vi minusone13-InvoicingSystem_9e3432_111dbfsrc#main#java#presentation#managerui#JPBill.txt   
+ :    1104   :   1117
+vi minusone13-InvoicingSystem_9e3432_111dbfsrc#main#java#presentation#managerui#JPBill.txt   
+ :    1105   :   1117
+vi minusone13-InvoicingSystem_9e3432_111dbfsrc#main#java#presentation#managerui#JPBill.txt   
+ :    1108   :   1117
+vi minusone13-InvoicingSystem_9e3432_111dbfsrc#main#java#presentation#managerui#JPBill.txt   
+ :    1107   :   1117
+vi minusone13-InvoicingSystem_9e3432_111dbfsrc#main#java#presentation#managerui#JPBill.txt   
+ :    1106   :   1117
+vi renepickhardt-generalized-language-modeling-toolkit_c5e8c8_684562src#de#typology#splitter#Sequencer.txt   
+ :    26   :   30
+vi renepickhardt-generalized-language-modeling-toolkit_c5e8c8_684562src#de#typology#splitter#Sequencer.txt   
+ :    28   :   30
+vi renepickhardt-generalized-language-modeling-toolkit_c5e8c8_684562src#de#typology#splitter#Sequencer.txt   
+ :    27   :   30
+vi GenomicParisCentre-eoulsan_68e564_4ecf5esrc#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#ExpressionHadoopStep.txt   
+ :    496   :   558
+vi ArcBees-gwtquery_6f8ccb_f0949bgwtquery-core#src#main#java#com#google#gwt#query#client#plugins#deferred#PromiseReqBuilder.txt   
+ :    71   :   149
+vi ArcBees-gwtquery_6f8ccb_f0949bgwtquery-core#src#main#java#com#google#gwt#query#client#plugins#deferred#PromiseReqBuilder.txt   
+ :    71   :   149
+vi karamelchef-karamel_69405a_40a3f1karamel-core#src#main#java#se#kth#karamel#client#api#KaramelApiImpl.txt   
+ :    325   :   341
+vi nuxeo-nuxeo-platform-document-routing_b34c01_048749nuxeo-platform-document-routing-core#src#main#java#org#nuxeo#ecm#platform#routing#core#impl#DocumentRoutingServiceImpl.txt   
+ :    456   :   475
+vi xetorthio-jedis_d71059_35a117src#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi Activiti-Activiti_bb99d5_9f596dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#StartProcessInstanceCmd.txt   
+ :    105   :   177
+vi Activiti-Activiti_bb99d5_9f596dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#StartProcessInstanceCmd.txt   
+ :    91   :   177
+vi mulesoft-mule-common_fa5994_063889src#main#java#org#mule#common#metadata#builder#DefaultMetaDataFieldBuilder.txt   
+ :    109   :   129
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#ReflectionOnObjectMethods.txt   
+ :    130   :   267
+vi tomp2p-TomP2P_b24c4d_a08de3core#src#main#java#net#tomp2p#p2p#builder#SynchronizationBuilder.txt   
+ :    186   :   258
+vi tomp2p-TomP2P_b24c4d_a08de3core#src#main#java#net#tomp2p#p2p#builder#SynchronizationBuilder.txt   
+ :    186   :   258
+vi perfectsense-dari_7bd889_9f62acutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi biojava-biojava_af0388_37c190biojava3-structure-gui#src#main#java#org#biojava#bio#structure#gui#ScaleableMatrixPanel.txt   
+ :    95   :   159
+vi belaban-JGroups_17cf10_1f330dsrc#org#jgroups#protocols#Locking.txt   
+ :    137   :   153
+vi mkovatsc-Californium_484cf7_7b4f54californium#src#main#java#ch#ethz#inf#vs#californium#coap#Option.txt   
+ :    353   :   378
+vi mkovatsc-Californium_484cf7_7b4f54californium#src#main#java#ch#ethz#inf#vs#californium#coap#Option.txt   
+ :    359   :   378
+vi FIWARE-Middleware-KIARA_3b0a4a_c970c4src#main#java#org#fiware#kiara#ps#rtps#messages#MessageReceiver.txt   
+ :    578   :   623
+vi FIWARE-Middleware-KIARA_3b0a4a_c970c4src#main#java#org#fiware#kiara#ps#rtps#messages#MessageReceiver.txt   
+ :    578   :   623
+vi FIWARE-Middleware-KIARA_3b0a4a_c970c4src#main#java#org#fiware#kiara#ps#rtps#messages#MessageReceiver.txt   
+ :    578   :   623
+vi FIWARE-Middleware-KIARA_3b0a4a_c970c4src#main#java#org#fiware#kiara#ps#rtps#messages#MessageReceiver.txt   
+ :    578   :   623
+vi svn2github-forge_8dff23_3a4fa1src#main#java#forge#model#FModel.txt   
+ :    125   :   172
+vi thinkofdeath-ThinkMap_835e77_7cf7e2client#src#main#java#uk#co#thinkofdeath#mapviewer#client#render#Renderer.txt   
+ :    74   :   84
+vi GenomicParisCentre-eoulsan_1bd7b5_8e3192src#main#java#fr#ens#transcriptome#eoulsan#bio#expressioncounters#HTSeqUtils.txt   
+ :    313   :   340
+vi paul-hammant-qdox_5496ab_bbd273src#java#com#thoughtworks#qdox#library#SourceLibrary.txt   
+ :    70   :   79
+vi paul-hammant-qdox_5496ab_bbd273src#java#com#thoughtworks#qdox#library#SourceLibrary.txt   
+ :    70   :   79
+vi datasift-datasift-java_5feafa_e811fbsrc#org#datasift#streamconsumer#HttpMultiThread.txt   
+ :    132   :   199
+vi datasift-datasift-java_5feafa_e811fbsrc#org#datasift#streamconsumer#HttpMultiThread.txt   
+ :    132   :   199
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#NonOwnedSynchronization.txt   
+ :    122   :   220
+vi niyue-coding_557f95_9d7bc1src#main#java#com#niyue#coding#leetcode#sortedarraytobst#Solution.txt   
+ :    15   :   20
+vi niyue-coding_557f95_9d7bc1src#main#java#com#niyue#coding#leetcode#sortedarraytobst#Solution.txt   
+ :    16   :   20
+vi jcabi-jcabi-github_5e3ae4_be8582src#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi LEDS-sincap-entities_f60b3e_3a4a84src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi LEDS-sincap-entities_f60b3e_3a4a84src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi gertvv-addis_f3097a_f0ff35src#main#java#org#drugis#addis#presentation#NetworkMetaAnalysisPresentation.txt   
+ :    56   :   59
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#PossibleConstantAllocationInLoop.txt   
+ :    103   :   268
+vi cjdev-versions-maven-plugin_339909_e35f9fsrc#main#java#org#codehaus#mojo#versions#AbstractVersionsDependencyUpdaterMojo.txt   
+ :    103   :   104
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_82c169_aeb6a1src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    104   :   174
+vi cojen-Tupl_3abea5_757fabsrc#main#java#org#cojen#tupl#RedoWriter.txt   
+ :    356   :   363
+vi ClemsonRSRG-RESOLVE_e47f7f_6745c0src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_e47f7f_6745c0src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_e47f7f_6745c0src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi digipost-digipost-api-client-java_d713e2_5897a7src#main#java#no#digipost#api#client#representations#Message.txt   
+ :    176   :   181
+vi digipost-digipost-api-client-java_d713e2_5897a7src#main#java#no#digipost#api#client#representations#Message.txt   
+ :    175   :   181
+vi jcabi-jcabi-github_75c9a7_841a00src#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi xetorthio-jedis_fa63e8_f76e9esrc#main#java#redis#clients#jedis#Connection.txt   
+ :    56   :   62
+vi Activiti-Activiti_fb4b88_1edb7fmodules#activiti-engine#src#main#java#org#activiti#engine#impl#event#AbstractEventHandler.txt   
+ :    98   :   109
+vi mebigfatguy-fb-contrib_da3f9f_b5a904src#com#mebigfatguy#fbcontrib#detect#InheritanceTypeChecking.txt   
+ :    89   :   105
+vi ovgu-ccd-jchess_5ff121_48818bjchess#gui#GUIConnector.txt   
+ :    53   :   57
+vi buddycloud-buddycloud-server-java_d1d377_d312cfsrc#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#get#RepliesGet.txt   
+ :    105   :   133
+vi ClemsonRSRG-RESOLVE_6adf7f_573169src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.txt   
+ :    117   :   157
+vi ClemsonRSRG-RESOLVE_546b3f_c91dbesrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    394   :   398
+vi ClemsonRSRG-RESOLVE_546b3f_c91dbesrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    394   :   398
+vi ClemsonRSRG-RESOLVE_546b3f_c91dbesrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    394   :   398
+vi xetorthio-jedis_f77892_b2fcbesrc#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi OpenTreeOfLife-taxomachine_75ab8c_16020fsrc#main#java#opentree#MainRunner.txt   
+ :    130   :   155
+vi apache-creadur-rat_fdfd5b_d104b6apache-rat-plugin#src#main#java#org#apache#rat#mp#RatCheckMojo.txt   
+ :    147   :   151
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#SuspiciousCloneAlgorithm.txt   
+ :    123   :   185
+vi ClemsonRSRG-RESOLVE_0d5705_40468bsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyCTranslation.txt   
+ :    51   :   56
+vi biojava-biojava_f017c0_e8234fbiojava3-modfinder#src#main#java#org#biojava#phosphosite#Site.txt   
+ :    24   :   101
+vi buddycloud-buddycloud-server-java_d889a2_a2b959src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#set#SubscriptionEvent.txt   
+ :    166   :   174
+vi marklogic-java-client-api_118cc9_dec540src#main#java#com#marklogic#client#io#SearchHandle.txt   
+ :    400   :   401
+vi hector-client-hector_890814_c80f80src#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    167   :   175
+vi hector-client-hector_890814_c80f80src#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    154   :   175
+vi mysticfall-pivot4j_cc9b1c_64585dsrc#main#java#com#eyeq#pivot4j#transform#impl#PlaceMembersOnAxesImpl.txt   
+ :    61   :   75
+vi aherbert-GDSC-SMLM_1b5d35_c4be9esrc#main#java#gdsc#smlm#ij#plugins#PSFDrift.txt   
+ :    479   :   623
+vi apache-hadoop-common_47fe31_c80200src#main#java#org#apache#hadoop#hbase#ipc#WritableRpcEngine.txt   
+ :    136   :   148
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#PossibleConstantAllocationInLoop.txt   
+ :    103   :   268
+vi ClemsonRSRG-RESOLVE_fb5773_9ed777src#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    741   :   770
+vi ClemsonRSRG-RESOLVE_fb5773_9ed777src#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    741   :   770
+vi ClemsonRSRG-RESOLVE_fb5773_9ed777src#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    737   :   770
+vi ClemsonRSRG-RESOLVE_fb5773_9ed777src#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    737   :   770
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#NeedlessMemberCollectionSynchronization.txt   
+ :    271   :   342
+vi shabbies-clockwork_74e185_6cd619src#main#java#servlet#FacebookLoginServlet.txt   
+ :    88   :   120
+vi bpiwowar-experimaestro_fa637a_4a346asrc#main#java#sf#net#experimaestro#scheduler#TokenResource.txt   
+ :    87   :   88
+vi named-data-jndn_b4086e_db9ccdsrc#net#named_data#jndn#util#Blob.txt   
+ :    249   :   253
+vi EngineHub-CommandHelper_2ed314_af92d8src#main#java#com#laytonsmith#core#functions#ExecutionQueue.txt   
+ :    313   :   314
+vi WorldCretornica-PlotMe-Core_ce44ef_34930esrc#bukkit#java#com#worldcretornica#plotme_core#bukkit#api#BukkitLocation.txt   
+ :    82   :   88
+vi jcabi-jcabi-github_649ab5_5f5a4csrc#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi LEDS-sincap-entities_cbbc45_6190c0src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi Bombe-Sone_cb0161_76ed63src#main#java#net#pterodactylus#sone#core#SoneParser.txt   
+ :    150   :   342
+vi LEDS-sincap-entities_ea2c97_b21c8bsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    33   :   66
+vi LEDS-sincap-entities_ea2c97_b21c8bsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    33   :   66
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#PossibleConstantAllocationInLoop.txt   
+ :    103   :   268
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi ClemsonRSRG-RESOLVE_19f744_a8b76csrc#main#java#edu#clemson#cs#r2jt#proving2#AlgebraicProver.txt   
+ :    295   :   397
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#UnusedParameter.txt   
+ :    161   :   232
+vi jhpoelen-eol-globi-data_8b9375_cff6b3src#main#java#org#trophic#graph#data#StudyImporterImpl.txt   
+ :    155   :   164
+vi jcabi-jcabi-github_3d7fa7_5288d8src#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi ClemsonRSRG-RESOLVE_f51acf_11dbb6src#main#java#edu#clemson#cs#r2jt#absynnew#ResolveCompiler.txt   
+ :    146   :   176
+vi digipost-digipost-api-client-java_ee2aa3_7b5e7dsrc#main#java#no#digipost#api#client#swing#DigipostSwingClient.txt   
+ :    444   :   632
+vi digipost-digipost-api-client-java_ee2aa3_7b5e7dsrc#main#java#no#digipost#api#client#swing#DigipostSwingClient.txt   
+ :    444   :   632
+vi paul-hammant-qdox_982857_b33a7asrc#java#com#thoughtworks#qdox#builder#ModelBuilder.txt   
+ :    190   :   201
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#ModifyingUnmodifiableCollection.txt   
+ :    116   :   160
+vi ClemsonRSRG-RESOLVE_6a59d3_f2823esrc#main#java#edu#clemson#cs#r2jt#init#Controller.txt   
+ :    1853   :   1862
+vi ClemsonRSRG-RESOLVE_6a59d3_f2823esrc#main#java#edu#clemson#cs#r2jt#init#Controller.txt   
+ :    1812   :   1822
+vi ClemsonRSRG-RESOLVE_6a59d3_f2823esrc#main#java#edu#clemson#cs#r2jt#init#Controller.txt   
+ :    1852   :   1862
+vi ClemsonRSRG-RESOLVE_6a59d3_f2823esrc#main#java#edu#clemson#cs#r2jt#init#Controller.txt   
+ :    1813   :   1822
+vi datanucleus-datanucleus-core_2e3757_f31561src#main#java#org#datanucleus#metadata#AbstractMemberMetaData.txt   
+ :    2380   :   2382
+vi ClemsonRSRG-RESOLVE_c41658_cfcc0fsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyJavaTranslation.txt   
+ :    56   :   64
+vi karamelchef-karamel_6fd4ec_a33dcfkaramel-core#src#main#java#se#kth#karamel#backend#ClusterManager.txt   
+ :    209   :   235
+vi Activiti-Activiti_90446c_2d592dmodules#activiti-bpmn-converter#src#main#java#org#activiti#bpmn#converter#UserTaskXMLConverter.txt   
+ :    274   :   279
+vi kuujo-vertigo_32f077_0c4769src#main#java#net#kuujo#vertigo#component#ComponentBase.txt   
+ :    206   :   212
+vi OpenRock-OpenIG_33a085_b4ffbeopenig-oauth2#src#main#java#org#forgerock#openig#filter#oauth2#client#OAuth2Provider.txt   
+ :    237   :   243
+vi belaban-JGroups_7ac81b_2e43basrc#org#jgroups#protocols#Locking.txt   
+ :    137   :   153
+vi jankotek-MapDB_e12cdf_c14bd7src#main#java#org#mapdb#SerializerPojo.txt   
+ :    245   :   270
+vi jankotek-MapDB_e12cdf_c14bd7src#main#java#org#mapdb#SerializerPojo.txt   
+ :    244   :   270
+vi openpnp-openpnp_190e8c_cd5d59src#main#java#org#openpnp#spi#JobPlanner.txt   
+ :    33   :   37
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#LingeringGraphicsObjects.txt   
+ :    92   :   159
+vi perfectsense-dari_99b1d8_59385eutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi airlift-airlift_d97ba5_501905src#main#java#com#facebook#presto#UncompressedLongCursor.txt   
+ :    91   :   92
+vi plutext-docx4j_98ef1e_06c2bdsrc#main#java#org#opendope#conditions#Condition.txt   
+ :    127   :   129
+vi rasto-lcmc_973516_57efddsrc#main#java#lcmc#gui#resources#VMSVirtualDomainInfo.txt   
+ :    1870   :   1907
+vi rhuss-docker-maven-plugin_790092_42511bsrc#main#java#org#jolokia#docker#maven#config#handler#PropertyConfigHandler.txt   
+ :    119   :   143
+vi rhuss-docker-maven-plugin_790092_42511bsrc#main#java#org#jolokia#docker#maven#config#handler#PropertyConfigHandler.txt   
+ :    119   :   143
+vi sboesebeck-morphium_e8244f_7da86fsrc#de#caluga#morphium#ObjectMapperImpl.txt   
+ :    540   :   549
+vi GenomicParisCentre-eoulsan_dde9b7_3cf6cfsrc#main#java#fr#ens#transcriptome#eoulsan#ui#BasicUI.txt   
+ :    79   :   100
+vi grzegorz2047-OpenGuild2047_006db5_4ab0f3src#main#java#pl#grzegorz2047#openguild2047#cuboidmanagement#CuboidStuff.txt   
+ :    157   :   167
+vi deeplearning4j-deeplearning4j_38695e_e3f9a8deeplearning4j-core#src#main#java#org#deeplearning4j#nn#BaseMultiLayerNetwork.txt   
+ :    768   :   802
+vi ArcBees-gwtquery_7a5db3_2dee8fgwtquery-core#src#main#java#com#google#gwt#query#client#plugins#deferred#PromiseReqBuilder.txt   
+ :    71   :   149
+vi ArcBees-gwtquery_7a5db3_2dee8fgwtquery-core#src#main#java#com#google#gwt#query#client#plugins#deferred#PromiseReqBuilder.txt   
+ :    71   :   149
+vi mrniko-netty-socketio_a0d2b1_8f6b55src#main#java#com#corundumstudio#socketio#transport#WebSocketTransport.txt   
+ :    172   :   196
+vi mrniko-netty-socketio_a0d2b1_8f6b55src#main#java#com#corundumstudio#socketio#transport#WebSocketTransport.txt   
+ :    172   :   196
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#NonOwnedSynchronization.txt   
+ :    122   :   220
+vi tastybento-askyblock_e87ba1_5f5642src#com#wasteofplastic#askyblock#Locale.txt   
+ :    792   :   1046
+vi GenomicParisCentre-eoulsan_414e96_16c7c6src#main#java#fr#ens#transcriptome#eoulsan#bio#readsmappers#Bowtie2ReadsMapper.txt   
+ :    199   :   236
+vi OpenTreeOfLife-treemachine_f2fbbe_783285src#main#java#opentree#PhylografterConnector.txt   
+ :    204   :   280
+vi OpenTreeOfLife-treemachine_f2fbbe_783285src#main#java#opentree#PhylografterConnector.txt   
+ :    204   :   280
+vi minusone13-InvoicingSystem_998405_f90c25src#main#java#presentation#managerui#JPBill.txt   
+ :    1057   :   1067
+vi minusone13-InvoicingSystem_998405_f90c25src#main#java#presentation#managerui#JPBill.txt   
+ :    1056   :   1067
+vi minusone13-InvoicingSystem_998405_f90c25src#main#java#presentation#managerui#JPBill.txt   
+ :    1058   :   1067
+vi finmath-finmath-lib_367cc6_b1e543src#main#java6#net#finmath#time#Period.txt   
+ :    60   :   61
+vi SomMeri-less4j_587f58_c80f02src#main#java#com#github#sommeri#less4j#utils#CssPrinter.txt   
+ :    147   :   229
+vi SomMeri-less4j_587f58_c80f02src#main#java#com#github#sommeri#less4j#utils#CssPrinter.txt   
+ :    147   :   229
+vi aherbert-GDSC-SMLM_55f367_3af6cfsrc#main#java#gdsc#smlm#fitting#JumpDistanceAnalysis.txt   
+ :    990   :   997
+vi Activiti-Activiti_d626cc_0014d1modules#activiti-bpmn-converter#src#main#java#org#activiti#bpmn#converter#UserTaskXMLConverter.txt   
+ :    274   :   279
+vi ClemsonRSRG-RESOLVE_cc76d0_9547e2src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    3690   :   3857
+vi jcabi-jcabi-github_56d80f_6967ffsrc#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#ArrayWrappedCallByReference.txt   
+ :    124   :   292
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#UnusedParameter.txt   
+ :    160   :   231
+vi OpenTreeOfLife-treemachine_a5cc56_7922dfsrc#main#java#opentree#plugins#GoLS.txt   
+ :    92   :   107
+vi roundrop-facebook4j_67176d_49153cfacebook4j-core#src#main#java#facebook4j#FacebookImpl.txt   
+ :    2332   :   2333
+vi biojava-biojava_af0388_37c190biojava3-structure#src#main#java#demo#DemoLoadStructure.txt   
+ :    80   :   116
+vi digipost-digipost-api-client-java_6c927a_48a379src#main#java#no#digipost#api#client#representations#PrintDetails.txt   
+ :    42   :   45
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_2491e7_e586b2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    240   :   321
+vi biojava-biojava_af0388_37c190biojava3-modfinder#src#main#java#org#biojava#phosphosite#Site.txt   
+ :    24   :   101
+vi kuujo-vertigo_62c0db_9edbf4src#main#java#net#kuujo#vertigo#java#RichFeederVerticle.txt   
+ :    118   :   119
+vi minusone13-InvoicingSystem_53ffb6_11c3e2src#main#java#presentation#managerui#JPBill.txt   
+ :    999   :   1010
+vi minusone13-InvoicingSystem_53ffb6_11c3e2src#main#java#presentation#managerui#JPBill.txt   
+ :    1001   :   1010
+vi minusone13-InvoicingSystem_53ffb6_11c3e2src#main#java#presentation#managerui#JPBill.txt   
+ :    1000   :   1010
+vi bitcoinj-bitcoinj_ba2255_42b5a0src#com#google#bitcoin#core#VersionMessage.txt   
+ :    130   :   139
+vi ClemsonRSRG-RESOLVE_84220c_70e2basrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.txt   
+ :    169   :   230
+vi ClemsonRSRG-RESOLVE_84220c_70e2basrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.txt   
+ :    169   :   230
+vi ClemsonRSRG-RESOLVE_84220c_70e2basrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.txt   
+ :    169   :   230
+vi jeremylong-DependencyCheck_5ec9a2_3bf638src#main#java#org#codesecure#dependencycheck#data#cpe#Index.txt   
+ :    271   :   287
+vi jeremylong-DependencyCheck_5ec9a2_3bf638src#main#java#org#codesecure#dependencycheck#data#cpe#Index.txt   
+ :    271   :   287
+vi EngineHub-CommandHelper_2ed314_af92d8src#main#java#com#laytonsmith#core#functions#DataTransformations.txt   
+ :    221   :   222
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#ModifyingUnmodifiableCollection.txt   
+ :    116   :   160
+vi kohsuke-github-api_626909_15e4d0src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi kohsuke-github-api_626909_15e4d0src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi cismet-cismet-gui-commons_cc538a_be2e04src#main#java#de#cismet#tools#gui#downloadmanager#DownloadManager.txt   
+ :    341   :   381
+vi dakusui-jcunit_4e1efe_c7751esrc#main#java#com#github#dakusui#jcunit#fsm#StateRouter.txt   
+ :    18   :   19
+vi dakusui-jcunit_4e1efe_c7751esrc#main#java#com#github#dakusui#jcunit#fsm#StateRouter.txt   
+ :    17   :   19
+vi belaban-JGroups_118867_db9db8src#org#jgroups#stack#RouterStub.txt   
+ :    221   :   222
+vi Bukkit-Bukkit_454053_bc585fsrc#main#java#org#bukkit#plugin#java#JavaPluginLoader.txt   
+ :    119   :   167
+vi andsel-moquette_b32bbe_3169acparser#src#main#java#org#dna#mqtt#moquette#client#ClientMQTTHandler.txt   
+ :    29   :   43
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#StutteredMethodArguments.txt   
+ :    111   :   179
+vi jensnerche-plantuml_abc240_3ed427src#net#sourceforge#plantuml#ugraphic#FontChecker.txt   
+ :    162   :   163
+vi locationtech-spatial4j_138557_1c7518src#main#java#com#spatial4j#core#io#WKTShapeParser.txt   
+ :    241   :   249
+vi kohsuke-github-api_9a4eee_861fd5src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi kohsuke-github-api_9a4eee_861fd5src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi irstv-orbisgis_0e6cb2_1b476bbundles#core-map#src#main#java#org#orbisgis#coremap#renderer#Renderer.txt   
+ :    436   :   524
+vi irstv-orbisgis_0e6cb2_1b476bbundles#core-map#src#main#java#org#orbisgis#coremap#renderer#Renderer.txt   
+ :    436   :   524
+vi EngineHub-CommandHelper_249ead_68c89dsrc#main#java#com#laytonsmith#core#AliasCore.txt   
+ :    457   :   550
+vi owlcs-owlapi_efe155_926263api#src#main#java#org#semanticweb#owlapi#util#OWLObjectWalker.txt   
+ :    63   :   69
+vi tastybento-askyblock_ac90ea_d0a878src#com#wasteofplastic#askyblock#Locale.txt   
+ :    810   :   991
+vi ClemsonRSRG-RESOLVE_96f0a4_95b308src#main#java#edu#clemson#cs#r2jt#population#Populator.txt   
+ :    475   :   488
+vi belaban-JGroups_24f976_0ce3a3src#org#jgroups#demos#LockServiceDemo.txt   
+ :    76   :   95
+vi sesuncedu-htmlparser_67dc73_abcda7src#nu#validator#htmlparser#impl#TreeBuilder.txt   
+ :    522   :   546
+vi LEDS-sincap-entities_7c555f_86fe2fsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    42   :   80
+vi LEDS-sincap-entities_7c555f_86fe2fsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    44   :   80
+vi LEDS-sincap-entities_7c555f_86fe2fsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    41   :   80
+vi SomMeri-less4j_426b92_b516a5src#main#java#com#github#sommeri#less4j#core#compiler#expressions#ExpressionEvaluator.txt   
+ :    111   :   142
+vi SomMeri-less4j_426b92_b516a5src#main#java#com#github#sommeri#less4j#core#compiler#expressions#ExpressionEvaluator.txt   
+ :    114   :   142
+vi ClemsonRSRG-RESOLVE_bfca0d_bccfdfsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyCTranslation.txt   
+ :    51   :   56
+vi mebigfatguy-fb-contrib_e98c31_2303besrc#com#mebigfatguy#fbcontrib#detect#CommonsStringBuilderToString.txt   
+ :    88   :   166
+vi EngineHub-CommandHelper_7a402b_5bdd8asrc#main#java#com#laytonsmith#core#AliasCore.txt   
+ :    457   :   550
+vi SpigotMC-Spigot-API_98d6a3_d5fdc4src#main#java#org#bukkit#plugin#java#JavaPluginLoader.txt   
+ :    122   :   184
+vi SpigotMC-Spigot-API_98d6a3_d5fdc4src#main#java#org#bukkit#plugin#java#JavaPluginLoader.txt   
+ :    122   :   184
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#NonOwnedSynchronization.txt   
+ :    122   :   220
+vi shilad-wikibrain_75792b_2ec575wikibrain-spatial#src#main#java#org#wikibrain#spatial#cookbook#tflevaluate#TopoEvaluator.txt   
+ :    248   :   291
+vi shilad-wikibrain_75792b_2ec575wikibrain-spatial#src#main#java#org#wikibrain#spatial#cookbook#tflevaluate#TopoEvaluator.txt   
+ :    247   :   291
+vi shabbies-clockwork_0ec93a_3d6b2fsrc#main#java#servlet#FacebookLoginServlet.txt   
+ :    88   :   120
+vi apache-pdfbox_7a7fa2_394eafpdfbox#src#main#java#org#apache#pdfbox#util#Matrix.txt   
+ :    433   :   436
+vi SpigotMC-Spigot-API_454053_bc585fsrc#main#java#org#bukkit#plugin#java#JavaPluginLoader.txt   
+ :    119   :   167
+vi kuujo-vertigo_5479bc_22be52src#main#java#net#kuujo#vertigo#component#impl#AbstractComponent.txt   
+ :    143   :   152
+vi renepickhardt-generalized-language-modeling-toolkit_19a8ac_9bbf0bsrc#main#java#de#glmtk#executables#GlmtkNew.txt   
+ :    111   :   229
+vi renepickhardt-generalized-language-modeling-toolkit_19a8ac_9bbf0bsrc#main#java#de#glmtk#executables#GlmtkNew.txt   
+ :    111   :   229
+vi renepickhardt-generalized-language-modeling-toolkit_19a8ac_9bbf0bsrc#main#java#de#glmtk#executables#GlmtkNew.txt   
+ :    111   :   229
+vi pendelhaven3-magic_7b4d7e_7678ebsrc#main#java#com#pj#magic#gui#panels#ReceivingReceiptPanel.txt   
+ :    112   :   121
+vi pendelhaven3-magic_7b4d7e_7678ebsrc#main#java#com#pj#magic#gui#panels#ReceivingReceiptPanel.txt   
+ :    110   :   121
+vi pendelhaven3-magic_7b4d7e_7678ebsrc#main#java#com#pj#magic#gui#panels#ReceivingReceiptPanel.txt   
+ :    111   :   121
+vi Activiti-Activiti_e57bd9_bc87a6modules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi GenomicParisCentre-eoulsan_0cd9ac_786ab4src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#ExpressionHadoopStep.txt   
+ :    496   :   558
+vi Activiti-Activiti_ad0c9e_36f30cmodules#activiti-bpmn-converter#src#main#java#org#activiti#bpmn#converter#UserTaskXMLConverter.txt   
+ :    274   :   279
+vi OpenRock-OpenIG_e0317a_ba5ccbopenig-core#src#main#java#org#forgerock#openig#heap#HeapImpl.txt   
+ :    199   :   214
+vi GenomicParisCentre-eoulsan_d54204_191f98src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#ExpressionHadoopStep.txt   
+ :    496   :   558
+vi perfectsense-dari_bdfb14_5d0fddutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi tastybento-askyblock_cfba6a_f72b35src#com#wasteofplastic#askyblock#Locale.txt   
+ :    1032   :   1036
+vi rasto-lcmc_20bd68_74631dsrc#main#java#lcmc#gui#ResourceGraph.txt   
+ :    953   :   967
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#StutteredMethodArguments.txt   
+ :    111   :   179
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#LingeringGraphicsObjects.txt   
+ :    92   :   159
+vi nishihatapalmer-byteseek_2830a8_a6490dsrc#main#java#net#byteseek#searcher#bytes#ByteMatcherSearcher.txt   
+ :    62   :   95
+vi shilad-wikibrain_375473_b7453dwikibrain-spatial#src#main#java#org#wikibrain#spatial#loader#GADMConverter.txt   
+ :    63   :   94
+vi shilad-wikibrain_375473_b7453dwikibrain-spatial#src#main#java#org#wikibrain#spatial#loader#GADMConverter.txt   
+ :    72   :   94
+vi LEDS-sincap-entities_a509ef_e8ebd9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi perfectsense-dari_4348ea_534f66util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi SpigotMC-Spigot-API_5d1835_89cba4src#main#java#org#bukkit#plugin#java#JavaPluginLoader.txt   
+ :    122   :   184
+vi bitcoinj-bitcoinj_ba2255_42b5a0src#com#google#bitcoin#core#PeerAddress.txt   
+ :    121   :   127
+vi tuwiendsg-rSYBL_08cc08_589cf7rSYBL-control-service-pom#rSYBL-cloud-interaction-unit#src#main#java#at#ac#tuwien#dsg#rSybl#cloudInteractionUnit#enforcementPlugins#flexiant#FlexiantActions.txt   
+ :    564   :   594
+vi tuwiendsg-rSYBL_08cc08_589cf7rSYBL-control-service-pom#rSYBL-cloud-interaction-unit#src#main#java#at#ac#tuwien#dsg#rSybl#cloudInteractionUnit#enforcementPlugins#flexiant#FlexiantActions.txt   
+ :    571   :   594
+vi apache-jackrabbit_358c61_b57844jackrabbit-jcr-commons#src#main#java#org#apache#jackrabbit#commons#observation#ListenerTracker.txt   
+ :    252   :   281
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7971   :   8325
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7971   :   8325
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7971   :   8325
+vi ClemsonRSRG-RESOLVE_0efc13_4ed0f7src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7971   :   8325
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#ConstantListIndex.txt   
+ :    138   :   202
+vi perfectsense-dari_954c97_897019util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    67   :   118
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#NonOwnedSynchronization.txt   
+ :    122   :   220
+vi FIWARE-Middleware-KIARA_f7f53e_c7a8dbsrc#main#java#org#fiware#kiara#ps#rtps#participant#RTPSParticipant.txt   
+ :    114   :   158
+vi FIWARE-Middleware-KIARA_f7f53e_c7a8dbsrc#main#java#org#fiware#kiara#ps#rtps#participant#RTPSParticipant.txt   
+ :    114   :   158
+vi paulhoule-infovore_738dc2_c2d27dharuhi#src#main#java#com#ontology2#haruhi#FlowApp.txt   
+ :    38   :   50
+vi paulhoule-infovore_738dc2_c2d27dharuhi#src#main#java#com#ontology2#haruhi#FlowApp.txt   
+ :    36   :   50
+vi mebigfatguy-fb-contrib_86166f_0614eesrc#com#mebigfatguy#fbcontrib#detect#LiteralStringComparison.txt   
+ :    115   :   202
+vi Activiti-Activiti_bb99d5_028907modules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#StartProcessInstanceCmd.txt   
+ :    98   :   177
+vi FasterXML-jackson-databind_70d961_386e9fsrc#main#java#com#fasterxml#jackson#databind#node#MissingNode.txt   
+ :    89   :   90
+vi cismet-cismet-gui-commons_b5f030_968a7asrc#main#java#de#cismet#tools#gui#downloadmanager#DownloadManager.txt   
+ :    341   :   381
+vi perfectsense-dari_b1dd68_38e97autil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi GenomicParisCentre-eoulsan_6c1e13_48e0e6src#main#java#fr#ens#transcriptome#eoulsan#bio#expressioncounters#HTSeqUtils.txt   
+ :    313   :   340
+vi Xephi-AuthMeReloaded_638374_81de64src#main#java#fr#xephi#authme#cache#backup#JsonCache.txt   
+ :    151   :   184
+vi apache-jackrabbit_a4dea6_3dcb77jackrabbit-spi-commons#src#main#java#org#apache#jackrabbit#spi#commons#EventImpl.txt   
+ :    189   :   200
+vi perfectsense-dari_b7a3e0_ebadecutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi owlcs-owlapi_d02ad0_de7eb1api#src#main#java#org#semanticweb#owlapi#util#AutoIRIMapper.txt   
+ :    245   :   277
+vi owlcs-owlapi_d02ad0_de7eb1api#src#main#java#org#semanticweb#owlapi#util#AutoIRIMapper.txt   
+ :    245   :   277
+vi marschraner-svm_3d88e0_d7c818src#main#java#ch#metzenthin#svm#ui#control#DispensationenController.txt   
+ :    91   :   92
+vi marschraner-svm_3d88e0_d7c818src#main#java#ch#metzenthin#svm#ui#control#DispensationenController.txt   
+ :    110   :   111
+vi forcedotcom-phoenix_bd4571_400451src#main#java#com#salesforce#phoenix#util#CSVLoader.txt   
+ :    99   :   140
+vi maxymania-jxta-jxse_e946de_837e2fsrc#main#java#net#jxta#impl#endpoint#tcp#TcpTransport.txt   
+ :    383   :   646
+vi ClemsonRSRG-RESOLVE_7d3e7b_c17b16src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.txt   
+ :    113   :   143
+vi GenomicParisCentre-eoulsan_a35877_3ab32bsrc#main#java#fr#ens#transcriptome#eoulsan#MainHadoop.txt   
+ :    97   :   117
+vi tastybento-askyblock_14bc00_2074a1src#com#wasteofplastic#askyblock#Locale.txt   
+ :    1032   :   1036
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#NeedlessMemberCollectionSynchronization.txt   
+ :    271   :   342
+vi apache-pdfbox_1c4cc8_a4b86epdfbox#src#main#java#org#apache#pdfbox#pdmodel#PDDocument.txt   
+ :    1153   :   1177
+vi hector-client-hector_432b0a_68350dsrc#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    154   :   175
+vi hector-client-hector_432b0a_68350dsrc#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    167   :   175
+vi ClemsonRSRG-RESOLVE_d17ca5_fb5773src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    373   :   384
+vi ClemsonRSRG-RESOLVE_d17ca5_fb5773src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    373   :   384
+vi ClemsonRSRG-RESOLVE_0bd15c_9b1922src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    100   :   106
+vi ClemsonRSRG-RESOLVE_0bd15c_9b1922src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    98   :   106
+vi jeremylong-DependencyCheck_96bdd8_8315d4src#main#java#org#codesecure#dependencycheck#utils#Downloader.txt   
+ :    127   :   160
+vi Activiti-Activiti_f6c242_fc85e3modules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi sugarcrm-candybean_f4f44f_c2f96csrc#main#java#com#sugarcrm#candybean#automation#webdriver#WebDriverInterface.txt   
+ :    88   :   96
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#UnusedParameter.txt   
+ :    162   :   233
+vi diirt-graphene_ce2290_3e772cgraphene#src#main#java#org#epics#graphene#IntensityGraph2DRenderer.txt   
+ :    635   :   695
+vi diirt-graphene_ce2290_3e772cgraphene#src#main#java#org#epics#graphene#IntensityGraph2DRenderer.txt   
+ :    600   :   695
+vi imCodePartnerAB-imcms_1efea3_723088server#src#imcode#server#user#saml2#SAMLSPFilter.txt   
+ :    35   :   108
+vi imCodePartnerAB-imcms_1efea3_723088server#src#imcode#server#user#saml2#SAMLSPFilter.txt   
+ :    35   :   108
+vi perfectsense-dari_a85606_97d787util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi ClemsonRSRG-RESOLVE_d17ca5_646cdcsrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    373   :   384
+vi UniTime-unitime_1e3653_df4b93JavaSource#org#unitime#timetable#action#InstructionalOfferingConfigEditAction.txt   
+ :    873   :   967
+vi UniTime-unitime_1e3653_df4b93JavaSource#org#unitime#timetable#action#InstructionalOfferingConfigEditAction.txt   
+ :    873   :   967
+vi square-dagger_c1c7d6_a081fbsrc#main#java#com#squareup#injector#internal#AtInjectBinding.txt   
+ :    105   :   113
+vi soluvas-soluvas-framework_9167f1_36af25image#src#main#java#org#soluvas#image#impl#BlitlineTransformerImpl.txt   
+ :    342   :   421
+vi soluvas-soluvas-framework_9167f1_36af25image#src#main#java#org#soluvas#image#impl#BlitlineTransformerImpl.txt   
+ :    342   :   421
+vi soluvas-soluvas-framework_9167f1_36af25image#src#main#java#org#soluvas#image#impl#BlitlineTransformerImpl.txt   
+ :    342   :   421
+vi ClemsonRSRG-RESOLVE_8b61ff_2ec633src#main#java#edu#clemson#cs#r2jt#absyn#DotExp.txt   
+ :    342   :   441
+vi ClemsonRSRG-RESOLVE_8b61ff_2ec633src#main#java#edu#clemson#cs#r2jt#absyn#DotExp.txt   
+ :    342   :   441
+vi openpnp-openpnp_4f063f_572f23src#main#java#org#openpnp#model#Configuration.txt   
+ :    462   :   483
+vi perfectsense-dari_5f098c_641bc2util#src#main#java#com#psddev#dari#util#StringUtils.txt   
+ :    276   :   284
+vi tastybento-askyblock_14fc49_07c17esrc#com#wasteofplastic#askyblock#Locale.txt   
+ :    1032   :   1036
+vi Bukkit-Bukkit_5d1835_89cba4src#main#java#org#bukkit#plugin#java#JavaPluginLoader.txt   
+ :    122   :   184
+vi greese-dasein-cloud-azure_855860_ab16f5src#main#java#org#dasein#cloud#azure#compute#image#AzureOSImage.txt   
+ :    396   :   441
+vi greese-dasein-cloud-azure_855860_ab16f5src#main#java#org#dasein#cloud#azure#compute#image#AzureOSImage.txt   
+ :    209   :   276
+vi davidmoten-rtree_61b499_2f6936src#main#java#com#github#davidmoten#rtree#SelectorMinimalAreaIncrease.txt   
+ :    32   :   40
+vi shabbies-clockwork_f76471_4e3ac8src#main#java#servlet#FacebookLoginServlet.txt   
+ :    88   :   120
+vi SomMeri-less4j_c50b68_198ea1src#main#java#com#github#sommeri#less4j#core#compiler#expressions#ExpressionEvaluator.txt   
+ :    182   :   225
+vi mebigfatguy-fb-contrib_532550_02ebfbsrc#com#mebigfatguy#fbcontrib#detect#CommonsStringBuilderToString.txt   
+ :    88   :   166
+vi jankotek-MapDB_5bcbe5_6d6e69src#main#java#org#mapdb#WriteAheadLog.txt   
+ :    610   :   625
+vi simoc-csvjdbc_ac0ec3_3afaf4src#main#java#org#relique#jdbc#csv#BinaryOperation.txt   
+ :    100   :   243
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi mojohaus-nbm-maven-plugin_7f3122_864467src#main#java#org#codehaus#mojo#nbm#CreateWebstartAppMojo.txt   
+ :    107   :   360
+vi graphhopper-graphhopper_66910e_4002edsrc#main#java#de#jetsli#graph#routing#util#RoutingAlgorithmIntegrationTests.txt   
+ :    115   :   153
+vi minusone13-InvoicingSystem_528e6e_de3693src#main#java#businesslogic#financialbillbl#StubReceiptBill.txt   
+ :    46   :   50
+vi sboesebeck-morphium_721c29_2b6fd8src#de#caluga#morphium#writer#WriterImpl.txt   
+ :    885   :   910
+vi sboesebeck-morphium_721c29_2b6fd8src#de#caluga#morphium#writer#WriterImpl.txt   
+ :    896   :   910
+vi sboesebeck-morphium_721c29_2b6fd8src#de#caluga#morphium#writer#WriterImpl.txt   
+ :    674   :   715
+vi rapla-rapla_5f89ec_40e4b2src#main#java#org#rapla#server#internal#ServerServiceImpl.txt   
+ :    571   :   674
+vi rapla-rapla_5f89ec_40e4b2src#main#java#org#rapla#server#internal#ServerServiceImpl.txt   
+ :    669   :   674
+vi minusone13-InvoicingSystem_570e3b_ef6002src#main#java#presentation#managerui#JPBill.txt   
+ :    1057   :   1067
+vi minusone13-InvoicingSystem_570e3b_ef6002src#main#java#presentation#managerui#JPBill.txt   
+ :    1058   :   1067
+vi minusone13-InvoicingSystem_570e3b_ef6002src#main#java#presentation#managerui#JPBill.txt   
+ :    1056   :   1067
+vi GenomicParisCentre-eoulsan_a77179_52f15csrc#main#java#fr#ens#transcriptome#eoulsan#bio#expressioncounters#HTSeqUtils.txt   
+ :    313   :   340
+vi Eluinhost-pluginframework_a9e436_802979src#main#java#com#publicuhc#pluginframework#commands#routing#DefaultRouter.txt   
+ :    189   :   206
+vi ClemsonRSRG-RESOLVE_edf379_deefd5src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    2372   :   2561
+vi ClemsonRSRG-RESOLVE_edf379_deefd5src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    2372   :   2561
+vi ClemsonRSRG-RESOLVE_edf379_deefd5src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    2372   :   2561
+vi ClemsonRSRG-RESOLVE_edf379_deefd5src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    2372   :   2561
+vi ClemsonRSRG-RESOLVE_edf379_deefd5src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    2372   :   2561
+vi ClemsonRSRG-RESOLVE_edf379_deefd5src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    2372   :   2561
+vi soluvas-soluvas-framework_d4781b_bc4308push#src#main#java#org#soluvas#push#QueuedPushListener.txt   
+ :    34   :   45
+vi renepickhardt-generalized-language-modeling-toolkit_501d3c_b72164src#main#java#de#glmtk#options#QueryModeOption.txt   
+ :    26   :   27
+vi sboesebeck-morphium_0bfd47_2e91c9src#de#caluga#morphium#query#QueryImpl.txt   
+ :    255   :   282
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_ae39ca_57821esrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    216   :   272
+vi hector-client-hector_848f3a_893460src#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    167   :   175
+vi hector-client-hector_848f3a_893460src#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    154   :   175
+vi GrizzlyNIO-grizzly-mirror_c2cb0b_77da91modules#http-server#src#main#java#org#glassfish#grizzly#http#server#Request.txt   
+ :    490   :   528
+vi GenomicParisCentre-eoulsan_dde9b7_3cf6cfsrc#main#java#fr#ens#transcriptome#eoulsan#bio#expressioncounters#HTSeqUtils.txt   
+ :    313   :   340
+vi rage-tmc-cli_bac400_314ee2src#main#java#hy#tmc#cli#frontend#communication#commands#SendFeedback.txt   
+ :    33   :   45
+vi rage-tmc-cli_bac400_314ee2src#main#java#hy#tmc#cli#frontend#communication#commands#SendFeedback.txt   
+ :    33   :   45
+vi lrozenblyum-chess_cb85d7_b33057src#main#java#com#leokom#chess#player#legalMover#LegalPlayer.txt   
+ :    37   :   47
+vi perfectsense-dari_e1af9d_e5295dutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#PossibleConstantAllocationInLoop.txt   
+ :    103   :   268
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#NeedlessMemberCollectionSynchronization.txt   
+ :    271   :   342
+vi minusone13-InvoicingSystem_4ad210_4cf727src#main#java#businesslogic#examinebl#StubBillPool.txt   
+ :    41   :   48
+vi minusone13-InvoicingSystem_4ad210_4cf727src#main#java#businesslogic#examinebl#StubBillPool.txt   
+ :    42   :   48
+vi valis-vclang_e07cca_41f929src#main#java#com#jetbrains#jetpad#vclang#term#expr#visitor#ReplaceDefCallVisitor.txt   
+ :    68   :   83
+vi SophieKoonin-JavaDecaf_66b271_6ac0c2src#main#java#parser#JavaDecafCompiler.txt   
+ :    111   :   135
+vi graphhopper-graphhopper_79f05c_fbfffbsrc#main#java#com#graphhopper#routing#DijkstraBidirection.txt   
+ :    178   :   190
+vi slipcor-pvparena_e62289_bcee22src#net#slipcor#pvparena#commands#PAA_Install.txt   
+ :    187   :   206
+vi slipcor-pvparena_e62289_bcee22src#net#slipcor#pvparena#commands#PAA_Install.txt   
+ :    187   :   206
+vi rapla-rapla_9b1a3d_fd1511src#main#java#org#rapla#server#internal#ServerServiceImpl.txt   
+ :    669   :   674
+vi rapla-rapla_9b1a3d_fd1511src#main#java#org#rapla#server#internal#ServerServiceImpl.txt   
+ :    571   :   674
+vi PEXPlugins-PermissionsEx_17405a_2fe5a1src#main#java#ru#tehkode#permissions#backends#file#FileBackend.txt   
+ :    195   :   201
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1491   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1489   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#bio-formats#src#loci#formats#in#ZeissLSMReader.txt   
+ :    1490   :   1857
+vi imagej-imagej-legacy_1b7293_c441b8src#main#java#net#imagej#legacy#DefaultLegacyHooks.txt   
+ :    474   :   512
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_0a9718_d81496src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    377   :   439
+vi svn2github-forge_a48f1b_540c47src#main#java#forge#card#ability#AbilityUtils.txt   
+ :    520   :   568
+vi telefonicaid-fiware-cygnus_ac005b_b18a77src#main#java#com#telefonica#iot#cygnus#backends#orion#OrionStats.txt   
+ :    84   :   149
+vi apache-pdfbox_bfa7a6_77a858pdfbox#src#main#java#org#apache#pdfbox#pdmodel#fdf#FDFAnnotationInk.txt   
+ :    91   :   112
+vi minusone13-InvoicingSystem_88cbd6_4d2fb8src#main#java#presentation#managerui#JPBill.txt   
+ :    1107   :   1117
+vi minusone13-InvoicingSystem_88cbd6_4d2fb8src#main#java#presentation#managerui#JPBill.txt   
+ :    1105   :   1117
+vi minusone13-InvoicingSystem_88cbd6_4d2fb8src#main#java#presentation#managerui#JPBill.txt   
+ :    1104   :   1117
+vi minusone13-InvoicingSystem_88cbd6_4d2fb8src#main#java#presentation#managerui#JPBill.txt   
+ :    1106   :   1117
+vi minusone13-InvoicingSystem_88cbd6_4d2fb8src#main#java#presentation#managerui#JPBill.txt   
+ :    1108   :   1117
+vi perfectsense-dari_0d13d0_bbe905util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi OpenTreeOfLife-treemachine_832013_74421fsrc#main#java#opentree#MainRunner.txt   
+ :    1034   :   1101
+vi OpenTreeOfLife-treemachine_832013_74421fsrc#main#java#opentree#MainRunner.txt   
+ :    1859   :   1940
+vi OpenTreeOfLife-treemachine_832013_74421fsrc#main#java#opentree#MainRunner.txt   
+ :    1887   :   1940
+vi FIWARE-Middleware-KIARA_b53d0e_8c3a0fsrc#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    75   :   88
+vi FIWARE-Middleware-KIARA_b53d0e_8c3a0fsrc#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    75   :   88
+vi openpnp-openpnp_6cda9f_971cf6src#main#java#org#openpnp#spi#JobPlanner.txt   
+ :    33   :   37
+vi AMOSTeam3-amos-ss15-proj3_2a352f_d18ea2src#main#java#de#fau#osr#app#PostTraceabilityApp.txt   
+ :    69   :   116
+vi jcabi-jcabi-github_b12a7c_26cda5src#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi minusone13-InvoicingSystem_2bbbeb_cb476fsrc#main#java#userui#TestFrame.txt   
+ :    28   :   41
+vi Activiti-Activiti_724655_206c08modules#activiti-bpmn-converter#src#main#java#org#activiti#bpmn#converter#UserTaskXMLConverter.txt   
+ :    274   :   279
+vi Activiti-Activiti_ad0c9e_36f30cmodules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi gertvv-addis_ce0333_2cc9e7src#main#java#org#drugis#addis#entities#DomainData.txt   
+ :    166   :   206
+vi karamelchef-karamel_83be23_00acaakaramel-core#src#main#java#se#kth#karamel#backend#machines#MachinesMonitor.txt   
+ :    93   :   125
+vi karamelchef-karamel_83be23_00acaakaramel-core#src#main#java#se#kth#karamel#backend#machines#MachinesMonitor.txt   
+ :    93   :   125
+vi instance01-MinigamesAPI_58d73c_34d534API#src#main#java#com#comze_instancelabs#minigamesapi#achievements#ArenaAchievements.txt   
+ :    27   :   33
+vi FIWARE-Middleware-KIARA_de120e_734ddfsrc#main#java#org#fiware#kiara#ps#rtps#participant#RTPSParticipant.txt   
+ :    114   :   158
+vi FIWARE-Middleware-KIARA_de120e_734ddfsrc#main#java#org#fiware#kiara#ps#rtps#participant#RTPSParticipant.txt   
+ :    114   :   158
+vi apache-pdfbox_bd2126_59dad3fontbox#src#main#java#org#apache#fontbox#ttf#NamingTable.txt   
+ :    60   :   155
+vi redpen-cc-redpen_9d74f9_337c0fsrc#main#java#org#unigram#docvalidator#util#CharacterTable.txt   
+ :    50   :   55
+vi minusone13-InvoicingSystem_b5cb78_388304src#main#java#businesslogic#iquirybl#Inquiry.txt   
+ :    96   :   312
+vi minusone13-InvoicingSystem_b5cb78_388304src#main#java#businesslogic#iquirybl#Inquiry.txt   
+ :    96   :   312
+vi minusone13-InvoicingSystem_b5cb78_388304src#main#java#businesslogic#iquirybl#Inquiry.txt   
+ :    96   :   312
+vi minusone13-InvoicingSystem_b5cb78_388304src#main#java#businesslogic#iquirybl#Inquiry.txt   
+ :    96   :   312
+vi dcm4che-dcm4che_6df6f5_2688c4dcm4che-core#src#main#java#org#dcm4che#data#Group.txt   
+ :    106   :   128
+vi marklogic-java-client-api_f41a0e_0de5d3src#main#java#com#marklogic#client#config#QueryOptions.txt   
+ :    3193   :   3194
+vi ColoradoSchoolOfMines-interface_sdk_1355b3_79bcc8src#main#java#edu#mines#acmX#exhibit#stdlib#scoring#ScoreSaver.txt   
+ :    112   :   142
+vi Activiti-Activiti_bb99d5_9f596dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#cmd#StartProcessInstanceByMessageCmd.txt   
+ :    87   :   110
+vi Xephi-AuthMeReloaded_aae78f_6089d4src#main#java#fr#xephi#authme#SendMailSSL.txt   
+ :    94   :   123
+vi 0xCopy-RelaxFactory_0aed13_2f571brxf-server#src#main#java#rxf#server#gen#CouchDriver.txt   
+ :    715   :   767
+vi 0xCopy-RelaxFactory_0aed13_2f571brxf-server#src#main#java#rxf#server#gen#CouchDriver.txt   
+ :    715   :   767
+vi 0xCopy-RelaxFactory_0aed13_2f571brxf-server#src#main#java#rxf#server#gen#CouchDriver.txt   
+ :    823   :   887
+vi 0xCopy-RelaxFactory_0aed13_2f571brxf-server#src#main#java#rxf#server#gen#CouchDriver.txt   
+ :    823   :   887
+vi 0xCopy-RelaxFactory_0aed13_2f571brxf-server#src#main#java#rxf#server#gen#CouchDriver.txt   
+ :    263   :   315
+vi 0xCopy-RelaxFactory_0aed13_2f571brxf-server#src#main#java#rxf#server#gen#CouchDriver.txt   
+ :    263   :   315
+vi 0xCopy-RelaxFactory_0aed13_2f571brxf-server#src#main#java#rxf#server#gen#CouchDriver.txt   
+ :    368   :   411
+vi 0xCopy-RelaxFactory_0aed13_2f571brxf-server#src#main#java#rxf#server#gen#CouchDriver.txt   
+ :    368   :   411
+vi arjovanramshorst-bubble-bobble-sem_aaa245_8b5cb3core#src#main#java#sem#group15#bubblebobble#core#BubbleBobble.txt   
+ :    68   :   73
+vi arjovanramshorst-bubble-bobble-sem_aaa245_8b5cb3core#src#main#java#sem#group15#bubblebobble#core#BubbleBobble.txt   
+ :    65   :   73
+vi arjovanramshorst-bubble-bobble-sem_aaa245_8b5cb3core#src#main#java#sem#group15#bubblebobble#core#BubbleBobble.txt   
+ :    66   :   73
+vi perfectsense-dari_7317b7_72698eutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    67   :   118
+vi digipost-digipost-api-client-java_0fc290_183e80src#main#java#no#digipost#api#client#filters#LoggingFilter.txt   
+ :    229   :   235
+vi jenkinsci-remoting_3cf42c_d5ebbesrc#main#java#hudson#remoting#Channel.txt   
+ :    998   :   1003
+vi droolsjbpm-optaplanner_15f1a4_4def4cdrools-planner-core#src#main#java#org#drools#planner#core#move#generic#GenericChainedSwapMoveFactory.txt   
+ :    53   :   68
+vi droolsjbpm-optaplanner_15f1a4_4def4cdrools-planner-core#src#main#java#org#drools#planner#core#move#generic#GenericChainedSwapMoveFactory.txt   
+ :    56   :   68
+vi shilad-wikibrain_962b07_7602fdwikibrain-spatial#src#main#java#org#wikibrain#spatial#loader#GADMConverter.txt   
+ :    72   :   94
+vi shilad-wikibrain_962b07_7602fdwikibrain-spatial#src#main#java#org#wikibrain#spatial#loader#GADMConverter.txt   
+ :    63   :   94
+vi finmath-finmath-lib_c30dbe_0f31a0src#main#java6#net#finmath#montecarlo#interestrate#modelplugins#AbstractLIBORCovarianceModelParametric.txt   
+ :    101   :   198
+vi rapla-rapla_2b21c1_8e108fsrc#main#java#org#rapla#server#internal#ServerServiceImpl.txt   
+ :    669   :   674
+vi rapla-rapla_2b21c1_8e108fsrc#main#java#org#rapla#server#internal#ServerServiceImpl.txt   
+ :    571   :   674
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#SuspiciousUninitializedArray.txt   
+ :    108   :   270
+vi PEXPlugins-PermissionsEx_a2cb99_74edc7src#main#java#ru#tehkode#permissions#bukkit#PermissionsEx.txt   
+ :    80   :   107
+vi ClemsonRSRG-RESOLVE_4bdbdd_fbc3cbsrc#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    2514   :   2668
+vi SpigotMC-Spigot-API_63e6ef_fc8d08src#main#java#org#bukkit#event#block#SignChangeEvent.txt   
+ :    17   :   19
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#LingeringGraphicsObjects.txt   
+ :    92   :   159
+vi Activiti-Activiti_768522_2e111emodules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#DataOutputAssociation.txt   
+ :    31   :   32
+vi Activiti-Activiti_768522_2e111emodules#activiti-engine#src#main#java#org#activiti#engine#impl#bpmn#DataOutputAssociation.txt   
+ :    30   :   32
+vi JolantaWojcik-biojavaOwn_4bf282_65926cbiojava3-core#src#main#java#org#biojava3#core#sequence#loader#UniprotProxySequenceReader.txt   
+ :    385   :   410
+vi Activiti-Activiti_724655_206c08modules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi maxymania-jxta-jxse_e946de_837e2fsrc#main#java#net#jxta#impl#cm#Srdi.txt   
+ :    118   :   125
+vi ClemsonRSRG-RESOLVE_b589d8_15f21fsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyJavaTranslation.txt   
+ :    56   :   64
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#SuspiciousUninitializedArray.txt   
+ :    108   :   270
+vi apache-archiva_5e6fb5_398db2maven-repository-indexer#src#main#java#org#apache#maven#repository#indexing#AbstractRepositoryIndexer.txt   
+ :    118   :   125
+vi ClemsonRSRG-RESOLVE_55d892_017bb2src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    291   :   329
+vi niyue-coding_557f95_9d7bc1src#main#java#com#niyue#coding#leetcode#sortedlisttobst#Solution.txt   
+ :    32   :   38
+vi niyue-coding_557f95_9d7bc1src#main#java#com#niyue#coding#leetcode#sortedlisttobst#Solution.txt   
+ :    33   :   38
+vi GenomicParisCentre-eoulsan_4f3009_571523src#main#java#fr#ens#transcriptome#eoulsan#bio#expressioncounters#HTSeqUtils.txt   
+ :    313   :   340
+vi valis-vclang_71198b_56e899src#main#java#com#jetbrains#jetpad#vclang#parser#BuildVisitor.txt   
+ :    568   :   576
+vi Activiti-Activiti_fce83e_08c2b8modules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi perfectsense-dari_f56822_6f3e52util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi digipost-digipost-api-client-java_0d2d59_008c9asrc#main#java#no#digipost#api#client#representations#Message.txt   
+ :    175   :   181
+vi digipost-digipost-api-client-java_0d2d59_008c9asrc#main#java#no#digipost#api#client#representations#Message.txt   
+ :    176   :   181
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#LingeringGraphicsObjects.txt   
+ :    92   :   159
+vi perfectsense-dari_b37d2f_d3fa3autil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    67   :   118
+vi ansell-owlapi_d02ad0_de7eb1api#src#main#java#org#semanticweb#owlapi#util#AutoIRIMapper.txt   
+ :    245   :   277
+vi ansell-owlapi_d02ad0_de7eb1api#src#main#java#org#semanticweb#owlapi#util#AutoIRIMapper.txt   
+ :    245   :   277
+vi OpenTreeOfLife-treemachine_805970_7ad1e3src#main#java#opentree#AncestorUtil.txt   
+ :    214   :   242
+vi ClemsonRSRG-RESOLVE_1747e0_cd282asrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    403   :   412
+vi ClemsonRSRG-RESOLVE_1747e0_cd282asrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    403   :   412
+vi ClemsonRSRG-RESOLVE_1747e0_cd282asrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    403   :   412
+vi maxymania-jxta-jxse_dcfde4_379efcsrc#main#java#net#jxta#impl#peergroup#StdPeerGroup.txt   
+ :    209   :   236
+vi apache-maven-shared_8df6c8_f5cdabsrc#main#java#org#apache#maven#shared#model#fileset#mappers#MapperUtil.txt   
+ :    50   :   81
+vi apache-wss4j_39f1ef_845738src#main#java#org#apache#ws#security#message#token#SecurityTokenReference.txt   
+ :    264   :   274
+vi lennartj-jaxb2-maven-plugin_1c78d5_99642asrc#main#java#org#codehaus#mojo#jaxb2#AbstractXjcMojo.txt   
+ :    825   :   832
+vi ClemsonRSRG-RESOLVE_6745c0_c5a4a5src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#ConjunctionOfNormalizedAtomicExpressions.txt   
+ :    135   :   164
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#ConstantListIndex.txt   
+ :    138   :   202
+vi ansell-owlapi_37893a_b9052etools#src#main#java#com#clarkparsia#owlapi#explanation#BlackBoxExplanation.txt   
+ :    121   :   132
+vi ansell-owlapi_37893a_b9052etools#src#main#java#com#clarkparsia#owlapi#explanation#BlackBoxExplanation.txt   
+ :    123   :   132
+vi JensBee-QueryClarity_2f8a49_bab509src#main#java#de#unihildesheim#iw#lucene#scoring#clarity#AbstractClarityScoreCalculationBuilder.txt   
+ :    103   :   105
+vi tomp2p-TomP2P_64d188_d371edsrc#main#java#net#tomp2p#rpc#RequestHandlerTCP.txt   
+ :    257   :   264
+vi sbwhitecap-Phex-trunk_073c01_a6a4b3src#main#java#phex#gwebcache#GWebCacheManager.txt   
+ :    177   :   179
+vi fiji-TrackMate3_e08396_8b80bbsrc#main#java#net#trackmate#trackscheme#GraphLayoutOverlay.txt   
+ :    71   :   123
+vi mkovatsc-Californium_79ffc2_b9e772cf-benchmark#src#main#java#ch#ethz#inf#vs#californium#benchmark#WorkQueueExecutor.txt   
+ :    47   :   54
+vi perfectsense-dari_e16902_c6ca78util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi cismet-cids-server_f67656_65673dsrc#main#java#Sirius#server#middleware#impls#domainserver#DomainServerImpl.txt   
+ :    1087   :   1106
+vi ClemsonRSRG-RESOLVE_1e7b82_4498c4src#main#java#edu#clemson#cs#r2jt#init2#ResolveCompiler.txt   
+ :    90   :   121
+vi ClemsonRSRG-RESOLVE_1e7b82_4498c4src#main#java#edu#clemson#cs#r2jt#init2#ResolveCompiler.txt   
+ :    90   :   121
+vi roundrop-facebook4j_0ccdfe_297d1ffacebook4j-core#src#main#java#facebook4j#FacebookImpl.txt   
+ :    2332   :   2333
+vi perfectsense-dari_3b5950_fff36autil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi SpoutDev-Spout_155178_0528a4src#main#java#org#getspout#api#command#SimpleCommand.txt   
+ :    148   :   181
+vi perfectsense-dari_407b5b_1e7f6futil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#ConstantListIndex.txt   
+ :    138   :   202
+vi google-closure-templates_b3c481_f7492ajava#src#com#google#template#soy#pysrc#internal#GenPyExprsVisitor.txt   
+ :    196   :   199
+vi belaban-JGroups_8797b1_db28afsrc#org#jgroups#stack#RouterStub.txt   
+ :    221   :   222
+vi Activiti-Activiti_7dce14_94b753modules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi aherbert-GDSC-SMLM_c27c0d_2d976bsrc#main#java#gdsc#smlm#ij#plugins#BenchmarkSpotFit.txt   
+ :    280   :   317
+vi aherbert-GDSC-SMLM_c27c0d_2d976bsrc#main#java#gdsc#smlm#ij#plugins#BenchmarkSpotFit.txt   
+ :    280   :   317
+vi finmath-finmath-lib_9eb3ab_326d15src#main#java6#net#finmath#timeseries#models#parametric#DisplacedLognormalARMAGARCH.txt   
+ :    208   :   339
+vi FasterXML-jackson-databind_cecd40_7ed2d0src#main#java#com#fasterxml#jackson#databind#node#MissingNode.txt   
+ :    89   :   90
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#UnusedParameter.txt   
+ :    161   :   232
+vi ClemsonRSRG-RESOLVE_bc3acc_90abbbsrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_bc3acc_90abbbsrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_bc3acc_90abbbsrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi shilad-wikibrain_97b328_7cca12wikibrain-spatial#src#main#java#org#wikibrain#spatial#cookbook#tflevaluate#TopoEvaluator.txt   
+ :    248   :   291
+vi shilad-wikibrain_97b328_7cca12wikibrain-spatial#src#main#java#org#wikibrain#spatial#cookbook#tflevaluate#TopoEvaluator.txt   
+ :    247   :   291
+vi LEDS-sincap-entities_1e1ffc_426fe6src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi LEDS-sincap-entities_1e1ffc_426fe6src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi LEDS-sincap-entities_e711e4_b075c7src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    28   :   66
+vi LEDS-sincap-entities_e711e4_b075c7src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    28   :   66
+vi lkroesen-BubbleBobble_701094_3c292dsrc#main#java#website#frontrow#level#Level.txt   
+ :    18   :   20
+vi Poweruser-MinetickMod_2d93aa_95d238src#main#java#net#minecraft#server#RegionFile.txt   
+ :    27   :   88
+vi shilad-wikibrain_d76f8d_2a3796wikibrain-spatial#src#main#java#org#wikibrain#spatial#loader#OSMLayerLoader.txt   
+ :    65   :   103
+vi msokolov-lux_7ca3d3_b7d3b7src#main#java#lux#CachingDocReader.txt   
+ :    110   :   120
+vi perfectsense-dari_d1d982_f87574util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi valis-vclang_f6ea6c_dbe85dsrc#main#java#com#jetbrains#jetpad#vclang#module#ModuleLoader.txt   
+ :    130   :   131
+vi maxymania-jxta-jxse_e946de_837e2fsrc#main#java#net#jxta#impl#endpoint#tcp#TcpMessenger.txt   
+ :    219   :   280
+vi apache-uima-ducc_84e25a_57bc13uima-ducc-user#src#main#java#org#apache#uima#ducc#user#jp#UimaProcessContainer.txt   
+ :    449   :   472
+vi antoine-tran-Hedera_f829ae_ddca7cjava#main#org#hedera#mapreduce#io#wikipedia#WikiRevisionRecordReader.txt   
+ :    218   :   291
+vi antoine-tran-Hedera_f829ae_ddca7cjava#main#org#hedera#mapreduce#io#wikipedia#WikiRevisionRecordReader.txt   
+ :    218   :   291
+vi antoine-tran-Hedera_f829ae_ddca7cjava#main#org#hedera#mapreduce#io#wikipedia#WikiRevisionRecordReader.txt   
+ :    218   :   291
+vi tuwiendsg-rSYBL_1dd0e8_4ab925rSYBL-control-service-pom#rSYBL-planning-engine#src#main#java#at#ac#tuwien#dsg#rSybl#planningEngine#adviseEffects#PlanningGreedyWithADVISE.txt   
+ :    161   :   216
+vi GenomicParisCentre-aozan_c3bf6c_76ff05src#main#java#fr#ens#biologie#genomique#aozan#collectors#ReadXMLCollector.txt   
+ :    98   :   121
+vi GenomicParisCentre-aozan_c3bf6c_76ff05src#main#java#fr#ens#biologie#genomique#aozan#collectors#ReadXMLCollector.txt   
+ :    98   :   121
+vi Activiti-Activiti_0ea44a_749e0fmodules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi alibaba-druid_9b8d16_10accbsrc#main#java#com#alibaba#druid#wall#spi#MySqlWallVisitor.txt   
+ :    455   :   472
+vi groovy-GMavenPlus_56c640_881010src#main#java#org#codehaus#gmavenplus#mojo#AbstractToolsMojo.txt   
+ :    67   :   100
+vi anba-es6draft_ed7538_e434ddsrc#main#java#com#github#anba#es6draft#runtime#internal#NativeCalls.txt   
+ :    538   :   548
+vi xetorthio-jedis_c29dd8_226ed2src#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi The-Dream-Team-Tardis_9dc9b2_1098bbsrc#main#java#me#dreamteam#tardis#Database.txt   
+ :    101   :   123
+vi The-Dream-Team-Tardis_9dc9b2_1098bbsrc#main#java#me#dreamteam#tardis#Database.txt   
+ :    101   :   123
+vi apache-hadoop-common_45fd02_64f6fbsrc#main#java#org#apache#hadoop#hbase#ipc#HBaseServer.txt   
+ :    801   :   857
+vi mtedone-podam_8fb31d_9c0d1esrc#main#java#uk#co#jemos#podam#api#PodamFactoryImpl.txt   
+ :    3048   :   3128
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#SuspiciousCloneAlgorithm.txt   
+ :    123   :   185
+vi FasterXML-jackson-core_60f0b5_cfe32dsrc#main#java#com#fasterxml#jackson#core#filter#FilteringParserDelegate.txt   
+ :    503   :   534
+vi FIWARE-Middleware-KIARA_f6d2aa_460980src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    75   :   88
+vi FIWARE-Middleware-KIARA_f6d2aa_460980src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    75   :   88
+vi elki-project-elki_06e2bb_a38aa4elki#src#main#java#de#lmu#ifi#dbs#elki#evaluation#scores#adapter#VectorOverThreshold.txt   
+ :    62   :   70
+vi apache-directory-fortress-core_d0922c_4fde4asrc#main#java#org#apache#directory#fortress#core#rbac#Permission.txt   
+ :    734   :   745
+vi alibaba-druid_5d365b_3b481fsrc#main#java#com#alibaba#druid#wall#WallFilter.txt   
+ :    97   :   151
+vi altran-Whydah-UserIdentityBackend_a5376e_404679src#main#java#net#whydah#identity#user#UserAggregateService.txt   
+ :    66   :   90
+vi apache-hadoop-common_60d7a8_5cff07src#main#java#org#apache#hadoop#hbase#mapreduce#TableSplit.txt   
+ :    178   :   185
+vi 0xCopy-RelaxFactory_d8e031_93fc9frxf-server#src#main#java#rxf#server#driver#CouchMetaDriver.txt   
+ :    1254   :   1261
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#ReflectionOnObjectMethods.txt   
+ :    130   :   267
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#ReflectionOnObjectMethods.txt   
+ :    130   :   267
+vi tastybento-askyblock_e8d208_c07717src#com#wasteofplastic#askyblock#Locale.txt   
+ :    796   :   1046
+vi Activiti-Activiti_bb99d5_9f596dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#event#SignalEventHandler.txt   
+ :    53   :   83
+vi jenkinsci-git-client-plugin_25c14e_4d4b78src#main#java#hudson#plugins#git#GitTool.txt   
+ :    52   :   59
+vi mafagafogigante-dungeon_b72953_1c00ddsrc#main#java#org#dungeon#wiki#Article.txt   
+ :    31   :   33
+vi GenomicParisCentre-eoulsan_1f4a24_9bac55src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#ExpressionHadoopStep.txt   
+ :    496   :   558
+vi graphhopper-graphhopper_c191a7_5a8373src#main#java#de#jetsli#graph#routing#util#RoutingAlgorithmIntegrationTests.txt   
+ :    127   :   165
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#ArrayWrappedCallByReference.txt   
+ :    124   :   292
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#BackportReusePublicIdentifiers.txt   
+ :    57   :   75
+vi aeshell-aesh_7e0fe3_680fc6src#main#java#org#jboss#aesh#console#Config.txt   
+ :    100   :   151
+vi sboesebeck-morphium_16f557_661613src#de#caluga#morphium#messaging#Messaging.txt   
+ :    75   :   117
+vi airlift-airlift_d97ba5_501905src#main#java#com#facebook#presto#UncompressedSliceCursor.txt   
+ :    95   :   96
+vi datanucleus-datanucleus-core_47f1a0_08655csrc#main#java#org#datanucleus#metadata#AbstractMemberMetaData.txt   
+ :    2380   :   2382
+vi LEDS-sincap-entities_3e4515_06531fsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    37   :   80
+vi LEDS-sincap-entities_3e4515_06531fsrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    37   :   80
+vi valis-vclang_75baea_b863desrc#main#java#com#jetbrains#jetpad#vclang#parser#BuildVisitor.txt   
+ :    1200   :   1219
+vi hector-client-hector_ecd04a_e9c340src#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    183   :   204
+vi hector-client-hector_ecd04a_e9c340src#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    196   :   204
+vi perfectsense-dari_9d26db_d0badeutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#StutteredMethodArguments.txt   
+ :    111   :   179
+vi GenomicParisCentre-eoulsan_def15a_7905e7src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#ExpressionHadoopStep.txt   
+ :    496   :   558
+vi ansell-owlapi_37893a_b9052etools#src#main#java#org#semanticweb#owlapi#debugging#BlackBoxOWLDebugger.txt   
+ :    115   :   125
+vi ansell-owlapi_37893a_b9052etools#src#main#java#org#semanticweb#owlapi#debugging#BlackBoxOWLDebugger.txt   
+ :    116   :   125
+vi ARUP-NGS-Pipeline_04450b_71eae0src#main#java#alnGenerator#VCFReader.txt   
+ :    37   :   53
+vi ARUP-NGS-Pipeline_04450b_71eae0src#main#java#alnGenerator#VCFReader.txt   
+ :    37   :   53
+vi ARUP-NGS-Pipeline_04450b_71eae0src#main#java#alnGenerator#VCFReader.txt   
+ :    123   :   190
+vi kohsuke-github-api_eb9551_cb2248src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi kohsuke-github-api_eb9551_cb2248src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi SINTEF-9012-ThingML_711aa7_27ce14compilers#c#src#main#java#org#thingml#compilers#c#arduino#plugin#ArduinoSerial.txt   
+ :    52   :   201
+vi apache-maven-shared_23ae54_181d06src#main#java#org#apache#maven#shared#filtering#DefaultMavenResourcesFiltering.txt   
+ :    155   :   299
+vi apache-maven-shared_23ae54_181d06src#main#java#org#apache#maven#shared#filtering#DefaultMavenResourcesFiltering.txt   
+ :    155   :   299
+vi apache-maven-shared_23ae54_181d06src#main#java#org#apache#maven#shared#filtering#DefaultMavenResourcesFiltering.txt   
+ :    155   :   299
+vi hector-client-hector_00d927_38b1acsrc#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    154   :   175
+vi hector-client-hector_00d927_38b1acsrc#main#java#me#prettyprint#cassandra#service#CassandraClientPoolImpl.txt   
+ :    167   :   175
+vi altran-Whydah-UserIdentityBackend_5601dc_0cad0bsrc#main#java#net#whydah#identity#user#authentication#UserAuthenticationEndpoint.txt   
+ :    309   :   336
+vi roundrop-facebook4j_380da6_addc2cfacebook4j-core#src#main#java#facebook4j#FacebookImpl.txt   
+ :    2332   :   2333
+vi cismet-cismet-gui-commons_558be1_ed1715src#main#java#de#cismet#tools#gui#downloadmanager#DownloadManager.txt   
+ :    341   :   381
+vi maxymania-jxta-jxse_e946de_837e2fsrc#main#java#net#jxta#impl#endpoint#mcast#McastTransport.txt   
+ :    286   :   469
+vi plutext-docx4j_c97f7f_d7750dsrc#main#java#org#docx4j#openpackaging#parts#WordprocessingML#BinaryPartAbstractImage.txt   
+ :    100   :   108
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#ArrayWrappedCallByReference.txt   
+ :    124   :   292
+vi marschraner-svm_c702f6_cc2d29src#main#java#ch#metzenthin#svm#SwingExceptionHandler.txt   
+ :    59   :   79
+vi Razz0991-Minigames_1f7dd2_e95171Minigames#src#au#com#mineauz#minigames#backend#both#SQLExport.txt   
+ :    90   :   100
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#SuspiciousCloneAlgorithm.txt   
+ :    123   :   185
+vi mulesoft-mule-common_db7171_8ade70src#main#java#org#mule#common#query#expression#UnaryLogicalExpression.txt   
+ :    14   :   17
+vi LEDS-sincap-entities_50e599_3390d9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    35   :   74
+vi LEDS-sincap-entities_50e599_3390d9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    35   :   74
+vi LEDS-sincap-entities_50e599_3390d9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    40   :   74
+vi LEDS-sincap-entities_50e599_3390d9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    40   :   74
+vi LEDS-sincap-entities_50e599_3390d9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   74
+vi LEDS-sincap-entities_50e599_3390d9src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   74
+vi xetorthio-jedis_fb7ebc_87e439src#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi ClemsonRSRG-RESOLVE_921c13_372a93src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    3572   :   3613
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_cc0720_2f82absrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    391   :   439
+vi belaban-JGroups_641d37_92ac0bsrc#org#jgroups#stack#NakReceiverWindow.txt   
+ :    241   :   267
+vi ClemsonRSRG-RESOLVE_90abbb_ed3e37src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.txt   
+ :    141   :   155
+vi ClemsonRSRG-RESOLVE_90abbb_ed3e37src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#TheoremCongruenceClosureImpl.txt   
+ :    117   :   155
+vi cismet-cismet-gui-commons_5a3c29_09757fsrc#main#java#de#cismet#tools#gui#downloadmanager#DownloadManager.txt   
+ :    353   :   404
+vi ClemsonRSRG-RESOLVE_02981f_5cb2d4src#main#java#edu#clemson#cs#r2jt#absynnew#ResolveCompiler.txt   
+ :    146   :   177
+vi GenomicParisCentre-eoulsan_6b7546_44b24csrc#main#java#fr#ens#transcriptome#eoulsan#core#HadoopInfo.txt   
+ :    81   :   101
+vi maartentbm-ContextPL1_8dda41_366966src#main#java#nl#tudelft#ti2806#pl1#graphWriter#GraphWriter.txt   
+ :    48   :   83
+vi maartentbm-ContextPL1_8dda41_366966src#main#java#nl#tudelft#ti2806#pl1#graphWriter#GraphWriter.txt   
+ :    48   :   83
+vi google-guava_cf718c_c8d9b9guava#src#com#google#common#collect#CustomConcurrentHashMap.txt   
+ :    2754   :   2785
+vi google-guava_cf718c_c8d9b9guava#src#com#google#common#collect#CustomConcurrentHashMap.txt   
+ :    2715   :   2746
+vi marschraner-svm_b9adbf_e89404src#main#java#ch#metzenthin#svm#ui#control#DispensationenController.txt   
+ :    110   :   111
+vi marschraner-svm_b9adbf_e89404src#main#java#ch#metzenthin#svm#ui#control#DispensationenController.txt   
+ :    91   :   92
+vi sesuncedu-htmlparser_ba965b_e1cb69src#nu#validator#htmlparser#impl#TreeBuilder.txt   
+ :    826   :   1149
+vi ClemsonRSRG-RESOLVE_e4d6ec_c8cf58src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    997   :   1100
+vi ClemsonRSRG-RESOLVE_e4d6ec_c8cf58src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    997   :   1100
+vi ClemsonRSRG-RESOLVE_e4d6ec_c8cf58src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    997   :   1100
+vi ClemsonRSRG-RESOLVE_e4d6ec_c8cf58src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    997   :   1100
+vi apache-wss4j_fff954_037c90src#main#java#org#apache#ws#security#WSDocInfo.txt   
+ :    245   :   257
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#BackportReusePublicIdentifiers.txt   
+ :    57   :   75
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_11b6ae_b6019asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    115   :   174
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_11b6ae_b6019asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    117   :   174
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_11b6ae_b6019asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    116   :   174
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_11b6ae_b6019asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    114   :   174
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_11b6ae_b6019asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    106   :   174
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_11b6ae_b6019asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    113   :   174
+vi LEDS-sincap-entities_8c6771_ee2deasrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    45   :   66
+vi mebigfatguy-fb-contrib_5f064e_fe3de2src#com#mebigfatguy#fbcontrib#detect#CommonsStringBuilderToString.txt   
+ :    88   :   166
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#ModifyingUnmodifiableCollection.txt   
+ :    116   :   160
+vi ClemsonRSRG-RESOLVE_d84c34_64c586src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    431   :   495
+vi ClemsonRSRG-RESOLVE_d84c34_64c586src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    431   :   495
+vi ClemsonRSRG-RESOLVE_d84c34_64c586src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    431   :   495
+vi rasto-lcmc_ebf333_4c7069src#main#java#lcmc#crm#ui#resource#IPaddrInfo.txt   
+ :    99   :   128
+vi xetorthio-jedis_670e01_6f8d46src#main#java#redis#clients#jedis#JedisCluster.txt   
+ :    1477   :   1483
+vi apache-pdfbox_e9b0bb_c47faepdfbox#src#main#java#org#apache#pdfbox#pdmodel#interactive#form#PDAppearanceString.txt   
+ :    251   :   312
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#ModifyingUnmodifiableCollection.txt   
+ :    116   :   160
+vi jcabi-jcabi-github_f8d395_03770fsrc#main#java#com#jcabi#github#mock#MkOrganizations.txt   
+ :    116   :   141
+vi lightblue-platform-lightblue-core_cbe2fa_36b12dcrud#src#main#java#com#redhat#lightblue#eval#ArrayProjector.txt   
+ :    88   :   92
+vi UniTime-unitime_19f78e_2f4681JavaSource#org#unitime#timetable#server#lookup#PeopleLookupBackend.txt   
+ :    279   :   301
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#ArrayWrappedCallByReference.txt   
+ :    124   :   292
+vi Bombe-Sone_66f7a0_4bcc65src#main#java#net#pterodactylus#sone#core#SoneParser.txt   
+ :    150   :   342
+vi Xephi-AuthMeReloaded_140a80_8d8ce1src#main#java#fr#xephi#authme#datasource#MySQLThread.txt   
+ :    530   :   551
+vi Xephi-AuthMeReloaded_140a80_8d8ce1src#main#java#fr#xephi#authme#datasource#MySQLThread.txt   
+ :    438   :   475
+vi omnifaces-omnifaces_dcb40e_5a0c9esrc#main#java#org#omnifaces#taghandler#ValidateBean.txt   
+ :    109   :   167
+vi alibaba-druid_bf60f9_f8b191src#main#java#com#alibaba#druid#wall#WallFilter.txt   
+ :    89   :   134
+vi ClemsonRSRG-RESOLVE_e4041a_320648src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_e4041a_320648src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_e4041a_320648src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi OpenTreeOfLife-treemachine_297c5c_91821csrc#main#java#opentree#PhylografterConnector.txt   
+ :    204   :   280
+vi OpenTreeOfLife-treemachine_297c5c_91821csrc#main#java#opentree#PhylografterConnector.txt   
+ :    204   :   280
+vi OpenTreeOfLife-treemachine_297c5c_91821csrc#main#java#opentree#PhylografterConnector.txt   
+ :    204   :   280
+vi biojava-biojava_78e3e0_20e475biojava-structure#src#main#java#org#biojava#nbio#structure#symmetry#internal#CeSymm.txt   
+ :    192   :   355
+vi biojava-biojava_78e3e0_20e475biojava-structure#src#main#java#org#biojava#nbio#structure#symmetry#internal#CeSymm.txt   
+ :    192   :   355
+vi biojava-biojava_78e3e0_20e475biojava-structure#src#main#java#org#biojava#nbio#structure#symmetry#internal#CeSymm.txt   
+ :    192   :   355
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#NeedlessMemberCollectionSynchronization.txt   
+ :    271   :   342
+vi RolecraftDev-RolecraftCore_c66d9c_83938esrc#main#java#com#github#rolecraftdev#data#storage#SQLiteDataStore.txt   
+ :    64   :   77
+vi RolecraftDev-RolecraftCore_c66d9c_83938esrc#main#java#com#github#rolecraftdev#data#storage#SQLiteDataStore.txt   
+ :    64   :   77
+vi perfectsense-dari_743d6d_cdfb1dutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi GenomicParisCentre-eoulsan_d5f5bd_66bdfbsrc#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#ExpressionHadoopStep.txt   
+ :    496   :   558
+vi shilad-wikibrain_b21424_563a2ewikibrain-spatial#src#main#java#org#wikibrain#spatial#loader#GADMConverter.txt   
+ :    70   :   97
+vi graphhopper-graphhopper_fe0912_f6aaabsrc#main#java#com#graphhopper#routing#util#RoutingAlgorithmIntegrationTests.txt   
+ :    99   :   107
+vi GenomicParisCentre-eoulsan_414e96_16c7c6src#main#java#fr#ens#transcriptome#eoulsan#bio#readsmappers#BowtieReadsMapper.txt   
+ :    197   :   235
+vi GenomicParisCentre-eoulsan_414e96_16c7c6src#main#java#fr#ens#transcriptome#eoulsan#bio#readsmappers#BowtieReadsMapper.txt   
+ :    197   :   235
+vi aherbert-GDSC-SMLM_07c8f9_c27c0dsrc#main#java#gdsc#smlm#ij#plugins#BenchmarkSpotFilter.txt   
+ :    415   :   500
+vi kuujo-vertigo_37e11f_088630src#main#java#net#kuujo#vertigo#coordinator#AbstractCoordinator.txt   
+ :    182   :   202
+vi Activiti-Activiti_edec53_33ff3fmodules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi perfectsense-dari_70dbb9_ee4b75util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi kohsuke-github-api_e239ef_4660c6src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi kohsuke-github-api_e239ef_4660c6src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi minusone13-InvoicingSystem_741b5f_dcb548src#main#java#data#commoditydata#StubCommodityList.txt   
+ :    42   :   49
+vi perfectsense-dari_7a9e20_d5deebutil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    67   :   118
+vi forcedotcom-phoenix_290d62_ed5d41src#main#java#com#salesforce#phoenix#util#CSVLoader.txt   
+ :    99   :   148
+vi forcedotcom-phoenix_290d62_ed5d41src#main#java#com#salesforce#phoenix#util#CSVLoader.txt   
+ :    99   :   148
+vi mebigfatguy-fb-contrib_49624f_ba55f3src#com#mebigfatguy#fbcontrib#detect#CommonsStringBuilderToString.txt   
+ :    88   :   166
+vi perfectsense-dari_3feda7_e2fe7butil#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi DerPavlov-Cannons_ff59c9_eefb4esrc#main#java#at#pavlov#cannons#Aiming.txt   
+ :    506   :   520
+vi ClemsonRSRG-RESOLVE_4a059c_c77ef7src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_4a059c_c77ef7src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_4a059c_c77ef7src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    329   :   338
+vi ClemsonRSRG-RESOLVE_115f93_769dc8src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    373   :   384
+vi ClemsonRSRG-RESOLVE_115f93_769dc8src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    373   :   384
+vi ClemsonRSRG-RESOLVE_115f93_769dc8src#main#java#edu#clemson#cs#r2jt#congruenceclassprover#SMTProver.txt   
+ :    373   :   384
+vi marschraner-svm_84c97e_148b80src#main#java#ch#metzenthin#svm#domain#commands#CreateWordTableCommand.txt   
+ :    149   :   151
+vi julianhyde-optiq_f9d398_89db7fsrc#main#java#net#hydromatic#optiq#prepare#OptiqPrepareImpl.txt   
+ :    184   :   225
+vi PEXPlugins-PermissionsEx_4f752f_0ccbbfsrc#main#java#ru#tehkode#permissions#backends#file#FileBackend.txt   
+ :    195   :   201
+vi greese-dasein-cloud-azure_ab16f5_db2633src#main#java#org#dasein#cloud#azure#network#AzureVlanSupport.txt   
+ :    187   :   256
+vi greese-dasein-cloud-azure_ab16f5_db2633src#main#java#org#dasein#cloud#azure#network#AzureVlanSupport.txt   
+ :    1001   :   1025
+vi GenomicParisCentre-eoulsan_237a78_4a4f27src#main#java#fr#ens#transcriptome#eoulsan#Globals.txt   
+ :    242   :   252
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_b0274b_94fc93src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    349   :   439
+vi mebigfatguy-fb-contrib_7ae3eb_173c3dsrc#com#mebigfatguy#fbcontrib#detect#ConflictingTimeUnits.txt   
+ :    130   :   199
+vi stapler-stapler_6db6e7_3ea4c8src#org#kohsuke#stapler#framework#io#LargeText.txt   
+ :    87   :   104
+vi thinkofdeath-ThinkMap_a9ba1b_ea8eecclient#src#main#java#uk#co#thinkofdeath#mapviewer#client#MapViewer.txt   
+ :    84   :   91
+vi OpenTreeOfLife-taxomachine_044e39_244f89src#main#java#opentree#Taxon.txt   
+ :    235   :   369
+vi minusone13-InvoicingSystem_3838b2_f33e79src#main#java#presentation#managerui#JPBill.txt   
+ :    999   :   1010
+vi minusone13-InvoicingSystem_3838b2_f33e79src#main#java#presentation#managerui#JPBill.txt   
+ :    1001   :   1010
+vi minusone13-InvoicingSystem_3838b2_f33e79src#main#java#presentation#managerui#JPBill.txt   
+ :    1000   :   1010
+vi dankurka-mgwt_9bb682_bdc678src#main#java#com#googlecode#mgwt#ui#client#widget#buttonbar#ButtonBarButtonBase.txt   
+ :    105   :   134
+vi shilad-wikibrain_6c54d5_a5c400wikibrain-spatial#src#main#java#org#wikibrain#spatial#cookbook#tflevaluate#InstanceOfExtractor.txt   
+ :    109   :   136
+vi shilad-wikibrain_6c54d5_a5c400wikibrain-spatial#src#main#java#org#wikibrain#spatial#cookbook#tflevaluate#InstanceOfExtractor.txt   
+ :    109   :   136
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_6c9235_dc65a9src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    118   :   179
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_6c9235_dc65a9src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    121   :   179
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_6c9235_dc65a9src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    120   :   179
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_6c9235_dc65a9src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    119   :   179
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_6c9235_dc65a9src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    122   :   179
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_6c9235_dc65a9src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    124   :   179
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_6c9235_dc65a9src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    123   :   179
+vi xetorthio-jedis_67a1d3_4c6d83src#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi wnameless-rubycollect4j_3ab283_a4dcfdsrc#main#java#cleanzephyr#rubycollect4j#RubyIO.txt   
+ :    82   :   109
+vi ClemsonRSRG-RESOLVE_35d9f9_56ce4bsrc#main#java#edu#clemson#cs#r2jt#translation#PrettyCTranslation.txt   
+ :    51   :   56
+vi apache-wss4j_4f9421_74a923src#org#apache#ws#security#message#WSSecSignature.txt   
+ :    393   :   474
+vi ClemsonRSRG-RESOLVE_1fbc27_ff7390src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    86   :   101
+vi lexicalscope-svm_61ebce_50d351src#main#java#com#lexicalscope#symb#vm#Stack.txt   
+ :    40   :   42
+vi mebigfatguy-fb-contrib_d28181_e732aesrc#com#mebigfatguy#fbcontrib#detect#LiteralStringComparison.txt   
+ :    115   :   202
+vi WorldCretornica-PlotMe-Core_8a4f6f_06d315src#bukkit#java#com#worldcretornica#plotme_core#bukkit#BukkitCommand.txt   
+ :    24   :   42
+vi sanity-quickml_ca649e_35941csrc#main#java#quickml#supervised#tree#TreeBuilderHelper.txt   
+ :    38   :   39
+vi ClemsonRSRG-RESOLVE_80b1dc_1bbf27src#main#java#edu#clemson#cs#r2jt#verification#PrintAssertions.txt   
+ :    934   :   979
+vi instance01-MinigamesAPI_c4a98c_316d4cAPI#src#main#java#com#comze_instancelabs#minigamesapi#Shop.txt   
+ :    42   :   72
+vi kohsuke-github-api_90d104_698d64src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi kohsuke-github-api_90d104_698d64src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi tengstrand-Laja_e80754_f3590csrc#main#java#net#sf#laja#parser#cdd#MessageFormatter.txt   
+ :    34   :   44
+vi mebigfatguy-fb-contrib_10ca28_145130src#com#mebigfatguy#fbcontrib#detect#PoorMansEnum.txt   
+ :    100   :   120
+vi mebigfatguy-fb-contrib_10ca28_145130src#com#mebigfatguy#fbcontrib#detect#PoorMansEnum.txt   
+ :    99   :   120
+vi LEDS-sincap-entities_0adbdc_8929d5src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    41   :   80
+vi LEDS-sincap-entities_0adbdc_8929d5src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    42   :   80
+vi LEDS-sincap-entities_0adbdc_8929d5src#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    44   :   80
+vi Activiti-Activiti_f6c242_fc85e3modules#activiti-bpmn-converter#src#main#java#org#activiti#bpmn#converter#UserTaskXMLConverter.txt   
+ :    274   :   279
+vi libetl-soundtransform_cb8748_3f4bb5src#main#java#org#toilelibre#libe#soundtransform#infrastructure#service#transforms#SpeedUpSoundTransformation.txt   
+ :    42   :   56
+vi msokolov-lux_63efc7_d7d3adsrc#main#java#lux#xpath#NodeTest.txt   
+ :    59   :   76
+vi bcdev-coastcolour_dbee39_1efb0ecoastcolour-processing#src#main#java#org#esa#beam#coastcolour#processing#L2WOp.txt   
+ :    466   :   558
+vi bcdev-coastcolour_dbee39_1efb0ecoastcolour-processing#src#main#java#org#esa#beam#coastcolour#processing#L2WOp.txt   
+ :    467   :   558
+vi bcdev-coastcolour_dbee39_1efb0ecoastcolour-processing#src#main#java#org#esa#beam#coastcolour#processing#L2WOp.txt   
+ :    468   :   558
+vi elBukkit-MagicLib_b9c07a_9e2b43src#main#java#com#elmakers#mine#bukkit#block#MaterialAndData.txt   
+ :    161   :   205
+vi elBukkit-MagicLib_b9c07a_9e2b43src#main#java#com#elmakers#mine#bukkit#block#MaterialAndData.txt   
+ :    161   :   205
+vi elBukkit-MagicLib_b9c07a_9e2b43src#main#java#com#elmakers#mine#bukkit#block#MaterialAndData.txt   
+ :    161   :   205
+vi elBukkit-MagicLib_b9c07a_9e2b43src#main#java#com#elmakers#mine#bukkit#block#MaterialAndData.txt   
+ :    137   :   205
+vi elBukkit-MagicLib_b9c07a_9e2b43src#main#java#com#elmakers#mine#bukkit#block#MaterialAndData.txt   
+ :    137   :   205
+vi elBukkit-MagicLib_b9c07a_9e2b43src#main#java#com#elmakers#mine#bukkit#block#MaterialAndData.txt   
+ :    137   :   205
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_f7e8ba_60ec0asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    254   :   385
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_f7e8ba_60ec0asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    254   :   385
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_f7e8ba_60ec0asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    254   :   385
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_f7e8ba_60ec0asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    253   :   385
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_f7e8ba_60ec0asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    253   :   385
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_f7e8ba_60ec0asrc#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    253   :   385
+vi simon-eastwood-DependencyCheckCM_78ff88_f64192src#main#java#org#codesecure#dependencycheck#utils#Downloader.txt   
+ :    127   :   160
+vi aherbert-GDSC-SMLM_9f7caa_022d2fsrc#main#java#gdsc#smlm#ij#plugins#DriftCalculator.txt   
+ :    168   :   189
+vi buddycloud-buddycloud-server-java_60f095_a25169src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#set#SubscriptionEvent.txt   
+ :    179   :   185
+vi buddycloud-buddycloud-server-java_60f095_a25169src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#set#SubscriptionEvent.txt   
+ :    178   :   185
+vi buddycloud-buddycloud-server-java_60f095_a25169src#main#java#org#buddycloud#channelserver#packetprocessor#iq#namespace#pubsub#set#SubscriptionEvent.txt   
+ :    177   :   185
+vi tehbeard-BeardStat_cf6296_c9e6adsrc#main#java#com#tehbeard#BeardStat#listeners#MetaDataCapture.txt   
+ :    47   :   55
+vi tehbeard-BeardStat_cf6296_c9e6adsrc#main#java#com#tehbeard#BeardStat#listeners#MetaDataCapture.txt   
+ :    46   :   55
+vi arjovanramshorst-bubble-bobble-sem_e7546b_daaeafcore#src#main#java#sem#group15#bubblebobble#core#BubbleBobble.txt   
+ :    67   :   74
+vi arjovanramshorst-bubble-bobble-sem_e7546b_daaeafcore#src#main#java#sem#group15#bubblebobble#core#BubbleBobble.txt   
+ :    69   :   74
+vi arjovanramshorst-bubble-bobble-sem_e7546b_daaeafcore#src#main#java#sem#group15#bubblebobble#core#BubbleBobble.txt   
+ :    66   :   74
+vi GenomicParisCentre-eoulsan_dde9b7_3cf6cfsrc#main#java#fr#ens#transcriptome#eoulsan#bio#readsmappers#AbstractSequenceReadsMapper.txt   
+ :    771   :   802
+vi GenomicParisCentre-eoulsan_de3287_da8a01src#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    199   :   201
+vi GenomicParisCentre-eoulsan_de3287_da8a01src#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    109   :   154
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#StutteredMethodArguments.txt   
+ :    111   :   179
+vi msokolov-lux_96e484_0ae1b9src#main#java#lux#solr#SolrIndexConfig.txt   
+ :    153   :   164
+vi basho-riak-java-client_302582_076305src#main#java#com#basho#riak#client#raw#pbc#PBClientConfig.txt   
+ :    196   :   205
+vi gertvv-addis_71c8eb_975683src#main#java#org#drugis#addis#presentation#NetworkMetaAnalysisPresentation.txt   
+ :    57   :   60
+vi GenomicParisCentre-eoulsan_46cfa3_b0c06dsrc#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#ExpressionHadoopStep.txt   
+ :    496   :   558
+vi msokolov-lux_1a7ed5_69f085src#main#java#lux#CachingDocReader.txt   
+ :    110   :   120
+vi digipost-digipost-api-client-java_3023db_43a152src#main#java#no#digipost#api#client#representations#NameAndAddress.txt   
+ :    77   :   80
+vi GenomicParisCentre-aozan_c3bf6c_76ff05src#main#java#fr#ens#biologie#genomique#aozan#fastqc#OverrepresentedSequencesBlast.txt   
+ :    365   :   383
+vi apache-maven-shared_0c2f7e_3851c3src#main#java#org#apache#maven#shared#filtering#DefaultMavenResourcesFiltering.txt   
+ :    161   :   295
+vi Activiti-Activiti_d626cc_0014d1modules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi WorldCretornica-PlotMe-Core_3f3ca9_95f5afsrc#main#java#com#worldcretornica#plotme_core#commands#CmdPlotList.txt   
+ :    48   :   124
+vi WorldCretornica-PlotMe-Core_3f3ca9_95f5afsrc#main#java#com#worldcretornica#plotme_core#commands#CmdPlotList.txt   
+ :    48   :   124
+vi WorldCretornica-PlotMe-Core_3f3ca9_95f5afsrc#main#java#com#worldcretornica#plotme_core#commands#CmdPlotList.txt   
+ :    48   :   124
+vi WorldCretornica-PlotMe-Core_3f3ca9_95f5afsrc#main#java#com#worldcretornica#plotme_core#commands#CmdPlotList.txt   
+ :    48   :   124
+vi apache-directory-fortress-core_078018_ec0e81src#main#java#org#apache#directory#fortress#core#rbac#Permission.txt   
+ :    734   :   745
+vi konsoletyper-teavm_344591_4e4d0cteavm-core#src#main#java#org#teavm#javascript#MethodDecompiler.txt   
+ :    158   :   202
+vi konsoletyper-teavm_344591_4e4d0cteavm-core#src#main#java#org#teavm#javascript#MethodDecompiler.txt   
+ :    165   :   202
+vi FIWARE-Middleware-KIARA_ebd148_76d504src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    92   :   104
+vi FIWARE-Middleware-KIARA_ebd148_76d504src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    97   :   104
+vi FIWARE-Middleware-KIARA_ebd148_76d504src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    89   :   104
+vi FIWARE-Middleware-KIARA_ebd148_76d504src#main#java#org#fiware#kiara#ps#rtps#builtin#data#ParticipantProxyData.txt   
+ :    93   :   104
+vi marschraner-svm_3e75c2_337bcdsrc#main#java#ch#metzenthin#svm#ui#control#MaercheneinteilungenController.txt   
+ :    142   :   177
+vi Xephi-AuthMeReloaded_6dc406_bb22dasrc#main#java#fr#xephi#authme#permission#PermissionsManager.txt   
+ :    516   :   531
+vi Xephi-AuthMeReloaded_6dc406_bb22dasrc#main#java#fr#xephi#authme#permission#PermissionsManager.txt   
+ :    463   :   477
+vi Xephi-AuthMeReloaded_6dc406_bb22dasrc#main#java#fr#xephi#authme#permission#PermissionsManager.txt   
+ :    456   :   477
+vi julianhyde-optiq_026ff5_aeb9bfsrc#main#java#net#hydromatic#optiq#impl#clone#ArrayTable.txt   
+ :    471   :   475
+vi Activiti-Activiti_93c36a_459b79modules#activiti-engine#src#main#java#org#activiti#engine#impl#event#AbstractEventHandler.txt   
+ :    98   :   109
+vi mkovatsc-Californium_fde074_96384bcf-client#src#main#java#ch#ethz#inf#vs#californium#examples#ExampleClient.txt   
+ :    119   :   236
+vi mkovatsc-Californium_fde074_96384bcf-client#src#main#java#ch#ethz#inf#vs#californium#examples#ExampleClient.txt   
+ :    91   :   236
+vi mkovatsc-Californium_f09efe_40eac2cf-benchmark#src#main#java#ch#ethz#inf#vs#californium#benchmark#WorkQueueExecutor.txt   
+ :    47   :   54
+vi jankotek-MapDB_663c39_1c750esrc#main#java#org#mapdb#StoreDirect.txt   
+ :    828   :   901
+vi junkdog-artemis-odb_fbba4c_f86220artemis#src#main#java#com#artemis#EntitySystem.txt   
+ :    40   :   47
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_376a95_d054d2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    260   :   455
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_376a95_d054d2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    260   :   455
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_376a95_d054d2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    260   :   455
+vi renepickhardt-generalized-language-modeling-toolkit_2af63e_6ff0dcsrc#main#java#de#glmtk#executables#GlmtkNew.txt   
+ :    103   :   167
+vi renepickhardt-generalized-language-modeling-toolkit_2af63e_6ff0dcsrc#main#java#de#glmtk#executables#GlmtkNew.txt   
+ :    103   :   167
+vi renepickhardt-generalized-language-modeling-toolkit_2af63e_6ff0dcsrc#main#java#de#glmtk#executables#GlmtkNew.txt   
+ :    103   :   167
+vi renepickhardt-generalized-language-modeling-toolkit_2af63e_6ff0dcsrc#main#java#de#glmtk#executables#GlmtkNew.txt   
+ :    103   :   167
+vi valis-vclang_e9c273_01d032src#main#java#com#jetbrains#jetpad#vclang#ConsoleMain.txt   
+ :    118   :   163
+vi Activiti-Activiti_fc9627_2bfa9dmodules#activiti-engine#src#main#java#org#activiti#engine#impl#event#AbstractEventHandler.txt   
+ :    98   :   109
+vi graphhopper-graphhopper_44d61f_a08f10src#main#java#com#graphhopper#GraphHopper.txt   
+ :    126   :   136
+vi renepickhardt-generalized-language-modeling-toolkit_501d3c_b72164src#main#java#de#glmtk#options#EstimatorsOption.txt   
+ :    30   :   31
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#ConstantListIndex.txt   
+ :    138   :   202
+vi minusone13-InvoicingSystem_045187_743313src#main#java#businesslogic#examinebl#StubBillPool.txt   
+ :    41   :   48
+vi minusone13-InvoicingSystem_045187_743313src#main#java#businesslogic#examinebl#StubBillPool.txt   
+ :    42   :   48
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_bb8e7a_829683src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    406   :   441
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_bb8e7a_829683src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    406   :   441
+vi apache-commons-configuration_42f43a_5dce7bsrc#main#java#org#apache#commons#configuration#io#FileLocatorUtils.txt   
+ :    458   :   471
+vi SophieKoonin-JavaDecaf_cf3fa7_18d909src#main#java#parser#JDCParser.txt   
+ :    5885   :   5892
+vi SophieKoonin-JavaDecaf_cf3fa7_18d909src#main#java#parser#JDCParser.txt   
+ :    5886   :   5892
+vi SophieKoonin-JavaDecaf_cf3fa7_18d909src#main#java#parser#JDCParser.txt   
+ :    5887   :   5892
+vi SophieKoonin-JavaDecaf_cf3fa7_18d909src#main#java#parser#JDCParser.txt   
+ :    5889   :   5892
+vi GenomicParisCentre-eoulsan_588287_4283bdsrc#main#java#fr#ens#transcriptome#eoulsan#steps#galaxytool#GalaxyToolStep.txt   
+ :    110   :   126
+vi paul-hammant-qdox_b9faef_8e4ce2src#main#java#com#thoughtworks#qdox#model#expression#FieldRef.txt   
+ :    125   :   158
+vi jankotek-MapDB_7f8421_c85ebesrc#main#java#org#mapdb#StoreDirect.txt   
+ :    80   :   95
+vi xetorthio-jedis_7845dc_b2fcbesrc#main#java#redis#clients#jedis#Connection.txt   
+ :    55   :   61
+vi perfectsense-dari_0650ca_bae484util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi cismet-cismet-gui-commons_62c8c1_e4a273src#main#java#de#cismet#tools#gui#downloadmanager#DownloadManager.txt   
+ :    353   :   404
+vi paul-hammant-qdox_8b22fa_d81e14src#java#com#thoughtworks#qdox#parser#structs#AnnoDef.txt   
+ :    45   :   57
+vi LEDS-sincap-entities_6190c0_bed22csrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    40   :   66
+vi LEDS-sincap-entities_6190c0_bed22csrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    40   :   66
+vi LEDS-sincap-entities_6190c0_bed22csrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    34   :   66
+vi LEDS-sincap-entities_6190c0_bed22csrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    34   :   66
+vi LEDS-sincap-entities_6190c0_bed22csrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    28   :   66
+vi LEDS-sincap-entities_6190c0_bed22csrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    28   :   66
+vi LEDS-sincap-entities_6190c0_bed22csrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    33   :   66
+vi LEDS-sincap-entities_6190c0_bed22csrc#main#java#br#ifes#leds#sincap#gerenciaNotificacao#cln#util#dataFactory#DataFactoryMain.txt   
+ :    33   :   66
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_30b2a4_c3a0e2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    232   :   304
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_30b2a4_c3a0e2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    232   :   304
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_30b2a4_c3a0e2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    232   :   304
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_30b2a4_c3a0e2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    232   :   304
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_30b2a4_c3a0e2src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    232   :   304
+vi owlcs-owlapi_37893a_b9052etools#src#main#java#org#semanticweb#owlapi#debugging#BlackBoxOWLDebugger.txt   
+ :    116   :   125
+vi owlcs-owlapi_37893a_b9052etools#src#main#java#org#semanticweb#owlapi#debugging#BlackBoxOWLDebugger.txt   
+ :    115   :   125
+vi apache-directory-shared_428670_58d90dldap#src#main#java#org#apache#directory#shared#ldap#schema#syntaxCheckers#AttributeTypeUsageSyntaxChecker.txt   
+ :    114   :   128
+vi tengstrand-Laja_e245ce_ac50f6src#main#java#net#sf#laja#parser#cdd#state#StateParser.txt   
+ :    466   :   776
+vi ClemsonRSRG-RESOLVE_c1dd60_6782d0src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    4280   :   4370
+vi ClemsonRSRG-RESOLVE_c1dd60_6782d0src#main#java#edu#clemson#cs#r2jt#vcgeneration#VCGenerator.txt   
+ :    4280   :   4370
+vi cismet-cids-server_3dde9b_605c6bsrc#main#java#de#cismet#cids#server#search#builtin#CidsLayerSearchStatement.txt   
+ :    47   :   48
+vi antoine-tran-Hedera_9dce20_cafd7cjava#main#org#hedera#io#input#WikiRevisionPageInputFormat.txt   
+ :    169   :   426
+vi Activiti-Activiti_16e877_a6698bmodules#activiti-engine#src#main#java#org#activiti#engine#impl#persistence#entity#ExecutionEntity.txt   
+ :    821   :   825
+vi phillipsic-SeleniumDriverFramework_1aff2f_9aec08src#main#java#com#comverse#css#common#Common.txt   
+ :    418   :   424
+vi ClemsonRSRG-RESOLVE_84220c_70e2basrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#CongruenceClassProver.txt   
+ :    313   :   345
+vi notthebees-languagegames_136a88_a2359fsrc#main#java#simulation#conceptualspaces#Observation.txt   
+ :    14   :   16
+vi apache-pdfbox_156907_be90depdfbox#src#main#java#org#apache#pdfbox#pdmodel#font#FileSystemFontProvider.txt   
+ :    375   :   433
+vi jeremylong-DependencyCheck_566f36_283dcasrc#main#java#org#codesecure#dependencycheck#data#cpe#Index.txt   
+ :    271   :   287
+vi jeremylong-DependencyCheck_566f36_283dcasrc#main#java#org#codesecure#dependencycheck#data#cpe#Index.txt   
+ :    271   :   287
+vi minusone13-InvoicingSystem_360e0e_32caeasrc#main#java#data#billdata#CommodityBillSaver.txt   
+ :    83   :   93
+vi tengstrand-Laja_72c76d_b2cffasrc#main#java#net#sf#laja#parser#cdd#creator#CreatorParser.txt   
+ :    299   :   464
+vi twizmwazin-CardinalPGM_243df7_8c361bsrc#main#java#in#twizmwaz#cardinal#command#ChatCommands.txt   
+ :    26   :   45
+vi shilad-wikibrain_5d1f9f_df7c9cwikibrain-spatial#src#main#java#org#wikibrain#spatial#loader#GADMConverter.txt   
+ :    69   :   97
+vi shilad-wikibrain_5d1f9f_df7c9cwikibrain-spatial#src#main#java#org#wikibrain#spatial#loader#GADMConverter.txt   
+ :    69   :   97
+vi xetorthio-jedis_3ebc25_f7995asrc#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi openmicroscopy-bioformats_bc8114_3f0b2bcomponents#forks#mdbtools#src#mdbtools#libmdb#Data.txt   
+ :    684   :   812
+vi valis-vclang_b863de_0b981esrc#main#java#com#jetbrains#jetpad#vclang#term#definition#visitor#TypeChecking.txt   
+ :    110   :   185
+vi cojen-Tupl_bc5f7b_2b5084src#main#java#org#cojen#tupl#RedoWriter.txt   
+ :    345   :   352
+vi rapla-rapla_d0072f_e3aa9fsrc#main#java#org#rapla#framework#ServiceListCreator.txt   
+ :    123   :   186
+vi digipost-digipost-api-client-java_95dfe4_d8abbdsrc#main#java#no#digipost#api#client#filters#LoggingFilter.txt   
+ :    229   :   235
+vi xetorthio-jedis_9c2960_7845dcsrc#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi svn2github-forge_0029f2_cb1f0asrc#main#java#forge#gui#toolbox#itemmanager#table#ManaCostRenderer.txt   
+ :    101   :   133
+vi svn2github-forge_0029f2_cb1f0asrc#main#java#forge#gui#toolbox#itemmanager#table#ManaCostRenderer.txt   
+ :    101   :   133
+vi svn2github-forge_0029f2_cb1f0asrc#main#java#forge#gui#toolbox#itemmanager#table#ManaCostRenderer.txt   
+ :    101   :   133
+vi perfectsense-dari_d2c826_cd65e6util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi OpenTreeOfLife-treemachine_2d287d_64d915src#main#java#opentree#plugins#GoLS.txt   
+ :    92   :   106
+vi perfectsense-dari_eda3de_3bbe51util#src#main#java#com#psddev#dari#util#HtmlGrid.txt   
+ :    68   :   119
+vi GenomicParisCentre-eoulsan_b0fcdf_ad8431src#main#java#fr#ens#transcriptome#eoulsan#bio#expressioncounters#HTSeqUtils.txt   
+ :    313   :   340
+vi GenomicParisCentre-eoulsan_927389_7c517bsrc#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    109   :   154
+vi GenomicParisCentre-eoulsan_927389_7c517bsrc#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    199   :   201
+vi valis-vclang_2f00c1_586bc4src#main#java#com#jetbrains#jetpad#vclang#parser#BuildVisitor.txt   
+ :    231   :   276
+vi valis-vclang_2f00c1_586bc4src#main#java#com#jetbrains#jetpad#vclang#parser#BuildVisitor.txt   
+ :    231   :   276
+vi valis-vclang_2f00c1_586bc4src#main#java#com#jetbrains#jetpad#vclang#parser#BuildVisitor.txt   
+ :    231   :   276
+vi valis-vclang_2f00c1_586bc4src#main#java#com#jetbrains#jetpad#vclang#parser#BuildVisitor.txt   
+ :    154   :   180
+vi valis-vclang_2f00c1_586bc4src#main#java#com#jetbrains#jetpad#vclang#parser#BuildVisitor.txt   
+ :    154   :   180
+vi johan-martenson-settlers_ab5310_37e527src#main#java#org#appland#settlers#model#GameLogic.txt   
+ :    52   :   69
+vi johan-martenson-settlers_ab5310_37e527src#main#java#org#appland#settlers#model#GameLogic.txt   
+ :    59   :   69
+vi msokolov-lux_5a7f6f_70e28dsrc#main#java#lux#saxon#SaxonTranslator.txt   
+ :    786   :   851
+vi msokolov-lux_5a7f6f_70e28dsrc#main#java#lux#saxon#SaxonTranslator.txt   
+ :    798   :   851
+vi msokolov-lux_5a7f6f_70e28dsrc#main#java#lux#saxon#SaxonTranslator.txt   
+ :    794   :   851
+vi msokolov-lux_5a7f6f_70e28dsrc#main#java#lux#saxon#SaxonTranslator.txt   
+ :    802   :   851
+vi msokolov-lux_5a7f6f_70e28dsrc#main#java#lux#saxon#SaxonTranslator.txt   
+ :    788   :   851
+vi msokolov-lux_5a7f6f_70e28dsrc#main#java#lux#saxon#SaxonTranslator.txt   
+ :    806   :   851
+vi mebigfatguy-fb-contrib_cc0d6b_ccf104src#com#mebigfatguy#fbcontrib#detect#BackportReusePublicIdentifiers.txt   
+ :    57   :   75
+vi ClemsonRSRG-RESOLVE_84220c_70e2basrc#main#java#edu#clemson#cs#r2jt#congruenceclassprover#ConjunctionOfNormalizedAtomicExpressions.txt   
+ :    445   :   448
+vi biojava-biojava_20e475_285587biojava-structure#src#main#java#org#biojava#nbio#structure#symmetry#internal#CeSymmResult.txt   
+ :    49   :   71
+vi biojava-biojava_20e475_285587biojava-structure#src#main#java#org#biojava#nbio#structure#symmetry#internal#CeSymmResult.txt   
+ :    49   :   71
+vi xetorthio-jedis_783653_653d6csrc#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi mebigfatguy-fb-contrib_ba6525_3e56b6src#com#mebigfatguy#fbcontrib#detect#BackportReusePublicIdentifiers.txt   
+ :    57   :   75
+vi mebigfatguy-fb-contrib_cd441f_d9c646src#com#mebigfatguy#fbcontrib#detect#SuspiciousUninitializedArray.txt   
+ :    108   :   270
+vi instance01-MinigamesAPI_be0fe3_779699API#src#main#java#com#comze_instancelabs#minigamesapi#util#Util.txt   
+ :    286   :   360
+vi instance01-MinigamesAPI_be0fe3_779699API#src#main#java#com#comze_instancelabs#minigamesapi#util#Util.txt   
+ :    286   :   360
+vi Bukkit-Bukkit_63e6ef_fc8d08src#main#java#org#bukkit#event#block#SignChangeEvent.txt   
+ :    17   :   19
+vi spotify-cassandra-reaper_021b69_ce19e1src#main#java#com#spotify#reaper#resources#TableResource.txt   
+ :    89   :   210
+vi spotify-cassandra-reaper_021b69_ce19e1src#main#java#com#spotify#reaper#resources#TableResource.txt   
+ :    89   :   210
+vi ICGC-TCGA-PanCancer-SeqWare-CGP-SomaticCore_778503_010490src#main#java#io#seqware#pancancer#CgpCnIndelSnvStrWorkflow.txt   
+ :    178   :   190
+vi marschraner-svm_7e5c9d_1d84acsrc#main#java#ch#metzenthin#svm#domain#commands#CreateWordTableCommand.txt   
+ :    149   :   151
+vi apache-struts_13955f_0ea3fccore#src#main#java#org#apache#struts2#dispatcher#FilterDispatcher.txt   
+ :    194   :   255
+vi AMOSTeam3-amos-ss15-proj3_5a49ff_cd9c21src#main#java#de#fau#osr#gui#GUITrackerToModelAdapter.txt   
+ :    222   :   227
+vi TeamExodus-external_gson_91581a_97e848src#main#java#com#google#gson#Gson.txt   
+ :    166   :   185
+vi rhuss-docker-maven-plugin_0a4933_2cb42dsrc#main#java#org#jolokia#docker#maven#BuildMojo.txt   
+ :    63   :   68
+vi rhuss-docker-maven-plugin_0a4933_2cb42dsrc#main#java#org#jolokia#docker#maven#BuildMojo.txt   
+ :    64   :   68
+vi ARUP-NGS-Pipeline_3ff81b_578114src#main#java#alnGenerator#VCFReader.txt   
+ :    37   :   53
+vi ARUP-NGS-Pipeline_3ff81b_578114src#main#java#alnGenerator#VCFReader.txt   
+ :    37   :   53
+vi ARUP-NGS-Pipeline_3ff81b_578114src#main#java#alnGenerator#VCFReader.txt   
+ :    123   :   190
+vi apache-pdfbox_0562b2_1eda29fontbox#src#main#java#org#apache#fontbox#ttf#CmapSubtable.txt   
+ :    369   :   435
+vi minusone13-InvoicingSystem_bbb1b9_52a09esrc#main#java#presentation#managerui#JPBill.txt   
+ :    1009   :   1018
+vi msokolov-lux_34e12a_424fa0src#main#java#lux#saxon#SaxonTranslator.txt   
+ :    765   :   828
+vi msokolov-lux_34e12a_424fa0src#main#java#lux#saxon#SaxonTranslator.txt   
+ :    783   :   828
+vi msokolov-lux_34e12a_424fa0src#main#java#lux#saxon#SaxonTranslator.txt   
+ :    769   :   828
+vi msokolov-lux_34e12a_424fa0src#main#java#lux#saxon#SaxonTranslator.txt   
+ :    771   :   828
+vi diirt-graphene_5f5915_5056d8graphene#src#main#java#org#epics#graphene#IntensityGraph2DRenderer.txt   
+ :    600   :   695
+vi diirt-graphene_5f5915_5056d8graphene#src#main#java#org#epics#graphene#IntensityGraph2DRenderer.txt   
+ :    635   :   695
+vi mebigfatguy-fb-contrib_1f77c9_da2207src#com#mebigfatguy#fbcontrib#detect#ReflectionOnObjectMethods.txt   
+ :    130   :   267
+vi The-Dream-Team-Tardis_239499_b34977src#main#java#me#dreamteam#tardis#Database.txt   
+ :    101   :   123
+vi The-Dream-Team-Tardis_239499_b34977src#main#java#me#dreamteam#tardis#Database.txt   
+ :    101   :   123
+vi rasto-lcmc_085f91_c05d83src#main#java#lcmc#data#Host.txt   
+ :    845   :   883
+vi rasto-lcmc_085f91_c05d83src#main#java#lcmc#data#Host.txt   
+ :    845   :   883
+vi forcedotcom-phoenix_1a087b_1c66dbsrc#main#java#com#salesforce#phoenix#util#CSVLoader.txt   
+ :    104   :   153
+vi forcedotcom-phoenix_1a087b_1c66dbsrc#main#java#com#salesforce#phoenix#util#CSVLoader.txt   
+ :    104   :   153
+vi shabbies-clockwork_964632_327a6asrc#main#java#servlet#FacebookLoginServlet.txt   
+ :    88   :   120
+vi xetorthio-jedis_6301ff_af309bsrc#main#java#redis#clients#jedis#HostAndPort.txt   
+ :    24   :   34
+vi antoine-tran-Hedera_c2c642_e40c6bjava#main#org#hedera#io#input#WikiRevisionPageInputFormat.txt   
+ :    248   :   469
+vi antoine-tran-Hedera_c2c642_e40c6bjava#main#org#hedera#io#input#WikiRevisionPageInputFormat.txt   
+ :    248   :   469
+vi antoine-tran-Hedera_c2c642_e40c6bjava#main#org#hedera#io#input#WikiRevisionPageInputFormat.txt   
+ :    248   :   469
+vi antoine-tran-Hedera_c2c642_e40c6bjava#main#org#hedera#io#input#WikiRevisionPageInputFormat.txt   
+ :    248   :   469
+vi ARUP-NGS-Pipeline_7e0fff_d57559src#main#java#alnGenerator#VCFReader.txt   
+ :    37   :   53
+vi ARUP-NGS-Pipeline_7e0fff_d57559src#main#java#alnGenerator#VCFReader.txt   
+ :    37   :   53
+vi ARUP-NGS-Pipeline_7e0fff_d57559src#main#java#alnGenerator#VCFReader.txt   
+ :    122   :   190
+vi minusone13-InvoicingSystem_7ee49f_f260afsrc#main#java#userui#TestFrame.txt   
+ :    28   :   41
+vi xetorthio-jedis_b24853_c331bfsrc#main#java#redis#clients#jedis#Connection.txt   
+ :    168   :   177
+vi xetorthio-jedis_b24853_c331bfsrc#main#java#redis#clients#jedis#Connection.txt   
+ :    169   :   177
+vi xetorthio-jedis_b24853_c331bfsrc#main#java#redis#clients#jedis#Connection.txt   
+ :    167   :   177
+vi ansell-owlapi_efe155_926263api#src#main#java#org#semanticweb#owlapi#util#OWLObjectWalker.txt   
+ :    63   :   69
+vi notthebees-languagegames_e953c3_d0a6fdsrc#main#java#paddy#analysis#CommunicationAssertion.txt   
+ :    13   :   14
+vi msokolov-lux_11ea41_0c818esrc#main#java#lux#solr#SolrIndexConfig.txt   
+ :    153   :   164
+vi ClemsonRSRG-RESOLVE_c15b01_cd708asrc#main#java#edu#clemson#cs#r2jt#init#Controller.txt   
+ :    1719   :   1742
+vi ClemsonRSRG-RESOLVE_c15b01_cd708asrc#main#java#edu#clemson#cs#r2jt#init#Controller.txt   
+ :    1718   :   1742
+vi EngineHub-CommandHelper_e03772_dc085bsrc#main#java#com#laytonsmith#aliasengine#Static.txt   
+ :    314   :   322
+vi GenomicParisCentre-eoulsan_1ef41f_76be2asrc#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    199   :   201
+vi GenomicParisCentre-eoulsan_1ef41f_76be2asrc#main#java#fr#ens#transcriptome#eoulsan#steps#MergerStep.txt   
+ :    109   :   154
+vi simon-eastwood-DependencyCheckCM_83d109_2266d8src#main#java#org#codesecure#dependencycheck#data#cpe#Index.txt   
+ :    271   :   287
+vi simon-eastwood-DependencyCheckCM_83d109_2266d8src#main#java#org#codesecure#dependencycheck#data#cpe#Index.txt   
+ :    271   :   287
+vi cismet-cismet-gui-commons_d70bb9_40c578src#main#java#de#cismet#tools#gui#downloadmanager#DownloadManager.txt   
+ :    341   :   381
+vi karamelchef-karamel_92b9b2_00fd79karamel-core#src#main#java#se#kth#karamel#client#api#KaramelApiImpl.txt   
+ :    317   :   338
+vi karamelchef-karamel_92b9b2_00fd79karamel-core#src#main#java#se#kth#karamel#client#api#KaramelApiImpl.txt   
+ :    318   :   338
+vi kohsuke-github-api_23c56f_efa48asrc#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi kohsuke-github-api_23c56f_efa48asrc#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi minusone13-InvoicingSystem_d3b908_987e53src#main#java#data#commoditydata#StubCategoryData.txt   
+ :    45   :   56
+vi minusone13-InvoicingSystem_d3b908_987e53src#main#java#data#commoditydata#StubCategoryData.txt   
+ :    37   :   56
+vi minusone13-InvoicingSystem_d3b908_987e53src#main#java#data#commoditydata#StubCategoryData.txt   
+ :    96   :   101
+vi aherbert-GDSC-SMLM_400bd5_01c69asrc#main#java#gdsc#smlm#ij#results#IJTablePeakResults.txt   
+ :    304   :   321
+vi roundrop-facebook4j_331fb4_661f46facebook4j-core#src#main#java#facebook4j#FacebookImpl.txt   
+ :    2332   :   2333
+vi grzegorz2047-OpenGuild2047_b09e51_fd8e33src#main#java#pl#grzegorz2047#openguild2047#managers#TagManager.txt   
+ :    114   :   128
+vi Activiti-Activiti_b0fc18_f88c09modules#activiti-engine#src#main#java#org#activiti#engine#impl#event#AbstractEventHandler.txt   
+ :    98   :   109
+vi ClemsonRSRG-RESOLVE_015188_1b3745src#main#java#edu#clemson#cs#r2jt#verification#PrintAssertions.txt   
+ :    934   :   979
+vi owlcs-owlapi_37893a_b9052etools#src#main#java#com#clarkparsia#owlapi#explanation#BlackBoxExplanation.txt   
+ :    123   :   132
+vi owlcs-owlapi_37893a_b9052etools#src#main#java#com#clarkparsia#owlapi#explanation#BlackBoxExplanation.txt   
+ :    121   :   132
+vi mojohaus-nbm-maven-plugin_4e1121_74f7b1src#main#java#org#codehaus#mojo#nbm#AbstractNbmMojo.txt   
+ :    288   :   298
+vi sesuncedu-htmlparser_93be3f_e6edb3src#nu#validator#htmlparser#impl#TreeBuilder.txt   
+ :    538   :   557
+vi pendelhaven3-magic_ae161f_bc4b1bsrc#main#java#com#pj#magic#gui#panels#LoginPanel.txt   
+ :    55   :   64
+vi antoine-tran-Hedera_c2c642_e40c6bjava#main#org#hedera#io#input#WikiRevisionDiffInputFormat.txt   
+ :    266   :   487
+vi antoine-tran-Hedera_c2c642_e40c6bjava#main#org#hedera#io#input#WikiRevisionDiffInputFormat.txt   
+ :    266   :   487
+vi antoine-tran-Hedera_c2c642_e40c6bjava#main#org#hedera#io#input#WikiRevisionDiffInputFormat.txt   
+ :    266   :   487
+vi antoine-tran-Hedera_c2c642_e40c6bjava#main#org#hedera#io#input#WikiRevisionDiffInputFormat.txt   
+ :    266   :   487
+vi mojohaus-nbm-maven-plugin_dcfdaf_577dcasrc#main#java#org#codehaus#mojo#nbm#AbstractNbmMojo.txt   
+ :    387   :   411
+vi maxymania-jxta-jxse_e946de_837e2fsrc#main#java#net#jxta#impl#peergroup#StdPeerGroupParamAdv.txt   
+ :    278   :   295
+vi myui-hivemall_03c5fb_0dc826src#main#hivemall#mix#server#MixServerHandler.txt   
+ :    91   :   116
+vi forcedotcom-phoenix_e00156_001c95src#main#java#com#salesforce#phoenix#iterate#ParallelIterators.txt   
+ :    190   :   216
+vi SpigotMC-BungeeCord_e12bc1_4fb857proxy#src#main#java#net#md_5#bungee#UserConnection.txt   
+ :    67   :   79
+vi SpigotMC-BungeeCord_e12bc1_4fb857proxy#src#main#java#net#md_5#bungee#UserConnection.txt   
+ :    66   :   79
+vi biojava-biojava_4bf282_65926cbiojava3-core#src#main#java#org#biojava3#core#sequence#loader#UniprotProxySequenceReader.txt   
+ :    385   :   410
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7971   :   8325
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7971   :   8325
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7971   :   8325
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7971   :   8325
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6518   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6401   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6401   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6401   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6401   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6401   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6637   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6387   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6453   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi ClemsonRSRG-RESOLVE_8a71c2_d304dbsrc#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6587   :   6919
+vi kohsuke-github-api_b976e0_d77be9src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi skillcoyne-IGCSA_d2e3c2_2ac451src#main#java#org#lcsb#lu#igcsa#fasta#FASTAWriter.txt   
+ :    27   :   29
+vi instance01-MinigamesAPI_d6e3f1_e2920fAPI#src#main#java#com#comze_instancelabs#minigamesapi#ArenaListener.txt   
+ :    242   :   276
+vi Weltraumschaf-JUberblog_397c65_e7f91esrc#main#java#de#weltraumschaf#juberblog#cmd#install#InstallSubCommand.txt   
+ :    63   :   79
+vi OpenTreeOfLife-taxomachine_809983_a95ca3src#main#java#opentree#TaxonomyExplorer.txt   
+ :    165   :   182
+vi apache-commons-math_5c9cbf_07f6ecsrc#main#java#org#apache#commons#math3#random#SobolSequenceGenerator.txt   
+ :    94   :   114
+vi timmolter-XChart_0c9e93_4e918dsrc#main#java#com#xeiam#xchart#AxisTick.txt   
+ :    159   :   185
+vi timmolter-XChart_0c9e93_4e918dsrc#main#java#com#xeiam#xchart#AxisTick.txt   
+ :    159   :   185
+vi movsim-movsim_87ab7a_2a6ff2src#main#java#org#movsim#simulator#RoadSegment.txt   
+ :    769   :   800
+vi movsim-movsim_87ab7a_2a6ff2src#main#java#org#movsim#simulator#RoadSegment.txt   
+ :    768   :   800
+vi movsim-movsim_87ab7a_2a6ff2src#main#java#org#movsim#simulator#RoadSegment.txt   
+ :    704   :   729
+vi movsim-movsim_87ab7a_2a6ff2src#main#java#org#movsim#simulator#RoadSegment.txt   
+ :    706   :   729
+vi GenomicParisCentre-eoulsan_cadd16_4eb5bfsrc#main#java#fr#ens#transcriptome#eoulsan#bio#expressioncounters#HTSeqUtils.txt   
+ :    313   :   340
+vi minusone13-InvoicingSystem_07a5eb_4cec47src#main#java#data#accountdata#StubAccountData.txt   
+ :    106   :   121
+vi kohsuke-github-api_9d9154_dd6179src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi kohsuke-github-api_9d9154_dd6179src#main#java#org#kohsuke#github#Requester.txt   
+ :    295   :   311
+vi GenomicParisCentre-eoulsan_97c6a4_cc0eb8src#main#java#fr#ens#transcriptome#eoulsan#steps#expression#hadoop#ExpressionHadoopStep.txt   
+ :    496   :   558
+vi jensnerche-plantuml_2d958a_ff8f32src#net#sourceforge#plantuml#command#note#FactoryTipOnEntityCommand.txt   
+ :    115   :   161
+vi Poweruser-MinetickMod_6b3b10_9014fasrc#main#java#de#minetick#PlayerChunkManager.txt   
+ :    112   :   193
+vi FIWARE-Middleware-KIARA_8f0f3d_a24398src#main#java#org#fiware#kiara#ps#rtps#messages#MessageReceiver.txt   
+ :    578   :   623
+vi FIWARE-Middleware-KIARA_8f0f3d_a24398src#main#java#org#fiware#kiara#ps#rtps#messages#MessageReceiver.txt   
+ :    578   :   623
+vi FIWARE-Middleware-KIARA_8f0f3d_a24398src#main#java#org#fiware#kiara#ps#rtps#messages#MessageReceiver.txt   
+ :    578   :   623
+vi FIWARE-Middleware-KIARA_8f0f3d_a24398src#main#java#org#fiware#kiara#ps#rtps#messages#MessageReceiver.txt   
+ :    578   :   623
+vi JolantaWojcik-biojavaOwn_b34fc0_c15f55biojava3-aa-prop#src#main#java#org#biojava3#aaproperties#PeptidePropertiesImpl.txt   
+ :    74   :   79
+vi lsds-SEEP_6c9790_4b1cc1src#main#java#uk#ac#imperial#lsds#seep#Main.txt   
+ :    42   :   63
+vi lsds-SEEP_6c9790_4b1cc1src#main#java#uk#ac#imperial#lsds#seep#Main.txt   
+ :    42   :   63
+vi lsds-SEEP_6c9790_4b1cc1src#main#java#uk#ac#imperial#lsds#seep#Main.txt   
+ :    43   :   63
+vi lsds-SEEP_6c9790_4b1cc1src#main#java#uk#ac#imperial#lsds#seep#Main.txt   
+ :    43   :   63
+vi ClemsonRSRG-RESOLVE_769dc8_546b3fsrc#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    737   :   770
+vi ClemsonRSRG-RESOLVE_769dc8_546b3fsrc#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    737   :   770
+vi ClemsonRSRG-RESOLVE_769dc8_546b3fsrc#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    741   :   770
+vi ClemsonRSRG-RESOLVE_769dc8_546b3fsrc#main#java#edu#clemson#cs#r2jt#rewriteprover#absyn#PSymbol.txt   
+ :    741   :   770
+vi ClemsonRSRG-RESOLVE_ad0919_7b2a00src#main#java#edu#clemson#cs#r2jt#init2#ResolveCompiler.txt   
+ :    379   :   421
+vi ClemsonRSRG-RESOLVE_ad0919_7b2a00src#main#java#edu#clemson#cs#r2jt#init2#ResolveCompiler.txt   
+ :    379   :   421
+vi PerfCake-PerfCake_d8b86e_d20157src#main#java#org#perfcake#message#sender#CommandSender.txt   
+ :    140   :   142
+vi PerfCake-PerfCake_d8b86e_d20157src#main#java#org#perfcake#message#sender#CommandSender.txt   
+ :    141   :   142
+vi apache-directory-shared_144d39_7e36adldap-ldif#src#main#java#org#apache#directory#shared#ldap#ldif#LdifEntry.txt   
+ :    676   :   824
+vi swagger-api-swagger-core_d588f9_ee0b63modules#swagger-models#src#main#java#com#wordnik#swagger#models#properties#PropertyBuilder.txt   
+ :    19   :   121
+vi swagger-api-swagger-core_d588f9_ee0b63modules#swagger-models#src#main#java#com#wordnik#swagger#models#properties#PropertyBuilder.txt   
+ :    19   :   121
+vi swagger-api-swagger-core_d588f9_ee0b63modules#swagger-models#src#main#java#com#wordnik#swagger#models#properties#PropertyBuilder.txt   
+ :    19   :   121
+vi swagger-api-swagger-core_d588f9_ee0b63modules#swagger-models#src#main#java#com#wordnik#swagger#models#properties#PropertyBuilder.txt   
+ :    19   :   121
+vi niyue-coding_557f95_9d7bc1src#main#java#com#niyue#coding#leetcode#flattenbinarytree#Solution.txt   
+ :    17   :   49
+vi imagej-imagej-legacy_93a180_ddd4dbsrc#main#java#net#imagej#legacy#ui#LegacyUI.txt   
+ :    86   :   87
+vi imagej-imagej-legacy_93a180_ddd4dbsrc#main#java#net#imagej#legacy#ui#LegacyUI.txt   
+ :    86   :   87
+vi cismet-cismet-gui-commons_81aff1_319482src#main#java#de#cismet#tools#gui#downloadmanager#DownloadManager.txt   
+ :    341   :   381
+vi nodebox-nodebox_cecb5b_5b3e34src#main#java#nodebox#client#NodeBoxDocument.txt   
+ :    1077   :   1120
+vi nodebox-nodebox_cecb5b_5b3e34src#main#java#nodebox#client#NodeBoxDocument.txt   
+ :    1077   :   1120
+vi rapla-rapla_1488ce_a7520csrc#main#java#org#rapla#components#i18n#I18nLocaleLoadUtil.txt   
+ :    15   :   36
+vi slipcor-pvparena_5fe045_6b83c4src#net#slipcor#pvparena#arena#Arena.txt   
+ :    1532   :   1562
+vi apache-wss4j_b98c4d_8be7b6src#main#java#org#apache#ws#security#processor#EncryptedKeyProcessor.txt   
+ :    191   :   250
+vi belaban-JGroups_d94ba1_3f5084src#org#jgroups#util#PropertiesToXML.txt   
+ :    176   :   202
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7150   :   7435
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7150   :   7435
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7150   :   7435
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7840   :   8192
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7210   :   7435
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7210   :   7435
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7210   :   7435
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    2149   :   2209
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    2149   :   2209
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    5981   :   5995
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    7457   :   7740
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801
+vi ClemsonRSRG-RESOLVE_80b1dc_0392e4src#main#java#edu#clemson#cs#r2jt#verification#Verifier.txt   
+ :    6300   :   6801

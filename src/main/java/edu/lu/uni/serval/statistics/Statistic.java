@@ -48,8 +48,8 @@ public class Statistic {
 		/**
 		 * Do statistics from two files: 
 		 */
-		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "");
-		statistics("../FPM_Violations/RQ1/distinct-fixed-summary-per-project-vtype.csv", "Fixed");
+//		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "");
+//		statistics("../FPM_Violations/RQ1/distinct-fixed-summary-per-project-vtype.csv", "Fixed");
 //		fixedVSunfixed();
 		
 		String statistic = "../FPM_Violations/OUTPUT";
@@ -64,34 +64,39 @@ public class Statistic {
 		int largeHunk = 0;
 		int nullSourceCode = 0;
 		int noStatementChanges = 0;
-		int IllegalV = 0;
+		int nullDiffentry = 0;
+		int TestingInfo = 0;
+		int i = 0;
 		for (File file : files) {
 			if (file.getName().startsWith("test")) continue;
 			String content = FileHelper.readFile(file);
 			BufferedReader reader = new BufferedReader(new StringReader(content));
 			String line = null;
+			i ++;
 			try {
 				while ((line = reader.readLine()) !=  null) {
-					if (line.startsWith("test")) {
+					if (line.startsWith("TestViolations")) {
 						testAlarms += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("nullGum")) {
+					} else if (line.startsWith("NullGumTreeResults")) {
 						nullGumTreeResults += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("nullMap")) {
-						nullMappingGumTreeResults += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("pure")) {
-						pureDeletion += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("Time")) {
-						timeout += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("noSourceCodeChanges")) {
+					} else if (line.startsWith("NoSourceCodeChanges")) {
 						noSourceCodeChagnes += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("largeHunk")) {
-						largeHunk += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("nullSourceCode")) {
-						nullSourceCode += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("noStatementChanges")) {
+					} else if (line.startsWith("NoStatementChanges")) {
 						noStatementChanges += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
-					} else if (line.startsWith("IllegalV")) {
-						IllegalV +=Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("NullDiffEntry")) {
+						nullDiffentry += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("NullMatchedGumTreeResults")) {
+						nullMappingGumTreeResults += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("PureDeletion")) {
+						pureDeletion += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("LargeHunk")) {
+						largeHunk += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("NullSourceCode")) {
+						nullSourceCode += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("Timeout")) {
+						timeout += Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
+					} else if (line.startsWith("TestingInfo")) {
+						TestingInfo +=Integer.parseInt(line.substring(line.lastIndexOf(":") + 1).trim());
 					}
 				}
 			} catch (IOException e) {
@@ -104,34 +109,70 @@ public class Statistic {
 				}
 			}
 		}
+		// 22280, 23275
+//		Statistics:
+//		TestViolation: 4682
+//		NullGumTreeResults: 0
+//			NoSourceCodeChange: 5995
+//		NoStatementChange: 0
+//			NullDiffEntry: 6450
+//			NullMatchedGumTreeResult: 15675
+//			PureDeletion: 15740
+//			LargeHunk: 13521
+//		NullSourceCode: 0
+//		Timeout: 7205
+//			TestingInfo: 8703
+//		62231  22634
+//		#PureDeletion1: 16864
+//		#NullMatchedGumTreeResult: 17511
+//		#NullDiffEntry: 6986
+//		#LargeHunk: 14625
+//		#NoSourceCodeChange: 7010
+//		#TestingInfo: 9071
+//		#TestViolation: 4682
+//		#Timeout: 7205
+//		67090  22634
 		
-//		TestAlarms: 5175
-//		nullGumTreeResults: 13449
-//		nullMappingGumTreeResults: 33010
-//		pureDeletion: 7598
-//		Timeout: 263
-		
-//			Statistics:
-//			TestAlarms: 5696
-//			nullGumTreeResults: 0
-//			nullMappingGumTreeResults: 29056   29078
-//			pureDeletion: 40728
-//			Timeout: 135
-//			noSourceCodeChange: 7496
-//			largeHunk: 2584
-//			nullSourceCode: 0
-//			noStatementChanges: 7567
-//			IllegalV: 1194
-		System.out.println("\n\nStatistics:\nTestAlarms: " + testAlarms);
-		System.out.println("nullGumTreeResults: " + nullGumTreeResults);
-		System.out.println("nullMappingGumTreeResults: " + nullMappingGumTreeResults);
-		System.out.println("pureDeletion: " + pureDeletion);
+		System.out.println(i);
+		System.out.println("\n\nStatistics:\nTestViolation: " + testAlarms);
+		System.out.println("NullGumTreeResults: " + nullGumTreeResults);
+		System.out.println("NoSourceCodeChange: " + noSourceCodeChagnes);
+		System.out.println("NoStatementChange: " + noStatementChanges);
+		System.out.println("NullDiffEntry: " + nullDiffentry);
+		System.out.println("NullMatchedGumTreeResult: " + nullMappingGumTreeResults);
+		System.out.println("PureDeletion: " + pureDeletion);
+		System.out.println("LargeHunk: " + largeHunk);
+		System.out.println("NullSourceCode: " + nullSourceCode);
 		System.out.println("Timeout: " + timeout);
-		System.out.println("noSourceCodeChange: " + noSourceCodeChagnes);
-		System.out.println("largeHunk: " + largeHunk);
-		System.out.println("nullSourceCode: " + nullSourceCode);
-		System.out.println("noStatementChanges: " + noStatementChanges);
-		System.out.println("IllegalV: " + IllegalV);
+		System.out.println("TestingInfo: " + TestingInfo);
+		System.out.println(testAlarms + nullGumTreeResults + noSourceCodeChagnes + noStatementChanges +
+				nullDiffentry + nullMappingGumTreeResults + largeHunk + nullSourceCode + timeout + TestingInfo);
+		
+		
+		Map<String, Integer> types = new HashMap<>();
+		FileInputStream fis = new FileInputStream("../FPM_Violations/OAR.FPM.4222170.stderr");
+		Scanner scanner = new Scanner(fis);
+		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			if (line.startsWith("## OAR [")) break;
+			String type = line.substring(0, line.indexOf(":"));
+			if (types.containsKey(type)) {
+				types.put(type, types.get(type)  + 1);
+			} else {
+				types.put(type, 1);
+			}
+		}
+		scanner.close();
+		fis.close();
+		
+		int sum = 0;
+		for (Map.Entry<String, Integer> entry : types.entrySet()) {
+			System.out.println(entry.getKey() + ": " + entry.getValue());
+			if (!entry.getKey().startsWith("#PureDeletion")) {
+				sum += entry.getValue();
+			}
+		}
+		System.out.println(sum);
 	}
 
 	public static void statistics(String fileName, String type) throws IOException {

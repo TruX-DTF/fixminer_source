@@ -123,23 +123,19 @@ public class AlarmsReader {
 			
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
-				int arrowIndex = line.indexOf("=>");
-				String alarmInfo = arrowIndex > 0 ? line.substring(0, arrowIndex) : line;
+//				int arrowIndex = line.indexOf("=>");
+//				String alarmInfo = arrowIndex > 0 ? line.substring(0, arrowIndex) : line;
+//				String[] buggyElements = alarmInfo.split(",");
+				String[] buggyElements = line.split(",");
 
-				String[] buggyElements = alarmInfo.split(",");
-
-//				String alarmType = buggyElements[0];
 				String projectName = buggyElements[1];
 				String buggyCommitId = buggyElements[2];
 				String buggyFile = buggyElements[3];
-//				int startLine = Integer.parseInt(buggyElements[4]);
-//				int endLine = Integer.parseInt(buggyElements[5]);
 //				if (startLine == -1 || endLine == -1 || endLine == 1) {
 ////					log.error("UNFIXED ALARM WRONG_POSITION: " + line);
 //					builder.append(line + "\n");
 //					continue;
 //				}
-//				String alarmTypeAndPosition = buggyElements[0] + ":" + startLine + ":" + endLine; // Alarm type : start line : end line.
 				String alarmTypeAndPosition = buggyElements[0] + ":" + buggyElements[4] + ":" + buggyElements[5]; // Alarm type : start line : end line.
 				
 				Alarm alarm = new Alarm(buggyCommitId, buggyFile, "", "");

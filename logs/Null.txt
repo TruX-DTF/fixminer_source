@@ -1,0 +1,124 @@
+1
+    BC_VACUOUS_INSTANCEOF   Ignore it.  no source code, no source code change
+    CN_IDIOM_NO_SUPER_CALL  Ignore it. no source code, no source code change
+    CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE  Ignore it. no source code, no source code change
+    DLS_DEAD_LOCAL_STORE Ignore it. no source code, no source code change
+    DM_DEFAULT_ENCODING
+    DM_NUMBER_CTOR
+    DM_STRING_CTOR
+    DM_STRING_VOID_CTOR
+    DP_DO_INSIDE_DO_PRIVILEGED
+    EI_EXPOSE_REP
+    EQ_COMPARETO_USE_OBJECT_EQUALS
+    EQ_DOESNT_OVERRIDE_EQUALS
+    EQ_SELF_USE_OBJECT
+    HE_EQUALS_USE_HASHCODE
+    HE_HASHCODE_USE_OBJECT_EQUALS
+    HE_INHERITS_EQUALS_USE_HASHCODE
+    IS2_INCONSISTENT_SYNC
+    MS_CANNOT_BE_FINAL
+    MS_MUTABLE_ARRAY
+    MS_PKGPROTECT
+    MS_SHOULD_BE_FINAL
+    NM_CLASS_NAMING_CONVENTION
+    NM_CLASS_NOT_EXCEPTION
+    NM_SAME_SIMPLE_NAME_AS_SUPERCLASS
+    OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE
+    OS_OPEN_STREAM
+    OS_OPEN_STREAM_EXCEPTION_PATH
+    RI_REDUNDANT_INTERFACES
+    SA_FIELD_DOUBLE_ASSIGNMENT
+    SE_COMPARATOR_SHOULD_BE_SERIALIZABLE
+    SE_NO_SERIALVERSIONID
+    SIO_SUPERFLUOUS_INSTANCEOF
+    UCF_USELESS_CONTROL_FLOW
+    UG_SYNC_SET_UNSYNC_GET
+    UPM_UNCALLED_PRIVATE_METHOD
+    URF_UNREAD_FIELD
+    URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD
+    UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR
+    UWF_UNWRITTEN_FIELD
+    UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD
+    WMI_WRONG_MAP_ITERATOR
+-1
+    CI_CONFUSED_INHERITANCE
+    CO_ABSTRACT_SELF
+    DMI_COLLECTION_OF_URLS
+    EQ_ABSTRACT_SELF
+    HE_SIGNATURE_DECLARES_HASHING_OF_UNHASHABLE_CLASS
+    JCIP_FIELD_ISNT_FINAL_IN_IMMUTABLE_CLASS
+    ME_MUTABLE_ENUM_FIELD
+    MF_CLASS_MASKS_FIELD
+    MS_CANNOT_BE_FINAL
+    MS_PKGPROTECT
+    MS_SHOULD_BE_FINAL
+    NM_FIELD_NAMING_CONVENTION
+    NM_SAME_SIMPLE_NAME_AS_INTERFACE
+    SE_BAD_FIELD
+    SE_TRANSIENT_FIELD_NOT_RESTORED
+    STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE
+    UPM_UNCALLED_PRIVATE_METHOD
+    UUF_UNUSED_FIELD
+    UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD
+    UWF_NULL_FIELD
+    UWF_UNWRITTEN_FIELD
+    UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD
+    VO_VOLATILE_REFERENCE_TO_ARRAY
+
+    
+    
+    CI_CONFUSED_INHERITANCE  change modifier of fields from protected to private or public, or remove final of class.
+	CO_ABSTRACT_SELF    Interface, remove compareTo() method.
+    
+    SE_NO_SERIALVERSIONID  add a field: serialVersionUID
+    EQ_ABSTRACT_SELF    Interface, remove compareTo() method.
+    EQ_COMPARETO_USE_OBJECT_EQUALS:    Update or Delete compareTo(), Add equals()
+	EQ_DOESNT_OVERRIDE_EQUALS override equals()
+	HE_SIGNATURE_DECLARES_HASHING_OF_UNHASHABLE_CLASS  remove equals()  only one instance
+	ME_MUTABLE_ENUM_FIELD  enum, field add final.
+    MF_CLASS_MASKS_FIELD, change super class or delete the field with a same name in super class.
+    MS_SHOULD_BE_FINAL  Add final key word
+	STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE  remove public static final DateFormat DATE_FORMAT....  or SimpleDateFormat
+    UUF_UNUSED_FIELD  remove unused fields.  not sure
+	UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD  field
+	UWF_NULL_FIELD  update field, remove field
+	UWF_UNWRITTEN_FIELD  field
+	UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD remove field
+	VO_VOLATILE_REFERENCE_TO_ARRAY  field
+	
+	all GumTree results. class, field, method, //statements.
+	     
+NM_SAME_SIMPLE_NAME_AS_INTERFACE  rename class name or remove super class
+NM_SAME_SIMPLE_NAME_AS_SUPERCLASS,   class name
+NM_METHOD_NAMING_CONVENTION
+NM_CLASS_NAMING_CONVENTION  class name
+NM_CLASS_NOT_EXCEPTION  class name
+RI_REDUNDANT_INTERFACES  class implemented interface
+SE_NO_SUITABLE_CONSTRUCTOR  Serializable  Class level  remove Serializable interface and serialVersionUID
+
+SIC_INNER_SHOULD_BE_STATIC  add static to inner class, not sure, delete it,   如果是匿名内部类，该如何处理？ ，其他的直接内部类的范围。
+SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS  同上
+===
+CO_ABSTRACT_SELF  inner class
+SE_INNER_CLASS  inner class
+SE_COMPARATOR_SHOULD_BE_SERIALIZABLE, inner class, 读definition
+SE_BAD_FIELD_INNER_CLASS inner class
+SIC_INNER_SHOULD_BE_STATIC_ANON  inner class
+
+HE_INHERITS_EQUALS_USE_HASHCODE inner class or class
+CN_IDIOM  add clone method. or update clone method
+
+DM_NUMBER_CTOR  multi v multi patches
+EQ_COMPARETO_USE_OBJECT_EQUALS,    the same as before
+IC_INIT_CIRCULARITY, multi V, multi patches>
+
+
+
+SE_NO_SUITABLE_CONSTRUCTOR_FOR_EXTERNALIZATION, add a constructor or add public to old constructor, 
+
+
+
+NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR
+
+SE_NO_SERIALVERSIONID   change superclass or interface, add field or remove @SuppressWarnings("serial"),   some are inner class
+    
