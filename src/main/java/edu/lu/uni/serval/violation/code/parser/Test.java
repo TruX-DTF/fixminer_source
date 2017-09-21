@@ -21,8 +21,8 @@ public class Test {
 	public static void main(String[] args) throws IOException {
 //		testV1();
 //		testV2();
-//		testV3("../FPM_Violations/OAR.FPM.4222152.stderr", "OUTPUT/unparsedviolations.txt");
-		testV4("../FPM_Violations/OAR.FPM.4222152.stderr");
+		testV3("../FPM_Violations/OAR.FPM.4222306.stderr", "OUTPUT/unparsedviolations.txt");
+//		testV4("../FPM_Violations/OAR.FPM.4222208.stderr");
 	}
 
 	private static void testV4(String inputFile) throws IOException {
@@ -91,7 +91,10 @@ public class Test {
 			String type = elements[0];
 			
 			if (types.containsKey(type)) {
-				types.get(type).add(elements[1] + " : " + elements[2] + " : " + elements[3] + " : " + elements[4]);
+				String info = elements[1] + " : " + elements[2] + " : " + elements[3] + " : " + elements[4];
+				if (!types.get(type).contains(info)) {
+					types.get(type).add(info);
+				}
 			} else {
 				List<String> files = new ArrayList<>();
 				files.add(elements[1] + " : " + elements[2] + " : " + elements[3] + " : " + elements[4]);
@@ -104,10 +107,12 @@ public class Test {
 		StringBuilder builder = new StringBuilder();
 		for (Map.Entry<String, List<String>> entry : types.entrySet()) {
 			System.out.println(entry.getKey());
-			builder.append(entry.getKey() + "\n");
-			List<String> files = entry.getValue();
-			for (String file : files) {
-				builder.append("    " + file + "\n");
+			if (entry.getKey().equals("#LargeHunk") || entry.getKey().equals("#TestingInfo")) {
+				builder.append(entry.getKey() + "\n");
+				List<String> files = entry.getValue();
+				for (String file : files) {
+					builder.append("    " + file + "\n");
+				}
 			}
 		}
 		FileHelper.outputToFile(outputFile, builder, false);

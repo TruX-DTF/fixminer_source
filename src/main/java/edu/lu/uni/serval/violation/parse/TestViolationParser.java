@@ -10,7 +10,7 @@ import edu.lu.uni.serval.utils.FileHelper;
 
 public class TestViolationParser {
 
-	private static final String REPO_PATH = "/Volumes/MacBook/repos/";
+	private static final String REPO_PATH = "../../repos/";//"/Volumes/MacBook/repos/";
 	
 	public static void main(String[] args) throws IOException {
 		List<File> repositoriesList = new ArrayList<>();
@@ -31,8 +31,6 @@ public class TestViolationParser {
 		String unfixedViolations = "../FPM_Violations/unFixedInstances/";
 		String unfixedFilesPath = Configuration.GUM_TREE_INPUT + "UnfixedViolations/";
 		String unfixedPositionsFilePath = Configuration.GUM_TREE_INPUT + "UnFV_positions/";
-		FileHelper.createDirectory(unfixedFilesPath);
-		FileHelper.createDirectory(unfixedPositionsFilePath);
 		List<File> unfixedAlarmFiles = FileHelper.getAllFilesInCurrentDiectory(unfixedViolations, ".list");
 		for (File file : unfixedAlarmFiles) {
 			String fileName = FileHelper.getFileNameWithoutExtension(file);

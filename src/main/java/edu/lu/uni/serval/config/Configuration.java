@@ -2,7 +2,7 @@ package edu.lu.uni.serval.config;
 
 public class Configuration {
 	
-	public static final long SECONDS_TO_WAIT = 30L;
+	public static final long SECONDS_TO_WAIT = 300000L;
 	
 	public static final String ROOT_PATH = "../FPM_Violations/"; // The root path of all output data.
 

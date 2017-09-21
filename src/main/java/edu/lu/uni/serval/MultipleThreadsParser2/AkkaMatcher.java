@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.MapSorter;

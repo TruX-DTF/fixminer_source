@@ -50,6 +50,9 @@ public class ViolationSourceCodeTree {
 		return violationFinalEndLine;
 	}
 	
+	/**
+	 * extract source code of violations in method body or field body.
+	 */
 	public void extract() {
 		ITree rootTree = new GumTreeGenerator().generateITreeForJavaFile(file, GumTreeType.EXP_JDT);
 		
@@ -78,7 +81,7 @@ public class ViolationSourceCodeTree {
 		}
 		
 	}
-
+	
 	public void extract(String type) {
 		ITree rootTree = new GumTreeGenerator().generateITreeForJavaFile(file, GumTreeType.EXP_JDT);
 		
@@ -296,7 +299,9 @@ public class ViolationSourceCodeTree {
 			
 			int endPosition = startPosition + tree.getLength();
 			int endLine = cUnit.getLineNumber(endPosition);
-			if (endLine < violationStartLine) continue;
+			if (endLine < violationStartLine) {
+				continue;
+			}
 			
 			if (endLine < violationEndLine) {
 				if ("NM_SAME_SIMPLE_NAME_AS_INTERFACE".equals(type) || "NM_SAME_SIMPLE_NAME_AS_SUPERCLASS".equals(type) || "NM_CLASS_NAMING_CONVENTION".equals(type) 
@@ -347,7 +352,9 @@ public class ViolationSourceCodeTree {
 				break;
 			}
 			
-			if (tree.getType() == 31 || tree.getType() == 23) { // MethodDeclaration, FieldDeclaration
+			// Class Name(super class etc.), Field, initializer, EnumDeclaration, EnumConstantDeclaration, Method Name, method body, 
+			if (tree.getType() == 31 || tree.getType() == 23 || tree.getType() == 28 || tree.getType() == 71 || tree.getType() == 72) {
+				// MethodDeclaration, FieldDeclaration, Initializer, EnumDeclaration, EnumConstantDeclaration
 				this.violationFinalStartLine = startLine;
 				this.violationFinalEndLine = endLine;
 				break;
@@ -362,8 +369,19 @@ public class ViolationSourceCodeTree {
 		for (int i = 0, size = children.size(); i < size; i ++) {
 			ITree child = children.get(i);
 			int type = child.getType();
-			if (type == 8) {
-				return child.getPos() - 1;
+			if (type == 6 || type == 10 || type == 12 || type == 17 || type == 18 || type == 19 || type == 21 || type == 8// Block, EmptyStatement 
+					|| type == 24 || type == 25 || type == 30 || type == 41 || type == 46 || type == 49 || type == 50 
+					|| type == 51 || type == 53 || type == 54 || type == 56 || type == 60 || type == 61 || type == 70) {
+				//AssertStatement, BreakStatement, CatchClause, ConstructorInvocation, ContinueStatement, DoStatement
+				// ExpressionStatement, ForStatement, IfStatement, LabeledStatement, ReturnStatement, SuperConstructorInvocation
+				// SwitchCase, SwitchStatement, SynchronizedStatement, ThrowStatement, TryStatement
+				// TypeDeclarationStatement, VariableDeclarationStatement, WhileStatement, EnhancedForStatement
+				if ( i > 0) {
+					child = children.get(i - 1);
+					return child.getPos() + child.getLength();
+				} else {
+					return child.getPos() - 1;
+				}
 			}
 		}
 		return 0;
@@ -417,4 +435,261 @@ public class ViolationSourceCodeTree {
 		return parent;
 	}
 	
+	public void locateParentNode() {
+		ITree rootTree = new GumTreeGenerator().generateITreeForJavaFile(file, GumTreeType.EXP_JDT);
+		
+		List<ITree> trees = rootTree.getChildren();
+		for (ITree tree : trees) {
+			int startPosition = tree.getPos();
+			int startLine = cUnit.getLineNumber(startPosition);
+			if (startLine > violationEndLine) {
+				break;
+			}
+			
+			int endPosition = startPosition + tree.getLength();
+			int endLine = cUnit.getLineNumber(endPosition - 1);
+			if (endLine < violationStartLine) continue;
+			
+			locateParentNode(tree.getChildren());
+		}
+		
+//		if (this.violationFinalStartLine == 0) {
+//			FileHelper.outputToFile("logs/testV1.txt", type + " : " + this.file.getName() + " : " + this.violationStartLine + " : " + this.violationEndLine + "\n", true);
+//		}
+	}
+	
+	private void locateParentNode(List<ITree> trees) {
+		for (ITree tree : trees) {
+			int startPosition = tree.getPos();
+			int startLine = cUnit.getLineNumber(startPosition);
+			if (startLine > violationEndLine) {
+				break;
+			} 
+			
+			int endPosition = startPosition + tree.getLength();
+			int endLine = cUnit.getLineNumber(endPosition);
+			if (endLine < violationStartLine) {
+				continue;
+			}
+			
+			if (endLine < violationEndLine) {
+				if (this.violationFinalStartLine == 0) {
+					this.violationFinalStartLine = -1;
+				}
+				break;
+			}
+			
+			int type = tree.getType();
+			// Class Name(super class etc.), Method Name, 
+			if (type == 31) { //MethodDeclaration, TypeDeclaration
+				this.violationFinalStartLine = type;
+				locateParentNode(tree.getChildren());
+				break;
+			} else if (type == 23 || type == 28 || type == 71 || type == 72
+					|| type == 81 || type == 82|| type == 1) {
+				// FieldDeclaration, Initializer, EnumDeclaration, EnumConstantDeclaration, 
+				// AnnotationTypeDeclaration, AnnotationTypeMemberDeclaration, AnonymousClassDeclaration
+				this.violationFinalStartLine = tree.getType();
+				break;
+			} else {
+				locateParentNode(tree.getChildren());
+			}
+		}
+	}
+
+	/**
+	 * extract source code of violations.
+	 */
+	public void extract2() {
+		ITree rootTree = new GumTreeGenerator().generateITreeForJavaFile(file, GumTreeType.EXP_JDT);
+		
+		List<ITree> trees = rootTree.getChildren();
+		for (ITree tree : trees) {
+			int startPosition = tree.getPos();
+			int startLine = cUnit.getLineNumber(startPosition);
+			if (startLine > violationEndLine) {
+				break;
+			}
+			
+			int endPosition = startPosition + tree.getLength();
+			int endLine = cUnit.getLineNumber(endPosition - 1);
+			if (endLine < violationStartLine) continue;
+			
+			matchTrees2(tree.getChildren());
+		}
+		
+		int size = matchedTrees.size();
+		if (size > 0) {
+			if (this.violationFinalStartLine != 0) {
+				this.violationFinalStartLine = cUnit.getLineNumber(this.matchedTrees.get(0).getPos());
+				ITree lastTree = matchedTrees.get(size - 1);
+				this.violationFinalEndLine = cUnit.getLineNumber(lastTree.getPos() + lastTree.getLength());
+			}
+		} else {
+			System.err.println(this.file.getName() + "===" + this.violationStartLine + ":" + this.violationEndLine);
+		}
+		
+	}
+
+	private void matchTrees2(List<ITree> trees) {
+		for (ITree tree : trees) {
+			int startPosition = tree.getPos();
+			int startLine = cUnit.getLineNumber(startPosition);
+			if (startLine > violationEndLine) {
+				break;
+			} 
+			
+			int endPosition = startPosition + tree.getLength();
+			int endLine = cUnit.getLineNumber(endPosition);
+			if (endLine < violationStartLine) continue;
+			
+			if (endLine == violationEndLine) {
+				if (tree.getType() == 31) { // MethodDeclaration
+					if (startLine == violationStartLine) {
+						
+					} else {
+						matchTrees(tree.getChildren());
+					}
+				} else if (isStatement(tree)) {
+					addToMatchedTrees(tree);
+				} else {
+					ITree parent = getParentStatement2(tree);
+					if (parent == null) {
+						if (tree.getType() == 8) { // 8: Block
+							matchTrees(tree.getChildren());
+						}
+						continue;
+					} else if (parent.getType() == 31) { // method name
+						if (startLine == violationStartLine || endLine < violationEndLine) {
+							int finalEndPosition = getMethodDeclarationWithBody(parent);
+							addToMatchedTrees(parent);
+							this.violationFinalStartLine = cUnit.getLineNumber(parent.getPos());
+							this.violationFinalEndLine = cUnit.getLineNumber(finalEndPosition);
+						}
+						break;
+					} else if (parent.getType() == 55) { // class name
+						if (startLine == violationStartLine || endLine < violationEndLine) {
+							int finalEndPosition = getClassDecalrationWithBody(parent);
+							addToMatchedTrees(parent);
+							this.violationFinalStartLine = cUnit.getLineNumber(parent.getPos());
+							this.violationFinalEndLine = cUnit.getLineNumber(finalEndPosition);
+						}
+						break;
+					}
+					addToMatchedTrees(parent);
+				}
+				continue;
+			}
+			
+			if (startLine >= violationStartLine) {
+				if (isStatement(tree)) {
+					addToMatchedTrees(tree);
+				} else {
+					ITree parent = getParentStatement2(tree);
+					if (parent == null) {
+						if (tree.getType() == 8) {
+							matchTrees(tree.getChildren());
+						}
+						continue;
+					} else if (parent.getType() == 31) { // method name
+						if (startLine == violationStartLine || endLine < violationEndLine) {
+							int finalEndPosition = getMethodDeclarationWithBody(parent);
+							addToMatchedTrees(parent);
+							this.violationFinalStartLine = cUnit.getLineNumber(parent.getPos());
+							this.violationFinalEndLine = cUnit.getLineNumber(finalEndPosition);
+						}
+						break;
+					} else if (parent.getType() == 55) { // class name
+						if (startLine == violationStartLine || endLine < violationEndLine) {
+							int finalEndPosition = getClassDecalrationWithBody(parent);
+							addToMatchedTrees(parent);
+							this.violationFinalStartLine = cUnit.getLineNumber(parent.getPos());
+							this.violationFinalEndLine = cUnit.getLineNumber(finalEndPosition);
+						}
+						break;
+					}
+					addToMatchedTrees(parent);
+				}
+			} else {
+				matchTrees(tree.getChildren());
+			}
+		}
+	}
+	
+	private int getMethodDeclarationWithBody(ITree tree) {
+		List<ITree> children = tree.getChildren();
+		List<ITree> newChildren = new ArrayList<>();
+		for (int i = 0, size = children.size(); i < size; i ++) {
+			ITree child = children.get(i);
+			int type = child.getType();
+			if (type == 6 || type == 10 || type == 12 || type == 17 || type == 18 || type == 19 || type == 21 || type == 8// Block, EmptyStatement 
+					|| type == 24 || type == 25 || type == 30 || type == 41 || type == 46 || type == 49 || type == 50 
+					|| type == 51 || type == 53 || type == 54 || type == 56 || type == 60 || type == 61 || type == 70) {
+				//AssertStatement, BreakStatement, CatchClause, ConstructorInvocation, ContinueStatement, DoStatement
+				// ExpressionStatement, ForStatement, IfStatement, LabeledStatement, ReturnStatement, SuperConstructorInvocation
+				// SwitchCase, SwitchStatement, SynchronizedStatement, ThrowStatement, TryStatement
+				// TypeDeclarationStatement, VariableDeclarationStatement, WhileStatement, EnhancedForStatement
+				if (i > 0) {
+					child = children.get(i - 1);
+					return child.getPos() + child.getLength() + 1;
+				} else {
+					return child.getPos() - 1;
+				}
+			} else {
+				newChildren.add(child);
+			}
+		}
+		tree.setChildren(newChildren);
+		return 0;
+	}
+
+	private int getClassDecalrationWithBody(ITree tree) {
+		List<ITree> children = tree.getChildren();
+		List<ITree> newChildren = new ArrayList<>();
+		for (int i = 0, size = children.size(); i < size; i ++) {
+			ITree child = children.get(i);
+			int type = child.getType();
+			// Modifier, NormalAnnotation, MarkerAnnotation, SingleMemberAnnotation
+			if (type != 83 && type != 77 && type != 78 && type != 79
+				&& type != 5 && type != 39 && type != 43 && type != 74 && type != 75
+				&& type != 76 && type != 84 && type != 87 && type != 88) {
+				// ArrayType, PrimitiveType, SimpleType, ParameterizedType, 
+				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType
+				if (i > 0) {
+					child = children.get(i - 1);
+					return child.getPos() + child.getLength() + 1;
+				} else {
+					return child.getPos() - 1;
+				}
+			} else {
+				newChildren.add(child);
+			}
+		}
+		tree.setChildren(newChildren);
+		return 0;
+	}
+
+
+	private ITree getParentStatement2(ITree tree) {
+		ITree parent = tree;
+		do {
+			parent = parent.getParent();
+			if (parent == null) {
+				return null;
+			}
+			
+			int type = parent.getType();
+			if (type == 31 || type == 55) {
+				// MethodDeclaration
+				// TypeDeclaration
+				return parent;
+			} else if (type == 1 || type == 71) {
+				// AnonymousClassDeclaration
+				// EnumDeclaration
+				return null;
+			}
+		} while (!isStatement(parent));
+
+		return parent;
+	}
 }

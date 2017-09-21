@@ -2,10 +2,13 @@ package edu.lu.uni.serval.violation.code.parser;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,6 +113,84 @@ public class ViolationCodeParser {
 		FileHelper.outputToFile(outputPath, tokensBuilder, true);
 		tokensBuilder.setLength(0);
 	}
+	
+	public String sourceCode = "";
+	public String tokens = "";
+	public String sizes = "";
+	
+	public void parse(File javaFile, File positionFile) {
+		
+		List<Violation> violations = readViolationInfo(positionFile);
+		for (Violation violation : violations) {
+			int startLine = violation.getStartLineNum();
+			int endLine = violation.getEndLineNum();
+			
+			if (endLine > startLine + 5) {
+//				log.warn("#Large_Violation_Hunk: " + javaFile.getName() + ":" + startLine + ":" + endLine + ":" + alarmType);
+				continue;
+			}
+			
+			ViolationSourceCodeTree alarmTree = new ViolationSourceCodeTree(javaFile, startLine, endLine);
+			alarmTree.extract();
+			List<ITree> matchedTrees = alarmTree.getViolationSourceCodeTrees();
+			if (matchedTrees.size() == 0) {
+				System.err.println("#Null_Violation_Hunk: " + javaFile.getName() + ":" + startLine + ":" + endLine);
+				continue;
+			}
+			SimpleTree simpleTree = new SimpleTree();
+			simpleTree.setLabel("Block");
+			simpleTree.setNodeType("Block");
+			List<SimpleTree> children = new ArrayList<>();
+			
+			for (ITree matchedTree : matchedTrees) {
+				SimpleTree simpleT = new SimplifyTree().canonicalizeSourceCodeTree(matchedTree, null);
+				children.add(simpleT);
+			}
+			simpleTree.setChildren(children);
+			
+			String tokens = Tokenizer.getTokensDeepFirst(simpleTree);
+			String[] tokensArray = tokens.split(" ");
+			int length = tokensArray.length;
+			sizes += length + "\n";
+			this.tokens += tokens + "\n";
+			
+			startLine = alarmTree.getViolationFinalStartLine();
+			endLine = alarmTree.getViolationFinalEndLine();
+			String sourceCode = readSourceCode(javaFile, startLine, endLine);
+			this.sourceCode += sourceCode + "\n";
+		}
+	}
+
+	private String readSourceCode(File javaFile, int startLine, int endLine) {
+		StringBuilder sourceCode = new StringBuilder("##Source_Code:\n");
+		FileInputStream fis = null;
+		Scanner scanner = null;
+		
+		try {
+			fis = new FileInputStream(javaFile);
+			scanner = new Scanner(fis);
+			int counter = 0;
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				counter ++;
+				if (startLine <= counter && counter <= endLine) {
+					sourceCode.append(line + "\n");
+				}
+				if (counter == endLine) break;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				scanner.close();
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return sourceCode.toString();
+	}
 
 	private List<Violation> readViolationInfo(String file) {
 		List<Violation> violations = new ArrayList<>();
@@ -127,6 +208,39 @@ public class ViolationCodeParser {
 				
 				if (startLine == -1 || endLine == -1) {
 					log.warn("#Illegal_Line_Position: " + FileHelper.getFileName(file).replace("#", "/").replace(".txt", ".java") + ":" +  startLine + ":" + endLine + ":" + alarmType);
+					continue;
+				}
+				
+				Violation violation = new Violation(startLine, endLine, alarmType);
+				violations.add(violation);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return violations;
+	}
+	
+	private List<Violation> readViolationInfo(File file) {
+		List<Violation> violations = new ArrayList<>();
+		
+		String fileContent = FileHelper.readFile(file);
+		BufferedReader reader = null;
+		reader = new BufferedReader(new StringReader(fileContent));
+		String line = null;
+		try {
+			while ((line = reader.readLine()) != null) {
+				String[] positionStr = line.split(":");
+				int startLine = Integer.parseInt(positionStr[1]);
+				int endLine = Integer.parseInt(positionStr[2]);
+				String alarmType = positionStr[0];
+				
+				if (startLine == -1 || endLine == -1) {
 					continue;
 				}
 				

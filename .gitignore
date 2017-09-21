@@ -9,6 +9,7 @@ OUTPUT/
 *.list
 *.csv
 *.pdf
+logs/
 GumTreeInput/
 GumTreeInput1/
 GumTreeOutput1/

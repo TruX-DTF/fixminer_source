@@ -178,12 +178,17 @@ public class SimplifyTree {
 			if (astNode.endsWith("Type")) {
 				simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
 			} else {
-				if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation")) && label.startsWith("MethodName:")) {
-					simpleTree.setNodeType("MethodName");
-					label = label.substring(11);
-					int argusIndex = label.indexOf(":[");
-					if (argusIndex > 0) {
-						label = label.substring(0, argusIndex);
+				if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation"))) {
+					if (label.startsWith("MethodName:")) {
+						simpleTree.setNodeType("MethodName");
+						label = label.substring(11);
+						int argusIndex = label.indexOf(":[");
+						if (argusIndex > 0) {
+							label = label.substring(0, argusIndex);
+						}
+					} else if (label.startsWith("ClassName:")) {
+						simpleTree.setNodeType("ClassName");
+						label = label.substring(10);
 					}
 					simpleTree.setLabel(label);
 				} else {
@@ -205,6 +210,10 @@ public class SimplifyTree {
 					if (argusIndex > 0) {
 						label = label.substring(0, argusIndex);
 					}
+					simpleTree.setLabel(label);
+				} else if (label.startsWith("ClassName:")) {
+					simpleTree.setNodeType("ClassName");
+					label = label.substring(10);
 					simpleTree.setLabel(label);
 				} else if (label.startsWith("Name:")) {
 					label = label.substring(5);
@@ -256,12 +265,17 @@ public class SimplifyTree {
 			if (astNode.endsWith("Type")) {
 				simpleTree.setLabel(canonicalizeTypeStr(label).replaceAll(" ", ""));
 			} else {
-				if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation")) && label.startsWith("MethodName:")) {
-					simpleTree.setNodeType("MethodName");
-					label = label.substring(11);
-					int argusIndex = label.indexOf(":[");
-					if (argusIndex > 0) {
-						label = label.substring(0, argusIndex);
+				if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation"))) {
+					if (label.startsWith("MethodName:")) {
+						simpleTree.setNodeType("MethodName");
+						label = label.substring(11);
+						int argusIndex = label.indexOf(":[");
+						if (argusIndex > 0) {
+							label = label.substring(0, argusIndex);
+						}
+					} else if (label.startsWith("ClassName:")) {
+						simpleTree.setNodeType("ClassName");
+						label = label.substring(10);
 					}
 					simpleTree.setLabel(label);
 				} else {
@@ -284,6 +298,10 @@ public class SimplifyTree {
 					if (argusIndex > 0) {
 						label = label.substring(0, argusIndex);
 					}
+					simpleTree.setLabel(label);
+				} else if (label.startsWith("ClassName:")) {
+					simpleTree.setNodeType("ClassName");
+					label = label.substring(10);
 					simpleTree.setLabel(label);
 				} else if (label.startsWith("Name:")) {
 					label = label.substring(5);

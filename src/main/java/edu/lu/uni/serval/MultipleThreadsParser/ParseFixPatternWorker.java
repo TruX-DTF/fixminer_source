@@ -83,6 +83,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			int nullSourceCode = 0;
 			int testInfos = 0;
 			int timeouts = 0;
+			StringBuilder builder = new StringBuilder();
 
 			// Read violations with Null_Violation_Hunk or Illegal_Line_Position
 //			List<Violation> uselessViolations = new ArrayList<>();// readUselessViolations("logs/FixedViolationCodeParseResults.log");
@@ -121,6 +122,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 					nullSourceCode += parser.nullSourceCode;
 					testInfos += parser.testInfos;
 					testingInfo.append(parser.testingInfo);
+					builder.append(parser.unfixedViolations);
 					
 					String editScript = parser.getAstEditScripts();
 					if ("".equals(editScript)) {
@@ -195,8 +197,9 @@ public class ParseFixPatternWorker extends UntypedActor {
 			String statistic = "TestViolations: " + testViolations + "\nNullGumTreeResults: " + nullGumTreeResults + "\nNoSourceCodeChanges: " + noSourceCodeChanges + 
 					"\nNoStatementChanges: " + noStatementChanges + "\nNullDiffEntry: " + nullDiffEntry + "\nNullMatchedGumTreeResults: " + nullMappingGumTreeResults +
 					"\nPureDeletion: " + pureDeletion + "\nLargeHunk: " + largeHunk + "\nNullSourceCode: " + nullSourceCode + 
-					"\nTestingInfo: " + testInfos + "\nTimeout: " + timeouts;// + "\nIllegalV: " + illegalV;
+					"\nTestingInfo: " + testInfos + "\nTimeout: " + timeouts;
 			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
+			FileHelper.outputToFile("OUTPUT/UnfixedV_" + id + ".list", builder, false);
 
 			log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
 			log.info("Worker #" + id + " finished the work...");
