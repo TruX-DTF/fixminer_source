@@ -139,11 +139,12 @@ public class SimplifyTree {
 //			sourceCodeSimpleTree = originalSourceCodeTree(tree, null);
 //			abstractIdentifierTree = abstractIdentifierTree(actionSet, tree, null);
 //			abstractSimpleTree = semiSourceCodeTree(actionSet, tree, null);
-			if (actionSet.getActionString().startsWith("UPD")) {
-				simpleTree = canonicalizeSourceCodeTree(tree, null, bugEndPosition);
-			} else {
-				simpleTree = canonicalizeSourceCodeTree(tree, null);
-			}
+//			if (actionSet.getActionString().startsWith("UPD")) {
+//				simpleTree = canonicalizeSourceCodeTree(tree, null, bugEndPosition);
+//			} else {
+//				simpleTree = canonicalizeSourceCodeTree(tree, null);
+//			}
+			simpleTree = canonicalizeSourceCodeTree(tree, null, bugEndPosition);
 		}
 		
 		actionSet.setAbstractSimpleTree(abstractSimpleTree);

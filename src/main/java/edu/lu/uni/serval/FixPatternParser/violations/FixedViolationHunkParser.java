@@ -19,6 +19,7 @@ import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HunkActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
+import edu.lu.uni.serval.violation.code.parser.ViolationSourceCodeTree;
 
 /**
  * Parse fix violations with GumTree in terms of multiple statements.
@@ -51,6 +52,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 	@Override
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 		List<Violation> allViolations = readViolations(prevFile, revFile);
+//		if (allViolations.size() >= 0) return;
 		// GumTree results 
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile); 
 		if (this.resultType != 0) {
@@ -63,8 +65,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				type = "#NoStatementChange:";
 			}
 			for (Violation v : allViolations) {
-				unfixedViolations += type + revFile.getName() + ":" + v.getStartLineNum() + ":" + v.getEndLineNum() + ":" + v.getViolationType() + "\n";
-				System.err.println(type + revFile.getName() + ":" + v.getStartLineNum() + ":" + v.getEndLineNum() + ":" + v.getViolationType());				
+				this.unfixedViolations += type + revFile.getName() + ":" + v.getStartLineNum() + ":" + v.getEndLineNum() + ":" + v.getViolationType() + "\n";
 			}
 		} else {
 			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks2(diffentryFile);
@@ -81,35 +82,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				List<HierarchicalActionSet> hunkActionSets = violation.getActionSets();	
 				// multiple UPD, and some UPD contain other UPD.
 				removeOverlapperdUPD(hunkActionSets);
-//				// Remove overlapped UPD and INS, MOV
-//				List<HierarchicalActionSet> addActions = new ArrayList<>();
-//				List<HierarchicalActionSet> insertActions = new ArrayList<>();
-//				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-//					if (hunkActionSet.getActionString().startsWith("INS")) insertActions.add(hunkActionSet);
-//					if (hunkActionSet.getActionString().startsWith("UPD")) addActions.add(hunkActionSet);
-//				}
-//				List<HierarchicalActionSet> selectedActionSets = new ArrayList<>();
-//				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-//					if (insertActions.contains(hunkActionSet)) {
-//						boolean isIntersection = false;
-//						int bugStartL1 = hunkActionSet.getBugStartLineNum();
-//						int bugEndL1 = hunkActionSet.getBugEndLineNum();
-//						for (HierarchicalActionSet addAction : addActions) {
-//							int bugStartL = addAction.getBugStartLineNum();
-//							int bugEndL = addAction.getBugEndLineNum();
-//							if (bugEndL1 < bugStartL || bugStartL1 > bugEndL) {
-//								continue;
-//							}
-//							isIntersection = true;
-//							break;
-//						}
-//						if (!isIntersection) {
-//							selectedActionSets.add(hunkActionSet);
-//						}
-//						continue;
-//					}
-//					selectedActionSets.add(hunkActionSet);
-//				}
 				
 				// Range of buggy source code
 				int bugStartLine = 0;
@@ -146,45 +118,14 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				
 				if (fixStartLine == 0 && bugStartLine == 0) {
 					this.unfixedViolations += "#WRONG: " + revFile.getName() + ":" + violation.getStartLineNum() + ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
+					this.nullMappingGumTreeResult ++;
 					continue;
 				}
 				
-				if (fixStartLine == 0 && bugStartLine != 0) {
-					// pure delete actions.
+				if (fixStartLine == 0 && bugStartLine != 0) {// pure delete actions.
 					this.pureDeletions ++;
 					this.unfixedViolations += "#PureDeletion:" + revFile.getName() + ":" + violation.getStartLineNum() + ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-					System.err.println("#PureDeletion:" + revFile.getName() + ":" + violation.getStartLineNum() 
-										+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType());
 					// get the exact buggy code by violation's position. TODO later
-				}
-				
-				/*
-				 * Convert the ITree of buggy code to a simple tree.
-				 * It will be used to compute the similarity. 
-				 */
-				SimpleTree simpleTree = new SimpleTree();
-				simpleTree.setLabel("Block");
-				simpleTree.setNodeType("Block");
-				List<SimpleTree> children = new ArrayList<>();
-				String astEditScripts = "";
-				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-					// TODO simplify buggy tree with buggy code.
-					/**
-//					 * Select edit scripts for deep learning. 
-//					 * Edit scripts will be used to mine common fix patterns.
-//					 */
-//					// 1. First level: AST node type.
-//					astEditScripts += getASTEditScripts(hunkActionSet);
-//					// 2. source code: raw tokens
-//					// 3. abstract identifiers: 
-//					// 4. semi-source code: 
-					SimplifyTree abstractIdentifier = new SimplifyTree();
-					abstractIdentifier.abstractTree(hunkActionSet, bugEndPosition);
-					SimpleTree simpleT = hunkActionSet.getSimpleTree();
-					if (simpleT == null) { // Failed to get the simple tree for INS actions.
-						continue;
-					} 
-					children.add(simpleT);
 				}
 				
 //				if (children.size() == 0) continue;
@@ -199,22 +140,16 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					this.largeHunk ++;
 					this.unfixedViolations += "#LargeHunk:" + revFile.getName() + ":" + violation.getStartLineNum() 
 					+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-					System.err.println("#LargeHunk:" + revFile.getName() + ":" + violation.getStartLineNum() 
-						+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType());
-					continue;
+//					continue;
 				}
-
-				simpleTree.setChildren(children);
-				simpleTree.setParent(null);
 				
-				// Source Code of patches.
-				String patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isPureInsert);
+				// Obtain Source Code of patches from DiffEntries.
+//				String patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isPureInsert);
+				String patchSourceCode = this.readPatchSourceCode(violation, bugStartLine, bugEndLine, fixStartLine, fixEndLine);
 				if ("".equals(patchSourceCode)) {
 					this.nullSourceCode ++;
 					this.unfixedViolations += "#NullSourceCode:" + revFile.getName() + ":" + violation.getStartLineNum() 
 					+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-					System.err.println("#NullSourceCode:" + revFile.getName() + ":" + violation.getStartLineNum() 
-						+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType());
 					continue;
 				}
 				
@@ -223,35 +158,41 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				 * Edit scripts will be used to mine common fix patterns.
 				 */
 				// 1. First level: AST node type.
-				astEditScripts += getASTEditScriptsDeepFirst(hunkActionSets, bugEndPosition, fixEndPosition);
+				String astEditScripts = getASTEditScriptsDeepFirst(hunkActionSets, bugEndPosition, fixEndPosition);
 				// 2. source code: raw tokens
 				// 3. abstract identifiers: 
 				// 4. semi-source code: 
 				String[] editScriptTokens = astEditScripts.split(" ");
 				int size = editScriptTokens.length;
-//				if (size == 1) {
-//					this.nullMappingGumTreeResult ++;
-//					continue;
-//				}
+				if (size == 1) {
+//					if ("MOVMethodDeclaration".equals(astEditScripts)) {
+//						this.nullMappingGumTreeResult ++;
+//						this.unfixedViolations += "#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
+//								violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
+//						continue;
+//					}
+					this.nullMappingGumTreeResult ++;
+					this.unfixedViolations += "#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
+							violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
+					continue;
+				}
 				String alarmType = violation.getViolationType();
 				
-//				String patchPosition = "\n" + revFile.getName() + "Position: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
+				String patchPosition = "\n" + revFile.getName() + "\nPosition: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
 //				String patchPosition = "\n" + "Position: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
-//				String info = Configuration.PATCH_SIGNAL + "\nAlarm Type :" + violation.getAlarmType() + "\n" + patchPosition + patchSourceCode + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
+				String info = Configuration.PATCH_SIGNAL + "\nAlarm Type :" + alarmType + "\n" + patchPosition + patchSourceCode + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
 //				String patchPosition = "\n" + "Position: " + violation.getStartLineNum() + " --> "  + violation.getEndLineNum() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
-				String info = Configuration.PATCH_SIGNAL + "\nAlarm Type :" + violation.getViolationType() + "\n" + patchSourceCode + "\n\n";// + patchPosition + revFile.getName() + "\n";
+//				String info = Configuration.PATCH_SIGNAL + "\nAlarm Type :" + alarmType + "\n" + patchSourceCode + "\n\n";// + patchPosition + revFile.getName() + "\n";
 //				if (noUpdate(editScriptTokens)) {
 //					
 //					if (!"SE_NO_SERIALVERSIONID".equals(alarmType)) {
 //						if (containsFiledDeclaration(hunkActionSets)) {
-////							this.nullMappingGumTreeResult ++; //TODO
+////							this.nullMappingGumTreeResult ++; 
 //							this.testingInfo += info + revFile.getName() + "\n";
 //							this.testingInfo += "#TestingInfo: " + revFile.getName() + ":" + violation.getStartLineNum() 
 //								+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType();
 //							this.unfixedViolations += "#TestingInfo:" + revFile.getName() + ":" + violation.getStartLineNum() 
 //							+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-//							System.err.println("#TestingInfo:" + revFile.getName() + ":" + violation.getStartLineNum() 
-//								+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType());
 //							this.testInfos ++;
 //							continue;
 //						}
@@ -270,14 +211,12 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 //					} else  if (containSpecialStmt(hunkActionSets, bugEndPosition, fixEndPosition)) {
 //						
 //					} else {
-////						this.nullMappingGumTreeResult ++; // TODO
+////						this.nullMappingGumTreeResult ++; 
 //						this.testingInfo += info + revFile.getName() + "\n";
 //						this.testingInfo += "#TestingInfo: " + revFile.getName() + ":" + violation.getStartLineNum() 	
 //							+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType();
 //						this.unfixedViolations += "#TestingInfo:" + revFile.getName() + ":" + violation.getStartLineNum() 
 //						+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-//						System.err.println("#TestingInfo:" + revFile.getName() + ":" + violation.getStartLineNum() 
-//							+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType());
 //						this.testInfos ++;
 //						continue;
 //					}
@@ -288,16 +227,81 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				this.astEditScripts += astEditScripts + "\n";
 				this.violationTypes += alarmType + "\n";
 //				this.buggyTrees += Configuration.BUGGY_TREE_TOKEN + "\n" + simpleTree.toString() + "\n";
+				
+				SimpleTree simpleTree = getBuggyCodeTree(violation, bugEndPosition, prevFile, bugStartLine, bugEndLine);
 				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
 				if ("Block Block".equals(tokens)) {
 					tokens = getContextTokens(patchSourceCode);
 				}
-				this.tokensOfSourceCode += tokens + "\n";
+				this.tokensOfSourceCode += tokens + "\n"; 
 //				this.actionSets += Configuration.BUGGY_TREE_TOKEN + "\n" + readActionSet(actionSet, "") + "\n";
 //				this.originalTree += Configuration.BUGGY_TREE_TOKEN + "\n" + actionSet.getOriginalTree().toString() + "\n";
 				
 			}
 		}
+	}
+
+	private SimpleTree getBuggyCodeTree(Violation violation, int bugEndPosition, File prevFile, int bugStartLine, int bugEndLine) {
+		SimpleTree simpleTree = null;
+		
+		String type = violation.getViolationType();
+		if ("EQ_DOESNT_OVERRIDE_EQUALS".equals(type)|| "HE_EQUALS_USE_HASHCODE".equals(type) || "HE_INHERITS_EQUALS_USE_HASHCODE".equals(type)||
+				"SE_NO_SUITABLE_CONSTRUCTOR".equals(type) || "RI_REDUNDANT_INTERFACES".equals(type)
+				||"CN_IDIOM".equals(type)||"SE_NO_SERIALVERSIONID".equals(type) || "SE_COMPARATOR_SHOULD_BE_SERIALIZABLE".equals(type)) {
+			// Class name level, tokens
+			// classStartP <= vS <= vE <= classEndP
+			ViolationSourceCodeTree parser = new ViolationSourceCodeTree(prevFile, violation.getStartLineNum(), violation.getEndLineNum());
+			ITree classNameTree = parser.getClassNameTokens();
+			simpleTree = new SimplifyTree().canonicalizeSourceCodeTree(classNameTree, null);
+		} else {
+			simpleTree = new SimpleTree();
+			simpleTree.setLabel("Block");
+			simpleTree.setNodeType("Block");
+			List<SimpleTree> children = new ArrayList<>();
+			
+			int vStartLine = violation.getStartLineNum();
+			int vEndLine = violation.getEndLineNum();
+			if (bugStartLine < vStartLine && vEndLine < bugEndLine) {
+				ViolationSourceCodeTree parser = new ViolationSourceCodeTree(prevFile, violation.getStartLineNum(), violation.getEndLineNum());
+				parser.extract();
+				List<ITree> matchedTrees = parser.getViolationSourceCodeTrees();
+				if (matchedTrees.size() > 0) {
+					for (ITree matchedTree : matchedTrees) {
+						SimpleTree simpleT = new SimplifyTree().canonicalizeSourceCodeTree(matchedTree, simpleTree);
+						children.add(simpleT);
+					}
+				}
+			}
+
+			if (children.size() == 0) {
+				List<HierarchicalActionSet> hunkActionSets = violation.getActionSets();
+				/*
+				 * Convert the ITree of buggy code to a simple tree.
+				 * It will be used to compute the similarity. 
+				 */
+				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
+					// TODO simplify buggy tree with buggy code.
+					/**
+					 * Select edit scripts for deep learning. 
+					 * Edit scripts will be used to mine common fix patterns.
+					 */
+//					// 1. First level: AST node type.
+//					// 2. source code: raw tokens
+//					// 3. abstract identifiers: 
+//					// 4. semi-source code: 
+					SimplifyTree abstractIdentifier = new SimplifyTree();
+					abstractIdentifier.abstractTree(hunkActionSet, bugEndPosition);
+					SimpleTree simpleT = hunkActionSet.getSimpleTree();
+					if (simpleT == null) { // Failed to get the simple tree for INS actions.
+						continue;
+					} 
+					children.add(simpleT);
+				}
+			}
+			simpleTree.setChildren(children);
+			simpleTree.setParent(null);
+		}
+		return simpleTree;
 	}
 
 	private void removeOverlapperdUPD(List<HierarchicalActionSet> actionSets) {
@@ -314,11 +318,20 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		List<HierarchicalActionSet> overlappedUpdates = new ArrayList<>();
 		if (updates.size() > 1) {
 			for (HierarchicalActionSet update : updates) {
+				int startLine = update.getBugStartLineNum();
+				int endLine = update.getBugEndLineNum();
+				int endPosition = update.getBugEndPosition();
 				for (HierarchicalActionSet update2 : updates) {
 					if (update.equals(update2)) continue;
-					if (update.getBugStartLineNum() <= update2.getBugStartLineNum()
-						&& update2.getBugEndLineNum() <= update.getBugEndLineNum()) {
-						overlappedUpdates.add(update);
+					int startLine2 = update2.getBugStartLineNum();
+					int endLine2 = update2.getBugEndLineNum();
+					int endPosition2 = update2.getBugEndPosition();
+					if (startLine <= startLine2
+						&& endLine2 <= endLine && endPosition2 < endPosition) {
+						if (!overlappedUpdates.contains(update)) {
+							overlappedUpdates.add(update);
+						}
+						break;
 					}
 				}
 			}
@@ -326,26 +339,12 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		actionSets.removeAll(overlappedUpdates);
 	}
 
-//	private List<HierarchicalActionSet> getExactActionSets(Violation violation,
-//			List<HierarchicalActionSet> hunkActionSets) {
-//		List<HierarchicalActionSet> deleteActionSets = new ArrayList<>();
-//		for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-//			int startLine = hunkActionSet.getBugStartLineNum();
-//			int endLine = hunkActionSet.getBugEndLineNum();
-//			if (violation.getStartLineNum() <= startLine && endLine <= violation.getEndLineNum()) {
-//				String astNodeType = hunkActionSet.getAstNodeType();
-//				if (astNodeType.endsWith("Statement") || astNodeType.endsWith("FieldDeclaration")) {
-//					
-//				}
-//			}
-//		}
-//		return deleteActionSets;
-//	}
-
 	private List<Violation> identifyFixRangeHeuristically(List<Violation> violations, List<DiffEntryHunk> diffentryHunks, File revFile) {
 		List<Violation> selectedViolations = new ArrayList<>();
 		for (Violation violation : violations) {
+			
 			int violationStartLineNum = violation.getBugStartLineNum();
+			
 			if (violationStartLineNum > 0) {
 				int violationEndLineNum = violation.getEndLineNum();
 				for (int index = 0, hunkListSize = diffentryHunks.size(); index < hunkListSize; index ++) {
@@ -455,12 +454,12 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					}
 				}
 
+				
 				if (violation.getHunks().size() == 0) {
 					// This fixed violation cannot be matched with a DiffEntry, it is difficult to identify related source code change for it.
 					this.nullMatchedDiffEntry ++;
 					this.unfixedViolations += "#NullDiffEntry: " + revFile.getName() + "  :  " +violation.getStartLineNum() + " : " 
 							+ violation.getEndLineNum() + " : " + violation.getViolationType() + "\n";
-					System.err.println("#NullDiffEntry: " + revFile.getName() + "  :  " +violation.getStartLineNum() + " : " + violation.getEndLineNum() + " : " + violation.getViolationType());
 				} else {
 					selectedViolations.add(violation);
 				}
@@ -470,33 +469,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		}
 		
 		return selectedViolations;
-	}
-
-	private boolean containsFiledDeclaration(List<HierarchicalActionSet> hunkActionSets) {
-		for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-			if (hunkActionSet.getAstNodeType().equals("FieldDeclaration")) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private boolean containSpecialStmt(List<HierarchicalActionSet> hunkActionSets, int bugEndPosition, int fixEndPosition) {
-		for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-			if (hunkActionSet.getActionString().startsWith("INS")) {
-				if (hunkActionSet.getAstNodeType().equals("IfStatement")) {
-					return true;
-				}
-				if (hunkActionSet.getAstNodeType().equals("ThrowStatement")) {
-					return true;
-				}
-				if (hunkActionSet.getAstNodeType().equals("ReturnStatement")) {
-					return true;
-				}
-			}
-		}
-		
-		return false;
 	}
 
 	private String getContextTokens(String patchSourceCode) {
@@ -531,15 +503,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 			String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
 			return tokens;
 		}
-	}
-
-	private boolean noUpdate(String[] tokens) {
-		for (String token : tokens) {
-			if (token.startsWith("UPD") || token.startsWith("MOV")) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 }

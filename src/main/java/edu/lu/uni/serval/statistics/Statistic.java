@@ -50,8 +50,13 @@ public class Statistic {
 		 */
 //		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "");
 //		statistics("../FPM_Violations/RQ1/distinct-fixed-summary-per-project-vtype.csv", "Fixed");
+		statistics("../FPM_Violations/RQ1/fixedViolations-v-1.0.csv", "Fixed_1.0");
 //		fixedVSunfixed();
 		
+		statisticsOfFixedViolations();
+	}
+
+	public static void statisticsOfFixedViolations() {
 		String statistic = "../FPM_Violations/OUTPUT";
 		List<File> files = FileHelper.getAllFiles(statistic, ".list");
 		
@@ -123,7 +128,6 @@ public class Statistic {
 				String content = FileHelper.readFile(file);
 				BufferedReader reader = new BufferedReader(new StringReader(content));
 				String line = null;
-				i ++;
 				try {
 					while ((line = reader.readLine()) !=  null) {
 //						types1
@@ -197,37 +201,38 @@ public class Statistic {
 		System.out.println("NullSourceCode: " + nullSourceCode + " :: " + types.get("#NullSourceCode") + " :: " + types1.get("#NullSourceCode"));
 		System.out.println("Timeout: " + timeout + " :: " + types.get("#Timeout") + " :: " + types1.get("#Timeout"));
 		System.out.println("TestingInfo: " + TestingInfo + " :: " + types.get("#TestingInfo") + " :: " + types1.get("#TestingInfo"));
-		System.out.println("A: " + (positions + testAlarms + timeout));
-		System.out.println("B: " + (numV + testAlarms + timeout));
+//		System.out.println("A: " + (positions + testAlarms + timeout));
+//		System.out.println("B: " + (numV + testAlarms + timeout));
 		System.out.println(testAlarms + nullGumTreeResults + noSourceCodeChagnes + noStatementChanges +
-				nullDiffentry + nullMappingGumTreeResults + largeHunk + nullSourceCode + timeout + TestingInfo);
+				nullDiffentry + nullMappingGumTreeResults + nullSourceCode + timeout + TestingInfo);
 		System.out.println(nullGumTreeResults + noSourceCodeChagnes + noStatementChanges +
-				nullDiffentry + nullMappingGumTreeResults + largeHunk + nullSourceCode + TestingInfo);
+				nullDiffentry + nullMappingGumTreeResults + nullSourceCode + TestingInfo);
 		System.out.println(testAlarms + timeout);
 //		System.out.println(sum);
 //		System.out.println(sum2);
 		System.out.println(sum3);
 		System.out.println(sum4);
-		/*30717 56630 1580, 88927
+		System.out.println(types1);
+		/*32690 56237 ,, 88927  31782
 		 * Statistics:
 
 TestViolation: 4682 :: null :: null
 NullGumTreeResults: 0 :: null :: null
-NoSourceCodeChange: 7010 :: null :: 7010
-NoStatementChange: 0 :: null :: null
-NullDiffEntry: 7100 :: null :: 7100
-NullMatchedGumTreeResult: 25336 :: null :: 25336
-PureDeletion: 18238 :: null :: 18238
-LargeHunk: 12502 :: null :: 12502
-NullSourceCode: 0 :: null :: null
+NoSourceCodeChange: 7010 :: null :: 6984
+NoStatementChange: 163 :: null :: 163
+NullDiffEntry: 6943 :: null :: 6943
+NullMatchedGumTreeResult: 25747 :: null :: 25747
+PureDeletion: 10815 :: null :: 10815
+LargeHunk: 6318 :: null :: 6318
+NullSourceCode: 1025 :: null :: 1025
 Timeout: 0 :: null :: null
-TestingInfo: 9071 :: null :: 9071
-A: 88927
-B: 88927
-63759
-59077
+TestingInfo: 0 :: null :: null
+A: 4682
+B: 4682
+51888
+47206
 4682
-59077
+47180
 0
 		 */
 	}
@@ -239,6 +244,7 @@ B: 88927
 		Map<String, Integer> violationTypesMap = new HashMap<>();
 		Map<String, Integer> projectsMap = new HashMap<>();
 		Map<String, Integer> perVperProjMap = new HashMap<>();
+		Map<String, List<String>> perVProjs = new HashMap<>();
 		Map<String, List<String>> widespreadViolationsMap = new HashMap<>();
 		
 		while (scanner.hasNextLine()) {
@@ -261,6 +267,14 @@ B: 88927
 				List<String> projectList = new ArrayList<>();
 				projectList.add(projectName);
 				widespreadViolationsMap.put(violationType, projectList);
+			}
+			
+			if (perVProjs.containsKey(violationType)) {
+				perVProjs.get(violationType).add(projectName);
+			} else {
+				List<String> projs = new ArrayList<>();
+				projs.add(projectName);
+				perVProjs.put(violationType, projs);
 			}
 		}
 		
@@ -316,6 +330,8 @@ B: 88927
 		List<String> sortedViolationTypes = new ArrayList<>();
 		
 		Map<String, Integer> quantityOfCategory = new HashMap<>();
+		Map<String, List<String>> violationTypesOfCategory = new HashMap<>();
+		Map<String, List<String>> projectsOfCategory = new HashMap<>();
 		StringBuilder violationsBuilder = new StringBuilder("Type,Identifier,Quantity,Widespread,Category\n");
 		int identifier = 0;
 		for (Map.Entry<String, Integer> entry : violationTypesMap.entrySet()) {
@@ -335,6 +351,29 @@ B: 88927
 				quantityOfCategory.put(category, quantity);
 			}
 			
+			if (violationTypesOfCategory.containsKey(category)) {
+				List<String> violationTypes = violationTypesOfCategory.get(category);
+				if (!violationTypes.contains(violationType)) {
+					violationTypes.add(violationType);
+				}
+			} else {
+				List<String> violationTypes = new ArrayList<>();
+				violationTypes.add(violationType);
+				violationTypesOfCategory.put(category, violationTypes);
+			}
+			
+			if (projectsOfCategory.containsKey(category)) {
+				List<String> projs = projectsOfCategory.get(category);
+				List<String> projs2 = perVProjs.get(violationType);
+				for (String proj : projs2) {
+					if (!projs.contains(proj)) {
+						projs.add(proj);
+					}
+				}
+			} else {
+				projectsOfCategory.put(category, perVProjs.get(violationType));
+			}
+			
 			sortedViolationTypes.add(violationType);
 		}
 		FileHelper.outputToFile("../FPM_Violations/RQ1/Quantity-per-" + type + "V-Type.csv", violationsBuilder, false);
@@ -348,9 +387,10 @@ B: 88927
 		}
 		FileHelper.outputToFile("../FPM_Violations/RQ1/Quantity-per-" + type + "Proj.csv", pBuilder, false);
 		
-		StringBuilder categoryBuilder = new StringBuilder("Category,Quantity\n");
+		StringBuilder categoryBuilder = new StringBuilder("Category,Quantity,Types,Projects\n");
 		for (Map.Entry<String, Integer> entry : quantityOfCategory.entrySet()) {
-			categoryBuilder.append(entry.getKey() + "," + entry.getValue() + "\n");
+			String key = entry.getKey();
+			categoryBuilder.append(key + "," + entry.getValue() + "," + violationTypesOfCategory.get(key).size() + "," + projectsOfCategory.get(key).size() + "\n");
 		}
 		FileHelper.outputToFile("../FPM_Violations/RQ1/Quantity-per-" + type + "Category.csv", categoryBuilder, false);
 		
@@ -390,6 +430,8 @@ B: 88927
 		StringBuilder ssbuilder = new StringBuilder("Type, Identifier, Quantity, Category\n");
 		Map<String, Integer> perTypePerProj = new HashMap<>();
 		Map<String, List<String>> categoryProjects = new HashMap<>();
+		
+		List<String> others = new ArrayList<>();
 		for (int j = 0; j < sortedViolationTypes.size(); j ++) {
 			String violationType = sortedViolationTypes.get(j);
 			List<Integer> projs = new ArrayList<>();
@@ -403,6 +445,9 @@ B: 88927
 					String category = categories.get(violationType);
 					if (category == null || category.equals("null")) {
 						category = "Other";
+						if (!others.contains(violationType)) {
+							others.add(violationType);
+						}
 					}
 					ssbuilder.append(violationType + "," + (j + 1) + "," + value + "," + category + "\n");
 					
@@ -420,12 +465,13 @@ B: 88927
 					}
 				}
 			}
-			
 			ListSorter<Integer> sorter2 = new ListSorter<Integer>(projs);
 			projs = sorter2.sortAscending();
 			int index = projs.size() % 2 == 0 ? projs.size() / 2 - 1 : projs.size() / 2;
 			perTypePerProj.put(violationType, projs.get(index));
 		}
+
+		System.out.println(others);
 		
 		for (Map.Entry<String, List<String>> entry : categoryVList.entrySet()) {
 			System.out.println(entry.getKey() + ":" + entry.getValue().size() + ":" + categoryProjects.get(entry.getKey()).size());

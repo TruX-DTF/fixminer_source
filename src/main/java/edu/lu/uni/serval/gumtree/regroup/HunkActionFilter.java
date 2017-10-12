@@ -1,9 +1,6 @@
 package edu.lu.uni.serval.gumtree.regroup;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,7 @@ import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.actions.model.Update;
 import com.github.gumtreediff.tree.ITree;
 
+import edu.lu.uni.serval.FixPattern.utils.Checker;
 import edu.lu.uni.serval.FixPatternParser.CUCreator;
 import edu.lu.uni.serval.FixPatternParser.violations.Violation;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
@@ -196,13 +194,7 @@ public class HunkActionFilter {
 		for (int i = 0, size = children.size(); i < size; i ++) {
 			ITree child = children.get(i);
 			int type = child.getType();
-			if (type == 6 || type == 10 || type == 12 || type == 17 || type == 18 || type == 19 || type == 21 || type == 8// Block, EmptyStatement 
-					|| type == 24 || type == 25 || type == 30 || type == 41 || type == 46 || type == 49 || type == 50 
-					|| type == 51 || type == 53 || type == 54 || type == 56 || type == 60 || type == 61 || type == 70) {
-				//AssertStatement, BreakStatement, CatchClause, ConstructorInvocation, ContinueStatement, DoStatement
-				// ExpressionStatement, ForStatement, IfStatement, LabeledStatement, ReturnStatement, SuperConstructorInvocation
-				// SwitchCase, SwitchStatement, SynchronizedStatement, ThrowStatement, TryStatement
-				// TypeDeclarationStatement, VariableDeclarationStatement, WhileStatement, EnhancedForStatement
+			if (Checker.isStatement2(type)) {
 				if ( i > 0) {
 					child = children.get(i - 1);
 					endPosition = child.getPos() + child.getLength();
@@ -381,8 +373,6 @@ public class HunkActionFilter {
 			for (Violation violation : violations) {
 				this.unfixedViolations += "#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
 						violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-				System.err.println("#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
-						violation.getEndLineNum() + ":" + violation.getViolationType());
 			}
 			return selectedViolations;
 		}
@@ -391,79 +381,115 @@ public class HunkActionFilter {
 			int violationStartLine = violation.getStartLineNum();
 			int violationEndLine = violation.getEndLineNum();
 			int bugHunkStartLine = violation.getBugStartLineNum();
-			if (bugHunkStartLine == 0) {// Null source code matched for this violation.
-//				String type = getType(violation);
-//				continue;
-			} else if (bugHunkStartLine == -1) {//
-				specialVioaltionTypes(violation, actionSets, prevUnit, revUnit);
-//				continue;
-			} else {
-				int bugHunkEndLine = violation.getBugEndLineNum();
-				int fixHunkStartLine = violation.getFixStartLineNum();
-				int fixHunkEndLine = violation.getFixEndLineNum();
-				
-				for (HierarchicalActionSet actionSet : actionSets) {
-					int actionBugStartLine = actionSet.getBugStartLineNum();
-					if (actionBugStartLine == 0) {
-						actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-					} 
-					int actionBugEndLine = actionSet.getBugEndLineNum();
-					int actionFixStartLine = actionSet.getFixStartLineNum();
-					int actionFixEndLine = actionSet.getFixEndLineNum();
+			
+			if (!specialVioaltionTypes(violation, actionSets, prevUnit, revUnit)) {
+				if (bugHunkStartLine == 0) {// Null source code matched for this violation.
+//					String type = getType(violation);
+				} else if (bugHunkStartLine == -1) {//
+//					specialVioaltionTypes(violation, actionSets, prevUnit, revUnit);
+				} else {
+					int bugHunkEndLine = violation.getBugEndLineNum();
+					int fixHunkStartLine = violation.getFixStartLineNum();
+					int fixHunkEndLine = violation.getFixEndLineNum();
 					
-					String actionStr = actionSet.getActionString();
-					if (actionStr.startsWith("INS")) {
-						if (fixHunkStartLine <= actionFixStartLine && actionFixEndLine <= fixHunkEndLine) {
-							if (actionBugStartLine != 0) {
-								if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
+					for (HierarchicalActionSet actionSet : actionSets) {
+						int actionBugStartLine = actionSet.getBugStartLineNum();
+						if (actionBugStartLine == 0) {
+							actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
+						} 
+						int actionBugEndLine = actionSet.getBugEndLineNum();
+						int actionFixStartLine = actionSet.getFixStartLineNum();
+						int actionFixEndLine = actionSet.getFixEndLineNum();
+						
+						String actionStr = actionSet.getActionString();
+						if (actionStr.startsWith("INS")) {
+							if (fixHunkStartLine <= actionFixStartLine && actionFixEndLine <= fixHunkEndLine) {
+								if (actionBugStartLine != 0) {
+									if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
+										violation.getActionSets().add(actionSet);
+										continue;
+									}
+								}
+								
+								// INS with MOV actions that are not identified in previous IF predicate, and pure INS actions
+								if (violation.getBugFixStartLineNum() >= actionFixEndLine && actionFixStartLine <= violation.getBugFixEndLineNum()) {
 									violation.getActionSets().add(actionSet);
-									continue;
 								}
 							}
-							
-							// INS with MOV actions that are not identified in previous IF predicate, and pure INS actions
-							if (violation.getBugFixStartLineNum() >= actionFixEndLine && actionFixStartLine <= violation.getBugFixEndLineNum()) {
-								violation.getActionSets().add(actionSet);
-							}
-						}
-					} else {
-						if (bugHunkStartLine <= actionBugStartLine && violationEndLine <= bugHunkEndLine) {
-							if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
-								violation.getActionSets().add(actionSet);
+						} else if (!actionStr.startsWith("MOV")){// ignore move actions.
+							if (bugHunkStartLine <= actionBugStartLine && violationEndLine <= bugHunkEndLine) {
+								if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
+									violation.getActionSets().add(actionSet);
+								}
 							}
 						}
 					}
 				}
 			}
+				
 			
 			if (violation.getActionSets().size() > 0) {
-				// FieldDeclaration: single insert, move, delete or update.
-//				List<HierarchicalActionSet> matchedActionSets = filterActionSets(violation.getActionSets());
-//				violation.getActionSets().clear();
-//				violation.getActionSets().addAll(matchedActionSets);
 				selectedViolations.add(violation);
 			} else {
 				this.unfixedViolations += "#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
 						violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-				System.err.println("#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
-						violation.getEndLineNum() + ":" + violation.getViolationType());
 			}
 		}
 		return selectedViolations;
 	}
 	public String unfixedViolations = "";
 	
-	private void specialVioaltionTypes(Violation violation, List<HierarchicalActionSet> actionSets, CompilationUnit prevUnit, CompilationUnit revUnit) {
+	private boolean specialVioaltionTypes(Violation violation, List<HierarchicalActionSet> actionSets, CompilationUnit prevUnit, CompilationUnit revUnit) {
 		String type = violation.getViolationType();
-		if ("SE_NO_SUITABLE_CONSTRUCTOR".equals(type)) {// 158, 47
+		
+		if ("NM_METHOD_NAMING_CONVENTION".equals(type) || "SE_NO_SUITABLE_CONSTRUCTOR_FOR_EXTERNALIZATION".equals(type)) {
+			int startLine = violation.getStartLineNum();
+			for (HierarchicalActionSet actionSet : actionSets) { 
+				int actionBugStartLine = actionSet.getBugStartLineNum();
+				if (actionBugStartLine == 0) {
+					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
+				} 
+				if (actionSet.getActionString().startsWith("UPD MethodDeclaration@@")) {
+					if (Math.abs(startLine - actionBugStartLine) <= 2) {
+						violation.getActionSets().add(actionSet);
+						break;
+					}
+				}
+			}
+		} else if ("EQ_DOESNT_OVERRIDE_EQUALS".equals(type)) {
+			for (HierarchicalActionSet actionSet : actionSets) {
+				int actionBugStartLine = actionSet.getBugStartLineNum();
+				if (actionBugStartLine == 0) {
+					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
+				} 
+				if (actionSet.getActionString().startsWith("INS MethodDeclaration@@MethodName:equals")) {
+					violation.getActionSets().add(actionSet);
+					break;
+				}
+			}
+		} else if ("HE_EQUALS_USE_HASHCODE".equals(type) || "HE_INHERITS_EQUALS_USE_HASHCODE".equals(type)) {
+			for (HierarchicalActionSet actionSet : actionSets) {
+				int actionBugStartLine = actionSet.getBugStartLineNum();
+				if (actionBugStartLine == 0) {
+					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
+				} 
+				if (actionSet.getActionString().startsWith("INS MethodDeclaration@@MethodName:hashCode")) {
+					violation.getActionSets().add(actionSet);
+					break;
+				}
+			}
+		} else if ("SE_NO_SUITABLE_CONSTRUCTOR".equals(type) || "RI_REDUNDANT_INTERFACES".equals(type)) {
+			int startLine = violation.getStartLineNum();
 			for (HierarchicalActionSet actionSet : actionSets) {
 				int actionBugStartLine = actionSet.getBugStartLineNum();
 				if (actionBugStartLine == 0) {
 					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
 				} 
 				if (actionSet.getActionString().startsWith("UPD TypeDeclaration@@")) {
-					violation.getActionSets().add(actionSet);
-					break;
+					if (Math.abs(startLine - actionBugStartLine) <= 2) {
+						violation.getActionSets().add(actionSet);
+						break;
+					}
 				}
 			}
 		} else if ("CN_IDIOM".equals(type)) { // 202 23
@@ -473,77 +499,38 @@ public class HunkActionFilter {
 				if (actionBugStartLine == 0) {
 					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
 				} 
-				if (actionSet.getActionString().startsWith("INS MethodDeclaration@@clone")) {
+				if (actionSet.getActionString().startsWith("INS MethodDeclaration@@MethodName:clone")) {
 //						|| actionSet.getActionString().startsWith("UPD MethodDeclaration@@clone")) {
 					violation.getActionSets().add(actionSet);
 					break;
 				}
 			}
-		} else if ("SE_NO_SERIALVERSIONID".equals(type)) {// 12 1960
+		} else if ("SE_NO_SERIALVERSIONID".equals(type) || "SE_COMPARATOR_SHOULD_BE_SERIALIZABLE".equals(type)) {// 12 1960
 			// change superclass or interface, add field or remove @SuppressWarnings("serial"),   some are inner class
 			for (HierarchicalActionSet actionSet : actionSets) {
 				int actionBugStartLine = actionSet.getBugStartLineNum();
 				if (actionBugStartLine == 0) {
 					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
 				} 
-				if (actionSet.getActionString().startsWith("UPD TypeDeclaration@")) {
-					violation.getActionSets().add(actionSet);
-				}
 				if (actionSet.getActionString().startsWith("INS FieldDeclaration@") && actionSet.getNode().getLabel().contains("serialVersionUID")) {
 					violation.getActionSets().add(actionSet);
 					break;
 				}
-			}
-		} else if ("SE_NO_SUITABLE_CONSTRUCTOR_FOR_EXTERNALIZATION".equals(type)) { // 175 34
-			// constructor
-			for (HierarchicalActionSet actionSet : actionSets) { 
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
-				if (actionSet.getActionString().startsWith("UPD MethodDeclaration@@")) {
-					violation.getActionSets().add(actionSet);
-					break;
-				}
-			}
-		} else if ("SE_COMPARATOR_SHOULD_BE_SERIALIZABLE".equals(type)) { // 89 148
-			//class, and add a field se...?
-			for (HierarchicalActionSet actionSet : actionSets) {
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
 				if (actionSet.getActionString().startsWith("UPD TypeDeclaration@")) {
-					violation.getActionSets().add(actionSet);
-				}
-				if (actionSet.getActionString().startsWith("INS FieldDeclaration@") && actionSet.getNode().getLabel().contains("serialVersionUID")) {
-					violation.getActionSets().add(actionSet);
-					break;
+					int startLine = violation.getStartLineNum();
+					if (Math.abs(startLine - actionBugStartLine) <= 2) {
+						violation.getActionSets().add(actionSet);
+						break;
+					}
 				}
 			}
+		} else {
+			return false;
 		}
+		return true;
 	}
 
-	private List<HierarchicalActionSet> filterActionSets(List<HierarchicalActionSet> actionSets) {
-		List<HierarchicalActionSet> matchedActionSets = new ArrayList<>();
-		// find the update
-		HierarchicalActionSet updateActionSet = null;
-		for (HierarchicalActionSet actionSet : actionSets) {
-			if (actionSet.getAction() instanceof Update) {
-				updateActionSet = actionSet;
-			}
-		}
-
-		if (updateActionSet != null) {
-			if (updateActionSet.getAstNodeType().equals("FieldDeclaration")) {
-				matchedActionSets.clear();
-				matchedActionSets.add(updateActionSet);
-				return matchedActionSets;
-			}
-		}
-
-		return actionSets;
-	}
+	
 	private String getType(Violation violation) {
 		String type = violation.getViolationType();
 		switch (type) {
@@ -703,33 +690,36 @@ public class HunkActionFilter {
 				fixEndPosition = fixStartPosition + newNode.getLength();
 				
 				String astNodeType = actionSet.getAstNodeType();
-				if ("EnhancedForStatement".equals(astNodeType) || "ForStatement".equals(astNodeType) 
-						|| "DoStatement".equals(astNodeType) || "WhileStatement".equals(astNodeType)
-						|| "LabeledStatement".equals(astNodeType) || "SynchronizedStatement".equals(astNodeType)
-						|| "IfStatement".equals(astNodeType) || "TryStatement".equals(astNodeType)
-						|| "MethodDeclaration".equals(astNodeType)) {
+//				if (Checker.withBlockStatement(newNode.getType())) {
+////					List<ITree> children = update.getNode().getChildren();
+////					bugEndPosition = getEndPosition(children);
+////					List<ITree> newChildren = newNode.getChildren();
+////					fixEndPosition = getEndPosition(newChildren);
+//				} else 
+				if ("TypeDeclaration".equals(astNodeType)) {
+					bugEndPosition = getClassBodyStartPosition(update.getNode());
+					fixEndPosition = getClassBodyStartPosition(newNode);
+				} else if ("MethodDeclaration".equals(astNodeType)) {
 					List<ITree> children = update.getNode().getChildren();
 					bugEndPosition = getEndPosition(children);
 					List<ITree> newChildren = newNode.getChildren();
 					fixEndPosition = getEndPosition(newChildren);
-					
-					if (bugEndPosition == 0) {
-						bugEndPosition = bugStartPosition + actionSet.getLength();
-					}
-					if (fixEndPosition == 0) {
-						fixEndPosition = fixStartPosition + newNode.getLength();
-					}
-				} else if ("TypeDeclaration".equals(astNodeType)) {
-					bugEndPosition = getClassBodyStartPosition(update.getNode());
-					fixEndPosition = getClassBodyStartPosition(newNode);
-					
-					if (bugEndPosition == 0) {
-						bugEndPosition = bugStartPosition + actionSet.getLength();
-					}
-					if (fixEndPosition == 0) {
-						fixEndPosition = fixStartPosition + newNode.getLength();
-					}
 				}
+				if (fixEndPosition == 0) {
+					fixEndPosition = fixStartPosition + newNode.getLength();
+				}
+			} else if (actionStr.startsWith("DEL")) {
+				ITree buggyTree = actionSet.getNode();
+				int type = buggyTree.getType();
+				if (type == 55) { // TypeDeclaration
+					bugEndPosition = getClassBodyStartPosition(buggyTree);
+				} else if (type == 31 || Checker.withBlockStatement(type)) {//MethodDeclaration && Block-Statements
+					List<ITree> children = buggyTree.getChildren();
+					bugEndPosition = getEndPosition(children);
+				}
+			}
+			if (bugEndPosition == 0) {
+				bugEndPosition = bugStartPosition + actionSet.getLength();
 			}
 		}
 		actionBugStartLine = bugStartPosition == 0 ? 0 : prevUnit.getLineNumber(bugStartPosition);

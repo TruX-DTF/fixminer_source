@@ -26,19 +26,20 @@ public class AkkaParser {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		String violationType = Configuration.ROOT_PATH + "UnfixedViolations/";
+		String violationType = Configuration.GUM_TREE_INPUT + "UnfixedViolations/";
 		File file = new File(violationType);
 		File[] violationTypes = file.listFiles();
 		for (File violationT : violationTypes) {
 			if (violationT.isDirectory()) {
 				violationType = violationT.getName();
+				if (!violationType.equals("SF_SWITCH_NO_DEFAULT")) continue;
 				// input data
 				log.info("Get the input data...");
 				final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT, violationType);
 				log.info("MessageFiles: " + msgFiles.size());
 				
 				// output path
-				final String sourceCodeFilesPath = Configuration.ROOT_PATH + "UnfixedViolations/" + violationType + "/";
+				final String sourceCodeFilesPath = Configuration.ROOT_PATH + "UnfixedViolations_RQ3/" + violationType + "/";
 				FileHelper.deleteDirectory(sourceCodeFilesPath);
 
 				ActorSystem system = null;

@@ -123,7 +123,7 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 				}
 				
 				// Source Code of patches.
-				String patchSourceCode = getPatchSourceCode(prevFile, revFile, startLine, endLine, startLine2, endLine2);
+				String patchSourceCode = getPatchSourceCode(prevFile, revFile, startLine, endLine, startLine2, endLine2, false);
 				this.patchesSourceCode += Configuration.PATCH_SIGNAL + "\n" + revFile.getName() + "\n" + patchSourceCode + "\n";
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";

@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.lu.uni.serval.config.Configuration;
@@ -78,6 +77,7 @@ public class Test {
 		}
 		reader.close();
 		System.out.println(b);
+		
 	}
 
 }

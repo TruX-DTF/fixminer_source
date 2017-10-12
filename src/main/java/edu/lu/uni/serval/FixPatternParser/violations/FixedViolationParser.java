@@ -10,6 +10,7 @@ import java.util.List;
 import com.github.gumtreediff.actions.model.Action;
 
 import edu.lu.uni.serval.FixPatternParser.Parser;
+import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
@@ -103,10 +104,13 @@ public class FixedViolationParser extends Parser {
 				int endLine = Integer.parseInt(positionStr[2]);
 				String violationType = positionStr[0];
 				
-//				if ("UPM_UNCALLED_PRIVATE_METHOD".equals(violationType)) continue;
-				
 				Violation violation = new Violation(startLine, endLine, violationType);
 				violation.setFileName(fileName);
+				
+				if (startLine == -1) {
+					violation.setBugStartLineNum(0);
+					continue;
+				}
 
 				/*
 				 *  Get the parent range of a violation.
@@ -117,8 +121,14 @@ public class FixedViolationParser extends Parser {
 				int violationStartLine = alarmTree.getViolationFinalStartLine();
 				violation.setBugStartLineNum(violationStartLine);
 				if (violationStartLine > 0) {// 0: no source code, -1: range is too large, which contains several inner classes, methods or fields.
-//					FileHelper.outputToFile("logs/testV3.txt", "\n", true);
 					violation.setBugEndLineNum(alarmTree.getViolationFinalEndLine());
+//					if (violationType.equals("SE_NO_SERIALVERSIONID")){
+//						FileHelper.outputToFile("OUTPUT/list1.txt", line + ":" + revFile.getName() + "\n", true);
+//					}
+				} else {
+//					if (!violationType.equals("SE_NO_SERIALVERSIONID")) {
+//						FileHelper.outputToFile("OUTPUT/list.txt", line + ":" + revFile.getName() + "\n", true);
+//					}
 				}
 				violations.add(violation);
 			}
@@ -134,24 +144,29 @@ public class FixedViolationParser extends Parser {
 		return violations;
 	}
 
-	protected String getPatchSourceCode(File prevFile, File revFile, int startLineNum, int endLineNum, int startLineNum2, int endLineNum2) {
-		String buggyStatements = readSourceCode(prevFile, startLineNum, endLineNum, "-");
-		String fixedStatements = readSourceCode(revFile, startLineNum2, endLineNum2, "+");
-		return buggyStatements + fixedStatements;
-	}
-	
-	protected String getPatchSourceCode(File prevFile, File revFile, int startLineNum, int endLineNum, int startLineNum2, int endLineNum2, boolean isInsert) {
+	/**
+	 * Read patch source code from buggy and fixed files.
+	 * @param prevFile
+	 * @param revFile
+	 * @param bugStartLineNum
+	 * @param bugEndLineNum
+	 * @param fixStartLineNum
+	 * @param fixEndLineNum
+	 * @param isInsert
+	 * @return
+	 */
+	protected String getPatchSourceCode(File prevFile, File revFile, int bugStartLineNum, int bugEndLineNum, int fixStartLineNum, int fixEndLineNum, boolean isInsert) {
 		String buggyStatements = "";
 		if (isInsert) {
-			buggyStatements = readSourceCode(prevFile, startLineNum, endLineNum, "");
+			buggyStatements = readSourceCode(prevFile, bugStartLineNum, bugEndLineNum, "");
 		} else {
-			buggyStatements = readSourceCode(prevFile, startLineNum, endLineNum, "-");
+			buggyStatements = readSourceCode(prevFile, bugStartLineNum, bugEndLineNum, "-");
 		}
-		String fixedStatements = readSourceCode(revFile, startLineNum2, endLineNum2, "+");
+		String fixedStatements = readSourceCode(revFile, fixStartLineNum, fixEndLineNum, "+");
 		return buggyStatements + fixedStatements;
 	}
 
-	protected String readSourceCode(File file, int startLineNum, int endLineNum, String type) {
+	private String readSourceCode(File file, int startLineNum, int endLineNum, String type) {
 		String sourceCode = "";
 		String fileContent = FileHelper.readFile(file);
 		BufferedReader reader = null;
@@ -178,6 +193,60 @@ public class FixedViolationParser extends Parser {
 		return sourceCode;
 	}
 
+	/**
+	 * Read patch source code from diffentries.
+	 * @param violation
+	 * @param bugStartLine
+	 * @param bugEndLine
+	 * @param fixStartLine
+	 * @param fixEndLine
+	 * @return
+	 */
+	protected String readPatchSourceCode(Violation violation, int bugStartLine, int bugEndLine, int fixStartLine, int fixEndLine) {
+		String patch = "";
+		List<DiffEntryHunk> diffentries = violation.getHunks();
+		for (DiffEntryHunk diffentry : diffentries) {
+			int currentBugLine = diffentry.getBugLineStartNum() - 1;
+			int currentFixLine = diffentry.getFixLineStartNum() - 1;
+			String sourceCode = diffentry.getHunk();
+			
+			BufferedReader reader = new BufferedReader(new StringReader(sourceCode));
+			String line = null;
+			
+			try {
+				while ((line = reader.readLine()) != null) {
+					if (line.startsWith("+")) {
+						currentFixLine ++;
+						if (fixStartLine <= currentFixLine && currentFixLine <= fixEndLine) {
+							patch += line + "\n";
+						}
+					} else if (line.startsWith("-")) {
+						currentBugLine ++;
+						if (bugStartLine <= currentBugLine && currentBugLine <= bugEndLine) {
+							patch += line + "\n";
+						}
+					} else {
+						currentFixLine ++;
+						currentBugLine ++;
+						if ((bugStartLine <= currentBugLine && currentBugLine <= bugEndLine) || 
+							(fixStartLine <= currentFixLine && currentFixLine <= fixEndLine)) {
+							patch += line + "\n";
+						}
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return patch;
+	}
+	
 	public String getAlarmTypes() {
 		return violationTypes;
 	}

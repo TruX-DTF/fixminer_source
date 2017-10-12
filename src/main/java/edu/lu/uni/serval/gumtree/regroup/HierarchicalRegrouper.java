@@ -12,6 +12,7 @@ import com.github.gumtreediff.actions.model.Update;
 import com.github.gumtreediff.tree.ITree;
 
 import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.FixPattern.utils.Checker;
 import edu.lu.uni.serval.utils.ListSorter;
 
 /**
@@ -59,7 +60,14 @@ public class HierarchicalRegrouper {
 			if (parentAct != null) {
 				addToActionSets(actSet, parentAct, actionSets);
 			} else {
-				reActionSets.add(actSet);
+				// TypeDeclaration, FieldDeclaration, MethodDeclaration, Statement. 
+				// CatchClause, ConstructorInvocation, SuperConstructorInvocation, SwitchCase
+				String astNodeType = actSet.getAstNodeType();
+				if (astNodeType.endsWith("TypeDeclaration") || astNodeType.endsWith("FieldDeclaration")  || astNodeType.endsWith("EnumDeclaration") || 
+						astNodeType.endsWith("MethodDeclaration") || astNodeType.endsWith("Statement") || 
+						astNodeType.endsWith("ConstructorInvocation") || astNodeType.endsWith("CatchClause") || astNodeType.endsWith("SwitchCase")) {
+					reActionSets.add(actSet);
+				}
 			}
 		}
 		return reActionSets;
@@ -111,7 +119,6 @@ public class HierarchicalRegrouper {
 			Action action = actSet.getAction();
 			
 			if (!areRelatedActions(action, act)) continue;
-			
 			if (action.equals(parentAct)) { // actSet is the parent of actionSet.
 				actionSet.setParent(actSet);
 				actSet.getSubActions().add(actionSet);
@@ -135,7 +142,7 @@ public class HierarchicalRegrouper {
 				int startPosition2 = parent.getPosition();
 				int length2 = parent.getLength();
 				
-				if (!(startPosition2 >= startPosition && startPosition + length <= startPosition2 + length2)) {
+				if (!(startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2)) {
 					// when act is not the sub-set of action.
 					return false;
 				}
@@ -152,15 +159,12 @@ public class HierarchicalRegrouper {
 	}
 
 	private boolean addToAactionSet(Action act, Action parentAct, List<HierarchicalActionSet> actionSets) {
-		ITree parentTree = parentAct.getNode();
-		
 		for(HierarchicalActionSet actionSet : actionSets) {
 			Action action = actionSet.getAction();
 			
 			if (!areRelatedActions(action, act)) continue;
 			
-			ITree tree = action.getNode();
-			if (tree.equals(parentTree)) { // actionSet is the parent of actSet.
+			if (action.equals(parentAct)) { // actionSet is the parent of actSet.
 				HierarchicalActionSet actSet = createActionSet(act, actionSet.getAction(), actionSet);
 				actionSet.getSubActions().add(actSet);
 				sortSubActions(actionSet);
@@ -186,6 +190,10 @@ public class HierarchicalRegrouper {
 	private Action findParentAction(Action action, List<Action> actions) {
 		
 		ITree parent = action.getNode().getParent();
+		if (action instanceof Addition) {
+			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
+		}
+		
 		if (parent.getType() == 55)  {
 			int type = action.getNode().getType();
 			// Modifier, NormalAnnotation, MarkerAnnotation, SingleMemberAnnotation
@@ -196,11 +204,13 @@ public class HierarchicalRegrouper {
 				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType, SimpleName
 				return null;
 			}
+		} else if (parent.getType() == 31) { // method declaration
+			int type = action.getNode().getType();
+			if (Checker.isStatement(type)) {// statements
+				return null;
+			}
 		}
 		
-		if (action instanceof Addition) {
-			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
-		}
 		for (Action act : actions) {
 			if (act.getNode().equals(parent)) {
 				if (areRelatedActions(act, action)) {

@@ -150,6 +150,8 @@ public abstract class Parser implements ParserInterface {
 			actionStr = actionStr.substring(index + 2);
 			if (actionStr.startsWith("MethodName")) {
 				singleEdit = singleEdit.replace("SimpleName", "MethodName");
+			} else if (actionStr.startsWith("ClassName")) {
+				singleEdit = singleEdit.replace("SimpleName", "ClassName");
 			} else {
 				if (actionStr.startsWith("Name")) {
 					char c = actionStr.charAt(5);

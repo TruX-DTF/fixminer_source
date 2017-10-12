@@ -11,21 +11,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
 import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.ListSorter;
 
 public class Test {
+	/**
+	 * Commons-lang: 54.  PZLA_PREFER_ZERO_LENGTH_ARRAYS
+	 * commons-lang: 1, 4, 5 ES_COMPARING_PARAMETER_STRING_WITH_EQ
+	 * @param args
+	 * @throws IOException
+	 */
 
 	public static void main(String[] args) throws IOException {
+		boolean b1 = false;
+		boolean b2 = false;
+		System.out.println(!b1 || b2 && b1);
+		System.out.println(b2 && b1);
 //		testV1();
 //		testV2();
-		testV3("../FPM_Violations/OAR.FPM.4222306.stderr", "OUTPUT/unparsedviolations.txt");
+//		testV3("../FPM_Violations/OAR.FPM.4225346.stderr", "OUTPUT/unparsedviolations.txt");
 //		testV4("../FPM_Violations/OAR.FPM.4222208.stderr");
 	}
 
-	private static void testV4(String inputFile) throws IOException {
+	public static void testV4(String inputFile) throws IOException {
 		FileInputStream fis = new FileInputStream(inputFile);
 		Scanner scanner = new Scanner(fis);
 		StringBuilder builder = new StringBuilder();
@@ -79,7 +90,7 @@ public class Test {
 		FileHelper.outputToFile("Dataset/a.txt", builder, false);
 	}
 
-	private static void testV3(String inputFile, String outputFile) throws IOException {
+	public static void testV3(String inputFile, String outputFile) throws IOException {
 		FileInputStream fis = new FileInputStream(inputFile);
 		Scanner scanner = new Scanner(fis);
 		
@@ -107,11 +118,17 @@ public class Test {
 		StringBuilder builder = new StringBuilder();
 		for (Map.Entry<String, List<String>> entry : types.entrySet()) {
 			System.out.println(entry.getKey());
-			if (entry.getKey().equals("#LargeHunk") || entry.getKey().equals("#TestingInfo")) {
+			if (entry.getKey().equals("#NoStatementChange")) {
+				// --- /dev/null
 				builder.append(entry.getKey() + "\n");
 				List<String> files = entry.getValue();
 				for (String file : files) {
 					builder.append("    " + file + "\n");
+					String fileName = Configuration.GUM_TREE_INPUT + "diffentries/" + file.substring(0, file.indexOf(".java")) + ".txt";
+					String content = FileHelper.readFile(fileName);
+					if (!content.contains("--- /dev/null")) {
+						System.out.println(file.substring(0, file.indexOf(".java")) + ".txt");
+					}
 				}
 			}
 		}
@@ -151,13 +168,13 @@ public class Test {
 
 	public static void testV1() throws IOException {
 		Map<String, Map<String, List<String>>> map = new HashMap<>();
-		String content = FileHelper.readFile("logs/testV1.txt");
+		String content = FileHelper.readFile("OUTPUT/list-1.txt");
 		BufferedReader reader = new BufferedReader(new StringReader(content));
 		String line = null;
 		List<String> types1 = new ArrayList<>();
 		List<String> types2 = new ArrayList<>();
 		while ((line = reader.readLine()) != null) {
-			String[] elements = line.split(" : ");
+			String[] elements = line.split(":");
 			String type = elements[0];
 			String startLine = elements[2];
 			if (!"-1".equals(startLine)) {
@@ -210,7 +227,7 @@ public class Test {
 				}
 			}
 		}
-		FileHelper.outputToFile("logs/NullV.txt", builder, false);
+		FileHelper.outputToFile("OUTPUT/NullV.txt", builder, false);
 	}
 	
 }

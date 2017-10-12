@@ -125,11 +125,14 @@ public class ViolationCodeParser {
 			int startLine = violation.getStartLineNum();
 			int endLine = violation.getEndLineNum();
 			
-			if (endLine > startLine + 5) {
-//				log.warn("#Large_Violation_Hunk: " + javaFile.getName() + ":" + startLine + ":" + endLine + ":" + alarmType);
-				continue;
-			}
+			String type = violation.getViolationType();
 			
+//			if (violationTypes != null && violationTypes.contains(type)) {
+////				if (endLine > startLine + 5) {
+//////					log.warn("#Large_Violation_Hunk: " + javaFile.getName() + ":" + startLine + ":" + endLine + ":" + alarmType);
+////					continue;
+////				}
+//			}
 			ViolationSourceCodeTree alarmTree = new ViolationSourceCodeTree(javaFile, startLine, endLine);
 			alarmTree.extract();
 			List<ITree> matchedTrees = alarmTree.getViolationSourceCodeTrees();
@@ -156,13 +159,15 @@ public class ViolationCodeParser {
 			
 			startLine = alarmTree.getViolationFinalStartLine();
 			endLine = alarmTree.getViolationFinalEndLine();
-			String sourceCode = readSourceCode(javaFile, startLine, endLine);
+			String sourceCode = readSourceCode(javaFile, startLine, endLine, violation.getViolationType());
 			this.sourceCode += sourceCode + "\n";
 		}
 	}
 
-	private String readSourceCode(File javaFile, int startLine, int endLine) {
+	private String readSourceCode(File javaFile, int startLine, int endLine, String violationType) {
 		StringBuilder sourceCode = new StringBuilder("##Source_Code:\n");
+		sourceCode.append(violationType).append("\n");
+		sourceCode.append(javaFile.getName().replaceAll("#", "/")).append("\nPosition: ").append(startLine).append(" : ").append(endLine).append("\n");
 		FileInputStream fis = null;
 		Scanner scanner = null;
 		
@@ -258,4 +263,9 @@ public class ViolationCodeParser {
 		}
 		return violations;
 	}
+
+	public void setTypes(List<String> violationTypes) {
+		this.violationTypes = violationTypes;
+	}
+	private List<String> violationTypes = null;
 }
