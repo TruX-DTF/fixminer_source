@@ -12,12 +12,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.ListSorter;
 import edu.lu.uni.serval.utils.MapSorter;
 
 public class Statistic {
+	private static Map<String, Integer> map1 = new HashMap<String, Integer>();
+	private static Map<String, Integer> map2 = new HashMap<>();
+	
 	public static void main(String[] args) throws IOException {
+		/*
+		 * DM_DEFAULT_ENCODING
+		 * NP_NONNULL_RETURN_VIOLATION
+		 * NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE
+		 * NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE
+		 * ODR_OPEN_DATABASE_RESOURCE
+		 * PZLA_PREFER_ZERO_LENGTH_ARRAYS
+		 * RI_REDUNDANT_INTERFACES
+		 * RV_RETURN_VALUE_IGNORED_BAD_PRACTICE
+		 * RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT
+		 * SE_NO_SERIALVERSIONID
+		 * SF_SWITCH_NO_DEFAULT
+		 * SIC_INNER_SHOULD_BE_STATIC
+		 * SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING
+		 * UC_USELESS_CONDITION
+		 * UC_USELESS_OBJECT
+		 * UCF_USELESS_CONTROL_FLOW
+		 * WMI_WRONG_MAP_ITERATOR
+		 */
 //		/*
 //		 * Quantities' distribution of all violation types.
 //		 */
@@ -48,12 +71,52 @@ public class Statistic {
 		/**
 		 * Do statistics from two files: 
 		 */
-//		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "");
+		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "", map1, 16918530, 730);
 //		statistics("../FPM_Violations/RQ1/distinct-fixed-summary-per-project-vtype.csv", "Fixed");
-		statistics("../FPM_Violations/RQ1/fixedViolations-v-1.0.csv", "Fixed_1.0");
+		statistics("../FPM_Violations/RQ1/fixedViolations-v-1.0.csv", "Fixed_1.0", map2, 88927, 548);
 //		fixedVSunfixed();
+		StringBuilder builder = new StringBuilder();
+		for (Map.Entry<String, Integer> entry : map1.entrySet()) {
+			String key = entry.getKey();
+			builder.append(key + "," + entry.getValue() + "," + (map2.containsKey(key) ? map2.get(key) : 0) + "\n");
+		}
+		FileHelper.outputToFile(Configuration.ROOT_PATH + "RQ2/quantity-ratios.csv", builder, false);
 		
-		statisticsOfFixedViolations();
+//		statisticsOfFixedViolations();
+		
+		//rsync -avP gaia-cluster:/work/users/kliu/FixPattern/FPM_Violations/UnfixedViolations/BC_UNCONFIRMED_CAST/Sizes.list Sizes/Sizes1.list
+//		String s = "rsync -avP gaia-cluster:/work/users/kliu/FixPattern/FPM_Violations/UnfixedViolations_RQ3/";
+//		File[] files = new File(Configuration.ROOT_PATH + "RQ3_1/UnfixedInstances/").listFiles();
+//		int i = 0;
+//		for (File file : files) {
+//			if (file.getName().endsWith(".list")) {
+//				i ++;
+//				System.out.println(s + FileHelper.getFileNameWithoutExtension(file) + "/Sizes.list Sizes/Sizes" + i + ".list");
+//			}
+//		}
+//		tokenSizes();
+	}
+	
+	public static void tokenSizes() {
+		List<Integer> sizes = new ArrayList<>();
+		List<File> files = FileHelper.getAllFilesInCurrentDiectory(Configuration.ROOT_PATH + "RQ3_1/Sizes/", ".list");
+		StringBuilder builder = new StringBuilder();
+		for (File file : files) {
+			try {
+				String content = FileHelper.readFile(file);
+				BufferedReader reader = new BufferedReader(new StringReader(content));
+				String line = null;
+				while ((line = reader.readLine()) != null) {
+					sizes.add(Integer.parseInt(line));
+					builder.append("1,").append(line).append("\n");
+				}
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(sizes.size());
+		FileHelper.outputToFile(Configuration.ROOT_PATH + "RQ3_1/Sizes.csv", builder, false);
 	}
 
 	public static void statisticsOfFixedViolations() {
@@ -237,7 +300,7 @@ B: 4682
 		 */
 	}
 
-	public static void statistics(String fileName, String type) throws IOException {
+	public static void statistics(String fileName, String type, Map<String, Integer> map, int totalQ, int totalS) throws IOException {
 		FileInputStream fis = new FileInputStream(fileName);
 		Scanner scanner = new Scanner(fis);
 		
@@ -332,7 +395,7 @@ B: 4682
 		Map<String, Integer> quantityOfCategory = new HashMap<>();
 		Map<String, List<String>> violationTypesOfCategory = new HashMap<>();
 		Map<String, List<String>> projectsOfCategory = new HashMap<>();
-		StringBuilder violationsBuilder = new StringBuilder("Type,Identifier,Quantity,Widespread,Category\n");
+		StringBuilder violationsBuilder = new StringBuilder("Type,Identifier,Quantity,Ratio,Widespread,Ratio2, Categories\n");
 		int identifier = 0;
 		for (Map.Entry<String, Integer> entry : violationTypesMap.entrySet()) {
 			String violationType = entry.getKey();
@@ -342,8 +405,9 @@ B: 4682
 			if (category == null || category.equals("null")) {
 				category = "Other";
 			}
-			violationsBuilder.append(violationType + "," + identifier + "," + quantity + "," + widespreadViolationsMap.get(violationType).size()
-					+ "," + category + "\n"); 
+			int spread = widespreadViolationsMap.get(violationType).size();
+			violationsBuilder.append(violationType + "," + identifier + "," + quantity + "," + ((double) quantity / totalQ * 100) + "," 
+						+ spread + "," + ((double) spread / totalS * 100) + "," + category + "\n"); 
 			
 			if (quantityOfCategory.containsKey(category)) {
 				quantityOfCategory.put(category, quantityOfCategory.get(category) + quantity);
@@ -375,6 +439,8 @@ B: 4682
 			}
 			
 			sortedViolationTypes.add(violationType);
+			
+			map.put(violationType, quantity);
 		}
 		FileHelper.outputToFile("../FPM_Violations/RQ1/Quantity-per-" + type + "V-Type.csv", violationsBuilder, false);
 		
@@ -411,21 +477,26 @@ B: 4682
 //			builder.append("," + i);
 //		}
 //		builder.append("\n");
+		StringBuilder bui = new StringBuilder();
 		for (int i = 0; i < projectNames.size(); i++) {
 			String projectName = projectNames.get(i);
 			builder.append(projectName);
+			
 			for (int j = 0; j < sortedViolationTypes.size(); j ++) {
 				String violationType = sortedViolationTypes.get(j);
 				String key = projectName + "," + violationType;
 				Integer value = perVperProjMap.get(key);
 				if (value == null) {
 					value = 0;
+				} else {
+					bui.append(projectName).append(",").append(violationType).append(",").append(value).append(",").append(categories.get(violationType) == null ? "Other" : categories.get(violationType)).append("\n");
 				}
 				builder.append("," + value);
 			}
 			builder.append("\n");
 		}
 		FileHelper.outputToFile("../FPM_Violations/RQ1/Distribution-per-project-per-" + type + "type.csv", builder, false);
+		FileHelper.outputToFile("../FPM_Violations/RQ1/Distribution-per-project-per-" + type + "type___.csv", bui, false);
 		
 		StringBuilder ssbuilder = new StringBuilder("Type, Identifier, Quantity, Category\n");
 		Map<String, Integer> perTypePerProj = new HashMap<>();

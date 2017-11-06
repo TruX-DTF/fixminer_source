@@ -28,6 +28,9 @@ public class TestViolationParser {
 		}
 		
 		List<String> violationTypes = new ArrayList<>();
+		/*
+		 * DM_DEFAULT_ENCODING
+		 */
 		violationTypes.add("NP_NONNULL_RETURN_VIOLATION");
 		violationTypes.add("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE");
 		violationTypes.add("NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE");
@@ -52,7 +55,8 @@ public class TestViolationParser {
 		List<File> unfixedAlarmFiles = FileHelper.getAllFilesInCurrentDiectory(unfixedViolations, ".list");
 		for (File file : unfixedAlarmFiles) {
 			String fileName = FileHelper.getFileNameWithoutExtension(file);
-			if (!violationTypes.contains(fileName)) continue;
+//			if (!violationTypes.contains(fileName)) continue;
+			if (!fileName.equals("DM_DEFAULT_ENCODING")) continue;
 			FileHelper.createDirectory(unfixedFilesPath + fileName + "/");
 			FileHelper.createDirectory(unfixedPositionsFilePath + fileName + "/");
 			ViolationParser parser = new ViolationParser();

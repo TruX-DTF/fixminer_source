@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import com.github.gumtreediff.tree.ITree;
 
@@ -272,7 +274,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					}
 				}
 			}
-
 			if (children.size() == 0) {
 				List<HierarchicalActionSet> hunkActionSets = violation.getActionSets();
 				/*

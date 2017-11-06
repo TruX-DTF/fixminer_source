@@ -32,28 +32,31 @@ public class AkkaParser {
 		for (File violationT : violationTypes) {
 			if (violationT.isDirectory()) {
 				violationType = violationT.getName();
-				if (!violationType.equals("SF_SWITCH_NO_DEFAULT")) continue;
-				// input data
-				log.info("Get the input data...");
-				final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT, violationType);
-				log.info("MessageFiles: " + msgFiles.size());
-				
-				// output path
-				final String sourceCodeFilesPath = Configuration.ROOT_PATH + "UnfixedViolations_RQ3/" + violationType + "/";
-				FileHelper.deleteDirectory(sourceCodeFilesPath);
+				if (//violationType.equals("SF_SWITCH_NO_DEFAULT") ||
+//						violationType.equals("SE_NO_SERIALVERSIONID") ||
+						violationType.equals("DM_DEFAULT_ENCODING")) {
+					// input data
+					log.info("Get the input data...");
+					final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT, violationType);
+					log.info("MessageFiles: " + msgFiles.size());
+					
+					// output path
+					final String sourceCodeFilesPath = Configuration.ROOT_PATH + "UnfixedViolations_RQ3/" + violationType + "/";
+					FileHelper.deleteDirectory(sourceCodeFilesPath);
 
-				ActorSystem system = null;
-				ActorRef parsingActor = null;
-				int numberOfWorkers = 200;
-				final WorkMessage msg = new WorkMessage(0, msgFiles);
-				try {
-					log.info("Akka begins...");
-					system = ActorSystem.create("Mining-Pattern-System-" + violationType);
-					parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, sourceCodeFilesPath, violationType), "mine-pattern-actor-" + violationType);
-					parsingActor.tell(msg, ActorRef.noSender());
-				} catch (Exception e) {
-					system.shutdown();
-					e.printStackTrace();
+					ActorSystem system = null;
+					ActorRef parsingActor = null;
+					int numberOfWorkers = 200;
+					final WorkMessage msg = new WorkMessage(0, msgFiles);
+					try {
+						log.info("Akka begins...");
+						system = ActorSystem.create("Mining-Pattern-System-" + violationType);
+						parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, sourceCodeFilesPath, violationType), "mine-pattern-actor-" + violationType);
+						parsingActor.tell(msg, ActorRef.noSender());
+					} catch (Exception e) {
+						system.shutdown();
+						e.printStackTrace();
+					}
 				}
 			}
 		}

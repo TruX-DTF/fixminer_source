@@ -14,7 +14,7 @@ import edu.lu.uni.serval.utils.FileHelper;
 public class Categories {
 
 	public static void main(String[] args) throws IOException {
-		String content = FileHelper.readFile(Configuration.ROOT_PATH + "RQ1/Quantity-per-V-Type.csv");
+		String content = FileHelper.readFile(Configuration.ROOT_PATH + "RQ1/Quantity-per-Fixed_1.0V-Type.csv");//"RQ1/Quantity-per-V-Type.csv");
 		BufferedReader reader = new BufferedReader(new StringReader(content));
 		String line = reader.readLine();
 		int counter = 0;

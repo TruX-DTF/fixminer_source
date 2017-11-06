@@ -133,32 +133,43 @@ public class ViolationCodeParser {
 ////					continue;
 ////				}
 //			}
-			ViolationSourceCodeTree alarmTree = new ViolationSourceCodeTree(javaFile, startLine, endLine);
-			alarmTree.extract();
-			List<ITree> matchedTrees = alarmTree.getViolationSourceCodeTrees();
-			if (matchedTrees.size() == 0) {
-				System.err.println("#Null_Violation_Hunk: " + javaFile.getName() + ":" + startLine + ":" + endLine);
-				continue;
+			SimpleTree simpleTree = null;
+			if ("EQ_DOESNT_OVERRIDE_EQUALS".equals(type)|| "HE_EQUALS_USE_HASHCODE".equals(type) || "HE_INHERITS_EQUALS_USE_HASHCODE".equals(type)||
+					"SE_NO_SUITABLE_CONSTRUCTOR".equals(type) || "RI_REDUNDANT_INTERFACES".equals(type)
+					||"CN_IDIOM".equals(type)||"SE_NO_SERIALVERSIONID".equals(type) || "SE_COMPARATOR_SHOULD_BE_SERIALIZABLE".equals(type)) {
+				ViolationSourceCodeTree parser = new ViolationSourceCodeTree(javaFile, violation.getStartLineNum(), violation.getEndLineNum());
+				ITree classNameTree = parser.getClassNameTokens();
+				simpleTree = new SimplifyTree().canonicalizeSourceCodeTree(classNameTree, null);
+				
+				startLine = parser.getViolationFinalStartLine();
+				endLine = parser.getViolationFinalEndLine();
+			} else {
+				ViolationSourceCodeTree alarmTree = new ViolationSourceCodeTree(javaFile, startLine, endLine);
+				alarmTree.extract();
+				List<ITree> matchedTrees = alarmTree.getViolationSourceCodeTrees();
+				if (matchedTrees.size() == 0) {
+					System.err.println("#Null_Violation_Hunk: " + javaFile.getName() + ":" + startLine + ":" + endLine);
+					continue;
+				}
+				simpleTree = new SimpleTree();
+				simpleTree.setLabel("Block");
+				simpleTree.setNodeType("Block");
+				List<SimpleTree> children = new ArrayList<>();
+				
+				for (ITree matchedTree : matchedTrees) {
+					SimpleTree simpleT = new SimplifyTree().canonicalizeSourceCodeTree(matchedTree, null);
+					children.add(simpleT);
+				}
+				simpleTree.setChildren(children);
+				
+				startLine = alarmTree.getViolationFinalStartLine();
+				endLine = alarmTree.getViolationFinalEndLine();
 			}
-			SimpleTree simpleTree = new SimpleTree();
-			simpleTree.setLabel("Block");
-			simpleTree.setNodeType("Block");
-			List<SimpleTree> children = new ArrayList<>();
-			
-			for (ITree matchedTree : matchedTrees) {
-				SimpleTree simpleT = new SimplifyTree().canonicalizeSourceCodeTree(matchedTree, null);
-				children.add(simpleT);
-			}
-			simpleTree.setChildren(children);
-			
 			String tokens = Tokenizer.getTokensDeepFirst(simpleTree);
 			String[] tokensArray = tokens.split(" ");
 			int length = tokensArray.length;
 			sizes += length + "\n";
 			this.tokens += tokens + "\n";
-			
-			startLine = alarmTree.getViolationFinalStartLine();
-			endLine = alarmTree.getViolationFinalEndLine();
 			String sourceCode = readSourceCode(javaFile, startLine, endLine, violation.getViolationType());
 			this.sourceCode += sourceCode + "\n";
 		}

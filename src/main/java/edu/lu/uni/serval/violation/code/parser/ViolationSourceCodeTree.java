@@ -98,7 +98,13 @@ public class ViolationSourceCodeTree {
 			int endPosition = startPosition + tree.getLength();
 			int endLine = cUnit.getLineNumber(endPosition - 1);
 			if (endLine < violationStartLine) continue;
-			
+			/*
+						violationT ||
+						violationType.equals("UC_USELESS_CONDITION")
+			 */
+			if (type.equals("SE_NO_SERIALVERSIONID")) {
+				
+			}
 			// FIXME the violation occurred in the Class Name
 			matchTrees(tree.getChildren());
 		}
@@ -387,6 +393,9 @@ public class ViolationSourceCodeTree {
 				&& type != 76 && type != 84 && type != 87 && type != 88) {
 				// ArrayType, PrimitiveType, SimpleType, ParameterizedType, 
 				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType
+				if (type == 42 && child.getLabel().startsWith("ClassName:")) {
+					continue;
+				}
 				if (i > 0) {
 					child = children.get(i - 1);
 					return child.getPos() + child.getLength() + 1;
@@ -684,10 +693,16 @@ public class ViolationSourceCodeTree {
 				&& type != 76 && type != 84 && type != 87 && type != 88) {
 				// ArrayType, PrimitiveType, SimpleType, ParameterizedType, 
 				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType
+				if (type == 42 && child.getLabel().startsWith("ClassName:")) {
+					newChildren.add(child);
+					continue;
+				}
 				if (i > 0) {
 					child = children.get(i - 1);
+					tree.setChildren(newChildren);
 					return child.getPos() + child.getLength() + 1;
 				} else {
+					tree.setChildren(newChildren);
 					return child.getPos() - 1;
 				}
 			} else {

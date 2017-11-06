@@ -1,0 +1,107 @@
+================================
+=========Single Pattern=========
+================================
+SIC_INNER_SHOULD_BE_STATIC_ANON:  new Type() { override some methods(...){...} }. Anonymous inner class declaration. 100%
+DE_MIGHT_IGNORE:  try{...} catch (Exception e) {...}, Exception is not any specified. 
+VA_FORMAT_STRING_USES_NEWLINE:  "\n", this new line symbol is in a StringLiteral of a format method.
+UCF_USELESS_CONTROL_FLOW:  if (conditional expression) {empty statements.}. 
+UC_USELESS_CONDITION:  if (conditional expressions) {...}. 
+UC_USELESS_OBJECT:  T1 v1 = new T1().
+PZLA_PREFER_ZERO_LENGTH_ARRAYS:  return null. 
+EI_EXPOSE_REP:  return variable;
+REC_CATCH_EXCEPTION:  try{...} catch (Exception e) {...}, Exception is not any specific exception.
+SF_SWITCH_NO_DEFAULT:  switch(exp) {case1:...case2:...}, without default statement.
+UWF_UNWRITTEN_FIELD:  return exp / variable. 
+SBSC_USE_STRINGBUFFER_CONCATENATION:  stringVariable += stringExp, 
+RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT:  return method_invocation_exp. Method invocation statement returns a value, but does not assign the value to any variable. (High false positives.)  
+NP_NONNULL_RETURN_VIOLATION:  return null.     (High false positives.) 
+================================
+========Multiple Patterns=======
+================================
+NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE:  (1) for (File file : filesArray) {...} (2) for (int i =0; i < filesArray.length; i ++) {...}
+DM_CONVERT_CASE:  (1) stringExp.toLowerCase(), 24,897  
+				  (2)stringExp.toUpperCase(). 10,406
+MS_PKGPROTECT:  (1) public static final T1 v1 = initializationExp, 2442
+	 				(2) protected static final T1 v1 = initializationExp. 175
+	 				(3) protected static T1 v1 = initializationExp. 158
+	 				(4) public static T1 v1 = initializationExp. 262,      other 46
+SIC_INNER_SHOULD_BE_STATIC:  (1) this.v1 = v2; 590
+ 							 (2) v1 = v2;  170
+ 							 (3) super(...). 213
+BC_UNCONFIRMED_CAST:  (1) T1 v1 = (T(1) v2/exp, (2) v1 = (T(1) v2/exp, (3) ((T(1) v2).exp.
+ES_COMPARING_STRINGS_WITH_EQ:  (1) stringExp1 == stringExp2    IfStatement, ReturnStatement, WhileStatement.
+							   (2) stringExp1 != stringExp2
+RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE:  (1) if (exp == null ...) {...}, 
+										   (2) if (exp != null ...) {...}, 
+										   (3) exp == null ? exp1 : exp2, 
+										   (4) exp != null ? exp1 : exp2.
+DM_NUMBER_CTOR:  (1) new Long(...), (2)new Integer(...), (3)new Short(...), (4)new Byte(...), (5)new Char(...).
+DM_FP_NUMBER_CTOR:  (1) new Double(exp), (2)new Float(exp). 
+DM_BOXED_PRIMITIVE_FOR_PARSING:  (1) Integer.valueOf(str), (2)Long.valueOf(str).  Comments: it contains fewer patterns than findbugs.	
+EI_EXPOSE_REP2:  (1) this.v1 = v2,
+				 (2) v1 = v2. 3700												
+BC_UNCONFIRMED_CAST_OF_RETURN_VALUE:  (1) T1 v1 = (T) method_invocation(),
+									  (2) v1 = (T) method_invocation(), 
+									  (3) ((T) method_invocation()).exp. 
+ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD:  (1) static_v1 = instance_exp1.method_invocation(),
+										  (2) v1 = instance_exp1.method_invocation(), 
+										  (3) v1 = exp1, other variable assignment statement. 
+RV_RETURN_VALUE_IGNORED_BAD_PRACTICE:  (1) File.mkdirs(), 
+									   (2) File.mkdir(), 
+									   (3) File.delete(), 
+									   (4) File.createNewFile(), 
+									       (5) other exp.method_invoation() returns a value. 
+SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING:  (1) sqlExecutionStatement = StringLiteral1 + stringV1 + ... +  StringLiteral2 + stringV2. 
+														   (2) sqlRelatedVariable = sqlRelatedMethodInvocation();
+OS_OPEN_STREAM:  (1) StreamType v = new StreamType(...), 2) streamVariable = new StreamType(new StreamType2(...)), e.g., 1. FileOutputStream fos = new FileOutputStream(outFile); 
+DM_DEFAULT_ENCODING:  (1) new BufferedReader(new InputStreamReader(input)), 99+ 
+					  (2) new StreamWriter(output); 
+					  (3) stringExp.getBytes(), 
+					  (4) new String(byteExp), 
+					  (5) byteExp.toString().
+ODR_OPEN_DATABASE_RESOURCE:  (1) conn.createStatement(), 
+							 (2) conn.createStatement.execute(...), 
+							 (3) PreparedStatement st = conn.prepareStatement(), 
+							 (4) DataBaseConnection conn = exp.getConnection(...). 		
+NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE:  (1) return method_invocation(...), 2) return class_instance_creation(...). 	                  
+========================================
+==========Inefficient Patterns==========
+========================================
+OBL_UNSATISFIED_OBLIGATION:  (1) StreamType v = new StreamType(...), 
+							 (2) streamVariable = new StreamType(new StreamType2(...)), 
+							 (3) sqlStatementExp.executeMethod(). e.g., 1. FileOutputStream fos = new FileOutputStream(outFile); 2. ResultSet rs = sqlStmt.executeQuery().
+OS_OPEN_STREAM_EXCEPTION_PATH:  (1) StreamType v = new StreamType(...), 
+								(2) streamVariable = new StreamType(...).
+IS2_INCONSISTENT_SYNC:  (1) return v1, 
+						(2) if(conditionalExp) {...}, 
+						(3) sqlStmt = stringLiteral1 + stringExp + stringLiteral2.   not very consistent. 
+OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE:  (1) StreamType v = new StreamType(...), 
+											(2) streamVariable = new StreamType(new StreamType2(...)), 
+											(3) sqlStatementExp.executeMethod(). e.g., 1. FileOutputStream fos = new FileOutputStream(outFile); 2. ResultSet rs = sqlStmt.executeQuery(). 
+WMI_WRONG_MAP_ITERATOR:  for statement { ... MapVariable.get(keyExp) ... }.   or NULL.  Lack of enough information.
+========================================
+=====Redundant Inconsistent Pattern=====
+========================================
+MS_SHOULD_BE_FINAL:  (1) public (28,302) static T1 v1 = exp. e.g., public static int maxStringLength = 65535. 
+					 (2) protected (6,719) static T1 v1 = exp.
+URF_UNREAD_FIELD:  (1) this.v1 = v2, (2)this.v1 = new T(), (3)private Type v = exp.		Comments: it contains more patterns than findbugs.  only pattern 3 is consistent.
+URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD:  (1) this.v1 = v2,  
+									   (2) public/protected (static) T1 v1 = exp;       Comments: only 2 is consistent.
+									   (3) v1 = exp1.
+========================================
+=========Inconsistent Patterns=========
+========================================						
+RI_REDUNDANT_INTERFACES:  super(...). Comments: not very consistent. Locate on the position of super classes.
+========================================
+==============Null Pattern==============
+========================================	
+===========Inaccurate Position==========
+NM_METHOD_NAMING_CONVENTION:               null.   Comments: violate on title, but position locates on body.
+SE_NO_SERIALVERSIONID:                     null.  
+UPM_UNCALLED_PRIVATE_METHOD: 			   null.   (method body) 
+UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR:  null.   inaccurate positions.
+==========Specific Source Code==========
+DLS_DEAD_LOCAL_STORE:                      null.   Variable assignment statements.    Comments: specific source code.
+NP_NULL_ON_SOME_PATH:  					   null. 
+NP_LOAD_OF_KNOWN_NULL_VALUE:               null.
+RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE:  null. 

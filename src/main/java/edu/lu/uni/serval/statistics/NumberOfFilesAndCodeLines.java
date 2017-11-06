@@ -20,15 +20,13 @@ import edu.lu.uni.serval.utils.FileHelper;
 public class NumberOfFilesAndCodeLines {
 
 	public static void main(String[] args) {
-//		String projectsPath = Configuration.ROOT_PATH + "LiveStudy/BugsInfo/";
-//		File[] projects = new File(projectsPath).listFiles();
-//		for (File project : projects) {
-//			if (project.isDirectory()) {
-//				new NumberOfFilesAndCodeLines().statistic(project.getName());
-//			}
-//		}
-		for (int i = 1; i <= 50; i ++) {
-			System.out.print(" & " + i);
+		String projectsPath = Configuration.ROOT_PATH + "LiveStudy/BugsInfo/";
+		File[] projects = new File(projectsPath).listFiles();
+		for (File project : projects) {
+			if (project.isDirectory()) {
+				if (project.getName().equals("poi"))
+				new NumberOfFilesAndCodeLines().statistic(project.getName());
+			}
 		}
 	}
 

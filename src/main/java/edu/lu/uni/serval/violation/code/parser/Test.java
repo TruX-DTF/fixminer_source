@@ -18,18 +18,8 @@ import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.ListSorter;
 
 public class Test {
-	/**
-	 * Commons-lang: 54.  PZLA_PREFER_ZERO_LENGTH_ARRAYS
-	 * commons-lang: 1, 4, 5 ES_COMPARING_PARAMETER_STRING_WITH_EQ
-	 * @param args
-	 * @throws IOException
-	 */
 
 	public static void main(String[] args) throws IOException {
-		boolean b1 = false;
-		boolean b2 = false;
-		System.out.println(!b1 || b2 && b1);
-		System.out.println(b2 && b1);
 //		testV1();
 //		testV2();
 //		testV3("../FPM_Violations/OAR.FPM.4225346.stderr", "OUTPUT/unparsedviolations.txt");
