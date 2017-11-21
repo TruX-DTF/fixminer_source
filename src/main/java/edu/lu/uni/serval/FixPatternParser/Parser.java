@@ -284,7 +284,7 @@ public abstract class Parser implements ParserInterface {
 		String editScripts = "";
 		String actionStr = actionSet.getActionString();
 		int index = actionStr.indexOf("@@");
-		String singleEdit = actionStr.substring(0, index).replace(" ", "");
+		String singleEdit = actionStr.substring(0, index);
 		
 		if (singleEdit.endsWith("Statement")) {
 			singleEdit = singleEdit + " " + singleEdit.substring(4, singleEdit.indexOf("Statement")).toLowerCase(Locale.ENGLISH);
@@ -312,7 +312,8 @@ public abstract class Parser implements ParserInterface {
 				singleEdit = singleEdit.replace("SimpleName", "MethodName");
 				// "MethodName:" + method.getName().getFullyQualifiedName() + ":" + argumentsList.toString()
 				String methodName = actionStr.substring(actionStr.indexOf("MethodName:") + 11);
-				methodName = methodName.substring(0, methodName.indexOf(":"));
+				int index1 = methodName.indexOf(":");
+				methodName = methodName.substring(0, (index1 < 0 ? methodName.indexOf(" ") : index));
 				singleEdit += " " + methodName;
 			} else if (actionStr.startsWith("ClassName")) {
 				singleEdit = singleEdit.replace("SimpleName", "ClassName");
