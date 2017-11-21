@@ -3,6 +3,7 @@ package edu.lu.uni.serval.FixPatternParser;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.actions.model.Move;
@@ -12,6 +13,7 @@ import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.ActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
+import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 
 /**
  * Parse fix patterns with GumTree.
@@ -251,7 +253,7 @@ public abstract class Parser implements ParserInterface {
 		String editScript = "";
 		
 		for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-			editScript += getASTEditScriptsDeepFirst(hunkActionSet, bugEndPosition, fixEndPosition);
+			editScript += getASTEditScriptsDeepFirst2(hunkActionSet, bugEndPosition, fixEndPosition);
 		}
 		return editScript;
 	}
@@ -276,6 +278,84 @@ public abstract class Parser implements ParserInterface {
 		}
 		
 		return editScripts;
+	}
+	
+	private String getASTEditScriptsDeepFirst2(HierarchicalActionSet actionSet, int bugEndPosition, int fixEndPosition) {
+		String editScripts = "";
+		String actionStr = actionSet.getActionString();
+		int index = actionStr.indexOf("@@");
+		String singleEdit = actionStr.substring(0, index).replace(" ", "");
+		
+		if (singleEdit.endsWith("Statement")) {
+			singleEdit = singleEdit + " " + singleEdit.substring(4, singleEdit.indexOf("Statement")).toLowerCase(Locale.ENGLISH);
+		} else {
+			singleEdit = handleSimpleNameNode2(singleEdit, actionStr, index, actionSet);
+		}
+		editScripts += singleEdit + " ";
+		
+		for (HierarchicalActionSet subActionSet : actionSet.getSubActions()) {
+			int position = subActionSet.getAction().getPosition();
+			actionStr = subActionSet.getActionString();
+			if (isOutofPosition(actionStr, position, bugEndPosition, fixEndPosition)) {
+				continue;
+			}
+			editScripts += getASTEditScriptsDeepFirst2(subActionSet, bugEndPosition, fixEndPosition);
+		}
+		
+		return editScripts;
+	}
+	
+	private String handleSimpleNameNode2(String singleEdit, String actionStr, int index, HierarchicalActionSet actionSet) {
+		if (singleEdit.endsWith("SimpleName")) {
+			actionStr = actionStr.substring(index + 2);
+			if (actionStr.startsWith("MethodName")) {
+				singleEdit = singleEdit.replace("SimpleName", "MethodName");
+				// "MethodName:" + method.getName().getFullyQualifiedName() + ":" + argumentsList.toString()
+				String methodName = actionStr.substring(actionStr.indexOf("MethodName:") + 11);
+				methodName = methodName.substring(0, methodName.indexOf(":"));
+				singleEdit += " " + methodName;
+			} else if (actionStr.startsWith("ClassName")) {
+				singleEdit = singleEdit.replace("SimpleName", "ClassName");
+				String className = actionStr.substring(actionStr.indexOf("ClassName:") + 10);
+				className = className.substring(0, (className.indexOf(" ") < 0 ? className.length() : className.indexOf(" ")));
+				singleEdit += " " + className;
+			} else {
+				if (actionStr.startsWith("Name")) {
+					char c = actionStr.charAt(5);
+					if (Character.isUpperCase(c)) {
+						singleEdit = singleEdit.replace("SimpleName", "Name");
+						String name = actionStr.substring(actionStr.indexOf("Name:") + 5);
+						name = name.substring(0, (name.indexOf(" ") < 0 ? name.length() : name.indexOf(" ")));
+						singleEdit += " " + name;
+					} else {
+						singleEdit = singleEdit.replace("SimpleName", "Variable");
+						String var = actionStr.substring(0, (actionStr.indexOf(" ") < 0 ? actionStr.length() : actionStr.indexOf(" ")));
+						var = new SimplifyTree().canonicalVariableName(var, actionSet.getAction().getNode());
+						singleEdit += " " + var;
+					}
+				} else {
+					singleEdit = singleEdit.replace("SimpleName", "Variable");
+					String var = actionStr.substring(0, (actionStr.indexOf(" ") < 0 ? actionStr.length() : actionStr.indexOf(" ")));
+					var = new SimplifyTree().canonicalVariableName(var, actionSet.getAction().getNode());
+					singleEdit += " " + var;
+				}
+			}
+		} else {
+			if (actionSet.getSubActions() != null && actionSet.getSubActions().size() > 0) {
+				singleEdit += " " + actionSet.getAstNodeType()+ "exp";
+			} else {
+				if (singleEdit.endsWith("CharacterLiteral")) {
+					singleEdit += " charLiteral";
+				} else if (singleEdit.endsWith("NumberLiteral")) {
+					singleEdit += " numLiteral";
+				} else if (singleEdit.endsWith("StringLiteral")) {
+					singleEdit += " strLiteral";
+				} else {
+					singleEdit += " " + actionSet.getNode().getLabel();
+				}
+			}
+		}
+		return singleEdit;
 	}
 	
 	protected String getAstEditScripts(List<HierarchicalActionSet> actionSets, int bugEndLine, int fixEndLine) {

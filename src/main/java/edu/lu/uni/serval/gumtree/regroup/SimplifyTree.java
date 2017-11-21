@@ -342,7 +342,7 @@ public class SimplifyTree {
 		return simpleTree;
 	}
 
-	private String canonicalVariableName(String label, ITree tree) {
+	public String canonicalVariableName(String label, ITree tree) {
 		ITree parent = tree.getParent();
 		if (parent == null) {
 			return label;
