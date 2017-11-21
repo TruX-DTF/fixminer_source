@@ -159,6 +159,10 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				 */
 				// 1. First level: AST node type.
 				String astEditScripts = getASTEditScriptsDeepFirst(hunkActionSets, bugEndPosition, fixEndPosition);
+				if (astEditScripts.contains("\n")) {
+					System.err.println("===+++===: "  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
+						violation.getEndLineNum() + ":" + violation.getViolationType());
+				}
 				// 2. source code: raw tokens
 				// 3. abstract identifiers: 
 				// 4. semi-source code: 

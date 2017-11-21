@@ -250,12 +250,12 @@ public abstract class Parser implements ParserInterface {
 	}
 
 	protected String getASTEditScriptsDeepFirst(List<HierarchicalActionSet> hunkActionSets, int bugEndPosition, int fixEndPosition) {
-		String editScript = "";
+		StringBuilder editScript = new StringBuilder();
 		
 		for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-			editScript += getASTEditScriptsDeepFirst2(hunkActionSet, bugEndPosition, fixEndPosition);
+			editScript.append(getASTEditScriptsDeepFirst2(hunkActionSet, bugEndPosition, fixEndPosition));
 		}
-		return editScript;
+		return editScript.toString();
 	}
 	
 	private String getASTEditScriptsDeepFirst(HierarchicalActionSet actionSet, int bugEndPosition, int fixEndPosition) {
@@ -281,7 +281,7 @@ public abstract class Parser implements ParserInterface {
 	}
 	
 	private String getASTEditScriptsDeepFirst2(HierarchicalActionSet actionSet, int bugEndPosition, int fixEndPosition) {
-		String editScripts = "";
+		StringBuilder editScripts = new StringBuilder();
 		String actionStr = actionSet.getActionString();
 		int index = actionStr.indexOf("@@");
 		String singleEdit = actionStr.substring(0, index);
@@ -291,7 +291,7 @@ public abstract class Parser implements ParserInterface {
 		} else {
 			singleEdit = handleSimpleNameNode2(singleEdit, actionStr, index, actionSet);
 		}
-		editScripts += singleEdit + " ";
+		editScripts.append(singleEdit).append(" ");
 		
 		for (HierarchicalActionSet subActionSet : actionSet.getSubActions()) {
 			int position = subActionSet.getAction().getPosition();
@@ -299,10 +299,10 @@ public abstract class Parser implements ParserInterface {
 			if (isOutofPosition(actionStr, position, bugEndPosition, fixEndPosition)) {
 				continue;
 			}
-			editScripts += getASTEditScriptsDeepFirst2(subActionSet, bugEndPosition, fixEndPosition);
+			editScripts.append(getASTEditScriptsDeepFirst2(subActionSet, bugEndPosition, fixEndPosition));
 		}
 		
-		return editScripts;
+		return editScripts.toString();
 	}
 	
 	private String handleSimpleNameNode2(String singleEdit, String actionStr, int index, HierarchicalActionSet actionSet) {
@@ -310,15 +310,18 @@ public abstract class Parser implements ParserInterface {
 			actionStr = actionStr.substring(index + 2);
 			if (actionStr.startsWith("MethodName")) {
 				singleEdit = singleEdit.replace("SimpleName", "MethodName");
-				// "MethodName:" + method.getName().getFullyQualifiedName() + ":" + argumentsList.toString()
 				String methodName = actionStr.substring(actionStr.indexOf("MethodName:") + 11);
 				int index1 = methodName.indexOf(":");
-				methodName = methodName.substring(0, (index1 < 0 ? methodName.indexOf(" ") : index));
+				int index2 = methodName.indexOf(" ");
+				index = (index1 < 0 || index1 > index2) ? index2 : index1;
+				methodName = methodName.substring(0, index);
 				singleEdit += " " + methodName;
 			} else if (actionStr.startsWith("ClassName")) {
 				singleEdit = singleEdit.replace("SimpleName", "ClassName");
 				String className = actionStr.substring(actionStr.indexOf("ClassName:") + 10);
-				className = className.substring(0, (className.indexOf(" ") < 0 ? className.length() : className.indexOf(" ")));
+				int index1 = className.indexOf(" ");
+				index = index1 < 0 ? className.length() : index1;
+				className = className.substring(0, index);
 				singleEdit += " " + className;
 			} else {
 				if (actionStr.startsWith("Name")) {
@@ -326,19 +329,23 @@ public abstract class Parser implements ParserInterface {
 					if (Character.isUpperCase(c)) {
 						singleEdit = singleEdit.replace("SimpleName", "Name");
 						String name = actionStr.substring(actionStr.indexOf("Name:") + 5);
-						name = name.substring(0, (name.indexOf(" ") < 0 ? name.length() : name.indexOf(" ")));
+						int index1 = name.indexOf(" ");
+						index = index1 < 0 ? name.length() : index1;
+						name = name.substring(0, index);
 						singleEdit += " " + name;
 					} else {
 						singleEdit = singleEdit.replace("SimpleName", "Variable");
-						String var = actionStr.substring(0, (actionStr.indexOf(" ") < 0 ? actionStr.length() : actionStr.indexOf(" ")));
+						int index1 = actionStr.indexOf(" ");
+						index = index1 < 0 ? actionStr.length() : index1;
+						String var = actionStr.substring(0, index);
 						var = new SimplifyTree().canonicalVariableName(var, actionSet.getAction().getNode());
-						singleEdit += " " + var;
+						singleEdit += " " + var.replaceAll(" ", "");
 					}
 				} else {
 					singleEdit = singleEdit.replace("SimpleName", "Variable");
 					String var = actionStr.substring(0, (actionStr.indexOf(" ") < 0 ? actionStr.length() : actionStr.indexOf(" ")));
 					var = new SimplifyTree().canonicalVariableName(var, actionSet.getAction().getNode());
-					singleEdit += " " + var;
+					singleEdit += " " + var.replaceAll(" ", "");
 				}
 			}
 		} else {
@@ -353,6 +360,7 @@ public abstract class Parser implements ParserInterface {
 					singleEdit += " strLiteral";
 				} else {
 					singleEdit += " " + actionSet.getNode().getLabel();
+					System.err.println("=======" + actionSet.getNode().getLabel());
 				}
 			}
 		}
