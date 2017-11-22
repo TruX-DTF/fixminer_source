@@ -13,6 +13,7 @@ import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.ActionFilter;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
+import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 
 /**
@@ -358,9 +359,55 @@ public abstract class Parser implements ParserInterface {
 					singleEdit += " numLiteral";
 				} else if (singleEdit.endsWith("StringLiteral")) {
 					singleEdit += " strLiteral";
-				} else {
+				} else if (singleEdit.endsWith("BooleanLiteral") || singleEdit.endsWith("NullLiteral") || singleEdit.endsWith("Operator") ||
+						singleEdit.endsWith("ThisExpression") || singleEdit.endsWith("TypeLiteral") || singleEdit.endsWith("Instanceof") ||
+						singleEdit.endsWith("New") || singleEdit.endsWith("WildcardType") || singleEdit.endsWith("SimpleType") ||
+						singleEdit.endsWith("QualifiedType") || singleEdit.endsWith("PrimitiveType") || singleEdit.endsWith("NameQualifiedType")) {
 					singleEdit += " " + actionSet.getNode().getLabel();
-					System.err.println("=======" + actionSet.getNode().getLabel());
+				} else if (singleEdit.endsWith("SimpleName")) {
+					actionStr = actionStr.substring(index + 2);
+					if (actionStr.startsWith("MethodName")) {
+						singleEdit = singleEdit.replace("SimpleName", "MethodName");
+						String methodName = actionStr.substring(actionStr.indexOf("MethodName:") + 11);
+						int index1 = methodName.indexOf(":");
+						int index2 = methodName.indexOf(" ");
+						index = (index1 < 0 || index1 > index2) ? index2 : index1;
+						methodName = methodName.substring(0, index);
+						singleEdit += " " + methodName;
+					} else if (actionStr.startsWith("ClassName")) {
+						singleEdit = singleEdit.replace("SimpleName", "ClassName");
+						String className = actionStr.substring(actionStr.indexOf("ClassName:") + 10);
+						int index1 = className.indexOf(" ");
+						index = index1 < 0 ? className.length() : index1;
+						className = className.substring(0, index);
+						singleEdit += " " + className;
+					} else {
+						if (actionStr.startsWith("Name")) {
+							char c = actionStr.charAt(5);
+							if (Character.isUpperCase(c)) {
+								singleEdit = singleEdit.replace("SimpleName", "Name");
+								String name = actionStr.substring(actionStr.indexOf("Name:") + 5);
+								int index1 = name.indexOf(" ");
+								index = index1 < 0 ? name.length() : index1;
+								name = name.substring(0, index);
+								singleEdit += " " + name;
+							} else {
+								singleEdit = singleEdit.replace("SimpleName", "Variable");
+								int index1 = actionStr.indexOf(" ");
+								index = index1 < 0 ? actionStr.length() : index1;
+								String var = actionStr.substring(0, index);
+								var = new SimplifyTree().canonicalVariableName(var, actionSet.getAction().getNode());
+								singleEdit += " " + var.replaceAll(" ", "");
+							}
+						} else {
+							singleEdit = singleEdit.replace("SimpleName", "Variable");
+							String var = actionStr.substring(0, (actionStr.indexOf(" ") < 0 ? actionStr.length() : actionStr.indexOf(" ")));
+							var = new SimplifyTree().canonicalVariableName(var, actionSet.getAction().getNode());
+							singleEdit += " " + var.replaceAll(" ", "");
+						}
+					}
+				} else {
+					singleEdit += " " + actionSet.getAstNodeType()+ "exp";
 				}
 			}
 		}
