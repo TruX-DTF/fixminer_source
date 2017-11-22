@@ -407,7 +407,12 @@ public abstract class Parser implements ParserInterface {
 						}
 					}
 				} else {
-					singleEdit += " " + actionSet.getAstNodeType()+ "exp";
+					ITree nodeTree = actionSet.getNode();
+					if (nodeTree.getChildren().size() > 0) {
+						singleEdit += " " + actionSet.getAstNodeType()+ "exp";
+					} else {
+						singleEdit += " " +  nodeTree.getLabel().replaceAll(" ", "");
+					}
 				}
 			}
 		}

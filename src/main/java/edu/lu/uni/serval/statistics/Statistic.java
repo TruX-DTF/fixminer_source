@@ -71,18 +71,18 @@ public class Statistic {
 		/**
 		 * Do statistics from two files: 
 		 */
-		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "", map1, 16918530, 730);
-//		statistics("../FPM_Violations/RQ1/distinct-fixed-summary-per-project-vtype.csv", "Fixed");
-		statistics("../FPM_Violations/RQ1/fixedViolations-v-1.0.csv", "Fixed_1.0", map2, 88927, 548);
-//		fixedVSunfixed();
-		StringBuilder builder = new StringBuilder();
-		for (Map.Entry<String, Integer> entry : map1.entrySet()) {
-			String key = entry.getKey();
-			builder.append(key + "," + entry.getValue() + "," + (map2.containsKey(key) ? map2.get(key) : 0) + "\n");
-		}
-		FileHelper.outputToFile(Configuration.ROOT_PATH + "RQ2/quantity-ratios.csv", builder, false);
+//		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "", map1, 16918530, 730);
+////		statistics("../FPM_Violations/RQ1/distinct-fixed-summary-per-project-vtype.csv", "Fixed");
+//		statistics("../FPM_Violations/RQ1/fixedViolations-v-1.0.csv", "Fixed_1.0", map2, 88927, 548);
+////		fixedVSunfixed();
+//		StringBuilder builder = new StringBuilder();
+//		for (Map.Entry<String, Integer> entry : map1.entrySet()) {
+//			String key = entry.getKey();
+//			builder.append(key + "," + entry.getValue() + "," + (map2.containsKey(key) ? map2.get(key) : 0) + "\n");
+//		}
+//		FileHelper.outputToFile(Configuration.ROOT_PATH + "RQ2/quantity-ratios.csv", builder, false);
 		
-//		statisticsOfFixedViolations();
+		statisticsOfFixedViolations();
 		
 		//rsync -avP gaia-cluster:/work/users/kliu/FixPattern/FPM_Violations/UnfixedViolations/BC_UNCONFIRMED_CAST/Sizes.list Sizes/Sizes1.list
 //		String s = "rsync -avP gaia-cluster:/work/users/kliu/FixPattern/FPM_Violations/UnfixedViolations_RQ3/";
@@ -120,7 +120,7 @@ public class Statistic {
 	}
 
 	public static void statisticsOfFixedViolations() {
-		String statistic = "../FPM_Violations/OUTPUT";
+		String statistic = "../FPM_Violations/OUTPUT2/";
 		List<File> files = FileHelper.getAllFiles(statistic, ".list");
 		
 		int positions = 0;
@@ -201,6 +201,9 @@ public class Statistic {
 						} else {
 							types1.put(type, 1);
 						}
+						if (line.startsWith("#NullSourceCode:")) {
+							System.out.println(line);
+						}
 					}
 				} catch(IOException e) {
 					e.printStackTrace();
@@ -241,14 +244,17 @@ public class Statistic {
 //		}
 		int sum3 = 0;
 		int sum4 = 0;
+		int sum5 = 0;
 		for (Map.Entry<String, Integer> entry : types1.entrySet()) {
 			System.out.println(entry.getKey() + ": " + entry.getValue());
 			if (!entry.getKey().startsWith("#PureDeletion")) {
 				if (!entry.getKey().startsWith("#Timeout") && !entry.getKey().startsWith("#TestViolation"))
 					sum3 += entry.getValue();
 				else sum4 += entry.getValue();
+				sum5+= entry.getValue();
 			}
 		}
+		System.out.println(sum5);
 		
 		System.out.println(i);
 		System.out.println("\n\nStatistics:\nPositions: " + positions);
@@ -268,9 +274,9 @@ public class Statistic {
 //		System.out.println("B: " + (numV + testAlarms + timeout));
 		System.out.println(testAlarms + nullGumTreeResults + noSourceCodeChagnes + noStatementChanges +
 				nullDiffentry + nullMappingGumTreeResults + nullSourceCode + timeout + TestingInfo);
-		System.out.println(nullGumTreeResults + noSourceCodeChagnes + noStatementChanges +
-				nullDiffentry + nullMappingGumTreeResults + nullSourceCode + TestingInfo);
-		System.out.println(testAlarms + timeout);
+//		System.out.println(nullGumTreeResults + noSourceCodeChagnes + noStatementChanges +
+//				nullDiffentry + nullMappingGumTreeResults + nullSourceCode + TestingInfo);
+//		System.out.println(testAlarms + timeout);
 //		System.out.println(sum);
 //		System.out.println(sum2);
 		System.out.println(sum3);

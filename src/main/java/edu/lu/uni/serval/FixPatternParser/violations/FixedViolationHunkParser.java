@@ -144,13 +144,17 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				}
 				
 				// Obtain Source Code of patches from DiffEntries.
-//				String patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isPureInsert);
 				String patchSourceCode = this.readPatchSourceCode(violation, bugStartLine, bugEndLine, fixStartLine, fixEndLine);
 				if ("".equals(patchSourceCode)) {
-					this.nullSourceCode ++;
-					this.unfixedViolations += "#NullSourceCode:" + revFile.getName() + ":" + violation.getStartLineNum() 
-					+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-					continue;
+					patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isPureInsert);
+					if ("".equals(patchSourceCode)) {
+						this.nullSourceCode ++;
+						this.unfixedViolations += "#NullSourceCode:" + revFile.getName() + ":" + violation.getStartLineNum() 
+						+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
+//						continue;
+						patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isPureInsert);
+						
+					}
 				}
 				
 				/**
