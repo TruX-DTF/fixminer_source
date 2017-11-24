@@ -123,8 +123,8 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				}
 				
 				if (fixStartLine == 0 && bugStartLine != 0) {// pure delete actions.
-					this.pureDeletions ++;
-					this.unfixedViolations += "#PureDeletion:" + revFile.getName() + ":" + violation.getStartLineNum() + ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
+//					this.pureDeletions ++;
+//					this.unfixedViolations += "#PureDeletion:" + revFile.getName() + ":" + violation.getStartLineNum() + ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
 					// get the exact buggy code by violation's position. TODO later
 				}
 				
@@ -137,9 +137,9 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 //					continue;
 				}
 				if ((bugEndLine - bugStartLine > Configuration.HUNK_SIZE  && !isPureInsert) || fixEndLine - fixStartLine > Configuration.HUNK_SIZE) {
-					this.largeHunk ++;
-					this.unfixedViolations += "#LargeHunk:" + revFile.getName() + ":" + violation.getStartLineNum() 
-					+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
+//					this.largeHunk ++;
+//					this.unfixedViolations += "#LargeHunk:" + revFile.getName() + ":" + violation.getStartLineNum() 
+//					+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
 //					continue;
 				}
 				
@@ -151,9 +151,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 						this.nullSourceCode ++;
 						this.unfixedViolations += "#NullSourceCode:" + revFile.getName() + ":" + violation.getStartLineNum() 
 						+ ":" + violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-//						continue;
-						patchSourceCode = getPatchSourceCode(prevFile, revFile, bugStartLine, bugEndLine, fixStartLine, fixEndLine, isPureInsert);
-						
+						continue;
 					}
 				}
 				
@@ -180,7 +178,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 //						continue;
 //					}
 					this.nullMappingGumTreeResult ++;
-					this.unfixedViolations += "#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
+					this.unfixedViolations += "#NullMatchedGumTreeResult1:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
 							violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
 					continue;
 				}

@@ -71,18 +71,18 @@ public class Statistic {
 		/**
 		 * Do statistics from two files: 
 		 */
-//		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "", map1, 16918530, 730);
-////		statistics("../FPM_Violations/RQ1/distinct-fixed-summary-per-project-vtype.csv", "Fixed");
-//		statistics("../FPM_Violations/RQ1/fixedViolations-v-1.0.csv", "Fixed_1.0", map2, 88927, 548);
-////		fixedVSunfixed();
-//		StringBuilder builder = new StringBuilder();
-//		for (Map.Entry<String, Integer> entry : map1.entrySet()) {
-//			String key = entry.getKey();
-//			builder.append(key + "," + entry.getValue() + "," + (map2.containsKey(key) ? map2.get(key) : 0) + "\n");
-//		}
-//		FileHelper.outputToFile(Configuration.ROOT_PATH + "RQ2/quantity-ratios.csv", builder, false);
+		statistics("../FPM_Violations/RQ1/all-leafnodes-per-project-vtype.csv", "", map1, 16918530, 730);
+//		statistics("../FPM_Violations/RQ1/distinct-fixed-summary-per-project-vtype.csv", "Fixed");
+		statistics("../FPM_Violations/RQ1/fixedViolations-v-1.0.csv", "Fixed_1.0", map2, 88927, 548);
+//		fixedVSunfixed();
+		StringBuilder builder = new StringBuilder();
+		for (Map.Entry<String, Integer> entry : map1.entrySet()) {
+			String key = entry.getKey();
+			builder.append(key + "," + entry.getValue() + "," + (map2.containsKey(key) ? map2.get(key) : 0) + "\n");
+		}
+		FileHelper.outputToFile(Configuration.ROOT_PATH + "RQ2/quantity-ratios.csv", builder, false);
 		
-		statisticsOfFixedViolations();
+//		statisticsOfFixedViolations();
 		
 		//rsync -avP gaia-cluster:/work/users/kliu/FixPattern/FPM_Violations/UnfixedViolations/BC_UNCONFIRMED_CAST/Sizes.list Sizes/Sizes1.list
 //		String s = "rsync -avP gaia-cluster:/work/users/kliu/FixPattern/FPM_Violations/UnfixedViolations_RQ3/";
@@ -120,7 +120,7 @@ public class Statistic {
 	}
 
 	public static void statisticsOfFixedViolations() {
-		String statistic = "../FPM_Violations/OUTPUT2/";
+		String statistic = "../FPM_Violations/OUTPUT3/";
 		List<File> files = FileHelper.getAllFiles(statistic, ".list");
 		
 		int positions = 0;
@@ -848,9 +848,9 @@ B: 4682
 			if (fixedQuantity == null) {
 				builder.append(violationType + "," + 0 + "," + quantity + "," + quantity  + ",0.0,1\n");
 			} else {
-				builder.append(violationType + "," + fixedQuantity + "," + (quantity - fixedQuantity)
+				builder.append(violationType + "," + fixedQuantity + "," + (quantity)
 						+ "," + quantity + "," + ((double)fixedQuantity) / ((double) quantity)
-						+ "," + ((double)(quantity - fixedQuantity)) / ((double) quantity) + "\n");
+						+ "," + ((double)(quantity)) / ((double) quantity) + "\n");
 			}
 		}
 		FileHelper.outputToFile("../FPM_Violations/RQ1/Distribution-per-Fixed-type-VS-per-unFixed-type.csv", builder, false);
@@ -893,7 +893,7 @@ B: 4682
 			String line= reader.readLine();
 			while ((line = reader.readLine()) != null) {
 				String[] elements = line.split(",");
-				map.put(elements[0], Integer.valueOf(elements[1]));
+				map.put(elements[0], Integer.valueOf(elements[2]));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
