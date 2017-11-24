@@ -364,6 +364,10 @@ public abstract class Parser implements ParserInterface {
 						singleEdit.endsWith("New") || singleEdit.endsWith("WildcardType") || singleEdit.endsWith("SimpleType") ||
 						singleEdit.endsWith("QualifiedType") || singleEdit.endsWith("PrimitiveType") || singleEdit.endsWith("NameQualifiedType")) {
 					singleEdit += " " + actionSet.getNode().getLabel();
+				} else if (singleEdit.endsWith("SuperConstructorInvocation")) {
+					singleEdit += " super";
+				} else if (singleEdit.endsWith("ConstructorInvocation")) {
+					singleEdit += " this";
 				} else if (singleEdit.endsWith("SimpleName")) {
 					actionStr = actionStr.substring(index + 2);
 					if (actionStr.startsWith("MethodName")) {

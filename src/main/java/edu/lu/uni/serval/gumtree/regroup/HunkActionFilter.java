@@ -391,6 +391,8 @@ public class HunkActionFilter {
 					int bugHunkEndLine = violation.getBugEndLineNum();
 					int fixHunkStartLine = violation.getFixStartLineNum();
 					int fixHunkEndLine = violation.getFixEndLineNum();
+					int bugFixStartLineNum = violation.getBugFixStartLineNum();
+					int bugFixEndLineNum = violation.getBugFixEndLineNum();
 					
 					for (HierarchicalActionSet actionSet : actionSets) {
 						int actionBugStartLine = actionSet.getBugStartLineNum();
@@ -412,7 +414,8 @@ public class HunkActionFilter {
 								}
 								
 								// INS with MOV actions that are not identified in previous IF predicate, and pure INS actions
-								if (violation.getBugFixStartLineNum() >= actionFixEndLine && actionFixStartLine <= violation.getBugFixEndLineNum()) {
+								if (bugFixStartLineNum >= actionFixEndLine && actionFixStartLine <= bugFixEndLineNum && Math.abs(bugFixStartLineNum - actionFixStartLine) <= 3
+										&& Math.abs(bugFixEndLineNum - actionFixEndLine) <= 3) {
 									violation.getActionSets().add(actionSet);
 								}
 							}
