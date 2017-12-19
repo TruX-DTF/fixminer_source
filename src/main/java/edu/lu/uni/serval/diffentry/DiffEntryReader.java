@@ -149,4 +149,85 @@ public class DiffEntryReader {
 		return diffentryHunks;
 	}
 
+	/**
+	 * Read all hunks with pure deleted lines and added lines.
+	 * 
+	 * @param diffentryFile
+	 * @return
+	 */
+	public List<DiffEntryHunk> readHunks3(File diffentryFile) {
+		List<DiffEntryHunk> diffentryHunks = new ArrayList<>();
+		String content = FileHelper.readFile(diffentryFile);
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new StringReader(content));
+			String line = null;
+			int buggyStartLine = 0;
+			int buggyRange = 0;
+			int fixedStartLine = 0;
+			int fixedRange = 0;
+			int buggyHunkSize = 0;
+			int fixedHunkSize = 0;
+			StringBuilder hunk = new StringBuilder();
+			
+			while ((line = reader.readLine()) != null) {
+				if (RegExp.filterSignal(line.trim())) {
+					if (hunk.length() > 0) {
+						if (buggyStartLine > 0) {
+							DiffEntryHunk diffEntryHunk = new DiffEntryHunk(buggyStartLine, fixedStartLine, buggyRange, fixedRange);
+							diffEntryHunk.setHunk(hunk.toString());
+							diffentryHunks.add(diffEntryHunk);
+						}
+						hunk.setLength(0);
+					}
+					int plusIndex = line.indexOf("+");
+					String lineNum = line.substring(4, plusIndex);
+					String[] nums = lineNum.split(",");
+					buggyStartLine = Integer.parseInt(nums[0].trim());
+					if (nums.length == 2) {
+						buggyRange = Integer.parseInt(nums[1].trim());
+					}
+					
+					String lineNum2 = line.substring(plusIndex) .trim();
+					lineNum2 = lineNum2.substring(1, lineNum2.length() - 2);
+					String[] nums2 = lineNum2.split(",");
+					fixedStartLine = Integer.parseInt(nums2[0].trim());
+					if (nums2.length == 2) {
+						fixedRange = Integer.parseInt(nums2[1].trim());
+					}
+					continue;
+				} else {
+					if (line.startsWith("-")) {
+						buggyHunkSize ++;
+					} else if (line.startsWith("+")) {
+						fixedHunkSize ++;
+					}
+				}
+				hunk.append(line + "\n");
+			}
+
+			if (buggyStartLine > 0) {
+				DiffEntryHunk diffEntryHunk = new DiffEntryHunk(buggyStartLine, fixedStartLine, buggyRange, fixedRange);
+				diffEntryHunk.setHunk(hunk.toString());
+				diffEntryHunk.setBuggyHunkSize(buggyHunkSize);
+				diffEntryHunk.setFixedHunkSize(fixedHunkSize);
+				diffentryHunks.add(diffEntryHunk);
+			}
+			hunk.setLength(0);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+					reader = null;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return diffentryHunks;
+	}
 }

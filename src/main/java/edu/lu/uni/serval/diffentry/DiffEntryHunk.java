@@ -7,7 +7,9 @@ public class DiffEntryHunk {
 	private int bugRange;
 	private int fixRange;
 	private String hunk;
-
+	private int buggyHunkSize;
+	private int fixedHunkSize;
+	
 	public DiffEntryHunk(int bugLineStartNum, int fixLineStartNum, int bugRange, int fixRange) {
 		super();
 		this.bugLineStartNum = bugLineStartNum;
@@ -38,6 +40,22 @@ public class DiffEntryHunk {
 
 	public void setHunk(String hunk) {
 		this.hunk = hunk;
+	}
+
+	public int getBuggyHunkSize() {
+		return buggyHunkSize;
+	}
+
+	public void setBuggyHunkSize(int buggyHunkSize) {
+		this.buggyHunkSize = buggyHunkSize;
+	}
+
+	public int getFixedHunkSize() {
+		return fixedHunkSize;
+	}
+
+	public void setFixedHunkSize(int fixedHunkSize) {
+		this.fixedHunkSize = fixedHunkSize;
 	}
 
 	@Override
