@@ -419,7 +419,7 @@ public class HunkActionFilter {
 									violation.getActionSets().add(actionSet);
 								}
 							}
-						} else if (!actionStr.startsWith("MOV")){// ignore move actions.
+						} else {//if (!actionStr.startsWith("MOV")){// ignore move actions.
 							if (bugHunkStartLine <= actionBugStartLine && violationEndLine <= bugHunkEndLine) {
 								if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
 									violation.getActionSets().add(actionSet);

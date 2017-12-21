@@ -176,10 +176,14 @@ public class DiffEntryReader {
 						if (buggyStartLine > 0) {
 							DiffEntryHunk diffEntryHunk = new DiffEntryHunk(buggyStartLine, fixedStartLine, buggyRange, fixedRange);
 							diffEntryHunk.setHunk(hunk.toString());
+							diffEntryHunk.setBuggyHunkSize(buggyHunkSize);
+							diffEntryHunk.setFixedHunkSize(fixedHunkSize);
 							diffentryHunks.add(diffEntryHunk);
 						}
 						hunk.setLength(0);
 					}
+					buggyHunkSize = 0;
+					fixedHunkSize = 0;
 					int plusIndex = line.indexOf("+");
 					String lineNum = line.substring(4, plusIndex);
 					String[] nums = lineNum.split(",");
