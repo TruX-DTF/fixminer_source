@@ -23,9 +23,11 @@ public class DiffEntryReader {
 			int startLine2 = 0;
 			int range2 = 0;
 			StringBuilder hunk = new StringBuilder();
+			boolean sourceCode = false;
 			
 			while ((line = reader.readLine()) != null) {
 				if (RegExp.filterSignal(line.trim())) {
+					sourceCode = true;
 					if (hunk.length() > 0) {
 						if ((range < 7 && range2 < 7) || range == 0 || range2 == 0) { // filter out big hunks
 							DiffEntryHunk diffEntryHunk = new DiffEntryHunk(startLine, startLine2, range, range2);
@@ -51,7 +53,7 @@ public class DiffEntryReader {
 					}
 					continue;
 				}
-				hunk.append(line + "\n");
+				if (sourceCode) hunk.append(line + "\n");
 			}
 
 			if ((range < 7 && range2 < 7) || range == 0 || range2 == 0) { // filter out big hunks
@@ -95,9 +97,11 @@ public class DiffEntryReader {
 			int startLine2 = 0;
 			int range2 = 0;
 			StringBuilder hunk = new StringBuilder();
+			boolean sourceCode = false;
 			
 			while ((line = reader.readLine()) != null) {
 				if (RegExp.filterSignal(line.trim())) {
+					sourceCode = true;
 					if (hunk.length() > 0) {
 						if (startLine > 0) {
 							DiffEntryHunk diffEntryHunk = new DiffEntryHunk(startLine, startLine2, range, range2);
@@ -123,7 +127,7 @@ public class DiffEntryReader {
 					}
 					continue;
 				}
-				hunk.append(line + "\n");
+				if (sourceCode) hunk.append(line + "\n");
 			}
 
 			if (startLine > 0) {
