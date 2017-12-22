@@ -204,11 +204,11 @@ public class HierarchicalRegrouper {
 				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType, SimpleName
 				return null;
 			}
-		} else if (parent.getType() == 31) { // method declaration
-			int type = action.getNode().getType();
-			if (Checker.isStatement(type)) {// statements
-				return null;
-			}
+//		} else if (parent.getType() == 31) { // method declaration
+//			int type = action.getNode().getType();
+//			if (Checker.isStatement(type)) {// statements
+//				return null;
+//			}
 		}
 		
 		for (Action act : actions) {
