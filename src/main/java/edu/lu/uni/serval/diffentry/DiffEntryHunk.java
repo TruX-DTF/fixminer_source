@@ -9,6 +9,7 @@ public class DiffEntryHunk {
 	private String hunk;
 	private int buggyHunkSize;
 	private int fixedHunkSize;
+	private String file;
 	
 	public DiffEntryHunk(int bugLineStartNum, int fixLineStartNum, int bugRange, int fixRange) {
 		super();
@@ -56,6 +57,14 @@ public class DiffEntryHunk {
 
 	public void setFixedHunkSize(int fixedHunkSize) {
 		this.fixedHunkSize = fixedHunkSize;
+	}
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
 	}
 
 	@Override

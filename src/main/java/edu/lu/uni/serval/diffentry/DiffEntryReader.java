@@ -184,6 +184,7 @@ public class DiffEntryReader {
 							diffEntryHunk.setHunk(hunk.toString());
 							diffEntryHunk.setBuggyHunkSize(buggyHunkSize);
 							diffEntryHunk.setFixedHunkSize(fixedHunkSize);
+							diffEntryHunk.setFile(diffentryFile.getPath());
 							diffentryHunks.add(diffEntryHunk);
 						}
 						hunk.setLength(0);
@@ -225,6 +226,7 @@ public class DiffEntryReader {
 				diffEntryHunk.setHunk(hunk.toString());
 				diffEntryHunk.setBuggyHunkSize(buggyHunkSize);
 				diffEntryHunk.setFixedHunkSize(fixedHunkSize);
+				diffEntryHunk.setFile(diffentryFile.getPath());
 				diffentryHunks.add(diffEntryHunk);
 				hunk.setLength(0);
 			}
