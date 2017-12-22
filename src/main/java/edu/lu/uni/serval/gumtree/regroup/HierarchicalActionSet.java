@@ -44,6 +44,10 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> 
 		this.node = node;
 	}
 
+	public void setAstNodeType(String astNodeType) {
+		this.astNodeType = astNodeType;
+	}
+	
 	public String getAstNodeType() {
 		return astNodeType;
 	}

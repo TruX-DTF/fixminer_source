@@ -169,9 +169,11 @@ public class DiffEntryReader {
 			int buggyHunkSize = 0;
 			int fixedHunkSize = 0;
 			StringBuilder hunk = new StringBuilder();
+			boolean sourceCode = false;
 			
 			while ((line = reader.readLine()) != null) {
 				if (RegExp.filterSignal(line.trim())) {
+					sourceCode = true;
 					if (hunk.length() > 0) {
 						if (buggyStartLine > 0) {
 							DiffEntryHunk diffEntryHunk = new DiffEntryHunk(buggyStartLine, fixedStartLine, buggyRange, fixedRange);
@@ -181,9 +183,13 @@ public class DiffEntryReader {
 							diffentryHunks.add(diffEntryHunk);
 						}
 						hunk.setLength(0);
+						buggyStartLine = 0;
+						buggyRange = 0;
+						fixedStartLine = 0;
+						fixedRange = 0;
+						buggyHunkSize = 0;
+						fixedHunkSize = 0;
 					}
-					buggyHunkSize = 0;
-					fixedHunkSize = 0;
 					int plusIndex = line.indexOf("+");
 					String lineNum = line.substring(4, plusIndex);
 					String[] nums = lineNum.split(",");
@@ -200,25 +206,24 @@ public class DiffEntryReader {
 						fixedRange = Integer.parseInt(nums2[1].trim());
 					}
 					continue;
-				} else {
+				} else if (sourceCode) {
 					if (line.startsWith("-")) {
 						buggyHunkSize ++;
 					} else if (line.startsWith("+")) {
 						fixedHunkSize ++;
 					}
+					hunk.append(line + "\n");
 				}
-				hunk.append(line + "\n");
 			}
 
-			if (buggyStartLine > 0) {
+			if (buggyStartLine > 0 && hunk.length() > 0) {
 				DiffEntryHunk diffEntryHunk = new DiffEntryHunk(buggyStartLine, fixedStartLine, buggyRange, fixedRange);
 				diffEntryHunk.setHunk(hunk.toString());
 				diffEntryHunk.setBuggyHunkSize(buggyHunkSize);
 				diffEntryHunk.setFixedHunkSize(fixedHunkSize);
 				diffentryHunks.add(diffEntryHunk);
+				hunk.setLength(0);
 			}
-			hunk.setLength(0);
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
