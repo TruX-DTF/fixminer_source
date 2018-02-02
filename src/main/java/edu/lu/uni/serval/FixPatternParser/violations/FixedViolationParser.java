@@ -10,13 +10,11 @@ import java.util.List;
 import com.github.gumtreediff.actions.model.Action;
 
 import edu.lu.uni.serval.FixPatternParser.Parser;
-import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
 import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.ListSorter;
-import edu.lu.uni.serval.violation.code.parser.ViolationSourceCodeTree;
 
 /**
  * Parse fix patterns with GumTree.
@@ -36,13 +34,7 @@ public class FixedViolationParser extends Parser {
 	 */
 	public int resultType = 0;
 	
-	private File positionFile = null;
 	protected String violationTypes = "";
-//	protected List<Violation> uselessViolations;
-	
-	public void setPositionFile(File positionFile) {
-		this.positionFile = positionFile;
-	}
 	
 	@Override
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
@@ -88,60 +80,6 @@ public class FixedViolationParser extends Parser {
 			
 			return actionSets;
 		}
-	}
-
-	protected List<Violation> readViolations(File prevFile, File revFile) {
-		String fileName = revFile.getName();
-		List<Violation> violations = new ArrayList<>();
-		String fileContent = FileHelper.readFile(positionFile);
-		BufferedReader reader = null;
-		reader = new BufferedReader(new StringReader(fileContent));
-		String line = null;
-		try {
-			while ((line = reader.readLine()) != null) {
-				String[] positionStr = line.split(":");
-				int startLine = Integer.parseInt(positionStr[1]);
-				int endLine = Integer.parseInt(positionStr[2]);
-				String violationType = positionStr[0];
-				
-				Violation violation = new Violation(startLine, endLine, violationType);
-				violation.setFileName(fileName);
-				
-				if (startLine == -1) {
-					violation.setBugStartLineNum(0);
-					continue;
-				}
-
-				/*
-				 *  Get the parent range of a violation.
-				 *  Read DiffEntries with this range to get the start line and end line of a violation.
-				 */
-				ViolationSourceCodeTree alarmTree = new ViolationSourceCodeTree(prevFile, startLine, endLine);
-				alarmTree.locateParentNode(violationType);
-				int violationStartLine = alarmTree.getViolationFinalStartLine();
-				violation.setBugStartLineNum(violationStartLine);
-				if (violationStartLine > 0) {// 0: no source code, -1: range is too large, which contains several inner classes, methods or fields.
-					violation.setBugEndLineNum(alarmTree.getViolationFinalEndLine());
-//					if (violationType.equals("SE_NO_SERIALVERSIONID")){
-//						FileHelper.outputToFile("OUTPUT/list1.txt", line + ":" + revFile.getName() + "\n", true);
-//					}
-				} else {
-//					if (!violationType.equals("SE_NO_SERIALVERSIONID")) {
-//						FileHelper.outputToFile("OUTPUT/list.txt", line + ":" + revFile.getName() + "\n", true);
-//					}
-				}
-				violations.add(violation);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return violations;
 	}
 
 	/**
@@ -193,60 +131,6 @@ public class FixedViolationParser extends Parser {
 		return sourceCode;
 	}
 
-	/**
-	 * Read patch source code from diffentries.
-	 * @param violation
-	 * @param bugStartLine
-	 * @param bugEndLine
-	 * @param fixStartLine
-	 * @param fixEndLine
-	 * @return
-	 */
-	protected String readPatchSourceCode(Violation violation, int bugStartLine, int bugEndLine, int fixStartLine, int fixEndLine) {
-		String patch = "";
-		List<DiffEntryHunk> diffentries = violation.getHunks();
-		for (DiffEntryHunk diffentry : diffentries) {
-			int currentBugLine = diffentry.getBugLineStartNum() - 1;
-			int currentFixLine = diffentry.getFixLineStartNum() - 1;
-			String sourceCode = diffentry.getHunk();
-			
-			BufferedReader reader = new BufferedReader(new StringReader(sourceCode));
-			String line = null;
-			
-			try {
-				while ((line = reader.readLine()) != null) {
-					if (line.startsWith("+")) {
-						currentFixLine ++;
-						if (fixStartLine <= currentFixLine && currentFixLine <= fixEndLine) {
-							patch += line + "\n";
-						}
-					} else if (line.startsWith("-")) {
-						currentBugLine ++;
-						if (bugStartLine <= currentBugLine && currentBugLine <= bugEndLine) {
-							patch += line + "\n";
-						}
-					} else {
-						currentFixLine ++;
-						currentBugLine ++;
-						if ((bugStartLine <= currentBugLine && currentBugLine <= bugEndLine) || 
-							(fixStartLine <= currentFixLine && currentFixLine <= fixEndLine)) {
-							patch += line + "\n";
-						}
-					}
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return patch;
-	}
-	
 	public String getAlarmTypes() {
 		return violationTypes;
 	}

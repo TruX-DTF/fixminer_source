@@ -1,6 +1,5 @@
 package edu.lu.uni.serval.MultipleThreadsParser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,15 +20,15 @@ public class ParseFixPatternActor extends UntypedActor {
 	private int counter = 0;
 	
 	public ParseFixPatternActor(int numberOfWorkers, String editScriptsFilePath, String patchesSourceCodeFilePath, 
-			String buggyTokensFilePath, String editScriptSizesFilePath, String alarmTypesFilePath) {
+			String buggyTokensFilePath, String editScriptSizesFilePath) {
 		mineRouter = this.getContext().actorOf(new RoundRobinPool(numberOfWorkers)
 				.props(ParseFixPatternWorker.props(editScriptsFilePath, patchesSourceCodeFilePath, 
-						buggyTokensFilePath, editScriptSizesFilePath, alarmTypesFilePath)), "mine-fix-pattern-router");
+						buggyTokensFilePath, editScriptSizesFilePath)), "mine-fix-pattern-router");
 		this.numberOfWorkers = numberOfWorkers;
 	}
 
 	public static Props props(final int numberOfWorkers, final String editScriptsFilePath, final String patchesSourceCodeFilePath,
-			final String buggyTokensFilePath, final String editScriptSizesFilePath, final String alarmTypesFilePath) {
+			final String buggyTokensFilePath, final String editScriptSizesFilePath) {
 		
 		return Props.create(new Creator<ParseFixPatternActor>() {
 
@@ -38,7 +37,7 @@ public class ParseFixPatternActor extends UntypedActor {
 			@Override
 			public ParseFixPatternActor create() throws Exception {
 				return new ParseFixPatternActor(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath, 
-						buggyTokensFilePath, editScriptSizesFilePath, alarmTypesFilePath);
+						buggyTokensFilePath, editScriptSizesFilePath);
 			}
 			
 		});
@@ -50,26 +49,25 @@ public class ParseFixPatternActor extends UntypedActor {
 		if (message instanceof WorkMessage) {
 			List<MessageFile> files = ((WorkMessage) message).getMsgFiles();
 			int size = files.size();
-			int average = (int) Math.round((double) size / numberOfWorkers);
+			int average = size / numberOfWorkers;
+			int reminder = size % numberOfWorkers;
+			int counter = 0;
 			
 			for (int i = 0; i < numberOfWorkers; i ++) {
-				int fromIndex = i * average;
-				int toIndex = (i + 1) * average;
-				if (i == numberOfWorkers - 1) {
-					toIndex = size;
-				}
+				int fromIndex = i * average + counter;
+				if (counter < reminder) counter ++;
+				int toIndex = (i + 1) * average + counter;
 				
-				List<MessageFile> filesOfWorkers = new ArrayList<>();
-				filesOfWorkers.addAll(files.subList(fromIndex, toIndex));
+				List<MessageFile> filesOfWorkers = files.subList(fromIndex, toIndex);
 				final WorkMessage workMsg = new WorkMessage(i + 1, filesOfWorkers);
 				mineRouter.tell(workMsg, getSelf());
 				logger.info("Assign a task to worker #" + (i + 1) + "...");
 			}
 		} else if ("STOP".equals(message.toString())) {
 			counter ++;
-			logger.info(counter + " workers finished their work...");
+			logger.info(counter + " workers finailized their work...");
 			if (counter >= numberOfWorkers) {
-				logger.info("All workers finished their work...");
+				logger.info("All workers finailized their work...");
 				this.getContext().stop(mineRouter);
 				this.getContext().stop(getSelf());
 				this.getContext().system().shutdown();

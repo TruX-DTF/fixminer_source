@@ -31,19 +31,17 @@ public class ParseFixPatternWorker extends UntypedActor {
 	private String patchesSourceCodeFilePath;
 	private String editScriptSizesFilePath;
 	private String buggyTokensFilePath;
-	private String alarmTypesFilePath;
 	
 	public ParseFixPatternWorker(String editScriptsFilePath, String patchesSourceCodeFilePath, 
-			String buggyTokensFilePath, String editScriptSizesFilePath, String alarmTypesFilePath) {
+			String buggyTokensFilePath, String editScriptSizesFilePath) {
 		this.editScriptsFilePath = editScriptsFilePath;
 		this.patchesSourceCodeFilePath = patchesSourceCodeFilePath;
 		this.editScriptSizesFilePath = editScriptSizesFilePath;
 		this.buggyTokensFilePath = buggyTokensFilePath;
-		this.alarmTypesFilePath = alarmTypesFilePath;
 	}
 
 	public static Props props(final String editScriptsFile, final String patchesSourceCodeFile, final String buggyTokensFilePath, 
-			final String editScriptSizesFilePath, final String alarmTypesFilePath) {
+			final String editScriptSizesFilePath) {
 		return Props.create(new Creator<ParseFixPatternWorker>() {
 
 			private static final long serialVersionUID = -7615153844097275009L;
@@ -51,7 +49,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			@Override
 			public ParseFixPatternWorker create() throws Exception {
 				return new ParseFixPatternWorker(editScriptsFile, patchesSourceCodeFile, 
-						buggyTokensFilePath, editScriptSizesFilePath, alarmTypesFilePath);
+						buggyTokensFilePath, editScriptSizesFilePath);
 			}
 			
 		});
@@ -66,13 +64,11 @@ public class ParseFixPatternWorker extends UntypedActor {
 			StringBuilder patchesSourceCode = new StringBuilder();
 			StringBuilder sizes = new StringBuilder();
 			StringBuilder tokens = new StringBuilder();
-			StringBuilder alarmTypes = new StringBuilder();
 			StringBuilder testingInfo = new StringBuilder();
 
 			int id = msg.getId();
 			int counter = 0;
 			
-			int testViolations = 0;
 			int nullGumTreeResults = 0;
 			int noSourceCodeChanges = 0;
 			int noStatementChanges = 0;
@@ -85,28 +81,15 @@ public class ParseFixPatternWorker extends UntypedActor {
 			int timeouts = 0;
 			StringBuilder builder = new StringBuilder();
 
-			// Read violations with Null_Violation_Hunk or Illegal_Line_Position
-//			List<Violation> uselessViolations = new ArrayList<>();// readUselessViolations("logs/FixedViolationCodeParseResults.log");
-			
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
 				File positionFile = msgFile.getPositionFile();
-				if (revFile.getName().toLowerCase().contains("test#") || revFile.getName().toLowerCase().contains("tests#")) {
-//					testViolations += countAlarms(positionFile, "#TestViolation:", uselessViolations);
-					testViolations += countAlarms(positionFile, "#TestViolation:");
+				if (revFile.getName().toLowerCase().contains("test")) {
 					continue;
 				}
-//				Parser parser = null;
-//				if (containsAlarmTypes || positionFile != null) {
-//					parser = new FixedViolationHunkParser(positionFile);
-//					containsAlarmTypes = true;
-//				} else {
-//					parser = new CommitPatchSingleStatementParser();
-//				}
-				FixedViolationHunkParser parser =  new FixedViolationHunkParser(positionFile);
-//				parser.setUselessViolations(uselessViolations);
+				FixedViolationHunkParser parser =  new FixedViolationHunkParser();
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work
@@ -128,20 +111,15 @@ public class ParseFixPatternWorker extends UntypedActor {
 					if ("".equals(editScript)) {
 						if (parser.resultType == 1) {
 							nullGumTreeResults += countAlarms(positionFile, "");
-//							System.err.println("#NullGumTreeResult:" + revFile.getName());
 						} else if (parser.resultType == 2) {
 							noSourceCodeChanges += countAlarms(positionFile, "");
 						} else if (parser.resultType == 3) {
 							noStatementChanges += countAlarms(positionFile, "");
-//						} else if (parser.resultType == 4) {
-//							illegalV += countAlarms(positionFile, "", uselessViolations);
 						}
 					} else {
 						editScripts.append(editScript);
 						patchesSourceCode.append(parser.getPatchesSourceCode());
 						sizes.append(parser.getSizes());
-//						tokens.append(parser.getTokensOfSourceCode());
-						alarmTypes.append(parser.getAlarmTypes());
 						tokens.append(parser.getTokensOfSourceCode());
 						
 						counter ++;
@@ -154,26 +132,23 @@ public class ParseFixPatternWorker extends UntypedActor {
 							patchesSourceCode.setLength(0);
 							sizes.setLength(0);
 							tokens.setLength(0);
-							FileHelper.outputToFile(alarmTypesFilePath + "alarmTypes_" + id + ".list", alarmTypes, true);
-							alarmTypes.setLength(0);
-							log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
+							log.info("Worker #" + id +" finialized parsing " + counter + " files...");
 							FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
 							testingInfo.setLength(0);
 						}
 					}
 				} catch (TimeoutException e) {
-//					err.println("task timed out");
 					future.cancel(true);
 					timeouts += countAlarms(positionFile, "#Timeout:");
-//					System.err.println("#Timeout: " + revFile.getName());
+					System.err.println("#Timeout: " + revFile.getName());
 				} catch (InterruptedException e) {
 					timeouts += countAlarms(positionFile, "#TimeInterrupted:");
-//					err.println("task interrupted");
-//					System.err.println("#TimeInterrupted: " + revFile.getName());
+					System.err.println("#TimeInterrupted: " + revFile.getName());
+					e.printStackTrace();
 				} catch (ExecutionException e) {
 					timeouts += countAlarms(positionFile, "#TimeAborted:");
-//					err.println("task aborted");
-//					System.err.println("#TimeAborted: " + revFile.getName());
+					System.err.println("#TimeAborted: " + revFile.getName());
+					e.printStackTrace();
 				} finally {
 					executor.shutdownNow();
 				}
@@ -189,57 +164,23 @@ public class ParseFixPatternWorker extends UntypedActor {
 				sizes.setLength(0);
 				tokens.setLength(0);
 				
-				FileHelper.outputToFile(alarmTypesFilePath + "alarmTypes_" + id + ".list", alarmTypes, true);
-				alarmTypes.setLength(0);
 				FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
 				testingInfo.setLength(0);
 			}
-			String statistic = "TestViolations: " + testViolations + "\nNullGumTreeResults: " + nullGumTreeResults + "\nNoSourceCodeChanges: " + noSourceCodeChanges + 
+			String statistic = "\nNullGumTreeResults: " + nullGumTreeResults + "\nNoSourceCodeChanges: " + noSourceCodeChanges + 
 					"\nNoStatementChanges: " + noStatementChanges + "\nNullDiffEntry: " + nullDiffEntry + "\nNullMatchedGumTreeResults: " + nullMappingGumTreeResults +
 					"\nPureDeletion: " + pureDeletion + "\nLargeHunk: " + largeHunk + "\nNullSourceCode: " + nullSourceCode + 
 					"\nTestingInfo: " + testInfos + "\nTimeout: " + timeouts;
 			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
 			FileHelper.outputToFile("OUTPUT/UnfixedV_" + id + ".list", builder, false);
 
-			log.info("Worker #" + id +"Finish of parsing " + counter + " files...");
-			log.info("Worker #" + id + " finished the work...");
+			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
+			log.info("Worker #" + id + " finialized the work...");
 			this.getSender().tell("STOP", getSelf());
 		} else {
 			unhandled(message);
 		}
 	}
-
-//	private List<Violation> readUselessViolations(String filePath) {
-//		List<Violation> uselessViolations = new ArrayList<>();
-//		
-//		String content = FileHelper.readFile(filePath);
-//		BufferedReader reader = new BufferedReader(new StringReader(content));
-//		String line = null;
-//		try {
-//			while ((line = reader.readLine()) != null) {
-//				if (line.startsWith("#")) {
-//					String[] elements = line.split(":");
-//					String fileName = elements[1];
-//					int startLine = Integer.parseInt(elements[2]);
-//					int endLine = Integer.parseInt(elements[3]);
-//					String violationType = elements[4];
-//					
-//					Violation violation = new Violation(startLine, endLine, violationType);
-//					violation.setFileName(fileName);
-//					uselessViolations.add(violation);
-//				}
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				reader.close();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return uselessViolations;
-//	}
 
 	private int countAlarms(File positionFile, String type) {//, List<Violation> uselessViolations) {
 		int counter = 0;

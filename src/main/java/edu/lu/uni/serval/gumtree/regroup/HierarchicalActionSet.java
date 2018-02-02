@@ -214,7 +214,7 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> 
 				actionSet.toString();
 				List<String> strList1 = actionSet.strList;
 				for (String str1 : strList1) {
-					strList.add("----" + str1);
+					strList.add("---" + str1);
 				}
 			}
 		} else {
@@ -224,7 +224,7 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> 
 				actionSet.toString();
 				List<String> strList1 = actionSet.strList;
 				for (String str1 : strList1) {
-					strList.add("----" + str1);
+					strList.add("---" + str1);
 				}
 			}
 		}

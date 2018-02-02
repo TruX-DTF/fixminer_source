@@ -361,237 +361,56 @@ public class HunkActionFilter {
 	 * @param prevFile
 	 * @return
 	 */
-	public List<Violation> filterActionsByModifiedRange2(List<Violation> violations,
+	public List<DiffEntryHunk> filterActionsByModifiedRange2(List<DiffEntryHunk> diffentryHunks,
 			List<HierarchicalActionSet> actionSets, File revFile, File prevFile) {
 		
-		List<Violation> selectedViolations = new ArrayList<>();
+		List<DiffEntryHunk> selectedViolations = new ArrayList<>();
 		
 		CUCreator cuCreator = new CUCreator();
 		CompilationUnit prevUnit = cuCreator.createCompilationUnit(prevFile);
 		CompilationUnit revUnit = cuCreator.createCompilationUnit(revFile);
 		if (prevUnit == null || revUnit == null) {
-			for (Violation violation : violations) {
-				this.unfixedViolations += "#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
-						violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
-			}
 			return selectedViolations;
 		}
 		
-		for (Violation violation : violations) {
-			int violationStartLine = violation.getStartLineNum();
-			int violationEndLine = violation.getEndLineNum();
-			int bugHunkStartLine = violation.getBugStartLineNum();
+		for (DiffEntryHunk diffentryHunk : diffentryHunks) {
+//			int violationEndLine = violationStartLine + diffentryHunk.getBugRange();
+			int bugHunkStartLine = diffentryHunk.getBugLineStartNum();
+			int bugHunkEndLine = bugHunkStartLine + diffentryHunk.getBugRange() - 1;
+			int fixHunkStartLine = diffentryHunk.getFixLineStartNum();
+			int fixHunkEndLine = fixHunkStartLine + diffentryHunk.getFixedHunkSize() - 1;
 			
-			if (!specialVioaltionTypes(violation, actionSets, prevUnit, revUnit)) {
-				if (bugHunkStartLine == 0) {// Null source code matched for this violation.
-//					String type = getType(violation);
-				} else if (bugHunkStartLine == -1) {//
-//					specialVioaltionTypes(violation, actionSets, prevUnit, revUnit);
-				} else {
-					int bugHunkEndLine = violation.getBugEndLineNum();
-					int fixHunkStartLine = violation.getFixStartLineNum();
-					int fixHunkEndLine = violation.getFixEndLineNum();
-					int bugFixStartLineNum = violation.getBugFixStartLineNum();
-					int bugFixEndLineNum = violation.getBugFixEndLineNum();
-					
-					for (HierarchicalActionSet actionSet : actionSets) {
-						int actionBugStartLine = actionSet.getBugStartLineNum();
-						if (actionBugStartLine == 0) {
-							actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-						} 
-						int actionBugEndLine = actionSet.getBugEndLineNum();
-						int actionFixStartLine = actionSet.getFixStartLineNum();
-						int actionFixEndLine = actionSet.getFixEndLineNum();
-						
-						String actionStr = actionSet.getActionString();
-						if (actionStr.startsWith("INS")) {
-							if (fixHunkStartLine <= actionFixStartLine && actionFixEndLine <= fixHunkEndLine) {
-								if (actionBugStartLine != 0) {
-									if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
-										violation.getActionSets().add(actionSet);
-										continue;
-									}
-								}
-								
-								// INS with MOV actions that are not identified in previous IF predicate, and pure INS actions
-								if (bugFixStartLineNum >= actionFixEndLine && actionFixStartLine <= bugFixEndLineNum && Math.abs(bugFixStartLineNum - actionFixStartLine) <= 3
-										&& Math.abs(bugFixEndLineNum - actionFixEndLine) <= 3) {
-									violation.getActionSets().add(actionSet);
-								}
-							}
-						} else {//if (!actionStr.startsWith("MOV")){// ignore move actions.
-							if (bugHunkStartLine <= actionBugStartLine && violationEndLine <= bugHunkEndLine) {
-								if (violationStartLine <= actionBugEndLine && violationEndLine >= actionBugStartLine) {
-									violation.getActionSets().add(actionSet);
-								}
-							}
+			for (HierarchicalActionSet actionSet : actionSets) {
+				int actionBugStartLine = actionSet.getBugStartLineNum();
+				if (actionBugStartLine == 0) {
+					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
+				} 
+				int actionBugEndLine = actionSet.getBugEndLineNum();
+				int actionFixStartLine = actionSet.getFixStartLineNum();
+				int actionFixEndLine = actionSet.getFixEndLineNum();
+				
+				String actionStr = actionSet.getActionString();
+				if (actionStr.startsWith("INS")) {
+					if (fixHunkStartLine <= actionFixEndLine && fixHunkEndLine >= actionFixStartLine ) {
+						if (actionBugStartLine != 0) {
+							diffentryHunk.getActionSets().add(actionSet);
 						}
+					}
+				} else {
+					if (bugHunkStartLine <= actionBugEndLine && bugHunkEndLine >= actionBugStartLine) {
+						diffentryHunk.getActionSets().add(actionSet);
 					}
 				}
 			}
 				
 			
-			if (violation.getActionSets().size() > 0) {
-				selectedViolations.add(violation);
-			} else {
-				this.unfixedViolations += "#NullMatchedGumTreeResult:"  + revFile.getName() + ":" +violation.getStartLineNum() + ":" + 
-						violation.getEndLineNum() + ":" + violation.getViolationType() + "\n";
+			if (diffentryHunk.getActionSets().size() > 0) {
+				selectedViolations.add(diffentryHunk);
 			}
 		}
 		return selectedViolations;
 	}
-	public String unfixedViolations = "";
 	
-	private boolean specialVioaltionTypes(Violation violation, List<HierarchicalActionSet> actionSets, CompilationUnit prevUnit, CompilationUnit revUnit) {
-		String type = violation.getViolationType();
-		
-		if ("NM_METHOD_NAMING_CONVENTION".equals(type) || "SE_NO_SUITABLE_CONSTRUCTOR_FOR_EXTERNALIZATION".equals(type)) {
-			int startLine = violation.getStartLineNum();
-			for (HierarchicalActionSet actionSet : actionSets) { 
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
-				if (actionSet.getActionString().startsWith("UPD MethodDeclaration@@")) {
-					if (Math.abs(startLine - actionBugStartLine) <= 2) {
-						violation.getActionSets().add(actionSet);
-						break;
-					}
-				}
-			}
-		} else if ("EQ_DOESNT_OVERRIDE_EQUALS".equals(type)) {
-			for (HierarchicalActionSet actionSet : actionSets) {
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
-				if (actionSet.getActionString().startsWith("INS MethodDeclaration@@MethodName:equals")) {
-					violation.getActionSets().add(actionSet);
-					break;
-				}
-			}
-		} else if ("HE_EQUALS_USE_HASHCODE".equals(type) || "HE_INHERITS_EQUALS_USE_HASHCODE".equals(type)) {
-			for (HierarchicalActionSet actionSet : actionSets) {
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
-				if (actionSet.getActionString().startsWith("INS MethodDeclaration@@MethodName:hashCode")) {
-					violation.getActionSets().add(actionSet);
-					break;
-				}
-			}
-		} else if ("SE_NO_SUITABLE_CONSTRUCTOR".equals(type) || "RI_REDUNDANT_INTERFACES".equals(type)) {
-			int startLine = violation.getStartLineNum();
-			for (HierarchicalActionSet actionSet : actionSets) {
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
-				if (actionSet.getActionString().startsWith("UPD TypeDeclaration@@")) {
-					if (Math.abs(startLine - actionBugStartLine) <= 2) {
-						violation.getActionSets().add(actionSet);
-						break;
-					}
-				}
-			}
-		} else if ("CN_IDIOM".equals(type)) { // 202 23
-			//add clone method. or update clone method
-			for (HierarchicalActionSet actionSet : actionSets) {
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
-				if (actionSet.getActionString().startsWith("INS MethodDeclaration@@MethodName:clone")) {
-//						|| actionSet.getActionString().startsWith("UPD MethodDeclaration@@clone")) {
-					violation.getActionSets().add(actionSet);
-					break;
-				}
-			}
-		} else if ("SE_NO_SERIALVERSIONID".equals(type) || "SE_COMPARATOR_SHOULD_BE_SERIALIZABLE".equals(type)) {// 12 1960
-			// change superclass or interface, add field or remove @SuppressWarnings("serial"),   some are inner class
-			for (HierarchicalActionSet actionSet : actionSets) {
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
-				if (actionSet.getActionString().startsWith("INS FieldDeclaration@") && actionSet.getNode().getLabel().contains("serialVersionUID")) {
-					violation.getActionSets().add(actionSet);
-					break;
-				}
-				if (actionSet.getActionString().startsWith("UPD TypeDeclaration@")) {
-					int startLine = violation.getStartLineNum();
-					if (Math.abs(startLine - actionBugStartLine) <= 2) {
-						violation.getActionSets().add(actionSet);
-						break;
-					}
-				}
-			}
-		} else {
-			return false;
-		}
-		return true;
-	}
-
-	
-	private String getType(Violation violation) {
-		String type = violation.getViolationType();
-		switch (type) {
-		case "CI_CONFUSED_INHERITANCE":// field
-			// update fieldDeclaration
-			break;
-		case "CO_ABSTRACT_SELF":
-			// java file is an interface, and delete compareTo().
-			break;
-		case "EQ_ABSTRACT_SELF":
-			// java file is an interface, and delete equals().
-			break;
-		case "SE_NO_SERIALVERSIONID":
-			// add a field: serialVersionUID
-			break;
-		case "EQ_COMPARETO_USE_OBJECT_EQUALS":
-			//Update or Delete compareTo(), Add equals()
-			break;
-		case "EQ_DOESNT_OVERRIDE_EQUALS":
-			//override equals()
-			break;
-		case "HE_SIGNATURE_DECLARES_HASHING_OF_UNHASHABLE_CLASS":
-			//remove equals()
-			break;
-		case "ME_MUTABLE_ENUM_FIELD":
-			// under enum, field add final keyword
-			break;
-		case "MF_CLASS_MASKS_FIELD":
-			// change super class or delete the field with a same name in super class.
-			break;
-		case "MS_SHOULD_BE_FINAL":
-			// add final to field
-			break;
-		case "STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE":
-			//remove public static final DateFormat DATE_FORMAT....  or SimpleDateFormat
-			break;
-		case "UUF_UNUSED_FIELD":
-			//remove unused fields.  not sure
-			break;
-		case "UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD":
-			//remove unused fields.  not sure
-		case "UWF_NULL_FIELD":
-			//update field, remove field
-			break;
-		case "UWF_UNWRITTEN_FIELD":
-			//field
-			break;
-		case "UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD":
-			//remove field
-			break;
-		case "VO_VOLATILE_REFERENCE_TO_ARRAY":
-			//field
-			break;
-		default:
-			break;
-		}
-		return null;
-	}
 
 	/**
 	 * Filter out the modify actions, which are not in the DiffEntry hunks, without considering DiffEntry hunks.

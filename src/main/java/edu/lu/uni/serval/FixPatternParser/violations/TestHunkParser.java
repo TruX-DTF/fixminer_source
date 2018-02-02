@@ -54,7 +54,6 @@ public class TestHunkParser {
 //		int counter = 0;
 		for (MessageFile msgFile : msgFiles) {
 			FixedViolationHunkParser parser = new FixedViolationHunkParser();
-			parser.setPositionFile(msgFile.getPositionFile());
 			
 			final ExecutorService executor = Executors.newSingleThreadExecutor();
 			// schedule the work

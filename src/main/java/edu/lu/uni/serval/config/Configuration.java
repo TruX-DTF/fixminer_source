@@ -2,11 +2,11 @@ package edu.lu.uni.serval.config;
 
 public class Configuration {
 	
-	public static final long SECONDS_TO_WAIT = 300000L;
+	public static final long SECONDS_TO_WAIT = 300L;
 	
-	public static final String ROOT_PATH = "../FPM_Violations/"; // The root path of all output data.
+	public static String ROOT_PATH = "../FPM_Violations/"; // The root path of all output data.
 
-	public static final int HUNK_SIZE = 10; // The limitation of source code lines of each DiffEntry, which will be selected as training data.
+	public static int HUNK_SIZE = 10; // The limitation of source code lines of each DiffEntry, which will be selected as training data.
 	public static final String BUGGY_TREE_SIGNAL = "BUGGY_TREE###"; // The starting signal of the tree of buggy source code .
 	public static final String PATCH_SIGNAL = "PATCH###"; // The starting signal of each patch.
 	
@@ -86,9 +86,5 @@ public class Configuration {
 	public static final String SUPERVISED_LEARNING_MODEL = ROOT_PATH + "TestingOutput/SupervisedLearningModel.zip";
 	
 	public static final String FEATURES_OF_COMMON_CLUSTERS = ROOT_PATH + "FeaturesOfCommonClusters/";
-	public static final String TESTING_DATA_BUGS90 = ROOT_PATH + "Bugs/bugs90.list";
-	public static final String TESTING_DATA_BUGS80 = ROOT_PATH + "Bugs/bugs80.list";
-	public static final String TESTING_DATA_BUGS70 = ROOT_PATH + "Bugs/bugs70.list";
-	public static final String TESTING_DATA_BUGS60 = ROOT_PATH + "Bugs/bugs60.list";
 
 }

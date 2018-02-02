@@ -1,5 +1,10 @@
 package edu.lu.uni.serval.diffentry;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+
 public class DiffEntryHunk {
 	
 	private int bugLineStartNum;
@@ -10,6 +15,7 @@ public class DiffEntryHunk {
 	private int buggyHunkSize;
 	private int fixedHunkSize;
 	private String file;
+	private List<HierarchicalActionSet> actionSets = new ArrayList<>();
 	
 	public DiffEntryHunk(int bugLineStartNum, int fixLineStartNum, int bugRange, int fixRange) {
 		super();
@@ -65,6 +71,10 @@ public class DiffEntryHunk {
 
 	public void setFile(String file) {
 		this.file = file;
+	}
+	
+	public List<HierarchicalActionSet> getActionSets() {
+		return actionSets;
 	}
 
 	@Override

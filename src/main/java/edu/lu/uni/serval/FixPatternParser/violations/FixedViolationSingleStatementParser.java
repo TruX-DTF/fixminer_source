@@ -39,7 +39,6 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 			}
 			
 			// Read the positions of checked violations
-			List<Violation> violations = readViolations(prevFile, revFile);
 			for (HierarchicalActionSet actionSet : actionSets) {
 				// position of buggy statements
 				int startPosition = 0;
@@ -95,7 +94,7 @@ public class FixedViolationSingleStatementParser extends FixedViolationParser {
 				int startLine2 = revUnit.getLineNumber(startPosition2);
 				int endLine2 = revUnit.getLineNumber(endPosition2);
 				
-				Violation violation = findViolation(startLine, endLine, violations);
+				Violation violation = null;//findViolation(startLine, endLine, violations);
 				if (violation == null) continue;
 				
 				if (endLine - startLine >= Configuration.HUNK_SIZE - 2 || endLine2 - startLine2 >= Configuration.HUNK_SIZE - 2 ) continue;

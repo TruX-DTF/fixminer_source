@@ -66,7 +66,7 @@ public class SingleThreadParser {
 				testViolations += countAlarms(positionFile, "#TestViolation:");
 				continue;
 			}
-			FixedViolationHunkParser parser =  new FixedViolationHunkParser(positionFile);
+			FixedViolationHunkParser parser =  new FixedViolationHunkParser();
 //			parser.setUselessViolations(uselessViolations);
 			
 			final ExecutorService executor = Executors.newSingleThreadExecutor();
