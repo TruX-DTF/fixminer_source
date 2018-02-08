@@ -42,7 +42,11 @@ public class HierarchicalRegrouperForC {
 		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		HierarchicalActionSet actionSet = null;
 		for(Action act : actions){
+			if (act.toString().startsWith("UPD")) {
+				System.out.println();
+			}
 			Action parentAct = findParentAction(act, actions);
+			
 			if (parentAct == null) {
 				actionSet = createActionSet(act, parentAct, null);
 				actionSets.add(actionSet);
@@ -66,7 +70,7 @@ public class HierarchicalRegrouperForC {
 			} else {
 				// TypeDeclaration, FieldDeclaration, MethodDeclaration, Statement. 
 				// CatchClause, ConstructorInvocation, SuperConstructorInvocation, SwitchCase
-				String astNodeType = actSet.getAstNodeType();
+//				String astNodeType = actSet.getAstNodeType();
 //				if (astNodeType.endsWith("TypeDeclaration") || astNodeType.endsWith("FieldDeclaration")  || astNodeType.endsWith("EnumDeclaration") ||
 //						astNodeType.endsWith("MethodDeclaration") || astNodeType.endsWith("Statement") ||
 //						astNodeType.endsWith("ConstructorInvocation") || astNodeType.endsWith("CatchClause") || astNodeType.endsWith("SwitchCase")) {
@@ -198,22 +202,22 @@ public class HierarchicalRegrouperForC {
 			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
 		}
 		
-		if (parent.getType() == 55)  {
-			int type = action.getNode().getType();
+//		if (parent.getType() == 55)  {
+//			int type = action.getNode().getType();
 			// Modifier, NormalAnnotation, MarkerAnnotation, SingleMemberAnnotation
-			if (type != 83 && type != 77 && type != 78 && type != 79
-				&& type != 5 && type != 39 && type != 43 && type != 74 && type != 75
-				&& type != 76 && type != 84 && type != 87 && type != 88 && type != 42) {
-				// ArrayType, PrimitiveType, SimpleType, ParameterizedType, 
-				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType, SimpleName
-				return null;
-			}
+//			if (type != 83 && type != 77 && type != 78 && type != 79
+//				&& type != 5 && type != 39 && type != 43 && type != 74 && type != 75
+//				&& type != 76 && type != 84 && type != 87 && type != 88 && type != 42) {
+//				// ArrayType, PrimitiveType, SimpleType, ParameterizedType, 
+//				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType, SimpleName
+//				return null;
+//			}
 //		} else if (parent.getType() == 31) { // method declaration
 //			int type = action.getNode().getType();
 //			if (Checker.isStatement(type)) {// statements
 //				return null;
 //			}
-		}
+//		}
 		
 		for (Action act : actions) {
 			if (act.getNode().equals(parent)) {
@@ -229,10 +233,10 @@ public class HierarchicalRegrouperForC {
 		if (parent instanceof Move && !(child instanceof Move)) {// If action is MOV, its children must be MOV.
 			return false;
 		}
-		if (parent instanceof Delete && !(child instanceof Delete)) {// If action is INS, its children must be MOV or INS.
+		if (parent instanceof Delete && !(child instanceof Delete)) {// If action is DEL, its children must be DEL.
 			return false;
 		}
-		if (parent instanceof Insert && !(child instanceof Addition)) {// If action is DEL, its children must be DEL.
+		if (parent instanceof Insert && !(child instanceof Addition)) {// If action is INS, its children must be MOV or INS.
 			return false;
 		}
 		return true;
