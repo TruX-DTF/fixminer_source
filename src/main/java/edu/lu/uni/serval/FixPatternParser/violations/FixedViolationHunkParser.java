@@ -137,8 +137,9 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				}
 				
 				String patchPosition = "\n" + revFile.getName() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
-//				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
-				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets) + "\n";
+				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
+				//TODO uncomment the line below for more detailed gumtree input
+//				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets) + "\n";
 //				if (noUpdate(editScriptTokens)) {
 //				}
 
@@ -146,9 +147,9 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
 				
-				SimpleTree simpleTree = getBuggyCodeTree(patchHunk, bugEndPosition, prevFile, bugStartLine, bugEndLine);
-				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
-				this.tokensOfSourceCode += tokens + "\n"; 
+//				SimpleTree simpleTree = getBuggyCodeTree(patchHunk, bugEndPosition, prevFile, bugStartLine, bugEndLine);
+//				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
+//				this.tokensOfSourceCode += tokens + "\n";
 			}
 		}
 	}

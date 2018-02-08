@@ -2,9 +2,10 @@ package edu.lu.uni.serval.config;
 
 public class Configuration {
 	
-	public static final long SECONDS_TO_WAIT = 300L;
+	public static final long SECONDS_TO_WAIT = 100L;
 	
-	public static String ROOT_PATH = "../FPM_Violations/"; // The root path of all output data.
+//	public static String ROOT_PATH = "/Volumes/data/bugStudy/dataset/"; // The root path of all output data.
+	public static String ROOT_PATH = "/Users/anilkoyuncu/bugStudy/dataset/"; // The root path of all output data.
 
 	public static int HUNK_SIZE = 10; // The limitation of source code lines of each DiffEntry, which will be selected as training data.
 	public static final String BUGGY_TREE_SIGNAL = "BUGGY_TREE###"; // The starting signal of the tree of buggy source code .

@@ -103,7 +103,7 @@ public class ASTNodeMap {
 		map.put(88, "NameQualifiedType");
 		map.put(89, "CreationReference");
 		map.put(90, "ExpressionMethodReference");
-		map.put(91, "SuperMethhodReference");
+		map.put(91, "SuperMethodReference");
 		map.put(92, "TypeMethodReference");
 	}
 }

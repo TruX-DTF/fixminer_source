@@ -85,10 +85,10 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
-				File positionFile = msgFile.getPositionFile();
-				if (revFile.getName().toLowerCase().contains("test")) {
+//				File positionFile = msgFile.getPositionFile();
+				/*if (revFile.getName().toLowerCase().contains("test")) {
 					continue;
-				}
+				}*/
 				FixedViolationHunkParser parser =  new FixedViolationHunkParser();
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -109,13 +109,13 @@ public class ParseFixPatternWorker extends UntypedActor {
 					
 					String editScript = parser.getAstEditScripts();
 					if ("".equals(editScript)) {
-						if (parser.resultType == 1) {
-							nullGumTreeResults += countAlarms(positionFile, "");
-						} else if (parser.resultType == 2) {
-							noSourceCodeChanges += countAlarms(positionFile, "");
-						} else if (parser.resultType == 3) {
-							noStatementChanges += countAlarms(positionFile, "");
-						}
+//						if (parser.resultType == 1) {
+//							nullGumTreeResults += countAlarms(positionFile, "");
+//						} else if (parser.resultType == 2) {
+//							noSourceCodeChanges += countAlarms(positionFile, "");
+//						} else if (parser.resultType == 3) {
+//							noStatementChanges += countAlarms(positionFile, "");
+//						}
 					} else {
 						editScripts.append(editScript);
 						patchesSourceCode.append(parser.getPatchesSourceCode());
@@ -139,14 +139,14 @@ public class ParseFixPatternWorker extends UntypedActor {
 					}
 				} catch (TimeoutException e) {
 					future.cancel(true);
-					timeouts += countAlarms(positionFile, "#Timeout:");
+//					timeouts += countAlarms(positionFile, "#Timeout:");
 					System.err.println("#Timeout: " + revFile.getName());
 				} catch (InterruptedException e) {
-					timeouts += countAlarms(positionFile, "#TimeInterrupted:");
+//					timeouts += countAlarms(positionFile, "#TimeInterrupted:");
 					System.err.println("#TimeInterrupted: " + revFile.getName());
 					e.printStackTrace();
 				} catch (ExecutionException e) {
-					timeouts += countAlarms(positionFile, "#TimeAborted:");
+//					timeouts += countAlarms(positionFile, "#TimeAborted:");
 					System.err.println("#TimeAborted: " + revFile.getName());
 					e.printStackTrace();
 				} finally {

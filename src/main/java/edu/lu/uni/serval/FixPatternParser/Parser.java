@@ -36,7 +36,7 @@ public abstract class Parser implements ParserInterface {
 	protected List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree(File prevFile, File revFile) {
 		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		// GumTree results
-		List<Action> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
+		List<Action> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTreeForCCode(prevFile, revFile);
 		if (gumTreeResults != null && gumTreeResults.size() > 0) {
 			// Regroup GumTre results.
 			List<HierarchicalActionSet> allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);

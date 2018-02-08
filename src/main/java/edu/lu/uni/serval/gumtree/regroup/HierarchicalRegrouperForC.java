@@ -1,21 +1,14 @@
 package edu.lu.uni.serval.gumtree.regroup;
 
+import com.github.gumtreediff.actions.model.*;
+import com.github.gumtreediff.tree.ITree;
+import edu.lu.uni.serval.FixPattern.utils.CNodeMap;
+import edu.lu.uni.serval.gumtree.GumTreeComparer;
+import edu.lu.uni.serval.utils.ListSorter;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.actions.model.Addition;
-import com.github.gumtreediff.actions.model.Delete;
-import com.github.gumtreediff.actions.model.Insert;
-import com.github.gumtreediff.actions.model.Move;
-import com.github.gumtreediff.actions.model.Update;
-import com.github.gumtreediff.tree.ITree;
-
-import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
-import edu.lu.uni.serval.FixPattern.utils.Checker;
-import edu.lu.uni.serval.gumtree.GumTreeComparer;
-import edu.lu.uni.serval.utils.ListSorter;
 
 /**
  * Regroup GumTree results to a hierarchical construction.
@@ -23,8 +16,17 @@ import edu.lu.uni.serval.utils.ListSorter;
  * @author kui.liu
  *
  */
-public class HierarchicalRegrouper {
+public class HierarchicalRegrouperForC {
 
+	public static void main(String[] args) {
+		GumTreeComparer com = new GumTreeComparer();
+		File cFile1 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/prevFiles/prev_0a3d00_b404bc_drivers#pci#iov.c");
+		File cFile2 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/revFiles/0a3d00_b404bc_drivers#pci#iov.c");
+		List<Action> action = com.compareTwoFilesWithGumTreeForCCode(cFile1, cFile2);
+		List<HierarchicalActionSet> actionSet = new HierarchicalRegrouperForC().regroupGumTreeResults(action);
+		System.out.println(actionSet);
+	}
+	
 	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actions) {
 		/*
 		 * First, sort actions by their positions.
@@ -65,11 +67,11 @@ public class HierarchicalRegrouper {
 				// TypeDeclaration, FieldDeclaration, MethodDeclaration, Statement. 
 				// CatchClause, ConstructorInvocation, SuperConstructorInvocation, SwitchCase
 				String astNodeType = actSet.getAstNodeType();
-				if (astNodeType.endsWith("TypeDeclaration") || astNodeType.endsWith("FieldDeclaration")  || astNodeType.endsWith("EnumDeclaration") || 
-						astNodeType.endsWith("MethodDeclaration") || astNodeType.endsWith("Statement") || 
-						astNodeType.endsWith("ConstructorInvocation") || astNodeType.endsWith("CatchClause") || astNodeType.endsWith("SwitchCase")) {
+//				if (astNodeType.endsWith("TypeDeclaration") || astNodeType.endsWith("FieldDeclaration")  || astNodeType.endsWith("EnumDeclaration") ||
+//						astNodeType.endsWith("MethodDeclaration") || astNodeType.endsWith("Statement") ||
+//						astNodeType.endsWith("ConstructorInvocation") || astNodeType.endsWith("CatchClause") || astNodeType.endsWith("SwitchCase")) {
 					reActionSets.add(actSet);
-				}
+//				}
 			}
 		}
 		return reActionSets;
@@ -98,8 +100,8 @@ public class HierarchicalRegrouper {
 				if (Character.isDigit(nodeType.charAt(0)) || (nodeType.startsWith("-") && Character.isDigit(nodeType.charAt(1)))) {
 					try {
 						int typeInt = Integer.parseInt(nodeType);
-						if (ASTNodeMap.map.containsKey(typeInt)) {
-							String type = ASTNodeMap.map.get(Integer.parseInt(nodeType));
+						if (CNodeMap.map.containsKey(typeInt)) {
+							String type = CNodeMap.map.get(Integer.parseInt(nodeType));
 							nodeType = type;
 						}
 					} catch (NumberFormatException e) {
