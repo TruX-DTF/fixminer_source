@@ -27,6 +27,8 @@ public class HierarchicalRegrouperForC {
 		System.out.println(actionSet);
 	}
 	
+	List<HierarchicalActionSet> actionSets = new ArrayList<>();
+	
 	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actions) {
 		/*
 		 * First, sort actions by their positions.
@@ -39,12 +41,8 @@ public class HierarchicalRegrouperForC {
 		/*
 		 * Second, group actions by their positions.
 		 */
-		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		HierarchicalActionSet actionSet = null;
 		for(Action act : actions){
-			if (act.toString().startsWith("UPD")) {
-				System.out.println();
-			}
 			Action parentAct = findParentAction(act, actions);
 			
 			if (parentAct == null) {
@@ -195,29 +193,14 @@ public class HierarchicalRegrouperForC {
 		return false;
 	}
 
+	List<Action> newParentActions = new ArrayList<>();
 	private Action findParentAction(Action action, List<Action> actions) {
 		
 		ITree parent = action.getNode().getParent();
+		if (parent == null) return null;
 		if (action instanceof Addition) {
 			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
 		}
-		
-//		if (parent.getType() == 55)  {
-//			int type = action.getNode().getType();
-			// Modifier, NormalAnnotation, MarkerAnnotation, SingleMemberAnnotation
-//			if (type != 83 && type != 77 && type != 78 && type != 79
-//				&& type != 5 && type != 39 && type != 43 && type != 74 && type != 75
-//				&& type != 76 && type != 84 && type != 87 && type != 88 && type != 42) {
-//				// ArrayType, PrimitiveType, SimpleType, ParameterizedType, 
-//				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType, SimpleName
-//				return null;
-//			}
-//		} else if (parent.getType() == 31) { // method declaration
-//			int type = action.getNode().getType();
-//			if (Checker.isStatement(type)) {// statements
-//				return null;
-//			}
-//		}
 		
 		for (Action act : actions) {
 			if (act.getNode().equals(parent)) {
@@ -226,9 +209,46 @@ public class HierarchicalRegrouperForC {
 				}
 			}
 		}
-		return null;
+		for (Action act : newParentActions) {
+			if (act.getNode().equals(parent)) {
+				if (areRelatedActions(act, action)) {
+					return act;
+				}
+			}
+		}
+		
+		ITree tree = action.getNode();
+		Action parentAction = null;
+		if (!isStatement(tree)) {
+			parentAction = new Update(parent, action.getNode().getParent());
+			newParentActions.add(parentAction);
+			
+			Action higherParentAct = findParentAction(parentAction, actions);
+			HierarchicalActionSet actionSet = null;
+			if (higherParentAct == null) {
+				actionSet = createActionSet(parentAction, higherParentAct, null);
+				actionSets.add(actionSet);
+			} else {
+				if (!addToAactionSet(parentAction, higherParentAct, actionSets)) {
+					// The index of the parent action in the actions' list is larger than the index of this action.
+					actionSet = createActionSet(parentAction, higherParentAct, null);
+					actionSets.add(actionSet);
+				}
+			}
+		}
+		return parentAction;
 	}
 	
+	private boolean isStatement(ITree tree) {
+		int nodeType = tree.getType();
+		if (nodeType == 280002 || nodeType == 280001 || nodeType == 310200 || nodeType == 280100
+				|| nodeType == 300100 || nodeType == 280003 || nodeType == 310100 || nodeType == 310300
+				|| 260300 == nodeType || nodeType == 460000) {// TODO
+			return true;
+		}
+		return false;
+	}
+
 	private boolean areRelatedActions(Action parent, Action child) {
 		if (parent instanceof Move && !(child instanceof Move)) {// If action is MOV, its children must be MOV.
 			return false;
