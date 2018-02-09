@@ -109,6 +109,6 @@ public class AkkaParser2 {
 //			}
 		}
 		
-		return msgFiles.subList(10,20);
+		return msgFiles; //.subList(10,20);
 	}
 }
