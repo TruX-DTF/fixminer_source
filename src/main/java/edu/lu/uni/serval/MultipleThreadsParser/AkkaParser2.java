@@ -100,7 +100,7 @@ public class AkkaParser2 {
 				String fileName = revFile.getName();
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
 //				fileName = fileName.replace(".java", ".txt");
-				File diffentryFile = new File(gumTreeInput + "diffentries/" + fileName); // DiffEntry file
+				File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
 				File positionFile = new File(gumTreeInput + "positions/" + fileName); // position file
 				MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
 				msgFile.setPositionFile(positionFile);
