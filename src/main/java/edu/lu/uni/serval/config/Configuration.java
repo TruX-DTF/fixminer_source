@@ -2,7 +2,7 @@ package edu.lu.uni.serval.config;
 
 public class Configuration {
 	
-	public static final long SECONDS_TO_WAIT = 100L;
+	public static final long SECONDS_TO_WAIT = 300L;
 	
 //	public static String ROOT_PATH = "/Volumes/data/bugStudy/dataset/"; // The root path of all output data.
 	public static String ROOT_PATH = "/Users/anilkoyuncu/bugStudy/dataset/"; // The root path of all output data.

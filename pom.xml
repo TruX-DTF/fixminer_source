@@ -42,11 +42,11 @@
 			<version>2.0.0-SNAPSHOT</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>edu.lu.uni.serval</groupId>
-			<artifactId>SourceCodeParser</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>edu.lu.uni.serval</groupId>-->
+			<!--<artifactId>SourceCodeParser</artifactId>-->
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+		<!--</dependency>-->
 		
 		<dependency>
 			<groupId>edu.lu.uni.serval</groupId>
@@ -72,6 +72,31 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>
+										edu.lu.uni.serval.MultipleThreadsParser.AkkaParser2
+									</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

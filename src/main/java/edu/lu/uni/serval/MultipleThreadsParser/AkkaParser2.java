@@ -31,16 +31,17 @@ public class AkkaParser2 {
 	 */
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-//		String inputRootPath = args[0];
-		int numberOfWorkers = 10; //Integer.parseInt(args[1]);
-		int hunkThreshold = 5;
+		String inputRootPath = args[0];
+		int numberOfWorkers = Integer.parseInt(args[1]);
+		int hunkThreshold = Integer.parseInt(args[2]);
 //		try {
 //			hunkThreshold = Integer.parseInt(args[2]);
 //		} catch (NumberFormatException e1) {
 //			hunkThreshold = 10;
 //		}
 		
-//		Configuration.ROOT_PATH = inputRootPath;
+		Configuration.ROOT_PATH = inputRootPath;
+		log.info(Configuration.ROOT_PATH);
 		Configuration.HUNK_SIZE = hunkThreshold;
 
 
@@ -51,7 +52,7 @@ public class AkkaParser2 {
 //			String GIT_REPOSITORY_PATH = "/Users/anilkoyuncu/bugLocalizationStudy/irblsensitivity/data/" + pjPath + "/" + pjName + "/gitrepo/.git";
 		log.info(pjName);
 		// input data
-		log.info("Get the input data...");
+		log.info("Get the input data..." + Configuration.GUM_TREE_INPUT +pjName +"/");
 		final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT +pjName +"/");
 		log.info("MessageFiles: " + msgFiles.size());
 
