@@ -20,8 +20,8 @@ public class HierarchicalRegrouperForC {
 
 	public static void main(String[] args) {
 		GumTreeComparer com = new GumTreeComparer();
-		File cFile1 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/prevFiles/prev_7779c5_545624_drivers#gpu#drm#drm_dp_helper.c");
-		File cFile2 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/revFiles/7779c5_545624_drivers#gpu#drm#drm_dp_helper.c");
+		File cFile1 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/prevFiles/prev_0a3d00_b404bc_drivers#pci#iov.c");
+		File cFile2 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/revFiles/0a3d00_b404bc_drivers#pci#iov.c");
 		List<Action> action = com.compareTwoFilesWithGumTreeForCCode(cFile1, cFile2);
 		List<HierarchicalActionSet> actionSet = new HierarchicalRegrouperForC().regroupGumTreeResults(action);
 		System.out.println(actionSet);
@@ -241,9 +241,10 @@ public class HierarchicalRegrouperForC {
 	
 	private boolean isStatement(ITree tree) {
 		int nodeType = tree.getType();
-		if (nodeType == 280002 || nodeType == 280001 || nodeType == 310200 || nodeType == 280100
-				|| nodeType == 300100 || nodeType == 280003 || nodeType == 310100 || nodeType == 310300
-				|| 260300 == nodeType || nodeType == 460000) {// TODO
+//		if (nodeType == 280002 || nodeType == 280001 || nodeType == 310200 || nodeType == 280100
+//				|| nodeType == 300100 || nodeType == 280003 || nodeType == 310100 || nodeType == 310300
+//				|| 260300 == nodeType || nodeType == 460000) {// TODO
+		if(nodeType == 460000){
 			return true;
 		}
 		return false;

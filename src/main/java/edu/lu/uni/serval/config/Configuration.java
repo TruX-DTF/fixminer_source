@@ -3,13 +3,13 @@ package edu.lu.uni.serval.config;
 public class Configuration {
 	
 	public static final long SECONDS_TO_WAIT = 900L;
-	
+
 //	public static String ROOT_PATH = "/Volumes/data/bugStudy/dataset/"; // The root path of all output data.
 	public static String ROOT_PATH = "/Users/anilkoyuncu/bugStudy/dataset/"; // The root path of all output data.
 
 	public static int HUNK_SIZE = 10; // The limitation of source code lines of each DiffEntry, which will be selected as training data.
 	public static final String BUGGY_TREE_SIGNAL = "BUGGY_TREE###"; // The starting signal of the tree of buggy source code .
-	public static final String PATCH_SIGNAL = "PATCH###"; // The starting signal of each patch.
+	public static final String PATCH_SIGNAL = "PATCH###"; // Th starting signal of each patch.
 	
 	// input path of GumTree. (i.e., Fix patterns parser)
 	public static final String GUM_TREE_INPUT = ROOT_PATH + "GumTreeInput/";// Buggy version file VS. Fixing version file, (DiffEntry File)

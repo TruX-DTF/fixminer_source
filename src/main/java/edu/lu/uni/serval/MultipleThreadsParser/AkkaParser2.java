@@ -46,7 +46,7 @@ public class AkkaParser2 {
 
 
 
-		String pjName = "linux-stable";
+		String pjName = "linux";
 //			String rootPath = "/Volumes/data/bugStudy/";
 //			String DATASET_FILE_PATH = rootPath + "/dataset/GumTreeInput/" + pjName;
 //			String GIT_REPOSITORY_PATH = "/Users/anilkoyuncu/bugLocalizationStudy/irblsensitivity/data/" + pjPath + "/" + pjName + "/gitrepo/.git";

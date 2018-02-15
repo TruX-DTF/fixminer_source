@@ -53,7 +53,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
 			HunkActionFilter hunkFilter = new HunkActionFilter();
-			List<DiffEntryHunk> selectedPatchHunks = hunkFilter.filterActionsByModifiedRange2(diffentryHunks, actionSets, revFile, prevFile);
+			List<DiffEntryHunk> selectedPatchHunks = hunkFilter.filterActionsByLineNumber4C(diffentryHunks, actionSets, revFile, prevFile);
 			
 			for (DiffEntryHunk patchHunk : selectedPatchHunks) {
 				List<HierarchicalActionSet> hunkActionSets = patchHunk.getActionSets();	

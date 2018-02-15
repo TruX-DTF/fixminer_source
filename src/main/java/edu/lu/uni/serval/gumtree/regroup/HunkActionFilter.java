@@ -351,7 +351,53 @@ public class HunkActionFilter {
 		}
 		return selectedViolations;
 	}
-	
+
+
+	public List<DiffEntryHunk> filterActionsByLineNumber4C(List<DiffEntryHunk> diffentryHunks,
+															 List<HierarchicalActionSet> actionSets, File revFile, File prevFile) {
+
+		List<DiffEntryHunk> selectedViolations = new ArrayList<>();
+
+
+		for (DiffEntryHunk diffentryHunk : diffentryHunks) {
+//			int violationEndLine = violationStartLine + diffentryHunk.getBugRange();
+			int bugHunkStartLine = diffentryHunk.getBugLineStartNum();
+			int bugHunkEndLine = bugHunkStartLine + diffentryHunk.getBugRange() - 1;
+			int fixHunkStartLine = diffentryHunk.getFixLineStartNum();
+			int fixHunkEndLine = fixHunkStartLine + diffentryHunk.getFixedHunkSize() - 1;
+
+			for (HierarchicalActionSet actionSet : actionSets) {
+				int actionBugStartLine = actionSet.getBugStartLineNum();
+//				if (actionBugStartLine == 0) {
+//					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
+//				}
+				int actionBugEndLine = actionSet.getBugEndLineNum();
+				int actionFixStartLine = actionSet.getFixStartLineNum();
+				int actionFixEndLine = actionSet.getFixEndLineNum();
+
+				String actionStr = actionSet.getActionString();
+				if (actionStr.startsWith("INS")) {
+					if (fixHunkStartLine <= actionFixEndLine && fixHunkEndLine >= actionFixStartLine ) {
+						if (actionBugStartLine != 0) {
+							diffentryHunk.getActionSets().add(actionSet);
+						}
+					}
+				} else {
+					if (bugHunkStartLine <= actionBugEndLine && bugHunkEndLine >= actionBugStartLine) {
+						diffentryHunk.getActionSets().add(actionSet);
+					}
+				}
+			}
+
+
+			if (diffentryHunk.getActionSets().size() > 0) {
+				selectedViolations.add(diffentryHunk);
+			}
+		}
+		return selectedViolations;
+	}
+
+
 	/**
 	 * Filter out the modify actions, which are not in the DiffEntry hunks, with considering the same parent node.
 	 * 
@@ -440,11 +486,8 @@ public class HunkActionFilter {
 //			ITree parent = null;
 //			List<HierarchicalActionSet> actionSetsWithSameParent = new ArrayList<>(); //TODO
 			for (HierarchicalActionSet actionSet : actionSets) {
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-				if (actionBugStartLine == 0) {
-					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-				} 
-				int actionBugEndLine = actionSet.getBugEndLineNum();
+				int actionBugStartLine = actionSet.getStartPosition();
+				int actionBugEndLine = actionSet.getLength();
 				int actionFixStartLine = actionSet.getFixStartLineNum();
 				int actionFixEndLine = actionSet.getFixEndLineNum();
 

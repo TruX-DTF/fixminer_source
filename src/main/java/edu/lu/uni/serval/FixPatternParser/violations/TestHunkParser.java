@@ -28,7 +28,8 @@ public class TestHunkParser {
 
 	public static void main(String[] args) {
 		// input data
-		final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT);
+		String pjName = "linux";
+		final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT +pjName +"/");
 		System.out.println(msgFiles.size());
 
 		// output path
@@ -38,11 +39,11 @@ public class TestHunkParser {
 		final String editScriptSizesFilePath = Configuration.EDITSCRIPT_SIZES_FILE;
 		final String alarmTypesFilePath = Configuration.ALARM_TYPES_FILE;
 
-		FileHelper.deleteDirectory(editScriptsFilePath);
-		FileHelper.deleteDirectory(patchesSourceCodeFilePath);
-		FileHelper.deleteDirectory(buggyTokensFilePath);
-		FileHelper.deleteDirectory(editScriptSizesFilePath);
-		FileHelper.deleteDirectory(alarmTypesFilePath);
+//		FileHelper.deleteDirectory(editScriptsFilePath);
+//		FileHelper.deleteDirectory(patchesSourceCodeFilePath);
+//		FileHelper.deleteDirectory(buggyTokensFilePath);
+//		FileHelper.deleteDirectory(editScriptSizesFilePath);
+//		FileHelper.deleteDirectory(alarmTypesFilePath);
 		
 		StringBuilder astEditScripts = new StringBuilder();
 		StringBuilder tokens = new StringBuilder();
@@ -120,7 +121,7 @@ public class TestHunkParser {
 		List<MessageFile> msgFiles = new ArrayList<>();
 		
 		for (File revFile : revFiles) {
-			if (revFile.getName().endsWith(".java")) {
+//			if (revFile.getName().endsWith(".java")) {
 				String fileName = revFile.getName();
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
 				fileName = fileName.replace(".java", ".txt");
@@ -129,7 +130,7 @@ public class TestHunkParser {
 				MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
 				msgFile.setPositionFile(positionFile);
 				msgFiles.add(msgFile);
-			}
+//			}
 		}
 		
 		return msgFiles;
