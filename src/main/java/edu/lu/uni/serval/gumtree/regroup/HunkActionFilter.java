@@ -361,8 +361,7 @@ public class HunkActionFilter {
 	 * @param prevFile
 	 * @return
 	 */
-	public List<DiffEntryHunk> matchActionsByDiffEntryForC(List<DiffEntryHunk> diffentryHunks,
-															 List<HierarchicalActionSet> actionSets, File revFile, File prevFile) {
+	public List<DiffEntryHunk> matchActionsByDiffEntryForC(List<DiffEntryHunk> diffentryHunks, List<HierarchicalActionSet> actionSets) {
 
 		List<DiffEntryHunk> selectedViolations = new ArrayList<>();
 
@@ -375,21 +374,20 @@ public class HunkActionFilter {
 			for (HierarchicalActionSet actionSet : actionSets) {
 				String actionStr = actionSet.getActionString();
 				if (actionStr.startsWith("INS")) {
-					int actionFixStartLine = actionSet.getStartPosition();
-					int actionFixEndLine = actionSet.getLength();
-					if (fixHunkStartLine <= actionFixEndLine && fixHunkEndLine >= actionFixStartLine ) {
+					int actionFixStartLine = actionSet.getFixStartLineNum();
+					int actionFixEndLine = actionSet.getFixEndLineNum();
+					if (fixHunkStartLine <= actionFixEndLine && actionFixStartLine <= fixHunkEndLine ) {
 						diffentryHunk.getActionSets().add(actionSet);
 					}
 				} else {
-					int actionBugStartLine = actionSet.getStartPosition();
-					int actionBugEndLine = actionSet.getLength();
+					int actionBugStartLine = actionSet.getBugStartLineNum();
+					int actionBugEndLine = actionSet.getBugEndLineNum();
 					
-					if (bugHunkStartLine <= actionBugEndLine && bugHunkEndLine >= actionBugStartLine) {
+					if (bugHunkStartLine <= actionBugEndLine && actionBugStartLine <= bugHunkEndLine) {
 						diffentryHunk.getActionSets().add(actionSet);
 					}
 				}
 			}
-
 
 			if (diffentryHunk.getActionSets().size() > 0) {
 				selectedViolations.add(diffentryHunk);

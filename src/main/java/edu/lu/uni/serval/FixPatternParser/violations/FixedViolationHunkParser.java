@@ -53,7 +53,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
 			HunkActionFilter hunkFilter = new HunkActionFilter();
-			List<DiffEntryHunk> selectedPatchHunks = hunkFilter.matchActionsByDiffEntryForC(diffentryHunks, actionSets, revFile, prevFile);
+			List<DiffEntryHunk> selectedPatchHunks = hunkFilter.matchActionsByDiffEntryForC(diffentryHunks, actionSets);
 			
 			for (DiffEntryHunk patchHunk : selectedPatchHunks) {
 				List<HierarchicalActionSet> hunkActionSets = patchHunk.getActionSets();	
@@ -69,8 +69,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				int bugEndPosition = 0;
 				int fixEndPosition = 0;
 				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-
-
 					//TODO FIX ME
 					int actionBugStart = hunkActionSet.getBugStartLineNum();
 					int actionBugEnd = hunkActionSet.getBugEndLineNum();
@@ -102,11 +100,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					continue;
 				}
 				
-				if (fixStartLine == 0 && bugStartLine != 0) {// pure delete actions.
-					// get the exact buggy code by violation's position. TODO later
-				}
-				
-//				if (children.size() == 0) continue;
 				boolean isPureInsert = false;
 				if (bugStartLine == 0 && patchHunk.getBugLineStartNum() > 0) {
 					bugStartLine = patchHunk.getBugLineStartNum();
@@ -141,10 +134,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				
 				String patchPosition = "\n" + revFile.getName() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
 				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
-				//TODO uncomment the line below for more detailed gumtree input
-//				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets) + "\n";
-//				if (noUpdate(editScriptTokens)) {
-//				}
 
 				this.patchesSourceCode += info;
 				this.sizes += size + "\n";

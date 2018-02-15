@@ -29,14 +29,14 @@ public class HierarchicalRegrouperForC {
 	
 	List<HierarchicalActionSet> actionSets = new ArrayList<>();
 	
-	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actionsArgu) {
+	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actions) {
 		/*
 		 * First, sort actions by their positions.
 		 */
-		List<Action> actions = new ListSorter<Action>(actionsArgu).sortAscending();
-		if (actions == null) {
-			actions = actionsArgu;
-		}
+//		List<Action> actions = new ListSorter<Action>(actionsArgu).sortAscending();
+//		if (actions == null) {
+//			actions = actionsArgu;
+//		}
 		
 		/*
 		 * Second, group actions by their positions.
@@ -82,10 +82,42 @@ public class HierarchicalRegrouperForC {
 	private HierarchicalActionSet createActionSet(Action act, Action parentAct, HierarchicalActionSet parent) {
 		HierarchicalActionSet actionSet = new HierarchicalActionSet();
 		actionSet.setAction(act);
-		actionSet.setActionString(parseAction(act.toString()));
+		String actStr = parseAction(act.toString());
+		actionSet.setActionString(actStr);
 		actionSet.setParentAction(parentAct);
 		actionSet.setNode(act.getNode());
 		actionSet.setParent(parent);
+		
+		int bugStartLineNum = 0;
+		int bugEndLineNum = 0;
+		int fixStartLineNum = 0;
+		int fixEndLineNum = 0;
+		if (actStr.startsWith("INS")) {
+			Insert insert = (Insert) act;
+//			int pos = insert.getPos();//index position of the new node in the children array list of its corresponding old parent node.
+			ITree newTree = insert.getNode();
+			fixStartLineNum = newTree.getPos();
+			fixEndLineNum = newTree.getLength();
+		} else {
+			ITree tree = act.getNode();
+			bugStartLineNum = tree.getPos();
+		    bugEndLineNum = tree.getLength();
+		    if (actStr.startsWith("UPD")) {
+		    	Update update = (Update) act;
+		    	ITree newTree = update.getNewNode();
+		    	fixStartLineNum = newTree.getPos();
+		    	fixEndLineNum = newTree.getLength();
+		    } else if (actStr.startsWith("MOV")) {
+		    	Move update = (Move) act;
+		    	ITree newTree = update.getNewNode();
+		    	fixStartLineNum = newTree.getPos();
+		    	fixEndLineNum = newTree.getLength();
+		    }
+		}
+		actionSet.setBugStartLineNum(bugStartLineNum);
+		actionSet.setBugEndLineNum(bugEndLineNum);
+		actionSet.setFixStartLineNum(fixStartLineNum);
+		actionSet.setFixEndLineNum(fixEndLineNum);
 		return actionSet;
 	}
 
@@ -132,7 +164,7 @@ public class HierarchicalRegrouperForC {
 				break;
 			} else {
 				if (isPossibileSubAction(action, act)) {
-					// SubAction range： startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2
+					// SubAction range： startPosition2 <= startPosition && length <= length2
 					addToActionSets(actionSet, parentAct, actSet.getSubActions());
 				}
 			}
@@ -148,7 +180,7 @@ public class HierarchicalRegrouperForC {
 				int startPosition2 = parent.getPosition();
 				int length2 = parent.getLength();
 				
-				if (!(startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2)) {
+				if (!(startPosition2 <= startPosition && length <= length2)) {
 					// when act is not the sub-set of action.
 					return false;
 				}
@@ -177,7 +209,7 @@ public class HierarchicalRegrouperForC {
 				return true;
 			} else {
 				if (isPossibileSubAction(action, act)) {
-					// SubAction range： startPosition2 <= startPosition && startPosition + length <= startP + length2
+					// SubAction range: startPosition2 <= startPosition && startPosition + length <= startP + length2
 					List<HierarchicalActionSet> subActionSets = actionSet.getSubActions();
 					if (subActionSets.size() > 0) {
 						boolean added = addToAactionSet(act, parentAct, subActionSets);
