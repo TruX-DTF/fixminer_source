@@ -69,6 +69,9 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				int bugEndPosition = 0;
 				int fixEndPosition = 0;
 				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
+
+
+					//TODO FIX ME
 					int actionBugStart = hunkActionSet.getBugStartLineNum();
 					int actionBugEnd = hunkActionSet.getBugEndLineNum();
 					int actionFixStart = hunkActionSet.getFixStartLineNum();

@@ -375,14 +375,14 @@ public class HunkActionFilter {
 			for (HierarchicalActionSet actionSet : actionSets) {
 				String actionStr = actionSet.getActionString();
 				if (actionStr.startsWith("INS")) {
-					int actionFixStartLine = actionSet.getBugStartLineNum();
-					int actionFixEndLine = actionSet.getBugEndLineNum();
+					int actionFixStartLine = actionSet.getStartPosition();
+					int actionFixEndLine = actionSet.getLength();
 					if (fixHunkStartLine <= actionFixEndLine && fixHunkEndLine >= actionFixStartLine ) {
 						diffentryHunk.getActionSets().add(actionSet);
 					}
 				} else {
-					int actionBugStartLine = actionSet.getBugStartLineNum();
-					int actionBugEndLine = actionSet.getBugEndLineNum();
+					int actionBugStartLine = actionSet.getStartPosition();
+					int actionBugEndLine = actionSet.getLength();
 					
 					if (bugHunkStartLine <= actionBugEndLine && bugHunkEndLine >= actionBugStartLine) {
 						diffentryHunk.getActionSets().add(actionSet);

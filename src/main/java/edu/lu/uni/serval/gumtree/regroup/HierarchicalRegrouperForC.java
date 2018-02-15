@@ -241,11 +241,10 @@ public class HierarchicalRegrouperForC {
 	
 	private boolean isStatement(ITree tree) {
 		int nodeType = tree.getType();
-//		if (nodeType == 280002 || nodeType == 280001 || nodeType == 310200 || nodeType == 280100
-//				|| nodeType == 300100 || nodeType == 280003 || nodeType == 310100 || nodeType == 310300
-//				|| 260300 == nodeType || nodeType == 460000) {// TODO
-		if(nodeType == 460000){
-			return true;
+		if (nodeType == 280002 || nodeType == 280001 || nodeType == 310200 || nodeType == 280100
+				|| nodeType == 300100 || nodeType == 280003 || nodeType == 310100 || nodeType == 310300
+				|| 260300 == nodeType || nodeType == 460000) {// TODO
+					return true;
 		}
 		return false;
 	}
