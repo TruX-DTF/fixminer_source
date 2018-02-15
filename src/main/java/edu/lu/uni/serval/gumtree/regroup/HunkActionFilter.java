@@ -352,37 +352,38 @@ public class HunkActionFilter {
 		return selectedViolations;
 	}
 
-
-	public List<DiffEntryHunk> filterActionsByLineNumber4C(List<DiffEntryHunk> diffentryHunks,
+	/**
+	 * Match hierarchical actions with code change diffs for C code.
+	 * 
+	 * @param diffentryHunks
+	 * @param actionSets
+	 * @param revFile
+	 * @param prevFile
+	 * @return
+	 */
+	public List<DiffEntryHunk> matchActionsByDiffEntryForC(List<DiffEntryHunk> diffentryHunks,
 															 List<HierarchicalActionSet> actionSets, File revFile, File prevFile) {
 
 		List<DiffEntryHunk> selectedViolations = new ArrayList<>();
 
-
 		for (DiffEntryHunk diffentryHunk : diffentryHunks) {
-//			int violationEndLine = violationStartLine + diffentryHunk.getBugRange();
 			int bugHunkStartLine = diffentryHunk.getBugLineStartNum();
 			int bugHunkEndLine = bugHunkStartLine + diffentryHunk.getBugRange() - 1;
 			int fixHunkStartLine = diffentryHunk.getFixLineStartNum();
 			int fixHunkEndLine = fixHunkStartLine + diffentryHunk.getFixedHunkSize() - 1;
 
 			for (HierarchicalActionSet actionSet : actionSets) {
-				int actionBugStartLine = actionSet.getBugStartLineNum();
-//				if (actionBugStartLine == 0) {
-//					actionBugStartLine = setLineNumbers(actionSet, prevUnit, revUnit);
-//				}
-				int actionBugEndLine = actionSet.getBugEndLineNum();
-				int actionFixStartLine = actionSet.getFixStartLineNum();
-				int actionFixEndLine = actionSet.getFixEndLineNum();
-
 				String actionStr = actionSet.getActionString();
 				if (actionStr.startsWith("INS")) {
+					int actionFixStartLine = actionSet.getBugStartLineNum();
+					int actionFixEndLine = actionSet.getBugEndLineNum();
 					if (fixHunkStartLine <= actionFixEndLine && fixHunkEndLine >= actionFixStartLine ) {
-						if (actionBugStartLine != 0) {
-							diffentryHunk.getActionSets().add(actionSet);
-						}
+						diffentryHunk.getActionSets().add(actionSet);
 					}
 				} else {
+					int actionBugStartLine = actionSet.getBugStartLineNum();
+					int actionBugEndLine = actionSet.getBugEndLineNum();
+					
 					if (bugHunkStartLine <= actionBugEndLine && bugHunkEndLine >= actionBugStartLine) {
 						diffentryHunk.getActionSets().add(actionSet);
 					}

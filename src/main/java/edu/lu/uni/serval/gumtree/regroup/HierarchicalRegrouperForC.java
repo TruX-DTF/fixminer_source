@@ -29,14 +29,14 @@ public class HierarchicalRegrouperForC {
 	
 	List<HierarchicalActionSet> actionSets = new ArrayList<>();
 	
-	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actions) {
+	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actionsArgu) {
 		/*
 		 * First, sort actions by their positions.
 		 */
-//		List<Action> actions = new ListSorter<Action>(actionsArgu).sortAscending();
-//		if (actions == null) {
-//			actions = actionsArgu;
-//		}
+		List<Action> actions = new ListSorter<Action>(actionsArgu).sortAscending();
+		if (actions == null) {
+			actions = actionsArgu;
+		}
 		
 		/*
 		 * Second, group actions by their positions.
