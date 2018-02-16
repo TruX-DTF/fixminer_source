@@ -148,6 +148,7 @@ public abstract class Parser implements ParserInterface {
 	}
 	
 	private String handleSimpleNameNode(String singleEdit, String actionStr, int index) {
+		// TODO
 		if (singleEdit.endsWith("SimpleName")) {
 			actionStr = actionStr.substring(index + 2);
 			if (actionStr.startsWith("MethodName")) {
@@ -430,7 +431,7 @@ public abstract class Parser implements ParserInterface {
 		return editScripts;
 	}
 
-	private String getActionString(HierarchicalActionSet actionSet, int bugEndPosition, int fixEndPosition, String startStr) {
+	private String getActionString(HierarchicalActionSet actionSet, int bugEndPosition, int fixEndPosition, String hierarchicalLabel) {
 		String editScripts = "";
 
 		String actionStr = actionSet.getActionString();
@@ -439,7 +440,7 @@ public abstract class Parser implements ParserInterface {
 		
 		singleEdit = handleSimpleNameNode(singleEdit, actionStr, index);
 		
-		editScripts += startStr + singleEdit + "\n";
+		editScripts += hierarchicalLabel + singleEdit + "\n";
 		
 		for (HierarchicalActionSet subActionSet : actionSet.getSubActions()) {
 			int position = subActionSet.getAction().getPosition();
@@ -447,7 +448,7 @@ public abstract class Parser implements ParserInterface {
 			if (isOutofPosition(actionStr, position, bugEndPosition, fixEndPosition)) {
 				continue;
 			}
-			editScripts += getActionString(subActionSet, bugEndPosition, fixEndPosition, startStr + "---");
+			editScripts += getActionString(subActionSet, bugEndPosition, fixEndPosition, hierarchicalLabel + "---");
 		}
 
 		return editScripts;

@@ -108,7 +108,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 //					continue;
 				}
 				if ((bugEndLine - bugStartLine > Configuration.HUNK_SIZE  && !isPureInsert) || fixEndLine - fixStartLine > Configuration.HUNK_SIZE) {
-//					continue;
+//					continue; //TODO filter out the 
 				}
 				
 				
