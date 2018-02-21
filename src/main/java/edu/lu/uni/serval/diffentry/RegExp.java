@@ -9,7 +9,7 @@ public class RegExp {
 	
 	public static boolean filterSignal(String string) {
 		boolean flag = false;
-		
+
 		Matcher res = pattern.matcher(string);
 		if (res.matches()) {
 			flag = true;

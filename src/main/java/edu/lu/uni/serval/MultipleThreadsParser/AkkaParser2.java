@@ -52,8 +52,8 @@ public class AkkaParser2 {
 //			String GIT_REPOSITORY_PATH = "/Users/anilkoyuncu/bugLocalizationStudy/irblsensitivity/data/" + pjPath + "/" + pjName + "/gitrepo/.git";
 		log.info(pjName);
 		// input data
-		log.info("Get the input data..." + Configuration.GUM_TREE_INPUT +pjName +"/");
-		final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT +pjName +"/");
+		log.info("Get the input data..." + Configuration.GUM_TREE_INPUT );
+		final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT);
 		log.info("MessageFiles: " + msgFiles.size());
 
 		// output path

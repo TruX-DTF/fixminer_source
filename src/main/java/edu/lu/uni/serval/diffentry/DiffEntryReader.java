@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import edu.lu.uni.serval.utils.FileHelper;
 
@@ -101,6 +102,7 @@ public class DiffEntryReader {
 			
 			while ((line = reader.readLine()) != null) {
 				if (RegExp.filterSignal(line.trim())) {
+//					line = Pattern.compile("^@@\\s\\-\\d+,*\\d*\\s\\+\\d+,*\\d*\\s@@").split(line)[1];
 					sourceCode = true;
 					if (hunk.length() > 0) {
 						if (startLine > 0) {

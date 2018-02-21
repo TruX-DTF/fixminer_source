@@ -49,17 +49,17 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 //				type = "#NoStatementChange:";
 //			}
 		} else {
-			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks2(diffentryFile);
+			List<DiffEntryHunk> diffentryHunks = new DiffEntryReader().readHunks3(diffentryFile);
 
 			//Filter out the modify actions, which are not in the DiffEntry hunks.
 			HunkActionFilter hunkFilter = new HunkActionFilter();
-			List<DiffEntryHunk> selectedPatchHunks = hunkFilter.matchActionsByDiffEntryForC(diffentryHunks, actionSets);
-			
+			List<DiffEntryHunk> selectedPatchHunks = hunkFilter.filterActionsByModifiedRange2(diffentryHunks, actionSets, revFile, prevFile);
+
 			for (DiffEntryHunk patchHunk : selectedPatchHunks) {
-				List<HierarchicalActionSet> hunkActionSets = patchHunk.getActionSets();	
+				List<HierarchicalActionSet> hunkActionSets = patchHunk.getActionSets();
 				// multiple UPD, and some UPD contain other UPD.
 				removeOverlapperdUPD(hunkActionSets);
-				
+
 				// Range of buggy source code
 				int bugStartLine = 0;
 				int bugEndLine = 0;
@@ -69,7 +69,6 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				int bugEndPosition = 0;
 				int fixEndPosition = 0;
 				for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-					//TODO FIX ME
 					int actionBugStart = hunkActionSet.getBugStartLineNum();
 					int actionBugEnd = hunkActionSet.getBugEndLineNum();
 					int actionFixStart = hunkActionSet.getFixStartLineNum();
@@ -93,13 +92,18 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 						fixEndPosition = hunkActionSet.getFixEndPosition();
 					}
 				}
-				
+
 				if (fixStartLine == 0 && bugStartLine == 0) {
 					this.unfixedViolations += "#WRONG: " + revFile.getName() + ":" + patchHunk.getBugLineStartNum() + ", " + patchHunk.getBuggyHunkSize() + "\n";
 					this.nullMappingGumTreeResult ++;
 					continue;
 				}
-				
+
+				if (fixStartLine == 0 && bugStartLine != 0) {// pure delete actions.
+					// get the exact buggy code by violation's position. TODO later
+				}
+
+//				if (children.size() == 0) continue;
 				boolean isPureInsert = false;
 				if (bugStartLine == 0 && patchHunk.getBugLineStartNum() > 0) {
 					bugStartLine = patchHunk.getBugLineStartNum();
@@ -107,13 +111,15 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					isPureInsert = true;
 //					continue;
 				}
-				if ((bugEndLine - bugStartLine > Configuration.HUNK_SIZE  && !isPureInsert) || fixEndLine - fixStartLine > Configuration.HUNK_SIZE) {
-//					continue; //TODO filter out the 
+//				if ((bugEndLine - bugStartLine > Configuration.HUNK_SIZE ) || fixEndLine - fixStartLine > Configuration.HUNK_SIZE) {
+//					continue; //TODO hunk size
+//				}
+				if(patchHunk.getBuggyHunkSize() > Configuration.HUNK_SIZE || patchHunk.getFixedHunkSize() > Configuration.HUNK_SIZE){
+					continue;
 				}
-				
-				
+
 				/**
-				 * Select edit scripts for deep learning. 
+				 * Select edit scripts for deep learning.
 				 * Edit scripts will be used to mine common fix patterns.
 				 */
 				// 1. First level: AST node type.
@@ -122,8 +128,8 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					System.err.println("===+++===: "  + revFile.getName() + ":" +patchHunk.getBugLineStartNum() + ", " + patchHunk.getBuggyHunkSize());
 				}
 				// 2. source code: raw tokens
-				// 3. abstract identifiers: 
-				// 4. semi-source code: 
+				// 3. abstract identifiers:
+				// 4. semi-source code:
 				String[] editScriptTokens = astEditScripts.split(" ");
 				int size = editScriptTokens.length;
 				if (size == 1) {
@@ -131,17 +137,21 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					this.unfixedViolations += "#NullMatchedGumTreeResult1:"  + revFile.getName() + ":" + patchHunk.getBugLineStartNum() + ", " + patchHunk.getBuggyHunkSize() + "\n";
 					continue;
 				}
-				
+
 				String patchPosition = "\n" + revFile.getName() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
 				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
+//TODO uncomment the line below for more detailed gumtree input.
+				//				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets) + "\n";
+//				if (noUpdate(editScriptTokens)) {
+//				}
 
 				this.patchesSourceCode += info;
 				this.sizes += size + "\n";
 				this.astEditScripts += astEditScripts + "\n";
-				
-//				SimpleTree simpleTree = getBuggyCodeTree(patchHunk, bugEndPosition, prevFile, bugStartLine, bugEndLine);
-//				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
-//				this.tokensOfSourceCode += tokens + "\n";
+
+				SimpleTree simpleTree = getBuggyCodeTree(patchHunk, bugEndPosition, prevFile, bugStartLine, bugEndLine);
+				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
+				this.tokensOfSourceCode += tokens + "\n";
 			}
 		}
 	}
