@@ -254,6 +254,44 @@ public class SimplifyTree {
 		return simpleTree;
 	}
 	
+	public void canonicalizeSourceCodeTree(ITree tree) {
+		String label = tree.getLabel();
+		String astNode = ASTNodeMap.map.get(tree.getType());
+
+		List<ITree> children = tree.getChildren();
+		if (children.size() > 0) {
+			if (astNode.endsWith("Type")) {
+			} else {
+				if ((astNode.equals("SimpleName") || astNode.equals("MethodInvocation"))) {
+					if (label.startsWith("MethodName:")) {
+					} else if (label.startsWith("ClassName:")) {
+					}
+				} else {
+				}
+				for (ITree child : children) {
+					canonicalizeSourceCodeTree(child);
+				}
+			}
+		} else {
+			if (astNode.endsWith("Name")) {
+				// variableName, methodName, QualifiedName
+				if (label.startsWith("MethodName:")) { // <MethodName, name>
+				} else if (label.startsWith("ClassName:")) {
+				} else if (label.startsWith("Name:")) {
+					label = label.substring(5);
+					char firstChar = label.charAt(0);
+					if (Character.isUpperCase(firstChar)) {
+//						simpleTree.setNodeType("Name");
+					} else {// variableName: <VariableName, canonicalName>
+						canonicalVariableName(label, tree);
+					}
+				} else {// variableName: <VariableName, canonicalName>
+					canonicalVariableName(label, tree);
+				}
+			}
+		}
+	}
+	
 	public SimpleTree canonicalizeSourceCodeTree(ITree tree, SimpleTree parent, int bugEndPosition) {
 		SimpleTree simpleTree = new SimpleTree();
 
@@ -430,6 +468,9 @@ public class SimplifyTree {
 		return null;
 	}
 
+	public Map<String, String> canonicalVariableMap = new HashMap<>();
+	public Map<String, Integer> canonicalVariables = new HashMap<>();
+	
 	private String matchVariableDeclarationExpression(ITree variable, String label) {
 		List<ITree> children = variable.getChildren();
 		ITree type = null;
@@ -442,8 +483,7 @@ public class SimplifyTree {
 				ITree simpleName = child.getChild(0);
 				if (simpleName.getLabel().equals(label)) {
 					String typeStr = canonicalizeTypeStr(type.getLabel());
-					label = typeStr.toLowerCase() + "Var";
-					return label;
+					return canonicalizeVariable(label, typeStr);
 				}
 			}
 		}
@@ -458,13 +498,30 @@ public class SimplifyTree {
 				if (child.getLabel().equals(label)) {
 					ITree type = children.get(i - 1);
 					String typeStr = canonicalizeTypeStr(type.getLabel());
-					label = typeStr.toLowerCase() + "Var";
-					return label;
+					return canonicalizeVariable(label, typeStr);
 				}
 				break;
 			}
 		}
 		return null;
+	}
+
+	private String canonicalizeVariable(String label, String typeStr) {
+		String key = label + "_" + typeStr;
+		if (canonicalVariableMap.containsKey(key)) {
+			label = canonicalVariableMap.get(key);
+		} else {
+			label = typeStr.toLowerCase() + "Var";
+			Integer num = canonicalVariables.get(label);
+			if (num == null) {
+				num = 0;
+			}
+			num ++;
+			canonicalVariables.put(label, num);
+			label += "" + num;
+			canonicalVariableMap.put(key, label);
+		}
+		return label;
 	}
 
 	private String canonicalizeTypeStr(String label) {

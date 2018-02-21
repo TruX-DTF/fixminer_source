@@ -2,17 +2,17 @@ package edu.lu.uni.serval.FixPatternParser.violations;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.github.gumtreediff.tree.ITree;
 
-import edu.lu.uni.serval.FixPatternParser.Tokenizer;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HunkActionFilter;
-import edu.lu.uni.serval.gumtree.regroup.SimpleTree;
 import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 import edu.lu.uni.serval.violation.code.parser.ViolationSourceCodeTree;
 
@@ -145,13 +145,13 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 //				if (noUpdate(editScriptTokens)) {
 //				}
 
+				String canonicalVariableNames = getBuggyCodeTree(patchHunk, prevFile, revFile);
 				this.patchesSourceCode += info;
-				this.sizes += size + "\n";
-				this.astEditScripts += astEditScripts + "\n";
-
-				SimpleTree simpleTree = getBuggyCodeTree(patchHunk, bugEndPosition, prevFile, bugStartLine, bugEndLine);
-				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
-				this.tokensOfSourceCode += tokens + "\n";
+				this.patchesSourceCode += "\nRenamed_Variables###:" + canonicalVariableNames;
+//				this.sizes += size + "\n";
+//				this.astEditScripts += astEditScripts + "\n";
+//				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
+//				this.tokensOfSourceCode += tokens + "\n";
 			}
 		}
 	}
@@ -164,53 +164,44 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		return scripts;
 	}
 
-	private SimpleTree getBuggyCodeTree(DiffEntryHunk patchHunk, int bugEndPosition, File prevFile, int bugStartLine, int bugEndLine) {
-		SimpleTree simpleTree = new SimpleTree();
-		simpleTree.setLabel("Block");
-		simpleTree.setNodeType("Block");
-		List<SimpleTree> children = new ArrayList<>();
+	private String getBuggyCodeTree(DiffEntryHunk patchHunk, File prevFile, File revFile) {
+		int bugStartLine = patchHunk.getBugLineStartNum();
+		int bugEndLine = bugStartLine + patchHunk.getBugRange() - 1;
 		
-		int vStartLine = patchHunk.getBugLineStartNum();
-		int vEndLine = vStartLine + patchHunk.getBuggyHunkSize() + 1;
-		if (bugStartLine < vStartLine && vEndLine < bugEndLine) {
-			ViolationSourceCodeTree parser = new ViolationSourceCodeTree(prevFile, vStartLine, vEndLine);
-			parser.extract();
-			List<ITree> matchedTrees = parser.getViolationSourceCodeTrees();
-			if (matchedTrees.size() > 0) {
-				for (ITree matchedTree : matchedTrees) {
-					SimpleTree simpleT = new SimplifyTree().canonicalizeSourceCodeTree(matchedTree, simpleTree);
-					children.add(simpleT);
-				}
+		ViolationSourceCodeTree parser = new ViolationSourceCodeTree(prevFile, bugStartLine, bugEndLine);
+		parser.extract();
+		List<ITree> matchedTrees = parser.getViolationSourceCodeTrees();
+		Map<String, String> renamedVariablesMap = new HashMap<>();
+		Map<String, Integer> canonicalVariables = new HashMap<>();
+		if (matchedTrees.size() > 0) {
+			SimplifyTree st = new SimplifyTree();
+			for (ITree matchedTree : matchedTrees) {
+				st.canonicalizeSourceCodeTree(matchedTree);
 			}
+			renamedVariablesMap = st.canonicalVariableMap;
+			canonicalVariables = st.canonicalVariables;
 		}
-		if (children.size() == 0) {
-			List<HierarchicalActionSet> hunkActionSets = patchHunk.getActionSets();
-			/*
-			 * Convert the ITree of buggy code to a simple tree.
-			 * It will be used to compute the similarity. 
-			 */
-			for (HierarchicalActionSet hunkActionSet : hunkActionSets) {
-				// TODO simplify buggy tree with buggy code.
-				/**
-				 * Select edit scripts for deep learning. 
-				 * Edit scripts will be used to mine common fix patterns.
-				 */
-//				// 1. First level: AST node type.
-//				// 2. source code: raw tokens
-//				// 3. abstract identifiers: 
-//				// 4. semi-source code: 
-				SimplifyTree abstractIdentifier = new SimplifyTree();
-				abstractIdentifier.abstractTree(hunkActionSet, bugEndPosition);
-				SimpleTree simpleT = hunkActionSet.getSimpleTree();
-				if (simpleT == null) { // Failed to get the simple tree for INS actions.
-					continue;
-				} 
-				children.add(simpleT);
+		
+		int fixStartLine = patchHunk.getFixLineStartNum();
+		int fixEndLine = fixStartLine + patchHunk.getFixRange() - 1;
+		ViolationSourceCodeTree fixedParser = new ViolationSourceCodeTree(revFile, fixStartLine, fixEndLine);
+		fixedParser.extract();
+		matchedTrees = fixedParser.getViolationSourceCodeTrees();
+		if (matchedTrees.size() > 0) {
+			SimplifyTree st = new SimplifyTree();
+			st.canonicalVariableMap = renamedVariablesMap;
+			st.canonicalVariables = canonicalVariables;
+			for (ITree matchedTree : matchedTrees) {
+				st.canonicalizeSourceCodeTree(matchedTree);
 			}
+			renamedVariablesMap = st.canonicalVariableMap;
 		}
-		simpleTree.setChildren(children);
-		simpleTree.setParent(null);
-		return simpleTree;
+		
+		StringBuilder builder = new StringBuilder();
+		for (Map.Entry<String, String> entry : renamedVariablesMap.entrySet()) {
+			builder.append(entry.getKey()).append(" = ").append(entry.getValue()).append("\n");
+		}
+		return builder.toString();
 	}
 
 	private void removeOverlapperdUPD(List<HierarchicalActionSet> actionSets) {
