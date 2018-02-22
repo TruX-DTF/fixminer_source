@@ -507,7 +507,7 @@ public class SimplifyTree {
 	}
 
 	private String canonicalizeVariable(String label, String typeStr) {
-		String key = label + "_" + typeStr;
+		String key = label + ":" + typeStr;
 		if (canonicalVariableMap.containsKey(key)) {
 			label = canonicalVariableMap.get(key);
 		} else {

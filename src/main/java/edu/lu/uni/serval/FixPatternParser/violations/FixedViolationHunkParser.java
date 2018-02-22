@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.github.gumtreediff.tree.ITree;
 
+import edu.lu.uni.serval.FixPatternParser.Tokenizer;
 import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.diffentry.DiffEntryHunk;
 import edu.lu.uni.serval.diffentry.DiffEntryReader;
@@ -139,17 +140,17 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				}
 
 				String patchPosition = "\n" + revFile.getName() + "\n@@ -" + bugStartLine + ", " + bugEndLine + " +" + fixStartLine + ", " + fixEndLine + "@@\n";
-				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
+//				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets, bugEndPosition, fixEndPosition) + "\n";
 //TODO uncomment the line below for more detailed gumtree input.
-				//				String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets) + "\n";
+								String info = Configuration.PATCH_SIGNAL + "\n" + patchPosition + patchHunk.getHunk() + "\nAST Diff###:\n" + getAstEditScripts(hunkActionSets) + "\n";
 //				if (noUpdate(editScriptTokens)) {
 //				}
 
 				String canonicalVariableNames = getBuggyCodeTree(patchHunk, prevFile, revFile);
 				this.patchesSourceCode += info;
-				this.patchesSourceCode += "\nRenamed_Variables###:" + canonicalVariableNames;
-//				this.sizes += size + "\n";
-//				this.astEditScripts += astEditScripts + "\n";
+				this.patchesSourceCode += "\nRenamed_Variables###:\n" + canonicalVariableNames;
+				this.sizes += size + "\n";
+				this.astEditScripts += astEditScripts + "\n";
 //				String tokens = Tokenizer.getTokensDeepFirst(simpleTree).trim();
 //				this.tokensOfSourceCode += tokens + "\n";
 			}
