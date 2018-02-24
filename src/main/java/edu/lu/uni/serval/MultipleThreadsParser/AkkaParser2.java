@@ -63,6 +63,7 @@ public class AkkaParser2 {
 				.collect(Collectors.toList());
 
 		for (File target : folders) {
+			log.info("MessageFiles: " + target.toString());
 			final List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/");
 			log.info("MessageFiles: " + msgFiles.size());
 			// output path
