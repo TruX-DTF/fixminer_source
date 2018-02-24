@@ -40,27 +40,25 @@ public class AkkaParser2 {
 //			hunkThreshold = 10;
 //		}
 		
-		Configuration.ROOT_PATH = inputRootPath;
-		log.info(Configuration.ROOT_PATH);
-		Configuration.HUNK_SIZE = hunkThreshold;
+//		Configuration.ROOT_PATH = inputRootPath;
+//		log.info(Configuration.ROOT_PATH);
+//		Configuration.HUNK_SIZE = hunkThreshold;
 
 
 
-		String pjName = "linux";
-//			String rootPath = "/Volumes/data/bugStudy/";
-//			String DATASET_FILE_PATH = rootPath + "/dataset/GumTreeInput/" + pjName;
-//			String GIT_REPOSITORY_PATH = "/Users/anilkoyuncu/bugLocalizationStudy/irblsensitivity/data/" + pjPath + "/" + pjName + "/gitrepo/.git";
-		log.info(pjName);
 		// input data
-		log.info("Get the input data..." + Configuration.GUM_TREE_INPUT );
-		final List<MessageFile> msgFiles = getMessageFiles(Configuration.GUM_TREE_INPUT);
+		String GUM_TREE_INPUT = inputRootPath + "GumTreeInput/";
+		log.info("Get the input data..." + GUM_TREE_INPUT );
+		String GUM_TREE_OUTPUT = inputRootPath + "GumTreeResults/";
+		log.info("Set the output data..." + GUM_TREE_OUTPUT );
+		final List<MessageFile> msgFiles = getMessageFiles(GUM_TREE_INPUT);
 		log.info("MessageFiles: " + msgFiles.size());
 
 		// output path
-		final String editScriptsFilePath =  Configuration.EDITSCRIPTS_FILE_PATH + pjName + "/";
-		final String patchesSourceCodeFilePath = Configuration.PATCH_SOURCECODE_FILE_PATH+ pjName + "/";
-		final String buggyTokensFilePath = Configuration.BUGGY_CODE_TOKEN_FILE_PATH+ pjName + "/";
-		final String editScriptSizesFilePath = Configuration.EDITSCRIPT_SIZES_FILE_PATH+ pjName + "/";
+		final String editScriptsFilePath =  GUM_TREE_OUTPUT + "editScripts/";
+		final String patchesSourceCodeFilePath = GUM_TREE_OUTPUT + "patchSourceCode/";
+		final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens/";
+		final String editScriptSizesFilePath = GUM_TREE_OUTPUT + "editScriptSizes/";
 		FileHelper.deleteDirectory(editScriptsFilePath);
 		FileHelper.deleteDirectory(patchesSourceCodeFilePath);
 		FileHelper.deleteDirectory(buggyTokensFilePath);
