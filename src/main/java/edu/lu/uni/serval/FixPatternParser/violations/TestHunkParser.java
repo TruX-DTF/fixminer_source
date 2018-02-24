@@ -27,30 +27,37 @@ public class TestHunkParser {
 
 	public static void main(String[] args) {
 		// input data
-		File folder = new File("/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput");
+
+//			String rootPath = "/Users/anilkoyuncu/bugStudy";
+        String rootPath = args[0];
+        String inputPath = args[1];
+        String outputPath = args[0] + "/GumTreeOutputBug/";
+
+
+		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
         List<File> folders = stream
 				.filter(x -> !x.getName().startsWith("."))
 				.collect(Collectors.toList());
 
-		List<File> targetList = new ArrayList<File>();
-		for (File f:folders){
-            for(File f1 :f.listFiles()){
-                if  (!f1.getName().startsWith(".")){
-                targetList.add(f1);
-                }
-            }
-        }
+//		List<File> targetList = new ArrayList<File>();
+//		for (File f:folders){
+//            for(File f1 :f.listFiles()){
+//                if  (!f1.getName().startsWith(".")){
+//                targetList.add(f1);
+//                }
+//            }
+//        }
 
-        for (File target : targetList) {
+        for (File target : folders) {
             final List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/"); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
             System.out.println(msgFiles.size());
             if(msgFiles.size() == 0)
                 continue;
             String pjName = target.getName();
             // output path
-            String GUM_TREE_OUTPUT = Configuration.ROOT_PATH +  pjName + "/";
+            String GUM_TREE_OUTPUT = outputPath +  pjName + "/";
             final String editScriptsFilePath = GUM_TREE_OUTPUT + "editScripts.list";
             final String patchesSourceCodeFilePath =GUM_TREE_OUTPUT + "patchSourceCode.list";
             final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens.list";
