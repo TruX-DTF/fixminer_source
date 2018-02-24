@@ -33,9 +33,19 @@ public class AkkaParser2 {
 	 */
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		String inputRootPath = args[0];
-		int numberOfWorkers = Integer.parseInt(args[1]);
-		int hunkThreshold = Integer.parseInt(args[2]);
+		String inputRootPath;
+		String outputRootPath;
+		int numberOfWorkers;
+		if(args.length > 0){
+		inputRootPath = args[0];
+		outputRootPath = args[1];
+		numberOfWorkers = Integer.parseInt(args[2]);
+		}else{
+			inputRootPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug";
+			outputRootPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutputBug/";
+			numberOfWorkers = 1;
+		}
+
 //		try {
 //			hunkThreshold = Integer.parseInt(args[2]);
 //		} catch (NumberFormatException e1) {
@@ -49,13 +59,13 @@ public class AkkaParser2 {
 
 
 		// input data
-		String GUM_TREE_INPUT = inputRootPath + "GumTreeInput/";
-		log.info("Get the input data..." + GUM_TREE_INPUT );
-		String outputPath = inputRootPath + "GumTreeResults/";
-		log.info("Set the output data..." + outputPath );
+//		String GUM_TREE_INPUT = inputRootPath + "GumTreeInput/";
+		log.info("Get the input data..." + inputRootPath );
+
+		log.info("Set the output data..." + outputRootPath );
 
 
-		File folder = new File(GUM_TREE_INPUT);
+		File folder = new File(inputRootPath);
 		File[] listOfFiles = folder.listFiles();
 		Stream<File> stream = Arrays.stream(listOfFiles);
 		List<File> folders = stream
@@ -71,7 +81,7 @@ public class AkkaParser2 {
 
 			String pjName = target.getName();
 			// output path
-			String GUM_TREE_OUTPUT = outputPath +  pjName + "/";
+			String GUM_TREE_OUTPUT = outputRootPath +  pjName + "/";
 			final String editScriptsFilePath = GUM_TREE_OUTPUT + "editScripts.list";
 			final String patchesSourceCodeFilePath =GUM_TREE_OUTPUT + "patchSourceCode.list";
 			final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens.list";
@@ -115,7 +125,8 @@ public class AkkaParser2 {
 		List<MessageFile> msgFiles = new ArrayList<>();
 		
 		for (File revFile : revFiles) {
-			if (revFile.getName().endsWith(".c") || revFile.getName().endsWith(".h")) {
+//			if (revFile.getName().endsWith(".c") || revFile.getName().endsWith(".h")) {
+			if (revFile.getName().endsWith(".java")) {
 				String fileName = revFile.getName();
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
 //				fileName = fileName.replace(".java", ".txt");

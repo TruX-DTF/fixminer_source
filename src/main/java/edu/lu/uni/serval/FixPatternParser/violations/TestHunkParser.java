@@ -29,9 +29,16 @@ public class TestHunkParser {
 		// input data
 
 //			String rootPath = "/Users/anilkoyuncu/bugStudy";
-        String rootPath = args[0];
-        String inputPath = args[1];
-        String outputPath = args[0] + "/GumTreeOutputBug/";
+        String inputPath;
+        String outputPath;
+        if(args.length > 0){
+            inputPath = args[1];
+            outputPath = args[0] + "/GumTreeOutputBug/";
+        }else{
+            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug";
+            outputPath = "/Users/anilkoyuncu/bugStudy/dataset" + "/GumTreeOutputBug/";
+        }
+
 
 
 		File folder = new File(inputPath);
