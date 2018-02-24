@@ -87,7 +87,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										edu.lu.uni.serval.MultipleThreadsParser.AkkaParser2
+										edu.lu.uni.serval.FixPatternParser.violations.TestHunkParser
 									</mainClass>
 								</manifest>
 							</archive>

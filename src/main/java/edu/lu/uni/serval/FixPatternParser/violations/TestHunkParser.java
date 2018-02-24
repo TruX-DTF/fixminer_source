@@ -36,7 +36,7 @@ public class TestHunkParser {
             outputPath = args[0] + "/GumTreeOutputBug/";
         }else{
             inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug";
-            outputPath = "/Users/anilkoyuncu/bugStudy/dataset" + "/GumTreeOutputBug/";
+            outputPath = "/Users/anilkoyuncu/bugStudy/dataset" + "/GumTreeOutputBug2/";
         }
 
 
