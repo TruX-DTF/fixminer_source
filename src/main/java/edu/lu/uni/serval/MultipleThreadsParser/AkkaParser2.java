@@ -82,11 +82,11 @@ public class AkkaParser2 {
 			String pjName = target.getName();
 			// output path
 			String GUM_TREE_OUTPUT = outputRootPath +  pjName + "/";
-			final String editScriptsFilePath = GUM_TREE_OUTPUT + "editScripts.list";
-			final String patchesSourceCodeFilePath =GUM_TREE_OUTPUT + "patchSourceCode.list";
-			final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens.list";
-			final String editScriptSizesFilePath = GUM_TREE_OUTPUT + "editScriptSizes.csv";
-			final String alarmTypesFilePath = GUM_TREE_OUTPUT + "alarmTypes.list";
+			final String editScriptsFilePath = GUM_TREE_OUTPUT + "editScripts/";
+			final String patchesSourceCodeFilePath =GUM_TREE_OUTPUT + "patchSourceCode/";
+			final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens/";
+			final String editScriptSizesFilePath = GUM_TREE_OUTPUT + "editScriptSizes/";
+			final String alarmTypesFilePath = GUM_TREE_OUTPUT + "alarmTypes/";
 
 			FileHelper.deleteDirectory(editScriptsFilePath);
 			FileHelper.deleteDirectory(patchesSourceCodeFilePath);
@@ -106,6 +106,7 @@ public class AkkaParser2 {
 				system.shutdown();
 				e.printStackTrace();
 			}
+
 
 		}
 

@@ -155,7 +155,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 			}
 			
 			if (sizes.length() > 0) {
-				FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
+				FileHelper.outputToFile(editScriptsFilePath + "editScripts_" + id + ".list", editScripts, true);
 				FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
 				FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
 				FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
