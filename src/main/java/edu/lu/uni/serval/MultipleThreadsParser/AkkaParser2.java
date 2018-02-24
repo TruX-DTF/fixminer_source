@@ -11,6 +11,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Multi-thread parser of parsing the difference between buggy code file and fixed code file.
@@ -49,33 +51,51 @@ public class AkkaParser2 {
 		// input data
 		String GUM_TREE_INPUT = inputRootPath + "GumTreeInput/";
 		log.info("Get the input data..." + GUM_TREE_INPUT );
-		String GUM_TREE_OUTPUT = inputRootPath + "GumTreeResults/";
-		log.info("Set the output data..." + GUM_TREE_OUTPUT );
-		final List<MessageFile> msgFiles = getMessageFiles(GUM_TREE_INPUT);
-		log.info("MessageFiles: " + msgFiles.size());
+		String outputPath = inputRootPath + "GumTreeResults/";
+		log.info("Set the output data..." + outputPath );
 
-		// output path
-		final String editScriptsFilePath =  GUM_TREE_OUTPUT + "editScripts/";
-		final String patchesSourceCodeFilePath = GUM_TREE_OUTPUT + "patchSourceCode/";
-		final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens/";
-		final String editScriptSizesFilePath = GUM_TREE_OUTPUT + "editScriptSizes/";
-		FileHelper.deleteDirectory(editScriptsFilePath);
-		FileHelper.deleteDirectory(patchesSourceCodeFilePath);
-		FileHelper.deleteDirectory(buggyTokensFilePath);
-		FileHelper.deleteDirectory(editScriptSizesFilePath);
 
-		ActorSystem system = null;
-		ActorRef parsingActor = null;
-		final WorkMessage msg = new WorkMessage(0, msgFiles);
-		try {
-			log.info("Akka begins...");
-			system = ActorSystem.create("Mining-FixPattern-System");
-			parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath,
-					patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
-			parsingActor.tell(msg, ActorRef.noSender());
-		} catch (Exception e) {
-			system.shutdown();
-			e.printStackTrace();
+		File folder = new File(GUM_TREE_INPUT);
+		File[] listOfFiles = folder.listFiles();
+		Stream<File> stream = Arrays.stream(listOfFiles);
+		List<File> folders = stream
+				.filter(x -> !x.getName().startsWith("."))
+				.collect(Collectors.toList());
+
+		for (File target : folders) {
+			final List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/");
+			log.info("MessageFiles: " + msgFiles.size());
+			// output path
+
+
+			String pjName = target.getName();
+			// output path
+			String GUM_TREE_OUTPUT = outputPath +  pjName + "/";
+			final String editScriptsFilePath = GUM_TREE_OUTPUT + "editScripts.list";
+			final String patchesSourceCodeFilePath =GUM_TREE_OUTPUT + "patchSourceCode.list";
+			final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens.list";
+			final String editScriptSizesFilePath = GUM_TREE_OUTPUT + "editScriptSizes.csv";
+			final String alarmTypesFilePath = GUM_TREE_OUTPUT + "alarmTypes.list";
+
+			FileHelper.deleteDirectory(editScriptsFilePath);
+			FileHelper.deleteDirectory(patchesSourceCodeFilePath);
+			FileHelper.deleteDirectory(buggyTokensFilePath);
+			FileHelper.deleteDirectory(editScriptSizesFilePath);
+
+			ActorSystem system = null;
+			ActorRef parsingActor = null;
+			final WorkMessage msg = new WorkMessage(0, msgFiles);
+			try {
+				log.info("Akka begins...");
+				system = ActorSystem.create("Mining-FixPattern-System");
+				parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath,
+						patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
+				parsingActor.tell(msg, ActorRef.noSender());
+			} catch (Exception e) {
+				system.shutdown();
+				e.printStackTrace();
+			}
+
 		}
 
 		
