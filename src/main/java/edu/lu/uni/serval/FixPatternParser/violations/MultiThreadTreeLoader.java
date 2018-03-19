@@ -189,14 +189,14 @@ public class MultiThreadTreeLoader {
 
             treesFileNames.add(target.toString());
         }
-//        FileHelper.createDirectory(outputPath + "dumps/");
+        FileHelper.createDirectory(outputPath + "pairs/");
         log.info("Calculating pairs");
 //        treesFileNames = treesFileNames.subList(0,100);
         byte [] buf = new byte[0];
         String line = null;
         try {
 
-            FileChannel rwChannel = new RandomAccessFile(outputPath +"textfile.txt", "rw").getChannel();
+            FileChannel rwChannel = new RandomAccessFile(outputPath + "pairs/" +"textfile.txt", "rw").getChannel();
             ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
             int fileCounter = 0;
 
