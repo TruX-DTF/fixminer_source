@@ -47,8 +47,9 @@ public class MultiThreadTreeLoader {
         }
 
 
-        calculatePairs(inputPath, outputPath);
+//        calculatePairs(inputPath, outputPath);
         processMessages(inputPath,outputPath);
+        evaluateResults(inputPath,outputPath);
 
 
 
@@ -89,6 +90,17 @@ public class MultiThreadTreeLoader {
                 .forEach(m -> coreLoop(m, outputPath,inputPath));
     }
 
+    public static void evaluateResults(String inputPath, String outputPath){
+        File folder = new File(outputPath + "comparison/");
+        File[] listOfFiles = folder.listFiles();
+        Stream<File> stream = Arrays.stream(listOfFiles);
+        List<File> pjs = stream
+                .filter(x -> !x.getName().startsWith("."))
+                .collect(Collectors.toList());
+        pjs.parallelStream()
+                .forEach(m -> coreEval(m, outputPath,inputPath));
+    }
+
     public static ITree getSimpliedTree(String fn) {
         ITree tree = null;
         try {
@@ -117,6 +129,42 @@ public class MultiThreadTreeLoader {
 
         return tree;
 
+    }
+
+    private static void coreEval(File mes, String outputPath,String inputPath) {
+        try {
+
+            log.info("Starting in coreLoop");
+
+            BufferedReader br = null;
+            String sCurrentLine = null;
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "/" + "eval_" + mes.getName()));
+
+            br = new BufferedReader(
+                    new FileReader(mes));
+            while ((sCurrentLine = br.readLine()) != null) {
+                String currentLine = sCurrentLine;
+                String[] split = currentLine.split("\t");
+                String i = split[0];
+                String j = split[1];
+                Double chawatheSimilarity = Double.valueOf(split[2]);
+                Double diceSimilarity = Double.valueOf(split[3]);
+                Double jaccardSimilarity = Double.valueOf(split[4]);
+                int actionSize = Integer.valueOf(split[5]);
+//                String firstValue = split[6];
+//                String secondValue = split[7];
+                if (chawatheSimilarity.equals(1.0) || diceSimilarity.equals(1.0) || jaccardSimilarity.equals(1.0) || actionSize == 0){
+                    writer.write(currentLine);
+                    writer.write("\n");
+                }
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+
+        }
     }
 
     private static void coreLoop(File mes, String outputPath,String inputPath) {
