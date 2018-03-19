@@ -35,8 +35,10 @@ public class TestHunkParser {
             inputPath = args[1];
             outputPath = args[0] + "/GumTreeOutputBug/";
         }else{
-            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug";
-            outputPath = "/Users/anilkoyuncu/bugStudy/dataset" + "/GumTreeOutputBug2/";
+//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug4";
+			inputPath = "/Volumes/data/bugStudy_backup/dataset/GumTreeInputBug4";
+//            outputPath = "/Users/anilkoyuncu/bugStudy/code/python/GumTreeOutput2/";
+			outputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
         }
 
 
@@ -57,14 +59,20 @@ public class TestHunkParser {
 //            }
 //        }
 
+//        List<String> pjList = Arrays.asList("DATAJPA","ZXing","PDE","SWS","SWT", "SWF", "COLLECTIONS", "JDT");
+
         for (File target : folders) {
+            String pjName = target.getName();
+//            if (!pjList.contains(pjName)){
+//                continue;
+//            }
+
             final List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/"); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
             System.out.println(msgFiles.size());
             if(msgFiles.size() == 0)
                 continue;
-            String pjName = target.getName();
-            // output path
-            String GUM_TREE_OUTPUT = outputPath +  pjName + "/";
+
+            String GUM_TREE_OUTPUT = outputPath + "/"+  pjName + "/";
             final String editScriptsFilePath = GUM_TREE_OUTPUT + "editScripts.list";
             final String patchesSourceCodeFilePath =GUM_TREE_OUTPUT + "patchSourceCode.list";
             final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens.list";
@@ -72,7 +80,7 @@ public class TestHunkParser {
             final String alarmTypesFilePath = GUM_TREE_OUTPUT + "alarmTypes.list";
 
 
-
+			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/ASTDumps");
             FileHelper.deleteDirectory(editScriptsFilePath);
             FileHelper.deleteDirectory(patchesSourceCodeFilePath);
             FileHelper.deleteDirectory(buggyTokensFilePath);
@@ -106,7 +114,7 @@ public class TestHunkParser {
                         alarmTypes.append(parser.getAlarmTypes());
 
                         a++;
-                        if (a % 10 == 0) {
+                        if (a % 100 == 0) {
                             FileHelper.outputToFile(editScriptsFilePath, astEditScripts, true);
                             FileHelper.outputToFile(buggyTokensFilePath, tokens, true);
                             FileHelper.outputToFile(editScriptSizesFilePath, sizes, true);

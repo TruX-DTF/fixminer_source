@@ -1,5 +1,6 @@
 package edu.lu.uni.serval.gumtree.regroup;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import com.github.gumtreediff.tree.ITree;
  * @author kui.liu
  *
  */
-public class HierarchicalActionSet implements Comparable<HierarchicalActionSet> {
+public class HierarchicalActionSet implements Comparable<HierarchicalActionSet>,Serializable {
 	
 	private String astNodeType;
 	private Action action;

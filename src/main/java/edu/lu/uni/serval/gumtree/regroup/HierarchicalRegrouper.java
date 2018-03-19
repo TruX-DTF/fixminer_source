@@ -72,6 +72,7 @@ public class HierarchicalRegrouper {
 				}
 			}
 		}
+
 		return reActionSets;
 	}
 
