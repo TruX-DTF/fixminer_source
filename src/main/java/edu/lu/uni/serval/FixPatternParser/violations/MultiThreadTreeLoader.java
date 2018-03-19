@@ -213,7 +213,7 @@ public class MultiThreadTreeLoader {
                     }else{
                         log.info("Next pair dump");
                         fileCounter++;
-                        rwChannel = new RandomAccessFile(outputPath +"textfile"+String.valueOf(fileCounter)+".txt", "rw").getChannel();
+                        rwChannel = new RandomAccessFile(outputPath+"pairs/" +"textfile"+String.valueOf(fileCounter)+".txt", "rw").getChannel();
                         wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
                     }
 
