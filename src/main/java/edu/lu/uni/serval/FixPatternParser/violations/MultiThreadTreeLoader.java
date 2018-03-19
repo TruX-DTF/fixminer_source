@@ -112,9 +112,11 @@ public class MultiThreadTreeLoader {
 
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            log.error("File not found");
+            e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("Error initializing stream");
+            log.error("Error initializing stream");
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -160,9 +162,11 @@ public class MultiThreadTreeLoader {
             }
             writer.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            log.error("File not found");
+            e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("Error initializing stream");
+            log.error("Error initializing stream");
+            e.printStackTrace();
 
         }
     }
@@ -221,9 +225,11 @@ public class MultiThreadTreeLoader {
                 }
             writer.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            log.error("File not found");
+            e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("Error initializing stream");
+            log.error("Error initializing stream");
+            e.printStackTrace();
 
         }
     }
