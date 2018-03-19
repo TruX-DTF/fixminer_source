@@ -211,6 +211,7 @@ public class MultiThreadTreeLoader {
                     if(wrBuf.remaining() > 500) {
                         wrBuf.put(buf);
                     }else{
+                        log.info("Next pair dump");
                         fileCounter++;
                         rwChannel = new RandomAccessFile(outputPath +"textfile"+String.valueOf(fileCounter)+".txt", "rw").getChannel();
                         wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
