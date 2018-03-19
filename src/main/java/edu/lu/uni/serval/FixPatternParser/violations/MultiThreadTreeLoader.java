@@ -15,12 +15,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.zip.Deflater;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -33,46 +38,23 @@ public class MultiThreadTreeLoader {
 
         String inputPath;
         String outputPath;
-        if(args.length > 0){
+        if (args.length > 0) {
             inputPath = args[0];
             outputPath = args[1];
-        }else{
+        } else {
             inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
             outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
         }
 
 
+        calculatePairs(inputPath, outputPath);
+        processMessages(inputPath,outputPath);
 
-        calculatePairs(inputPath,outputPath);
-        processMessages(outputPath );
 
 
-//        List<Message> loaded = null;
-//        try {
-//            FileInputStream fi = new FileInputStream(new File(outputPath + "messageFile"));
-//            ObjectInputStream oi = new ObjectInputStream(fi);
-//            loaded = (List<Message>) oi.readObject();
-//            oi.close();
-//            fi.close();
-//
-//
-//        } catch (FileNotFoundException e) {
-//            System.out.println("File not found");
-//        } catch (IOException e) {
-//            System.out.println("Error initializing stream");
-//        } catch (ClassNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//
-//
-//        log.info(String.valueOf(msgFiles.size()));
-//        log.info(String.valueOf(loaded.size()));
-//        msgFiles.parallelStream()
-//                .forEach(m -> coreLoop(m,outputPath));
     }
 
-    public static void calculatePairs(String inputPath,String outputPath){
+    public static void calculatePairs(String inputPath, String outputPath) {
         File folder = new File(inputPath);
         File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
@@ -92,11 +74,11 @@ public class MultiThreadTreeLoader {
         }
         System.out.println("a");
 //        compareAll(fileToCompare);
-        readMessageFiles(fileToCompare,outputPath);
+        readMessageFiles(fileToCompare, outputPath);
     }
 
-    public static void processMessages(String outputPath){
-        File folder = new File(outputPath+ "dumps/");
+    public static void processMessages(String inputPath, String outputPath) {
+        File folder = new File(outputPath + "pairs/");
         File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
         List<File> pjs = stream
@@ -104,7 +86,7 @@ public class MultiThreadTreeLoader {
                 .collect(Collectors.toList());
         FileHelper.createDirectory(outputPath + "comparison/");
         pjs.parallelStream()
-                .forEach(m -> coreLoop(m,outputPath));
+                .forEach(m -> coreLoop(m, outputPath,inputPath));
     }
 
     public static ITree getSimpliedTree(String fn) {
@@ -137,62 +119,68 @@ public class MultiThreadTreeLoader {
 
     }
 
-    private static void coreLoop(File mes,String outputPath){
+    private static void coreLoop(File mes, String outputPath,String inputPath) {
         try {
-            FileInputStream fi = new FileInputStream(mes);
-            ObjectInputStream oi = new ObjectInputStream(fi);
-            Message loaded = (Message) oi.readObject();
-            oi.close();
-            fi.close();
-            Pair<Integer, String> first = loaded.first;
-            Pair<Integer, String> second = loaded.second;
-            int i = first.getKey();
-            int j = second.getKey();
-            String firstValue = first.getValue();
-            String secondValue = second.getValue();
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath +"comparison/" + "output_"+String.valueOf(i)+"_"+String.valueOf(j)+".txt", true));
-            ITree oldTree = getSimpliedTree(firstValue);
+            log.info("Starting in coreLoop");
 
-            ITree newTree = getSimpliedTree(secondValue);
+            BufferedReader br = null;
+            String sCurrentLine = null;
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "comparison/" + "output_" + mes.getName()));
 
-            Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-            m.match();
+                br = new BufferedReader(
+                        new FileReader(mes));
+                while ((sCurrentLine = br.readLine()) != null) {
+                    String currentLine = sCurrentLine;
+                    String[] split = currentLine.split("\t");
+                    String i = split[0];
+                    String j = split[1];
+                    String firstValue = split[2];
+                    String secondValue = split[3];
 
-            ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-            ag.generate();
-            List<Action> actions = ag.getActions();
-            writer.write(String.valueOf(i));
-            writer.write("\t");
-            writer.write(String.valueOf(j));
-            writer.write("\t");
+                    firstValue = inputPath + firstValue;
+                    secondValue = inputPath + secondValue;
 
-            writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
-            writer.write("\t");
-            writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
-            writer.write("\t");
-            writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
-            writer.write("\t");
-            writer.write(String.valueOf(actions.size()));
-            writer.write("\t");
-            writer.write(firstValue);
-            writer.write("\t");
-            writer.write(secondValue);
-            writer.write("\n");
+                    ITree oldTree = getSimpliedTree(firstValue);
 
+                    ITree newTree = getSimpliedTree(secondValue);
+
+                    Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+                    m.match();
+
+                    ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+                    ag.generate();
+                    List<Action> actions = ag.getActions();
+                    writer.write(String.valueOf(i));
+                    writer.write("\t");
+                    writer.write(String.valueOf(j));
+                    writer.write("\t");
+
+                    writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
+                    writer.write("\t");
+                    writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
+                    writer.write("\t");
+                    writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
+                    writer.write("\t");
+                    writer.write(String.valueOf(actions.size()));
+                    writer.write("\t");
+                    writer.write(firstValue);
+                    writer.write("\t");
+                    writer.write(secondValue);
+                    writer.write("\n");
+
+
+                }
             writer.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
             System.out.println("Error initializing stream");
 
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 
-    private static void readMessageFiles(List<File> folders,String outputPath) {
+    private static void readMessageFiles(List<File> folders, String outputPath) {
 
         List<String> treesFileNames = new ArrayList<>();
 
@@ -201,37 +189,57 @@ public class MultiThreadTreeLoader {
 
             treesFileNames.add(target.toString());
         }
-        FileHelper.createDirectory(outputPath + "dumps/");
+//        FileHelper.createDirectory(outputPath + "dumps/");
         log.info("Calculating pairs");
-//        treesFileNames = treesFileNames.subList(0,10);
+//        treesFileNames = treesFileNames.subList(0,100);
+        byte [] buf = new byte[0];
+        String line = null;
+        try {
 
-        for (int i = 0; i < treesFileNames.size(); i++) {
-            for (int j = i + 1; j < treesFileNames.size(); j++) {
-                Message msgFile = new Message(i, treesFileNames.get(i), j, treesFileNames.get(j));
-//                msgFiles.add(msgFile);
-
-                FileOutputStream f = null;
-                try {
+            FileChannel rwChannel = new RandomAccessFile(outputPath +"textfile.txt", "rw").getChannel();
+            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
+            int fileCounter = 0;
 
 
-                    f = new FileOutputStream(new File(outputPath + "dumps/" + "messageFile_"+String.valueOf(i)+"_"+String.valueOf(j)));
-                    ObjectOutputStream o = new ObjectOutputStream(f);
-                    o.writeObject(msgFile);
+            for (int i = 0; i < treesFileNames.size(); i++) {
+                for (int j = i + 1; j < treesFileNames.size(); j++) {
 
-                    o.close();
-                    f.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+
+                     line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + treesFileNames.get(i).replace("/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2","") + "\t" + treesFileNames.get(j).replace("/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2","")+"\n";
+                     buf  = line.getBytes();
+                    if(wrBuf.remaining() > 500) {
+                        wrBuf.put(buf);
+                    }else{
+                        fileCounter++;
+                        rwChannel = new RandomAccessFile(outputPath +"textfile"+String.valueOf(fileCounter)+".txt", "rw").getChannel();
+                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
+                    }
+
+
+
+
                 }
             }
-
+            rwChannel.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (java.nio.BufferOverflowException e) {
+            log.error(line);
+            log.error(String.valueOf(buf.length));
+            e.printStackTrace();
         }
+
         log.info("Done pairs");
-//        return msgFiles;
     }
 
 
 
+//        return msgFiles;
 }
+
+
+
+
