@@ -79,24 +79,25 @@ public class MultiThreadTreeLoader {
     }
 
     public static void processMessages(String inputPath, String outputPath) {
-        File folder = new File(outputPath + "pairs/");
+        File folder = new File(outputPath + "pairs_splitted/");
         File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
         List<File> pjs = stream
                 .filter(x -> !x.getName().startsWith("."))
                 .collect(Collectors.toList());
-        FileHelper.createDirectory(outputPath + "comparison/");
+        FileHelper.createDirectory(outputPath + "comparison_splitted/");
         pjs.parallelStream()
                 .forEach(m -> coreLoop(m, outputPath,inputPath));
     }
 
     public static void evaluateResults(String inputPath, String outputPath){
-        File folder = new File(outputPath + "comparison/");
+        File folder = new File(outputPath + "comparison_splitted/");
         File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
         List<File> pjs = stream
                 .filter(x -> !x.getName().startsWith("."))
                 .collect(Collectors.toList());
+        FileHelper.createDirectory(outputPath + "eval_splitted/");
         pjs.parallelStream()
                 .forEach(m -> coreEval(m, outputPath,inputPath));
     }
@@ -140,7 +141,7 @@ public class MultiThreadTreeLoader {
 
             BufferedReader br = null;
             String sCurrentLine = null;
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "/" + "eval_" + mes.getName()));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "eval_splitted/" + "eval_" + mes.getName()));
 
             br = new BufferedReader(
                     new FileReader(mes));
@@ -178,7 +179,7 @@ public class MultiThreadTreeLoader {
 
             BufferedReader br = null;
             String sCurrentLine = null;
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "comparison/" + "output_" + mes.getName()));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "comparison_splitted/" + "output_" + mes.getName()));
 
                 br = new BufferedReader(
                         new FileReader(mes));
@@ -232,6 +233,7 @@ public class MultiThreadTreeLoader {
             e.printStackTrace();
 
         }
+        log.info("Completed output_" + mes.getName());
     }
 
     private static void readMessageFiles(List<File> folders, String outputPath) {
