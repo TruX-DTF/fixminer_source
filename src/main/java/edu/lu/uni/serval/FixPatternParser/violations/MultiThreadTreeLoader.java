@@ -190,8 +190,8 @@ public class MultiThreadTreeLoader {
                     String firstValue = split[2];
                     String secondValue = split[3];
 
-                    firstValue = inputPath + firstValue.substring(1);;
-                    secondValue = inputPath + secondValue.substring(1);;
+                    firstValue = inputPath + firstValue.split("GumTreeOutput2")[1];
+                    secondValue = inputPath + secondValue.split("GumTreeOutput2")[1];
 
                     ITree oldTree = getSimpliedTree(firstValue);
 
