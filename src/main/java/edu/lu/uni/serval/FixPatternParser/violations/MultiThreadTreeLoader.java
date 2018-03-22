@@ -391,7 +391,7 @@ public class MultiThreadTreeLoader {
     }
 
     static final JedisPoolConfig poolConfig = buildPoolConfig();
-    static JedisPool jedisPool = new JedisPool(poolConfig, "localhost");
+    static JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1");
 
     private static JedisPoolConfig buildPoolConfig() {
         final JedisPoolConfig poolConfig = new JedisPoolConfig();
