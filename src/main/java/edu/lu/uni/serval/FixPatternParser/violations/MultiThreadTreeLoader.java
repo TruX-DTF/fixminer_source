@@ -13,14 +13,13 @@ import edu.lu.uni.serval.utils.FileHelper;
 import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.*;
 
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.time.Duration;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.zip.Deflater;
@@ -48,12 +47,99 @@ public class MultiThreadTreeLoader {
 
 
 //        calculatePairs(inputPath, outputPath);
-        processMessages(inputPath,outputPath);
-        evaluateResults(inputPath,outputPath);
+//        processMessages(inputPath,outputPath);
+//        evaluateResults(inputPath,outputPath);
+
+        try (Jedis jedis = jedisPool.getResource()) {
+            // do operations with jedis resource
+            Set<String> names = jedis.keys("*");
+            ScanParams sc = new ScanParams();
+            sc.count(150000000);
+            sc.match("pair_*");
+            ScanResult<String> scan = jedis.scan("0",sc);
+
+//            java.util.Iterator<String> it = names.iterator();
+//            while(it.hasNext()) {
+//                String s = it.next();
+//                System.out.println(s + " : " + jedis.get(s));
+//            }
+            scan.getResult().parallelStream()
+                    .forEach(m -> coreCompare(m, inputPath));
+        }
 
 
 
     }
+
+    private static void coreCompare(String name , String inputPath) {
+
+        String value;
+        try (Jedis jedis = jedisPool.getResource()) {
+
+
+            value = jedis.get(name);
+
+
+            String[] split = value.split(",");
+            log.info("Starting in coreLoop");
+
+            String i = split[0];
+            String j = split[1];
+            String firstValue = split[2];
+            String secondValue = split[3];
+
+            String[] firstValueSplit = firstValue.split("GumTreeOutput2");
+            String[] secondValueSplit = secondValue.split("GumTreeOutput2");
+
+            if (firstValueSplit.length == 1) {
+                firstValue = inputPath + firstValueSplit[0];
+            } else {
+                firstValue = inputPath + firstValueSplit[1];
+            }
+
+            if (secondValueSplit.length == 1) {
+                secondValue = inputPath + secondValueSplit[0];
+            } else {
+                secondValue = inputPath + secondValueSplit[1];
+            }
+
+
+            ITree oldTree = getSimpliedTree(firstValue);
+
+            ITree newTree = getSimpliedTree(secondValue);
+
+            Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+            m.match();
+
+            ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+            ag.generate();
+            List<Action> actions = ag.getActions();
+
+            String resultKey = "result_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+            double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
+            String chawatheSimilarity = String.format("%1.2f",chawatheSimilarity1 );
+            double  diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
+            String diceSimilarity = String.format("%1.2f",diceSimilarity1 );
+            double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
+            String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
+
+            String editDistance = String.valueOf(actions.size());
+
+            String result = chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
+            jedis.set(resultKey, result);
+
+            if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
+                    || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0){
+                String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                jedis.set(matchKey, result);
+            }
+
+
+            log.info("Completed " + resultKey);
+        }
+    }
+
+
 
     public static void calculatePairs(String inputPath, String outputPath) {
         File folder = new File(inputPath);
@@ -141,6 +227,18 @@ public class MultiThreadTreeLoader {
 
             BufferedReader br = null;
             String sCurrentLine = null;
+
+            try (Jedis jedis = jedisPool.getResource()) {
+                // do operations with jedis resource
+                Set<String> names = jedis.keys("*");
+
+                java.util.Iterator<String> it = names.iterator();
+                while(it.hasNext()) {
+                    String s = it.next();
+                    System.out.println(s + " : " + jedis.get(s));
+                }
+            }
+
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "eval_splitted/" + "eval_" + mes.getName()));
 
             br = new BufferedReader(
@@ -290,6 +388,24 @@ public class MultiThreadTreeLoader {
         }
 
         log.info("Done pairs");
+    }
+
+    static final JedisPoolConfig poolConfig = buildPoolConfig();
+    static JedisPool jedisPool = new JedisPool(poolConfig, "localhost");
+
+    private static JedisPoolConfig buildPoolConfig() {
+        final JedisPoolConfig poolConfig = new JedisPoolConfig();
+        poolConfig.setMaxTotal(128);
+        poolConfig.setMaxIdle(128);
+        poolConfig.setMinIdle(16);
+        poolConfig.setTestOnBorrow(true);
+        poolConfig.setTestOnReturn(true);
+        poolConfig.setTestWhileIdle(true);
+        poolConfig.setMinEvictableIdleTimeMillis(Duration.ofSeconds(60).toMillis());
+        poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofSeconds(30).toMillis());
+        poolConfig.setNumTestsPerEvictionRun(3);
+        poolConfig.setBlockWhenExhausted(true);
+        return poolConfig;
     }
 
 
