@@ -198,14 +198,14 @@ public class MultiThreadTreeLoader {
             String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
 
             String editDistance = String.valueOf(actions.size());
-            jedis.select(1);
-            String result = chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
-            jedis.set(resultKey, result);
+//            jedis.select(1);
+            String result = resultMap.get("0") + "," +resultMap.get("1") + "," +chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
+//            jedis.set(resultKey, result);
 
             if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
                     || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0){
                 String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                jedis.select(2);
+                jedis.select(1);
                 jedis.set(matchKey, result);
             }
 
