@@ -92,7 +92,7 @@ public class MultiThreadTreeLoader {
 
 
             Process process;
-
+            log.info(f.getName());
             try {
                 String comd = String.format(cmd, f.getAbsoluteFile());
                 process = Runtime.getRuntime()
@@ -110,7 +110,7 @@ public class MultiThreadTreeLoader {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            log.info("Load done");
 
             try (Jedis jedis = jedisPool.getResource()) {
                 // do operations with jedis resource
@@ -118,10 +118,10 @@ public class MultiThreadTreeLoader {
                 ScanParams sc = new ScanParams();
                 sc.count(150000000);
                 sc.match("pair_*");
-                jedis.configSet("dbfilename",f.getName());
-
+//                jedis.configSet("dbfilename",f.getName());
+                log.info("Scanning");
                 ScanResult<String> scan = jedis.scan("0",sc);
-
+                log.info("Scanning " + String.valueOf(scan.getResult().size()));
     //            java.util.Iterator<String> it = names.iterator();
     //            while(it.hasNext()) {
     //                String s = it.next();
@@ -130,7 +130,11 @@ public class MultiThreadTreeLoader {
                 scan.getResult().parallelStream()
                         .forEach(m -> coreCompare(m, inputPath, jedisPool));
 
+                jedis.select(0);
+                jedis.flushDB();
+
                 jedis.save();
+
             }
 
         }
