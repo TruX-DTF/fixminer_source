@@ -130,8 +130,8 @@ public class MultiThreadTreeLoader {
                 scan.getResult().parallelStream()
                         .forEach(m -> coreCompare(m, inputPath, jedisPool));
 
-                jedis.select(0);
-                jedis.flushDB();
+//                jedis.select(0);
+//                jedis.flushDB();
 
                 jedis.save();
 
@@ -155,7 +155,7 @@ public class MultiThreadTreeLoader {
 
 
             String[] split = name.split("_");
-            log.info("Starting in coreLoop");
+
 
             String i = split[1];
             String j = split[2];
@@ -177,40 +177,53 @@ public class MultiThreadTreeLoader {
                 secondValue = inputPath + secondValueSplit[1];
             }
 
+            try {
+                ITree oldTree = getSimpliedTree(firstValue);
 
-            ITree oldTree = getSimpliedTree(firstValue);
+                ITree newTree = getSimpliedTree(secondValue);
 
-            ITree newTree = getSimpliedTree(secondValue);
+                Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+                m.match();
 
-            Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-            m.match();
 
-            ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-            ag.generate();
-            List<Action> actions = ag.getActions();
+                ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+                ag.generate();
+                List<Action> actions = ag.getActions();
 
-            String resultKey = "result_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-            double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
-            String chawatheSimilarity = String.format("%1.2f",chawatheSimilarity1 );
-            double  diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
-            String diceSimilarity = String.format("%1.2f",diceSimilarity1 );
-            double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
-            String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
+                String resultKey = "result_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
+                String chawatheSimilarity = String.format("%1.2f", chawatheSimilarity1);
+                double diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
+                String diceSimilarity = String.format("%1.2f", diceSimilarity1);
+                double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
+                String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
 
-            String editDistance = String.valueOf(actions.size());
+                String editDistance = String.valueOf(actions.size());
 //            jedis.select(1);
-            String result = resultMap.get("0") + "," +resultMap.get("1") + "," +chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
+                String result = resultMap.get("0") + "," + resultMap.get("1") + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
 //            jedis.set(resultKey, result);
 
-            if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
-                    || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0){
-                String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                jedis.select(1);
-                jedis.set(matchKey, result);
+                if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
+                        || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
+                    String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                    jedis.select(1);
+                    jedis.set(matchKey, result);
+                }
+                jedis.select(0);
+                String pairKey = "pair_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                jedis.del(pairKey);
+
+//                log.info("Completed " + resultKey);
+
+            }catch (Exception e){
+                log.error(e.toString() + " {}",(name));
+
+
             }
 
 
-            log.info("Completed " + resultKey);
+
+
         }
     }
 
