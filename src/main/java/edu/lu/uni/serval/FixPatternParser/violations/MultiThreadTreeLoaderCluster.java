@@ -10,6 +10,7 @@ import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
 import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.ListSorter;
+import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;
@@ -21,10 +22,8 @@ import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javafx.util.*;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -296,11 +295,11 @@ public class MultiThreadTreeLoaderCluster {
                 Pair<ITree, String> oldPair = getTree(firstValue);
                 Pair<ITree, String> newPair = getTree(secondValue);
 
-                ITree oldTree = oldPair.getKey();
-                ITree newTree = newPair.getKey();
+                ITree oldTree = oldPair.getValue0();
+                ITree newTree = newPair.getValue0();
 
-                String oldProject = oldPair.getValue();
-                String newProject = newPair.getValue();
+                String oldProject = oldPair.getValue1();
+                String newProject = newPair.getValue1();
 
 
 

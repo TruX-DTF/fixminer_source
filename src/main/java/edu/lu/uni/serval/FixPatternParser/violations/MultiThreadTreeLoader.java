@@ -1,16 +1,11 @@
 package edu.lu.uni.serval.FixPatternParser.violations;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
-import edu.lu.uni.serval.MultipleThreadsParser.WorkMessage;
 import edu.lu.uni.serval.utils.FileHelper;
-import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;
@@ -24,9 +19,6 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.zip.Deflater;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
