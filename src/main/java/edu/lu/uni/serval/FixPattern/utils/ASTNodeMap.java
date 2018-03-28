@@ -105,5 +105,12 @@ public class ASTNodeMap {
 		map.put(90, "ExpressionMethodReference");
 		map.put(91, "SuperMethodReference");
 		map.put(92, "TypeMethodReference");
+
+
+		map.put(100,"Insert");
+		map.put(101,"Update");
+		map.put(102,"Delete");
+		map.put(103,"Move");
+		map.put(104,"NoChange");
 	}
 }
