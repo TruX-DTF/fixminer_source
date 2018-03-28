@@ -51,6 +51,30 @@ public class MultiThreadTreeLoader {
 
     private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoader.class);
 
+
+    public static void loadRedis(String cmd, File f){
+        Process process;
+        log.info(f.getName());
+        try {
+            String comd = String.format(cmd, f.getAbsoluteFile());
+            process = Runtime.getRuntime()
+
+                    .exec(comd);
+
+
+            StreamGobbler streamGobbler =
+                    new StreamGobbler(process.getInputStream(), System.out::println);
+            Executors.newSingleThreadExecutor().submit(streamGobbler);
+            int exitCode = process.waitFor();
+            assert exitCode == 0;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("Load done");
+    }
+
     public static void main(String[] args) {
 
 
@@ -59,18 +83,21 @@ public class MultiThreadTreeLoader {
         String port;
         String pairsCSVPath;
         String importScript;
+        String pairsCompletedPath;
         if (args.length > 0) {
             inputPath = args[0];
             outputPath = args[1];
             port = args[2];
             pairsCSVPath = args[3];
             importScript = args[4];
+            pairsCompletedPath = args[3];
         } else {
             inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
             outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
             port = "6379";
             pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
             importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
+            pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
         }
 
         String cmd;
@@ -88,54 +115,37 @@ public class MultiThreadTreeLoader {
                 .filter(x -> !x.getName().startsWith("."))
                 .collect(Collectors.toList());
 
+        //create dir
+        File file = new File(pairsCompletedPath);
+        file.mkdirs();
+
         for (File f:folders){
 
 
-            Process process;
-            log.info(f.getName());
-            try {
-                String comd = String.format(cmd, f.getAbsoluteFile());
-                process = Runtime.getRuntime()
-
-                            .exec(comd);
-
-
-            StreamGobbler streamGobbler =
-                    new StreamGobbler(process.getInputStream(), System.out::println);
-            Executors.newSingleThreadExecutor().submit(streamGobbler);
-            int exitCode = process.waitFor();
-            assert exitCode == 0;
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            log.info("Load done");
 
             try (Jedis jedis = jedisPool.getResource()) {
                 // do operations with jedis resource
-    //            Set<String> names = jedis.keys("*");
                 ScanParams sc = new ScanParams();
                 sc.count(150000000);
                 sc.match("pair_*");
-//                jedis.configSet("dbfilename",f.getName());
-                log.info("Scanning");
+
                 ScanResult<String> scan = jedis.scan("0",sc);
-                log.info("Scanning " + String.valueOf(scan.getResult().size()));
-    //            java.util.Iterator<String> it = names.iterator();
-    //            while(it.hasNext()) {
-    //                String s = it.next();
-    //                System.out.println(s + " : " + jedis.get(s));
-    //            }
+                int size = scan.getResult().size();
+                log.info("Scanning " + String.valueOf(size));
+                if (size == 0){
+                    loadRedis(cmd,f);
+
+                    scan = jedis.scan("0",sc);
+                    size = scan.getResult().size();
+                    log.info("Scanning " + String.valueOf(size));
+                }
                 scan.getResult().parallelStream()
                         .forEach(m -> coreCompare(m, inputPath, jedisPool));
-
-//                jedis.select(0);
-//                jedis.flushDB();
 
                 jedis.save();
 
             }
+            f.renameTo(new File(pairsCompletedPath, f.getName()));
 
         }
 
@@ -264,17 +274,6 @@ public class MultiThreadTreeLoader {
                 .forEach(m -> coreLoop(m, outputPath,inputPath));
     }
 
-//    public static void evaluateResults(String inputPath, String outputPath){
-//        File folder = new File(outputPath + "comparison_splitted/");
-//        File[] listOfFiles = folder.listFiles();
-//        Stream<File> stream = Arrays.stream(listOfFiles);
-//        List<File> pjs = stream
-//                .filter(x -> !x.getName().startsWith("."))
-//                .collect(Collectors.toList());
-//        FileHelper.createDirectory(outputPath + "eval_splitted/");
-//        pjs.parallelStream()
-//                .forEach(m -> coreEval(m, outputPath,inputPath));
-//    }
 
     public static ITree getSimpliedTree(String fn) {
         ITree tree = null;
@@ -308,55 +307,7 @@ public class MultiThreadTreeLoader {
 
     }
 
-//    private static void coreEval(File mes, String outputPath,String inputPath) {
-//        try {
-//
-//            log.info("Starting in coreLoop");
-//
-//            BufferedReader br = null;
-//            String sCurrentLine = null;
-//
-//            try (Jedis jedis = jedisPool.getResource()) {
-//                // do operations with jedis resource
-//                Set<String> names = jedis.keys("*");
-//
-//                java.util.Iterator<String> it = names.iterator();
-//                while(it.hasNext()) {
-//                    String s = it.next();
-//                    System.out.println(s + " : " + jedis.get(s));
-//                }
-//            }
-//
-//            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "eval_splitted/" + "eval_" + mes.getName()));
-//
-//            br = new BufferedReader(
-//                    new FileReader(mes));
-//            while ((sCurrentLine = br.readLine()) != null) {
-//                String currentLine = sCurrentLine;
-//                String[] split = currentLine.split("\t");
-//                String i = split[0];
-//                String j = split[1];
-//                Double chawatheSimilarity = Double.valueOf(split[2]);
-//                Double diceSimilarity = Double.valueOf(split[3]);
-//                Double jaccardSimilarity = Double.valueOf(split[4]);
-//                int actionSize = Integer.valueOf(split[5]);
-////                String firstValue = split[6];
-////                String secondValue = split[7];
-//                if (chawatheSimilarity.equals(1.0) || diceSimilarity.equals(1.0) || jaccardSimilarity.equals(1.0) || actionSize == 0){
-//                    writer.write(currentLine);
-//                    writer.write("\n");
-//                }
-//            }
-//            writer.close();
-//        } catch (FileNotFoundException e) {
-//            log.error("File not found");
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            log.error("Error initializing stream");
-//            e.printStackTrace();
-//
-//        }
-//    }
+
 
     private static void coreLoop(File mes, String outputPath,String inputPath) {
         try {
