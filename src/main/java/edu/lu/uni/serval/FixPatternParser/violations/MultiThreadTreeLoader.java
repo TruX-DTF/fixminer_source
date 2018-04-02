@@ -13,6 +13,8 @@ import redis.clients.jedis.*;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -80,9 +82,9 @@ public class MultiThreadTreeLoader {
             inputPath = args[0];
             outputPath = args[1];
             port = args[2];
-            pairsCSVPath = args[3];
-            importScript = args[4];
-            pairsCompletedPath = args[3];
+//            pairsCSVPath = args[3];
+//            importScript = args[4];
+//            pairsCompletedPath = args[3];
         } else {
             inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
             outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
@@ -92,57 +94,91 @@ public class MultiThreadTreeLoader {
             pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
         }
 
-        String cmd;
-        cmd = "bash " + importScript +" %s";
+
+        calculatePairs(inputPath, outputPath,port);
+//        comparePairs(port,inputPath);
+
+
+    }
+
+    public static void comparePairs(String port,String inputPath){
+//        String cmd;
+//        cmd = "bash " + importScript +" %s";
 
         JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
 //        calculatePairs(inputPath, outputPath);
 //        processMessages(inputPath,outputPath);
 //        evaluateResults(inputPath,outputPath);
 
-        File folder = new File(pairsCSVPath);
-        File[] listOfFiles = folder.listFiles();
-        Stream<File> stream = Arrays.stream(listOfFiles);
-        List<File> folders = stream
-                .filter(x -> !x.getName().startsWith("."))
-                .collect(Collectors.toList());
+//        File folder = new File(pairsCSVPath);
+//        File[] listOfFiles = folder.listFiles();
+//        Stream<File> stream = Arrays.stream(listOfFiles);
+//        List<File> folders = stream
+//                .filter(x -> !x.getName().startsWith("."))
+//                .collect(Collectors.toList());
+//
+//        //create dir
+//        File file = new File(pairsCompletedPath);
+//        file.mkdirs();
 
-        //create dir
-        File file = new File(pairsCompletedPath);
-        file.mkdirs();
+//        for (File f:folders){
 
-        for (File f:folders){
 
 
 
             try (Jedis jedis = jedisPool.getResource()) {
-                // do operations with jedis resource
-                ScanParams sc = new ScanParams();
-                sc.count(150000000);
-                sc.match("pair_*");
 
-                ScanResult<String> scan = jedis.scan("0",sc);
-                int size = scan.getResult().size();
-                log.info("Scanning " + String.valueOf(size));
-                if (size == 0){
-                    loadRedis(cmd,f);
 
-                    scan = jedis.scan("0",sc);
-                    size = scan.getResult().size();
+
+                List<String> dir = jedis.configGet("dir");
+                List<String> path = jedis.configGet("dbfilename");
+                File dbDir = new File(dir.get(1));
+                String orgDbname = path.get(1);
+                File[] files = dbDir.listFiles();
+                Stream<File> stream = Arrays.stream(files);
+                List<File> folders = stream
+                    .filter(x -> !x.getName().startsWith(orgDbname)).filter(x -> x.getName().endsWith(".rdb"))
+                    .collect(Collectors.toList());
+                for (File folder : folders) {
+
+
+                    File dbPath = new File(dir.get(1) + "/" + path.get(1));
+                    File savePath = new File(dir.get(1) + "/" + folder.getName());
+                    try {
+                        Files.copy(savePath.toPath(),dbPath.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException e) {
+
+                        e.printStackTrace();
+                    }
+
+                    jedis.configSet("dbfilename",folder.getName());
+
+
+                    // do operations with jedis resource
+                    ScanParams sc = new ScanParams();
+                    sc.count(150000000);
+                    sc.match("pair_*");
+
+                    ScanResult<String> scan = jedis.scan("0", sc);
+                    int size = scan.getResult().size();
                     log.info("Scanning " + String.valueOf(size));
+//                if (size == 0){
+//                    loadRedis(cmd,f);
+//
+//                    scan = jedis.scan("0",sc);
+//                    size = scan.getResult().size();
+//                    log.info("Scanning " + String.valueOf(size));
+//                }
+                    scan.getResult().parallelStream()
+                            .forEach(m -> coreCompare(m, inputPath, jedisPool));
+
+                    jedis.save();
                 }
-                scan.getResult().parallelStream()
-                        .forEach(m -> coreCompare(m, inputPath, jedisPool));
 
-                jedis.save();
-
-            }
-            f.renameTo(new File(pairsCompletedPath, f.getName()));
+//            }
+//            f.renameTo(new File(pairsCompletedPath, f.getName()));
 
         }
-
-
-
     }
 
     private static void coreCompare(String name , String inputPath, JedisPool jedisPool) {
@@ -231,7 +267,7 @@ public class MultiThreadTreeLoader {
 
 
 
-    public static void calculatePairs(String inputPath, String outputPath) {
+    public static void calculatePairs(String inputPath, String outputPath,String port) {
         File folder = new File(inputPath);
         File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
@@ -251,7 +287,7 @@ public class MultiThreadTreeLoader {
         }
         System.out.println("a");
 //        compareAll(fileToCompare);
-        readMessageFiles(fileToCompare, outputPath);
+        readMessageFiles(fileToCompare, outputPath,port);
     }
 
     public static void processMessages(String inputPath, String outputPath) {
@@ -365,7 +401,7 @@ public class MultiThreadTreeLoader {
         log.info("Completed output_" + mes.getName());
     }
 
-    private static void readMessageFiles(List<File> folders, String outputPath) {
+    private static void readMessageFiles(List<File> folders, String outputPath,String port) {
 
         List<String> treesFileNames = new ArrayList<>();
 
@@ -379,44 +415,49 @@ public class MultiThreadTreeLoader {
 //        treesFileNames = treesFileNames.subList(0,100);
         byte [] buf = new byte[0];
         String line = null;
-        try {
-
-            FileChannel rwChannel = new RandomAccessFile(outputPath + "pairs/" +"textfile.txt", "rw").getChannel();
-            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
-            int fileCounter = 0;
 
 
+//            FileChannel rwChannel = new RandomAccessFile(outputPath + "pairs/" +"textfile.txt", "rw").getChannel();
+//            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
+        int fileCounter = 0;
+
+        JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
             for (int i = 0; i < treesFileNames.size(); i++) {
                 for (int j = i + 1; j < treesFileNames.size(); j++) {
 
+                    try (Jedis jedis = jedisPool.getResource()) {
+                        // do operations with jedis resource
+
+                        String key = "pair_" + String.valueOf(i) + "_" + String.valueOf(j);
+//                        String value = treesFileNames.get(i).split("GumTreeOutput2")[1] +","+treesFileNames.get(j).split("GumTreeOutput2")[1];
+//                        jedis.set(key,value);
+
+                        jedis.hset(key,"0",treesFileNames.get(i).split("GumTreeOutput2")[1]);
+                        jedis.hset(key,"1",treesFileNames.get(j).split("GumTreeOutput2")[1]);
+                        //10000000
+                        if(Integer.compare(jedis.dbSize().intValue(),10000000) == 0){
+                            List<String> dir = jedis.configGet("dir");
+                            List<String> path = jedis.configGet("dbfilename");
+                            File dbPath = new File(dir.get(1)+"/"+path.get(1));
+                            File savePath = new File(dir.get(1)+"/"+"chunk"+String.valueOf(fileCounter)+ ".rdb");
+                            try {
+                                Files.copy(dbPath.toPath(),savePath.toPath());
+                            } catch (IOException e) {
+
+                                e.printStackTrace();
+                            }
+                            fileCounter++;
+                            jedis.flushDB();
+
+                        }
 
 
-                     line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + treesFileNames.get(i).replace("/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2","") + "\t" + treesFileNames.get(j).replace("/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2","")+"\n";
-                     buf  = line.getBytes();
-                    if(wrBuf.remaining() > 500) {
-                        wrBuf.put(buf);
-                    }else{
-                        log.info("Next pair dump");
-                        fileCounter++;
-                        rwChannel = new RandomAccessFile(outputPath+"pairs/" +"textfile"+String.valueOf(fileCounter)+".txt", "rw").getChannel();
-                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
                     }
-
-
-
-
                 }
             }
-            rwChannel.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }catch (java.nio.BufferOverflowException e) {
-            log.error(line);
-            log.error(String.valueOf(buf.length));
-            e.printStackTrace();
-        }
+
+
+
 
         log.info("Done pairs");
     }
