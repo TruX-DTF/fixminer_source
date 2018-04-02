@@ -40,7 +40,7 @@ public class TestHunkParser {
         String outputPath;
         if(args.length > 0){
             inputPath = args[1];
-            outputPath = args[0] + "/GumTreeOutputBug/";
+            outputPath = args[0];
         }else{
 //            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug4";
 			inputPath = "/Volumes/data/bugStudy_backup/dataset/GumTreeInputBug4";
