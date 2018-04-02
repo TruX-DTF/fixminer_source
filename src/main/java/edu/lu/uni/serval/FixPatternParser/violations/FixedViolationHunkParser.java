@@ -51,7 +51,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				FileOutputStream f = null;
 				try {
 					String pj = diffentryFile.getParent().split("GumTreeInputBug4")[1];
-					String root = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
+					String root = diffentryFile.getParent().split("GumTreeInputBug4")[0];
 					String hunkTreeFileName = root+pj.replace("DiffEntries","ActionSetDumps/") + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
 					f = new FileOutputStream(new File(hunkTreeFileName));
 					ObjectOutputStream o = new ObjectOutputStream(f);
