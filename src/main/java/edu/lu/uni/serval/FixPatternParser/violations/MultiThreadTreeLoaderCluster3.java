@@ -5,13 +5,11 @@ import com.github.gumtreediff.actions.model.*;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
-import com.github.gumtreediff.tree.Tree;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
 import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.ListSorter;
-import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;
@@ -25,11 +23,12 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.apache.commons.text.similarity.*;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
  */
-public class MultiThreadTreeLoaderCluster {
+public class MultiThreadTreeLoaderCluster3 {
 
     private static int resultType;
 
@@ -49,7 +48,7 @@ public class MultiThreadTreeLoaderCluster {
         }
     }
 
-    private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoaderCluster.class);
+    private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoaderCluster3.class);
 
     public static void main(String[] args){
 
@@ -58,26 +57,65 @@ public class MultiThreadTreeLoaderCluster {
         String port;
         String pairsCSVPath;
         String importScript;
+        String csvScript;
         if (args.length > 0) {
             inputPath = args[0];
             outputPath = args[1];
             port = args[2];
             pairsCSVPath = args[3];
             importScript = args[4];
+            csvScript = args[5];
         } else {
 //            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
-            inputPath = "/Users/anilkoyuncu/bugStudy/code/python/clusterDumps";
+            inputPath = "/Users/anilkoyuncu/bugStudy/code/python/cluster2L";
             outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
             port = "6379";
-            pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs-csv/";
+            pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs-2l-csv/";
             importScript = "/Users/anilkoyuncu/bugStudy/dataset/redisSingleImport.sh";
+            csvScript = "/Users/anilkoyuncu/bugStudy/dataset/transformCSV.sh";
         }
 
-//        calculatePairsOfClusters(inputPath, outputPath);
+        calculatePairsOfClusters(inputPath, outputPath);
+
+//        createCSV(csvScript,outputPath + "pairs-2l/",pairsCSVPath);
+
+        //create csv file and move
+
         mainCompare(inputPath,port,pairsCSVPath,importScript);
         //        calculatePairs(inputPath, outputPath);
 //        processMessages(inputPath,outputPath);
 //        evaluateResults(inputPath,outputPath);
+
+    }
+
+    public static void createCSV(String csvScript, String f1, String f2){
+        String cmd;
+        cmd = "bash " + csvScript +" %s %s";
+        Process process = null;
+        File source = new File(f1);
+        File dest = new File(f2);
+        log.info(source.getName());
+        log.info(dest.getName());
+        try {
+            String comd = String.format(cmd, source.getAbsoluteFile() ,dest.getAbsoluteFile());
+            process = Runtime.getRuntime()
+
+                    .exec(comd);
+
+
+            StreamGobbler streamGobbler =
+                    new StreamGobbler(process.getInputStream(), System.out::println);
+            Executors.newSingleThreadExecutor().submit(streamGobbler);
+            int exitCode = process.waitFor();
+            assert exitCode == 0;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            process.destroyForcibly();
+        }
+        log.info("Load done");
 
     }
 
@@ -121,42 +159,45 @@ public class MultiThreadTreeLoaderCluster {
 
         for (File f:folders){
 
-            if(f.getName().startsWith("cluster76")) {
 
 
-                try (Jedis jedis = jedisPool.getResource()) {
-                    // do operations with jedis resource
-                    ScanParams sc = new ScanParams();
-                    sc.count(150000000);
-                    sc.match("pair_[0-9]*");
 
-                    log.info("Scanning");
-                    ScanResult<String> scan = jedis.scan("0", sc);
-                    int size = scan.getResult().size();
+            try (Jedis jedis = jedisPool.getResource()) {
+                // do operations with jedis resource
+                ScanParams sc = new ScanParams();
+                sc.count(150000000);
+                sc.match("pair_[0-9]*");
 
-                    if (size == 0) {
-                        loadRedis(cmd, f);
+                log.info("Scanning");
+                ScanResult<String> scan = jedis.scan("0",sc);
+                int size = scan.getResult().size();
 
-                        scan = jedis.scan("0", sc);
-                        size = scan.getResult().size();
+                if (size == 0){
+                    loadRedis(cmd,f);
 
-                    }
-                    log.info("Scanned " + String.valueOf(size));
-
-
-                    String clusterName = f.getName().replaceAll("[^0-9]+", "");
-
-
-                    //76
-
-                    scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, inputPath, jedisPool, clusterName));
-
-
-                    jedis.save();
+                    scan = jedis.scan("0",sc);
+                    size = scan.getResult().size();
 
                 }
+                log.info("Scanned " + String.valueOf(size));
+
+
+                String clusterName = f.getName().split("\\.")[0].replace("cluster","");
+
+
+
+
+                scan.getResult().parallelStream()
+                        .forEach(m -> coreCompare(m, inputPath, jedisPool,clusterName));
+
+
+
+
+                jedis.save();
+
             }
+
+
 
 
         }
@@ -169,59 +210,83 @@ public class MultiThreadTreeLoaderCluster {
 
 
 
-    public  static Pair<ITree,String> getTree(String firstValue){
+    public  static ITree getTree(String firstValue){
         String gumTreeInput = "/Volumes/data/bugStudy_backup/dataset/GumTreeInputBug4/";
         String[] split2 = firstValue.split("/");
         String cluster = split2[1];
-
-
-        File folder = new File("/Users/anilkoyuncu/bugStudy/code/python/cluster/"+cluster);
-        File[] listOfFiles = folder.listFiles();
-        Stream<File> stream = Arrays.stream(listOfFiles);
-        List<File> folders = stream
-                .filter(x -> !x.getName().startsWith(".") && x.getName().startsWith(split2[2]))
-                .collect(Collectors.toList());
-
-
-
-        String[] split1 = folders.get(0).getName().split(".txt_");
+        String subCluster = split2[2];
+        String filename = split2[3];
+        String[] split1= filename.split(".txt_");
         String s = split1[0];
         String[] splitPJ = split1[1].split("_");
         String project = splitPJ[1];
         String actionSetPosition = splitPJ[0];
 
-        File prevFile = new File(gumTreeInput + project+ "/" + "prevFiles/prev_" + s + ".java");// previous file
-        File revFile = new File(gumTreeInput  + project+ "/" + "revFiles/" + s + ".java");//rev file
 
-        List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
-
-        HierarchicalActionSet actionSet = actionSets.get(Integer.valueOf(actionSetPosition));
-//        for (HierarchicalActionSet actionSet : actionSets) {
+        File folder = new File("/Users/anilkoyuncu/bugStudy/code/python/clusterDumps/"+cluster + "/" + s + ".txt_" + actionSetPosition);
 
 
+        ITree tree = null;
+        try {
+            FileInputStream fi = new FileInputStream(folder);
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            tree = (ITree) oi.readObject();
+            oi.close();
+            fi.close();
 
-            ITree actionTree= null;
-            ITree test2 = null;
-        getActionTree(actionSet);
-        ITree node = actionSet.getNode();
-        List<ITree> descendants = node.getDescendants();
-        for (ITree descendant : descendants) {
-            if(descendant.getType() <= 100){
-                descendant.setType(104);
-            }
+
+        } catch (FileNotFoundException e) {
+            log.error("File not found");
+            e.printStackTrace();
+        } catch (IOException e) {
+            log.error("Error initializing stream");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        node.setParent(null);
+        return tree;
 
-
-        //        }
-//        }
-
-        Pair<ITree, String> pair = new Pair<>(node,project);
-        return pair;
+//        File[] listOfFiles = folder.listFiles();
+//        Stream<File> stream = Arrays.stream(listOfFiles);
+//        List<File> folders = stream
+//                .filter(x -> !x.getName().startsWith(".") && x.getName().startsWith(split2[2]))
+//                .collect(Collectors.toList());
+//
+//
+//
+////        String[] split1 = folders.get(0).getName().split(".txt_");
+////        String s = split1[0];
+////        String[] splitPJ = split1[1].split("_");
+////        String project = splitPJ[1];
+////        String actionSetPosition = splitPJ[0];
+//
+//        File prevFile = new File(gumTreeInput + project+ "/" + "prevFiles/prev_" + s + ".java");// previous file
+//        File revFile = new File(gumTreeInput  + project+ "/" + "revFiles/" + s + ".java");//rev file
+//
+//        List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
+//
+//        HierarchicalActionSet actionSet = actionSets.get(Integer.valueOf(actionSetPosition));
+////        for (HierarchicalActionSet actionSet : actionSets) {
+//
+//            ITree test = getActionTree(actionSet);
+//            test.getLabel();
+//            for (ITree descendant : test.getDescendants()) {
+////            descendant.setLabel("");
+//                if(!(descendant.getType() == 100 || descendant.getType() == 101 || descendant.getType() == 102 || descendant.getType() == 103)){
+//                    descendant.setType(104);
+//                }
+//            }
+//            test.getDescendants();
+//            test.setParent(null);
+////        }
+////        }
+//
+//        Pair<ITree, String> pair = new Pair<>(test,project);
+//        return pair;
     }
 
-
-    public static void getActionTree(HierarchicalActionSet actionSet){
+    public static ITree getActionTree(HierarchicalActionSet actionSet){
 
 
         int newType = 0;
@@ -248,49 +313,24 @@ public class MultiThreadTreeLoaderCluster {
 
 
         }
-
+        return actionSet.getNode();
     }
-//    public static ITree getActionTree(HierarchicalActionSet actionSet, ITree parent, ITree children){
-//
-//        int newType = 0;
-//
-//        Action action = actionSet.getAction();
-//        if (action instanceof Update){
-//            newType = 101;
-//        }else if(action instanceof Insert){
-//            newType =100;
-//        }else if(action instanceof Move){
-//            newType = 102;
-//        }else if(action instanceof Delete){
-//            newType=103;
-//        }else{
-//            new Exception("unknow action");
-//        }
-//        if(actionSet.getParent() == null){
-//            //root
-//
-//            parent = new Tree(newType,"");
-//        }else{
-//            children = new Tree(newType,"");
-//            parent.addChild(children);
-//        }
-//        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
-//        if (subActions.size() != 0){
-//            for (HierarchicalActionSet subAction : subActions) {
-//
-//                if(actionSet.getParent() == null){
-//                    children = parent;
-//                }
-//                getActionTree(subAction,children,null);
-//
-//            }
-//
-//
-//        }
-//        return parent;
-//    }
 
+    private static List<String> getNames(ITree oldTree, List<String> oldTokens){
+        if((oldTree.getType() == 42 && oldTree.getLabel().startsWith("Name:")) || oldTree.getType() == 42 && oldTree.getParent().getType() == 59 || oldTree.getType() == 43 || (oldTree.getType() == 41 && oldTree.getLabel().startsWith("SimpleName:")) ){
 
+                oldTokens.add(oldTree.getLabel());
+
+        }
+        for (ITree oldDescendant : oldTree.getDescendants()) {
+            if ((oldDescendant.getType() == 42 && oldDescendant.getLabel().startsWith("Name:") ) || oldDescendant.getType() == 42 && oldDescendant.getParent().getType() == 59 ||oldDescendant.getType() == 43 || (oldDescendant.getType() == 41 && oldDescendant.getLabel().startsWith("SimpleName:"))){
+
+                oldTokens.add(oldDescendant.getLabel());
+
+            }
+        }
+        return oldTokens;
+    }
     
     private static void coreCompare(String name , String inputPath, JedisPool jedisPool,String clusterName) {
 
@@ -300,7 +340,7 @@ public class MultiThreadTreeLoaderCluster {
 
             Map<String, String> resultMap = jedis.hgetAll(name);
 
-            resultMap.get("0");
+
 
 
             String[] split = name.split("_");
@@ -316,8 +356,7 @@ public class MultiThreadTreeLoaderCluster {
             String firstValue = resultMap.get("0");
             String secondValue = resultMap.get("1");
 
-
-
+            ///35/1/22b5f7_84bf27_ui#org.eclipse.pde.runtime#src#org#eclipse#pde#internal#runtime#registry#RegistryBrowserLabelProvider.txt_2_PDE
 
 
 
@@ -340,41 +379,53 @@ public class MultiThreadTreeLoaderCluster {
 //            }
 
             try {
-                Pair<ITree, String> oldPair = getTree(firstValue);
-                Pair<ITree, String> newPair = getTree(secondValue);
+                ITree oldTree = getTree(firstValue);
+                ITree newTree = getTree(secondValue);
 
-                ITree oldTree = oldPair.getValue0();
-                ITree newTree = newPair.getValue0();
+//                ITree oldTree = oldPair.getValue0();
+//                ITree newTree = newPair.getValue0();
+//
+//                String oldProject = oldPair.getValue1();
+//                String newProject = newPair.getValue1();
 
-                String oldProject = oldPair.getValue1();
-                String newProject = newPair.getValue1();
+                List<String> oldTokens = new ArrayList<>();
+                List<String> newTokens = new ArrayList<>();
 
 
+//                if(secondValue.startsWith("/2/")){
+//                    log.info("newss");
+//                }
 
+                // 41 return statement
+
+                oldTokens = getNames(oldTree,oldTokens);
+                newTokens = getNames(newTree,newTokens);
                 Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
                 m.match();
+                CharSequence[] oldSequences = oldTokens.toArray(new CharSequence[oldTokens.size()]);
+                CharSequence[] newSequences = newTokens.toArray(new CharSequence[newTokens.size()]);
+                JaroWinklerDistance jwd = new JaroWinklerDistance();
+                Double overallSimi = Double.valueOf(1);
+                if(oldSequences.length > 0 && (oldSequences.length == newSequences.length)){
+                    for (int idx = 0; idx < newSequences.length; idx++) {
+                        Double simi = jwd.apply(newSequences[idx], oldSequences[idx]);
+                        overallSimi = simi * overallSimi;
+                    }
+                }else{
+                    overallSimi = Double.valueOf(0);
+                    if(oldSequences.length != 0) {
+                        log.info("ERROR");
+                    }
+                }
+                if(overallSimi.equals(1.0)){
 
-
-                ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-                ag.generate();
-                List<Action> actions = ag.getActions();
-
-                String resultKey = "result_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
-                String chawatheSimilarity = String.format("%1.2f", chawatheSimilarity1);
-                double diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
-                String diceSimilarity = String.format("%1.2f", diceSimilarity1);
-                double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
-                String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
-
-                String editDistance = String.valueOf(actions.size());
-//            jedis.select(1);
-                String result = resultMap.get("0") + "," + oldProject +"," + resultMap.get("1") + "," +newProject+ "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
-//            jedis.set(resultKey, result);
-
-                if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
-                        || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
+//                    log.info("YES");
+//                    log.info(name);
+//                    log.info(firstValue);
+//                    log.info(secondValue);
+//                    log.info("************");
                     String matchKey = "match-"+clusterName+"_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                    String result = firstValue + "," + secondValue;
                     jedis.select(1);
                     jedis.set(matchKey, result);
                 }
@@ -382,7 +433,36 @@ public class MultiThreadTreeLoaderCluster {
                 String pairKey = "pair_" + (String.valueOf(i)) + "_" + String.valueOf(j);
                 jedis.del(pairKey);
 
-//                log.info("Completed " + resultKey);
+
+
+
+//                ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+//                ag.generate();
+//                List<Action> actions = ag.getActions();
+//
+//                String resultKey = "result_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+//                double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
+//                String chawatheSimilarity = String.format("%1.2f", chawatheSimilarity1);
+//                double diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
+//                String diceSimilarity = String.format("%1.2f", diceSimilarity1);
+//                double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
+//                String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
+//
+//                String editDistance = String.valueOf(actions.size());
+//            jedis.select(1);
+//                String result = resultMap.get("0") + "," + oldProject +"," + resultMap.get("1") + "," +newProject+ "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
+////            jedis.set(resultKey, result);
+//
+//                if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
+//                        || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
+//                    String matchKey = "match-"+clusterName+"_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+//                    jedis.select(1);
+//                    jedis.set(matchKey, result);
+//                }
+//                jedis.select(0);
+
+//
+////                log.info("Completed " + resultKey);
 
             }catch (Exception e){
                 log.error(e.toString() + " {}",(name));
@@ -471,12 +551,23 @@ orginal calculate pairs, from all dumps of the projects
                 .filter(x -> !x.getName().startsWith("."))
                 .collect(Collectors.toList());
 
-        FileHelper.createDirectory(outputPath + "pairs/");
+        FileHelper.createDirectory(outputPath + "pairs-2l/");
+
         for (File pj : pjs) {
             File[] files = pj.listFiles();
             List<File> fileList = Arrays.asList(files);
+            for (File cluster:fileList) {
+                if (cluster.getName().startsWith(".")){
+                    continue;
+                }
+                File[] clusterFiles = cluster.listFiles();
+                List<File> clusterFilesL = Arrays.asList(clusterFiles);
+                readMessageFilesCluster(clusterFilesL, outputPath, inputPath, pj.getName(), cluster.getName());
 
-            readMessageFilesCluster(fileList, outputPath,inputPath,pj.getName());
+
+
+
+            }
 
         }
 
@@ -494,7 +585,7 @@ orginal calculate pairs, from all dumps of the projects
                 .forEach(m -> coreLoop(m, outputPath,inputPath));
     }
 
-    private static void readMessageFilesCluster(List<File> folders, String outputPath,String inputPath,String cluster) {
+    private static void readMessageFilesCluster(List<File> folders, String outputPath,String inputPath,String cluster, String subCluster) {
 
         List<String> treesFileNames = new ArrayList<>();
 
@@ -507,12 +598,16 @@ orginal calculate pairs, from all dumps of the projects
         log.info("Calculating pairs");
 //        treesFileNames = treesFileNames.subList(0,100);
 
-        String filename = "cluster" + cluster;
+        String filename = "cluster" + cluster + "_" + subCluster;
         byte [] buf = new byte[0];
         String line = null;
         try {
 
-            FileOutputStream fos = new FileOutputStream(outputPath + "pairs/" +filename+".txt");
+//            FileChannel rwChannel = new RandomAccessFile(outputPath + "pairs-2l/" +filename+".txt", "rw").getChannel();
+//            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, 1000*treesFileNames.size()*treesFileNames.size());
+//            int fileCounter = 0;
+
+            FileOutputStream fos = new FileOutputStream(outputPath + "pairs-2l/" +filename+".txt");
             DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
 
 
@@ -524,6 +619,18 @@ orginal calculate pairs, from all dumps of the projects
 
                     line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + treesFileNames.get(i).replace(inputPath,"") + "\t" + treesFileNames.get(j).replace(inputPath,"")+"\n";
                     outStream.write(line.getBytes());
+//                    buf  = line.getBytes();
+//                    if(wrBuf.remaining() > 500) {
+//                        wrBuf.put(buf);
+//                    }else{
+//                        log.info("Next pair dump");
+//                        fileCounter++;
+//                        rwChannel = new RandomAccessFile(outputPath+"pairs/" +filename+String.valueOf(fileCounter)+".txt", "rw").getChannel();
+//                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
+//                    }
+
+
+
 
                 }
             }

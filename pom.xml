@@ -67,6 +67,14 @@
 			<version>2.8.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.3</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -94,7 +102,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoader
+										edu.lu.uni.serval.FixPatternParser.violations.TestHunkParser
 									</mainClass>
 								</manifest>
 							</archive>

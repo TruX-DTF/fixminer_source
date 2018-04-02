@@ -243,7 +243,7 @@ public class MultiThreadTreeLoader {
         for (File pj : pjs) {
             File[] files = pj.listFiles(new FilenameFilter() {
                 public boolean accept(File dir, String name) {
-                    return name.startsWith("ASTDumps");
+                    return name.startsWith("ActionSetDumps");
                 }
             });
             Collections.addAll(fileToCompare, files[0].listFiles());
