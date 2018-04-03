@@ -1,5 +1,8 @@
 package edu.lu.uni.serval.FixPatternParser.violations;
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.*;
 import com.github.gumtreediff.matchers.Matcher;
@@ -7,6 +10,7 @@ import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.Tree;
 import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.MultipleThreadsParser.*;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
@@ -14,11 +18,7 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;
 
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -29,7 +29,7 @@ import java.util.stream.Stream;
 /**
  * Created by anilkoyuncu on 19/03/2018.
  */
-public class MultiThreadTreeLoader {
+public class AkkaTreeLoader {
 
     private static class StreamGobbler implements Runnable {
         private InputStream inputStream;
@@ -47,7 +47,7 @@ public class MultiThreadTreeLoader {
         }
     }
 
-    private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoader.class);
+    private static Logger log = LoggerFactory.getLogger(AkkaTreeLoader.class);
 
 
     public static void loadRedis(String cmd,String serverWait){
@@ -90,6 +90,7 @@ public class MultiThreadTreeLoader {
         String option;
         String dbDir;
         String chunkName;
+        String numOfWorkers;
         if (args.length > 0) {
             inputPath = args[0];
             port = args[1];
@@ -98,6 +99,7 @@ public class MultiThreadTreeLoader {
             option = args[4];
             chunkName = args[5];
             dbDir = args[6];
+            numOfWorkers = args[7];
 //            pairsCSVPath = args[3];
 //            importScript = args[4];
 //            pairsCompletedPath = args[3];
@@ -113,20 +115,21 @@ public class MultiThreadTreeLoader {
             pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
             chunkName ="chunk5.rdb";
             dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
+            numOfWorkers = "16";
         }
 
         if (option.equals("CALC")) {
             calculatePairs(inputPath, port);
             log.info("Calculate pairs done");
         }else {
-            comparePairs(port, inputPath, portInner, serverWait,chunkName,dbDir);
+            comparePairs(port, inputPath, portInner, serverWait,chunkName,dbDir,numOfWorkers);
         }
 
 
     }
 
 
-    public static void comparePairs(String port,String inputPath, String innerPort,String serverWait,String chunkName, String dbDir){
+    public static void comparePairs(String port,String inputPath, String innerPort,String serverWait,String chunkName, String dbDir,String numOfWorkers){
 //        String cmd;
 //        cmd = "bash " + importScript +" %s";
 
@@ -171,13 +174,30 @@ public class MultiThreadTreeLoader {
                     int size = scan.getResult().size();
                     log.info("Scanning " + String.valueOf(size));
                 }
-                    scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, inputPath, innerPort));
+                List<String> result = scan.getResult();
 
 
-                String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
-                loadRedis(stopServer,serverWait);
+                ActorSystem system = null;
+                ActorRef parsingActor = null;
+                final WorkMessage msg = new WorkMessage(0, result,innerPort,inputPath,dbDir,serverWait);
+                try {
+                    log.info("Akka begins...");
+                    system = ActorSystem.create("Tree-System");
+                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers)), "tree-actor");
+                    parsingActor.tell(msg, ActorRef.noSender());
+                } catch (Exception e) {
+                    system.shutdown();
+                    e.printStackTrace();
+                }
+//                greeter.tell();
+
+//                            .parallelStream()
+//                            .forEach(m -> coreCompare(m, inputPath, innerPort));
+
+
+//                String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+//                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
+//                loadRedis(stopServer,serverWait);
 
             }
 
@@ -593,6 +613,32 @@ public class MultiThreadTreeLoader {
         poolConfig.setBlockWhenExhausted(true);
 
         return poolConfig;
+    }
+
+    private static List<edu.lu.uni.serval.MultipleThreadsParser.MessageFile> getMessageFiles(String gumTreeInput) {
+        String inputPath = gumTreeInput; // prevFiles  revFiles diffentryFile positionsFile
+        File revFilesPath = new File(inputPath + "revFiles/");
+        File[] revFiles = revFilesPath.listFiles();   // project folders
+        List<edu.lu.uni.serval.MultipleThreadsParser.MessageFile> msgFiles = new ArrayList<>();
+        if (revFiles.length >= 0) {
+            for (File revFile : revFiles) {
+//			if (revFile.getName().endsWith(".java")) {
+                String fileName = revFile.getName();
+                File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
+                fileName = fileName.replace(".java", ".txt");
+                File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
+                File positionFile = new File(gumTreeInput + "positions/" + fileName); // position file
+                edu.lu.uni.serval.MultipleThreadsParser.MessageFile msgFile = new edu.lu.uni.serval.MultipleThreadsParser.MessageFile(revFile, prevFile, diffentryFile);
+                msgFile.setPositionFile(positionFile);
+                msgFiles.add(msgFile);
+//			}
+            }
+
+            return msgFiles;
+        }
+        else{
+            return null;
+        }
     }
 
 

@@ -108,7 +108,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoader
+										edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader
 									</mainClass>
 								</manifest>
 							</archive>
