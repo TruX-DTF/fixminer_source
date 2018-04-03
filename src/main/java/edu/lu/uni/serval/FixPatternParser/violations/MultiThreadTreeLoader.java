@@ -107,7 +107,7 @@ public class MultiThreadTreeLoader {
         }
 
 
-//        calculatePairs(inputPath, port);
+        calculatePairs(inputPath, port);
         log.info("Calculate pairs done");
         comparePairs(port,inputPath,portInner,serverWait);
 
