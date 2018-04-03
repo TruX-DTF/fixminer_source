@@ -1,10 +1,13 @@
 package edu.lu.uni.serval.FixPatternParser.violations;
 
 import com.github.gumtreediff.actions.ActionGenerator;
-import com.github.gumtreediff.actions.model.Action;
+import com.github.gumtreediff.actions.model.*;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
+import com.github.gumtreediff.tree.Tree;
+import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -46,26 +50,27 @@ public class MultiThreadTreeLoader {
     private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoader.class);
 
 
-    public static void loadRedis(String cmd, File f){
+    public static void loadRedis(String cmd){
         Process process;
-        log.info(f.getName());
+
         try {
-            String comd = String.format(cmd, f.getAbsoluteFile());
+//            String comd = String.format(cmd, f.getAbsoluteFile());
             process = Runtime.getRuntime()
 
-                    .exec(comd);
+                    .exec(cmd);
 
 
             StreamGobbler streamGobbler =
                     new StreamGobbler(process.getInputStream(), System.out::println);
             Executors.newSingleThreadExecutor().submit(streamGobbler);
-            int exitCode = process.waitFor();
-            assert exitCode == 0;
+//            int exitCode = process.waitFor();
+//            assert exitCode == 0;
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         log.info("Load done");
     }
 
@@ -75,6 +80,7 @@ public class MultiThreadTreeLoader {
         String inputPath;
         String outputPath;
         String port;
+        String portInner;
         String pairsCSVPath;
         String importScript;
         String pairsCompletedPath;
@@ -82,192 +88,173 @@ public class MultiThreadTreeLoader {
             inputPath = args[0];
             outputPath = args[1];
             port = args[2];
+            portInner = args[3];
 //            pairsCSVPath = args[3];
 //            importScript = args[4];
 //            pairsCompletedPath = args[3];
         } else {
-            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
+            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
             outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
             port = "6379";
+            portInner = "6380";
             pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
             importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
             pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
         }
 
 
-        calculatePairs(inputPath, outputPath,port);
-//        comparePairs(port,inputPath);
+        calculatePairs(inputPath, port);
+        log.info("Calculate pairs done");
+        comparePairs(port,inputPath,portInner);
 
 
     }
 
-    public static void comparePairs(String port,String inputPath){
+
+    public static void comparePairs(String port,String inputPath, String innerPort){
 //        String cmd;
 //        cmd = "bash " + importScript +" %s";
 
         JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
-//        calculatePairs(inputPath, outputPath);
-//        processMessages(inputPath,outputPath);
-//        evaluateResults(inputPath,outputPath);
 
-//        File folder = new File(pairsCSVPath);
-//        File[] listOfFiles = folder.listFiles();
-//        Stream<File> stream = Arrays.stream(listOfFiles);
-//        List<File> folders = stream
-//                .filter(x -> !x.getName().startsWith("."))
-//                .collect(Collectors.toList());
-//
-//        //create dir
-//        File file = new File(pairsCompletedPath);
-//        file.mkdirs();
-
-//        for (File f:folders){
+        List<String> dir;
+        List<String> path;
+        File[] files;
+        String orgDbname;
+        File dbDir;
+        try (Jedis jedis = jedisPool.getResource()) {
 
 
+            dir = jedis.configGet("dir");
+            path = jedis.configGet("dbfilename");
+            dbDir = new File(dir.get(1));
+            orgDbname = path.get(1);
+            files = dbDir.listFiles();
+        }
 
 
-            try (Jedis jedis = jedisPool.getResource()) {
-
-
-
-                List<String> dir = jedis.configGet("dir");
-                List<String> path = jedis.configGet("dbfilename");
-                File dbDir = new File(dir.get(1));
-                String orgDbname = path.get(1);
-                File[] files = dbDir.listFiles();
-                Stream<File> stream = Arrays.stream(files);
-                List<File> folders = stream
+            Stream<File> stream = Arrays.stream(files);
+            List<File> folders = stream
                     .filter(x -> !x.getName().startsWith(orgDbname)).filter(x -> x.getName().endsWith(".rdb"))
                     .collect(Collectors.toList());
-                for (File folder : folders) {
+            for (File folder : folders) {
 
 
-                    File dbPath = new File(dir.get(1) + "/" + path.get(1));
-                    File savePath = new File(dir.get(1) + "/" + folder.getName());
-                    try {
-                        Files.copy(savePath.toPath(),dbPath.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    } catch (IOException e) {
-
-                        e.printStackTrace();
-                    }
-
-                    jedis.configSet("dbfilename",folder.getName());
 
 
-                    // do operations with jedis resource
+                String cmd = "bash "+dir.get(1) + "/" + "startServer.sh" +" %s %s %s";
+                cmd = String.format(cmd, dbDir,folder.getName(),Integer.valueOf(innerPort));
+                loadRedis(cmd);
+
+
+                JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
+                try (Jedis inner = pool.getResource()) {
                     ScanParams sc = new ScanParams();
                     sc.count(150000000);
                     sc.match("pair_*");
 
-                    ScanResult<String> scan = jedis.scan("0", sc);
+                    ScanResult<String> scan = inner.scan("0", sc);
                     int size = scan.getResult().size();
                     log.info("Scanning " + String.valueOf(size));
-//                if (size == 0){
-//                    loadRedis(cmd,f);
-//
-//                    scan = jedis.scan("0",sc);
-//                    size = scan.getResult().size();
-//                    log.info("Scanning " + String.valueOf(size));
-//                }
+
                     scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, inputPath, jedisPool));
+                            .forEach(m -> coreCompare(m, inputPath, jedisPool,pool));
 
-                    jedis.save();
+                }finally {
+                    pool.close();
                 }
+                String stopServer = "bash "+dir.get(1) + "/" + "stopServer.sh" +" %s";
+                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
+                loadRedis(stopServer);
 
-//            }
-//            f.renameTo(new File(pairsCompletedPath, f.getName()));
+            }
 
-        }
+
+
+
     }
 
-    private static void coreCompare(String name , String inputPath, JedisPool jedisPool) {
+    private static void coreCompare(String name , String inputPath, JedisPool jedisPool,JedisPool innerPool) {
+
+        Map<String, String> resultMap;
+        try (Jedis jedis = innerPool.getResource()) {
+            resultMap = jedis.hgetAll(name);
+        }
+        String[] split = name.split("_");
 
 
-        try (Jedis jedis = jedisPool.getResource()) {
+        String i = split[1];
+        String j = split[2];
+        String firstValue = resultMap.get("0");
+        String secondValue = resultMap.get("1");
+
+        String[] firstValueSplit = firstValue.split("GumTreeOutput2");
+        String[] secondValueSplit = secondValue.split("GumTreeOutput2");
+
+        if (firstValueSplit.length == 1) {
+            firstValue = inputPath + firstValueSplit[0];
+        } else {
+            firstValue = inputPath + firstValueSplit[1];
+        }
+
+        if (secondValueSplit.length == 1) {
+            secondValue = inputPath + secondValueSplit[0];
+        } else {
+            secondValue = inputPath + secondValueSplit[1];
+        }
+
+        try {
+            ITree oldTree = getSimpliedTree(firstValue);
+
+            ITree newTree = getSimpliedTree(secondValue);
+
+            Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+            m.match();
 
 
-            Map<String, String> resultMap = jedis.hgetAll(name);
+            ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+            ag.generate();
+            List<Action> actions = ag.getActions();
 
-            resultMap.get("0");
+            double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
+            String chawatheSimilarity = String.format("%1.2f", chawatheSimilarity1);
+            double diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
+            String diceSimilarity = String.format("%1.2f", diceSimilarity1);
+            double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
+            String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
 
+            String editDistance = String.valueOf(actions.size());
 
-            String[] split = name.split("_");
-
-
-            String i = split[1];
-            String j = split[2];
-            String firstValue = resultMap.get("0");
-            String secondValue = resultMap.get("1");
-
-            String[] firstValueSplit = firstValue.split("GumTreeOutput2");
-            String[] secondValueSplit = secondValue.split("GumTreeOutput2");
-
-            if (firstValueSplit.length == 1) {
-                firstValue = inputPath + firstValueSplit[0];
-            } else {
-                firstValue = inputPath + firstValueSplit[1];
-            }
-
-            if (secondValueSplit.length == 1) {
-                secondValue = inputPath + secondValueSplit[0];
-            } else {
-                secondValue = inputPath + secondValueSplit[1];
-            }
-
-            try {
-                ITree oldTree = getSimpliedTree(firstValue);
-
-                ITree newTree = getSimpliedTree(secondValue);
-
-                Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-                m.match();
+            String result = resultMap.get("0") + "," + resultMap.get("1") + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
 
 
-                ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-                ag.generate();
-                List<Action> actions = ag.getActions();
-
-                String resultKey = "result_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
-                String chawatheSimilarity = String.format("%1.2f", chawatheSimilarity1);
-                double diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
-                String diceSimilarity = String.format("%1.2f", diceSimilarity1);
-                double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
-                String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
-
-                String editDistance = String.valueOf(actions.size());
-//            jedis.select(1);
-                String result = resultMap.get("0") + "," + resultMap.get("1") + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
-//            jedis.set(resultKey, result);
-
-                if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
-                        || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
-                    String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                    jedis.select(1);
-                    jedis.set(matchKey, result);
+            if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
+                    || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
+                String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                try (Jedis outer = jedisPool.getResource()) {
+                    outer.select(1);
+                    outer.set(matchKey, result);
                 }
-                jedis.select(0);
-                String pairKey = "pair_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                jedis.del(pairKey);
-
-//                log.info("Completed " + resultKey);
-
-            }catch (Exception e){
-                log.error(e.toString() + " {}",(name));
-
-
             }
 
 
+
+
+        }catch (Exception e){
+            log.error(e.toString() + " {}",(name));
 
 
         }
+
+
+
+
+
     }
 
 
 
-    public static void calculatePairs(String inputPath, String outputPath,String port) {
+    public static void calculatePairs(String inputPath,String port) {
         File folder = new File(inputPath);
         File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
@@ -287,7 +274,7 @@ public class MultiThreadTreeLoader {
         }
         System.out.println("a");
 //        compareAll(fileToCompare);
-        readMessageFiles(fileToCompare, outputPath,port);
+        readMessageFiles(fileToCompare,port);
     }
 
     public static void processMessages(String inputPath, String outputPath) {
@@ -304,11 +291,11 @@ public class MultiThreadTreeLoader {
 
 
     public static ITree getSimpliedTree(String fn) {
-        ITree tree = null;
+        HierarchicalActionSet actionSet = null;
         try {
             FileInputStream fi = new FileInputStream(new File(fn));
             ObjectInputStream oi = new ObjectInputStream(fi);
-            tree = (ITree) oi.readObject();
+            actionSet = (HierarchicalActionSet) oi.readObject();
             oi.close();
             fi.close();
 
@@ -324,15 +311,96 @@ public class MultiThreadTreeLoader {
             e.printStackTrace();
         }
 
-        tree.setLabel("");
+        ITree parent = null;
+        ITree children =null;
+        ITree tree = getASTTree(actionSet, parent, children);
         tree.setParent(null);
-        List<ITree> descendants = tree.getDescendants();
-        for (ITree descendant : descendants) {
-            descendant.setLabel("");
-        }
 
         return tree;
 
+    }
+
+    public static <T, E> List<T> getKeysByValue(Map<T, E> map, E value) {
+        return map.entrySet()
+                .stream()
+                .filter(entry -> Objects.equals(entry.getValue(), value))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+    }
+
+    public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children){
+
+        int newType = 0;
+
+        String astNodeType = actionSet.getAstNodeType();
+        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+
+        if(keysByValue.size() != 1){
+            log.error("Birden cok astnodemapmapping");
+        }
+        newType = keysByValue.get(0);
+        if(actionSet.getParent() == null){
+            //root
+
+            parent = new Tree(newType,"");
+        }else{
+            children = new Tree(newType,"");
+            parent.addChild(children);
+        }
+        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+        if (subActions.size() != 0){
+            for (HierarchicalActionSet subAction : subActions) {
+
+                if(actionSet.getParent() == null){
+                    children = parent;
+                }
+                getASTTree(subAction,children,null);
+
+            }
+
+
+        }
+        return parent;
+    }
+
+    public static ITree getActionTree(HierarchicalActionSet actionSet, ITree parent, ITree children){
+
+        int newType = 0;
+
+        Action action = actionSet.getAction();
+        if (action instanceof Update){
+            newType = 101;
+        }else if(action instanceof Insert){
+            newType =100;
+        }else if(action instanceof Move){
+            newType = 102;
+        }else if(action instanceof Delete){
+            newType=103;
+        }else{
+            new Exception("unknow action");
+        }
+        if(actionSet.getParent() == null){
+            //root
+
+            parent = new Tree(newType,"");
+        }else{
+            children = new Tree(newType,"");
+            parent.addChild(children);
+        }
+        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+        if (subActions.size() != 0){
+            for (HierarchicalActionSet subAction : subActions) {
+
+                if(actionSet.getParent() == null){
+                    children = parent;
+                }
+                getActionTree(subAction,children,null);
+
+            }
+
+
+        }
+        return parent;
     }
 
 
@@ -346,49 +414,49 @@ public class MultiThreadTreeLoader {
             String sCurrentLine = null;
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "comparison_splitted/" + "output_" + mes.getName()));
 
-                br = new BufferedReader(
-                        new FileReader(mes));
-                while ((sCurrentLine = br.readLine()) != null) {
-                    String currentLine = sCurrentLine;
-                    String[] split = currentLine.split("\t");
-                    String i = split[0];
-                    String j = split[1];
-                    String firstValue = split[2];
-                    String secondValue = split[3];
+            br = new BufferedReader(
+                    new FileReader(mes));
+            while ((sCurrentLine = br.readLine()) != null) {
+                String currentLine = sCurrentLine;
+                String[] split = currentLine.split("\t");
+                String i = split[0];
+                String j = split[1];
+                String firstValue = split[2];
+                String secondValue = split[3];
 
-                    firstValue = inputPath + firstValue.split("GumTreeOutput2")[1];
-                    secondValue = inputPath + secondValue.split("GumTreeOutput2")[1];
+                firstValue = inputPath + firstValue.split("GumTreeOutput2")[1];
+                secondValue = inputPath + secondValue.split("GumTreeOutput2")[1];
 
-                    ITree oldTree = getSimpliedTree(firstValue);
+                ITree oldTree = getSimpliedTree(firstValue);
 
-                    ITree newTree = getSimpliedTree(secondValue);
+                ITree newTree = getSimpliedTree(secondValue);
 
-                    Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-                    m.match();
+                Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+                m.match();
 
-                    ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-                    ag.generate();
-                    List<Action> actions = ag.getActions();
-                    writer.write(String.valueOf(i));
-                    writer.write("\t");
-                    writer.write(String.valueOf(j));
-                    writer.write("\t");
+                ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+                ag.generate();
+                List<Action> actions = ag.getActions();
+                writer.write(String.valueOf(i));
+                writer.write("\t");
+                writer.write(String.valueOf(j));
+                writer.write("\t");
 
-                    writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.valueOf(actions.size()));
-                    writer.write("\t");
-                    writer.write(firstValue);
-                    writer.write("\t");
-                    writer.write(secondValue);
-                    writer.write("\n");
+                writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
+                writer.write("\t");
+                writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
+                writer.write("\t");
+                writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
+                writer.write("\t");
+                writer.write(String.valueOf(actions.size()));
+                writer.write("\t");
+                writer.write(firstValue);
+                writer.write("\t");
+                writer.write(secondValue);
+                writer.write("\n");
 
 
-                }
+            }
             writer.close();
         } catch (FileNotFoundException e) {
             log.error("File not found");
@@ -401,7 +469,7 @@ public class MultiThreadTreeLoader {
         log.info("Completed output_" + mes.getName());
     }
 
-    private static void readMessageFiles(List<File> folders, String outputPath,String port) {
+    private static void readMessageFiles(List<File> folders,String port) {
 
         List<String> treesFileNames = new ArrayList<>();
 
@@ -410,7 +478,7 @@ public class MultiThreadTreeLoader {
 
             treesFileNames.add(target.toString());
         }
-        FileHelper.createDirectory(outputPath + "pairs/");
+//        FileHelper.createDirectory(outputPath + "pairs/");
         log.info("Calculating pairs");
 //        treesFileNames = treesFileNames.subList(0,100);
         byte [] buf = new byte[0];
@@ -422,39 +490,67 @@ public class MultiThreadTreeLoader {
         int fileCounter = 0;
 
         JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+        try (Jedis jedis = jedisPool.getResource()) {
+            List<String> dir = null;
+            List<String> path = null;
             for (int i = 0; i < treesFileNames.size(); i++) {
                 for (int j = i + 1; j < treesFileNames.size(); j++) {
 
-                    try (Jedis jedis = jedisPool.getResource()) {
-                        // do operations with jedis resource
 
-                        String key = "pair_" + String.valueOf(i) + "_" + String.valueOf(j);
+                    // do operations with jedis resource
+
+                    String key = "pair_" + String.valueOf(i) + "_" + String.valueOf(j);
 //                        String value = treesFileNames.get(i).split("GumTreeOutput2")[1] +","+treesFileNames.get(j).split("GumTreeOutput2")[1];
 //                        jedis.set(key,value);
 
-                        jedis.hset(key,"0",treesFileNames.get(i).split("GumTreeOutput2")[1]);
-                        jedis.hset(key,"1",treesFileNames.get(j).split("GumTreeOutput2")[1]);
-                        //10000000
-                        if(Integer.compare(jedis.dbSize().intValue(),10000000) == 0){
-                            List<String> dir = jedis.configGet("dir");
-                            List<String> path = jedis.configGet("dbfilename");
-                            File dbPath = new File(dir.get(1)+"/"+path.get(1));
-                            File savePath = new File(dir.get(1)+"/"+"chunk"+String.valueOf(fileCounter)+ ".rdb");
-                            try {
-                                Files.copy(dbPath.toPath(),savePath.toPath());
-                            } catch (IOException e) {
-
-                                e.printStackTrace();
+                    jedis.hset(key,"0",treesFileNames.get(i).split("GumTreeOutput2")[1]);
+                    jedis.hset(key,"1",treesFileNames.get(j).split("GumTreeOutput2")[1]);
+                    //10000000
+                    if(Integer.compare(jedis.dbSize().intValue(),100000) == 0){
+                        dir = jedis.configGet("dir");
+                        path = jedis.configGet("dbfilename");
+                        File dbPath = new File(dir.get(1)+"/"+path.get(1));
+                        File savePath = new File(dir.get(1)+"/"+"chunk"+String.valueOf(fileCounter)+ ".rdb");
+                        try {
+                            jedis.save();
+                            while (jedis.ping()== "PONG"){
+                                log.info("wait");
                             }
-                            fileCounter++;
-                            jedis.flushDB();
 
+
+
+                            Files.copy(dbPath.toPath(),savePath.toPath());
+                        } catch (IOException e) {
+
+                            e.printStackTrace();
                         }
-
+                        fileCounter++;
+                        jedis.flushDB();
 
                     }
+
+
                 }
             }
+            jedis.save();
+            fileCounter++;
+            File dbPath = new File(dir.get(1)+"/"+path.get(1));
+            File savePath = new File(dir.get(1)+"/"+"chunk"+String.valueOf(fileCounter)+ ".rdb");
+            try {
+
+                while (jedis.ping()== "PONG"){
+                    log.info("wait");
+                }
+
+
+
+                Files.copy(dbPath.toPath(),savePath.toPath());
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+            jedis.flushDB();
+        }
 
 
 
