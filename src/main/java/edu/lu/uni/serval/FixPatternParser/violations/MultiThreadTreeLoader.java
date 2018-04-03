@@ -50,7 +50,7 @@ public class MultiThreadTreeLoader {
     private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoader.class);
 
 
-    public static void loadRedis(String cmd){
+    public static void loadRedis(String cmd,String serverWait){
         Process process;
 
         try {
@@ -65,12 +65,14 @@ public class MultiThreadTreeLoader {
             Executors.newSingleThreadExecutor().submit(streamGobbler);
 //            int exitCode = process.waitFor();
 //            assert exitCode == 0;
+            Thread.sleep(Integer.valueOf(serverWait));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+         catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("Load done");
     }
 
@@ -84,11 +86,12 @@ public class MultiThreadTreeLoader {
         String pairsCSVPath;
         String importScript;
         String pairsCompletedPath;
+        String serverWait;
         if (args.length > 0) {
             inputPath = args[0];
-            outputPath = args[1];
             port = args[2];
             portInner = args[3];
+            serverWait = args[4];
 //            pairsCSVPath = args[3];
 //            importScript = args[4];
 //            pairsCompletedPath = args[3];
@@ -97,21 +100,22 @@ public class MultiThreadTreeLoader {
             outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
             port = "6379";
             portInner = "6380";
+            serverWait = "10000";
             pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
             importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
             pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
         }
 
 
-        calculatePairs(inputPath, port);
+//        calculatePairs(inputPath, port);
         log.info("Calculate pairs done");
-        comparePairs(port,inputPath,portInner);
+        comparePairs(port,inputPath,portInner,serverWait);
 
 
     }
 
 
-    public static void comparePairs(String port,String inputPath, String innerPort){
+    public static void comparePairs(String port,String inputPath, String innerPort,String serverWait){
 //        String cmd;
 //        cmd = "bash " + importScript +" %s";
 
@@ -144,28 +148,27 @@ public class MultiThreadTreeLoader {
 
                 String cmd = "bash "+dir.get(1) + "/" + "startServer.sh" +" %s %s %s";
                 cmd = String.format(cmd, dbDir,folder.getName(),Integer.valueOf(innerPort));
-                loadRedis(cmd);
+                loadRedis(cmd,serverWait);
 
 
                 JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
+                ScanResult<String> scan;
                 try (Jedis inner = pool.getResource()) {
                     ScanParams sc = new ScanParams();
                     sc.count(150000000);
                     sc.match("pair_*");
 
-                    ScanResult<String> scan = inner.scan("0", sc);
+                    scan = inner.scan("0", sc);
                     int size = scan.getResult().size();
                     log.info("Scanning " + String.valueOf(size));
-
-                    scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, inputPath, jedisPool,pool));
-
-                }finally {
-                    pool.close();
                 }
+                    scan.getResult().parallelStream()
+                            .forEach(m -> coreCompare(m, inputPath, port,innerPort));
+
+
                 String stopServer = "bash "+dir.get(1) + "/" + "stopServer.sh" +" %s";
                 stopServer = String.format(stopServer,Integer.valueOf(innerPort));
-                loadRedis(stopServer);
+                loadRedis(stopServer,serverWait);
 
             }
 
@@ -174,10 +177,10 @@ public class MultiThreadTreeLoader {
 
     }
 
-    private static void coreCompare(String name , String inputPath, JedisPool jedisPool,JedisPool innerPool) {
-
+    private static void coreCompare(String name , String inputPath, String port,String innerPort) {
+        JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
         Map<String, String> resultMap;
-        try (Jedis jedis = innerPool.getResource()) {
+        try (Jedis jedis = pool.getResource()) {
             resultMap = jedis.hgetAll(name);
         }
         String[] split = name.split("_");
@@ -231,10 +234,16 @@ public class MultiThreadTreeLoader {
             if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
                     || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
                 String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                JedisPool jedisPool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(port), 20000000);
                 try (Jedis outer = jedisPool.getResource()) {
                     outer.select(1);
                     outer.set(matchKey, result);
                 }
+            }
+
+
+            try (Jedis jedis = pool.getResource()) {
+                jedis.del("pair_"+ (String.valueOf(i)) + "_" + String.valueOf(j));
             }
 
 
