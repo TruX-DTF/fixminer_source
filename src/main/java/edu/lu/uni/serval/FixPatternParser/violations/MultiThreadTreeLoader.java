@@ -87,11 +87,13 @@ public class MultiThreadTreeLoader {
         String importScript;
         String pairsCompletedPath;
         String serverWait;
+        String option;
         if (args.length > 0) {
             inputPath = args[0];
-            port = args[2];
-            portInner = args[3];
-            serverWait = args[4];
+            port = args[1];
+            portInner = args[2];
+            serverWait = args[3];
+            option = args[4];
 //            pairsCSVPath = args[3];
 //            importScript = args[4];
 //            pairsCompletedPath = args[3];
@@ -101,15 +103,18 @@ public class MultiThreadTreeLoader {
             port = "6379";
             portInner = "6380";
             serverWait = "10000";
+            option = "COMP";
             pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
             importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
             pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
         }
 
-
-        calculatePairs(inputPath, port);
-        log.info("Calculate pairs done");
-        comparePairs(port,inputPath,portInner,serverWait);
+        if (option.equals("CALC")) {
+            calculatePairs(inputPath, port);
+            log.info("Calculate pairs done");
+        }else {
+            comparePairs(port, inputPath, portInner, serverWait);
+        }
 
 
     }
