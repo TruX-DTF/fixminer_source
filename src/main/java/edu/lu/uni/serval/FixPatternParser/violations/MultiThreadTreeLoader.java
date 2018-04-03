@@ -506,7 +506,7 @@ public class MultiThreadTreeLoader {
                     jedis.hset(key,"0",treesFileNames.get(i).split("GumTreeOutput2")[1]);
                     jedis.hset(key,"1",treesFileNames.get(j).split("GumTreeOutput2")[1]);
                     //10000000
-                    if(Integer.compare(jedis.dbSize().intValue(),100000) == 0){
+                    if(Integer.compare(jedis.dbSize().intValue(),10000000) == 0){
                         dir = jedis.configGet("dir");
                         path = jedis.configGet("dbfilename");
                         File dbPath = new File(dir.get(1)+"/"+path.get(1));
