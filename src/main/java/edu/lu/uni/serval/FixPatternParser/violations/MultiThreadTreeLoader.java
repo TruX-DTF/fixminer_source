@@ -88,12 +88,16 @@ public class MultiThreadTreeLoader {
         String pairsCompletedPath;
         String serverWait;
         String option;
+        String dbDir;
+        String chunkName;
         if (args.length > 0) {
             inputPath = args[0];
             port = args[1];
             portInner = args[2];
             serverWait = args[3];
             option = args[4];
+            chunkName = args[5];
+            dbDir = args[6];
 //            pairsCSVPath = args[3];
 //            importScript = args[4];
 //            pairsCompletedPath = args[3];
@@ -107,51 +111,47 @@ public class MultiThreadTreeLoader {
             pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
             importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
             pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
+            chunkName ="chunk0.rdb";
+            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
         }
 
         if (option.equals("CALC")) {
             calculatePairs(inputPath, port);
             log.info("Calculate pairs done");
         }else {
-            comparePairs(port, inputPath, portInner, serverWait);
+            comparePairs(port, inputPath, portInner, serverWait,chunkName,dbDir);
         }
 
 
     }
 
 
-    public static void comparePairs(String port,String inputPath, String innerPort,String serverWait){
+    public static void comparePairs(String port,String inputPath, String innerPort,String serverWait,String chunkName, String dbDir){
 //        String cmd;
 //        cmd = "bash " + importScript +" %s";
 
-        JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+
 
         List<String> dir;
         List<String> path;
-        File[] files;
+
         String orgDbname;
-        File dbDir;
-        try (Jedis jedis = jedisPool.getResource()) {
 
 
-            dir = jedis.configGet("dir");
-            path = jedis.configGet("dbfilename");
-            dbDir = new File(dir.get(1));
-            orgDbname = path.get(1);
-            files = dbDir.listFiles();
-        }
+        File files = new File(dbDir);
+        File[] listFiles = files.listFiles();
 
 
-            Stream<File> stream = Arrays.stream(files);
+        Stream<File> stream = Arrays.stream(listFiles);
             List<File> folders = stream
-                    .filter(x -> !x.getName().startsWith(orgDbname)).filter(x -> x.getName().endsWith(".rdb"))
+                    .filter(x -> x.getName().equals(chunkName))
                     .collect(Collectors.toList());
             for (File folder : folders) {
 
 
 
 
-                String cmd = "bash "+dir.get(1) + "/" + "startServer.sh" +" %s %s %s";
+                String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
                 cmd = String.format(cmd, dbDir,folder.getName(),Integer.valueOf(innerPort));
                 loadRedis(cmd,serverWait);
 
@@ -172,10 +172,10 @@ public class MultiThreadTreeLoader {
                     log.info("Scanning " + String.valueOf(size));
                 }
                     scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, inputPath, port,innerPort));
+                            .forEach(m -> coreCompare(m, inputPath, innerPort));
 
 
-                String stopServer = "bash "+dir.get(1) + "/" + "stopServer.sh" +" %s";
+                String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
                 stopServer = String.format(stopServer,Integer.valueOf(innerPort));
                 loadRedis(stopServer,serverWait);
 
@@ -186,7 +186,7 @@ public class MultiThreadTreeLoader {
 
     }
 
-    private static void coreCompare(String name , String inputPath, String port,String innerPort) {
+    private static void coreCompare(String name , String inputPath, String innerPort) {
         JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
         Map<String, String> resultMap;
         try (Jedis jedis = pool.getResource()) {
@@ -243,10 +243,10 @@ public class MultiThreadTreeLoader {
             if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
                     || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
                 String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                JedisPool jedisPool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(port), 20000000);
-                try (Jedis outer = jedisPool.getResource()) {
-                    outer.select(1);
-                    outer.set(matchKey, result);
+
+                try (Jedis jedis = pool.getResource()) {
+                    jedis.select(1);
+                    jedis.set(matchKey, result);
                 }
             }
 
