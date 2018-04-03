@@ -159,6 +159,10 @@ public class MultiThreadTreeLoader {
                 JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
                 ScanResult<String> scan;
                 try (Jedis inner = pool.getResource()) {
+                    while (inner.ping()== "PONG"){
+                        log.info("wait");
+                    }
+
                     ScanParams sc = new ScanParams();
                     sc.count(150000000);
                     sc.match("pair_*");
