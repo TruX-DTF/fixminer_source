@@ -53,10 +53,11 @@ public class Compare {
 //        }
 
         try {
+            log.info("start simplied tree");
             ITree oldTree = getSimpliedTree(firstValue);
-
+            log.info("start simplied2 tree");
             ITree newTree = getSimpliedTree(secondValue);
-
+            log.info("start matcher");
             Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
             m.match();
 
@@ -71,7 +72,7 @@ public class Compare {
             String diceSimilarity = String.format("%1.2f", diceSimilarity1);
             double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
             String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
-
+            log.info("end simi");
             String editDistance = String.valueOf(actions.size());
 
             String result = resultMap.get("0") + "," + resultMap.get("1") + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
