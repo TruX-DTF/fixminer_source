@@ -11,6 +11,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +23,13 @@ import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.getSi
 public class Compare {
 
     private Logger log = LoggerFactory.getLogger(Compare.class);
+    private JedisPoolConfig poolConfig;
+    public Compare(JedisPoolConfig pool) {
+        this.poolConfig = pool;
+    }
 
     public void coreCompare(String name , String inputPath, String innerPort) {
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
+        JedisPool pool = new JedisPool(poolConfig, "127.0.0.1", Integer.valueOf(innerPort), 20000000);
         Map<String, String> resultMap;
         try (Jedis jedis = pool.getResource()) {
             resultMap = jedis.hgetAll(name);
@@ -53,11 +58,11 @@ public class Compare {
 //        }
 
         try {
-            log.info("start simplied tree");
-            ITree oldTree = getSimpliedTree(firstValue);
-            log.info("start simplied2 tree");
-            ITree newTree = getSimpliedTree(secondValue);
-            log.info("start matcher");
+
+            ITree oldTree = getSimpliedTree(firstValue,poolConfig);
+
+            ITree newTree = getSimpliedTree(secondValue,poolConfig);
+
             Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
             m.match();
 
@@ -72,7 +77,7 @@ public class Compare {
             String diceSimilarity = String.format("%1.2f", diceSimilarity1);
             double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
             String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
-            log.info("end simi");
+
             String editDistance = String.valueOf(actions.size());
 
             String result = resultMap.get("0") + "," + resultMap.get("1") + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
@@ -100,4 +105,6 @@ public class Compare {
 
         }
     }
-    }
+
+
+}

@@ -24,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
@@ -76,7 +77,7 @@ public class TreeWorker extends UntypedActor {
 //
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 //				// schedule the work
-				final Future<?> future = executor.submit(new RunnableCompare(name, inputPath, innerPort, new Compare()));
+				final Future<?> future = executor.submit(new RunnableCompare(name, inputPath, innerPort, new Compare(poolConfig)));
 				try {
 					// wait for task to complete
 					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
@@ -172,6 +173,25 @@ public class TreeWorker extends UntypedActor {
 		}else{
 			unhandled(message);
 		}
+	}
+
+	static final JedisPoolConfig poolConfig = buildPoolConfig();
+
+
+	private static JedisPoolConfig buildPoolConfig() {
+		final JedisPoolConfig poolConfig = new JedisPoolConfig();
+		poolConfig.setMaxTotal(128);
+		poolConfig.setMaxIdle(128);
+		poolConfig.setMinIdle(16);
+		poolConfig.setTestOnBorrow(true);
+		poolConfig.setTestOnReturn(true);
+		poolConfig.setTestWhileIdle(true);
+		poolConfig.setMinEvictableIdleTimeMillis(Duration.ofMinutes(60).toMillis());
+		poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofHours(30).toMillis());
+		poolConfig.setNumTestsPerEvictionRun(3);
+		poolConfig.setBlockWhenExhausted(true);
+
+		return poolConfig;
 	}
 
 

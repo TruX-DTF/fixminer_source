@@ -215,89 +215,89 @@ public class AkkaTreeLoader {
 
     }
 
-    private static void coreCompare(String name , String inputPath, String innerPort) {
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
-        Map<String, String> resultMap;
-        try (Jedis jedis = pool.getResource()) {
-            resultMap = jedis.hgetAll(name);
-        }
-        String[] split = name.split("_");
-
-
-        String i = split[1];
-        String j = split[2];
-        String firstValue = resultMap.get("0");
-        String secondValue = resultMap.get("1");
-
-        String[] firstValueSplit = firstValue.split("GumTreeOutput2");
-        String[] secondValueSplit = secondValue.split("GumTreeOutput2");
-
-        if (firstValueSplit.length == 1) {
-            firstValue = inputPath + firstValueSplit[0];
-        } else {
-            firstValue = inputPath + firstValueSplit[1];
-        }
-
-        if (secondValueSplit.length == 1) {
-            secondValue = inputPath + secondValueSplit[0];
-        } else {
-            secondValue = inputPath + secondValueSplit[1];
-        }
-
-        try {
-            ITree oldTree = getSimpliedTree(firstValue);
-
-            ITree newTree = getSimpliedTree(secondValue);
-
-            Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-            m.match();
-
-
-            ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-            ag.generate();
-            List<Action> actions = ag.getActions();
-
-            double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
-            String chawatheSimilarity = String.format("%1.2f", chawatheSimilarity1);
-            double diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
-            String diceSimilarity = String.format("%1.2f", diceSimilarity1);
-            double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
-            String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
-
-            String editDistance = String.valueOf(actions.size());
-
-            String result = resultMap.get("0") + "," + resultMap.get("1") + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
-
-
-            if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
-                    || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
-                String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-
-                try (Jedis jedis = pool.getResource()) {
-                    jedis.select(1);
-                    jedis.set(matchKey, result);
-                }
-            }
-
-
-            try (Jedis jedis = pool.getResource()) {
-                jedis.del("pair_"+ (String.valueOf(i)) + "_" + String.valueOf(j));
-            }
-
-
-
-
-        }catch (Exception e){
-            log.error(e.toString() + " {}",(name));
-
-
-        }
-
-
-
-
-
-    }
+//    private static void coreCompare(String name , String inputPath, String innerPort) {
+//        JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
+//        Map<String, String> resultMap;
+//        try (Jedis jedis = pool.getResource()) {
+//            resultMap = jedis.hgetAll(name);
+//        }
+//        String[] split = name.split("_");
+//
+//
+//        String i = split[1];
+//        String j = split[2];
+//        String firstValue = resultMap.get("0");
+//        String secondValue = resultMap.get("1");
+//
+//        String[] firstValueSplit = firstValue.split("GumTreeOutput2");
+//        String[] secondValueSplit = secondValue.split("GumTreeOutput2");
+//
+//        if (firstValueSplit.length == 1) {
+//            firstValue = inputPath + firstValueSplit[0];
+//        } else {
+//            firstValue = inputPath + firstValueSplit[1];
+//        }
+//
+//        if (secondValueSplit.length == 1) {
+//            secondValue = inputPath + secondValueSplit[0];
+//        } else {
+//            secondValue = inputPath + secondValueSplit[1];
+//        }
+//
+//        try {
+//            ITree oldTree = getSimpliedTree(firstValue);
+//
+//            ITree newTree = getSimpliedTree(secondValue);
+//
+//            Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+//            m.match();
+//
+//
+//            ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+//            ag.generate();
+//            List<Action> actions = ag.getActions();
+//
+//            double chawatheSimilarity1 = m.chawatheSimilarity(oldTree, newTree);
+//            String chawatheSimilarity = String.format("%1.2f", chawatheSimilarity1);
+//            double diceSimilarity1 = m.diceSimilarity(oldTree, newTree);
+//            String diceSimilarity = String.format("%1.2f", diceSimilarity1);
+//            double jaccardSimilarity1 = m.jaccardSimilarity(oldTree, newTree);
+//            String jaccardSimilarity = String.format("%1.2f", jaccardSimilarity1);
+//
+//            String editDistance = String.valueOf(actions.size());
+//
+//            String result = resultMap.get("0") + "," + resultMap.get("1") + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
+//
+//
+//            if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
+//                    || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
+//                String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+//
+//                try (Jedis jedis = pool.getResource()) {
+//                    jedis.select(1);
+//                    jedis.set(matchKey, result);
+//                }
+//            }
+//
+//
+//            try (Jedis jedis = pool.getResource()) {
+//                jedis.del("pair_"+ (String.valueOf(i)) + "_" + String.valueOf(j));
+//            }
+//
+//
+//
+//
+//        }catch (Exception e){
+//            log.error(e.toString() + " {}",(name));
+//
+//
+//        }
+//
+//
+//
+//
+//
+//    }
 
 
 
@@ -324,17 +324,17 @@ public class AkkaTreeLoader {
         readMessageFiles(fileToCompare,port);
     }
 
-    public static void processMessages(String inputPath, String outputPath) {
-        File folder = new File(outputPath + "pairs_splitted/");
-        File[] listOfFiles = folder.listFiles();
-        Stream<File> stream = Arrays.stream(listOfFiles);
-        List<File> pjs = stream
-                .filter(x -> !x.getName().startsWith("."))
-                .collect(Collectors.toList());
-        FileHelper.createDirectory(outputPath + "comparison_splitted/");
-        pjs.parallelStream()
-                .forEach(m -> coreLoop(m, outputPath,inputPath));
-    }
+//    public static void processMessages(String inputPath, String outputPath) {
+//        File folder = new File(outputPath + "pairs_splitted/");
+//        File[] listOfFiles = folder.listFiles();
+//        Stream<File> stream = Arrays.stream(listOfFiles);
+//        List<File> pjs = stream
+//                .filter(x -> !x.getName().startsWith("."))
+//                .collect(Collectors.toList());
+//        FileHelper.createDirectory(outputPath + "comparison_splitted/");
+//        pjs.parallelStream()
+//                .forEach(m -> coreLoop(m, outputPath,inputPath));
+//    }
 
     /** Read the object from Base64 string. */
     private static Object fromString( String s ) throws IOException ,
@@ -346,8 +346,8 @@ public class AkkaTreeLoader {
         ois.close();
         return o;
     }
-    public static ITree getSimpliedTree(String fn) {
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(6399), 20000000);
+    public static ITree getSimpliedTree(String fn,JedisPoolConfig config) {
+        JedisPool pool = new JedisPool(config, "127.0.0.1", Integer.valueOf(6399), 20000000);
         HierarchicalActionSet actionSet = null;
         try (Jedis inner = pool.getResource()) {
             String s = inner.get(fn.substring(1));
@@ -470,69 +470,69 @@ public class AkkaTreeLoader {
 
 
 
-    private static void coreLoop(File mes, String outputPath,String inputPath) {
-        try {
-
-            log.info("Starting in coreLoop");
-
-            BufferedReader br = null;
-            String sCurrentLine = null;
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "comparison_splitted/" + "output_" + mes.getName()));
-
-            br = new BufferedReader(
-                    new FileReader(mes));
-            while ((sCurrentLine = br.readLine()) != null) {
-                String currentLine = sCurrentLine;
-                String[] split = currentLine.split("\t");
-                String i = split[0];
-                String j = split[1];
-                String firstValue = split[2];
-                String secondValue = split[3];
-
-                firstValue = inputPath + firstValue.split("GumTreeOutput2")[1];
-                secondValue = inputPath + secondValue.split("GumTreeOutput2")[1];
-
-                ITree oldTree = getSimpliedTree(firstValue);
-
-                ITree newTree = getSimpliedTree(secondValue);
-
-                Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-                m.match();
-
-                ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-                ag.generate();
-                List<Action> actions = ag.getActions();
-                writer.write(String.valueOf(i));
-                writer.write("\t");
-                writer.write(String.valueOf(j));
-                writer.write("\t");
-
-                writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
-                writer.write("\t");
-                writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
-                writer.write("\t");
-                writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
-                writer.write("\t");
-                writer.write(String.valueOf(actions.size()));
-                writer.write("\t");
-                writer.write(firstValue);
-                writer.write("\t");
-                writer.write(secondValue);
-                writer.write("\n");
-
-
-            }
-            writer.close();
-        } catch (FileNotFoundException e) {
-            log.error("File not found");
-            e.printStackTrace();
-        } catch (IOException e) {
-            log.error("Error initializing stream");
-            e.printStackTrace();
-
-        }
-        log.info("Completed output_" + mes.getName());
-    }
+//    private static void coreLoop(File mes, String outputPath,String inputPath) {
+//        try {
+//
+//            log.info("Starting in coreLoop");
+//
+//            BufferedReader br = null;
+//            String sCurrentLine = null;
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "comparison_splitted/" + "output_" + mes.getName()));
+//
+//            br = new BufferedReader(
+//                    new FileReader(mes));
+//            while ((sCurrentLine = br.readLine()) != null) {
+//                String currentLine = sCurrentLine;
+//                String[] split = currentLine.split("\t");
+//                String i = split[0];
+//                String j = split[1];
+//                String firstValue = split[2];
+//                String secondValue = split[3];
+//
+//                firstValue = inputPath + firstValue.split("GumTreeOutput2")[1];
+//                secondValue = inputPath + secondValue.split("GumTreeOutput2")[1];
+//
+//                ITree oldTree = getSimpliedTree(firstValue);
+//
+//                ITree newTree = getSimpliedTree(secondValue);
+//
+//                Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+//                m.match();
+//
+//                ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+//                ag.generate();
+//                List<Action> actions = ag.getActions();
+//                writer.write(String.valueOf(i));
+//                writer.write("\t");
+//                writer.write(String.valueOf(j));
+//                writer.write("\t");
+//
+//                writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
+//                writer.write("\t");
+//                writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
+//                writer.write("\t");
+//                writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
+//                writer.write("\t");
+//                writer.write(String.valueOf(actions.size()));
+//                writer.write("\t");
+//                writer.write(firstValue);
+//                writer.write("\t");
+//                writer.write(secondValue);
+//                writer.write("\n");
+//
+//
+//            }
+//            writer.close();
+//        } catch (FileNotFoundException e) {
+//            log.error("File not found");
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            log.error("Error initializing stream");
+//            e.printStackTrace();
+//
+//        }
+//        log.info("Completed output_" + mes.getName());
+//    }
 
     private static void readMessageFiles(List<File> folders,String port) {
 
