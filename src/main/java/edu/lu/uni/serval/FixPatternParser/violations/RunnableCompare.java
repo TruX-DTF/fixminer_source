@@ -1,25 +1,26 @@
 package edu.lu.uni.serval.FixPatternParser.violations;
 
 import edu.lu.uni.serval.FixPatternParser.Parser;
+import redis.clients.jedis.JedisPool;
 
 import java.io.File;
 
 public class RunnableCompare implements Runnable {
 
 	private String name;
-	private String inputPath;
-	private String innerPort;
+	private JedisPool innerPool;
+	private JedisPool outerPool;
 	private Compare comparer;
 
-	public RunnableCompare(String name , String inputPath, String innerPort, Compare comp) {
+	public RunnableCompare(String name , JedisPool innerPool, JedisPool outerPool, Compare comp) {
 		this.name = name;
-		this.inputPath = inputPath;
-		this.innerPort = innerPort;
+		this.innerPool = innerPool;
+		this.outerPool = outerPool;
 		this.comparer = comp;
 	}
 
 	@Override
 	public void run() {
-		comparer.coreCompare(name, inputPath, innerPort);
+		comparer.coreCompare(name, innerPool, outerPool);
 	}
 }

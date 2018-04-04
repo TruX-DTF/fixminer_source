@@ -80,9 +80,8 @@ public class TreeWorker extends UntypedActor {
 							peek(x -> counter++).
 							forEach(m ->
 									{
-										Compare compare = new Compare(poolConfig);
-										compare.coreCompare(m, inputPath, innerPort);
-										;
+										Compare compare = new Compare();
+//										compare.coreCompare(m, inputPath, innerPort);
 									}
 							);
 				}
