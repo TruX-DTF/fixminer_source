@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
+import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.comparePairs;
 import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.loadRedis;
 import static edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoader.getSimpliedTree;
 
@@ -68,20 +69,35 @@ public class TreeWorker extends UntypedActor {
 			String dbDir = msg.getDbDir();
 			String serverWait = msg.getServerWait();
 			int id = msg.getId();
-			int counter = 0;
+			int counter = new Object() {
+				int counter = 0;
+
+				//
+//			for (String name : files)
+				{
+					files.stream().
+							parallel().
+							peek(x -> counter++).
+							forEach(m ->
+									{
+										Compare compare = new Compare(poolConfig);
+										compare.coreCompare(m, inputPath, innerPort);
+										;
+									}
+							);
+				}
+			}.counter;
 
 //
-			for (String name : files) {
-
-
-//
-				final ExecutorService executor = Executors.newFixedThreadPool(20);
+//				final ExecutorService executor = Executors.newFixedThreadPool(20);
 //				// schedule the work
-				final Future<?> future = executor.submit(new RunnableCompare(name, inputPath, innerPort, new Compare(poolConfig)));
-				try {
+//				final Future<?> future = executor.submit(new RunnableCompare(name, inputPath, innerPort, new Compare(poolConfig)));
+//				try {
 					// wait for task to complete
-					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
-					counter++;
+//					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
+//					Compare compare = new Compare(poolConfig);
+//					compare.coreCompare(name, inputPath, innerPort);
+//					counter++;
 //					nullDiffEntry += parser.nullMatchedDiffEntry;
 //					nullMappingGumTreeResults += parser.nullMappingGumTreeResult;
 //					pureDeletion += parser.pureDeletions;
@@ -121,22 +137,22 @@ public class TreeWorker extends UntypedActor {
 //							testingInfo.setLength(0);
 //						}
 //					}
-				} catch (TimeoutException e) {
-					future.cancel(true);
-////					timeouts += countAlarms(positionFile, "#Timeout:");
-					System.err.println("#Timeout: " + name);
-				} catch (InterruptedException e) {
-////					timeouts += countAlarms(positionFile, "#TimeInterrupted:");
-//					System.err.println("#TimeInterrupted: " + revFile.getName());
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-////					timeouts += countAlarms(positionFile, "#TimeAborted:");
-//					System.err.println("#TimeAborted: " + revFile.getName());
-					e.printStackTrace();
-				} finally {
-					executor.shutdownNow();
-				}
-			}
+//				} catch (TimeoutException e) {
+//					future.cancel(true);
+//////					timeouts += countAlarms(positionFile, "#Timeout:");
+//					System.err.println("#Timeout: " + name);
+//				} catch (InterruptedException e) {
+//////					timeouts += countAlarms(positionFile, "#TimeInterrupted:");
+////					System.err.println("#TimeInterrupted: " + revFile.getName());
+//					e.printStackTrace();
+//				} catch (ExecutionException e) {
+//////					timeouts += countAlarms(positionFile, "#TimeAborted:");
+////					System.err.println("#TimeAborted: " + revFile.getName());
+//					e.printStackTrace();
+//				} finally {
+//					executor.shutdownNow();
+//				}
+//			}
 
 			log.info("bitti");
 			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
