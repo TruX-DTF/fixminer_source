@@ -123,7 +123,7 @@ public class TreeWorker extends UntypedActor {
 				} catch (TimeoutException e) {
 					future.cancel(true);
 ////					timeouts += countAlarms(positionFile, "#Timeout:");
-//					System.err.println("#Timeout: " + revFile.getName());
+					System.err.println("#Timeout: " + name);
 				} catch (InterruptedException e) {
 ////					timeouts += countAlarms(positionFile, "#TimeInterrupted:");
 //					System.err.println("#TimeInterrupted: " + revFile.getName());
