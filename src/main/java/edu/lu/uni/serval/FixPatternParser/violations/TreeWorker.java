@@ -75,7 +75,7 @@ public class TreeWorker extends UntypedActor {
 
 
 //
-				final ExecutorService executor = Executors.newSingleThreadExecutor();
+				final ExecutorService executor = Executors.newFixedThreadPool(20);
 //				// schedule the work
 				final Future<?> future = executor.submit(new RunnableCompare(name, inputPath, innerPort, new Compare(poolConfig)));
 				try {
