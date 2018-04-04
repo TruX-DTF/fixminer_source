@@ -14,7 +14,7 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.util.List;
 import java.util.Map;
 
-import static edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoader.getSimpliedTree;
+import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.getSimpliedTree;
 
 /**
  * Created by anilkoyuncu on 03/04/2018.
@@ -37,20 +37,20 @@ public class Compare {
         String firstValue = resultMap.get("0");
         String secondValue = resultMap.get("1");
 
-        String[] firstValueSplit = firstValue.split("GumTreeOutput2");
-        String[] secondValueSplit = secondValue.split("GumTreeOutput2");
-
-        if (firstValueSplit.length == 1) {
-            firstValue = inputPath + firstValueSplit[0];
-        } else {
-            firstValue = inputPath + firstValueSplit[1];
-        }
-
-        if (secondValueSplit.length == 1) {
-            secondValue = inputPath + secondValueSplit[0];
-        } else {
-            secondValue = inputPath + secondValueSplit[1];
-        }
+//        String[] firstValueSplit = firstValue.split("GumTreeOutput2");
+//        String[] secondValueSplit = secondValue.split("GumTreeOutput2");
+//
+//        if (firstValueSplit.length == 1) {
+//            firstValue = inputPath + firstValueSplit[0];
+//        } else {
+//            firstValue = inputPath + firstValueSplit[1];
+//        }
+//
+//        if (secondValueSplit.length == 1) {
+//            secondValue = inputPath + secondValueSplit[0];
+//        } else {
+//            secondValue = inputPath + secondValueSplit[1];
+//        }
 
         try {
             ITree oldTree = getSimpliedTree(firstValue);

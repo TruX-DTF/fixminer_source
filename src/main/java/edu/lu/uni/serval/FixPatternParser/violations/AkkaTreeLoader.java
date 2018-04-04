@@ -115,7 +115,7 @@ public class AkkaTreeLoader {
 //            pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
             chunkName ="chunk5.rdb";
             dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
-            numOfWorkers = "16";
+            numOfWorkers = "1";
         }
         String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \nnumOfWorks %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,numOfWorkers,dbDir);
         log.info(parameters);
@@ -330,27 +330,45 @@ public class AkkaTreeLoader {
                 .forEach(m -> coreLoop(m, outputPath,inputPath));
     }
 
-
+    /** Read the object from Base64 string. */
+    private static Object fromString( String s ) throws IOException ,
+            ClassNotFoundException {
+        byte [] data = Base64.getDecoder().decode( s );
+        ObjectInputStream ois = new ObjectInputStream(
+                new ByteArrayInputStream(  data ) );
+        Object o  = ois.readObject();
+        ois.close();
+        return o;
+    }
     public static ITree getSimpliedTree(String fn) {
+        JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(6399), 20000000);
         HierarchicalActionSet actionSet = null;
-        try {
-            FileInputStream fi = new FileInputStream(new File(fn));
-            ObjectInputStream oi = new ObjectInputStream(fi);
-            actionSet = (HierarchicalActionSet) oi.readObject();
-            oi.close();
-            fi.close();
-
-
-        } catch (FileNotFoundException e) {
-            log.error("File not found");
-            e.printStackTrace();
+        try (Jedis inner = pool.getResource()) {
+            String s = inner.get(fn.substring(1));
+            actionSet = (HierarchicalActionSet) fromString(s);
         } catch (IOException e) {
-            log.error("Error initializing stream");
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+//            try {
+//            FileInputStream fi = new FileInputStream(new File(fn));
+//            ObjectInputStream oi = new ObjectInputStream(fi);
+//            actionSet = (HierarchicalActionSet) oi.readObject();
+//            oi.close();
+//            fi.close();
+//
+//
+//        } catch (FileNotFoundException e) {
+//            log.error("File not found");
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            log.error("Error initializing stream");
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
 
         ITree parent = null;
         ITree children =null;
