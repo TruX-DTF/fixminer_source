@@ -80,56 +80,58 @@ public class AkkaTreeLoader {
 
 
         String inputPath;
-        String outputPath;
+//        String outputPath;
         String port;
         String portInner;
-        String pairsCSVPath;
+//        String pairsCSVPath;
         String importScript;
-        String pairsCompletedPath;
+//        String pairsCompletedPath;
         String serverWait;
-        String option;
+//        String option;
         String dbDir;
         String chunkName;
         String numOfWorkers;
         if (args.length > 0) {
             inputPath = args[0];
-            port = args[1];
-            portInner = args[2];
-            serverWait = args[3];
-            option = args[4];
-            chunkName = args[5];
-            dbDir = args[6];
-            numOfWorkers = args[7];
+//            port = args[1];
+            portInner = args[1];
+            serverWait = args[2];
+//            option = args[4];
+            chunkName = args[3];
+            numOfWorkers = args[4];
+            dbDir = args[5];
 //            pairsCSVPath = args[3];
 //            importScript = args[4];
 //            pairsCompletedPath = args[3];
         } else {
             inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
-            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
-            port = "6379";
+//            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
+//            port = "6379";
             portInner = "6380";
             serverWait = "10000";
-            option = "COMP";
-            pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
-            importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
-            pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
+//            option = "COMP";
+//            pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
+//            importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
+//            pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
             chunkName ="chunk5.rdb";
             dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "16";
         }
+        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \nnumOfWorks %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,numOfWorkers,dbDir);
+        log.info(parameters);
 
-        if (option.equals("CALC")) {
-            calculatePairs(inputPath, port);
-            log.info("Calculate pairs done");
-        }else {
-            comparePairs(port, inputPath, portInner, serverWait,chunkName,dbDir,numOfWorkers);
-        }
+//        if (option.equals("CALC")) {
+//            calculatePairs(inputPath, port);
+//            log.info("Calculate pairs done");
+//        }else {
+        comparePairs(inputPath, portInner, serverWait,chunkName,dbDir,numOfWorkers);
+//        }
 
 
     }
 
 
-    public static void comparePairs(String port,String inputPath, String innerPort,String serverWait,String chunkName, String dbDir,String numOfWorkers){
+    public static void comparePairs(String inputPath, String innerPort,String serverWait,String chunkName, String dbDir,String numOfWorkers){
 //        String cmd;
 //        cmd = "bash " + importScript +" %s";
 
