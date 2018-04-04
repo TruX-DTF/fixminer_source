@@ -31,33 +31,19 @@ public class Compare {
     public void coreCompare(String name , String inputPath, String innerPort) {
         JedisPool pool = new JedisPool(poolConfig, "127.0.0.1", Integer.valueOf(innerPort), 20000000);
         Map<String, String> resultMap;
-        try (Jedis jedis = pool.getResource()) {
-            resultMap = jedis.hgetAll(name);
-        }
-        String[] split = name.split("_");
-
-
-        String i = split[1];
-        String j = split[2];
-        String firstValue = resultMap.get("0");
-        String secondValue = resultMap.get("1");
-
-//        String[] firstValueSplit = firstValue.split("GumTreeOutput2");
-//        String[] secondValueSplit = secondValue.split("GumTreeOutput2");
-//
-//        if (firstValueSplit.length == 1) {
-//            firstValue = inputPath + firstValueSplit[0];
-//        } else {
-//            firstValue = inputPath + firstValueSplit[1];
-//        }
-//
-//        if (secondValueSplit.length == 1) {
-//            secondValue = inputPath + secondValueSplit[0];
-//        } else {
-//            secondValue = inputPath + secondValueSplit[1];
-//        }
+        Jedis jedis = null;
 
         try {
+            jedis = pool.getResource();
+            resultMap = jedis.hgetAll(name);
+
+            String[] split = name.split("_");
+
+
+            String i = split[1];
+            String j = split[2];
+            String firstValue = resultMap.get("0");
+            String secondValue = resultMap.get("1");
 
             ITree oldTree = getSimpliedTree(firstValue,poolConfig);
 
@@ -87,22 +73,26 @@ public class Compare {
                     || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
                 String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
                 log.info(matchKey);
-                try (Jedis jedis = pool.getResource()) {
-                    jedis.select(1);
-                    jedis.set(matchKey, result);
-                }
+
+                jedis.select(1);
+                jedis.set(matchKey, result);
+
             }
 
 
-            try (Jedis jedis = pool.getResource()) {
-                jedis.del("pair_" + (String.valueOf(i)) + "_" + String.valueOf(j));
-            }
+
+            jedis.del("pair_" + (String.valueOf(i)) + "_" + String.valueOf(j));
+
 
 
         } catch (Exception e) {
             log.error(e.toString() + " {}", (name));
 
 
+        }finally {
+            if (jedis != null) {
+                jedis.close();
+            }
         }
     }
 

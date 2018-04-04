@@ -354,39 +354,27 @@ public class AkkaTreeLoader {
     }
     public static ITree getSimpliedTree(String fn,JedisPoolConfig config) {
         JedisPool pool = new JedisPool(config, "127.0.0.1", Integer.valueOf(6399), 20000000);
-        HierarchicalActionSet actionSet = null;
-        try (Jedis inner = pool.getResource()) {
+        ITree tree = null;
+        Jedis inner = null;
+        try {
+            inner = pool.getResource();
             String s = inner.get(fn.substring(1));
-            actionSet = (HierarchicalActionSet) fromString(s);
+            HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(s);
+
+            ITree parent = null;
+            ITree children =null;
+            tree = getASTTree(actionSet, parent, children);
+            tree.setParent(null);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }finally {
+            if (inner != null) {
+                inner.close();
+            }
         }
-//            try {
-//            FileInputStream fi = new FileInputStream(new File(fn));
-//            ObjectInputStream oi = new ObjectInputStream(fi);
-//            actionSet = (HierarchicalActionSet) oi.readObject();
-//            oi.close();
-//            fi.close();
-//
-//
-//        } catch (FileNotFoundException e) {
-//            log.error("File not found");
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            log.error("Error initializing stream");
-//            e.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-
-        ITree parent = null;
-        ITree children =null;
-        ITree tree = getASTTree(actionSet, parent, children);
-        tree.setParent(null);
-
         return tree;
 
     }
@@ -637,12 +625,12 @@ public class AkkaTreeLoader {
         poolConfig.setMaxTotal(128);
         poolConfig.setMaxIdle(128);
         poolConfig.setMinIdle(16);
-        poolConfig.setTestOnBorrow(true);
-        poolConfig.setTestOnReturn(true);
+        poolConfig.setTestOnBorrow(false);
+        poolConfig.setTestOnReturn(false);
         poolConfig.setTestWhileIdle(true);
         poolConfig.setMinEvictableIdleTimeMillis(Duration.ofMinutes(60).toMillis());
         poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofHours(30).toMillis());
-        poolConfig.setNumTestsPerEvictionRun(3);
+//        poolConfig.setNumTestsPerEvictionRun(3);
         poolConfig.setBlockWhenExhausted(true);
 
         return poolConfig;
