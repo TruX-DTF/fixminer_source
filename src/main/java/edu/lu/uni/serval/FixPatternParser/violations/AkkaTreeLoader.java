@@ -152,17 +152,17 @@ public class AkkaTreeLoader {
         File[] listFiles = files.listFiles();
 
 
-        Stream<File> stream = Arrays.stream(listFiles);
-            List<File> folders = stream
-                    .filter(x -> x.getName().equals(chunkName))
-                    .collect(Collectors.toList());
-            for (File folder : folders) {
+//        Stream<File> stream = Arrays.stream(listFiles);
+//            List<File> folders = stream
+//                    .filter(x -> x.getName().equals(chunkName))
+//                    .collect(Collectors.toList());
+//            for (File folder : folders) {
 
 
 
 
                 String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-                cmd = String.format(cmd, dbDir,folder.getName(),Integer.valueOf(innerPort));
+                cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(innerPort));
                 loadRedis(cmd,serverWait);
 
 
@@ -185,30 +185,36 @@ public class AkkaTreeLoader {
                 List<String> result = scan.getResult();
 
 
-                ActorSystem system = null;
-                ActorRef parsingActor = null;
-                final WorkMessage msg = new WorkMessage(0, result,innerPort,inputPath,dbDir,serverWait);
-                try {
-
-                    log.info("Akka begins...");
-                    system = ActorSystem.create("Tree-System");
-                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers),dbDir,innerPort,serverWait), "tree-actor");
-                    parsingActor.tell(msg, ActorRef.noSender());
-                } catch (Exception e) {
-                    system.shutdown();
-                    e.printStackTrace();
-                }
+//                ActorSystem system = null;
+//                ActorRef parsingActor = null;
+//                final WorkMessage msg = new WorkMessage(0, result,innerPort,inputPath,dbDir,serverWait);
+//                try {
+//
+//                    log.info("Akka begins...");
+//                    system = ActorSystem.create("Tree-System");
+//                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers),dbDir,innerPort,serverWait), "tree-actor");
+//                    parsingActor.tell(msg, ActorRef.noSender());
+//                } catch (Exception e) {
+//                    system.shutdown();
+//                    e.printStackTrace();
+//                }
 //                greeter.tell();
+                result
+                        .parallelStream()
+                        .forEach(m ->
+                        {
+                            Compare compare = new Compare(poolConfig);
+                            compare.coreCompare(m, inputPath, innerPort);
+                            ;
+                        }
+                );
 
-//                            .parallelStream()
-//                            .forEach(m -> coreCompare(m, inputPath, innerPort));
 
+                String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
+                loadRedis(stopServer,serverWait);
 
-//                String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-//                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
-//                loadRedis(stopServer,serverWait);
-
-            }
+//            }
 
 
 
