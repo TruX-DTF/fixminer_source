@@ -129,46 +129,31 @@ public class AkkaTreeLoader {
         cmd = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf(port));
         loadRedis(cmd,serverWait);
 
-        comparePairs(inputPath, portInner, serverWait,chunkName,dbDir,numOfWorkers);
+        String cmdInner = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd = String.format(cmdInner, dbDir,chunkName,Integer.valueOf(portInner));
+        loadRedis(cmd,serverWait);
+
+        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+        JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+
+
+
+        comparePairs(inputPath, innerPool,outerPool, serverWait,chunkName,dbDir,numOfWorkers);
+
+        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+        stopServer = String.format(stopServer,Integer.valueOf(portInner));
+        loadRedis(stopServer,serverWait);
 //        }
 
 
     }
 
 
-    public static void comparePairs(String inputPath, String innerPort,String serverWait,String chunkName, String dbDir,String numOfWorkers){
-//        String cmd;
-//        cmd = "bash " + importScript +" %s";
+    public static void comparePairs(String inputPath, JedisPool innerPool,JedisPool outerPool,String serverWait,String chunkName, String dbDir,String numOfWorkers){
 
 
-
-        List<String> dir;
-        List<String> path;
-
-        String orgDbname;
-
-
-        File files = new File(dbDir);
-        File[] listFiles = files.listFiles();
-
-
-//        Stream<File> stream = Arrays.stream(listFiles);
-//            List<File> folders = stream
-//                    .filter(x -> x.getName().equals(chunkName))
-//                    .collect(Collectors.toList());
-//            for (File folder : folders) {
-
-
-
-
-                String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-                cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(innerPort));
-                loadRedis(cmd,serverWait);
-
-
-                JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(innerPort), 20000000);
                 ScanResult<String> scan;
-                try (Jedis inner = pool.getResource()) {
+                try (Jedis inner = innerPool.getResource()) {
                     while (inner.ping()== "PONG"){
                         log.info("wait");
                     }
@@ -203,16 +188,14 @@ public class AkkaTreeLoader {
                         .parallelStream()
                         .forEach(m ->
                         {
-                            Compare compare = new Compare(poolConfig);
-                            compare.coreCompare(m, inputPath, innerPort);
+                            Compare compare = new Compare();
+                            compare.coreCompare(m, innerPool, outerPool);
                             ;
                         }
                 );
 
 
-                String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
-                loadRedis(stopServer,serverWait);
+
 
 //            }
 
@@ -352,12 +335,12 @@ public class AkkaTreeLoader {
         ois.close();
         return o;
     }
-    public static ITree getSimpliedTree(String fn,JedisPoolConfig config) {
-        JedisPool pool = new JedisPool(config, "127.0.0.1", Integer.valueOf(6399), 20000000);
+    public static ITree getSimpliedTree(String fn,JedisPool outerPool) {
+
         ITree tree = null;
         Jedis inner = null;
         try {
-            inner = pool.getResource();
+            inner = outerPool.getResource();
             String s = inner.get(fn.substring(1));
             HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(s);
 

@@ -23,18 +23,15 @@ import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.getSi
 public class Compare {
 
     private Logger log = LoggerFactory.getLogger(Compare.class);
-    private JedisPoolConfig poolConfig;
-    public Compare(JedisPoolConfig pool) {
-        this.poolConfig = pool;
-    }
 
-    public void coreCompare(String name , String inputPath, String innerPort) {
-        JedisPool pool = new JedisPool(poolConfig, "127.0.0.1", Integer.valueOf(innerPort), 20000000);
+
+    public void coreCompare(String name , JedisPool innerPool, JedisPool outerPool) {
+
         Map<String, String> resultMap;
         Jedis jedis = null;
 
         try {
-            jedis = pool.getResource();
+            jedis = innerPool.getResource();
             resultMap = jedis.hgetAll(name);
 
             String[] split = name.split("_");
@@ -45,9 +42,9 @@ public class Compare {
             String firstValue = resultMap.get("0");
             String secondValue = resultMap.get("1");
 
-            ITree oldTree = getSimpliedTree(firstValue,poolConfig);
+            ITree oldTree = getSimpliedTree(firstValue,outerPool);
 
-            ITree newTree = getSimpliedTree(secondValue,poolConfig);
+            ITree newTree = getSimpliedTree(secondValue,outerPool);
 
             Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
             m.match();
