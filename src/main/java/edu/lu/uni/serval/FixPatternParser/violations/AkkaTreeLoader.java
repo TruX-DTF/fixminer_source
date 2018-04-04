@@ -93,20 +93,20 @@ public class AkkaTreeLoader {
         String numOfWorkers;
         if (args.length > 0) {
             inputPath = args[0];
-//            port = args[1];
             portInner = args[1];
             serverWait = args[2];
 //            option = args[4];
             chunkName = args[3];
             numOfWorkers = args[4];
             dbDir = args[5];
+            port = args[6];
 //            pairsCSVPath = args[3];
 //            importScript = args[4];
 //            pairsCompletedPath = args[3];
         } else {
             inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
 //            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
-//            port = "6379";
+            port = "6399";
             portInner = "6380";
             serverWait = "10000";
 //            option = "COMP";
@@ -116,6 +116,7 @@ public class AkkaTreeLoader {
             chunkName ="chunk5.rdb";
             dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "1";
+
         }
         String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \nnumOfWorks %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,numOfWorkers,dbDir);
         log.info(parameters);
@@ -124,6 +125,10 @@ public class AkkaTreeLoader {
 //            calculatePairs(inputPath, port);
 //            log.info("Calculate pairs done");
 //        }else {
+        String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf(port));
+        loadRedis(cmd,serverWait);
+
         comparePairs(inputPath, portInner, serverWait,chunkName,dbDir,numOfWorkers);
 //        }
 
