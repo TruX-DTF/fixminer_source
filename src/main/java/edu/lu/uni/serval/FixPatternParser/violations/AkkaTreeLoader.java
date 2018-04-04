@@ -9,6 +9,7 @@ import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.Tree;
+import com.typesafe.config.ConfigFactory;
 import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
 import edu.lu.uni.serval.MultipleThreadsParser.*;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
@@ -189,6 +190,13 @@ public class AkkaTreeLoader {
                 ActorRef parsingActor = null;
                 final WorkMessage msg = new WorkMessage(0, result,innerPort,inputPath,dbDir,serverWait);
                 try {
+
+
+
+                    system = ActorSystem.create("my-dispatcher",
+                            ConfigFactory.load().getConfig("MyDispatcherExample"));
+
+
                     log.info("Akka begins...");
                     system = ActorSystem.create("Tree-System");
                     parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers),dbDir,innerPort,serverWait), "tree-actor");
