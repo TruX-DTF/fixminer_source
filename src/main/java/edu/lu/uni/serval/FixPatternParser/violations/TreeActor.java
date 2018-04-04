@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.loadRedis;
+
 public class TreeActor extends UntypedActor {
 
 	private static Logger logger = LoggerFactory.getLogger(TreeActor.class);
@@ -20,13 +22,20 @@ public class TreeActor extends UntypedActor {
 	private final int numberOfWorkers;
 	private int counter = 0;
 
-	public TreeActor(int numberOfWorkers) {
+	private String innerPort;
+	private String dbDir;
+	private String serverWait;
+
+	public TreeActor(int numberOfWorkers,String dbDir,String innerPort,String serverWait) {
 		mineRouter = this.getContext().actorOf(new RoundRobinPool(numberOfWorkers)
 				.props(TreeWorker.props()), "tree-router");
 		this.numberOfWorkers = numberOfWorkers;
+		this.innerPort = innerPort;
+		this.dbDir = dbDir;
+		this.serverWait = serverWait;
 	}
 
-	public static Props props(final int numberOfWorkers) {
+	public static Props props(final int numberOfWorkers, final String dbDir,final String innerPort, final String serverWait) {
 
 		return Props.create(new Creator<TreeActor>() {
 
@@ -34,7 +43,7 @@ public class TreeActor extends UntypedActor {
 
 			@Override
 			public TreeActor create() throws Exception {
-				return new TreeActor(numberOfWorkers);
+				return new TreeActor(numberOfWorkers,dbDir,innerPort,serverWait);
 			}
 
 		});
@@ -73,6 +82,9 @@ public class TreeActor extends UntypedActor {
 				this.getContext().stop(mineRouter);
 				this.getContext().stop(getSelf());
 				this.getContext().system().shutdown();
+				String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
+                loadRedis(stopServer,serverWait);
 			}
 		} else {
 			unhandled(message);

@@ -167,6 +167,7 @@ public class AkkaTreeLoader {
                     }
 
                     ScanParams sc = new ScanParams();
+                    //150000000
                     sc.count(150000000);
                     sc.match("pair_*");
 
@@ -183,7 +184,7 @@ public class AkkaTreeLoader {
                 try {
                     log.info("Akka begins...");
                     system = ActorSystem.create("Tree-System");
-                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers)), "tree-actor");
+                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers),dbDir,innerPort,serverWait), "tree-actor");
                     parsingActor.tell(msg, ActorRef.noSender());
                 } catch (Exception e) {
                     system.shutdown();

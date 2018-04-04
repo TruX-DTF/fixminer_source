@@ -58,7 +58,7 @@ public class TreeWorker extends UntypedActor {
 	public void onReceive(Object message) throws Exception {
 		if(message instanceof edu.lu.uni.serval.FixPatternParser.violations.WorkMessage) {
 
-			log.info("do sometihng");
+
 //		if (message instanceof edu.lu.uni.serval.MultipleThreadsParser.WorkMessage) {
 			edu.lu.uni.serval.FixPatternParser.violations.WorkMessage msg = (WorkMessage) message;
 			List<String> files = msg.getMsgFiles();
@@ -66,38 +66,13 @@ public class TreeWorker extends UntypedActor {
 			String inputPath = msg.getInputPath();
 			String dbDir = msg.getDbDir();
 			String serverWait = msg.getServerWait();
-//			StringBuilder editScripts = new StringBuilder();
-//			StringBuilder patchesSourceCode = new StringBuilder();
-//			StringBuilder sizes = new StringBuilder();
-//			StringBuilder tokens = new StringBuilder();
-//			StringBuilder testingInfo = new StringBuilder();
-//
-//			int id = msg.getId();
-//			int counter = 0;
-//
-//			int nullGumTreeResults = 0;
-//			int noSourceCodeChanges = 0;
-//			int noStatementChanges = 0;
-//			int nullDiffEntry = 0;
-//			int nullMappingGumTreeResults = 0;
-//			int pureDeletion = 0;
-//			int largeHunk = 0;
-//			int nullSourceCode = 0;
-//			int testInfos = 0;
-//			int timeouts = 0;
-//			StringBuilder builder = new StringBuilder();
+			int id = msg.getId();
+			int counter = 0;
+
 //
 			for (String name : files) {
 
-//				log.info(name);
-//				File revFile = msgFile.getRevFile();
-//				File prevFile = msgFile.getPrevFile();
-//				File diffentryFile = msgFile.getDiffEntryFile();
-////				File positionFile = msgFile.getPositionFile();
-//				/*if (revFile.getName().toLowerCase().contains("test")) {
-//					continue;
-//				}*/
-//				FixedViolationHunkParser parser =  new FixedViolationHunkParser();
+
 //
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 //				// schedule the work
@@ -105,7 +80,7 @@ public class TreeWorker extends UntypedActor {
 				try {
 					// wait for task to complete
 					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
-//
+					counter++;
 //					nullDiffEntry += parser.nullMatchedDiffEntry;
 //					nullMappingGumTreeResults += parser.nullMappingGumTreeResult;
 //					pureDeletion += parser.pureDeletions;
@@ -161,9 +136,14 @@ public class TreeWorker extends UntypedActor {
 					executor.shutdownNow();
 				}
 			}
-				String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
-                loadRedis(stopServer,serverWait);
+
+			log.info("bitti");
+			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
+			log.info("Worker #" + id + " finialized the work...");
+			this.getSender().tell("STOP", getSelf());
+//				String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+//                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
+//                loadRedis(stopServer,serverWait);
 //
 //			if (sizes.length() > 0) {
 //				FileHelper.outputToFile(editScriptsFilePath + "editScripts_" + id + ".list", editScripts, true);
