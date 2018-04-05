@@ -108,8 +108,8 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader
-									</mainClass>
+                                        edu.lu.uni.serval.FixPatternParser.cluster.CalculatePairs
+                                    </mainClass>
 								</manifest>
 							</archive>
 							<descriptorRefs>

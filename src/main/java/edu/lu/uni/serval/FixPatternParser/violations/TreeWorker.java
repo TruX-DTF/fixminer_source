@@ -3,35 +3,14 @@ package edu.lu.uni.serval.FixPatternParser.violations;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
-import com.github.gumtreediff.actions.ActionGenerator;
-import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.matchers.Matcher;
-import com.github.gumtreediff.matchers.Matchers;
-import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.FixPatternParser.RunnableParser;
-import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
 
-import edu.lu.uni.serval.FixPatternParser.violations.WorkMessage;
-import edu.lu.uni.serval.config.Configuration;
-import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.FixPatternParser.cluster.Compare;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
 import java.time.Duration;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.*;
-
-import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.comparePairs;
-import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.loadRedis;
-import static edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoader.getSimpliedTree;
 
 public class TreeWorker extends UntypedActor {
 	private static Logger log = LoggerFactory.getLogger(TreeWorker.class);

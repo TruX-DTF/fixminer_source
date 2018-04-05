@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.FixPatternParser.cluster;
 
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.Action;
@@ -9,13 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-import static edu.lu.uni.serval.FixPatternParser.violations.AkkaTreeLoader.getSimpliedTree;
+import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.getSimpliedTree;
 
 /**
  * Created by anilkoyuncu on 03/04/2018.
