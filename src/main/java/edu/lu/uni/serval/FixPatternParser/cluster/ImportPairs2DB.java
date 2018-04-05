@@ -51,10 +51,10 @@ public class ImportPairs2DB {
         List<File> pjs = stream
                 .filter(x -> x.getName().endsWith(".csv"))
                 .collect(Collectors.toList());
-
+        Integer portInt = Integer.valueOf(portInner);
 
         for (File pj : pjs) {
-            Integer portInt = Integer.valueOf(portInner);
+            log.info(String.valueOf(portInt));
             String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
             cmd = String.format(cmd, dbDir,pj.getName() +".rdb", portInt);
             loadRedis(cmd,serverWait);
