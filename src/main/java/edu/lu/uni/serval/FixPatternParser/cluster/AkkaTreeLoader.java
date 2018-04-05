@@ -235,7 +235,7 @@ public class AkkaTreeLoader {
         Jedis inner = null;
         try {
             inner = outerPool.getResource();
-            String s = inner.get(fn.substring(1));
+            String s = inner.get(fn);
             HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(s);
 
             ITree parent = null;
