@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedisWait;
+
 
 /**
  * Created by anilkoyuncu on 05/04/2018.
@@ -54,16 +55,17 @@ public class ImportPairs2DB {
         Integer portInt = Integer.valueOf(portInner);
 
         for (File pj : pjs) {
-            log.info(String.valueOf(portInt));
+
             String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
             cmd = String.format(cmd, dbDir,pj.getName() +".rdb", portInt);
-            loadRedis(cmd,serverWait);
+            log.info(cmd);
+            loadRedisWait(cmd);
 
             cmd = "bash "+dbDir + "redisImportSingle.sh" +" %s %s";
 
             cmd = String.format(cmd, pj.getPath(), portInt);
             log.info(cmd);
-            loadRedis(cmd,serverWait);
+            loadRedisWait(cmd);
 
             portInt++;
 
@@ -72,4 +74,6 @@ public class ImportPairs2DB {
 
         log.info(parameters);
     }
+
+
 }

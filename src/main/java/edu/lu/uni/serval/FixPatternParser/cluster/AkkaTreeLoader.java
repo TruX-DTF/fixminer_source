@@ -65,6 +65,32 @@ public class AkkaTreeLoader {
         log.info("Load done");
     }
 
+    public static void loadRedisWait(String cmd){
+        Process process;
+
+        try {
+//            String comd = String.format(cmd, f.getAbsoluteFile());
+            process = Runtime.getRuntime()
+
+                    .exec(cmd);
+
+
+            StreamGobbler streamGobbler =
+                    new StreamGobbler(process.getInputStream(), System.out::println);
+            Executors.newSingleThreadExecutor().submit(streamGobbler);
+            int exitCode = process.waitFor();
+            assert exitCode == 0;
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("Load done");
+    }
+
     public static void main(String[] args) {
 
 
