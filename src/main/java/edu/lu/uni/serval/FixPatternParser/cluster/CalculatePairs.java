@@ -112,7 +112,7 @@ public class CalculatePairs {
                             while (jedis.ping() == "PONG") {
                                 log.info("wait");
                             }
-
+                            Thread.sleep(Integer.valueOf(serverWait));
 
                             Files.copy(dbPath.toPath(), savePath.toPath(), StandardCopyOption.REPLACE_EXISTING);
                             fileCounter++;
