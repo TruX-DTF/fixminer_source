@@ -2,6 +2,7 @@ package edu.lu.uni.serval.FixPatternParser.cluster;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.Tree;
+import com.github.gumtreediff.tree.TreeContext;
 import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import org.slf4j.Logger;
@@ -240,8 +241,10 @@ public class AkkaTreeLoader {
 
             ITree parent = null;
             ITree children =null;
-            tree = getASTTree(actionSet, parent, children);
+            TreeContext tc = new TreeContext();
+            tree = getASTTree(actionSet, parent, children,tc);
             tree.setParent(null);
+            tc.validate();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -262,6 +265,45 @@ public class AkkaTreeLoader {
                 .filter(entry -> Objects.equals(entry.getValue(), value))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
+    }
+
+    public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
+
+        int newType = 0;
+
+        String astNodeType = actionSet.getAstNodeType();
+        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+
+        if(keysByValue.size() != 1){
+            log.error("Birden cok astnodemapmapping");
+        }
+        newType = keysByValue.get(0);
+        if(actionSet.getParent() == null){
+            //root
+
+//            parent = new Tree(newType,"");
+            parent = tc.createTree(newType, "", null);
+            tc.setRoot(parent);
+        }else{
+//            children = new Tree(newType,"");
+//            parent.addChild(children);
+            children = tc.createTree(newType, "", null);
+            children.setParentAndUpdateChildren(parent);
+        }
+        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+        if (subActions.size() != 0){
+            for (HierarchicalActionSet subAction : subActions) {
+
+                if(actionSet.getParent() == null){
+                    children = parent;
+                }
+                getASTTree(subAction,children,null,tc);
+
+            }
+
+
+        }
+        return parent;
     }
 
     public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children){
