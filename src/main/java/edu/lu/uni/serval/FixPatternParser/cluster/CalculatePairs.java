@@ -120,6 +120,7 @@ public class CalculatePairs {
                             while (jedis.ping() == "PONG") {
                                 log.info("wait");
                             }
+                            Thread.sleep(Integer.valueOf(serverWait));
 
                         } catch (IOException e) {
 
