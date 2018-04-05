@@ -61,7 +61,7 @@ public class ImportPairs2DB {
 
             cmd = "bash "+dbDir + "redisImportSingle.sh" +" %s %s";
 
-            cmd = String.format(cmd, dbDir,pj.getPath(), portInt);
+            cmd = String.format(cmd, pj.getPath(), portInt);
             log.info(cmd);
             loadRedis(cmd,serverWait);
 
