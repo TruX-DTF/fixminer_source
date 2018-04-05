@@ -63,6 +63,8 @@ public class ImportPairs2DB {
             cmd = String.format(cmd, dbDir,pj.getPath(), portInt);
             loadRedis(cmd,serverWait);
 
+            portInt++;
+
         }
 
 
