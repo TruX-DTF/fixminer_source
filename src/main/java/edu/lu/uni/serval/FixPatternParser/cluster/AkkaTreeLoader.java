@@ -159,6 +159,10 @@ public class AkkaTreeLoader {
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         stopServer = String.format(stopServer,Integer.valueOf(portInner));
         loadRedis(stopServer,serverWait);
+
+        stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+        stopServer = String.format(stopServer,Integer.valueOf(port));
+        loadRedis(stopServer,serverWait);
 //        }
 
 

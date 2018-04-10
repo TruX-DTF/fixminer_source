@@ -6,6 +6,7 @@ import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.Tree;
+import com.github.gumtreediff.tree.TreeContext;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
@@ -25,6 +26,8 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -58,37 +61,49 @@ public class MultiThreadTreeLoaderCluster {
         String port;
         String pairsCSVPath;
         String importScript;
+        String dbDir;
         if (args.length > 0) {
             inputPath = args[0];
             outputPath = args[1];
             port = args[2];
             pairsCSVPath = args[3];
             importScript = args[4];
+            dbDir = args[5];
         } else {
 //            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
             inputPath = "/Users/anilkoyuncu/bugStudy/code/python/clusterDumps";
             outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
-            port = "6379";
+            port = "6381";
             pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs-csv/";
             importScript = "/Users/anilkoyuncu/bugStudy/dataset/redisSingleImport.sh";
+            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
         }
 
-//        calculatePairsOfClusters(inputPath, outputPath);
-        mainCompare(inputPath,port,pairsCSVPath,importScript);
+        String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd = String.format(cmd, dbDir,"cluster1.rdb",Integer.valueOf(port));
+        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd,"1000");
+
+
+        cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf("6399"));
+        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd,"10000");
+
+        calculatePairsOfClusters(inputPath, outputPath);
+//        mainCompare(inputPath,port,pairsCSVPath,importScript);
         //        calculatePairs(inputPath, outputPath);
 //        processMessages(inputPath,outputPath);
 //        evaluateResults(inputPath,outputPath);
 
     }
 
-    public static void loadRedis(String cmd, File f){
+    public static void loadRedis(String cmd){
         Process process;
-        log.info(f.getName());
+
         try {
-            String comd = String.format(cmd, f.getAbsoluteFile());
+
             process = Runtime.getRuntime()
 
-                    .exec(comd);
+                    .exec(cmd);
 
 
             StreamGobbler streamGobbler =
@@ -107,9 +122,12 @@ public class MultiThreadTreeLoaderCluster {
     public static void mainCompare(String inputPath,String port,String pairsCSVPath,String importScript) {
 
         String cmd;
-        cmd = "bash " + importScript +" %s";
+        cmd = "bash " + importScript +" %s %s";
+
 
         JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+
+        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf("6399"),20000000);
 
 
         File folder = new File(pairsCSVPath);
@@ -121,7 +139,7 @@ public class MultiThreadTreeLoaderCluster {
 
         for (File f:folders){
 
-            if(f.getName().startsWith("cluster76")) {
+            if(f.getName().startsWith("cluster0")) {
 
 
                 try (Jedis jedis = jedisPool.getResource()) {
@@ -135,7 +153,8 @@ public class MultiThreadTreeLoaderCluster {
                     int size = scan.getResult().size();
 
                     if (size == 0) {
-                        loadRedis(cmd, f);
+                        String comd = String.format(cmd,f.getPath(),port);
+                        loadRedis(comd);
 
                         scan = jedis.scan("0", sc);
                         size = scan.getResult().size();
@@ -150,7 +169,7 @@ public class MultiThreadTreeLoaderCluster {
                     //76
 
                     scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, inputPath, jedisPool, clusterName));
+                            .forEach(m -> coreCompare(m, inputPath, jedisPool, clusterName,outerPool));
 
 
                     jedis.save();
@@ -166,14 +185,45 @@ public class MultiThreadTreeLoaderCluster {
     }
 
 
+    /** Read the object from Base64 string. */
+    public static Object fromString( String s ) throws IOException ,
+            ClassNotFoundException {
+        byte [] data = Base64.getDecoder().decode( s );
+        ObjectInputStream ois = new ObjectInputStream(
+                new ByteArrayInputStream(  data ) );
+        Object o  = ois.readObject();
+        ois.close();
+        return o;
+    }
 
 
+    public  static Pair<ITree,String> getTree(String firstValue, JedisPool outerPool){
 
-    public  static Pair<ITree,String> getTree(String firstValue){
-        String gumTreeInput = "/Volumes/data/bugStudy_backup/dataset/GumTreeInputBug4/";
+
+//        HierarchicalActionSet actionSet = null;
+//        try {
+//            FileInputStream fi = new FileInputStream(new File(dumps + firstValue));
+//            ObjectInputStream oi = new ObjectInputStream(fi);
+//            actionSet = (HierarchicalActionSet) oi.readObject();
+//            oi.close();
+//            fi.close();
+//
+//
+//        } catch (FileNotFoundException e) {
+//            log.error("File not found");
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            log.error("Error initializing stream");
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+
+        ITree tree = null;
+        Jedis inner = null;
         String[] split2 = firstValue.split("/");
         String cluster = split2[1];
-
 
         File folder = new File("/Users/anilkoyuncu/bugStudy/code/python/cluster/"+cluster);
         File[] listOfFiles = folder.listFiles();
@@ -182,47 +232,59 @@ public class MultiThreadTreeLoaderCluster {
                 .filter(x -> !x.getName().startsWith(".") && x.getName().startsWith(split2[2]))
                 .collect(Collectors.toList());
 
-
-
         String[] split1 = folders.get(0).getName().split(".txt_");
         String s = split1[0];
         String[] splitPJ = split1[1].split("_");
         String project = splitPJ[1];
         String actionSetPosition = splitPJ[0];
 
-        File prevFile = new File(gumTreeInput + project+ "/" + "prevFiles/prev_" + s + ".java");// previous file
-        File revFile = new File(gumTreeInput  + project+ "/" + "revFiles/" + s + ".java");//rev file
-
-        List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
-
-        HierarchicalActionSet actionSet = actionSets.get(Integer.valueOf(actionSetPosition));
-//        for (HierarchicalActionSet actionSet : actionSets) {
+        try {
+            inner = outerPool.getResource();
+            String filename = project + "/ActionSetDumps/" + split2[2];
+            String si= inner.get(filename);
+            HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(si);
 
 
+            ITree parent = null;
+            ITree children =null;
+            TreeContext tc = new TreeContext();
+            tree = getActionTree(actionSet, parent, children,tc);
+            tree.setParent(null);
+            tc.validate();
 
-            ITree actionTree= null;
-            ITree test2 = null;
-        getActionTree(actionSet);
-        ITree node = actionSet.getNode();
-        List<ITree> descendants = node.getDescendants();
-        for (ITree descendant : descendants) {
-            if(descendant.getType() <= 100){
-                descendant.setType(104);
+//            log.info(tc.toString());
+
+//            ITree newTree = ((Update)actionSet.getAction()).getNewNode();
+//            ITree oldTree = ((Update)actionSet.getAction()).getNode();
+//
+//            Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+//            m.match();
+//            ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+//            ag.generate();
+//            List<Action> actions = ag.getActions();
+//            log.info(actions.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+            if (inner != null) {
+                inner.close();
             }
         }
-        node.setParent(null);
-
-
-        //        }
-//        }
-
-        Pair<ITree, String> pair = new Pair<>(node,project);
+        Pair<ITree, String> pair = new Pair<>(tree,project);
         return pair;
+
+
+
+
+
+
     }
 
 
-    public static void getActionTree(HierarchicalActionSet actionSet){
-
+    public static ITree getActionTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
 
         int newType = 0;
 
@@ -238,18 +300,64 @@ public class MultiThreadTreeLoaderCluster {
         }else{
             new Exception("unknow action");
         }
-        actionSet.getNode().setType(newType);
-//        actionSet.getNode().setLabel("");
+        if(actionSet.getParent() == null){
+            //root
+
+            parent = tc.createTree(newType, "", null);
+            tc.setRoot(parent);
+
+//            parent = new Tree(newType,"");
+        }else{
+            children = tc.createTree(newType, "", null);
+            children.setParentAndUpdateChildren(parent);
+//            children = new Tree(newType,"");
+//            parent.addChild(children);
+        }
         List<HierarchicalActionSet> subActions = actionSet.getSubActions();
         if (subActions.size() != 0){
             for (HierarchicalActionSet subAction : subActions) {
-                getActionTree(subAction);
+
+                if(actionSet.getParent() == null){
+                    children = parent;
+                }
+                getActionTree(subAction,children,null,tc);
+
             }
 
 
         }
-
+        return parent;
     }
+
+//    public static void getActionTree(HierarchicalActionSet actionSet){
+//
+//
+//        int newType = 0;
+//
+//        Action action = actionSet.getAction();
+//        if (action instanceof Update){
+//            newType = 101;
+//        }else if(action instanceof Insert){
+//            newType =100;
+//        }else if(action instanceof Move){
+//            newType = 102;
+//        }else if(action instanceof Delete){
+//            newType=103;
+//        }else{
+//            new Exception("unknow action");
+//        }
+//        actionSet.getNode().setType(newType);
+////        actionSet.getNode().setLabel("");
+//        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+//        if (subActions.size() != 0){
+//            for (HierarchicalActionSet subAction : subActions) {
+//                getActionTree(subAction);
+//            }
+//
+//
+//        }
+//
+//    }
 //    public static ITree getActionTree(HierarchicalActionSet actionSet, ITree parent, ITree children){
 //
 //        int newType = 0;
@@ -292,7 +400,7 @@ public class MultiThreadTreeLoaderCluster {
 
 
     
-    private static void coreCompare(String name , String inputPath, JedisPool jedisPool,String clusterName) {
+    private static void coreCompare(String name , String inputPath, JedisPool jedisPool,String clusterName,JedisPool outerPool) {
 
 
         try (Jedis jedis = jedisPool.getResource()) {
@@ -315,6 +423,12 @@ public class MultiThreadTreeLoaderCluster {
             }
             String firstValue = resultMap.get("0");
             String secondValue = resultMap.get("1");
+
+//            if (firstValue.equals("71d453_0b5934_hbase-server#src#main#java#org#apache#hadoop#hbase#regionserver#RSRpcServices.txt_0")){
+//                //3f70d6_9ee9c5_camel-core#src#main#java#org#apache#camel#builder#NotifyBuilder.txt_0_CAMEL
+//                //29ea3e_71c614_spring-batch-core#src#test#java#org#springframework#batch#core#domain#JobExecutionTests.txt_0_BATCH
+//                log.info(firstValue);
+//            }
 
 
 
@@ -340,8 +454,8 @@ public class MultiThreadTreeLoaderCluster {
 //            }
 
             try {
-                Pair<ITree, String> oldPair = getTree(firstValue);
-                Pair<ITree, String> newPair = getTree(secondValue);
+                Pair<ITree, String> oldPair = getTree(firstValue, outerPool);
+                Pair<ITree, String> newPair = getTree(secondValue, outerPool);
 
                 ITree oldTree = oldPair.getValue0();
                 ITree newTree = newPair.getValue0();

@@ -69,6 +69,8 @@ public class ImportPairs2DB {
 
             portInt++;
 
+            //TODO missing kill server script
+
         }
 
 
