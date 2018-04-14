@@ -93,7 +93,7 @@ public class AkkaTreeLoader {
     }
 
 //    public static void main(String[] args) {
-    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String numOfWorkers,String port){
+    public static void main(String portInner,String serverWait,String dbDir,String chunkName,String port){
 
 //        String inputPath;
 ////        String outputPath;
@@ -134,7 +134,7 @@ public class AkkaTreeLoader {
 //            numOfWorkers = "1";
 //
 //        }
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \nnumOfWorks %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,numOfWorkers,dbDir);
+        String parameters = String.format("\nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s",portInner,serverWait,chunkName,dbDir);
         log.info(parameters);
 
 //        if (option.equals("CALC")) {
@@ -142,34 +142,34 @@ public class AkkaTreeLoader {
 //            log.info("Calculate pairs done");
 //        }else {
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-        cmd = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf(port));
-        loadRedis(cmd,serverWait);
+        String cmd1 = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf(port));
+        loadRedis(cmd1,serverWait);
 
         String cmdInner = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-        cmd = String.format(cmdInner, dbDir,chunkName,Integer.valueOf(portInner));
-        loadRedis(cmd,serverWait);
+        String cmd2 = String.format(cmdInner, dbDir,chunkName,Integer.valueOf(portInner));
+        loadRedis(cmd2,serverWait);
 
         JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
         JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
 
 
 
-        comparePairs(inputPath, innerPool,outerPool, serverWait,chunkName,dbDir,numOfWorkers);
+        comparePairs(innerPool,outerPool);
 
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-        stopServer = String.format(stopServer,Integer.valueOf(portInner));
-        loadRedis(stopServer,serverWait);
+        String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
+        loadRedis(stopServer1,serverWait);
 
         stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-        stopServer = String.format(stopServer,Integer.valueOf(port));
-        loadRedis(stopServer,serverWait);
+        String stopServer2 = String.format(stopServer,Integer.valueOf(port));
+        loadRedis(stopServer2,serverWait);
 //        }
 
 
     }
 
 
-    public static void comparePairs(String inputPath, JedisPool innerPool,JedisPool outerPool,String serverWait,String chunkName, String dbDir,String numOfWorkers){
+    public static void comparePairs(JedisPool innerPool,JedisPool outerPool){
 
 
                 ScanResult<String> scan;

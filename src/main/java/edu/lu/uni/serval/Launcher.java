@@ -29,8 +29,8 @@ public class Launcher {
             chunkName = args[4];
             numOfWorkers = args[5];
             dbDir = args[6];
-            port = args[6];
-            outputPath = args[7];
+            port = args[7];
+            outputPath = args[8];
         } else {
             inputPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs";
             portInner = "6380";
@@ -53,7 +53,7 @@ public class Launcher {
             case "IMPORTPAIRS":
                 ImportPairs2DB.main(inputPath,portInner,serverWait,dbDir,chunkName,numOfWorkers);
             case "AKKA":
-                AkkaTreeLoader.main(inputPath,portInner,serverWait,dbDir,chunkName,numOfWorkers,port);
+                AkkaTreeLoader.main(portInner,serverWait,dbDir,chunkName,port);
         }
     }
 
