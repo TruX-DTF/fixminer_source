@@ -108,7 +108,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-                                        edu.lu.uni.serval.FixPatternParser.violations.TestHunkParser
+                                        edu.lu.uni.serval.FixPatternParser.cluster.StoreFile
                                     </mainClass>
 								</manifest>
 							</archive>
