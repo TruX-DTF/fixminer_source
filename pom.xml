@@ -108,7 +108,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-                                        edu.lu.uni.serval.FixPatternParser.cluster.ImportPairs2DB
+                                        edu.lu.uni.serval.Launcher
                                     </mainClass>
 								</manifest>
 							</archive>

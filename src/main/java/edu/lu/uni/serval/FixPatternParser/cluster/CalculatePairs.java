@@ -29,39 +29,39 @@ import static edu.lu.uni.serval.FixPatternParser.cluster.TreeLoaderClusterL1.poo
  */
 public class CalculatePairs {
     private static Logger log = LoggerFactory.getLogger(CalculatePairs.class);
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String numOfWorkers,String port,String outputPath){
 
-
-        String inputPath;
-        String port;
-        String portInner;
-        String serverWait;
-        String dbDir;
-        String chunkName;
-        String outputPath;
-
-        if (args.length > 0) {
-            inputPath = args[0];
-            portInner = args[1];
-            serverWait = args[2];
-            chunkName = args[3];
-
-            dbDir = args[5];
-            port = args[6];
-            outputPath = args[7];
-
-        } else {
-            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
-
-            port = "6399";
-            portInner = "6380";
-            serverWait = "10000";
-            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImport";
-            chunkName ="chunk";
-            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
-
-
-        }
+//        String inputPath;
+//        String port;
+//        String portInner;
+//        String serverWait;
+//        String dbDir;
+//        String chunkName;
+//        String outputPath;
+//
+//        if (args.length > 0) {
+//            inputPath = args[0];
+//            portInner = args[1];
+//            serverWait = args[2];
+//            chunkName = args[3];
+//
+//            dbDir = args[5];
+//            port = args[6];
+//            outputPath = args[7];
+//
+//        } else {
+//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
+//
+//            port = "6399";
+//            portInner = "6380";
+//            serverWait = "10000";
+//            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImport";
+//            chunkName ="chunk";
+//            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
+//
+//
+//        }
         String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,dbDir);
         log.info(parameters);
 

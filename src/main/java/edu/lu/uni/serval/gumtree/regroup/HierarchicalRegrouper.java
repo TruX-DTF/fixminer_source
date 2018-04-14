@@ -203,10 +203,12 @@ public class HierarchicalRegrouper {
 			if (type != 83 && type != 77 && type != 78 && type != 79
 				&& type != 5 && type != 39 && type != 43 && type != 74 && type != 75
 				&& type != 76 && type != 84 && type != 87 && type != 88 && type != 42) {
-				// ArrayType, PrimitiveType, SimpleType, ParameterizedType, 
+				// ArrayType, PrimitiveType, SimpleType, ParameterizedType,
 				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType, SimpleName
 				return null;
 			}
+
+
 //		} else if (parent.getType() == 31) { // method declaration
 //			int type = action.getNode().getType();
 //			if (Checker.isStatement(type)) {// statements

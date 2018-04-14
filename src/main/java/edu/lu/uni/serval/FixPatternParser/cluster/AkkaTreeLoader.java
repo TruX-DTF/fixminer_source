@@ -92,48 +92,48 @@ public class AkkaTreeLoader {
         log.info("Load done");
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String numOfWorkers,String port){
 
-
-        String inputPath;
-//        String outputPath;
-        String port;
-        String portInner;
-//        String pairsCSVPath;
-        String importScript;
-//        String pairsCompletedPath;
-        String serverWait;
-//        String option;
-        String dbDir;
-        String chunkName;
-        String numOfWorkers;
-        if (args.length > 0) {
-            inputPath = args[0];
-            portInner = args[1];
-            serverWait = args[2];
-//            option = args[4];
-            chunkName = args[3];
-            numOfWorkers = args[4];
-            dbDir = args[5];
-            port = args[6];
-//            pairsCSVPath = args[3];
-//            importScript = args[4];
-//            pairsCompletedPath = args[3];
-        } else {
-            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
-//            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
-            port = "6399";
-            portInner = "6380";
-            serverWait = "10000";
-//            option = "COMP";
-//            pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
-//            importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
-//            pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
-            chunkName ="chunk3.rdb";
-            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
-            numOfWorkers = "1";
-
-        }
+//        String inputPath;
+////        String outputPath;
+//        String port;
+//        String portInner;
+////        String pairsCSVPath;
+//        String importScript;
+////        String pairsCompletedPath;
+//        String serverWait;
+////        String option;
+//        String dbDir;
+//        String chunkName;
+//        String numOfWorkers;
+//        if (args.length > 0) {
+//            inputPath = args[0];
+//            portInner = args[1];
+//            serverWait = args[2];
+////            option = args[4];
+//            chunkName = args[3];
+//            numOfWorkers = args[4];
+//            dbDir = args[5];
+//            port = args[6];
+////            pairsCSVPath = args[3];
+////            importScript = args[4];
+////            pairsCompletedPath = args[3];
+//        } else {
+//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
+////            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
+//            port = "6399";
+//            portInner = "6380";
+//            serverWait = "10000";
+////            option = "COMP";
+////            pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
+////            importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
+////            pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
+//            chunkName ="chunk3.rdb";
+//            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
+//            numOfWorkers = "1";
+//
+//        }
         String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \nnumOfWorks %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,numOfWorkers,dbDir);
         log.info(parameters);
 
