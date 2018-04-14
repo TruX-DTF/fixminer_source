@@ -43,9 +43,9 @@ public class TestHunkParser {
             outputPath = args[0];
         }else{
 //            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug4";
-			inputPath = "/Volumes/data/bugStudy_backup/dataset/GumTreeInputBug4";
+			inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug13April";
 //            outputPath = "/Users/anilkoyuncu/bugStudy/code/python/GumTreeOutput2/";
-			outputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
+			outputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput13April";
         }
 
 
@@ -108,7 +108,7 @@ public class TestHunkParser {
 			try {
 				log.info("Akka begins...");
 				system = ActorSystem.create("Mining-FixPattern-System");
-				parsingActor = system.actorOf(ParseFixPatternActor.props(1, editScriptsFilePath,
+				parsingActor = system.actorOf(ParseFixPatternActor.props(100, editScriptsFilePath,
 						patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
 				parsingActor.tell(msg, ActorRef.noSender());
 			} catch (Exception e) {

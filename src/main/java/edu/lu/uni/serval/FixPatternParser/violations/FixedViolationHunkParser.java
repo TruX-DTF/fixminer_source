@@ -41,18 +41,18 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
 
-		boolean isUpdate =
-				actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
+//		boolean isUpdate =
+//				actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
 		int hunkSet = 0;
-		if(isUpdate){
+//		if(isUpdate){
 			for (HierarchicalActionSet actionSet : actionSets) {
 
 
 				FileOutputStream f = null;
 				try {
-					String pj = diffentryFile.getParent().split("GumTreeInputBug4")[1];
-					String root = diffentryFile.getParent().split("GumTreeInputBug4")[0];
-					String hunkTreeFileName = root+"GumTreeOutput2/" +pj.replace("DiffEntries","ActionSetDumps/") + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
+					String pj = diffentryFile.getParent().split("GumTreeInputBug13April")[1];
+					String root = diffentryFile.getParent().split("GumTreeInputBug13April")[0];
+					String hunkTreeFileName = root+"GumTreeOutput13April/" +pj.replace("DiffEntries","ActionSetDumps/") + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
 					f = new FileOutputStream(new File(hunkTreeFileName));
 					ObjectOutputStream o = new ObjectOutputStream(f);
 					o.writeObject(actionSet);
@@ -67,7 +67,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 				hunkSet++;
 			}
 
-		}
+//		}
 
 	}
 //	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
