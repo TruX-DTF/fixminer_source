@@ -1,9 +1,6 @@
 package edu.lu.uni.serval;
 
-import edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader;
-import edu.lu.uni.serval.FixPatternParser.cluster.CalculatePairs;
-import edu.lu.uni.serval.FixPatternParser.cluster.ImportPairs2DB;
-import edu.lu.uni.serval.FixPatternParser.cluster.StoreFile;
+import edu.lu.uni.serval.FixPatternParser.cluster.*;
 
 /**
  * Created by anilkoyuncu on 14/04/2018.
@@ -38,7 +35,7 @@ public class Launcher {
             chunkName = "dumps.rdb";
             dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "1";
-            jobType = "AKKA";
+            jobType = "LEVEL1DB";
             port = "6399";
             outputPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImport";
         }
@@ -54,6 +51,10 @@ public class Launcher {
                 ImportPairs2DB.main(inputPath,portInner,serverWait,dbDir,chunkName,numOfWorkers);
             case "AKKA":
                 AkkaTreeLoader.main(portInner,serverWait,dbDir,chunkName,port);
+            case "LEVEL1DB":
+                TreeLoaderClusterL1.main(portInner,serverWait,port,inputPath);
+
+
         }
     }
 

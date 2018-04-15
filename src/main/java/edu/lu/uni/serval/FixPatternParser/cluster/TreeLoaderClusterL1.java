@@ -37,30 +37,34 @@ public class TreeLoaderClusterL1 {
 
     private static Logger log = LoggerFactory.getLogger(TreeLoaderClusterL1.class);
 
-    public static void main(String[] args){
+//    public static void main(String[] args){
+    public static void main(String portInner,String serverWait,String port,String inputPath){
 
-        String inputPath;
-        String outputPath;
-        String port;
-        String portInner;
-        String serverWait;
-        if (args.length > 0) {
-            inputPath = args[0];
-            outputPath = args[1];
-            port = args[2];
-            serverWait = args[3];
-            portInner = args[4];
+//        String inputPath;
+//        String outputPath;
+//        String port;
+//        String portInner;
+//        String serverWait;
+//        if (args.length > 0) {
+//            inputPath = args[0];
+//            outputPath = args[1];
+//            port = args[2];
+//            serverWait = args[3];
+//            portInner = args[4];
+//
+//        } else {
+////            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
+//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/redis";
+//            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
+//            port = "6379";
+//            portInner = "6380";
+//            serverWait = "10000";
+//
+//
+//        }
 
-        } else {
-//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
-            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/redis";
-            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
-            port = "6379";
-            portInner = "6380";
-            serverWait = "10000";
-
-
-        }
+        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nport %s",inputPath,portInner,serverWait,port);
+        log.info(parameters);
 
         String cmd = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
         cmd = String.format(cmd, inputPath,"level1.rdb",Integer.valueOf(port));
