@@ -99,7 +99,7 @@ public class MultiThreadTreeLoaderCluster3 {
         cmd = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf("6399"));
         edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd,"1000");
 
-        mainCompare(inputPath,port,pairsCSVPath,importScript);
+//        mainCompare(inputPath,port,pairsCSVPath,importScript);
         //        calculatePairs(inputPath, outputPath);
 //        processMessages(inputPath,outputPath);
 //        evaluateResults(inputPath,outputPath);
@@ -160,13 +160,27 @@ public class MultiThreadTreeLoaderCluster3 {
         log.info("Load done");
     }
 
-    public static void mainCompare(String inputPath,String port,String pairsCSVPath,String importScript) {
+//    public static void mainCompare(String inputPath,String port,String pairsCSVPath,String importScript) {
+    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner) {
 
-        String cmd;
-        cmd = "bash " + importScript +" %s %s";
+        String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
+        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
 
-        JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
-        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf("6399"),20000000);
+
+        String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
+        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
+
+
+        String cmd3;
+        cmd3 = "bash " + importScript +" %s %s";
+
+
+        JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+
+        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+
 
 
         File folder = new File(pairsCSVPath);
@@ -192,7 +206,7 @@ public class MultiThreadTreeLoaderCluster3 {
                     int size = scan.getResult().size();
 
                     if (size == 0) {
-                        String comd = String.format(cmd, f.getPath(), port);
+                        String comd = String.format(cmd3, f.getPath(), portInner);
                         edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster.
                                 loadRedis(comd);
 
@@ -207,7 +221,7 @@ public class MultiThreadTreeLoaderCluster3 {
 
 
                     scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, inputPath, jedisPool, clusterName, outerPool));
+                            .forEach(m -> coreCompare(m, jedisPool, clusterName, outerPool));
 
 
                     jedis.save();
@@ -241,9 +255,9 @@ public class MultiThreadTreeLoaderCluster3 {
         String actionSetPosition = splitPJ[0];
 
         Integer asp = Integer.valueOf(actionSetPosition);
-        if (asp > 1){
-            return null;
-        }
+//        if (asp > 1){
+//            return null;
+//        }
 
 
         ITree tree = null;
@@ -464,6 +478,20 @@ public class MultiThreadTreeLoaderCluster3 {
                         oldTokens.add(hours.trim());
                         }
                     }
+                }else if(label.startsWith("MOV")  && upd == false){
+                    String timeRegex = "@@(.*)@TO@(.*)";
+                    Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
+                    java.util.regex.Matcher matcher = pattern.matcher(split[1]);
+
+                    if (matcher.matches()) {
+                        String hours = matcher.group(1);
+                        if (hours.startsWith("MethodName:")){
+                            String methodName = hours.split(":")[1];
+                            oldTokens.add(methodName);
+                        }else {
+                            oldTokens.add(hours.trim());
+                        }
+                    }
                 }
                 boolean alreadyAddParentMethodName = false;
                 for (String s : m) {
@@ -536,13 +564,13 @@ public class MultiThreadTreeLoaderCluster3 {
             }
         }
 
-//        if (oldTokens.size() == 0 || oldTokens.size() > 3) {// && (oldTree.getType() != 41 && oldTree.getType() != 21 && oldTree.getType() !=17 && oldTree.getType()!=60 && oldTree.getType() != 46)){
-//            log.info("dur bakalim nereye!???");
-//        }
+        if (oldTokens.size() == 0 ) {// && (oldTree.getType() != 41 && oldTree.getType() != 21 && oldTree.getType() !=17 && oldTree.getType()!=60 && oldTree.getType() != 46)){
+            log.info("dur bakalim nereye!???");
+        }
         return oldTokens;
     }
     
-    private static void coreCompare(String name , String inputPath, JedisPool jedisPool,String clusterName,JedisPool outerPool) {
+    private static void coreCompare(String name , JedisPool jedisPool,String clusterName,JedisPool outerPool) {
 
 
         try (Jedis jedis = jedisPool.getResource()) {

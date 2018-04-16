@@ -1,54 +1,45 @@
 package edu.lu.uni.serval.FixPatternParser.violations;
 
-import static java.lang.System.err;
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
+import edu.lu.uni.serval.MultipleThreadsParser.ParseFixPatternActor;
+import edu.lu.uni.serval.MultipleThreadsParser.WorkMessage;
+import edu.lu.uni.serval.config.Configuration;
+import edu.lu.uni.serval.utils.FileHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import edu.lu.uni.serval.FixPatternParser.RunnableParser;
-import edu.lu.uni.serval.MultipleThreadsParser.AkkaParser;
-import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
-import edu.lu.uni.serval.MultipleThreadsParser.ParseFixPatternActor;
-import edu.lu.uni.serval.MultipleThreadsParser.WorkMessage;
-import edu.lu.uni.serval.config.Configuration;
-import edu.lu.uni.serval.utils.FileHelper;
-import org.eclipse.jgit.revwalk.RevCommit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TestHunkParser {
 
 	private static Logger log = LoggerFactory.getLogger(TestHunkParser.class);
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
+	public static void main(String inputPath, String outputPath,String numOfWorkers) {
 		// input data
 
-//			String rootPath = "/Users/anilkoyuncu/bugStudy";
-        String inputPath;
-        String outputPath;
-        if(args.length > 0){
-            inputPath = args[1];
-            outputPath = args[0];
-        }else{
-//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug4";
-			inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug13April";
-//            outputPath = "/Users/anilkoyuncu/bugStudy/code/python/GumTreeOutput2/";
-			outputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput13April";
-        }
+////			String rootPath = "/Users/anilkoyuncu/bugStudy";
+//        String inputPath;
+//        String outputPath;
+//        if(args.length > 0){
+//            inputPath = args[1];
+//            outputPath = args[0];
+//        }else{
+////            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug4";
+//			inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug13April";
+////            outputPath = "/Users/anilkoyuncu/bugStudy/code/python/GumTreeOutput2/";
+//			outputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput13April";
+//        }
 
-
+		String parameters = String.format("\nInput path %s \nOutput path %s",inputPath,outputPath);
+		log.info(parameters);
 
 		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
@@ -74,7 +65,7 @@ public class TestHunkParser {
 //                continue;
 //            }
 
-            final List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/"); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
+            final List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/", outputPath); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
             System.out.println(msgFiles.size());
             if(msgFiles.size() == 0)
                 continue;
@@ -108,7 +99,7 @@ public class TestHunkParser {
 			try {
 				log.info("Akka begins...");
 				system = ActorSystem.create("Mining-FixPattern-System");
-				parsingActor = system.actorOf(ParseFixPatternActor.props(100, editScriptsFilePath,
+				parsingActor = system.actorOf(ParseFixPatternActor.props(Integer.valueOf(numOfWorkers), editScriptsFilePath,
 						patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
 				parsingActor.tell(msg, ActorRef.noSender());
 			} catch (Exception e) {
@@ -178,7 +169,7 @@ public class TestHunkParser {
 	}
 	
 
-	private static List<MessageFile> getMessageFiles(String gumTreeInput) {
+	private static List<MessageFile> getMessageFiles(String gumTreeInput,String outputPath) {
 		String inputPath = gumTreeInput; // prevFiles  revFiles diffentryFile positionsFile
 		File revFilesPath = new File(inputPath + "revFiles/");
 		File[] revFiles = revFilesPath.listFiles();   // project folders

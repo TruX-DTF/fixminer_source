@@ -85,6 +85,8 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
 				File diffentryFile = msgFile.getDiffEntryFile();
+
+
 //				File positionFile = msgFile.getPositionFile();
 				/*if (revFile.getName().toLowerCase().contains("test")) {
 					continue;

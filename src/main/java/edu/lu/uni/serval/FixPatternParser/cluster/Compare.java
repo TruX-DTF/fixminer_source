@@ -27,6 +27,8 @@ public class Compare {
 
         Map<String, String> resultMap;
         Jedis jedis = null;
+        ITree oldTree = null;
+        ITree newTree = null;
 
         try {
             jedis = innerPool.getResource();
@@ -40,9 +42,9 @@ public class Compare {
             String firstValue = resultMap.get("0");
             String secondValue = resultMap.get("1");
 
-            ITree oldTree = getSimpliedTree(firstValue,outerPool);
+            oldTree = getSimpliedTree(firstValue,outerPool);
 
-            ITree newTree = getSimpliedTree(secondValue,outerPool);
+            newTree = getSimpliedTree(secondValue,outerPool);
 
             Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
             m.match();
@@ -67,7 +69,7 @@ public class Compare {
             if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
                     || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
                 String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                log.info(matchKey);
+//                log.info(matchKey);
 
                 jedis.select(1);
                 jedis.set(matchKey, result);
@@ -81,7 +83,8 @@ public class Compare {
 
 
         } catch (Exception e) {
-            log.error(e.toString() + " {}", (name));
+
+            log.error(e.toString() + " {}", name);
 
 
         }finally {

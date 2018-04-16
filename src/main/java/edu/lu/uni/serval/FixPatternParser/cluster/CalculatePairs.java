@@ -30,7 +30,7 @@ import static edu.lu.uni.serval.FixPatternParser.cluster.TreeLoaderClusterL1.poo
 public class CalculatePairs {
     private static Logger log = LoggerFactory.getLogger(CalculatePairs.class);
 //    public static void main(String[] args) {
-    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String numOfWorkers,String port,String outputPath){
+    public static void main(String serverWait,String dbDir,String chunkName,String port,String outputPath,String pjName){
 
 //        String inputPath;
 //        String port;
@@ -62,12 +62,12 @@ public class CalculatePairs {
 //
 //
 //        }
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,dbDir);
+        String parameters = String.format("\nport %s \nserverWait %s \nchunkName %s \ndbDir %s",port,serverWait,chunkName,dbDir);
         log.info(parameters);
 
 
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-        cmd = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf(port));
+        cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(port));
         loadRedis(cmd,serverWait);
 
         FileHelper.createDirectory(outputPath);
@@ -99,7 +99,7 @@ public class CalculatePairs {
         String line = null;
         try {
 
-            FileChannel rwChannel = new RandomAccessFile(outputPath + "/" +"textfile.txt", "rw").getChannel();
+            FileChannel rwChannel = new RandomAccessFile(outputPath + "/" +pjName +".txt", "rw").getChannel();
             ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
             int fileCounter = 0;
 
@@ -116,7 +116,7 @@ public class CalculatePairs {
                     }else{
                         log.info("Next pair dump");
                         fileCounter++;
-                        rwChannel = new RandomAccessFile(outputPath+"/" +"textfile"+String.valueOf(fileCounter)+".txt", "rw").getChannel();
+                        rwChannel = new RandomAccessFile(outputPath+"/" +pjName+String.valueOf(fileCounter)+".txt", "rw").getChannel();
                         wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
                     }
 

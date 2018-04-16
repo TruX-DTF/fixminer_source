@@ -93,7 +93,7 @@ public class AkkaTreeLoader {
     }
 
 //    public static void main(String[] args) {
-    public static void main(String portInner,String serverWait,String dbDir,String chunkName,String port){
+    public static void main(String portInner,String serverWait,String dbDir,String chunkName,String port, String dumpsName){
 
 //        String inputPath;
 ////        String outputPath;
@@ -134,7 +134,7 @@ public class AkkaTreeLoader {
 //            numOfWorkers = "1";
 //
 //        }
-        String parameters = String.format("\nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s",portInner,serverWait,chunkName,dbDir);
+        String parameters = String.format("\nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s \ndumpsName %s",portInner,serverWait,chunkName,dbDir,dumpsName);
         log.info(parameters);
 
 //        if (option.equals("CALC")) {
@@ -142,7 +142,7 @@ public class AkkaTreeLoader {
 //            log.info("Calculate pairs done");
 //        }else {
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-        String cmd1 = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf(port));
+        String cmd1 = String.format(cmd, dbDir,dumpsName,Integer.valueOf(port));
         loadRedis(cmd1,serverWait);
 
         String cmdInner = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";

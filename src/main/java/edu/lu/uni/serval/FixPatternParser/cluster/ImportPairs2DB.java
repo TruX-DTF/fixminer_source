@@ -21,7 +21,7 @@ public class ImportPairs2DB {
     private static Logger log = LoggerFactory.getLogger(ImportPairs2DB.class);
 //    public static void main(String[] args) {
 
-    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String numOfWorkers){
+    public static void main(String csvInputPath,String portInner,String serverWait,String dbDir,String numOfWorkers){
 
 //        String inputPath;
 //        String portInner;
@@ -44,11 +44,11 @@ public class ImportPairs2DB {
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
 //            numOfWorkers = "1";
 //        }
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \nnumOfWorks %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,numOfWorkers,dbDir);
+        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nnumOfWorks %s \ndbDir %s",csvInputPath,portInner,serverWait,numOfWorkers,dbDir);
         log.info(parameters);
 
 
-        File folder = new File(inputPath);
+        File folder = new File(csvInputPath);
         File[] subFolders = folder.listFiles();
         Stream<File> stream = Arrays.stream(subFolders);
         List<File> pjs = stream
@@ -63,7 +63,7 @@ public class ImportPairs2DB {
             log.info(cmd);
             loadRedisWait(cmd);
 
-            cmd = "bash "+dbDir + "redisImportSingle.sh" +" %s %s";
+            cmd = "bash "+dbDir + "/redisImportSingle.sh" +" %s %s";
 
             cmd = String.format(cmd, pj.getPath(), portInt);
             log.info(cmd);

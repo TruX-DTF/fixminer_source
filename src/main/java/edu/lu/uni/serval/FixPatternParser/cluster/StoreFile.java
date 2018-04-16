@@ -26,7 +26,7 @@ public class StoreFile {
     private static Logger log = LoggerFactory.getLogger(StoreFile.class);
 
 //    public static void main(String[] args) {
-    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String numOfWorkers){
+    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName){
 //        String inputPath;
 //        String portInner;
 //        String serverWait;
@@ -48,7 +48,7 @@ public class StoreFile {
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
 //            numOfWorkers = "1";
 //        }
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \nnumOfWorks %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,numOfWorkers,dbDir);
+        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,dbDir);
         log.info(parameters);
 
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
@@ -84,6 +84,11 @@ public class StoreFile {
                 .forEach(m -> storeCore(portInner, m.split(",")[1],m.split(",")[0]));
 
         log.info(parameters);
+
+        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+        String stopServer2 = String.format(stopServer,Integer.valueOf(portInner));
+        loadRedis(stopServer2,serverWait);
+
     }
 
     public static void storeCore(String portInner,String path,String key){

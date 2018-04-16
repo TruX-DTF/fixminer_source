@@ -38,7 +38,7 @@ public class TreeLoaderClusterL1 {
     private static Logger log = LoggerFactory.getLogger(TreeLoaderClusterL1.class);
 
 //    public static void main(String[] args){
-    public static void main(String portInner,String serverWait,String port,String inputPath){
+    public static void main(String portInner,String serverWait,String port,String inputPath,String level1DB,String level1Path){
 
 //        String inputPath;
 //        String outputPath;
@@ -67,13 +67,13 @@ public class TreeLoaderClusterL1 {
         log.info(parameters);
 
         String cmd = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
-        cmd = String.format(cmd, inputPath,"level1.rdb",Integer.valueOf(port));
+        cmd = String.format(cmd, inputPath,level1DB,Integer.valueOf(port));
         loadRedis(cmd,serverWait);
 
         JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
 
 
-        String level1Path = inputPath + "/level1";
+//        String level1Path = inputPath + "/level1";
         File chunks = new File(level1Path);
         File[] listFiles = chunks.listFiles();
         Stream<File> stream = Arrays.stream(listFiles);
@@ -81,8 +81,8 @@ public class TreeLoaderClusterL1 {
                 .filter(x -> x.getName().endsWith(".rdb"))
                 .collect(Collectors.toList());
         for (File db : dbs) {
-            String cmdInner = "bash "+level1Path + "/" + "startServer.sh" +" %s %s %s";
-            cmdInner = String.format(cmdInner, level1Path,db.getName(),Integer.valueOf(portInner));
+            String cmdInner = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
+            cmdInner = String.format(cmdInner, inputPath,db.getName(),Integer.valueOf(portInner));
             loadRedis(cmdInner,serverWait);
             JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
 

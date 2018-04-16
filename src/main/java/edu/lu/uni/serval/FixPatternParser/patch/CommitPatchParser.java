@@ -20,7 +20,7 @@ public class CommitPatchParser extends Parser{
 	@Override
 	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) {
 	}
-	
+
 	protected DiffEntryHunk matchHunk(int startLine, int endLine, int startLine2, int endLine2, String actionStr, List<DiffEntryHunk> hunks) {
 		for (DiffEntryHunk hunk : hunks) {
 			int bugStartLine = hunk.getBugLineStartNum();

@@ -88,7 +88,7 @@ public class MultiThreadTreeLoaderCluster {
         cmd = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf("6399"));
         edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd,"10000");
 
-        calculatePairsOfClusters(inputPath, outputPath);
+//        calculatePairsOfClusters(inputPath, outputPath);
 //        mainCompare(inputPath,port,pairsCSVPath,importScript);
         //        calculatePairs(inputPath, outputPath);
 //        processMessages(inputPath,outputPath);
@@ -119,15 +119,25 @@ public class MultiThreadTreeLoaderCluster {
         log.info("Load done");
     }
 
-    public static void mainCompare(String inputPath,String port,String pairsCSVPath,String importScript) {
+    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner) {
 
-        String cmd;
-        cmd = "bash " + importScript +" %s %s";
+        String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
+        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
 
 
-        JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+        String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
+        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
 
-        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf("6399"),20000000);
+
+        String cmd3;
+        cmd3 = "bash " + importScript +" %s %s";
+
+
+        JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+
+        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
 
 
         File folder = new File(pairsCSVPath);
@@ -139,7 +149,7 @@ public class MultiThreadTreeLoaderCluster {
 
         for (File f:folders){
 
-            if(f.getName().startsWith("cluster0")) {
+//            if(f.getName().startsWith("cluster0")) {
 
 
                 try (Jedis jedis = jedisPool.getResource()) {
@@ -153,7 +163,7 @@ public class MultiThreadTreeLoaderCluster {
                     int size = scan.getResult().size();
 
                     if (size == 0) {
-                        String comd = String.format(cmd,f.getPath(),port);
+                        String comd = String.format(cmd3,f.getPath(),portInner);
                         loadRedis(comd);
 
                         scan = jedis.scan("0", sc);
@@ -169,13 +179,13 @@ public class MultiThreadTreeLoaderCluster {
                     //76
 
                     scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, inputPath, jedisPool, clusterName,outerPool));
+                            .forEach(m -> coreCompare(m, jedisPool, clusterName,outerPool));
 
 
                     jedis.save();
 
                 }
-            }
+//            }
 
 
         }
@@ -224,23 +234,18 @@ public class MultiThreadTreeLoaderCluster {
         Jedis inner = null;
         String[] split2 = firstValue.split("/");
         String cluster = split2[1];
-
-        File folder = new File("/Users/anilkoyuncu/bugStudy/code/python/cluster/"+cluster);
-        File[] listOfFiles = folder.listFiles();
-        Stream<File> stream = Arrays.stream(listOfFiles);
-        List<File> folders = stream
-                .filter(x -> !x.getName().startsWith(".") && x.getName().startsWith(split2[2]))
-                .collect(Collectors.toList());
-
-        String[] split1 = folders.get(0).getName().split(".txt_");
-        String s = split1[0];
-        String[] splitPJ = split1[1].split("_");
+        String fullFileName = split2[2];
+        String[] split = fullFileName.split(".txt_");
+        String pureFileName = split[0];
+        String[] splitPJ = split[1].split("_");
         String project = splitPJ[1];
         String actionSetPosition = splitPJ[0];
 
+
+
         try {
             inner = outerPool.getResource();
-            String filename = project + "/ActionSetDumps/" + split2[2];
+            String filename = project + "/ActionSetDumps/" + pureFileName + ".txt_" + actionSetPosition;
             String si= inner.get(filename);
             HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(si);
 
@@ -400,7 +405,7 @@ public class MultiThreadTreeLoaderCluster {
 
 
     
-    private static void coreCompare(String name , String inputPath, JedisPool jedisPool,String clusterName,JedisPool outerPool) {
+    private static void coreCompare(String name , JedisPool jedisPool,String clusterName,JedisPool outerPool) {
 
 
         try (Jedis jedis = jedisPool.getResource()) {
