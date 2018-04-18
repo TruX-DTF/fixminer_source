@@ -5,6 +5,7 @@ import com.github.gumtreediff.actions.model.*;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
+import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
@@ -38,7 +39,7 @@ public class TreeLoaderClusterL1 {
     private static Logger log = LoggerFactory.getLogger(TreeLoaderClusterL1.class);
 
 //    public static void main(String[] args){
-    public static void main(String portInner,String serverWait,String port,String inputPath,String level1DB,String level1Path){
+    public static void main(String portInner,String serverWait,String port,String inputPath,String level1DB,String level1Path) throws Exception {
 
 //        String inputPath;
 //        String outputPath;
@@ -68,8 +69,9 @@ public class TreeLoaderClusterL1 {
 
         String cmd = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
         cmd = String.format(cmd, inputPath,level1DB,Integer.valueOf(port));
-        loadRedis(cmd,serverWait);
-
+//        loadRedis(cmd,serverWait);
+        CallShell cs = new CallShell();
+        cs.runShell(cmd,serverWait);
         JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
 
 
@@ -83,7 +85,8 @@ public class TreeLoaderClusterL1 {
         for (File db : dbs) {
             String cmdInner = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
             cmdInner = String.format(cmdInner, inputPath,db.getName(),Integer.valueOf(portInner));
-            loadRedis(cmdInner,serverWait);
+//            loadRedis(cmdInner,serverWait);
+            cs.runShell(cmdInner,serverWait);
             JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
 
             Jedis inner = null;
@@ -136,8 +139,8 @@ public class TreeLoaderClusterL1 {
 
             String stopServer = "bash "+level1Path + "/" + "stopServer.sh" +" %s";
             stopServer = String.format(stopServer,Integer.valueOf(portInner));
-            loadRedis(stopServer,serverWait);
-
+//            loadRedis(stopServer,serverWait);
+            cs.runShell(stopServer,serverWait);
         }
 
 

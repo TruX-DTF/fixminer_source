@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.gumtreediff.actions.model.Delete;
+import com.github.gumtreediff.actions.model.Insert;
+import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.actions.model.Update;
 import com.github.gumtreediff.tree.ITree;
 
@@ -40,35 +43,56 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 	@Override
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
+		if (actionSets.size() != 0) {
+			boolean isUpdate =
+					actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
+			boolean isInsert =
+					actionSets.stream().allMatch(p -> p.getAction() instanceof Insert);
+			boolean isDelete =
+					actionSets.stream().allMatch(p -> p.getAction() instanceof Delete);
+			boolean isMove =
+					actionSets.stream().allMatch(p -> p.getAction() instanceof Move);
+			int hunkSet = 0;
+			if (isUpdate || isInsert || isDelete || isMove) {
+				for (HierarchicalActionSet actionSet : actionSets) {
+					String folder = null;
+					if (isUpdate) {
+						folder = "/UPD/";
+					} else if (isDelete) {
+						folder = "/DEL/";
+					} else if (isInsert) {
+						folder = "/INS/";
+					} else if (isMove) {
+						folder = "/MOV/";
+					}
 
-//		boolean isUpdate =
-//				actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
-		int hunkSet = 0;
-//		if(isUpdate){
-			for (HierarchicalActionSet actionSet : actionSets) {
 
+					FileOutputStream f = null;
 
-				FileOutputStream f = null;
+					try {
+//					String pj = diffentryFile.getParent().split("Defects4J")[1];
+						String datasetName = diffentryFile.getParent().split("dataset/")[1].split("/")[0];
+						String[] split1 = diffentryFile.getParent().split(datasetName);
+						String root = split1[0];
+						String pj = split1[1].split("/")[1];
 
-				try {
-					String pj = diffentryFile.getParent().split("Defects4J")[1];
-					String root = diffentryFile.getParent().split("Defects4J")[0];
-					String hunkTreeFileName = root+"GumTreeOutputDefects4J/" +pj.replace("DiffEntries","ActionSetDumps/") + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
-					f = new FileOutputStream(new File(hunkTreeFileName));
-					ObjectOutputStream o = new ObjectOutputStream(f);
-					o.writeObject(actionSet);
+						String hunkTreeFileName = root + "GumTreeOutput" + datasetName + "/" + pj + folder + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
+						f = new FileOutputStream(new File(hunkTreeFileName));
+						ObjectOutputStream o = new ObjectOutputStream(f);
+						o.writeObject(actionSet);
 
-					o.close();
-					f.close();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+						o.close();
+						f.close();
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					hunkSet++;
 				}
-				hunkSet++;
-			}
 
-//		}
+			}
+		}
 
 	}
 //	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {

@@ -78,7 +78,10 @@ public class TestHunkParser {
             final String alarmTypesFilePath = GUM_TREE_OUTPUT + "alarmTypes.list";
 
 
-			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/ActionSetDumps");
+			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/UPD");
+			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/INS");
+			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/DEL");
+			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MOV");
             FileHelper.deleteDirectory(editScriptsFilePath);
             FileHelper.deleteDirectory(patchesSourceCodeFilePath);
             FileHelper.deleteDirectory(buggyTokensFilePath);

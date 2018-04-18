@@ -4,6 +4,7 @@ import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.Tree;
 import com.github.gumtreediff.tree.TreeContext;
 import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import org.junit.Assert;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -53,9 +55,9 @@ public class AkkaTreeLoader {
             StreamGobbler streamGobbler =
                     new StreamGobbler(process.getInputStream(), System.out::println);
             Executors.newSingleThreadExecutor().submit(streamGobbler);
-//            int exitCode = process.waitFor();
-//            assert exitCode == 0;
-            Thread.sleep(Integer.valueOf(serverWait));
+            int exitCode = process.waitFor();
+            assert exitCode == 0;
+//            Thread.sleep(Integer.valueOf(serverWait));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,6 +67,8 @@ public class AkkaTreeLoader {
         }
         log.info("Load done");
     }
+
+    private static Consumer<String> consumer = Assert::assertNotNull;
 
     public static void loadRedisWait(String cmd){
         Process process;
@@ -77,7 +81,7 @@ public class AkkaTreeLoader {
 
 
             StreamGobbler streamGobbler =
-                    new StreamGobbler(process.getInputStream(), System.out::println);
+                    new StreamGobbler(process.getInputStream(), consumer);
             Executors.newSingleThreadExecutor().submit(streamGobbler);
             int exitCode = process.waitFor();
             assert exitCode == 0;
@@ -93,7 +97,7 @@ public class AkkaTreeLoader {
     }
 
 //    public static void main(String[] args) {
-    public static void main(String portInner,String serverWait,String dbDir,String chunkName,String port, String dumpsName){
+    public static void main(String portInner,String serverWait,String dbDir,String chunkName,String port, String dumpsName) throws Exception {
 
 //        String inputPath;
 ////        String outputPath;
@@ -141,14 +145,15 @@ public class AkkaTreeLoader {
 //            calculatePairs(inputPath, port);
 //            log.info("Calculate pairs done");
 //        }else {
+        CallShell cs = new CallShell();
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String cmd1 = String.format(cmd, dbDir,dumpsName,Integer.valueOf(port));
-        loadRedis(cmd1,serverWait);
-
+//        loadRedis(cmd1,serverWait);
+        cs.runShell(cmd1,serverWait);
         String cmdInner = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String cmd2 = String.format(cmdInner, dbDir,chunkName,Integer.valueOf(portInner));
-        loadRedis(cmd2,serverWait);
-
+//        loadRedis(cmd2,serverWait);
+        cs.runShell(cmd2,serverWait);
         JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
         JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
 
@@ -158,12 +163,13 @@ public class AkkaTreeLoader {
 
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
-        loadRedis(stopServer1,serverWait);
-
+//        loadRedis(stopServer1,serverWait);
+        cs.runShell(stopServer1,serverWait);
         stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer2 = String.format(stopServer,Integer.valueOf(port));
-        loadRedis(stopServer2,serverWait);
+//        loadRedis(stopServer2,serverWait);
 //        }
+        cs.runShell(stopServer2,serverWait);
 
 
     }
@@ -181,7 +187,7 @@ public class AkkaTreeLoader {
                     ScanParams sc = new ScanParams();
                     //150000000
                     sc.count(150000000);
-                    sc.match("pair_*");
+                    sc.match("pair_[0-9]*");
 
                     scan = inner.scan("0", sc);
                     int size = scan.getResult().size();

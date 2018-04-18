@@ -126,9 +126,9 @@ public class MultiThreadTreeLoaderCluster {
         edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
 
 
-        String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-        cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
-        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
+//        String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+//        cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
+//        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
 
 
         String cmd3;

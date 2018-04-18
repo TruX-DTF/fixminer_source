@@ -1,5 +1,6 @@
 package edu.lu.uni.serval.FixPatternParser.cluster;
 
+import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,8 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
-import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedisWait;
+//import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
+//import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedisWait;
 
 
 /**
@@ -21,7 +22,7 @@ public class ImportPairs2DB {
     private static Logger log = LoggerFactory.getLogger(ImportPairs2DB.class);
 //    public static void main(String[] args) {
 
-    public static void main(String csvInputPath,String portInner,String serverWait,String dbDir,String numOfWorkers){
+    public static void main(String csvInputPath,String portInner,String serverWait,String dbDir) throws Exception {
 
 //        String inputPath;
 //        String portInner;
@@ -44,7 +45,7 @@ public class ImportPairs2DB {
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
 //            numOfWorkers = "1";
 //        }
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nnumOfWorks %s \ndbDir %s",csvInputPath,portInner,serverWait,numOfWorkers,dbDir);
+        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \ndbDir %s",csvInputPath,portInner,serverWait,dbDir);
         log.info(parameters);
 
 
@@ -61,18 +62,21 @@ public class ImportPairs2DB {
             String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
             cmd = String.format(cmd, dbDir,pj.getName() +".rdb", portInt);
             log.info(cmd);
-            loadRedisWait(cmd);
+            CallShell cs = new CallShell();
+            cs.runShell(cmd);
 
             cmd = "bash "+dbDir + "/redisImportSingle.sh" +" %s %s";
 
             cmd = String.format(cmd, pj.getPath(), portInt);
             log.info(cmd);
-            loadRedisWait(cmd);
+            cs.runShell(cmd);
 
             portInt++;
 
-            //TODO missing kill server script
 
+            String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+            String stopServer2 = String.format(stopServer,Integer.valueOf(portInner));
+            cs.runShell(stopServer2);
         }
 
 

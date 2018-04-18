@@ -1,5 +1,6 @@
 package edu.lu.uni.serval.FixPatternParser.cluster;
 
+import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
+import static edu.lu.uni.serval.FixPatternParser.cluster.TreeLoaderClusterL1.poolConfig;
 
 /**
  * Created by anilkoyuncu on 03/04/2018.
@@ -26,7 +28,7 @@ public class StoreFile {
     private static Logger log = LoggerFactory.getLogger(StoreFile.class);
 
 //    public static void main(String[] args) {
-    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName){
+    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String operation) throws Exception {
 //        String inputPath;
 //        String portInner;
 //        String serverWait;
@@ -48,12 +50,13 @@ public class StoreFile {
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
 //            numOfWorkers = "1";
 //        }
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s",inputPath,portInner,serverWait,chunkName,dbDir);
+        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s \noperation %s",inputPath,portInner,serverWait,chunkName,dbDir,operation);
         log.info(parameters);
-
+        CallShell cs = new CallShell();
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
-        loadRedis(cmd,serverWait);
+//        loadRedis(cmd,serverWait);
+        cs.runShell(cmd,serverWait);
 
         File folder = new File(inputPath);
         File[] subFolders = folder.listFiles();
@@ -67,40 +70,43 @@ public class StoreFile {
             File[] files = pj.listFiles();
             Stream<File> fileStream = Arrays.stream(files);
             List<File> fs = fileStream
-                    .filter(x -> x.getName().startsWith("ActionSetDumps"))
+                    .filter(x -> x.getName().startsWith(operation))
                     .collect(Collectors.toList());
 
             File[] dumps = fs.get(0).listFiles();
             for (File f : dumps) {
                 String name = f.getName();
 
-                String key = pjName + "/"+ "ActionSetDumps/" + name;
+                String key = pjName + "/"+ operation+"/" + name;
                 String result = key +","+f.getPath();
                 workList.add(result);
             }
 
         }
+        log.info(String.valueOf(workList.size()));
+
+        JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+
         workList.stream().parallel()
-                .forEach(m -> storeCore(portInner, m.split(",")[1],m.split(",")[0]));
+                .forEach(m -> storeCore(innerPool, m.split(",")[1],m.split(",")[0]));
 
         log.info(parameters);
 
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer2 = String.format(stopServer,Integer.valueOf(portInner));
-        loadRedis(stopServer2,serverWait);
-
+//        loadRedis(stopServer2,serverWait);
+        cs.runShell(stopServer2,serverWait);
     }
 
-    public static void storeCore(String portInner,String path,String key){
+    public static void storeCore(JedisPool innerPool,String path,String key){
         try {
 
 
-            JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", Integer.valueOf(portInner), 20000000);
-            ScanResult<String> scan;
+
 
 
             HierarchicalActionSet actionSet = null;
-            HierarchicalActionSet NewactionSet = null;
+
             try {
                 FileInputStream fi = new FileInputStream(new File(path));
                 ObjectInputStream oi = new ObjectInputStream(fi);
@@ -120,8 +126,8 @@ public class StoreFile {
                 e.printStackTrace();
             }
 
+            try (Jedis inner = innerPool.getResource()) {
 
-            try (Jedis inner = pool.getResource()) {
                 inner.set(key,toString(actionSet));
             }
 

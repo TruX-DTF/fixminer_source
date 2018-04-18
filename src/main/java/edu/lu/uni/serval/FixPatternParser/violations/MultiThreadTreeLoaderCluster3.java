@@ -779,7 +779,7 @@ orginal calculate pairs, from all dumps of the projects
                 .filter(x -> !x.getName().startsWith("."))
                 .collect(Collectors.toList());
 
-        FileHelper.createDirectory(outputPath + "pairs-2l/");
+        FileHelper.createDirectory(outputPath + "/pairs-2l/");
 
         for (File pj : pjs) {
             File[] files = pj.listFiles();
@@ -835,7 +835,7 @@ orginal calculate pairs, from all dumps of the projects
 //            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, 1000*treesFileNames.size()*treesFileNames.size());
 //            int fileCounter = 0;
 
-            FileOutputStream fos = new FileOutputStream(outputPath + "pairs-2l/" +filename+".txt");
+            FileOutputStream fos = new FileOutputStream(outputPath + "/pairs-2l/" +filename+".txt");
             DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
 
 
