@@ -95,6 +95,8 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 		}
 
 	}
+
+
 //	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
 //		// GumTree results
 //		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);

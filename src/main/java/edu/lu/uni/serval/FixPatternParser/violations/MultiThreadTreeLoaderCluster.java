@@ -119,15 +119,18 @@ public class MultiThreadTreeLoaderCluster {
         log.info("Load done");
     }
 
-    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner) {
+    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String serverWait,String type) throws Exception {
 
+        CallShell cs = new CallShell();
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
-        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
+//        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
+        cs.runShell(cmd1,serverWait);
 
 
-//        String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-//        cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
+        String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+        cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
+        cs.runShell(cmd2,serverWait);
 //        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
 
 
@@ -164,7 +167,8 @@ public class MultiThreadTreeLoaderCluster {
 
                     if (size == 0) {
                         String comd = String.format(cmd3,f.getPath(),portInner);
-                        loadRedis(comd);
+//                        loadRedis(comd);
+                        cs.runShell(comd);
 
                         scan = jedis.scan("0", sc);
                         size = scan.getResult().size();
@@ -179,7 +183,7 @@ public class MultiThreadTreeLoaderCluster {
                     //76
 
                     scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, jedisPool, clusterName,outerPool));
+                            .forEach(m -> coreCompare(m, jedisPool, clusterName,outerPool,type));
 
 
                     jedis.save();
@@ -207,7 +211,7 @@ public class MultiThreadTreeLoaderCluster {
     }
 
 
-    public  static Pair<ITree,String> getTree(String firstValue, JedisPool outerPool){
+    public  static Pair<ITree,String> getTree(String firstValue, JedisPool outerPool,String type){
 
 
 //        HierarchicalActionSet actionSet = null;
@@ -245,7 +249,7 @@ public class MultiThreadTreeLoaderCluster {
 
         try {
             inner = outerPool.getResource();
-            String filename = project + "/ActionSetDumps/" + pureFileName + ".txt_" + actionSetPosition;
+            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
             String si= inner.get(filename);
             HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(si);
 
@@ -405,7 +409,7 @@ public class MultiThreadTreeLoaderCluster {
 
 
     
-    private static void coreCompare(String name , JedisPool jedisPool,String clusterName,JedisPool outerPool) {
+    private static void coreCompare(String name , JedisPool jedisPool,String clusterName,JedisPool outerPool,String type) {
 
 
         try (Jedis jedis = jedisPool.getResource()) {
@@ -459,8 +463,8 @@ public class MultiThreadTreeLoaderCluster {
 //            }
 
             try {
-                Pair<ITree, String> oldPair = getTree(firstValue, outerPool);
-                Pair<ITree, String> newPair = getTree(secondValue, outerPool);
+                Pair<ITree, String> oldPair = getTree(firstValue, outerPool,type);
+                Pair<ITree, String> newPair = getTree(secondValue, outerPool,type);
 
                 ITree oldTree = oldPair.getValue0();
                 ITree newTree = newPair.getValue0();
@@ -631,7 +635,7 @@ orginal calculate pairs, from all dumps of the projects
         String line = null;
         try {
 
-            FileOutputStream fos = new FileOutputStream(outputPath + "pairs/" +filename+".txt");
+            FileOutputStream fos = new FileOutputStream(outputPath + "/pairs/" +filename+".txt");
             DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
 
 

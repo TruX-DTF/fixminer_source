@@ -21,12 +21,8 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.time.Duration;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -39,7 +35,7 @@ public class TreeLoaderClusterL1 {
     private static Logger log = LoggerFactory.getLogger(TreeLoaderClusterL1.class);
 
 //    public static void main(String[] args){
-    public static void main(String portInner,String serverWait,String port,String inputPath,String level1DB,String level1Path) throws Exception {
+    public static void main(String portInner,String serverWait,String port,String inputPath,String level1DB,String level1Path,String innerTypePrefix) throws Exception {
 
 //        String inputPath;
 //        String outputPath;
@@ -81,6 +77,7 @@ public class TreeLoaderClusterL1 {
         Stream<File> stream = Arrays.stream(listFiles);
         List<File> dbs = stream
                 .filter(x -> x.getName().endsWith(".rdb"))
+                .filter(x-> x.getName().startsWith(innerTypePrefix))
                 .collect(Collectors.toList());
         for (File db : dbs) {
             String cmdInner = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
@@ -137,11 +134,16 @@ public class TreeLoaderClusterL1 {
                 innerPool.close();
             }
 
-            String stopServer = "bash "+level1Path + "/" + "stopServer.sh" +" %s";
+            String stopServer = "bash "+inputPath + "/" + "stopServer.sh" +" %s";
             stopServer = String.format(stopServer,Integer.valueOf(portInner));
 //            loadRedis(stopServer,serverWait);
             cs.runShell(stopServer,serverWait);
         }
+
+        String stopServer1 = "bash "+inputPath + "/" + "stopServer.sh" +" %s";
+        stopServer1 = String.format(stopServer1,Integer.valueOf(port));
+//            loadRedis(stopServer,serverWait);
+        cs.runShell(stopServer1,serverWait);
 
 
 //        calculatePairsOfClusters(inputPath, outputPath);

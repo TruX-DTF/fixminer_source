@@ -46,11 +46,11 @@ public class Launcher {
 //            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs";
 //            gumInput = "/Users/anilkoyuncu/bugStudy/dataset/Defects4J/";
             portInner = "6380";
-            serverWait = "50000";
+            serverWait = "5000";
             chunkName = "Bug13April.txt.csv.rdb";
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "10";
-            jobType = "AKKA";
+            jobType = "LEVEL1DB";
             port = "6399";
 //            pairsPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImportDefects4J";
 //            gumOutput = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutputDefects4J";
@@ -97,23 +97,28 @@ public class Launcher {
                     AkkaTreeLoader.main(portInner, serverWait, dbDir, chunk +"MOV"+".txt.csv.rdb", port, "MOV"+dumpsName);
                     break;
                 case "LEVEL1DB":
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-BugsDotJar.rdb", dbDir + "/level1-BugsDotJar/");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "UPD"+".rdb", dbDir + "/level1-Bug13April/",pjName + "UPD");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "INS"+".rdb", dbDir + "/level1-Bug13April/",pjName + "INS");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "DEL"+".rdb", dbDir + "/level1-Bug13April/",pjName + "DEL");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "MOV"+".rdb", dbDir + "/level1-Bug13April/",pjName + "MOV");
                     break;
                 //CALC python abstractPatch.py to from cluster folder
                 case "L2CALCPAIRS":
     //                MultiThreadTreeLoaderCluster.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterDefect4J","/Users/anilkoyuncu/bugStudy/dataset/");
-                    MultiThreadTreeLoaderCluster.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/cluster", datasetPath);
+                    MultiThreadTreeLoaderCluster.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterBug13April", datasetPath);
                     break;
                 case "L2PAIRDB":
     //                MultiThreadTreeLoaderCluster.mainCompare("6300","/Users/anilkoyuncu/bugStudy/dataset/pairs-csv","/Users/anilkoyuncu/bugStudy/dataset/redisSingleImport.sh",dbDir,"clusterl1-d4j.rdb",dumpsName,"6301");
-                    MultiThreadTreeLoaderCluster.mainCompare("6300", datasetPath + "/pairs-csv", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-13april.rdb", dumpsName, "6301");
+                    MultiThreadTreeLoaderCluster.mainCompare("6300", datasetPath + "/pairs-csv", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-13april.rdb", "UPD"+dumpsName, "6301",serverWait,"UPD");
                     break;
+
+                //CALC via python
                 case "L3CALCPAIRS":
     //                MultiThreadTreeLoaderCluster3.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterDefect4J-2l",datasetPath);
-                    MultiThreadTreeLoaderCluster3.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/cluster-2l", datasetPath);
+                    MultiThreadTreeLoaderCluster3.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterBug13April-2l", datasetPath);
                     break;
                 case "L3PAIRDB":
-                    MultiThreadTreeLoaderCluster3.mainCompare("6300", datasetPath + "/pairs-2l-csv", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl2-13april.rdb", dumpsName, "6301");
+                    MultiThreadTreeLoaderCluster3.mainCompare("6300", datasetPath + "/pairs-2l-csv", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl2-13april.rdb", "UPD"+dumpsName, "6301",serverWait,"UPD");
                     break;
             }
         } catch (Exception e) {

@@ -161,17 +161,18 @@ public class MultiThreadTreeLoaderCluster3 {
     }
 
 //    public static void mainCompare(String inputPath,String port,String pairsCSVPath,String importScript) {
-    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner) {
+    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String serverWait, String type) throws Exception {
 
+        CallShell cs = new CallShell();
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
-        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
-
+//        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
+        cs.runShell(cmd1,serverWait);
 
         String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
-        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
-
+//        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
+        cs.runShell(cmd2,serverWait);
 
         String cmd3;
         cmd3 = "bash " + importScript +" %s %s";
@@ -207,8 +208,9 @@ public class MultiThreadTreeLoaderCluster3 {
 
                     if (size == 0) {
                         String comd = String.format(cmd3, f.getPath(), portInner);
-                        edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster.
-                                loadRedis(comd);
+                        cs.runShell(comd);
+//                        edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster.
+//                                loadRedis(comd);
 
                         scan = jedis.scan("0", sc);
                         size = scan.getResult().size();
@@ -221,7 +223,7 @@ public class MultiThreadTreeLoaderCluster3 {
 
 
                     scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, jedisPool, clusterName, outerPool));
+                            .forEach(m -> coreCompare(m, jedisPool, clusterName, outerPool,type));
 
 
                     jedis.save();
@@ -242,7 +244,7 @@ public class MultiThreadTreeLoaderCluster3 {
 
 
 
-    public  static ITree getTree(String firstValue, JedisPool outerPool){
+    public  static ITree getTree(String firstValue, JedisPool outerPool,String type){
 //        String gumTreeInput = "/Volumes/data/bugStudy_backup/dataset/GumTreeInputBug4/";
         String[] split2 = firstValue.split("/");
         String cluster = split2[1];
@@ -268,7 +270,7 @@ public class MultiThreadTreeLoaderCluster3 {
 
         try {
             inner = outerPool.getResource();
-            String fn = project + "/ActionSetDumps/" + s + ".txt_" + actionSetPosition;
+            String fn = project + "/"+type+"/" + s + ".txt_" + actionSetPosition;
             String si= inner.get(fn);
             HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(si);
 
@@ -443,6 +445,36 @@ public class MultiThreadTreeLoaderCluster3 {
                                 addToken = true;
 
                             }
+                        }else if(sType.equals("7")){//assignment
+                            m.add(hours.trim().split("=")[0]);
+                            m.add(to.trim().split("=")[0]);
+                            addToken = true;
+
+                        }else if(sType.equals("43") && oldDescendant.getParent() != null && oldDescendant.getParent().getParent() != null){// catch clause
+                            if(oldDescendant.getParent().getType() == 44 && oldDescendant.getParent().getParent().getType() == 12){
+                                m.add(hours.trim());
+                                m.add(to.trim());
+                                addToken = true;
+                            }
+                        }else if(sType.equals("59") && oldDescendant.getChildren().size()==1 && oldDescendant.getHeight()==1 ){
+                            if( oldDescendant.getChild(0).getType() == 34 || oldDescendant.getChild(0).getType() == 45) {
+                                m.add(hours.trim().split("=")[0]);
+                                m.add(to.trim().split("=")[0]);
+                                addToken = true;
+                            }
+                        }else if(sType.equals("42") && oldDescendant.getParent() != null  && oldDescendant.getParent().getType() == 27 ){//infix varuable change
+
+                            m.add(hours.trim());
+                            m.add(to.trim());
+                            addToken = true;
+                        }else if(sType.equals("-1") && oldDescendant.getChildren().size()==0 && oldDescendant.getHeight()==0 ){//operator
+                            m.add(hours.trim());
+                            m.add(to.trim());
+                            addToken = true;
+                        }else if(sType.equals("83") && oldDescendant.getChildren().size()==0 && oldDescendant.getHeight()==0 ){//modifier
+                            m.add(hours.trim());
+                            m.add(to.trim());
+                            addToken = true;
                         }else{
                             m.add(hours.trim());
                             m.add(to.trim());
@@ -504,23 +536,23 @@ public class MultiThreadTreeLoaderCluster3 {
                         oldTokens.add(methodName);
                     }else if (s.startsWith("MethodName:")){
                         String methodName = s.split(":")[1];
-//                        ITree parent = oldDescendant.getParent();
-//
-//                        if(parent!= null && parent.getType() ==  32 && !alreadyAddParentMethodName){ //parent is method invocation statement
-//                            String parentLabel = parent.getLabel();
-//                            String[] pns = parentLabel.split("\\." + methodName);
-//                            if(pns.length > 1) {
-//                                String parentName = pns[0];
-//                                String[] parentNameSplit = parentName.split("@@");
-//                                if (parentNameSplit.length > 1) {
-//                                    String parentMethodName = parentNameSplit[1];
-//                                    String s1 = parentMethodName.split("@TO@")[0];
-//                                    oldTokens.add(s1.trim());
-//                                    alreadyAddParentMethodName = true;
-//                                }
-//                            }
-//
-//                        }
+                        ITree parent = oldDescendant.getParent();
+
+                        if(parent!= null && parent.getType() ==  32 && !alreadyAddParentMethodName){ //parent is method invocation statement
+                            String parentLabel = parent.getLabel();
+                            String[] pns = parentLabel.split("\\." + methodName);
+                            if(pns.length > 1) {
+                                String parentName = pns[0];
+                                String[] parentNameSplit = parentName.split("@@");
+                                if (parentNameSplit.length > 1) {
+                                    String parentMethodName = parentNameSplit[1];
+                                    String s1 = parentMethodName.split("@TO@")[0];
+                                    oldTokens.add(s1.trim());
+                                    alreadyAddParentMethodName = true;
+                                }
+                            }
+
+                        }
                         oldTokens.add(methodName);
                     }else if( sType.equals("59") || sType.equals("43")|| sType.equals("53") || sType.equals("7") || sType.equals("27") || sType.equals("83") || sType.equals("44") ||sType.equals("78") || sType.equals("41") || addToken){
 //                        if(sType.equals("27") || sType.equals("83") || sType.equals("44")){
@@ -570,7 +602,7 @@ public class MultiThreadTreeLoaderCluster3 {
         return oldTokens;
     }
     
-    private static void coreCompare(String name , JedisPool jedisPool,String clusterName,JedisPool outerPool) {
+    private static void coreCompare(String name , JedisPool jedisPool,String clusterName,JedisPool outerPool,String type) {
 
 
         try (Jedis jedis = jedisPool.getResource()) {
@@ -621,8 +653,8 @@ public class MultiThreadTreeLoaderCluster3 {
 //            }
 
             try {
-                ITree oldTree = getTree(firstValue,outerPool);
-                ITree newTree = getTree(secondValue,outerPool);
+                ITree oldTree = getTree(firstValue,outerPool,type);
+                ITree newTree = getTree(secondValue,outerPool,type);
 
                 if(oldTree == null || newTree == null) {
                     jedis.select(0);
