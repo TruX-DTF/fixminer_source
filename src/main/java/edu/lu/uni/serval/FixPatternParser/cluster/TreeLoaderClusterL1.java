@@ -95,7 +95,7 @@ public class TreeLoaderClusterL1 {
                 ScanParams sc = new ScanParams();
                 //150000000
                 sc.count(150000000);
-                sc.match("match_*");
+                sc.match("match_[0-9]*");
 
                 ScanResult<String> scan; scan = inner.scan("0", sc);
                 int size = scan.getResult().size();

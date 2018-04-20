@@ -56,7 +56,7 @@ public class Launcher {
 //            chunkName = "Bug13April.txt.csv.rdb";
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "10";
-            jobType = "AKKA";
+            jobType = "LEVEL1DB";
             port = "6399";
             pythonPath = "/Users/anilkoyuncu/bugStudy/code/python";
 //            pairsPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImportDefects4J";
@@ -173,10 +173,10 @@ public class Launcher {
                     break;
 
                 case "LEVEL1DB":
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "UPD"+".rdb", dbDir + "/level1-Bug13April/",pjName + "UPD");
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "INS"+".rdb", dbDir + "/level1-Bug13April/",pjName + "INS");
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "DEL"+".rdb", dbDir + "/level1-Bug13April/",pjName + "DEL");
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "MOV"+".rdb", dbDir + "/level1-Bug13April/",pjName + "MOV");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "UPD"+".rdb", dbDir ,pjName + "UPD");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "INS"+".rdb", dbDir ,pjName + "INS");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "DEL"+".rdb", dbDir ,pjName + "DEL");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "MOV"+".rdb", dbDir ,pjName + "MOV");
                     break;
                 //CALC python abstractPatch.py to from cluster folder
                 case "L2CALCPAIRS":
