@@ -1,6 +1,7 @@
 package edu.lu.uni.serval;
 
 import edu.lu.uni.serval.FixPatternParser.cluster.*;
+import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster;
 import edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster3;
 import edu.lu.uni.serval.FixPatternParser.violations.TestHunkParser;
@@ -27,13 +28,14 @@ public class Launcher {
         String gumOutput;
         String datasetPath;
         String pjName;
+        String pythonPath;
         if (args.length > 0) {
             jobType = args[0];
             portInner = args[1];
             serverWait = args[2];
             numOfWorkers = args[3];
             port = args[4];
-            dumpsName = args[5];
+            pythonPath = args[5];
             datasetPath = args[6];
             pjName = args[7];
 //            gumInput = args[1];
@@ -47,23 +49,25 @@ public class Launcher {
 //            gumInput = "/Users/anilkoyuncu/bugStudy/dataset/Defects4J/";
             portInner = "6380";
             serverWait = "5000";
-            chunkName = "Bug13April.txt.csv.rdb";
+//            chunkName = "Bug13April.txt.csv.rdb";
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "10";
-            jobType = "LEVEL1DB";
+            jobType = "IMPORTPAIRS";
             port = "6399";
+            pythonPath = "/Users/anilkoyuncu/bugStudy/code/python";
 //            pairsPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImportDefects4J";
 //            gumOutput = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutputDefects4J";
 //            csvInputPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImportDefects4J-CSV";
-            dumpsName = "dumps-Bug13April.rdb";
+//            dumpsName = "dumps-Bug13April.rdb";
             datasetPath = "/Users/anilkoyuncu/bugStudy/dataset";
-            pjName = "Bug13April";
+            pjName = "allDataset";
         }
         gumInput = datasetPath +"/"+pjName+"/";
         gumOutput = datasetPath + "/GumTreeOutput" + pjName;
         dbDir = datasetPath + "/redis";
         pairsPath = datasetPath + "/pairsImport"+pjName;
-        csvInputPath = datasetPath + "/pairsImport"+pjName+"-CSV";
+        dumpsName = "dumps-"+pjName+".rdb";
+//        csvInputPath = datasetPath + "/pairsImport"+pjName+"-CSV";
 //        String parameters = String.format("\nJob %s \nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \nnumOfWorks %s \ndbDir %s", jobType, inputPath, portInner, serverWait, chunkName, numOfWorkers, dbDir);
 
         try {
@@ -83,19 +87,46 @@ public class Launcher {
                     CalculatePairs.main(serverWait, dbDir, "UPD"+dumpsName, portInner, pairsPath+"UPD", pjName+"UPD");
                     CalculatePairs.main(serverWait, dbDir, "MOV"+dumpsName, portInner, pairsPath+"MOV", pjName+"MOV");
                     break;
+                case "TRANSFORM":
+                    CallShell cs =new CallShell();
+                    String cmd = "bash "+datasetPath + "/" + "transformCSV.sh" +" %s %s";
+                    String cmd1 = String.format(cmd, pairsPath+"INS",pairsPath+"INS"+"-CSV");
+                    cs.runShell(cmd1);
+                    String cmd2 = String.format(cmd, pairsPath+"UPD",pairsPath+"UPD"+"-CSV");
+                    cs.runShell(cmd2);
+                    String cmd3 = String.format(cmd, pairsPath+"DEL",pairsPath+"DEL"+"-CSV");
+                    cs.runShell(cmd3);
+                    String cmd4 = String.format(cmd, pairsPath+"MOV",pairsPath+"MOV"+"-CSV");
+                    cs.runShell(cmd4);
+
+                    break;
                 case "IMPORTPAIRS":
-                    ImportPairs2DB.main(csvInputPath+"INS", portInner, serverWait, dbDir);
-                    ImportPairs2DB.main(csvInputPath+"DEL", portInner, serverWait, dbDir);
-                    ImportPairs2DB.main(csvInputPath+"MOV", portInner, serverWait, dbDir);
-                    ImportPairs2DB.main(csvInputPath+"UPD", portInner, serverWait, dbDir);
+                    ImportPairs2DB.main(pairsPath+"INS"+"-CSV", portInner, serverWait, dbDir,datasetPath);
+                    ImportPairs2DB.main(pairsPath+"UPD"+"-CSV", portInner, serverWait, dbDir,datasetPath);
+                    ImportPairs2DB.main(pairsPath+"DEL"+"-CSV", portInner, serverWait, dbDir,datasetPath);
+                    ImportPairs2DB.main(pairsPath+"MOV"+"-CSV", portInner, serverWait, dbDir,datasetPath);
                     break;
                 case "AKKA":
-                    String chunk = pjName;
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, chunk +"INS"+".txt.csv.rdb" , port, "INS"+dumpsName);
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, chunk +"DEL"+".txt.csv.rdb", port, "DEL"+dumpsName);
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, chunk +"UPD"+".txt.csv.rdb", port, "UPD"+dumpsName);
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, chunk +"MOV"+".txt.csv.rdb", port, "MOV"+dumpsName);
+
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"INS"+".txt.csv.rdb" , port, "INS"+dumpsName);
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"DEL"+".txt.csv.rdb", port, "DEL"+dumpsName);
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"UPD"+".txt.csv.rdb", port, "UPD"+dumpsName);
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"MOV"+".txt.csv.rdb", port, "MOV"+dumpsName);
                     break;
+                case "L1DB":
+                    CallShell cs1 =new CallShell();
+                    String db1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+                    String db11 = String.format(db1, dbDir,pjName +"INS"+".txt.csv.rdb" ,Integer.valueOf(port));
+                    cs1.runShell(db11,serverWait);
+                    String runpy =  "bash "+datasetPath + "/" + "launchPy.sh" +" %s %s %s %s %s";
+                    String formatRunPy = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName, port, "matches" + pjName + "INS");
+
+                    cs1.runShell(formatRunPy);
+                    String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+                    stopServer = String.format(stopServer,Integer.valueOf(port));
+                    cs1.runShell(stopServer,serverWait);
+                    break;
+
                 case "LEVEL1DB":
                     TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "UPD"+".rdb", dbDir + "/level1-Bug13April/",pjName + "UPD");
                     TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "INS"+".rdb", dbDir + "/level1-Bug13April/",pjName + "INS");

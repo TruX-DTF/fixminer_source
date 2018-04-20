@@ -184,9 +184,9 @@ public class TestHunkParser {
                 File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
                 fileName = fileName.replace(".java", ".txt");
                 File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
-                File positionFile = new File(gumTreeInput + "positions/" + fileName); // position file
+//                File positionFile = new File(gumTreeInput + "positions/" + fileName); // position file
                 MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
-                msgFile.setPositionFile(positionFile);
+//                msgFile.setPositionFile(positionFile);
                 msgFiles.add(msgFile);
 //			}
             }

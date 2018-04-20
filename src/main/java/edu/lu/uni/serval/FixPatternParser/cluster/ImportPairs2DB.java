@@ -22,7 +22,7 @@ public class ImportPairs2DB {
     private static Logger log = LoggerFactory.getLogger(ImportPairs2DB.class);
 //    public static void main(String[] args) {
 
-    public static void main(String csvInputPath,String portInner,String serverWait,String dbDir) throws Exception {
+    public static void main(String csvInputPath,String portInner,String serverWait,String dbDir,String datasetPath) throws Exception {
 
 //        String inputPath;
 //        String portInner;
@@ -63,9 +63,9 @@ public class ImportPairs2DB {
             cmd = String.format(cmd, dbDir,pj.getName() +".rdb", portInt);
             log.info(cmd);
             CallShell cs = new CallShell();
-            cs.runShell(cmd);
+            cs.runShell(cmd,serverWait);
 
-            cmd = "bash "+dbDir + "/redisImportSingle.sh" +" %s %s";
+            cmd = "bash "+datasetPath + "/redisImportSingle.sh" +" %s %s";
 
             cmd = String.format(cmd, pj.getPath(), portInt);
             log.info(cmd);
