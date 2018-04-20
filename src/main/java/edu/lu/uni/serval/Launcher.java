@@ -52,7 +52,7 @@ public class Launcher {
 //            chunkName = "Bug13April.txt.csv.rdb";
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "10";
-            jobType = "IMPORTPAIRS";
+            jobType = "AKKA";
             port = "6399";
             pythonPath = "/Users/anilkoyuncu/bugStudy/code/python";
 //            pairsPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImportDefects4J";
@@ -119,12 +119,51 @@ public class Launcher {
                     String db11 = String.format(db1, dbDir,pjName +"INS"+".txt.csv.rdb" ,Integer.valueOf(port));
                     cs1.runShell(db11,serverWait);
                     String runpy =  "bash "+datasetPath + "/" + "launchPy.sh" +" %s %s %s %s %s";
-                    String formatRunPy = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName, port, "matches" + pjName + "INS");
+                    String formatRunPy = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ "INS", port, "matches" + pjName + "INS");
 
                     cs1.runShell(formatRunPy);
                     String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
                     stopServer = String.format(stopServer,Integer.valueOf(port));
                     cs1.runShell(stopServer,serverWait);
+
+
+
+                    String db2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+                    String db12 = String.format(db2, dbDir,pjName +"DEL"+".txt.csv.rdb" ,Integer.valueOf(port));
+                    cs1.runShell(db12,serverWait);
+                    String formatRunPy1 = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ "DEL", port, "matches" + pjName + "DEL");
+
+                    cs1.runShell(formatRunPy1);
+                    String stopServer2 = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+                    stopServer2 = String.format(stopServer2,Integer.valueOf(port));
+                    cs1.runShell(stopServer2,serverWait);
+
+
+
+                    String db3 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+                    String db13 = String.format(db3, dbDir,pjName +"MOV"+".txt.csv.rdb" ,Integer.valueOf(port));
+                    cs1.runShell(db13,serverWait);
+
+                    String formatRunPy3 = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ "MOV", port, "matches" + pjName + "MOV");
+
+                    cs1.runShell(formatRunPy3);
+                    String stopServer3 = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+                    stopServer3 = String.format(stopServer3,Integer.valueOf(port));
+                    cs1.runShell(stopServer3,serverWait);
+
+
+
+                    String db4 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+                    String db14 = String.format(db4, dbDir,pjName +"UPD"+".txt.csv.rdb" ,Integer.valueOf(port));
+                    cs1.runShell(db14,serverWait);
+
+                    String formatRunPy4 = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ "UPD", port, "matches" + pjName + "UPD");
+
+                    cs1.runShell(formatRunPy4);
+                    String stopServer4 = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+                    stopServer4 = String.format(stopServer4,Integer.valueOf(port));
+                    cs1.runShell(stopServer4,serverWait);
+
                     break;
 
                 case "LEVEL1DB":
