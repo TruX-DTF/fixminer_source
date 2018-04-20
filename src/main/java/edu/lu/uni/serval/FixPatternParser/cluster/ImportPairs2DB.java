@@ -71,12 +71,14 @@ public class ImportPairs2DB {
             log.info(cmd);
             cs.runShell(cmd);
 
+            String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+            String stopServer2 = String.format(stopServer,portInt);
+            cs.runShell(stopServer2,serverWait);
+
             portInt++;
 
 
-            String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-            String stopServer2 = String.format(stopServer,Integer.valueOf(portInner));
-            cs.runShell(stopServer2);
+
         }
 
 

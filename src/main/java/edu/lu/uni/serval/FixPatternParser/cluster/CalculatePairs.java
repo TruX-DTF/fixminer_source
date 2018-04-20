@@ -114,7 +114,8 @@ public class CalculatePairs {
 //            outStream.close();
             int fileCounter = 0;
             FileChannel rwChannel = new RandomAccessFile(outputPath + "/" +pjName +String.valueOf(fileCounter)+".txt", "rw").getChannel();
-            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
+            int maxSize = 500*500000;
+            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, maxSize);
 
 
             for (int i = 0; i < result.size(); i++) {
@@ -130,7 +131,7 @@ public class CalculatePairs {
                         log.info("Next pair dump");
                         fileCounter++;
                         rwChannel = new RandomAccessFile(outputPath+"/" +pjName+String.valueOf(fileCounter)+".txt", "rw").getChannel();
-                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
+                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, maxSize);
                     }
 
 

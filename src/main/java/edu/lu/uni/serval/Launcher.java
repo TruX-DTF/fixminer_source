@@ -29,6 +29,7 @@ public class Launcher {
         String datasetPath;
         String pjName;
         String pythonPath;
+        String dbNo;
         if (args.length > 0) {
             jobType = args[0];
             portInner = args[1];
@@ -38,6 +39,7 @@ public class Launcher {
             pythonPath = args[5];
             datasetPath = args[6];
             pjName = args[7];
+            dbNo = args[8];
 //            gumInput = args[1];
 //            chunkName = args[4];
 //            dbDir = args[6];
@@ -48,11 +50,11 @@ public class Launcher {
 //            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs";
 //            gumInput = "/Users/anilkoyuncu/bugStudy/dataset/Defects4J/";
             portInner = "6380";
-            serverWait = "5000";
+            serverWait = "50000";
 //            chunkName = "Bug13April.txt.csv.rdb";
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "10";
-            jobType = "AKKA";
+            jobType = "IMPORTPAIRS";
             port = "6399";
             pythonPath = "/Users/anilkoyuncu/bugStudy/code/python";
 //            pairsPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImportDefects4J";
@@ -61,6 +63,7 @@ public class Launcher {
 //            dumpsName = "dumps-Bug13April.rdb";
             datasetPath = "/Users/anilkoyuncu/bugStudy/dataset";
             pjName = "allDataset";
+            dbNo = "0";
         }
         gumInput = datasetPath +"/"+pjName+"/";
         gumOutput = datasetPath + "/GumTreeOutput" + pjName;
@@ -108,10 +111,10 @@ public class Launcher {
                     break;
                 case "AKKA":
 
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"INS"+".txt.csv.rdb" , port, "INS"+dumpsName);
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"DEL"+".txt.csv.rdb", port, "DEL"+dumpsName);
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"UPD"+".txt.csv.rdb", port, "UPD"+dumpsName);
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"MOV"+".txt.csv.rdb", port, "MOV"+dumpsName);
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"INS"+dbNo+".txt.csv.rdb" , port, "INS"+dumpsName);
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"DEL"+dbNo+".txt.csv.rdb", port, "DEL"+dumpsName);
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"UPD"+dbNo+".txt.csv.rdb", port, "UPD"+dumpsName);
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"MOV"+dbNo+".txt.csv.rdb", port, "MOV"+dumpsName);
                     break;
                 case "L1DB":
                     CallShell cs1 =new CallShell();
