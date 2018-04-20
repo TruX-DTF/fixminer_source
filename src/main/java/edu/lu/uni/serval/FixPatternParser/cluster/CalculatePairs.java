@@ -96,25 +96,9 @@ public class CalculatePairs {
         byte [] buf = new byte[0];
         String line = null;
         try {
-            FileOutputStream fos = new FileOutputStream(outputPath + "/" +pjName+".txt");
-            DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
-
-
-
-            for (int i = 0; i < result.size(); i++) {
-                for (int j = i + 1; j < result.size(); j++) {
-
-
-
-                    line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
-                    outStream.write(line.getBytes());
-
-                }
-            }
-            outStream.close();
-//            FileChannel rwChannel = new RandomAccessFile(outputPath + "/" +pjName +".txt", "rw").getChannel();
-//            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
-//            int fileCounter = 0;
+//            FileOutputStream fos = new FileOutputStream(outputPath + "/" +pjName+".txt");
+//            DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
+//
 //
 //
 //            for (int i = 0; i < result.size(); i++) {
@@ -123,22 +107,38 @@ public class CalculatePairs {
 //
 //
 //                    line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
-//                    buf  = line.getBytes();
-//                    if(wrBuf.remaining() > 500) {
-//                        wrBuf.put(buf);
-//                    }else{
-//                        log.info("Next pair dump");
-//                        fileCounter++;
-//                        rwChannel = new RandomAccessFile(outputPath+"/" +pjName+String.valueOf(fileCounter)+".txt", "rw").getChannel();
-//                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
-//                    }
-//
-//
-//
+//                    outStream.write(line.getBytes());
 //
 //                }
 //            }
-//            rwChannel.close();
+//            outStream.close();
+            int fileCounter = 0;
+            FileChannel rwChannel = new RandomAccessFile(outputPath + "/" +pjName +String.valueOf(fileCounter)+".txt", "rw").getChannel();
+            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
+
+
+            for (int i = 0; i < result.size(); i++) {
+                for (int j = i + 1; j < result.size(); j++) {
+
+
+
+                    line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
+                    buf  = line.getBytes();
+                    if(wrBuf.remaining() > 500) {
+                        wrBuf.put(buf);
+                    }else{
+                        log.info("Next pair dump");
+                        fileCounter++;
+                        rwChannel = new RandomAccessFile(outputPath+"/" +pjName+String.valueOf(fileCounter)+".txt", "rw").getChannel();
+                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
+                    }
+
+
+
+
+                }
+            }
+            rwChannel.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
