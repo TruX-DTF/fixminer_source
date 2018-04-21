@@ -56,7 +56,7 @@ public class Launcher {
 //            chunkName = "Bug13April.txt.csv.rdb";
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
             numOfWorkers = "10";
-            jobType = "LEVEL1DB";
+            jobType = "L3DB";
             port = "6399";
             pythonPath = "/Users/anilkoyuncu/bugStudy/code/python";
 //            pairsPath = "/Users/anilkoyuncu/bugStudy/dataset/pairsImportDefects4J";
@@ -119,10 +119,20 @@ public class Launcher {
 //                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"UPD"+dbNo+".txt.csv.rdb", port, "UPD"+dumpsName);
 //                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +"MOV"+dbNo+".txt.csv.rdb", port, "MOV"+dumpsName);
                     break;
+
+
+                case "LEVEL1DB":
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "UPD"+".rdb", dbDir ,pjName + "UPD");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "INS"+".rdb", dbDir ,pjName + "INS");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "DEL"+".rdb", dbDir ,pjName + "DEL");
+                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "MOV"+".rdb", dbDir ,pjName + "MOV");
+                    break;
+
+
                 case "L1DB":
                     CallShell cs1 =new CallShell();
                     String db1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-                    String db11 = String.format(db1, dbDir,pjName +"INS"+".txt.csv.rdb" ,Integer.valueOf(port));
+                    String db11 = String.format(db1, dbDir,"level1-"+pjName+ "INS"+".rdb" ,Integer.valueOf(port));
                     cs1.runShell(db11,serverWait);
                     String runpy =  "bash "+datasetPath + "/" + "launchPy.sh" +" %s %s %s %s %s";
                     String formatRunPy = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ "INS", port, "matches" + pjName + "INS");
@@ -135,7 +145,7 @@ public class Launcher {
 
 
                     String db2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-                    String db12 = String.format(db2, dbDir,pjName +"DEL"+".txt.csv.rdb" ,Integer.valueOf(port));
+                    String db12 = String.format(db2, dbDir,"level1-"+pjName+ "DEL"+".rdb" ,Integer.valueOf(port));
                     cs1.runShell(db12,serverWait);
                     String formatRunPy1 = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ "DEL", port, "matches" + pjName + "DEL");
 
@@ -147,7 +157,7 @@ public class Launcher {
 
 
                     String db3 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-                    String db13 = String.format(db3, dbDir,pjName +"MOV"+".txt.csv.rdb" ,Integer.valueOf(port));
+                    String db13 = String.format(db3, dbDir,"level1-"+pjName+ "MOV"+".rdb" ,Integer.valueOf(port));
                     cs1.runShell(db13,serverWait);
 
                     String formatRunPy3 = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ "MOV", port, "matches" + pjName + "MOV");
@@ -160,7 +170,7 @@ public class Launcher {
 
 
                     String db4 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-                    String db14 = String.format(db4, dbDir,pjName +"UPD"+".txt.csv.rdb" ,Integer.valueOf(port));
+                    String db14 = String.format(db4, dbDir,"level1-"+pjName+ "UPD"+".rdb" ,Integer.valueOf(port));
                     cs1.runShell(db14,serverWait);
 
                     String formatRunPy4 = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ "UPD", port, "matches" + pjName + "UPD");
@@ -172,30 +182,138 @@ public class Launcher {
 
                     break;
 
-                case "LEVEL1DB":
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "UPD"+".rdb", dbDir ,pjName + "UPD");
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "INS"+".rdb", dbDir ,pjName + "INS");
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "DEL"+".rdb", dbDir ,pjName + "DEL");
-                    TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ "MOV"+".rdb", dbDir ,pjName + "MOV");
-                    break;
+
                 //CALC python abstractPatch.py to from cluster folder
                 case "L2CALCPAIRS":
     //                MultiThreadTreeLoaderCluster.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterDefect4J","/Users/anilkoyuncu/bugStudy/dataset/");
-                    MultiThreadTreeLoaderCluster.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterBug13April", datasetPath);
+                    MultiThreadTreeLoaderCluster.calculatePairsOfClusters(datasetPath + "/cluster"+pjName+ "MOV", datasetPath,"MOV");
+                    MultiThreadTreeLoaderCluster.calculatePairsOfClusters(datasetPath + "/cluster"+pjName+ "INS", datasetPath,"INS");
+                    MultiThreadTreeLoaderCluster.calculatePairsOfClusters(datasetPath + "/cluster"+pjName+ "DEL", datasetPath,"DEL");
+                    MultiThreadTreeLoaderCluster.calculatePairsOfClusters(datasetPath + "/cluster"+pjName+ "UPD", datasetPath,"UPD");
+                    break;
+
+                case "TRANSFORM2":
+                    CallShell cs2 =new CallShell();
+                    String cmdL2 = "bash "+datasetPath + "/" + "transformCSV.sh" +" %s %s";
+                    String cmd1a = String.format(cmdL2, datasetPath+"/pairsINS",datasetPath+"/pairsINS"+"-CSV");
+                    cs2.runShell(cmd1a);
+                    String cmd2a = String.format(cmdL2, datasetPath+"/pairsUPD",datasetPath+"/pairsUPD"+"-CSV");
+                    cs2.runShell(cmd2a);
+                    String cmd3a = String.format(cmdL2, datasetPath+"/pairsDEL",datasetPath+"/pairsDEL"+"-CSV");
+                    cs2.runShell(cmd3a);
+                    String cmd4a = String.format(cmdL2, datasetPath+"/pairsMOV",datasetPath+"/pairsMOV"+"-CSV");
+                    cs2.runShell(cmd4a);
+
                     break;
                 case "L2PAIRDB":
     //                MultiThreadTreeLoaderCluster.mainCompare("6300","/Users/anilkoyuncu/bugStudy/dataset/pairs-csv","/Users/anilkoyuncu/bugStudy/dataset/redisSingleImport.sh",dbDir,"clusterl1-d4j.rdb",dumpsName,"6301");
-                    MultiThreadTreeLoaderCluster.mainCompare("6300", datasetPath + "/pairs-csv", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-13april.rdb", "UPD"+dumpsName, "6301",serverWait,"UPD");
+                    MultiThreadTreeLoaderCluster.mainCompare("6300", datasetPath+"/pairsINS"+"-CSV", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-"+pjName+"INS.rdb", "INS"+dumpsName, "6301",serverWait,"INS");
+                    MultiThreadTreeLoaderCluster.mainCompare("6300", datasetPath+"/pairsUPD"+"-CSV", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-"+pjName+"UPD.rdb", "UPD"+dumpsName, "6301",serverWait,"UPD");
+                    MultiThreadTreeLoaderCluster.mainCompare("6300", datasetPath+"/pairsDEL"+"-CSV", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-"+pjName+"DEL.rdb", "DEL"+dumpsName, "6301",serverWait,"DEL");
+                    MultiThreadTreeLoaderCluster.mainCompare("6300", datasetPath+"/pairsMOV"+"-CSV", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-"+pjName+"MOV.rdb", "MOV"+dumpsName, "6301",serverWait,"MOV");
                     break;
 
+                case "L2DB":
+                    CallShell cs3 =new CallShell();
+                    String db22 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+                    String db1b = String.format(db22, dbDir,"clusterl1-"+pjName+"INS.rdb",Integer.valueOf(port));
+                    cs3.runShell(db1b,serverWait);
+                    String runpy2 =  "bash "+datasetPath + "/" + "launchPy.sh" +" %s %s %s %s %s";
+                    String formatRunPy1a = String.format(runpy2,pythonPath +"/abstractPatchCluster.py", gumInput, datasetPath + "/cluster"+pjName+ "INS", port, datasetPath + "/cluster-2l"+pjName+ "INS");
+
+                    cs3.runShell(formatRunPy1a);
+                    String stopServer1a = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+                    stopServer = String.format(stopServer1a,Integer.valueOf(port));
+                    cs3.runShell(stopServer,serverWait);
+
+                    String db2b = String.format(db22, dbDir,"clusterl1-"+pjName+"UPD.rdb",Integer.valueOf(port));
+                    cs3.runShell(db2b,serverWait);
+                    String formatRunPy2a = String.format(runpy2,pythonPath +"/abstractPatchCluster.py", gumInput, datasetPath + "/cluster"+pjName+ "UPD", port, datasetPath + "/cluster-2l"+pjName+ "UPD");
+                    cs3.runShell(formatRunPy2a);
+                    stopServer = String.format(stopServer1a,Integer.valueOf(port));
+                    cs3.runShell(stopServer,serverWait);
+
+                    String db3b = String.format(db22, dbDir,"clusterl1-"+pjName+"DEL.rdb",Integer.valueOf(port));
+                    cs3.runShell(db3b,serverWait);
+                    String formatRunPy3a = String.format(runpy2,pythonPath +"/abstractPatchCluster.py", gumInput, datasetPath + "/cluster"+pjName+ "DEL", port, datasetPath + "/cluster-2l"+pjName+ "DEL");
+                    cs3.runShell(formatRunPy3a);
+                    stopServer = String.format(stopServer1a,Integer.valueOf(port));
+                    cs3.runShell(stopServer,serverWait);
+
+                    String db4b = String.format(db22, dbDir,"clusterl1-"+pjName+"MOV.rdb",Integer.valueOf(port));
+                    cs3.runShell(db4b,serverWait);
+                    String formatRunPy4a = String.format(runpy2,pythonPath +"/abstractPatchCluster.py", gumInput, datasetPath + "/cluster"+pjName+ "MOV", port, datasetPath + "/cluster-2l"+pjName+ "MOV");
+                    cs3.runShell(formatRunPy4a);
+                    stopServer = String.format(stopServer1a,Integer.valueOf(port));
+                    cs3.runShell(stopServer,serverWait);
+
+
+                    break;
                 //CALC via python
                 case "L3CALCPAIRS":
     //                MultiThreadTreeLoaderCluster3.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterDefect4J-2l",datasetPath);
-                    MultiThreadTreeLoaderCluster3.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterBug13April-2l", datasetPath);
+//                    MultiThreadTreeLoaderCluster3.calculatePairsOfClusters("/Users/anilkoyuncu/bugStudy/code/python/clusterBug13April-2l", datasetPath);
+                    MultiThreadTreeLoaderCluster3.calculatePairsOfClusters(datasetPath + "/cluster-2l"+pjName+ "UPD", datasetPath,"UPD");
+                    MultiThreadTreeLoaderCluster3.calculatePairsOfClusters(datasetPath + "/cluster-2l"+pjName+ "INS", datasetPath,"INS");
+                    MultiThreadTreeLoaderCluster3.calculatePairsOfClusters(datasetPath + "/cluster-2l"+pjName+ "DEL", datasetPath,"DEL");
+                    MultiThreadTreeLoaderCluster3.calculatePairsOfClusters(datasetPath + "/cluster-2l"+pjName+ "MOV", datasetPath,"MOV");
+                    break;
+
+                case "TRANSFORM3":
+                    CallShell cs4 =new CallShell();
+                    String cmdL4 = "bash "+datasetPath + "/" + "transformCSV.sh" +" %s %s";
+                    String cmd5a = String.format(cmdL4, datasetPath+"/pairs-2lINS",datasetPath+"/pairs-2lINS"+"-CSV");
+                    cs4.runShell(cmd5a);
+                    String cmd5b = String.format(cmdL4, datasetPath+"/pairs-2lUPD",datasetPath+"/pairs-2lUPD"+"-CSV");
+                    cs4.runShell(cmd5b);
+                    String cmd5c = String.format(cmdL4, datasetPath+"/pairs-2lDEL",datasetPath+"/pairs-2lDEL"+"-CSV");
+                    cs4.runShell(cmd5c);
+                    String cmd5d = String.format(cmdL4, datasetPath+"/pairs-2lMOV",datasetPath+"/pairs-2lMOV"+"-CSV");
+                    cs4.runShell(cmd5d);
+
                     break;
                 case "L3PAIRDB":
-                    MultiThreadTreeLoaderCluster3.mainCompare("6300", datasetPath + "/pairs-2l-csv", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl2-13april.rdb", "UPD"+dumpsName, "6301",serverWait,"UPD");
+//                    MultiThreadTreeLoaderCluster3.mainCompare("6300", datasetPath + "/pairs-2l-csv", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl2-13april.rdb", "UPD"+dumpsName, "6301",serverWait,"UPD");
+                    MultiThreadTreeLoaderCluster3.mainCompare("6300", datasetPath+"/pairs-2lMOV"+"-CSV", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl2-"+pjName+"MOV.rdb", "MOV"+dumpsName, "6301",serverWait,"MOV");
+                    MultiThreadTreeLoaderCluster3.mainCompare("6300", datasetPath+"/pairs-2lDEL"+"-CSV", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl2-"+pjName+"DEL.rdb", "DEL"+dumpsName, "6301",serverWait,"DEL");
+                    MultiThreadTreeLoaderCluster3.mainCompare("6300", datasetPath+"/pairs-2lUPD"+"-CSV", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl2-"+pjName+"UPD.rdb", "UPD"+dumpsName, "6301",serverWait,"UPD");
+                    MultiThreadTreeLoaderCluster3.mainCompare("6300", datasetPath+"/pairs-2lINS"+"-CSV", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl2-"+pjName+"INS.rdb", "INS"+dumpsName, "6301",serverWait,"INS");
+
                     break;
+
+                case "L3DB":
+                    CallShell cs5 =new CallShell();
+                    String dba = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+                    String dbaa = String.format(dba, dbDir,"clusterl2-"+pjName+"INS.rdb",Integer.valueOf(port));
+                    cs5.runShell(dbaa,serverWait);
+                    String runpya =  "bash "+datasetPath + "/" + "launchPy.sh" +" %s %s %s %s %s";
+                    String formatRunPya = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ "INS", port, datasetPath + "/cluster-2l"+pjName+ "INS");
+
+                    cs5.runShell(formatRunPya);
+                    String stopServera = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+                    stopServer = String.format(stopServera,Integer.valueOf(port));
+                    cs5.runShell(stopServer,serverWait);
+
+                    String dbb = String.format(dba, dbDir,"clusterl2-"+pjName+"UPD.rdb",Integer.valueOf(port));
+                    cs5.runShell(dbb,serverWait);
+                    String formatRunPyb = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ "UPD", port, datasetPath + "/cluster-2l"+pjName+ "UPD");
+                    cs5.runShell(formatRunPyb);
+                    stopServer = String.format(stopServera,Integer.valueOf(port));
+                    cs5.runShell(stopServer,serverWait);
+
+                    String dbc = String.format(dba, dbDir,"clusterl2-"+pjName+"DEL.rdb",Integer.valueOf(port));
+                    cs5.runShell(dbc,serverWait);
+                    String formatRunPyc = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ "DEL", port, datasetPath + "/cluster-2l"+pjName+ "DEL");
+                    cs5.runShell(formatRunPyc);
+                    stopServer = String.format(stopServera,Integer.valueOf(port));
+                    cs5.runShell(stopServer,serverWait);
+
+                    String dbd = String.format(dba, dbDir,"clusterl2-"+pjName+"MOV.rdb",Integer.valueOf(port));
+                    cs5.runShell(dbd,serverWait);
+                    String formatRunPyd = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ "MOV", port, datasetPath + "/cluster-2l"+pjName+ "MOV");
+                    cs5.runShell(formatRunPyd);
+                    stopServer = String.format(stopServera,Integer.valueOf(port));
+                    cs5.runShell(stopServer,serverWait);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -231,6 +231,15 @@ public class MultiThreadTreeLoaderCluster3 {
                 }
             }
 
+        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+        String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
+//        loadRedis(stopServer2,serverWait);
+        cs.runShell(stopServer1,serverWait);
+
+        String stopServer2 = String.format(stopServer,Integer.valueOf(port));
+//        loadRedis(stopServer2,serverWait);
+        cs.runShell(stopServer2,serverWait);
+
 
 
 
@@ -803,15 +812,16 @@ orginal calculate pairs, from all dumps of the projects
     /*
     pairs of each cluster
      */
-    public static void calculatePairsOfClusters(String inputPath, String outputPath) {
+    public static void calculatePairsOfClusters(String inputPath, String outputPath,String type) {
         File folder = new File(inputPath);
         File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
         List<File> pjs = stream
                 .filter(x -> !x.getName().startsWith("."))
+                .filter(x->x.isDirectory())
                 .collect(Collectors.toList());
 
-        FileHelper.createDirectory(outputPath + "/pairs-2l/");
+        FileHelper.createDirectory(outputPath + "/pairs-2l"+type);
 
         for (File pj : pjs) {
             File[] files = pj.listFiles();
@@ -822,7 +832,7 @@ orginal calculate pairs, from all dumps of the projects
                 }
                 File[] clusterFiles = cluster.listFiles();
                 List<File> clusterFilesL = Arrays.asList(clusterFiles);
-                readMessageFilesCluster(clusterFilesL, outputPath, inputPath, pj.getName(), cluster.getName());
+                readMessageFilesCluster(clusterFilesL, outputPath, inputPath, pj.getName(), cluster.getName(),type);
 
 
 
@@ -845,7 +855,7 @@ orginal calculate pairs, from all dumps of the projects
                 .forEach(m -> coreLoop(m, outputPath,inputPath));
     }
 
-    private static void readMessageFilesCluster(List<File> folders, String outputPath,String inputPath,String cluster, String subCluster) {
+    private static void readMessageFilesCluster(List<File> folders, String outputPath,String inputPath,String cluster, String subCluster,String type) {
 
         List<String> treesFileNames = new ArrayList<>();
 
@@ -867,7 +877,7 @@ orginal calculate pairs, from all dumps of the projects
 //            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, 1000*treesFileNames.size()*treesFileNames.size());
 //            int fileCounter = 0;
 
-            FileOutputStream fos = new FileOutputStream(outputPath + "/pairs-2l/" +filename+".txt");
+            FileOutputStream fos = new FileOutputStream(outputPath + "/pairs-2l"+type+"/" +filename+".txt");
             DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
 
 
