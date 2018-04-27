@@ -253,7 +253,7 @@ public class AkkaTreeLoader {
             ITree children =null;
             TreeContext tc = new TreeContext();
             tree = getASTTree(actionSet, parent, children,tc);
-            tree.setParent(null);
+//            tree.setParent(null);
             tc.validate();
 
         } catch (IOException e) {

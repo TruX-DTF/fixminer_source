@@ -396,7 +396,8 @@ public class MultiThreadTreeLoaderCluster3 {
                     (sType.equals("43") && oldDescendant.getHeight() == 0 && oldDescendant.getChildren().size() == 0) ||
                     (sType.equals("53") )|| //&& oldDescendant.getHeight() == 1 && oldDescendant.getChildren().size() == 1) ||
                     (sType.equals("7") && oldDescendant.getHeight() == 1 && oldDescendant.getChildren().size() == 1) ||
-                    (sType.equals("41") && oldDescendant.getHeight() == 1 && oldDescendant.getChildren().size() == 1)
+                    (sType.equals("41") && oldDescendant.getHeight() == 1 && oldDescendant.getChildren().size() == 1) ||
+                    (sType.equals("40") && oldDescendant.getHeight() == 1 && oldDescendant.getChildren().size() == 1)
                     ){
 
 //                int depth = oldDescendant.getChildren().size();
@@ -476,11 +477,21 @@ public class MultiThreadTreeLoaderCluster3 {
                             m.add(hours.trim());
                             m.add(to.trim());
                             addToken = true;
+                        }else if(sType.equals("40") && oldDescendant.getChildren().size()==1 && oldDescendant.getHeight()==1 ){//qualified name
+
+                            m.add(hours.trim());
+                            m.add(to.trim());
+                            addToken = true;
+
                         }else if(sType.equals("-1") && oldDescendant.getChildren().size()==0 && oldDescendant.getHeight()==0 ){//operator
                             m.add(hours.trim());
                             m.add(to.trim());
                             addToken = true;
                         }else if(sType.equals("83") && oldDescendant.getChildren().size()==0 && oldDescendant.getHeight()==0 ){//modifier
+                            m.add(hours.trim());
+                            m.add(to.trim());
+                            addToken = true;
+                        }else if(sType.equals("39") && oldDescendant.getChildren().size()==0 && oldDescendant.getHeight()==0 ){//primitive type
                             m.add(hours.trim());
                             m.add(to.trim());
                             addToken = true;
@@ -497,9 +508,11 @@ public class MultiThreadTreeLoaderCluster3 {
 
                     if (matcher.matches()) {
                         String hours = matcher.group(1);
-                        if (hours.startsWith("MethodName:")){
+                        if (hours.startsWith("MethodName:")) {
                             String methodName = hours.split(":")[1];
                             oldTokens.add(methodName);
+//                        }else if(sType.equals("34")){
+//                            oldTokens.add("NumberLiteral");
                         }else {
                             oldTokens.add(hours.trim());
                         }
@@ -547,21 +560,21 @@ public class MultiThreadTreeLoaderCluster3 {
                         String methodName = s.split(":")[1];
                         ITree parent = oldDescendant.getParent();
 
-                        if(parent!= null && parent.getType() ==  32 && !alreadyAddParentMethodName){ //parent is method invocation statement
-                            String parentLabel = parent.getLabel();
-                            String[] pns = parentLabel.split("\\." + methodName);
-                            if(pns.length > 1) {
-                                String parentName = pns[0];
-                                String[] parentNameSplit = parentName.split("@@");
-                                if (parentNameSplit.length > 1) {
-                                    String parentMethodName = parentNameSplit[1];
-                                    String s1 = parentMethodName.split("@TO@")[0];
-                                    oldTokens.add(s1.trim());
-                                    alreadyAddParentMethodName = true;
-                                }
-                            }
-
-                        }
+//                        if(parent!= null && parent.getType() ==  32 && !alreadyAddParentMethodName){ //parent is method invocation statement
+//                            String parentLabel = parent.getLabel();
+//                            String[] pns = parentLabel.split("\\." + methodName);
+//                            if(pns.length > 1) {
+//                                String parentName = pns[0];
+//                                String[] parentNameSplit = parentName.split("@@");
+//                                if (parentNameSplit.length > 1) {
+//                                    String parentMethodName = parentNameSplit[1];
+//                                    String s1 = parentMethodName.split("@TO@")[0];
+//                                    oldTokens.add(s1.trim());
+//                                    alreadyAddParentMethodName = true;
+//                                }
+//                            }
+//
+//                        }
                         oldTokens.add(methodName);
                     }else if( sType.equals("59") || sType.equals("43")|| sType.equals("53") || sType.equals("7") || sType.equals("27") || sType.equals("83") || sType.equals("44") ||sType.equals("78") || sType.equals("41") || addToken){
 //                        if(sType.equals("27") || sType.equals("83") || sType.equals("44")){

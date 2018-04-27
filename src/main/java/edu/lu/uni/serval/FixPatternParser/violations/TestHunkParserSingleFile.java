@@ -32,7 +32,7 @@ public class TestHunkParserSingleFile {
             outputPath = args[0];
         }else{
 //            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug4";
-			inputPath = "/Volumes/data/bugStudy_backup/dataset/GumTreeInputBug4";
+			inputPath = "/Users/anilkoyuncu/bugStudy/dataset/allDataset";
 //            outputPath = "/Users/anilkoyuncu/bugStudy/code/python/GumTreeOutput2/";
 			outputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutputSingle";
         }
@@ -59,9 +59,9 @@ public class TestHunkParserSingleFile {
 //        List<String> pjList = Arrays.asList("DATAJPA","ZXing","PDE","SWS","SWT", "SWF", "COLLECTIONS", "JDT");
 		List<String> files = new ArrayList<String>();
 //		files.add("5d9d60_76f5be_components#camel-jaxb#src#test#java#org#apache#camel#jaxb#FallbackTypeConverterShouldNotThrowExceptionTest.java");
-		files.add("49821e_3cc787_components#camel-infinispan#src#main#java#org#apache#camel#component#infinispan#InfinispanConstants.java");
+		files.add("d6c5e5_9f96d9_hbase-server#src#main#java#org#apache#hadoop#hbase#master#RegionStates.java");
 		for(String f : files){
-			String pjName = "CAMEL";
+			String pjName = "HBASE";
 //        for (File target : folders) {
 //            String pjName = target.getName();
 //            if (!pjList.contains(pjName)){

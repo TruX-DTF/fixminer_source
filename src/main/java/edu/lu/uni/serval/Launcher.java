@@ -66,7 +66,7 @@ public class Launcher {
             datasetPath = "/Users/anilkoyuncu/bugStudy/dataset";
             pjName = "allDataset";
             dbNo = "0";
-            actionType ="DEL";
+            actionType ="UPD";
         }
         gumInput = datasetPath +"/"+pjName+"/";
         gumOutput = datasetPath + "/GumTreeOutput" + pjName;
@@ -301,19 +301,19 @@ public class Launcher {
                     stopServer = String.format(stopServera,Integer.valueOf(port));
                     cs5.runShell(stopServer,serverWait);
 
-                    String dbc = String.format(dba, dbDir,"clusterl2-"+pjName+"DEL.rdb",Integer.valueOf(port));
-                    cs5.runShell(dbc,serverWait);
-                    String formatRunPyc = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ "DEL", port, datasetPath + "/cluster-2l"+pjName+ "DEL");
-                    cs5.runShell(formatRunPyc);
-                    stopServer = String.format(stopServera,Integer.valueOf(port));
-                    cs5.runShell(stopServer,serverWait);
-
-                    String dbd = String.format(dba, dbDir,"clusterl2-"+pjName+"MOV.rdb",Integer.valueOf(port));
-                    cs5.runShell(dbd,serverWait);
-                    String formatRunPyd = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ "MOV", port, datasetPath + "/cluster-2l"+pjName+ "MOV");
-                    cs5.runShell(formatRunPyd);
-                    stopServer = String.format(stopServera,Integer.valueOf(port));
-                    cs5.runShell(stopServer,serverWait);
+//                    String dbc = String.format(dba, dbDir,"clusterl2-"+pjName+"DEL.rdb",Integer.valueOf(port));
+//                    cs5.runShell(dbc,serverWait);
+//                    String formatRunPyc = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ "DEL", port, datasetPath + "/cluster-2l"+pjName+ "DEL");
+//                    cs5.runShell(formatRunPyc);
+//                    stopServer = String.format(stopServera,Integer.valueOf(port));
+//                    cs5.runShell(stopServer,serverWait);
+////
+//                    String dbd = String.format(dba, dbDir,"clusterl2-"+pjName+"MOV.rdb",Integer.valueOf(port));
+//                    cs5.runShell(dbd,serverWait);
+//                    String formatRunPyd = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ "MOV", port, datasetPath + "/cluster-2l"+pjName+ "MOV");
+//                    cs5.runShell(formatRunPyd);
+//                    stopServer = String.format(stopServera,Integer.valueOf(port));
+//                    cs5.runShell(stopServer,serverWait);
             }
         } catch (Exception e) {
             e.printStackTrace();
