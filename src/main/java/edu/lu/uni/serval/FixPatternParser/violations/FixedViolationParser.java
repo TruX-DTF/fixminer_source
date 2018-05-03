@@ -37,7 +37,7 @@ public class FixedViolationParser extends Parser {
 	protected String violationTypes = "";
 
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile,String project) {
 	}
 
 	/**
@@ -134,7 +134,12 @@ public class FixedViolationParser extends Parser {
 	public String getAlarmTypes() {
 		return violationTypes;
 	}
-	
+
+	@Override
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) {
+
+	}
+
 //	public void setUselessViolations(List<Violation> uselessViolations) {
 //		this.uselessViolations = uselessViolations;
 //	}

@@ -41,7 +41,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 	public String unfixedViolations = "";
 	
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile,String project) {
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
 		if (actionSets.size() != 0) {
 			boolean isUpdate =
@@ -71,12 +71,12 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 
 					try {
 //					String pj = diffentryFile.getParent().split("Defects4J")[1];
-						String datasetName = diffentryFile.getParent().split("dataset/")[1].split("/")[0];
+						String datasetName = project;
 						String[] split1 = diffentryFile.getParent().split(datasetName);
 						String root = split1[0];
 						String pj = split1[1].split("/")[1];
 
-						String hunkTreeFileName = root + "GumTreeOutput" + datasetName + "/" + pj + folder + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
+						String hunkTreeFileName = root + "EnhancedASTDiff" + datasetName + "/" + pj + folder + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
 						f = new FileOutputStream(new File(hunkTreeFileName));
 						ObjectOutputStream o = new ObjectOutputStream(f);
 						o.writeObject(actionSet);

@@ -27,29 +27,21 @@ import edu.lu.uni.serval.utils.FileHelper;
 public class ParseFixPatternWorker extends UntypedActor {
 	private static Logger log = LoggerFactory.getLogger(ParseFixPatternActor.class);
 	
-	private String editScriptsFilePath;
-	private String patchesSourceCodeFilePath;
-	private String editScriptSizesFilePath;
-	private String buggyTokensFilePath;
+	private String project;
+
 	
-	public ParseFixPatternWorker(String editScriptsFilePath, String patchesSourceCodeFilePath, 
-			String buggyTokensFilePath, String editScriptSizesFilePath) {
-		this.editScriptsFilePath = editScriptsFilePath;
-		this.patchesSourceCodeFilePath = patchesSourceCodeFilePath;
-		this.editScriptSizesFilePath = editScriptSizesFilePath;
-		this.buggyTokensFilePath = buggyTokensFilePath;
+	public ParseFixPatternWorker(String project) {
+		this.project = project;
 	}
 
-	public static Props props(final String editScriptsFile, final String patchesSourceCodeFile, final String buggyTokensFilePath, 
-			final String editScriptSizesFilePath) {
+	public static Props props(final String project) {
 		return Props.create(new Creator<ParseFixPatternWorker>() {
 
 			private static final long serialVersionUID = -7615153844097275009L;
 
 			@Override
 			public ParseFixPatternWorker create() throws Exception {
-				return new ParseFixPatternWorker(editScriptsFile, patchesSourceCodeFile, 
-						buggyTokensFilePath, editScriptSizesFilePath);
+				return new ParseFixPatternWorker(project);
 			}
 			
 		});
@@ -95,7 +87,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work
-				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser));
+				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project));
 				try {
 					// wait for task to complete
 					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
@@ -126,16 +118,16 @@ public class ParseFixPatternWorker extends UntypedActor {
 						
 						counter ++;
 						if (counter % 100 == 0) {
-							FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
-							FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
-							FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
-							FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
+//							FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
+//							FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
+//							FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
+//							FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
 							editScripts.setLength(0);
 							patchesSourceCode.setLength(0);
 							sizes.setLength(0);
 							tokens.setLength(0);
 							log.info("Worker #" + id +" finialized parsing " + counter + " files...");
-							FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
+//							FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
 							testingInfo.setLength(0);
 						}
 					}
@@ -157,10 +149,10 @@ public class ParseFixPatternWorker extends UntypedActor {
 			}
 			
 			if (sizes.length() > 0) {
-				FileHelper.outputToFile(editScriptsFilePath + "editScripts_" + id + ".list", editScripts, true);
-				FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
-				FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
-				FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
+//				FileHelper.outputToFile(editScriptsFilePath + "editScripts_" + id + ".list", editScripts, true);
+//				FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
+//				FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
+//				FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
 				editScripts.setLength(0);
 				patchesSourceCode.setLength(0);
 				sizes.setLength(0);
@@ -184,31 +176,4 @@ public class ParseFixPatternWorker extends UntypedActor {
 		}
 	}
 
-	private int countAlarms(File positionFile, String type) {//, List<Violation> uselessViolations) {
-		int counter = 0;
-		String content = FileHelper.readFile(positionFile);
-		BufferedReader reader = new BufferedReader(new StringReader(content));
-		String line = null;
-		try {
-			while ((line = reader.readLine()) != null) {
-				String[] elements = line.split(":");
-				Violation v = new Violation(Integer.parseInt(elements[1]), Integer.parseInt(elements[2]), elements[0]);
-				String fileName = positionFile.getName().replace(".txt", ".java");
-				v.setFileName(fileName);
-				counter ++;
-				if (!"".equals(type)) {
-					System.err.println(type + fileName + ":" + elements[1] + ":" + elements[2] + ":" + elements[0]);
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return counter;
-	}
 }

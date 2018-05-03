@@ -5,16 +5,14 @@ import akka.actor.ActorSystem;
 import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
 import edu.lu.uni.serval.MultipleThreadsParser.ParseFixPatternActor;
 import edu.lu.uni.serval.MultipleThreadsParser.WorkMessage;
-import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,21 +20,8 @@ public class TestHunkParser {
 
 	private static Logger log = LoggerFactory.getLogger(TestHunkParser.class);
 //	public static void main(String[] args) {
-	public static void main(String inputPath, String outputPath,String numOfWorkers) {
-		// input data
+	public static void main(String inputPath, String outputPath,String numOfWorkers,String project) {
 
-////			String rootPath = "/Users/anilkoyuncu/bugStudy";
-//        String inputPath;
-//        String outputPath;
-//        if(args.length > 0){
-//            inputPath = args[1];
-//            outputPath = args[0];
-//        }else{
-////            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug4";
-//			inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeInputBug13April";
-////            outputPath = "/Users/anilkoyuncu/bugStudy/code/python/GumTreeOutput2/";
-//			outputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput13April";
-//        }
 
 		String parameters = String.format("\nInput path %s \nOutput path %s",inputPath,outputPath);
 		log.info(parameters);
@@ -48,51 +33,39 @@ public class TestHunkParser {
 				.filter(x -> !x.getName().startsWith("."))
 				.collect(Collectors.toList());
 
-//		List<File> targetList = new ArrayList<File>();
-//		for (File f:folders){
-//            for(File f1 :f.listFiles()){
-//                if  (!f1.getName().startsWith(".")){
-//                targetList.add(f1);
-//                }
-//            }
-//        }
-
-//        List<String> pjList = Arrays.asList("DATAJPA","ZXing","PDE","SWS","SWT", "SWF", "COLLECTIONS", "JDT");
 
         for (File target : folders) {
             String pjName = target.getName();
-//            if (!pjList.contains(pjName)){
-//                continue;
-//            }
 
-            final List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/", outputPath); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
+
+            final List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/"); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
             System.out.println(msgFiles.size());
             if(msgFiles.size() == 0)
                 continue;
 
             String GUM_TREE_OUTPUT = outputPath + "/"+  pjName + "/";
-            final String editScriptsFilePath = GUM_TREE_OUTPUT + "editScripts.list";
-            final String patchesSourceCodeFilePath =GUM_TREE_OUTPUT + "patchSourceCode.list";
-            final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens.list";
-            final String editScriptSizesFilePath = GUM_TREE_OUTPUT + "editScriptSizes.csv";
-            final String alarmTypesFilePath = GUM_TREE_OUTPUT + "alarmTypes.list";
+//            final String editScriptsFilePath = GUM_TREE_OUTPUT + "editScripts.list";
+//            final String patchesSourceCodeFilePath =GUM_TREE_OUTPUT + "patchSourceCode.list";
+//            final String buggyTokensFilePath = GUM_TREE_OUTPUT + "tokens.list";
+//            final String editScriptSizesFilePath = GUM_TREE_OUTPUT + "editScriptSizes.csv";
+//            final String alarmTypesFilePath = GUM_TREE_OUTPUT + "alarmTypes.list";
 
 
 			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/UPD");
 			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/INS");
 			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/DEL");
 			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MOV");
-            FileHelper.deleteDirectory(editScriptsFilePath);
-            FileHelper.deleteDirectory(patchesSourceCodeFilePath);
-            FileHelper.deleteDirectory(buggyTokensFilePath);
-            FileHelper.deleteDirectory(editScriptSizesFilePath);
-            FileHelper.deleteDirectory(alarmTypesFilePath);
+//            FileHelper.deleteDirectory(editScriptsFilePath);
+//            FileHelper.deleteDirectory(patchesSourceCodeFilePath);
+//            FileHelper.deleteDirectory(buggyTokensFilePath);
+//            FileHelper.deleteDirectory(editScriptSizesFilePath);
+//            FileHelper.deleteDirectory(alarmTypesFilePath);
 
-            StringBuilder astEditScripts = new StringBuilder();
-            StringBuilder tokens = new StringBuilder();
-            StringBuilder sizes = new StringBuilder();
-            StringBuilder patches = new StringBuilder();
-            StringBuilder alarmTypes = new StringBuilder();
+//            StringBuilder astEditScripts = new StringBuilder();
+//            StringBuilder tokens = new StringBuilder();
+//            StringBuilder sizes = new StringBuilder();
+//            StringBuilder patches = new StringBuilder();
+//            StringBuilder alarmTypes = new StringBuilder();
 
             int a = 0;
 
@@ -102,77 +75,32 @@ public class TestHunkParser {
 			try {
 				log.info("Akka begins...");
 				system = ActorSystem.create("Mining-FixPattern-System");
-				parsingActor = system.actorOf(ParseFixPatternActor.props(Integer.valueOf(numOfWorkers), editScriptsFilePath,
-						patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
+				parsingActor = system.actorOf(ParseFixPatternActor.props(Integer.valueOf(numOfWorkers), project), "mine-fix-pattern-actor");
 				parsingActor.tell(msg, ActorRef.noSender());
 			} catch (Exception e) {
 				system.shutdown();
 				e.printStackTrace();
 			}
-//		int counter = 0;
-//            for (MessageFile msgFile : msgFiles) {
-//                FixedViolationHunkParser parser = new FixedViolationHunkParser();
-//
-//                final ExecutorService executor = Executors.newSingleThreadExecutor();
-//                // schedule the work
-//                final Future<?> future = executor.submit(new RunnableParser(msgFile.getPrevFile(),
-//                        msgFile.getRevFile(), msgFile.getDiffEntryFile(), parser));
-//                try {
-//                    // where we wait for task to complete
-//                    future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
-//                    String editScripts = parser.getAstEditScripts();
-//                    if (!editScripts.equals("")) {
-//                        astEditScripts.append(editScripts);
-//                        tokens.append(parser.getTokensOfSourceCode());
-//                        sizes.append(parser.getSizes());
-//                        patches.append(parser.getPatchesSourceCode());
-//                        alarmTypes.append(parser.getAlarmTypes());
-//
-//                        a++;
-//                        if (a % 100 == 0) {
-//                            FileHelper.outputToFile(editScriptsFilePath, astEditScripts, true);
-//                            FileHelper.outputToFile(buggyTokensFilePath, tokens, true);
-//                            FileHelper.outputToFile(editScriptSizesFilePath, sizes, true);
-//                            FileHelper.outputToFile(patchesSourceCodeFilePath, patches, true);
-//                            FileHelper.outputToFile(alarmTypesFilePath, alarmTypes, true);
-//                            astEditScripts.setLength(0);
-//                            tokens.setLength(0);
-//                            sizes.setLength(0);
-//                            patches.setLength(0);
-//                            alarmTypes.setLength(0);
-//                            System.out.println("Finish of parsing " + a + " files......");
-//                        }
-//                    }
-//                } catch (TimeoutException e) {
-//                    err.println("task timed out");
-//                    future.cancel(true /* mayInterruptIfRunning */);
-//                } catch (InterruptedException e) {
-//                    err.println("task interrupted");
-//                } catch (ExecutionException e) {
-//                    err.println("task aborted");
-//                } finally {
-//                    executor.shutdownNow();
-//                }
-//            }
 
-            FileHelper.outputToFile(editScriptsFilePath, astEditScripts, true);
-            FileHelper.outputToFile(buggyTokensFilePath, tokens, true);
-            FileHelper.outputToFile(editScriptSizesFilePath, sizes, true);
-            FileHelper.outputToFile(patchesSourceCodeFilePath, patches, true);
-            FileHelper.outputToFile(alarmTypesFilePath, alarmTypes, true);
-            astEditScripts.setLength(0);
-            tokens.setLength(0);
-            sizes.setLength(0);
-            patches.setLength(0);
-            alarmTypes.setLength(0);
-            System.out.println(a);
+
+//            FileHelper.outputToFile(editScriptsFilePath, astEditScripts, true);
+//            FileHelper.outputToFile(buggyTokensFilePath, tokens, true);
+//            FileHelper.outputToFile(editScriptSizesFilePath, sizes, true);
+//            FileHelper.outputToFile(patchesSourceCodeFilePath, patches, true);
+//            FileHelper.outputToFile(alarmTypesFilePath, alarmTypes, true);
+//            astEditScripts.setLength(0);
+//            tokens.setLength(0);
+//            sizes.setLength(0);
+//            patches.setLength(0);
+//            alarmTypes.setLength(0);
+//            System.out.println(a);
 
 //		classifyByAlarmTypes();
         }
 	}
 	
 
-	private static List<MessageFile> getMessageFiles(String gumTreeInput,String outputPath) {
+	private static List<MessageFile> getMessageFiles(String gumTreeInput) {
 		String inputPath = gumTreeInput; // prevFiles  revFiles diffentryFile positionsFile
 		File revFilesPath = new File(inputPath + "revFiles/");
 		File[] revFiles = revFilesPath.listFiles();   // project folders
@@ -197,132 +125,6 @@ public class TestHunkParser {
             return null;
         }
 	}
-	
-	public static void classifyByAlarmTypes() {
 
-		final String alarmTypesFilePath = Configuration.ALARM_TYPES_FILE;
-		List<String> alarmTypes = readStringList(alarmTypesFilePath);
-		//edit scripts, sizes of edit scripts, buggy tokens, patches.
-		classifyByAlarmTypes(alarmTypes, Configuration.EDITSCRIPT_SIZES_FILE);
-		classifyByAlarmTypes(alarmTypes, Configuration.EDITSCRIPTS_FILE);
-		classifyByAlarmTypes(alarmTypes, Configuration.BUGGY_CODE_TOKENS_FILE);
-		classifyByAlarmTypes2(alarmTypes, Configuration.PATCH_SOURCECODE_FILE);
-	}
 
-	private static void classifyByAlarmTypes(List<String> alarmTypes, String file) {
-		Map<String, StringBuilder> buildersMap = new HashMap<>();
-		FileInputStream fis = null;
-		Scanner scanner = null;
-		try {
-			fis = new FileInputStream(file);
-			scanner = new Scanner(fis);
-			int counter = 0;
-			while (scanner.hasNextLine()) {
-				String alarmType = alarmTypes.get(counter);
-				StringBuilder builder = getBuilder(buildersMap, alarmType);
-				builder.append(scanner.nextLine() + "\n");
-				counter ++;
-				if (counter % 1000 == 0) {
-					outputBuilders(buildersMap, file);
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				scanner.close();
-				fis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		outputBuilders(buildersMap, file);
-	}
-	
-	private static void classifyByAlarmTypes2(List<String> alarmTypes, String patchSourcecodeFile) {
-		Map<String, StringBuilder> buildersMap = new HashMap<>();
-		FileInputStream fis = null;
-		Scanner scanner = null;
-		try {
-			fis = new FileInputStream(patchSourcecodeFile);
-			scanner = new Scanner(fis);
-			int counter = 0;
-			String singlePatch = "";
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				if (Configuration.PATCH_SIGNAL.equals(line)) {
-					if (!"".equals(singlePatch)) {
-						String alarmType = alarmTypes.get(counter);
-						StringBuilder builder = getBuilder(buildersMap, alarmType);
-						builder.append(scanner.nextLine() + "\n");
-						counter ++;
-						if (counter % 2000 == 0) {
-							outputBuilders(buildersMap, patchSourcecodeFile);
-						}
-					}
-					singlePatch = line + "\n";
-				}
-				singlePatch += line + "\n";
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				scanner.close();
-				fis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		outputBuilders(buildersMap, patchSourcecodeFile);
-	}
-
-	private static void outputBuilders(Map<String, StringBuilder> map, String fileNameStr) {
-		File file = new File(fileNameStr);
-		String fileName = file.getName();
-		String parentPath = file.getParent();
-		for (Map.Entry<String, StringBuilder> entry : map.entrySet()) {
-			String alarmType = entry.getKey();
-			StringBuilder builder = entry.getValue();
-			
-			FileHelper.outputToFile(parentPath + "/" + alarmType + "/" + fileName, builder, true);
-			
-			builder.setLength(0);
-			entry.setValue(builder);
-		}
-	}
-
-	public static List<String> readStringList(String inputFile) {
-		List<String> list = new ArrayList<>();
-		FileInputStream fis = null;
-		Scanner scanner = null;
-		try {
-			fis = new FileInputStream(inputFile);
-			scanner = new Scanner(fis);
-			while(scanner.hasNextLine()) {
-				list.add(scanner.nextLine());
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				scanner.close();
-				fis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return list;
-	}
-
-	private static StringBuilder getBuilder(Map<String, StringBuilder> buildersMap, String alarmType) {
-		if (buildersMap.containsKey(alarmType)) {
-			return buildersMap.get(alarmType);
-		} else {
-			StringBuilder builder = new StringBuilder();
-			buildersMap.put(alarmType, builder);
-			return builder;
-		}
-	}
 }

@@ -70,89 +70,22 @@ public class AkkaTreeLoader {
 
     private static Consumer<String> consumer = Assert::assertNotNull;
 
-    public static void loadRedisWait(String cmd){
-        Process process;
 
-        try {
-//            String comd = String.format(cmd, f.getAbsoluteFile());
-            process = Runtime.getRuntime()
-
-                    .exec(cmd);
-
-
-            StreamGobbler streamGobbler =
-                    new StreamGobbler(process.getInputStream(), consumer);
-            Executors.newSingleThreadExecutor().submit(streamGobbler);
-            int exitCode = process.waitFor();
-            assert exitCode == 0;
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        log.info("Load done");
-    }
-
-//    public static void main(String[] args) {
     public static void main(String portInner,String serverWait,String dbDir,String chunkName,String port, String dumpsName) throws Exception {
 
-//        String inputPath;
-////        String outputPath;
-//        String port;
-//        String portInner;
-////        String pairsCSVPath;
-//        String importScript;
-////        String pairsCompletedPath;
-//        String serverWait;
-////        String option;
-//        String dbDir;
-//        String chunkName;
-//        String numOfWorkers;
-//        if (args.length > 0) {
-//            inputPath = args[0];
-//            portInner = args[1];
-//            serverWait = args[2];
-////            option = args[4];
-//            chunkName = args[3];
-//            numOfWorkers = args[4];
-//            dbDir = args[5];
-//            port = args[6];
-////            pairsCSVPath = args[3];
-////            importScript = args[4];
-////            pairsCompletedPath = args[3];
-//        } else {
-//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
-////            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
-//            port = "6399";
-//            portInner = "6380";
-//            serverWait = "10000";
-////            option = "COMP";
-////            pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test";
-////            importScript = "/Users/anilkoyuncu/bugStudy/dataset/pairs/test2.sh";
-////            pairsCompletedPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs_completed";
-//            chunkName ="chunk3.rdb";
-//            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
-//            numOfWorkers = "1";
-//
-//        }
+
         String parameters = String.format("\nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s \ndumpsName %s",portInner,serverWait,chunkName,dbDir,dumpsName);
         log.info(parameters);
 
-//        if (option.equals("CALC")) {
-//            calculatePairs(inputPath, port);
-//            log.info("Calculate pairs done");
-//        }else {
+
         CallShell cs = new CallShell();
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String cmd1 = String.format(cmd, dbDir,dumpsName,Integer.valueOf(port));
-//        loadRedis(cmd1,serverWait);
+
         cs.runShell(cmd1,serverWait);
         String cmdInner = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String cmd2 = String.format(cmdInner, dbDir,chunkName,Integer.valueOf(portInner));
-//        loadRedis(cmd2,serverWait);
+
         cs.runShell(cmd2,serverWait);
         JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
         JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
@@ -163,12 +96,11 @@ public class AkkaTreeLoader {
 
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
-//        loadRedis(stopServer1,serverWait);
+
         cs.runShell(stopServer1,serverWait);
         stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer2 = String.format(stopServer,Integer.valueOf(port));
-//        loadRedis(stopServer2,serverWait);
-//        }
+
         cs.runShell(stopServer2,serverWait);
 
 
@@ -196,20 +128,7 @@ public class AkkaTreeLoader {
                 List<String> result = scan.getResult();
 
 
-//                ActorSystem system = null;
-//                ActorRef parsingActor = null;
-//                final WorkMessage msg = new WorkMessage(0, result,innerPort,inputPath,dbDir,serverWait);
-//                try {
-//
-//                    log.info("Akka begins...");
-//                    system = ActorSystem.create("Tree-System");
-//                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers),dbDir,innerPort,serverWait), "tree-actor");
-//                    parsingActor.tell(msg, ActorRef.noSender());
-//                } catch (Exception e) {
-//                    system.shutdown();
-//                    e.printStackTrace();
-//                }
-//                greeter.tell();
+
                 result
                         .parallelStream()
                         .forEach(m ->
@@ -316,41 +235,6 @@ public class AkkaTreeLoader {
         return parent;
     }
 
-    public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children){
-
-        int newType = 0;
-
-        String astNodeType = actionSet.getAstNodeType();
-        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
-
-        if(keysByValue.size() != 1){
-            log.error("Birden cok astnodemapmapping");
-        }
-        newType = keysByValue.get(0);
-        if(actionSet.getParent() == null){
-            //root
-
-            parent = new Tree(newType,"");
-        }else{
-            children = new Tree(newType,"");
-            parent.addChild(children);
-        }
-        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
-        if (subActions.size() != 0){
-            for (HierarchicalActionSet subAction : subActions) {
-
-                if(actionSet.getParent() == null){
-                    children = parent;
-                }
-                getASTTree(subAction,children,null);
-
-            }
-
-
-        }
-        return parent;
-    }
-
 
     static final JedisPoolConfig poolConfig = buildPoolConfig();
 
@@ -371,31 +255,6 @@ public class AkkaTreeLoader {
         return poolConfig;
     }
 
-    private static List<edu.lu.uni.serval.MultipleThreadsParser.MessageFile> getMessageFiles(String gumTreeInput) {
-        String inputPath = gumTreeInput; // prevFiles  revFiles diffentryFile positionsFile
-        File revFilesPath = new File(inputPath + "revFiles/");
-        File[] revFiles = revFilesPath.listFiles();   // project folders
-        List<edu.lu.uni.serval.MultipleThreadsParser.MessageFile> msgFiles = new ArrayList<>();
-        if (revFiles.length >= 0) {
-            for (File revFile : revFiles) {
-//			if (revFile.getName().endsWith(".java")) {
-                String fileName = revFile.getName();
-                File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
-                fileName = fileName.replace(".java", ".txt");
-                File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
-                File positionFile = new File(gumTreeInput + "positions/" + fileName); // position file
-                edu.lu.uni.serval.MultipleThreadsParser.MessageFile msgFile = new edu.lu.uni.serval.MultipleThreadsParser.MessageFile(revFile, prevFile, diffentryFile);
-                msgFile.setPositionFile(positionFile);
-                msgFiles.add(msgFile);
-//			}
-            }
-
-            return msgFiles;
-        }
-        else{
-            return null;
-        }
-    }
 
 
 }

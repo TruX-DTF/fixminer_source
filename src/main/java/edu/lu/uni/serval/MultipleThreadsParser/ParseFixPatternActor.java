@@ -19,16 +19,13 @@ public class ParseFixPatternActor extends UntypedActor {
 	private final int numberOfWorkers;
 	private int counter = 0;
 	
-	public ParseFixPatternActor(int numberOfWorkers, String editScriptsFilePath, String patchesSourceCodeFilePath, 
-			String buggyTokensFilePath, String editScriptSizesFilePath) {
+	public ParseFixPatternActor(int numberOfWorkers, String project) {
 		mineRouter = this.getContext().actorOf(new RoundRobinPool(numberOfWorkers)
-				.props(ParseFixPatternWorker.props(editScriptsFilePath, patchesSourceCodeFilePath, 
-						buggyTokensFilePath, editScriptSizesFilePath)), "mine-fix-pattern-router");
+				.props(ParseFixPatternWorker.props(project)), "mine-fix-pattern-router");
 		this.numberOfWorkers = numberOfWorkers;
 	}
 
-	public static Props props(final int numberOfWorkers, final String editScriptsFilePath, final String patchesSourceCodeFilePath,
-			final String buggyTokensFilePath, final String editScriptSizesFilePath) {
+	public static Props props(final int numberOfWorkers, final String project) {
 		
 		return Props.create(new Creator<ParseFixPatternActor>() {
 
@@ -36,8 +33,7 @@ public class ParseFixPatternActor extends UntypedActor {
 
 			@Override
 			public ParseFixPatternActor create() throws Exception {
-				return new ParseFixPatternActor(numberOfWorkers, editScriptsFilePath, patchesSourceCodeFilePath, 
-						buggyTokensFilePath, editScriptSizesFilePath);
+				return new ParseFixPatternActor(numberOfWorkers, project);
 			}
 			
 		});

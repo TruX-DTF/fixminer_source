@@ -20,31 +20,10 @@ import java.util.stream.Stream;
  */
 public class ImportPairs2DB {
     private static Logger log = LoggerFactory.getLogger(ImportPairs2DB.class);
-//    public static void main(String[] args) {
 
     public static void main(String csvInputPath,String portInner,String serverWait,String dbDir,String datasetPath) throws Exception {
 
-//        String inputPath;
-//        String portInner;
-//        String serverWait;
-//        String dbDir;
-//        String chunkName;
-//        String numOfWorkers;
-//        if (args.length > 0) {
-//            inputPath = args[0];
-//            portInner = args[1];
-//            serverWait = args[2];
-//            chunkName = args[3];
-//            numOfWorkers = args[4];
-//            dbDir = args[5];
-//        } else {
-//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs";
-//            portInner = "6380";
-//            serverWait = "10000";
-//            chunkName ="dumps.rdb";
-//            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
-//            numOfWorkers = "1";
-//        }
+
         String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \ndbDir %s",csvInputPath,portInner,serverWait,dbDir);
         log.info(parameters);
 
@@ -65,7 +44,7 @@ public class ImportPairs2DB {
             CallShell cs = new CallShell();
             cs.runShell(cmd,serverWait);
 
-            cmd = "bash "+datasetPath + "/redisImportSingle.sh" +" %s %s";
+            cmd = "bash "+datasetPath + "/redisSingleImport.sh" +" %s %s";
 
             cmd = String.format(cmd, pj.getPath(), portInt);
             log.info(cmd);

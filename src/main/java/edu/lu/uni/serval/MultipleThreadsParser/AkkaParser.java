@@ -80,8 +80,8 @@ public class AkkaParser {
 			try {
 				log.info("Akka begins...");
 				system = ActorSystem.create("Mining-FixPattern-System");
-				parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath,
-						patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
+//				parsingActor = system.actorOf(ParseFixPatternActor.props(numberOfWorkers, editScriptsFilePath,
+//						patchesSourceCodeFilePath, buggyTokensFilePath, editScriptSizesFilePath), "mine-fix-pattern-actor");
 				parsingActor.tell(msg, ActorRef.noSender());
 			} catch (Exception e) {
 				system.shutdown();

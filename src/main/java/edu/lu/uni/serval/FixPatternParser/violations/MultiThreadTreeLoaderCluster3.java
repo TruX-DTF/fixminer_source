@@ -38,127 +38,9 @@ import static edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoade
  */
 public class MultiThreadTreeLoaderCluster3 {
 
-    private static int resultType;
-
-    private static class StreamGobbler implements Runnable {
-        private InputStream inputStream;
-        private Consumer<String> consumer;
-
-        public StreamGobbler(InputStream inputStream, Consumer<String> consumer) {
-            this.inputStream = inputStream;
-            this.consumer = consumer;
-        }
-
-        @Override
-        public void run() {
-            new BufferedReader(new InputStreamReader(inputStream)).lines()
-                    .forEach(consumer);
-        }
-    }
 
     private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoaderCluster3.class);
 
-    public static void main(String[] args){
-
-        String inputPath;
-        String outputPath;
-        String port;
-        String pairsCSVPath;
-        String importScript;
-        String csvScript;
-        String dbDir;
-        if (args.length > 0) {
-            inputPath = args[0];
-            outputPath = args[1];
-            port = args[2];
-            pairsCSVPath = args[3];
-            importScript = args[4];
-            csvScript = args[5];
-            dbDir = args[6];
-        } else {
-//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
-            inputPath = "/Users/anilkoyuncu/bugStudy/code/python/cluster2L";
-            outputPath = "/Users/anilkoyuncu/bugStudy/dataset/";
-            port = "6379";
-            pairsCSVPath = "/Users/anilkoyuncu/bugStudy/dataset/pairs-2l-csv/";
-            importScript = "/Users/anilkoyuncu/bugStudy/dataset/redisSingleImport.sh";
-            csvScript = "/Users/anilkoyuncu/bugStudy/dataset/transformCSV.sh";
-            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
-        }
-
-//        calculatePairsOfClusters(inputPath, outputPath);
-
-//        createCSV(csvScript,outputPath + "pairs-2l/",pairsCSVPath);
-
-        //create csv file and move
-        String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-        cmd = String.format(cmd, dbDir,"cluster2.rdb",Integer.valueOf(port));
-        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd,"1000");
-
-        cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-        cmd = String.format(cmd, dbDir,"dumps.rdb",Integer.valueOf("6399"));
-        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd,"1000");
-
-//        mainCompare(inputPath,port,pairsCSVPath,importScript);
-        //        calculatePairs(inputPath, outputPath);
-//        processMessages(inputPath,outputPath);
-//        evaluateResults(inputPath,outputPath);
-
-    }
-
-    public static void createCSV(String csvScript, String f1, String f2){
-        String cmd;
-        cmd = "bash " + csvScript +" %s %s";
-        Process process = null;
-        File source = new File(f1);
-        File dest = new File(f2);
-        log.info(source.getName());
-        log.info(dest.getName());
-        try {
-            String comd = String.format(cmd, source.getAbsoluteFile() ,dest.getAbsoluteFile());
-            process = Runtime.getRuntime()
-
-                    .exec(comd);
-
-
-            StreamGobbler streamGobbler =
-                    new StreamGobbler(process.getInputStream(), System.out::println);
-            Executors.newSingleThreadExecutor().submit(streamGobbler);
-            int exitCode = process.waitFor();
-            assert exitCode == 0;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }finally {
-            process.destroyForcibly();
-        }
-        log.info("Load done");
-
-    }
-
-    public static void loadRedis(String cmd, File f){
-        Process process;
-        log.info(f.getName());
-        try {
-            String comd = String.format(cmd, f.getAbsoluteFile());
-            process = Runtime.getRuntime()
-
-                    .exec(comd);
-
-
-            StreamGobbler streamGobbler =
-                    new StreamGobbler(process.getInputStream(), System.out::println);
-            Executors.newSingleThreadExecutor().submit(streamGobbler);
-            int exitCode = process.waitFor();
-            assert exitCode == 0;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        log.info("Load done");
-    }
 
 //    public static void mainCompare(String inputPath,String port,String pairsCSVPath,String importScript) {
     public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String serverWait, String type) throws Exception {
@@ -256,9 +138,9 @@ public class MultiThreadTreeLoaderCluster3 {
     public  static ITree getTree(String firstValue, JedisPool outerPool,String type){
 //        String gumTreeInput = "/Volumes/data/bugStudy_backup/dataset/GumTreeInputBug4/";
         String[] split2 = firstValue.split("/");
-        String cluster = split2[1];
-        String subCluster = split2[2];
-        String filename = split2[3];
+
+        String filename = split2[split2.length-1];
+//        String filename = split2[3];
         String[] split1= filename.split(".txt_");
         String s = split1[0];
         String[] splitPJ = split1[1].split("_");
@@ -347,35 +229,6 @@ public class MultiThreadTreeLoaderCluster3 {
         return parent;
     }
 
-    public static ITree getActionTree(HierarchicalActionSet actionSet){
-
-
-        int newType = 0;
-
-        Action action = actionSet.getAction();
-        if (action instanceof Update){
-            newType = 101;
-        }else if(action instanceof Insert){
-            newType =100;
-        }else if(action instanceof Move){
-            newType = 102;
-        }else if(action instanceof Delete){
-            newType=103;
-        }else{
-            new Exception("unknow action");
-        }
-        actionSet.getNode().setType(newType);
-//        actionSet.getNode().setLabel("");
-        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
-        if (subActions.size() != 0){
-            for (HierarchicalActionSet subAction : subActions) {
-                getActionTree(subAction);
-            }
-
-
-        }
-        return actionSet.getNode();
-    }
 
     private static List<String> getNames(ITree oldTree, List<String> oldTokens){
 
@@ -618,9 +471,9 @@ public class MultiThreadTreeLoaderCluster3 {
             }
         }
 
-        if (oldTokens.size() == 0 ) {// && (oldTree.getType() != 41 && oldTree.getType() != 21 && oldTree.getType() !=17 && oldTree.getType()!=60 && oldTree.getType() != 46)){
-            log.info("dur bakalim nereye!???");
-        }
+//        if (oldTokens.size() == 0 ) {// && (oldTree.getType() != 41 && oldTree.getType() != 21 && oldTree.getType() !=17 && oldTree.getType()!=60 && oldTree.getType() != 46)){
+//            log.info("dur bakalim nereye!???");
+//        }
         return oldTokens;
     }
     
@@ -704,9 +557,9 @@ public class MultiThreadTreeLoaderCluster3 {
                 oldTokens = getNames(oldTree,oldTokens);
                 newTokens = getNames(newTree,newTokens);
 
-                if(oldTokens.size() == 0 || newTokens.size() == 0){
-                    log.error("Cluster {} has no tokens on pair {}",clusterName , name);
-                }
+//                if(oldTokens.size() == 0 || newTokens.size() == 0){
+//                    log.error("Cluster {} has no tokens on pair {}",clusterName , name);
+//                }
 //                Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
 //                m.match();
                 CharSequence[] oldSequences = oldTokens.toArray(new CharSequence[oldTokens.size()]);
@@ -732,9 +585,9 @@ public class MultiThreadTreeLoaderCluster3 {
 //                    log.info(firstValue);
 //                    log.info(secondValue);
 //                    log.info("************");
-                    if(!overallSimi.equals(1.0)){
-                        log.info("");
-                    }
+//                    if(!overallSimi.equals(1.0)){
+//                        log.info("");
+//                    }
                     String matchKey = "match-"+clusterName+"_" + (String.valueOf(i)) + "_" + String.valueOf(j);
                     String result = firstValue + "," + secondValue + ","+String.join(",", oldTokens);
                     jedis.select(1);
@@ -747,7 +600,7 @@ public class MultiThreadTreeLoaderCluster3 {
 
 
             }catch (Exception e){
-                log.error(e.toString() + " {}",(name));
+                log.warn(e.toString() + " {}",(name));
 
 
             }
@@ -758,69 +611,6 @@ public class MultiThreadTreeLoaderCluster3 {
         }
     }
 
-
-
-    protected static List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree2(File prevFile, File revFile) {
-        List<HierarchicalActionSet> actionSets = new ArrayList<>();
-        // GumTree results
-        List<Action> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
-        if (gumTreeResults == null) {
-            resultType = 1;
-            return null;
-        } else if (gumTreeResults.size() == 0){
-            resultType = 2;
-            return actionSets;
-        } else {
-            // Regroup GumTre results.
-            List<HierarchicalActionSet> allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
-//			for (HierarchicalActionSet actionSet : allActionSets) {
-//				String astNodeType = actionSet.getAstNodeType();
-//				if (astNodeType.endsWith("Statement") || "FieldDeclaration".equals(astNodeType)) {
-//					actionSets.add(actionSet);
-//				}
-//			}
-
-            // Filter out modified actions of changing method names, method parameters, variable names and field names in declaration part.
-            // variable effects range, sub-actions are these kinds of modification?
-//			actionSets.addAll(new ActionFilter().filterOutUselessActions(allActionSets));
-
-            ListSorter<HierarchicalActionSet> sorter = new ListSorter<>(allActionSets);
-            actionSets = sorter.sortAscending();
-
-            if (actionSets.size() == 0) {
-                resultType = 3;
-            }
-
-            return actionSets;
-        }
-    }
-
-
-/*
-orginal calculate pairs, from all dumps of the projects
- */
-    public static void calculatePairs(String inputPath, String outputPath) {
-        File folder = new File(inputPath);
-        File[] listOfFiles = folder.listFiles();
-        Stream<File> stream = Arrays.stream(listOfFiles);
-        List<File> pjs = stream
-                .filter(x -> !x.getName().startsWith("."))
-                .collect(Collectors.toList());
-
-        List<File> fileToCompare = new ArrayList<>();
-        for (File pj : pjs) {
-            File[] files = pj.listFiles(new FilenameFilter() {
-                public boolean accept(File dir, String name) {
-                    return name.startsWith("ASTDumps");
-                }
-            });
-            Collections.addAll(fileToCompare, files[0].listFiles());
-
-        }
-        System.out.println("a");
-//        compareAll(fileToCompare);
-        readMessageFiles(fileToCompare, outputPath);
-    }
 
     /*
     pairs of each cluster
@@ -856,17 +646,7 @@ orginal calculate pairs, from all dumps of the projects
 
     }
 
-    public static void processMessages(String inputPath, String outputPath) {
-        File folder = new File(outputPath + "pairs_splitted/");
-        File[] listOfFiles = folder.listFiles();
-        Stream<File> stream = Arrays.stream(listOfFiles);
-        List<File> pjs = stream
-                .filter(x -> !x.getName().startsWith("."))
-                .collect(Collectors.toList());
-        FileHelper.createDirectory(outputPath + "comparison_splitted/");
-        pjs.parallelStream()
-                .forEach(m -> coreLoop(m, outputPath,inputPath));
-    }
+
 
     private static void readMessageFilesCluster(List<File> folders, String outputPath,String inputPath,String cluster, String subCluster,String type) {
 
@@ -890,7 +670,7 @@ orginal calculate pairs, from all dumps of the projects
 //            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, 1000*treesFileNames.size()*treesFileNames.size());
 //            int fileCounter = 0;
 
-            FileOutputStream fos = new FileOutputStream(outputPath + "/pairs-2l"+type+"/" +filename+".txt");
+            FileOutputStream fos = new FileOutputStream(outputPath + "/pairs-2l"+type+"/" +filename+".csv");
             DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
 
 
@@ -900,7 +680,7 @@ orginal calculate pairs, from all dumps of the projects
 
 
 
-                    line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + treesFileNames.get(i).replace(inputPath,"") + "\t" + treesFileNames.get(j).replace(inputPath,"")+"\n";
+                    line = String.valueOf(i) +"," + String.valueOf(j) + "," + treesFileNames.get(i).replace(inputPath,"") + "," + treesFileNames.get(j).replace(inputPath,"")+"\n";
                     outStream.write(line.getBytes());
 //                    buf  = line.getBytes();
 //                    if(wrBuf.remaining() > 500) {
@@ -933,158 +713,7 @@ orginal calculate pairs, from all dumps of the projects
 
 
 
-    public static ITree getSimpliedTree(String fn) {
-        ITree tree = null;
-        try {
-            FileInputStream fi = new FileInputStream(new File(fn));
-            ObjectInputStream oi = new ObjectInputStream(fi);
-            tree = (ITree) oi.readObject();
-            oi.close();
-            fi.close();
 
-
-        } catch (FileNotFoundException e) {
-            log.error("File not found");
-            e.printStackTrace();
-        } catch (IOException e) {
-            log.error("Error initializing stream");
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-//        tree.setLabel("");
-        tree.setParent(null);
-//        List<ITree> descendants = tree.getDescendants();
-//        for (ITree descendant : descendants) {
-//            descendant.setLabel("");
-//        }
-
-        return tree;
-
-    }
-
-
-    private static void coreLoop(File mes, String outputPath,String inputPath) {
-        try {
-
-            log.info("Starting in coreLoop");
-
-            BufferedReader br = null;
-            String sCurrentLine = null;
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath + "comparison_splitted/" + "output_" + mes.getName()));
-
-                br = new BufferedReader(
-                        new FileReader(mes));
-                while ((sCurrentLine = br.readLine()) != null) {
-                    String currentLine = sCurrentLine;
-                    String[] split = currentLine.split("\t");
-                    String i = split[0];
-                    String j = split[1];
-                    String firstValue = split[2];
-                    String secondValue = split[3];
-
-                    firstValue = inputPath + firstValue.split("GumTreeOutput2")[1];
-                    secondValue = inputPath + secondValue.split("GumTreeOutput2")[1];
-
-                    ITree oldTree = getSimpliedTree(firstValue);
-
-                    ITree newTree = getSimpliedTree(secondValue);
-
-                    Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-                    m.match();
-
-                    ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-                    ag.generate();
-                    List<Action> actions = ag.getActions();
-                    writer.write(String.valueOf(i));
-                    writer.write("\t");
-                    writer.write(String.valueOf(j));
-                    writer.write("\t");
-
-                    writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.valueOf(actions.size()));
-                    writer.write("\t");
-                    writer.write(firstValue);
-                    writer.write("\t");
-                    writer.write(secondValue);
-                    writer.write("\n");
-
-
-                }
-            writer.close();
-        } catch (FileNotFoundException e) {
-            log.error("File not found");
-            e.printStackTrace();
-        } catch (IOException e) {
-            log.error("Error initializing stream");
-            e.printStackTrace();
-
-        }
-        log.info("Completed output_" + mes.getName());
-    }
-
-    private static void readMessageFiles(List<File> folders, String outputPath) {
-
-        List<String> treesFileNames = new ArrayList<>();
-
-
-        for (File target : folders) {
-
-            treesFileNames.add(target.toString());
-        }
-        FileHelper.createDirectory(outputPath + "pairs/");
-        log.info("Calculating pairs");
-//        treesFileNames = treesFileNames.subList(0,100);
-        byte [] buf = new byte[0];
-        String line = null;
-        try {
-
-            FileChannel rwChannel = new RandomAccessFile(outputPath + "pairs/" +"textfile.txt", "rw").getChannel();
-            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
-            int fileCounter = 0;
-
-
-            for (int i = 0; i < treesFileNames.size(); i++) {
-                for (int j = i + 1; j < treesFileNames.size(); j++) {
-
-
-
-                     line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + treesFileNames.get(i).replace("/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2","") + "\t" + treesFileNames.get(j).replace("/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2","")+"\n";
-                     buf  = line.getBytes();
-                    if(wrBuf.remaining() > 500) {
-                        wrBuf.put(buf);
-                    }else{
-                        log.info("Next pair dump");
-                        fileCounter++;
-                        rwChannel = new RandomAccessFile(outputPath+"pairs/" +"textfile"+String.valueOf(fileCounter)+".txt", "rw").getChannel();
-                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, Integer.MAX_VALUE);
-                    }
-
-
-
-
-                }
-            }
-            rwChannel.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }catch (java.nio.BufferOverflowException e) {
-            log.error(line);
-            log.error(String.valueOf(buf.length));
-            e.printStackTrace();
-        }
-
-        log.info("Done pairs");
-    }
 
     static final JedisPoolConfig poolConfig = buildPoolConfig();
 

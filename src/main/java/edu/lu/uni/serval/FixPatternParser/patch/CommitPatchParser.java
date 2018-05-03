@@ -98,4 +98,8 @@ public class CommitPatchParser extends Parser{
 		return buggyStatements + fixedStatements;
 	}
 
+	@Override
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project) {
+
+	}
 }

@@ -19,9 +19,6 @@
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.12" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.14" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe.akka:akka-actor_2.11:2.4.11" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.11.8" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe:config:1.3.0" level="project" />
@@ -42,6 +39,9 @@
     <orderEntry type="library" name="Maven: org.eclipse.equinox:app:1.3.200-v20130910-1609" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.birt.runtime:org.eclipse.core.resources:3.10.0.v20150423-0755" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.tycho:org.eclipse.jdt.core:3.12.2.v20161117-1814" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.1.2" level="project" />
     <orderEntry type="module" module-name="GitTraveller" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.7" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.11.2" level="project" />
