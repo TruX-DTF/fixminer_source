@@ -89,7 +89,7 @@ public class Launcher {
                     level3(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
                     break;
                 case "ALL":
-                    TestHunkParser.main(gumInput, gumOutput, numOfWorkers, pjName);
+//                    TestHunkParser.main(gumInput, gumOutput, numOfWorkers, pjName);
                     StoreFile.main(gumOutput, portInner, serverWait, dbDir, actionType+dumpsName,actionType);
                     level1(portInner, serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, pairsPath, dumpsName, gumInput);
                     level2(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
