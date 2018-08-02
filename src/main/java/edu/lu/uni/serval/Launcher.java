@@ -37,7 +37,7 @@ public class Launcher {
         String datasetPath = appProps.getProperty("datasetPath","/Users/anilkoyuncu/bugStudy/dataset");
         String pjName = appProps.getProperty("pjName","allDataset");
         String dbNo = appProps.getProperty("dbNo","0");
-        String actionType = appProps.getProperty("actionType","UPD");
+        String actionType = appProps.getProperty("actionType","ALL");
         String threshold = appProps.getProperty("threshold","1");
 
         String parameters = String.format("\nportInner %s " +
@@ -94,6 +94,13 @@ public class Launcher {
                     level1(portInner, serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, pairsPath, dumpsName, gumInput);
                     level2(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
                     level3(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
+                    break;
+                case "EXTRACTPATTERN":
+                    PatternExtractor.mainLaunch(portInner,serverWait,numOfWorkers,jobType,port,pythonPath,datasetPath,pjName,dbNo,actionType,threshold);
+                    break;
+                case "GETPATTERN":
+                    PatternExtractor.mainLaunch(portInner,serverWait,numOfWorkers,jobType,port,pythonPath,datasetPath,pjName,dbNo,actionType,threshold);
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();

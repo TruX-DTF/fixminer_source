@@ -158,15 +158,15 @@ public class ParseFixPatternWorker extends UntypedActor {
 				sizes.setLength(0);
 				tokens.setLength(0);
 				
-				FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
+//				FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
 				testingInfo.setLength(0);
 			}
-			String statistic = "\nNullGumTreeResults: " + nullGumTreeResults + "\nNoSourceCodeChanges: " + noSourceCodeChanges + 
-					"\nNoStatementChanges: " + noStatementChanges + "\nNullDiffEntry: " + nullDiffEntry + "\nNullMatchedGumTreeResults: " + nullMappingGumTreeResults +
-					"\nPureDeletion: " + pureDeletion + "\nLargeHunk: " + largeHunk + "\nNullSourceCode: " + nullSourceCode + 
-					"\nTestingInfo: " + testInfos + "\nTimeout: " + timeouts;
-			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
-			FileHelper.outputToFile("OUTPUT/UnfixedV_" + id + ".list", builder, false);
+//			String statistic = "\nNullGumTreeResults: " + nullGumTreeResults + "\nNoSourceCodeChanges: " + noSourceCodeChanges +
+//					"\nNoStatementChanges: " + noStatementChanges + "\nNullDiffEntry: " + nullDiffEntry + "\nNullMatchedGumTreeResults: " + nullMappingGumTreeResults +
+//					"\nPureDeletion: " + pureDeletion + "\nLargeHunk: " + largeHunk + "\nNullSourceCode: " + nullSourceCode +
+//					"\nTestingInfo: " + testInfos + "\nTimeout: " + timeouts;
+//			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
+//			FileHelper.outputToFile("OUTPUT/UnfixedV_" + id + ".list", builder, false);
 
 			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
 			log.info("Worker #" + id + " finialized the work...");

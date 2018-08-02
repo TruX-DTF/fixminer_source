@@ -2,6 +2,7 @@ package edu.lu.uni.serval.FixPatternParser.cluster;
 
 import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -65,15 +66,32 @@ public class StoreFile {
                 .filter(x -> !x.getName().startsWith("."))
                 .collect(Collectors.toList());
         List<String> workList = new ArrayList<String>();
+        File[] dumps;
         for (File pj : pjs) {
             String pjName = pj.getName();
             File[] files = pj.listFiles();
             Stream<File> fileStream = Arrays.stream(files);
-            List<File> fs = fileStream
-                    .filter(x -> x.getName().startsWith(operation))
+            List<File> fs;
+            if (operation.equals("ALL")){
+                fs= fileStream
+                    .filter(x -> x.getName().startsWith("UPD") ||
+                            x.getName().startsWith("INS") ||
+                            x.getName().startsWith("DEL") ||
+                            x.getName().startsWith("MOV"))
                     .collect(Collectors.toList());
+                File[] files1 = fs.get(0).listFiles();
+                File[] files2 = fs.get(1).listFiles();
+                File[] files3 = fs.get(2).listFiles();
+                File[] files4 = fs.get(3).listFiles();
+                dumps = Stream.of(files1, files2, files3,files4).flatMap(Stream::of).toArray(File[]::new);
+            }else{
+                fs = fileStream
+                        .filter(x -> x.getName().startsWith(operation))
+                        .collect(Collectors.toList());
+                dumps = fs.get(0).listFiles();
+            }
 
-            File[] dumps = fs.get(0).listFiles();
+
             for (File f : dumps) {
                 String name = f.getName();
 

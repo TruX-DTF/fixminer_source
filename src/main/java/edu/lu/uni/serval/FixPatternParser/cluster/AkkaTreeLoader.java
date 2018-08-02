@@ -204,7 +204,7 @@ public class AkkaTreeLoader {
         List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
 
         if(keysByValue.size() != 1){
-            log.error("Birden cok astnodemapmapping");
+            log.error("More than 1");
         }
         newType = keysByValue.get(0);
         if(actionSet.getParent() == null){
