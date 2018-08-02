@@ -48,9 +48,9 @@ public class PatternExtractor {
 
         try {
 
-            String rootPath = "/Users/anilkoyuncu/bugStudy/code/python";
 
-            String IDLIST_PATH =rootPath + "/defects4jpatterns.txt";
+
+            String IDLIST_PATH =pythonPath + "/defects4jpatterns.txt";
 
             List<String> fixes = readIdList(IDLIST_PATH);
 
