@@ -2,8 +2,7 @@ package edu.lu.uni.serval;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
-import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
-import edu.lu.uni.serval.FixPatternParser.violations.TestHunkParser;
+
 
 import java.io.*;
 import java.nio.file.Files;
@@ -21,8 +20,6 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.getASTTree;
-import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.getSimpliedTree;
-import static edu.lu.uni.serval.Launcher.mainLaunch;
 
 /**
  * Created by anilkoyuncu on 02/08/2018.
@@ -79,7 +76,7 @@ public class PatternExtractor {
 //            inputPath = args[0];
 //            portInner = args[1];
 //            serverWait = args[2];
-//            chunkName = args[3];
+g//            chunkName = args[3];
 //            numOfWorkers = args[4];
 //            dbDir = args[5];
 //        } else {
@@ -90,15 +87,17 @@ public class PatternExtractor {
 //            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
 //            numOfWorkers = "1";
 //        }
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s \noperation %s", inputPath, portInner, serverWait, chunkName, dbDir, operation);
-        log.info(parameters);
-        CallShell cs = new CallShell();
-        String cmd = "bash " + dbDir + "/" + "startServer.sh" + " %s %s %s";
-        cmd = String.format(cmd, dbDir, chunkName, Integer.valueOf(portInner));
-//        loadRedis(cmd,serverWait);
-        cs.runShell(cmd, serverWait);
+//        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s \noperation %s", inputPath, portInner, serverWait, chunkName, dbDir, operation);
+//        log.info(parameters);
+//        CallShell cs = new CallShell();
+//        String cmd = "bash " + dbDir + "/" + "startServer.sh" + " %s %s %s";
+//        cmd = String.format(cmd, dbDir, chunkName, Integer.valueOf(portInner));
+////        loadRedis(cmd,serverWait);
+//        cs.runShell(cmd, serverWait);
 
-        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(6399),20000000);
+
+
 
         String clusterPath = "/Users/anilkoyuncu/bugStudy/release/dataset/output/clusterallDatasetUPD/";
         String savePath = "/Users/anilkoyuncu/bugStudy/release/dataset/dumps/";
@@ -108,7 +107,7 @@ public class PatternExtractor {
             Stream<File> stream = Arrays.stream(listOfFiles);
             List<File> patches = stream
                     .filter(x -> !x.getName().startsWith("."))
-                    .filter(x-> x.getName().endsWith(".git"))
+//                    .filter(x-> x.getName().endsWith(".git"))
                     .collect(Collectors.toList());
 
             for (File patch : patches) {
@@ -139,6 +138,8 @@ public class PatternExtractor {
 
 
 
+                    }else{
+                        log.error(fn);
                     }
 
                 } catch (Exception e) {
@@ -173,7 +174,7 @@ public class PatternExtractor {
             Stream<File> stream = Arrays.stream(listOfFiles);
             List<File> patches = stream
                     .filter(x -> !x.getName().startsWith("."))
-                    .filter(x -> x.getName().endsWith(".git"))
+//                    .filter(x -> x.getName().endsWith(".git"))
                     .collect(Collectors.toList());
 
             for (File patch : patches) {
@@ -271,7 +272,7 @@ public class PatternExtractor {
 
                 if (!line.trim().isEmpty()) {
 
-                    GitTravellerDefects4J.FixCommit test = new GitTravellerDefects4J.FixCommit(strArray[1],strArray[0]);
+//                    GitTravellerDefects4J.FixCommit test = new GitTravellerDefects4J.FixCommit(strArray[1],strArray[0]);
                     fixCommits.add(strArray[0]);
 //					for (String s : strArray) {
 //						if (!s.trim().isEmpty()) {
