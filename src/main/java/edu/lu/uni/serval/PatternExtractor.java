@@ -76,7 +76,7 @@ public class PatternExtractor {
 //            inputPath = args[0];
 //            portInner = args[1];
 //            serverWait = args[2];
-g//            chunkName = args[3];
+//            chunkName = args[3];
 //            numOfWorkers = args[4];
 //            dbDir = args[5];
 //        } else {
