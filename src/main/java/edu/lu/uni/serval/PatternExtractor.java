@@ -101,8 +101,17 @@ public class PatternExtractor {
 
         String clusterPath = "/Users/anilkoyuncu/bugStudy/release/dataset/output/clusterallDatasetUPD/";
         String savePath = "/Users/anilkoyuncu/bugStudy/release/dataset/dumps/";
-        for (String pattern:fixes) {
-            File folder = new File(clusterPath + pattern);
+        File patternsF  = new File(clusterPath);
+        File[] listOfPatterns = patternsF.listFiles();
+        Stream<File> patterns = Arrays.stream(listOfPatterns);
+        List<File> patternsL = patterns
+                .filter(x -> !x.getName().startsWith("."))
+//                    .filter(x-> x.getName().endsWith(".git"))
+                .collect(Collectors.toList());
+
+
+        for (File pattern:patternsL) {
+            File folder = new File(clusterPath + pattern.getName());
             File[] listOfFiles = folder.listFiles();
             Stream<File> stream = Arrays.stream(listOfFiles);
             List<File> patches = stream
@@ -118,7 +127,7 @@ public class PatternExtractor {
                 list.remove(list.size() - 1);
                 String joinFN = String.join("_", list);
                 fn = project + "/" + operation + "/" + joinFN;
-                String saveFN = pattern + "_"+ project + "_" + operation + "_" + joinFN;
+                String saveFN = pattern.getName() + "_"+ project + "_" + operation + "_" + joinFN;
                 Jedis inner = null;
                 String s = null;
                 try {
@@ -168,8 +177,17 @@ public class PatternExtractor {
     public static void getPattern(List<String> fixes,String operation){
         String clusterPath = "/Users/anilkoyuncu/bugStudy/release/dataset/output/clusterallDatasetUPD/";
         String savePath = "/Users/anilkoyuncu/bugStudy/release/dataset/dumps/";
-        for (String pattern:fixes) {
-            File folder = new File(clusterPath + pattern);
+
+        File patternsF  = new File(clusterPath);
+        File[] listOfPatterns = patternsF.listFiles();
+        Stream<File> patterns = Arrays.stream(listOfPatterns);
+        List<File> patternsL = patterns
+                .filter(x -> !x.getName().startsWith("."))
+//                    .filter(x-> x.getName().endsWith(".git"))
+                .collect(Collectors.toList());
+
+        for (File pattern:patternsL) {
+            File folder = new File(clusterPath + pattern.getName());
             File[] listOfFiles = folder.listFiles();
             Stream<File> stream = Arrays.stream(listOfFiles);
             List<File> patches = stream
@@ -185,7 +203,7 @@ public class PatternExtractor {
                 list.remove(list.size() - 1);
                 String joinFN = String.join("_", list);
                 fn = project + "/" + operation + "/" + joinFN;
-                String saveFN = pattern + "_" + project + "_" + operation + "_" + joinFN;
+                String saveFN = pattern.getName() + "_" + project + "_" + operation + "_" + joinFN;
                 try{
                 String content = new String(Files.readAllBytes(Paths.get(savePath + saveFN)));
                 HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(content);
