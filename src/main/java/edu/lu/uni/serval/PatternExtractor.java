@@ -222,8 +222,19 @@ public class PatternExtractor {
                     System.out.println("======");
                 }
                 
-
+//
 //                ITree simpliedTree = getSimpliedTree(actionSet);
+//                simpliedTree.toString();
+//                ITree simpliedTree = getSimpliedTree(actionSet);
+//
+//                List<String> oldTokens = new ArrayList<>();
+//                List<String> newTokens = new ArrayList<>();
+//                if(secondValue.startsWith("/2/")){
+//                    log.info("newss");
+//                }
+//                    // 41 return statement
+//                oldTokens = getNames(actionSet.getNode(),oldTokens);
+//
 //                simpliedTree.toString();
                 }catch (Exception e){
                     e.printStackTrace();
@@ -307,6 +318,101 @@ public class PatternExtractor {
 
 //                    GitTravellerDefects4J.FixCommit test = new GitTravellerDefects4J.FixCommit(strArray[1],strArray[0]);
                     fixCommits.add(strArray[0]);
+//					for (String s : strArray) {
+//						if (!s.trim().isEmpty()) {
+//							FixCommit test = new FixCommit("","");
+//							array[i][j++] = s;
+//						}
+//					}
+                    line = reader.readLine();
+//					i++;
+//					j = 0;
+                }
+            }
+            reader.close();
+            return fixCommits;
+        } catch (IOException ex) {
+            System.out.println("Problems..");
+        }
+        return null;
+    }
+
+
+
+    public static class ProjectLiteral {
+
+
+        private String name;
+        private String file;
+        private String packageName;
+        private String className;
+        private String extend;
+        private String[] StringLit;
+        private String[] NumLit;
+
+
+
+
+
+//        pj, file, p['packageName'], p['className'],
+//        p['extends'], p['StringLiteral'], p['NumberLiteral']
+        ProjectLiteral(){}
+
+        ProjectLiteral(String name, String file,String packageName, String className,String extend, String sLit, String nLit) {
+            this.name = name;
+            this.file = file;
+            this.packageName = packageName;
+            this.className = className;
+            this.extend = extend;
+            this.StringLit = sLit.split(";");
+            this.NumLit = nLit.split(";");
+
+
+        }
+//        projectLiterals.stream().filter(x->x.className.equals("XYTitleAnnotation")).collect(Collectors.toList())
+
+
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        List<ProjectLiteral> projectLiterals = readProjectCSV("/Users/anilkoyuncu/bugStudy/code/python/chart.csv");
+        System.out.print("");
+    }
+
+    public static List<ProjectLiteral> readProjectCSV(String fileName) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)));
+
+            // n = Rownum ; m = Colnum
+            List<ProjectLiteral> fixCommits = new ArrayList<ProjectLiteral>();
+            String line = reader.readLine();
+
+            int i = 0, j = 0;
+            while (line != null) {
+                String strArray[] = line.split("\t");
+
+                if (!line.trim().isEmpty()) {
+                    log.info(String.valueOf(strArray.length));
+                    ProjectLiteral a = new ProjectLiteral();
+                    if (strArray.length == 8) {
+                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], strArray[6], strArray[7]);
+                    }else if(strArray.length == 7){
+                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], strArray[6], "");
+                    }else if(strArray.length == 6){
+                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], "", "");
+
+                    }else if(strArray.length == 5){
+                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], "", "", "");
+                    }else if(strArray.length == 4){
+                        a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], "", "", "", "");
+                    }
+                    else{
+                        log.error("error");
+                    }
+
+//                    GitTravellerDefects4J.FixCommit test = new GitTravellerDefects4J.FixCommit(strArray[1],strArray[0]);
+                    fixCommits.add(a);
 //					for (String s : strArray) {
 //						if (!s.trim().isEmpty()) {
 //							FixCommit test = new FixCommit("","");
