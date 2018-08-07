@@ -12,6 +12,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import edu.lu.uni.serval.FixPattern.utils.Checker;
+import edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoader;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -175,15 +177,15 @@ public class PatternExtractor {
     }
 
     public static void getPattern(List<String> fixes,String operation){
-        String clusterPath = "/Users/anilkoyuncu/bugStudy/release/dataset/output/clusterallDatasetUPD/";
-        String savePath = "/Users/anilkoyuncu/bugStudy/release/dataset/dumps/";
+        String clusterPath = "/Users/kui.liu/Downloads/clusterallDatasetUPD/";
+        String savePath = "/Users/kui.liu/Downloads/dumps/";
 
         File patternsF  = new File(clusterPath);
         File[] listOfPatterns = patternsF.listFiles();
         Stream<File> patterns = Arrays.stream(listOfPatterns);
         List<File> patternsL = patterns
                 .filter(x -> !x.getName().startsWith("."))
-//                    .filter(x-> x.getName().endsWith(".git"))
+//                .filter(x -> !x.getName().endsWith(".git"))
                 .collect(Collectors.toList());
 
         for (File pattern:patternsL) {
@@ -192,7 +194,7 @@ public class PatternExtractor {
             Stream<File> stream = Arrays.stream(listOfFiles);
             List<File> patches = stream
                     .filter(x -> !x.getName().startsWith("."))
-//                    .filter(x -> x.getName().endsWith(".git"))
+                    .filter(x -> !x.getName().endsWith(".git"))
                     .collect(Collectors.toList());
 
             for (File patch : patches) {
@@ -208,13 +210,26 @@ public class PatternExtractor {
                 String content = new String(Files.readAllBytes(Paths.get(savePath + saveFN)));
                 HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(content);
 
+                int astType = actionSet.getNode().getType();
+                if (Checker.isStatement(astType) || astType == 23 //FieldDeclaration
+                       || astType == 31 //MethodDeclaration
+                       || astType == 55) {//TypeDeclaration
+                	System.out.println(actionSet);
+//                    ITree actionTree = MultiThreadTreeLoader.getActionTree(actionSet, null, null);
+//                    ITree simpliedTree = getSimpliedTree(actionSet);
+//                    System.out.println(new TreeToString().toString(simpliedTree));
+//                    System.out.println(new TreeToString().toString(actionTree));
+                    System.out.println("======");
+                }
+                
 
-                ITree simpliedTree = getSimpliedTree(actionSet);
-                simpliedTree.toString();
+//                ITree simpliedTree = getSimpliedTree(actionSet);
+//                simpliedTree.toString();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
+            System.out.println("============");
         }
     }
 
