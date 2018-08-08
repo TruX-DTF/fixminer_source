@@ -339,6 +339,8 @@ public class PatternExtractor {
         private String extend;
         private String[] StringLit;
         private String[] NumLit;
+        private String[] memberReference;
+        private String[] methodInvocation;
 
 
 
@@ -348,7 +350,7 @@ public class PatternExtractor {
 //        p['extends'], p['StringLiteral'], p['NumberLiteral']
         ProjectLiteral(){}
 
-        ProjectLiteral(String name, String file,String packageName, String className,String extend, String sLit, String nLit) {
+        ProjectLiteral(String name, String file,String packageName, String className,String extend, String sLit, String nLit, String mr ,String mi) {
             this.name = name;
             this.file = file;
             this.packageName = packageName;
@@ -356,6 +358,8 @@ public class PatternExtractor {
             this.extend = extend;
             this.StringLit = sLit.split(";");
             this.NumLit = nLit.split(";");
+            this.memberReference = mr.split(";");
+            this.methodInvocation = nLit.split(";");
 
 
         }
@@ -385,17 +389,21 @@ public class PatternExtractor {
                 if (!line.trim().isEmpty()) {
                     log.info(String.valueOf(strArray.length));
                     ProjectLiteral a = new ProjectLiteral();
-                    if (strArray.length == 8) {
-                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], strArray[6], strArray[7]);
+                    if (strArray.length == 10) {
+                        a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], strArray[6], strArray[7],strArray[8],strArray[9]);
+                    }else if (strArray.length == 9) {
+                        a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], strArray[6], strArray[7],strArray[8],"");
+                    }else if (strArray.length == 8) {
+                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], strArray[6], strArray[7],"","");
                     }else if(strArray.length == 7){
-                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], strArray[6], "");
+                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], strArray[6], "","","");
                     }else if(strArray.length == 6){
-                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], "", "");
+                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], strArray[5], "", "","","");
 
                     }else if(strArray.length == 5){
-                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], "", "", "");
+                         a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], strArray[4], "", "", "","","");
                     }else if(strArray.length == 4){
-                        a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], "", "", "", "");
+                        a = new ProjectLiteral(strArray[1], strArray[2], strArray[3], "", "", "", "","","");
                     }
                     else{
                         log.error("error");
