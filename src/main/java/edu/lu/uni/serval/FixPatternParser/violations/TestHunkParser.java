@@ -75,6 +75,7 @@ public class TestHunkParser {
 			try {
 				log.info("Akka begins...");
 				system = ActorSystem.create("Mining-FixPattern-System");
+				System.out.println(system.settings());
 				parsingActor = system.actorOf(ParseFixPatternActor.props(Integer.valueOf(numOfWorkers), project), "mine-fix-pattern-actor");
 				parsingActor.tell(msg, ActorRef.noSender());
 			} catch (Exception e) {

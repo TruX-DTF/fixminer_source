@@ -230,7 +230,7 @@ public class MultiThreadTreeLoaderCluster3 {
     }
 
 
-    private static List<String> getNames(ITree oldTree, List<String> oldTokens){
+    public static List<String> getNames(ITree oldTree, List<String> oldTokens){
 
         List<ITree> descendants = oldTree.getDescendants();
         descendants.add(0,oldTree);

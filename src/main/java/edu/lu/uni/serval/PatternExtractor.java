@@ -100,8 +100,8 @@ public class PatternExtractor {
 
 
 
-        String clusterPath = "/Users/anilkoyuncu/bugStudy/release/dataset/output/clusterallDatasetUPD/";
-        String savePath = "/Users/anilkoyuncu/bugStudy/release/dataset/dumps/";
+        String clusterPath = "/Users/anilkoyuncu/bugStudy/release/code/clusterallDataset"+operation+"/";
+        String savePath = "/Users/anilkoyuncu/bugStudy/release/dataset/dumps"+operation+"/";
         File patternsF  = new File(clusterPath);
         File[] listOfPatterns = patternsF.listFiles();
         Stream<File> patterns = Arrays.stream(listOfPatterns);
@@ -177,8 +177,8 @@ public class PatternExtractor {
 
     public static void getPattern(List<String> fixes,String operation){
         String clusterPath = "/Users/anilkoyuncu/bugStudy/release/dataset/output/clusterallDatasetUPD/";
-        String savePath = "/Users/anilkoyuncu/bugStudy/release/dataset/dumps/";
-
+//        String savePath = "/Users/anilkoyuncu/bugStudy/release/dataset/dumps/";
+        String savePath = "/Volumes/anil.koyuncu/dumps/";
         File patternsF  = new File(clusterPath);
         File[] listOfPatterns = patternsF.listFiles();
         Stream<File> patterns = Arrays.stream(listOfPatterns);

@@ -44,27 +44,27 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile,String project) {
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
 		if (actionSets.size() != 0) {
-			boolean isUpdate =
-					actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
-			boolean isInsert =
-					actionSets.stream().allMatch(p -> p.getAction() instanceof Insert);
-			boolean isDelete =
-					actionSets.stream().allMatch(p -> p.getAction() instanceof Delete);
-			boolean isMove =
-					actionSets.stream().allMatch(p -> p.getAction() instanceof Move);
+//			boolean isUpdate =
+//					actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
+//			boolean isInsert =
+//					actionSets.stream().allMatch(p -> p.getAction() instanceof Insert);
+//			boolean isDelete =
+//					actionSets.stream().allMatch(p -> p.getAction() instanceof Delete);
+//			boolean isMove =
+//					actionSets.stream().allMatch(p -> p.getAction() instanceof Move);
 			int hunkSet = 0;
-			if (isUpdate || isInsert || isDelete || isMove) {
+//			if (isUpdate || isInsert || isDelete || isMove) {
 				for (HierarchicalActionSet actionSet : actionSets) {
-					String folder = null;
-					if (isUpdate) {
-						folder = "/UPD/";
-					} else if (isDelete) {
-						folder = "/DEL/";
-					} else if (isInsert) {
-						folder = "/INS/";
-					} else if (isMove) {
-						folder = "/MOV/";
-					}
+					String folder = "/ALL/";
+//					if (isUpdate) {
+//						folder = "/UPD/";
+//					} else if (isDelete) {
+//						folder = "/DEL/";
+//					} else if (isInsert) {
+//						folder = "/INS/";
+//					} else if (isMove) {
+//						folder = "/MOV/";
+//					}
 
 
 					FileOutputStream f = null;
@@ -91,7 +91,7 @@ public class FixedViolationHunkParser extends FixedViolationParser {
 					hunkSet++;
 				}
 
-			}
+//			}
 		}
 
 	}
