@@ -1,14 +1,18 @@
 package edu.lu.uni.serval.gumtree.regroup;
 
-import com.github.gumtreediff.actions.model.*;
-import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.FixPattern.utils.CNodeMap;
-import edu.lu.uni.serval.gumtree.GumTreeComparer;
-import edu.lu.uni.serval.utils.ListSorter;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.github.gumtreediff.actions.model.Action;
+import com.github.gumtreediff.actions.model.Addition;
+import com.github.gumtreediff.actions.model.Delete;
+import com.github.gumtreediff.actions.model.Insert;
+import com.github.gumtreediff.actions.model.Move;
+import com.github.gumtreediff.actions.model.Update;
+import com.github.gumtreediff.tree.ITree;
+
+import edu.lu.uni.serval.FixPattern.utils.CNodeMap;
+import edu.lu.uni.serval.utils.ListSorter;
 
 /**
  * Regroup GumTree results to a hierarchical construction.
@@ -18,14 +22,14 @@ import java.util.List;
  */
 public class HierarchicalRegrouperForC {
 
-	public static void main(String[] args) {
-		GumTreeComparer com = new GumTreeComparer();
-		File cFile1 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/prevFiles/prev_0a3d00_b404bc_drivers#pci#iov.c");
-		File cFile2 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/revFiles/0a3d00_b404bc_drivers#pci#iov.c");
-		List<Action> action = com.compareTwoFilesWithGumTreeForCCode(cFile1, cFile2);
-		List<HierarchicalActionSet> actionSet = new HierarchicalRegrouperForC().regroupGumTreeResults(action);
-		System.out.println(actionSet);
-	}
+//	public static void main(String[] args) {
+//		GumTreeComparer com = new GumTreeComparer();
+//		File cFile1 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/prevFiles/prev_0a3d00_b404bc_drivers#pci#iov.c");
+//		File cFile2 = new File("/Users/anilkoyuncu/bugStudy/dataset/GumTreeInput/linux-stable/revFiles/0a3d00_b404bc_drivers#pci#iov.c");
+//		List<Action> action = com.compareTwoFilesWithGumTreeForCCode(cFile1, cFile2);
+//		List<HierarchicalActionSet> actionSet = new HierarchicalRegrouperForC().regroupGumTreeResults(action);
+//		System.out.println(actionSet);
+//	}
 	
 	List<HierarchicalActionSet> actionSets = new ArrayList<>();
 	

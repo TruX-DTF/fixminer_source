@@ -24,7 +24,7 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-        String appConfigPath = args[0];
+        String appConfigPath = "/Users/kui.liu/Downloads/app.properties";//args[0];
 //        String appConfigPath = "/Users/anilkoyuncu/bugStudy/release/code/app.properties";
         appProps.load(new FileInputStream(appConfigPath));
 
