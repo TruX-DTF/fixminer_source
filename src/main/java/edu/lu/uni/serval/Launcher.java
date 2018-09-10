@@ -77,6 +77,13 @@ public class Launcher {
                 case "CACHE":
                     StoreFile.main(gumOutput, portInner, serverWait, dbDir, actionType+dumpsName,actionType);
                     break;
+                case "COMP":
+                    CalculatePairs.main(serverWait, dbDir, actionType+dumpsName, portInner, pairsPath+actionType, pjName+actionType);
+
+                    ImportPairs2DB.main(pairsPath+actionType, portInner, serverWait, dbDir,datasetPath);
+
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +actionType+".csv.rdb" , port, actionType+dumpsName);
+
                 case "LEVEL1":
                     level1(portInner, serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, pairsPath, dumpsName, gumInput);
                     break;
@@ -112,13 +119,9 @@ public class Launcher {
         }
 
     private static void level1(String portInner, String serverWait, String port, String pythonPath, String datasetPath, String pjName, String actionType, String threshold, String dbDir, String pairsPath, String dumpsName, String gumInput) throws Exception {
-//        CalculatePairs.main(serverWait, dbDir, actionType+dumpsName, portInner, pairsPath+actionType, pjName+actionType);
-//
-//        ImportPairs2DB.main(pairsPath+actionType, portInner, serverWait, dbDir,datasetPath);
-//
-//        AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +actionType+".csv.rdb" , port, actionType+dumpsName);
-//
-//        TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ actionType+".rdb", dbDir ,pjName + actionType);
+
+
+        TreeLoaderClusterL1.main(portInner, serverWait, port, dbDir, "level1-"+pjName+ actionType+".rdb", dbDir ,pjName + actionType);
 
         CallShell cs1 =new CallShell();
         String db1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";

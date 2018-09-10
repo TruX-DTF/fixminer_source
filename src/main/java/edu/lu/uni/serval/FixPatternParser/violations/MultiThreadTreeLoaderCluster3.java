@@ -565,6 +565,8 @@ public class MultiThreadTreeLoaderCluster3 {
                 CharSequence[] oldSequences = oldTokens.toArray(new CharSequence[oldTokens.size()]);
                 CharSequence[] newSequences = newTokens.toArray(new CharSequence[newTokens.size()]);
                 JaroWinklerDistance jwd = new JaroWinklerDistance();
+                LevenshteinDistance ld = new LevenshteinDistance();
+
                 Double overallSimi = Double.valueOf(1);
                 if(oldSequences.length > 0 && (oldSequences.length == newSequences.length)){
                     for (int idx = 0; idx < newSequences.length; idx++) {

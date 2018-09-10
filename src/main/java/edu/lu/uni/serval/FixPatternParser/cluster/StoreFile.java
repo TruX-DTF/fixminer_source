@@ -72,7 +72,7 @@ public class StoreFile {
             File[] files = pj.listFiles();
             Stream<File> fileStream = Arrays.stream(files);
             List<File> fs;
-            if (operation.equals("ALL")){
+            if (operation.equals("ALLOP")){
                 fs= fileStream
                     .filter(x -> x.getName().startsWith("UPD") ||
                             x.getName().startsWith("INS") ||

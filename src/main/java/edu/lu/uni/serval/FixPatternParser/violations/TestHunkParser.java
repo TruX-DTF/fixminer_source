@@ -55,6 +55,7 @@ public class TestHunkParser {
 			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/INS");
 			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/DEL");
 			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MOV");
+			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/ALL");
 //            FileHelper.deleteDirectory(editScriptsFilePath);
 //            FileHelper.deleteDirectory(patchesSourceCodeFilePath);
 //            FileHelper.deleteDirectory(buggyTokensFilePath);

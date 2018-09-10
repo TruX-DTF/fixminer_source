@@ -32,7 +32,7 @@ public class ImportPairs2DB {
         File[] subFolders = folder.listFiles();
         Stream<File> stream = Arrays.stream(subFolders);
         List<File> pjs = stream
-                .filter(x -> x.getName().endsWith(".csv"))
+                .filter(x -> x.getName().endsWith(".txt"))
                 .collect(Collectors.toList());
         Integer portInt = Integer.valueOf(portInner);
 

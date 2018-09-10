@@ -10,6 +10,8 @@ import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.List;
 
 import static edu.lu.uni.serval.FixPatternParser.cluster.TreeLoaderClusterL1.poolConfig;
@@ -44,7 +46,7 @@ public class CalculatePairs {
 
             ScanParams sc = new ScanParams();
             //150000000
-            sc.count(150000000);
+            sc.count(1500000000);
             sc.match("*");
 
             scan = outer.scan("0", sc);
@@ -59,26 +61,9 @@ public class CalculatePairs {
         byte [] buf = new byte[0];
         String line = null;
         try {
-            FileOutputStream fos = new FileOutputStream(outputPath + "/" +pjName+".csv");
-            DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
-
-
-
-            for (int i = 0; i < result.size(); i++) {
-                for (int j = i + 1; j < result.size(); j++) {
-
-
-
-                    line = String.valueOf(i) +"," + String.valueOf(j) + "," + result.get(i) + "," + result.get(j)+"\n";
-                    outStream.write(line.getBytes());
-
-                }
-            }
-            outStream.close();
-//            int fileCounter = 0;
-//            FileChannel rwChannel = new RandomAccessFile(outputPath + "/" +pjName +String.valueOf(fileCounter)+".txt", "rw").getChannel();
-//            int maxSize = 500*500000;
-//            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, maxSize);
+//            FileOutputStream fos = new FileOutputStream(outputPath + "/" +pjName+".csv");
+//            DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
+//
 //
 //
 //            for (int i = 0; i < result.size(); i++) {
@@ -86,23 +71,40 @@ public class CalculatePairs {
 //
 //
 //
-//                    line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
-//                    buf  = line.getBytes();
-//                    if(wrBuf.remaining() > 500) {
-//                        wrBuf.put(buf);
-//                    }else{
-//                        log.info("Next pair dump");
-//                        fileCounter++;
-//                        rwChannel = new RandomAccessFile(outputPath+"/" +pjName+String.valueOf(fileCounter)+".txt", "rw").getChannel();
-//                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, maxSize);
-//                    }
-//
-//
-//
+//                    line = String.valueOf(i) +"," + String.valueOf(j) + "," + result.get(i) + "," + result.get(j)+"\n";
+//                    outStream.write(line.getBytes());
 //
 //                }
 //            }
-//            rwChannel.close();
+//            outStream.close();
+            int fileCounter = 0;
+            FileChannel rwChannel = new RandomAccessFile(outputPath + "/" +pjName +String.valueOf(fileCounter)+".txt", "rw").getChannel();
+            int maxSize = 500*500000;
+            ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, maxSize);
+
+
+            for (int i = 0; i < result.size(); i++) {
+                for (int j = i + 1; j < result.size(); j++) {
+
+
+
+                    line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
+                    buf  = line.getBytes();
+                    if(wrBuf.remaining() > 500) {
+                        wrBuf.put(buf);
+                    }else{
+                        log.info("Next pair dump");
+                        fileCounter++;
+                        rwChannel = new RandomAccessFile(outputPath+"/" +pjName+String.valueOf(fileCounter)+".txt", "rw").getChannel();
+                        wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, maxSize);
+                    }
+
+
+
+
+                }
+            }
+            rwChannel.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
