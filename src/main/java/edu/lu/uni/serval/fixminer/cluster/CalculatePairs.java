@@ -97,7 +97,8 @@ public class CalculatePairs {
 
 
 
-                    line = String.valueOf(i) +"\t" + String.valueOf(j)+"\n"; // + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
+//                    line = String.valueOf(i) +"\t" + String.valueOf(j)+"\n"; // + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
+                      line = String.valueOf(i) +"," + String.valueOf(j)+"\n"; // + "," + result.get(i) + "," + result.get(j)+"\n";
                     buf  = line.getBytes();
                     if(wrBuf.remaining() > 500) {
                         wrBuf.put(buf);
@@ -125,10 +126,10 @@ public class CalculatePairs {
             e.printStackTrace();
         }
 
-        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-        String stopServer2 = String.format(stopServer,Integer.valueOf(port));
-//        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer2,serverWait);
+//        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+//        String stopServer2 = String.format(stopServer,Integer.valueOf(port));
+////        loadRedis(stopServer2,serverWait);
+//        cs.runShell(stopServer2,serverWait);
         log.info("Done pairs");
     }
 
