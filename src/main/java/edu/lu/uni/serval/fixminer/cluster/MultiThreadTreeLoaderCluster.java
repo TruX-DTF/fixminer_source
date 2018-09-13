@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer.cluster;
 
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.*;
@@ -33,14 +33,14 @@ public class MultiThreadTreeLoaderCluster {
         CallShell cs = new CallShell();
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
-//        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
+//        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
         cs.runShell(cmd1,serverWait);
 
 
         String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
         cs.runShell(cmd2,serverWait);
-//        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
+//        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
 
 
         String cmd3;

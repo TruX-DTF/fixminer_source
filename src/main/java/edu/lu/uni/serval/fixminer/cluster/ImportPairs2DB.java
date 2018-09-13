@@ -1,18 +1,16 @@
-package edu.lu.uni.serval.FixPatternParser.cluster;
+package edu.lu.uni.serval.fixminer.cluster;
 
-import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-//import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
-//import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedisWait;
+//import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis;
+//import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedisWait;
 
 
 /**

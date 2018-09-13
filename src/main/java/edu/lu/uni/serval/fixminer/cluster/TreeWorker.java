@@ -1,24 +1,51 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer.cluster;
 
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
-
-import edu.lu.uni.serval.FixPatternParser.cluster.Compare;
+import edu.lu.uni.serval.config.Configuration;
+import edu.lu.uni.serval.fixminer.cluster.akka.TreeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.*;
+
+import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.poolConfig;
 
 public class TreeWorker extends UntypedActor {
 	private static Logger log = LoggerFactory.getLogger(TreeWorker.class);
 
 
+//	private JedisPool innerPool;
+//	private JedisPool outerPool;
+//
+//	public TreeWorker(String innerPort,String outerPort) {
+////		this.innerPool = innerPool;
+////		this.outerPool = outerPool;
+//		 this.outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(outerPort),20000000);
+//		 this.innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(innerPort),20000000);
+//
+//
+//	}
+//
+//	public static Props props(final String innerPort,final String outerPort) {
+//		return Props.create(new Creator<TreeWorker>() {
+//
+//			private static final long serialVersionUID = -7615153844097275009L;
+//
+//			@Override
+//			public TreeWorker create() throws Exception {
+//				return new TreeWorker(innerPort,outerPort);
+//			}
+//
+//		});
+//	}
 
-	public TreeWorker() {
-
+		public TreeWorker() {
 
 	}
 
@@ -35,47 +62,48 @@ public class TreeWorker extends UntypedActor {
 		});
 	}
 
+
+
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if(message instanceof edu.lu.uni.serval.FixPatternParser.violations.WorkMessage) {
+		if(message instanceof TreeMessage) {
 
 
 //		if (message instanceof edu.lu.uni.serval.MultipleThreadsParser.WorkMessage) {
-			edu.lu.uni.serval.FixPatternParser.violations.WorkMessage msg = (WorkMessage) message;
-			List<String> files = msg.getMsgFiles();
-			String innerPort = msg.getInnerPort();
-			String inputPath = msg.getInputPath();
-			String dbDir = msg.getDbDir();
-			String serverWait = msg.getServerWait();
+			TreeMessage msg = (TreeMessage) message;
+			List<String> files = msg.getName();
+			JedisPool innerPool = msg.getInnerPool();
+			JedisPool outerPool = msg.getOuterPool();
+
 			int id = msg.getId();
-			int counter = new Object() {
+//			int counter = new Object() {
 				int counter = 0;
 
 				//
-//			for (String name : files)
+			for (String name : files)
 				{
-					files.stream().
-							parallel().
-							peek(x -> counter++).
-							forEach(m ->
-									{
-										Compare compare = new Compare();
-//										compare.coreCompare(m, inputPath, innerPort);
-									}
-							);
-				}
-			}.counter;
+//					files.stream().
+//							parallel().
+//							peek(x -> counter++).
+//							forEach(m ->
+//									{
+//										Compare compare = new Compare();
+//										compare.coreCompare(m, innerPool, outerPool);
+//									}
+//							);
+//				}
+//			}.counter;
 
 //
-//				final ExecutorService executor = Executors.newFixedThreadPool(20);
+				final ExecutorService executor = Executors.newFixedThreadPool(20);
 //				// schedule the work
-//				final Future<?> future = executor.submit(new RunnableCompare(name, inputPath, innerPort, new Compare(poolConfig)));
-//				try {
-					// wait for task to complete
-//					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
-//					Compare compare = new Compare(poolConfig);
-//					compare.coreCompare(name, inputPath, innerPort);
-//					counter++;
+				final Future<?> future = executor.submit(new RunnableCompare(name, innerPool, outerPool, new Compare()));
+				try {
+//					 wait for task to complete
+					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
+					Compare compare = new Compare();
+					compare.coreCompare(name, innerPool, outerPool);
+					counter++;
 //					nullDiffEntry += parser.nullMatchedDiffEntry;
 //					nullMappingGumTreeResults += parser.nullMappingGumTreeResult;
 //					pureDeletion += parser.pureDeletions;
@@ -115,22 +143,22 @@ public class TreeWorker extends UntypedActor {
 //							testingInfo.setLength(0);
 //						}
 //					}
-//				} catch (TimeoutException e) {
-//					future.cancel(true);
+				} catch (TimeoutException e) {
+					future.cancel(true);
 //////					timeouts += countAlarms(positionFile, "#Timeout:");
 //					System.err.println("#Timeout: " + name);
-//				} catch (InterruptedException e) {
+				} catch (InterruptedException e) {
 //////					timeouts += countAlarms(positionFile, "#TimeInterrupted:");
 ////					System.err.println("#TimeInterrupted: " + revFile.getName());
-//					e.printStackTrace();
-//				} catch (ExecutionException e) {
+					e.printStackTrace();
+				} catch (ExecutionException e) {
 //////					timeouts += countAlarms(positionFile, "#TimeAborted:");
 ////					System.err.println("#TimeAborted: " + revFile.getName());
-//					e.printStackTrace();
-//				} finally {
-//					executor.shutdownNow();
-//				}
-//			}
+					e.printStackTrace();
+				} finally {
+					executor.shutdownNow();
+				}
+			}
 
 			log.info("bitti");
 			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
@@ -169,24 +197,24 @@ public class TreeWorker extends UntypedActor {
 		}
 	}
 
-	static final JedisPoolConfig poolConfig = buildPoolConfig();
-
-
-	private static JedisPoolConfig buildPoolConfig() {
-		final JedisPoolConfig poolConfig = new JedisPoolConfig();
-		poolConfig.setMaxTotal(128);
-		poolConfig.setMaxIdle(128);
-		poolConfig.setMinIdle(16);
-		poolConfig.setTestOnBorrow(true);
-		poolConfig.setTestOnReturn(true);
-		poolConfig.setTestWhileIdle(true);
-		poolConfig.setMinEvictableIdleTimeMillis(Duration.ofMinutes(60).toMillis());
-		poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofHours(30).toMillis());
-		poolConfig.setNumTestsPerEvictionRun(3);
-		poolConfig.setBlockWhenExhausted(true);
-
-		return poolConfig;
-	}
+//	static final JedisPoolConfig poolConfig = buildPoolConfig();
+//
+//
+//	private static JedisPoolConfig buildPoolConfig() {
+//		final JedisPoolConfig poolConfig = new JedisPoolConfig();
+//		poolConfig.setMaxTotal(128);
+//		poolConfig.setMaxIdle(128);
+//		poolConfig.setMinIdle(16);
+//		poolConfig.setTestOnBorrow(true);
+//		poolConfig.setTestOnReturn(true);
+//		poolConfig.setTestWhileIdle(true);
+//		poolConfig.setMinEvictableIdleTimeMillis(Duration.ofMinutes(60).toMillis());
+//		poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofHours(30).toMillis());
+//		poolConfig.setNumTestsPerEvictionRun(3);
+//		poolConfig.setBlockWhenExhausted(true);
+//
+//		return poolConfig;
+//	}
 
 
 

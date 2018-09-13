@@ -1,19 +1,8 @@
-package edu.lu.uni.serval;
+package edu.lu.uni.serval.fixminer;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
-
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.Duration;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import edu.lu.uni.serval.FixPattern.utils.Checker;
-import edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoader;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +10,18 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.getASTTree;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.getASTTree;
 
 /**
  * Created by anilkoyuncu on 02/08/2018.

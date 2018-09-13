@@ -1,41 +1,25 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer.cluster;
 
-import static edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoader.getKeysByValue;
-import static edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster.fromString;
-
-import java.io.BufferedOutputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import com.github.gumtreediff.tree.ITree;
+import com.github.gumtreediff.tree.TreeContext;
+import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+import edu.lu.uni.serval.utils.FileHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.similarity.JaroWinklerDistance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.*;
 
-import com.github.gumtreediff.tree.ITree;
-import com.github.gumtreediff.tree.TreeContext;
+import java.io.*;
+import java.time.Duration;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
-import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
-import edu.lu.uni.serval.utils.FileHelper;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
-import redis.clients.jedis.ScanParams;
-import redis.clients.jedis.ScanResult;
+import static edu.lu.uni.serval.fixminer.cluster.MultiThreadTreeLoader.getKeysByValue;
+import static edu.lu.uni.serval.fixminer.cluster.MultiThreadTreeLoaderCluster.fromString;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -52,12 +36,12 @@ public class MultiThreadTreeLoaderCluster3 {
         CallShell cs = new CallShell();
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
-//        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
+//        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
         cs.runShell(cmd1,serverWait);
 
         String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
-//        edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
+//        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
         cs.runShell(cmd2,serverWait);
 
         String cmd3;
@@ -95,7 +79,7 @@ public class MultiThreadTreeLoaderCluster3 {
                     if (size == 0) {
                         String comd = String.format(cmd3, f.getPath(), portInner);
                         cs.runShell(comd);
-//                        edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster.
+//                        edu.lu.uni.serval.fixminer.cluster.MultiThreadTreeLoaderCluster.
 //                                loadRedis(comd);
 
                         scan = jedis.scan("0", sc);
@@ -569,20 +553,22 @@ public class MultiThreadTreeLoaderCluster3 {
                 CharSequence[] oldSequences = oldTokens.toArray(new CharSequence[oldTokens.size()]);
                 CharSequence[] newSequences = newTokens.toArray(new CharSequence[newTokens.size()]);
                 JaroWinklerDistance jwd = new JaroWinklerDistance();
-                LevenshteinDistance ld = new LevenshteinDistance();
+//                LevenshteinDistance ld = new LevenshteinDistance();
 
-                Double overallSimi = Double.valueOf(1);
+                Double overallSimi = Double.valueOf(0);
                 if(oldSequences.length > 0 && (oldSequences.length == newSequences.length)){
                     for (int idx = 0; idx < newSequences.length; idx++) {
                         Double simi = jwd.apply(newSequences[idx], oldSequences[idx]);
-                        overallSimi = simi * overallSimi;
+                        overallSimi = simi + overallSimi;
                     }
+                    overallSimi = overallSimi / oldSequences.length;
                 }else{
                     overallSimi = Double.valueOf(0);
 //                    if(oldSequences.length != 0) {
 //                        log.info("ERROR");
 //                    }
                 }
+
                 int retval = Double.compare(overallSimi, Double.valueOf(0.8));
                 if(retval >= 0){
 

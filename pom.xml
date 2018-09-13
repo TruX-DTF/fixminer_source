@@ -140,8 +140,8 @@
 							<archive>
 								<manifest>
 									<mainClass>
-                                        edu.lu.uni.serval.Launcher
-                                    </mainClass>
+										edu.lu.uni.serval.fixminer.Launcher
+									</mainClass>
 								</manifest>
 							</archive>
 							<descriptorRefs>

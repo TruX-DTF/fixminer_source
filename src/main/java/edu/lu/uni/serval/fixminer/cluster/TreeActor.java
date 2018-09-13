@@ -1,17 +1,19 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer.cluster;
 
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import akka.routing.RoundRobinPool;
-
+import edu.lu.uni.serval.fixminer.cluster.akka.TreeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 
-import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
+import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis;
 
 public class TreeActor extends UntypedActor {
 
@@ -21,20 +23,14 @@ public class TreeActor extends UntypedActor {
 	private final int numberOfWorkers;
 	private int counter = 0;
 
-	private String innerPort;
-	private String dbDir;
-	private String serverWait;
 
-	public TreeActor(int numberOfWorkers,String dbDir,String innerPort,String serverWait) {
+	public TreeActor(int numberOfWorkers) {
 		mineRouter = this.getContext().actorOf(new RoundRobinPool(numberOfWorkers)
 				.props(TreeWorker.props()), "tree-router");
 		this.numberOfWorkers = numberOfWorkers;
-		this.innerPort = innerPort;
-		this.dbDir = dbDir;
-		this.serverWait = serverWait;
 	}
 
-	public static Props props(final int numberOfWorkers, final String dbDir,final String innerPort, final String serverWait) {
+	public static Props props(final int numberOfWorkers) {
 
 		return Props.create(new Creator<TreeActor>() {
 
@@ -42,7 +38,7 @@ public class TreeActor extends UntypedActor {
 
 			@Override
 			public TreeActor create() throws Exception {
-				return new TreeActor(numberOfWorkers,dbDir,innerPort,serverWait);
+				return new TreeActor(numberOfWorkers);
 			}
 
 		});
@@ -51,14 +47,13 @@ public class TreeActor extends UntypedActor {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if (message instanceof WorkMessage) {
-			List<String> files = ((WorkMessage) message).getMsgFiles();
-			String innerPort = ((WorkMessage) message).getInnerPort();
-			String inputPath = ((WorkMessage) message).getInputPath();
-			String dbDir = ((WorkMessage) message).getDbDir();
-			String serverWait = ((WorkMessage) message).getServerWait();
+		if (message instanceof TreeMessage) {
+			List<String> pairs = ((TreeMessage) message).getName();
+			JedisPool innerPool = ((TreeMessage) message).getInnerPool();
+			JedisPool outerPool = ((TreeMessage) message).getOuterPool();
 
-			int size = files.size();
+
+			int size = pairs.size();
 			int average = size / numberOfWorkers;
 			int reminder = size % numberOfWorkers;
 			int counter = 0;
@@ -68,8 +63,8 @@ public class TreeActor extends UntypedActor {
 				if (counter < reminder) counter ++;
 				int toIndex = (i + 1) * average + counter;
 
-				List<String> filesOfWorkers = files.subList(fromIndex, toIndex);
-				final WorkMessage workMsg = new WorkMessage(i + 1, filesOfWorkers,innerPort,inputPath,dbDir,serverWait);
+				List<String> pairsOfWorkers = pairs.subList(fromIndex, toIndex);
+				final TreeMessage workMsg = new TreeMessage(i + 1, pairsOfWorkers,innerPool,outerPool);
 				mineRouter.tell(workMsg, getSelf());
 				logger.info("Assign a task to worker #" + (i + 1) + "...");
 			}
@@ -81,9 +76,7 @@ public class TreeActor extends UntypedActor {
 				this.getContext().stop(mineRouter);
 				this.getContext().stop(getSelf());
 				this.getContext().system().shutdown();
-				String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-                stopServer = String.format(stopServer,Integer.valueOf(innerPort));
-                loadRedis(stopServer,serverWait);
+
 			}
 		} else {
 			unhandled(message);

@@ -1,10 +1,7 @@
-package edu.lu.uni.serval;
+package edu.lu.uni.serval.fixminer;
 
-import edu.lu.uni.serval.FixPatternParser.cluster.*;
-import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
-import edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster;
-import edu.lu.uni.serval.FixPatternParser.violations.MultiThreadTreeLoaderCluster3;
 import edu.lu.uni.serval.FixPatternParser.violations.TestHunkParser;
+import edu.lu.uni.serval.fixminer.cluster.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,37 +21,40 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-        String appConfigPath = "/Users/kui.liu/Downloads/app.properties";//args[0];
+//        String appConfigPath = "/Users/kui.liu/Downloads/app.properties";//args[0];
 //        String appConfigPath = "/Users/anilkoyuncu/bugStudy/release/code/app.properties";
+        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
         String portInner = appProps.getProperty("portInner","6380");
         String serverWait = appProps.getProperty("serverWait", "50000");
         String numOfWorkers = appProps.getProperty("numOfWorkers", "10");
         String jobType = appProps.getProperty("jobType","ALL");
-        String port = appProps.getProperty("port","6399");
+        String portDumps = appProps.getProperty("portDumps","6399");
         String pythonPath = appProps.getProperty("pythonPath","/Users/anilkoyuncu/bugStudy/code/python");
         String datasetPath = appProps.getProperty("datasetPath","/Users/anilkoyuncu/bugStudy/dataset");
         String pjName = appProps.getProperty("pjName","allDataset");
         String dbNo = appProps.getProperty("dbNo","0");
         String actionType = appProps.getProperty("actionType","ALL");
         String threshold = appProps.getProperty("threshold","1");
+        String cursor = appProps.getProperty("cursor","10000000");
+        String chunk = appProps.getProperty("chunk","1.txt");
 
         String parameters = String.format("\nportInner %s " +
                 "\nserverWait %s \nnumOfWorkers %s " +
                 "\njobType %s \nport %s " +
                 "\npythonPath %s \ndatasetPath %s" +
-                "\npjName %s \ndbNo %s \nactionType %s \nthreshold %s"
-                , portInner, serverWait, numOfWorkers, jobType, port, pythonPath,datasetPath,pjName,dbNo,actionType,threshold);
+                "\npjName %s \ndbNo %s \nactionType %s \nthreshold %s \ncursor %s"
+                , portInner, serverWait, numOfWorkers, jobType, portDumps, pythonPath,datasetPath,pjName,dbNo,actionType,threshold,cursor);
 
         log.info(parameters);
 
-        mainLaunch(portInner, serverWait, numOfWorkers, jobType, port, pythonPath,datasetPath,pjName,dbNo,actionType,threshold);
+        mainLaunch(portInner, serverWait, numOfWorkers, jobType, portDumps, pythonPath,datasetPath,pjName,dbNo,actionType,threshold,cursor,chunk);
 
 
     }
 
-    public static void mainLaunch(String portInner,String serverWait, String numOfWorkers,String jobType,String port, String pythonPath, String datasetPath, String pjName, String dbNo, String actionType,String threshold){
+    public static void mainLaunch(String portInner, String serverWait, String numOfWorkers, String jobType, String portDumps, String pythonPath, String datasetPath, String pjName, String dbNo, String actionType, String threshold, String cursor, String chunk){
 
 
         String dbDir;
@@ -75,38 +75,40 @@ public class Launcher {
                     TestHunkParser.main(gumInput, gumOutput, numOfWorkers, pjName);
                     break;
                 case "CACHE":
-                    StoreFile.main(gumOutput, portInner, serverWait, dbDir, actionType+dumpsName,actionType);
+                    StoreFile.main(gumOutput, portDumps, serverWait, dbDir, actionType+dumpsName,actionType);
                     break;
                 case "COMP":
-                    CalculatePairs.main(serverWait, dbDir, actionType+dumpsName, portInner, pairsPath+actionType, pjName+actionType);
+                    CalculatePairs.main(serverWait, dbDir, actionType+dumpsName, portDumps, pairsPath+actionType, pjName+actionType);
 
                     ImportPairs2DB.main(pairsPath+actionType, portInner, serverWait, dbDir,datasetPath);
-
-                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +actionType+".csv.rdb" , port, actionType+dumpsName);
+                    break;
+                case "AKKA":
+                    AkkaTreeLoader.main(portInner, serverWait, dbDir, pjName +actionType+chunk+".rdb" , portDumps, actionType+dumpsName,pairsPath+actionType,numOfWorkers,cursor);
+                    break;
 
                 case "LEVEL1":
-                    level1(portInner, serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, pairsPath, dumpsName, gumInput);
+                    level1(portInner, serverWait, portDumps, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, pairsPath, dumpsName, gumInput);
                     break;
                 //CALC python abstractPatch.py to from cluster folder
                 case "LEVEL2":
-                    level2(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
+                    level2(serverWait, portDumps, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
                     break;
                 //CALC via python
                 case "LEVEL3":
-                    level3(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
+                    level3(serverWait, portDumps, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
                     break;
                 case "ALL":
 //                    TestHunkParser.main(gumInput, gumOutput, numOfWorkers, pjName);
-                    StoreFile.main(gumOutput, portInner, serverWait, dbDir, actionType+dumpsName,actionType);
-                    level1(portInner, serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, pairsPath, dumpsName, gumInput);
-                    level2(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
-                    level3(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
+//                    StoreFile.main(gumOutput, portInner, serverWait, dbDir, actionType+dumpsName,actionType);
+//                    level1(portInner, serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, pairsPath, dumpsName, gumInput);
+//                    level2(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
+//                    level3(serverWait, port, pythonPath, datasetPath, pjName, actionType, threshold, dbDir, dumpsName, gumInput);
                     break;
                 case "EXTRACTPATTERN":
-                    PatternExtractor.mainLaunch(portInner,serverWait,numOfWorkers,jobType,port,pythonPath,datasetPath,pjName,dbNo,actionType,threshold);
+                    PatternExtractor.mainLaunch(portInner,serverWait,numOfWorkers,jobType,portDumps,pythonPath,datasetPath,pjName,dbNo,actionType,threshold);
                     break;
                 case "GETPATTERN":
-                    PatternExtractor.mainLaunch(portInner,serverWait,numOfWorkers,jobType,port,pythonPath,datasetPath,pjName,dbNo,actionType,threshold);
+                    PatternExtractor.mainLaunch(portInner,serverWait,numOfWorkers,jobType,portDumps,pythonPath,datasetPath,pjName,dbNo,actionType,threshold);
                     break;
             }
         } catch (Exception e) {

@@ -1,14 +1,10 @@
-package edu.lu.uni.serval.FixPatternParser.cluster;
+package edu.lu.uni.serval.fixminer.cluster;
 
-import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
-import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
-import redis.clients.jedis.ScanResult;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,8 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.loadRedis;
-import static edu.lu.uni.serval.FixPatternParser.cluster.TreeLoaderClusterL1.poolConfig;
+import static edu.lu.uni.serval.fixminer.cluster.TreeLoaderClusterL1.poolConfig;
 
 /**
  * Created by anilkoyuncu on 03/04/2018.

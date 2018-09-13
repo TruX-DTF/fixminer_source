@@ -1,6 +1,5 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer.cluster;
 
-import edu.lu.uni.serval.FixPatternParser.cluster.Compare;
 import redis.clients.jedis.JedisPool;
 
 public class RunnableCompare implements Runnable {

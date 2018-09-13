@@ -1,11 +1,10 @@
-package edu.lu.uni.serval.FixPatternParser.cluster;
+package edu.lu.uni.serval.fixminer.cluster;
 
 import com.github.gumtreediff.tree.ITree;
-import com.github.gumtreediff.tree.Tree;
 import com.github.gumtreediff.tree.TreeContext;
 import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
-import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;
@@ -16,7 +15,8 @@ import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import org.junit.Assert;
+
+import static edu.lu.uni.serval.fixminer.cluster.akka.AkkaTreeParser.akkaCompare;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -71,7 +71,7 @@ public class AkkaTreeLoader {
     private static Consumer<String> consumer = Assert::assertNotNull;
 
 
-    public static void main(String portInner,String serverWait,String dbDir,String chunkName,String port, String dumpsName) throws Exception {
+    public static void main(String portInner, String serverWait, String dbDir, String chunkName, String port, String dumpsName, String pairsPath, String numOfWorkers, String cursor) throws Exception {
 
 
         String parameters = String.format("\nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s \ndumpsName %s",portInner,serverWait,chunkName,dbDir,dumpsName);
@@ -81,57 +81,115 @@ public class AkkaTreeLoader {
         CallShell cs = new CallShell();
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String cmd1 = String.format(cmd, dbDir,dumpsName,Integer.valueOf(port));
-
+//
         cs.runShell(cmd1,serverWait);
         String cmdInner = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String cmd2 = String.format(cmdInner, dbDir,chunkName,Integer.valueOf(portInner));
-
+        log.info(cmd1);
+        log.info(cmd2);
+//
         cs.runShell(cmd2,serverWait);
         JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
         JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
 
 
+//        Jedis jedis = new Jedis(new URI("redis://localhost:"+port));
+//        while (!jedis.ping().equals("PONG")){
+//            log.info("wait");
+//        }
+//
+//        jedis = new Jedis(new URI("redis://localhost:"+portInner));
+//        while (!jedis.ping().equals("PONG")){
+//            log.info("wait");
+//        }
 
-        comparePairs(innerPool,outerPool);
 
-        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-        String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
+//        String pairsIndexFile = pairsPath + "/"+ chunkName;
+//        pairsIndexFile = pairsIndexFile.replace("csv.rdb","index");
+//
+//
+//        Pattern pattern = Pattern.compile(",");
+//        String csvFile = pairsIndexFile;
+//        try {
+//            try (BufferedReader in = new BufferedReader(new FileReader(csvFile));){
+//                Map<String,String> namefreq = in
+//                        .lines()
+//                        //                                .skip(1)
+//                        .map(x -> pattern.split(x))
+//                        //                                .filter(x -> x[4].equals("CA") && x[3].equals("F"))
+//                        .collect(HashMap::new, (map, x) ->
+//                                        map.put(x[0], x[1]),
+//                                Map::putAll);
+//                //                        namefreq.forEach((k, v) -> System.out.println(k + " => " + v));
+//
+//                Jedis inner = null;
+//                try {
+//                    inner = outerPool.getResource();
+//
+//                    for (Map.Entry<String, String> entry : namefreq.entrySet()) {
+//                        String key = entry.getKey();
+//                        String value = entry.getValue();
+//                        inner.select(1);
+//                        inner.set(key,value);
+//                        // ...
+//                    }
+//
+//
+//                }finally {
+//                    if (inner != null) {
+//                        inner.close();
+//                    }
+//                }
+//
+//
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        cs.runShell(stopServer1,serverWait);
-        stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-        String stopServer2 = String.format(stopServer,Integer.valueOf(port));
 
-        cs.runShell(stopServer2,serverWait);
+
+//        comparePairs(innerPool,outerPool);
+        akkaCompare(innerPool,outerPool,numOfWorkers,cursor);
+
+//        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+//        String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
+//
+//        cs.runShell(stopServer1,serverWait);
+//        stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+//        String stopServer2 = String.format(stopServer,Integer.valueOf(port));
+//
+//        cs.runShell(stopServer2,serverWait);
 
 
     }
-
 
     public static void comparePairs(JedisPool innerPool,JedisPool outerPool){
 
 
                 ScanResult<String> scan;
+
                 try (Jedis inner = innerPool.getResource()) {
-                    while (inner.ping()== "PONG"){
+                    while (!inner.ping().equals("PONG")){
                         log.info("wait");
                     }
 
                     ScanParams sc = new ScanParams();
                     //150000000
-                    sc.count(150000000);
+                    log.info("Scanning ");
+                    sc.count(250000000);
+
                     sc.match("pair_[0-9]*");
 
                     scan = inner.scan("0", sc);
                     int size = scan.getResult().size();
-                    log.info("Scanning " + String.valueOf(size));
+                    log.info("Scanned " + String.valueOf(size));
                 }
                 List<String> result = scan.getResult();
-
-
-
+                log.info("Getting results");
                 result
-                        .parallelStream()
-                        .forEach(m ->
+                .parallelStream()
+                .forEach(m ->
                         {
                             Compare compare = new Compare();
                             compare.coreCompare(m, innerPool, outerPool);
@@ -165,14 +223,20 @@ public class AkkaTreeLoader {
         Jedis inner = null;
         try {
             inner = outerPool.getResource();
-            String s = inner.get(fn);
+            while (!inner.ping().equals("PONG")){
+                log.info("wait");
+            }
+            inner.select(1);
+            String dist2load = inner.get(fn);
+            inner.select(0);
+            String s = inner.get(dist2load);
             HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(s);
 
             ITree parent = null;
             ITree children =null;
             TreeContext tc = new TreeContext();
             tree = getASTTree(actionSet, parent, children,tc);
-//            tree.setParent(null);
+            tree.setParent(null);
             tc.validate();
 
         } catch (IOException e) {

@@ -1,6 +1,5 @@
-package edu.lu.uni.serval.FixPatternParser.cluster;
+package edu.lu.uni.serval.fixminer.cluster;
 
-import edu.lu.uni.serval.FixPatternParser.violations.CallShell;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.List;
 
-import static edu.lu.uni.serval.FixPatternParser.cluster.TreeLoaderClusterL1.poolConfig;
+import static edu.lu.uni.serval.fixminer.cluster.TreeLoaderClusterL1.poolConfig;
 
 /**
  * Created by anilkoyuncu on 05/04/2018.
@@ -64,31 +63,41 @@ public class CalculatePairs {
 //            FileOutputStream fos = new FileOutputStream(outputPath + "/" +pjName+".csv");
 //            DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));
 //
+            FileOutputStream fosIndex = new FileOutputStream(outputPath + "/" +pjName+".index");
+            DataOutputStream outStreamIndex = new DataOutputStream(new BufferedOutputStream(fosIndex));
+//
+//
 //
 //
 //            for (int i = 0; i < result.size(); i++) {
+//                line = String.valueOf(i) +"," + result.get(i)+"\n";
+//                outStreamIndex.write(line.getBytes());
+//
 //                for (int j = i + 1; j < result.size(); j++) {
 //
 //
 //
-//                    line = String.valueOf(i) +"," + String.valueOf(j) + "," + result.get(i) + "," + result.get(j)+"\n";
+//                    line = String.valueOf(i) +"," + String.valueOf(j)+"\n"; // + "," + result.get(i) + "," + result.get(j)+"\n";
 //                    outStream.write(line.getBytes());
 //
 //                }
 //            }
 //            outStream.close();
+//            outStreamIndex.close();
             int fileCounter = 0;
             FileChannel rwChannel = new RandomAccessFile(outputPath + "/" +pjName +String.valueOf(fileCounter)+".txt", "rw").getChannel();
-            int maxSize = 500*500000;
+            int maxSize = 500*1000000;
             ByteBuffer wrBuf = rwChannel.map(FileChannel.MapMode.READ_WRITE, 0, maxSize);
 
 
             for (int i = 0; i < result.size(); i++) {
+                line = String.valueOf(i) +"," + result.get(i)+"\n";
+                outStreamIndex.write(line.getBytes());
                 for (int j = i + 1; j < result.size(); j++) {
 
 
 
-                    line = String.valueOf(i) +"\t" + String.valueOf(j) + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
+                    line = String.valueOf(i) +"\t" + String.valueOf(j)+"\n"; // + "\t" + result.get(i) + "\t" + result.get(j)+"\n";
                     buf  = line.getBytes();
                     if(wrBuf.remaining() > 500) {
                         wrBuf.put(buf);
@@ -104,6 +113,7 @@ public class CalculatePairs {
 
                 }
             }
+            outStreamIndex.close();
             rwChannel.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

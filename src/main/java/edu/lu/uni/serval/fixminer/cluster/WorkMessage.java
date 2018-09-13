@@ -1,6 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
-
-import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
+package edu.lu.uni.serval.fixminer.cluster;
 
 import java.util.List;
 

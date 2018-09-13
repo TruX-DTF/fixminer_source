@@ -1,9 +1,11 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer.cluster;
 
 /**
  * Created by anilkoyuncu on 17/04/2018.
  */
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 public class CallShell {
 
 

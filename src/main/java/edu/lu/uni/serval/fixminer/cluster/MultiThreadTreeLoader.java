@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer.cluster;
 
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.*;
@@ -14,11 +14,7 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;
 
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.Executors;

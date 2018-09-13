@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser.cluster;
+package edu.lu.uni.serval.fixminer.cluster;
 
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.Action;
@@ -13,7 +13,7 @@ import redis.clients.jedis.JedisPool;
 import java.util.List;
 import java.util.Map;
 
-import static edu.lu.uni.serval.FixPatternParser.cluster.AkkaTreeLoader.getSimpliedTree;
+import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.getSimpliedTree;
 
 /**
  * Created by anilkoyuncu on 03/04/2018.
@@ -23,7 +23,7 @@ public class Compare {
     private Logger log = LoggerFactory.getLogger(Compare.class);
 
 
-    public void coreCompare(String name , JedisPool innerPool, JedisPool outerPool) {
+    public void coreCompare(String name, JedisPool innerPool, JedisPool outerPool) {
 
         Map<String, String> resultMap;
         Jedis jedis = null;
@@ -32,19 +32,21 @@ public class Compare {
 
         try {
             jedis = innerPool.getResource();
-            resultMap = jedis.hgetAll(name);
+//            resultMap = jedis.hgetAll(name);
 
             String[] split = name.split("_");
 
 
             String i = split[1];
             String j = split[2];
-            String firstValue = resultMap.get("0");
-            String secondValue = resultMap.get("1");
 
-            oldTree = getSimpliedTree(firstValue,outerPool);
 
-            newTree = getSimpliedTree(secondValue,outerPool);
+//            String firstValue = resultMap.get("0");
+//            String secondValue = resultMap.get("1");
+
+            oldTree = getSimpliedTree(i,outerPool);
+
+            newTree = getSimpliedTree(j,outerPool);
 
             Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
             m.match();
@@ -63,7 +65,7 @@ public class Compare {
 
             String editDistance = String.valueOf(actions.size());
 
-            String result = resultMap.get("0") + "," + resultMap.get("1") + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
+            String result = i + "," + j + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
 
 
             if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
@@ -77,7 +79,7 @@ public class Compare {
             }
 
 
-
+            jedis.select(0);
             jedis.del("pair_" + (String.valueOf(i)) + "_" + String.valueOf(j));
 
 
