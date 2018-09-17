@@ -1,19 +1,12 @@
 package edu.lu.uni.serval.gumtree.regroup;
 
+import com.github.gumtreediff.actions.model.*;
+import com.github.gumtreediff.tree.ITree;
+import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.utils.ListSorter;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.actions.model.Addition;
-import com.github.gumtreediff.actions.model.Delete;
-import com.github.gumtreediff.actions.model.Insert;
-import com.github.gumtreediff.actions.model.Move;
-import com.github.gumtreediff.actions.model.Update;
-import com.github.gumtreediff.tree.ITree;
-
-import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
-import edu.lu.uni.serval.FixPattern.utils.Checker;
-import edu.lu.uni.serval.utils.ListSorter;
 
 /**
  * Regroup GumTree results to a hierarchical construction.
@@ -22,7 +15,7 @@ import edu.lu.uni.serval.utils.ListSorter;
  *
  */
 public class HierarchicalRegrouper {
-	
+
 	public List<HierarchicalActionSet> regroupGumTreeResults(List<Action> actions) {
 		/*
 		 * First, sort actions by their positions.
@@ -70,6 +63,7 @@ public class HierarchicalRegrouper {
 				}
 			}
 		}
+
 		return reActionSets;
 	}
 
@@ -200,15 +194,12 @@ public class HierarchicalRegrouper {
 			if (type != 83 && type != 77 && type != 78 && type != 79
 				&& type != 5 && type != 39 && type != 43 && type != 74 && type != 75
 				&& type != 76 && type != 84 && type != 87 && type != 88 && type != 42) {
-				// ArrayType, PrimitiveType, SimpleType, ParameterizedType, 
+				// ArrayType, PrimitiveType, SimpleType, ParameterizedType,
 				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType, SimpleName
 				return null;
 			}
-//		} else if (parent.getType() == 31) { // method declaration
-//			int type = action.getNode().getType();
-//			if (Checker.isStatement(type)) {// statements
-//				return null;
-//			}
+
+
 		}
 		
 		for (Action act : actions) {
