@@ -5,7 +5,7 @@ import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.FixPattern.utils.EDiff;
+import edu.lu.uni.serval.utils.EDiff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

@@ -2,7 +2,6 @@ package edu.lu.uni.serval.fixminer.cluster.akka;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import edu.lu.uni.serval.fixminer.cluster.TreeActor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

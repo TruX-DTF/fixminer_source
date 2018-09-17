@@ -1,8 +1,9 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.fixminer.jobs;
 
-import edu.lu.uni.serval.FixPattern.utils.EDiffHelper;
-import edu.lu.uni.serval.FixPattern.utils.PoolBuilder;
-import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+import edu.lu.uni.serval.utils.CallShell;
+import edu.lu.uni.serval.utils.EDiffHelper;
+import edu.lu.uni.serval.utils.PoolBuilder;
+import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

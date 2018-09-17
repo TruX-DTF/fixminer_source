@@ -1,10 +1,11 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.fixminer.cluster.akka;
 
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import edu.lu.uni.serval.config.Configuration;
-import edu.lu.uni.serval.fixminer.cluster.akka.TreeMessage;
+import edu.lu.uni.serval.fixminer.cluster.Compare;
+import edu.lu.uni.serval.fixminer.cluster.RunnableCompare;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisPool;
@@ -65,7 +66,7 @@ public class TreeWorker extends UntypedActor {
 		if(message instanceof TreeMessage) {
 
 
-//		if (message instanceof edu.lu.uni.serval.MultipleThreadsParser.WorkMessage) {
+//		if (message instanceof edu.lu.uni.serval.fixminer.cluster.akka.EDiffMessage) {
 			TreeMessage msg = (TreeMessage) message;
 			List<String> files = msg.getName();
 			JedisPool innerPool = msg.getInnerPool();

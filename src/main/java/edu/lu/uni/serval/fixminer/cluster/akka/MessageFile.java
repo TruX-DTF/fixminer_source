@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.MultipleThreadsParser;
+package edu.lu.uni.serval.fixminer.cluster.akka;
 
 import java.io.File;
 

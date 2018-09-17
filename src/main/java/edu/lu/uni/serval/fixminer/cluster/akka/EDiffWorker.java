@@ -1,10 +1,10 @@
-package edu.lu.uni.serval.MultipleThreadsParser;
+package edu.lu.uni.serval.fixminer.cluster.akka;
 
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
+import edu.lu.uni.serval.FixPatternParser.FixedPatternHunkParser;
 import edu.lu.uni.serval.FixPatternParser.RunnableParser;
-import edu.lu.uni.serval.FixPatternParser.violations.FixedViolationHunkParser;
 import edu.lu.uni.serval.config.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,24 +13,24 @@ import java.io.File;
 import java.util.List;
 import java.util.concurrent.*;
 
-public class ParseFixPatternWorker extends UntypedActor {
-	private static Logger log = LoggerFactory.getLogger(ParseFixPatternActor.class);
+public class EDiffWorker extends UntypedActor {
+	private static Logger log = LoggerFactory.getLogger(EDiffActor.class);
 	
 	private String project;
 
 	
-	public ParseFixPatternWorker(String project) {
+	public EDiffWorker(String project) {
 		this.project = project;
 	}
 
 	public static Props props(final String project) {
-		return Props.create(new Creator<ParseFixPatternWorker>() {
+		return Props.create(new Creator<EDiffWorker>() {
 
 			private static final long serialVersionUID = -7615153844097275009L;
 
 			@Override
-			public ParseFixPatternWorker create() throws Exception {
-				return new ParseFixPatternWorker(project);
+			public EDiffWorker create() throws Exception {
+				return new EDiffWorker(project);
 			}
 			
 		});
@@ -38,8 +38,8 @@ public class ParseFixPatternWorker extends UntypedActor {
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if (message instanceof WorkMessage) {
-			WorkMessage msg = (WorkMessage) message;
+		if (message instanceof EDiffMessage) {
+			EDiffMessage msg = (EDiffMessage) message;
 			List<MessageFile> files = msg.getMsgFiles();
 			StringBuilder editScripts = new StringBuilder();
 			StringBuilder patchesSourceCode = new StringBuilder();
@@ -68,7 +68,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File diffentryFile = msgFile.getDiffEntryFile();
 
 
-				FixedViolationHunkParser parser =  new FixedViolationHunkParser();
+				FixedPatternHunkParser parser =  new FixedPatternHunkParser();
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work

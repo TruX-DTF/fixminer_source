@@ -1,6 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
-
-import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+package edu.lu.uni.serval.FixPatternParser;
 
 import java.io.*;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.List;
  * @author kui.liu
  *
  */
-public class FixedViolationHunkParser extends FixedViolationParser {
+public class FixedPatternHunkParser extends FixedPatternParser {
 	
 	public String testingInfo = "";
 	

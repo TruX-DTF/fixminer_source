@@ -1,6 +1,7 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.fixminer.jobs;
 
-import edu.lu.uni.serval.FixPattern.utils.PoolBuilder;
+import edu.lu.uni.serval.utils.CallShell;
+import edu.lu.uni.serval.utils.PoolBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

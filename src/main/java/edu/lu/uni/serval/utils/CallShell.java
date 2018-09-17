@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.utils;
 
 /**
  * Created by anilkoyuncu on 17/04/2018.

@@ -1,10 +1,7 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.FixPatternParser;
 
 import com.github.gumtreediff.actions.model.Action;
-import edu.lu.uni.serval.FixPatternParser.Parser;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
-import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
-import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
 import edu.lu.uni.serval.utils.ListSorter;
 
 import java.io.File;
@@ -17,7 +14,7 @@ import java.util.List;
  * @author kui.liu
  *
  */
-public class FixedViolationParser extends Parser {
+public class FixedPatternParser extends Parser {
 
 	/*
 	 * ResultType:

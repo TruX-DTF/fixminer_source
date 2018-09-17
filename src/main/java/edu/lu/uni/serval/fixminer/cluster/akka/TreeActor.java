@@ -1,11 +1,10 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.fixminer.cluster.akka;
 
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import akka.routing.RoundRobinPool;
-import edu.lu.uni.serval.fixminer.cluster.akka.TreeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisPool;

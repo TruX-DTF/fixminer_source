@@ -1,6 +1,7 @@
 package edu.lu.uni.serval.fixminer;
 
-import edu.lu.uni.serval.fixminer.cluster.*;
+import edu.lu.uni.serval.fixminer.jobs.*;
+import edu.lu.uni.serval.utils.CallShell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

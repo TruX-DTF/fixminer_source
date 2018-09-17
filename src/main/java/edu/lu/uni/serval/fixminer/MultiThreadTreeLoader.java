@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.fixminer;
 
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.Action;
@@ -6,8 +6,8 @@ import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.Tree;
-import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
-import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+import edu.lu.uni.serval.utils.ASTNodeMap;
+import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;

@@ -1,10 +1,10 @@
-package edu.lu.uni.serval.fixminer;
+package edu.lu.uni.serval.fixminer.jobs;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
-import edu.lu.uni.serval.MultipleThreadsParser.ParseFixPatternActor;
-import edu.lu.uni.serval.MultipleThreadsParser.WorkMessage;
+import edu.lu.uni.serval.fixminer.cluster.akka.EDiffMessage;
+import edu.lu.uni.serval.fixminer.cluster.akka.MessageFile;
+import edu.lu.uni.serval.fixminer.cluster.akka.EDiffActor;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,12 +56,12 @@ public class EnhancedASTDiff {
 
 			ActorSystem system = null;
 			ActorRef parsingActor = null;
-			final WorkMessage msg = new WorkMessage(0, msgFiles);
+			final EDiffMessage msg = new EDiffMessage(0, msgFiles);
 			try {
 				log.info("Akka begins...");
 				system = ActorSystem.create("Mining-FixPattern-System");
 
-				parsingActor = system.actorOf(ParseFixPatternActor.props(Integer.valueOf(numOfWorkers), project), "mine-fix-pattern-actor");
+				parsingActor = system.actorOf(EDiffActor.props(Integer.valueOf(numOfWorkers), project), "mine-fix-pattern-actor");
 				parsingActor.tell(msg, ActorRef.noSender());
 			} catch (Exception e) {
 				system.shutdown();

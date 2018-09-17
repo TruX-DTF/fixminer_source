@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPattern.utils;
+package edu.lu.uni.serval.utils;
 
 import redis.clients.jedis.JedisPoolConfig;
 

@@ -1,8 +1,8 @@
-package edu.lu.uni.serval.gumtree.regroup;
+package edu.lu.uni.serval.FixPatternParser;
 
 import com.github.gumtreediff.actions.model.*;
 import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.utils.ASTNodeMap;
 import edu.lu.uni.serval.utils.ListSorter;
 
 import java.util.ArrayList;

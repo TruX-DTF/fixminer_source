@@ -1,8 +1,8 @@
-package edu.lu.uni.serval.FixPattern.utils;
+package edu.lu.uni.serval.utils;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
-import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

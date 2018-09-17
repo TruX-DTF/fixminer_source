@@ -1,10 +1,11 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.fixminer.jobs;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
-import edu.lu.uni.serval.FixPattern.utils.EDiffHelper;
-import edu.lu.uni.serval.FixPattern.utils.PoolBuilder;
-import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
+import edu.lu.uni.serval.utils.CallShell;
+import edu.lu.uni.serval.utils.EDiffHelper;
+import edu.lu.uni.serval.utils.PoolBuilder;
+import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.similarity.JaroWinklerDistance;

@@ -1,13 +1,13 @@
-package edu.lu.uni.serval.MultipleThreadsParser;
+package edu.lu.uni.serval.fixminer.cluster.akka;
 
 import java.util.List;
 
-public class WorkMessage {
+public class EDiffMessage {
 
 	private int id;
 	private List<MessageFile> msgFiles;
 	
-	public WorkMessage(int id, List<MessageFile> msgFiles) {
+	public EDiffMessage(int id, List<MessageFile> msgFiles) {
 		super();
 		this.id = id;
 		this.msgFiles = msgFiles;

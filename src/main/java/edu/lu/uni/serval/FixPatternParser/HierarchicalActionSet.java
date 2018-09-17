@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.gumtree.regroup;
+package edu.lu.uni.serval.FixPatternParser;
 
 import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.tree.ITree;
