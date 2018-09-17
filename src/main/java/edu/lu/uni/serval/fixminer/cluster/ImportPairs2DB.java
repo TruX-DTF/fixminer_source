@@ -40,7 +40,7 @@ public class ImportPairs2DB {
             cmd = String.format(cmd, dbDir,pj.getName() +".rdb", portInt);
             log.info(cmd);
             CallShell cs = new CallShell();
-            cs.runShell(cmd,serverWait);
+            cs.runShell(cmd,serverWait, portInner);
 
             cmd = "bash "+datasetPath + "/redisSingleImport.sh" +" %s %s";
 
@@ -50,7 +50,7 @@ public class ImportPairs2DB {
 
             String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
             String stopServer2 = String.format(stopServer,portInt);
-            cs.runShell(stopServer2,serverWait);
+            cs.runShell(stopServer2,serverWait, portInner);
 
             portInt++;
 

@@ -87,6 +87,7 @@ public class Compare {
         } catch (Exception e) {
 
             log.error(e.toString() + " {}", name);
+//            e.printStackTrace();
 
 
         }finally {

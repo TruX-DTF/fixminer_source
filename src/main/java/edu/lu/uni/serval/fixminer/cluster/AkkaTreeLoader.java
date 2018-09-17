@@ -82,13 +82,13 @@ public class AkkaTreeLoader {
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String cmd1 = String.format(cmd, dbDir,dumpsName,Integer.valueOf(port));
 //
-        cs.runShell(cmd1,serverWait);
+        cs.runShell(cmd1,serverWait,port);
         String cmdInner = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String cmd2 = String.format(cmdInner, dbDir,chunkName,Integer.valueOf(portInner));
         log.info(cmd1);
         log.info(cmd2);
 //
-        cs.runShell(cmd2,serverWait);
+        cs.runShell(cmd2,serverWait, portInner);
         JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
         JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
 
@@ -150,6 +150,7 @@ public class AkkaTreeLoader {
 
 
 //        comparePairs(innerPool,outerPool);
+        Thread.sleep(Integer.valueOf(serverWait));
         akkaCompare(innerPool,outerPool,numOfWorkers,cursor);
 
 //        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";

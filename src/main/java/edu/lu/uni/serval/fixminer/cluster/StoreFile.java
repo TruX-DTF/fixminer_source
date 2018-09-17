@@ -52,7 +52,7 @@ public class StoreFile {
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
 //        loadRedis(cmd,serverWait);
-        cs.runShell(cmd,serverWait);
+        cs.runShell(cmd,serverWait, portInner);
 
         File folder = new File(inputPath);
         File[] subFolders = folder.listFiles();
@@ -108,7 +108,7 @@ public class StoreFile {
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer2 = String.format(stopServer,Integer.valueOf(portInner));
 //        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer2,serverWait);
+        cs.runShell(stopServer2,serverWait, portInner);
     }
 
     public static void storeCore(JedisPool innerPool,String path,String key){

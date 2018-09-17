@@ -31,7 +31,7 @@ public class CalculatePairs {
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(port));
 
-        cs.runShell(cmd,serverWait);
+        cs.runShell(cmd,serverWait, port);
         FileHelper.createDirectory(outputPath);
 
 

@@ -34,12 +34,12 @@ public class MultiThreadTreeLoaderCluster {
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
 //        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
-        cs.runShell(cmd1,serverWait);
+        cs.runShell(cmd1,serverWait, port);
 
 
         String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
-        cs.runShell(cmd2,serverWait);
+        cs.runShell(cmd2,serverWait, port);
 //        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
 
 
@@ -105,11 +105,11 @@ public class MultiThreadTreeLoaderCluster {
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
 //        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer1,serverWait);
+        cs.runShell(stopServer1,serverWait, port);
 
         String stopServer2 = String.format(stopServer,Integer.valueOf(port));
 //        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer2,serverWait);
+        cs.runShell(stopServer2,serverWait, port);
 
 
 

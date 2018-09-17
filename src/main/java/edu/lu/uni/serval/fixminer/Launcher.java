@@ -128,14 +128,14 @@ public class Launcher {
         CallShell cs1 =new CallShell();
         String db1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String db11 = String.format(db1, dbDir,"level1-"+pjName+ actionType+".rdb" ,Integer.valueOf(port));
-        cs1.runShell(db11,serverWait);
+        cs1.runShell(db11,serverWait, port);
         String runpy =  "bash "+datasetPath + "/" + "launchPy.sh" +" %s %s %s %s %s %s";
         String formatRunPy = String.format(runpy,pythonPath +"/abstractPatch.py", gumInput, datasetPath + "/cluster"+pjName+ actionType, port, "matches" + pjName + actionType, threshold);
 
         cs1.runShell(formatRunPy);
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         stopServer = String.format(stopServer,Integer.valueOf(port));
-        cs1.runShell(stopServer,serverWait);
+        cs1.runShell(stopServer,serverWait, port);
     }
 
     private static void level2(String serverWait, String port, String pythonPath, String datasetPath, String pjName, String actionType, String threshold, String dbDir, String dumpsName, String gumInput) throws Exception {
@@ -147,14 +147,14 @@ public class Launcher {
         CallShell cs3 =new CallShell();
         String db22 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String db1b = String.format(db22, dbDir,"clusterl1-"+pjName+actionType+".rdb",Integer.valueOf(port));
-        cs3.runShell(db1b,serverWait);
+        cs3.runShell(db1b,serverWait, port);
         String runpy2 =  "bash "+datasetPath + "/" + "launchPy.sh" +" %s %s %s %s %s %s";
         String formatRunPy1a = String.format(runpy2,pythonPath +"/abstractPatchCluster.py", gumInput, datasetPath + "/cluster"+pjName+ actionType, port, datasetPath + "/cluster-2l"+pjName+ actionType,threshold);
 
         cs3.runShell(formatRunPy1a);
         String stopServer1a = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         stopServer = String.format(stopServer1a,Integer.valueOf(port));
-        cs3.runShell(stopServer,serverWait);
+        cs3.runShell(stopServer,serverWait, port);
     }
 
     private static void level3(String serverWait, String port, String pythonPath, String datasetPath, String pjName, String actionType, String threshold, String dbDir, String dumpsName, String gumInput) throws Exception {
@@ -166,14 +166,14 @@ public class Launcher {
         CallShell cs5 =new CallShell();
         String dba = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         String dbaa = String.format(dba, dbDir,"clusterl2-"+pjName+actionType+".rdb",Integer.valueOf(port));
-        cs5.runShell(dbaa,serverWait);
+        cs5.runShell(dbaa,serverWait, port);
         String runpya =  "bash "+datasetPath + "/" + "launchPy.sh" +" %s %s %s %s %s %s";
         String formatRunPya = String.format(runpya,pythonPath +"/abstractPatchClusterLevel3.py", gumInput, datasetPath + "/cluster-3l"+pjName+ actionType, port, datasetPath + "/cluster-2l"+pjName+ actionType,threshold);
 
         cs5.runShell(formatRunPya);
         String stopServera = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         stopServer = String.format(stopServera,Integer.valueOf(port));
-        cs5.runShell(stopServer,serverWait);
+        cs5.runShell(stopServer,serverWait, port);
         return;
     }
 //        System.exit(1);

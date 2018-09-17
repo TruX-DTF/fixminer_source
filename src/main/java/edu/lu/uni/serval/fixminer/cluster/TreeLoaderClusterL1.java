@@ -29,7 +29,7 @@ public class TreeLoaderClusterL1 {
         cmd = String.format(cmd, inputPath,level1DB,Integer.valueOf(port));
 
         CallShell cs = new CallShell();
-        cs.runShell(cmd,serverWait);
+        cs.runShell(cmd,serverWait, port);
         JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
 
 
@@ -44,7 +44,7 @@ public class TreeLoaderClusterL1 {
             String cmdInner = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
             cmdInner = String.format(cmdInner, inputPath,db.getName(),Integer.valueOf(portInner));
 
-            cs.runShell(cmdInner,serverWait);
+            cs.runShell(cmdInner,serverWait, port);
             JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
 
             Jedis inner = null;
@@ -98,13 +98,13 @@ public class TreeLoaderClusterL1 {
             String stopServer = "bash "+inputPath + "/" + "stopServer.sh" +" %s";
             stopServer = String.format(stopServer,Integer.valueOf(portInner));
 //            loadRedis(stopServer,serverWait);
-            cs.runShell(stopServer,serverWait);
+            cs.runShell(stopServer,serverWait, port);
         }
 
         String stopServer1 = "bash "+inputPath + "/" + "stopServer.sh" +" %s";
         stopServer1 = String.format(stopServer1,Integer.valueOf(port));
 //            loadRedis(stopServer,serverWait);
-        cs.runShell(stopServer1,serverWait);
+        cs.runShell(stopServer1,serverWait, port);
 
 
 
