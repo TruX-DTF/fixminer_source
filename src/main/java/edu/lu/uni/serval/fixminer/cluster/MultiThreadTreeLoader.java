@@ -1,14 +1,13 @@
 package edu.lu.uni.serval.fixminer.cluster;
 
 import com.github.gumtreediff.actions.ActionGenerator;
-import com.github.gumtreediff.actions.model.*;
+import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.Tree;
 import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
-import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;
@@ -291,17 +290,17 @@ public class MultiThreadTreeLoader {
         readMessageFiles(fileToCompare,port);
     }
 
-    public static void processMessages(String inputPath, String outputPath) {
-        File folder = new File(outputPath + "pairs_splitted/");
-        File[] listOfFiles = folder.listFiles();
-        Stream<File> stream = Arrays.stream(listOfFiles);
-        List<File> pjs = stream
-                .filter(x -> !x.getName().startsWith("."))
-                .collect(Collectors.toList());
-        FileHelper.createDirectory(outputPath + "comparison_splitted/");
-        pjs.parallelStream()
-                .forEach(m -> coreLoop(m, outputPath,inputPath));
-    }
+//    public static void processMessages(String inputPath, String outputPath) {
+//        File folder = new File(outputPath + "pairs_splitted/");
+//        File[] listOfFiles = folder.listFiles();
+//        Stream<File> stream = Arrays.stream(listOfFiles);
+//        List<File> pjs = stream
+//                .filter(x -> !x.getName().startsWith("."))
+//                .collect(Collectors.toList());
+//        FileHelper.createDirectory(outputPath + "comparison_splitted/");
+//        pjs.parallelStream()
+//                .forEach(m -> coreLoop(m, outputPath,inputPath));
+//    }
 
 
     public static ITree getSimpliedTree(String fn) {
@@ -377,45 +376,45 @@ public class MultiThreadTreeLoader {
         return parent;
     }
 
-    public static ITree getActionTree(HierarchicalActionSet actionSet, ITree parent, ITree children){
-
-        int newType = 0;
-
-        Action action = actionSet.getAction();
-        if (action instanceof Update){
-            newType = 101;
-        }else if(action instanceof Insert){
-            newType =100;
-        }else if(action instanceof Move){
-            newType = 102;
-        }else if(action instanceof Delete){
-            newType=103;
-        }else{
-            new Exception("unknow action");
-        }
-        if(actionSet.getParent() == null){
-            //root
-
-            parent = new Tree(newType,"");
-        }else{
-            children = new Tree(newType,"");
-            parent.addChild(children);
-        }
-        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
-        if (subActions.size() != 0){
-            for (HierarchicalActionSet subAction : subActions) {
-
-                if(actionSet.getParent() == null){
-                    children = parent;
-                }
-                getActionTree(subAction,children,null);
-
-            }
-
-
-        }
-        return parent;
-    }
+//    public static ITree getActionTree(HierarchicalActionSet actionSet, ITree parent, ITree children){
+//
+//        int newType = 0;
+//
+//        Action action = actionSet.getAction();
+//        if (action instanceof Update){
+//            newType = 101;
+//        }else if(action instanceof Insert){
+//            newType =100;
+//        }else if(action instanceof Move){
+//            newType = 102;
+//        }else if(action instanceof Delete){
+//            newType=103;
+//        }else{
+//            new Exception("unknow action");
+//        }
+//        if(actionSet.getParent() == null){
+//            //root
+//
+//            parent = new Tree(newType,"");
+//        }else{
+//            children = new Tree(newType,"");
+//            parent.addChild(children);
+//        }
+//        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+//        if (subActions.size() != 0){
+//            for (HierarchicalActionSet subAction : subActions) {
+//
+//                if(actionSet.getParent() == null){
+//                    children = parent;
+//                }
+//                getActionTree(subAction,children,null);
+//
+//            }
+//
+//
+//        }
+//        return parent;
+//    }
 
 
 

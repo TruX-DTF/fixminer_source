@@ -1,20 +1,18 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import edu.lu.uni.serval.MultipleThreadsParser.MessageFile;
 import edu.lu.uni.serval.MultipleThreadsParser.ParseFixPatternActor;
 import edu.lu.uni.serval.MultipleThreadsParser.WorkMessage;
-import edu.lu.uni.serval.config.Configuration;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -232,131 +230,10 @@ public class TestHunkParserSingleFile {
 //		}
 	}
 	
-	public static void classifyByAlarmTypes() {
 
-		final String alarmTypesFilePath = Configuration.ALARM_TYPES_FILE;
-		List<String> alarmTypes = readStringList(alarmTypesFilePath);
-		//edit scripts, sizes of edit scripts, buggy tokens, patches.
-		classifyByAlarmTypes(alarmTypes, Configuration.EDITSCRIPT_SIZES_FILE);
-		classifyByAlarmTypes(alarmTypes, Configuration.EDITSCRIPTS_FILE);
-		classifyByAlarmTypes(alarmTypes, Configuration.BUGGY_CODE_TOKENS_FILE);
-		classifyByAlarmTypes2(alarmTypes, Configuration.PATCH_SOURCECODE_FILE);
-	}
 
-	private static void classifyByAlarmTypes(List<String> alarmTypes, String file) {
-		Map<String, StringBuilder> buildersMap = new HashMap<>();
-		FileInputStream fis = null;
-		Scanner scanner = null;
-		try {
-			fis = new FileInputStream(file);
-			scanner = new Scanner(fis);
-			int counter = 0;
-			while (scanner.hasNextLine()) {
-				String alarmType = alarmTypes.get(counter);
-				StringBuilder builder = getBuilder(buildersMap, alarmType);
-				builder.append(scanner.nextLine() + "\n");
-				counter ++;
-				if (counter % 1000 == 0) {
-					outputBuilders(buildersMap, file);
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				scanner.close();
-				fis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		outputBuilders(buildersMap, file);
-	}
-	
-	private static void classifyByAlarmTypes2(List<String> alarmTypes, String patchSourcecodeFile) {
-		Map<String, StringBuilder> buildersMap = new HashMap<>();
-		FileInputStream fis = null;
-		Scanner scanner = null;
-		try {
-			fis = new FileInputStream(patchSourcecodeFile);
-			scanner = new Scanner(fis);
-			int counter = 0;
-			String singlePatch = "";
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				if (Configuration.PATCH_SIGNAL.equals(line)) {
-					if (!"".equals(singlePatch)) {
-						String alarmType = alarmTypes.get(counter);
-						StringBuilder builder = getBuilder(buildersMap, alarmType);
-						builder.append(scanner.nextLine() + "\n");
-						counter ++;
-						if (counter % 2000 == 0) {
-							outputBuilders(buildersMap, patchSourcecodeFile);
-						}
-					}
-					singlePatch = line + "\n";
-				}
-				singlePatch += line + "\n";
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				scanner.close();
-				fis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		outputBuilders(buildersMap, patchSourcecodeFile);
-	}
 
-	private static void outputBuilders(Map<String, StringBuilder> map, String fileNameStr) {
-		File file = new File(fileNameStr);
-		String fileName = file.getName();
-		String parentPath = file.getParent();
-		for (Map.Entry<String, StringBuilder> entry : map.entrySet()) {
-			String alarmType = entry.getKey();
-			StringBuilder builder = entry.getValue();
-			
-			FileHelper.outputToFile(parentPath + "/" + alarmType + "/" + fileName, builder, true);
-			
-			builder.setLength(0);
-			entry.setValue(builder);
-		}
-	}
 
-	public static List<String> readStringList(String inputFile) {
-		List<String> list = new ArrayList<>();
-		FileInputStream fis = null;
-		Scanner scanner = null;
-		try {
-			fis = new FileInputStream(inputFile);
-			scanner = new Scanner(fis);
-			while(scanner.hasNextLine()) {
-				list.add(scanner.nextLine());
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				scanner.close();
-				fis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return list;
-	}
 
-	private static StringBuilder getBuilder(Map<String, StringBuilder> buildersMap, String alarmType) {
-		if (buildersMap.containsKey(alarmType)) {
-			return buildersMap.get(alarmType);
-		} else {
-			StringBuilder builder = new StringBuilder();
-			buildersMap.put(alarmType, builder);
-			return builder;
-		}
-	}
+
 }

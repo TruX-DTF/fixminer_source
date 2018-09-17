@@ -25,11 +25,11 @@
 		    <version>1.2</version>
 		</dependency>
 				
-		<dependency>
-			<groupId>edu.lu.uni</groupId>
-			<artifactId>simple-utils</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>edu.lu.uni</groupId>-->
+			<!--<artifactId>simple-utils</artifactId>-->
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+		<!--</dependency>-->
 		
 		<!-- akka -->
 		<dependency>
@@ -69,17 +69,12 @@
 			<version>${logback.version}</version>
 		</dependency>
 		
+
 		<!--<dependency>-->
 			<!--<groupId>edu.lu.uni.serval</groupId>-->
-			<!--<artifactId>SourceCodeParser</artifactId>-->
+			<!--<artifactId>GitTraveller</artifactId>-->
 			<!--<version>0.0.1-SNAPSHOT</version>-->
 		<!--</dependency>-->
-		
-		<dependency>
-			<groupId>edu.lu.uni.serval</groupId>
-			<artifactId>GitTraveller</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

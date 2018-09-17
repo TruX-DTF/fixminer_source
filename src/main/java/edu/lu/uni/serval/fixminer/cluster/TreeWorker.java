@@ -8,13 +8,9 @@ import edu.lu.uni.serval.fixminer.cluster.akka.TreeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.*;
-
-import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.poolConfig;
 
 public class TreeWorker extends UntypedActor {
 	private static Logger log = LoggerFactory.getLogger(TreeWorker.class);

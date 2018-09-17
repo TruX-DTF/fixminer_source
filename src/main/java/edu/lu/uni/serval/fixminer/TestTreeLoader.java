@@ -1,15 +1,16 @@
-package edu.lu.uni.serval.FixPatternParser.violations;
+package edu.lu.uni.serval.fixminer;
 
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.matchers.Mapping;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.gumtree.regroup.SimplifyTree;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -132,98 +133,98 @@ public class TestTreeLoader {
 
 
     }
-    public static void compareAll(List<File> folders){
-        List<ITree> trees = new ArrayList<>();
-        HashMap<Integer, String> hmap = new HashMap<Integer, String>();
-        for (File target : folders) {
-
-            try {
-                FileInputStream fi = new FileInputStream(new File(target.toString()));
-                ObjectInputStream oi = new ObjectInputStream(fi);
-                ITree pr1 = (ITree) oi.readObject();
-                oi.close();
-                fi.close();
-                trees.add(pr1);
-                hmap.put(folders.indexOf(target), target.toString());
-
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found");
-            } catch (IOException e) {
-                System.out.println("Error initializing stream");
-            } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-
-        for (ITree tree : trees) {
-//            SimplifyTree simplifyTree = new SimplifyTree();
-//            simplifyTree.canonicalizeSourceCodeTree(tree);
-            tree.setLabel("");
-            tree.setParent(null);
-            List<ITree> descendants = tree.getDescendants();
-            for (ITree descendant : descendants) {
-                descendant.setLabel("");
-            }
-
-        }
-        System.out.println("a");
-
-        try {
-
-
-
-            for (int i = 0; i < trees.size(); i++) {
-                for (int j = i + 1; j < trees.size(); j++) {
-                    // compare list.get(i) and list.get(j)
-                    BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt",true));
-                    ITree oldTree = trees.get(i);
-
-                    ITree newTree = trees.get(j);
-
-                    Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-                    m.match();
-
-                    ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-                    ag.generate();
-                    List<Action> actions = ag.getActions();
-                    writer.write(String.valueOf(i));
-                    writer.write("\t");
-                    writer.write(String.valueOf(j));
-                    writer.write("\t");
-
-                    writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
-                    writer.write("\t");
-                    writer.write(String.valueOf(actions.size()));
-                    writer.write("\t");
-                    writer.write(hmap.get(i));
-                    writer.write("\t");
-                    writer.write(hmap.get(j));
-                    writer.write("\n");
-
-                    writer.close();
-                }
-            }
-
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            System.out.println("Error initializing stream");
-
-        }
-
-
-//        if (actions.size() > 1) {
-//            Matcher m1 = Matchers.getInstance().getMatcher(actions.get(0).getNode(), actions.get(0).getNode());
-//            m1.match();
-//            Set<Mapping> mappingSet1 = m1.getMappingSet();
+//    public static void compareAll(List<File> folders){
+//        List<ITree> trees = new ArrayList<>();
+//        HashMap<Integer, String> hmap = new HashMap<Integer, String>();
+//        for (File target : folders) {
+//
+//            try {
+//                FileInputStream fi = new FileInputStream(new File(target.toString()));
+//                ObjectInputStream oi = new ObjectInputStream(fi);
+//                ITree pr1 = (ITree) oi.readObject();
+//                oi.close();
+//                fi.close();
+//                trees.add(pr1);
+//                hmap.put(folders.indexOf(target), target.toString());
+//
+//            } catch (FileNotFoundException e) {
+//                System.out.println("File not found");
+//            } catch (IOException e) {
+//                System.out.println("Error initializing stream");
+//            } catch (ClassNotFoundException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        for (ITree tree : trees) {
+////            SimplifyTree simplifyTree = new SimplifyTree();
+////            simplifyTree.canonicalizeSourceCodeTree(tree);
+//            tree.setLabel("");
+//            tree.setParent(null);
+//            List<ITree> descendants = tree.getDescendants();
+//            for (ITree descendant : descendants) {
+//                descendant.setLabel("");
+//            }
 //
 //        }
-    }
+//        System.out.println("a");
+//
+//        try {
+//
+//
+//
+//            for (int i = 0; i < trees.size(); i++) {
+//                for (int j = i + 1; j < trees.size(); j++) {
+//                    // compare list.get(i) and list.get(j)
+//                    BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt",true));
+//                    ITree oldTree = trees.get(i);
+//
+//                    ITree newTree = trees.get(j);
+//
+//                    Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+//                    m.match();
+//
+//                    ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+//                    ag.generate();
+//                    List<Action> actions = ag.getActions();
+//                    writer.write(String.valueOf(i));
+//                    writer.write("\t");
+//                    writer.write(String.valueOf(j));
+//                    writer.write("\t");
+//
+//                    writer.write(String.format("%1.2f", m.chawatheSimilarity(oldTree, newTree)));
+//                    writer.write("\t");
+//                    writer.write(String.format("%1.2f", m.diceSimilarity(oldTree, newTree)));
+//                    writer.write("\t");
+//                    writer.write(String.format("%1.2f", m.jaccardSimilarity(oldTree, newTree)));
+//                    writer.write("\t");
+//                    writer.write(String.valueOf(actions.size()));
+//                    writer.write("\t");
+//                    writer.write(hmap.get(i));
+//                    writer.write("\t");
+//                    writer.write(hmap.get(j));
+//                    writer.write("\n");
+//
+//                    writer.close();
+//                }
+//            }
+//
+//
+//        } catch (FileNotFoundException e) {
+//            System.out.println("File not found");
+//        } catch (IOException e) {
+//            System.out.println("Error initializing stream");
+//
+//        }
+//
+//
+////        if (actions.size() > 1) {
+////            Matcher m1 = Matchers.getInstance().getMatcher(actions.get(0).getNode(), actions.get(0).getNode());
+////            m1.match();
+////            Set<Mapping> mappingSet1 = m1.getMappingSet();
+////
+////        }
+//    }
 
 }

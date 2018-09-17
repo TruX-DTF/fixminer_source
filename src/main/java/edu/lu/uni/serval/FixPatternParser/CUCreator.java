@@ -1,14 +1,10 @@
 package edu.lu.uni.serval.FixPatternParser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+
+import java.io.*;
 
 /**
  * Creator of a CompilationUnit.

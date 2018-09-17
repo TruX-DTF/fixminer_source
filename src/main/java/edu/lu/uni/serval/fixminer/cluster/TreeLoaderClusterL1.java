@@ -1,11 +1,14 @@
 package edu.lu.uni.serval.fixminer.cluster;
 
+import edu.lu.uni.serval.FixPattern.utils.PoolBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.*;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.ScanParams;
+import redis.clients.jedis.ScanResult;
 
 import java.io.File;
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,19 +21,19 @@ public class TreeLoaderClusterL1 {
 
     private static Logger log = LoggerFactory.getLogger(TreeLoaderClusterL1.class);
 
-    public static void main(String portInner,String serverWait,String port,String inputPath,String level1DB,String level1Path,String innerTypePrefix) throws Exception {
+    public static void main(String portInner,String port,String inputPath,String level1DB,String level1Path,String innerTypePrefix) throws Exception {
 
 
 
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nport %s",inputPath,portInner,serverWait,port);
+        String parameters = String.format("\nInput path %s \nportInner %s \nport %s",inputPath,portInner,port);
         log.info(parameters);
 
         String cmd = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
         cmd = String.format(cmd, inputPath,level1DB,Integer.valueOf(port));
 
         CallShell cs = new CallShell();
-        cs.runShell(cmd,serverWait, port);
-        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+        cs.runShell(cmd, port);
+        JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(port),20000000);
 
 
         File chunks = new File(level1Path);
@@ -44,8 +47,8 @@ public class TreeLoaderClusterL1 {
             String cmdInner = "bash "+inputPath + "/" + "startServer.sh" +" %s %s %s";
             cmdInner = String.format(cmdInner, inputPath,db.getName(),Integer.valueOf(portInner));
 
-            cs.runShell(cmdInner,serverWait, port);
-            JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+            cs.runShell(cmdInner, port);
+            JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
 
             Jedis inner = null;
 
@@ -97,37 +100,20 @@ public class TreeLoaderClusterL1 {
 
             String stopServer = "bash "+inputPath + "/" + "stopServer.sh" +" %s";
             stopServer = String.format(stopServer,Integer.valueOf(portInner));
-//            loadRedis(stopServer,serverWait);
-            cs.runShell(stopServer,serverWait, port);
+
+            cs.runShell(stopServer, port);
         }
 
         String stopServer1 = "bash "+inputPath + "/" + "stopServer.sh" +" %s";
         stopServer1 = String.format(stopServer1,Integer.valueOf(port));
-//            loadRedis(stopServer,serverWait);
-        cs.runShell(stopServer1,serverWait, port);
+
+        cs.runShell(stopServer1, port);
 
 
 
 
     }
-    static final JedisPoolConfig poolConfig = buildPoolConfig();
 
-
-    private static JedisPoolConfig buildPoolConfig() {
-        final JedisPoolConfig poolConfig = new JedisPoolConfig();
-        poolConfig.setMaxTotal(128);
-        poolConfig.setMaxIdle(128);
-        poolConfig.setMinIdle(16);
-        poolConfig.setTestOnBorrow(true);
-        poolConfig.setTestOnReturn(true);
-        poolConfig.setTestWhileIdle(true);
-        poolConfig.setMinEvictableIdleTimeMillis(Duration.ofMinutes(60).toMillis());
-        poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofHours(30).toMillis());
-        poolConfig.setNumTestsPerEvictionRun(3);
-        poolConfig.setBlockWhenExhausted(true);
-
-        return poolConfig;
-    }
 
 
 }

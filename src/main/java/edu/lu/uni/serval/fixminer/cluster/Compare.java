@@ -5,6 +5,7 @@ import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
+import edu.lu.uni.serval.FixPattern.utils.EDiff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -13,7 +14,6 @@ import redis.clients.jedis.JedisPool;
 import java.util.List;
 import java.util.Map;
 
-import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.getSimpliedTree;
 
 /**
  * Created by anilkoyuncu on 03/04/2018.
@@ -44,9 +44,9 @@ public class Compare {
 //            String firstValue = resultMap.get("0");
 //            String secondValue = resultMap.get("1");
 
-            oldTree = getSimpliedTree(i,outerPool);
+            oldTree = EDiff.getSimpliedTree(i,outerPool);
 
-            newTree = getSimpliedTree(j,outerPool);
+            newTree = EDiff.getSimpliedTree(j,outerPool);
 
             Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
             m.match();

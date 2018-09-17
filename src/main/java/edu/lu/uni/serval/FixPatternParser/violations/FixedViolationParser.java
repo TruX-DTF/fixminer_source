@@ -1,20 +1,15 @@
 package edu.lu.uni.serval.FixPatternParser.violations;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.gumtreediff.actions.model.Action;
-
 import edu.lu.uni.serval.FixPatternParser.Parser;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalRegrouper;
-import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.ListSorter;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Parse fix patterns with GumTree.
@@ -60,16 +55,7 @@ public class FixedViolationParser extends Parser {
 		} else {
 			// Regroup GumTre results.
 			List<HierarchicalActionSet> allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
-//			for (HierarchicalActionSet actionSet : allActionSets) {
-//				String astNodeType = actionSet.getAstNodeType();
-//				if (astNodeType.endsWith("Statement") || "FieldDeclaration".equals(astNodeType)) {
-//					actionSets.add(actionSet);
-//				}
-//			}
-			
-			// Filter out modified actions of changing method names, method parameters, variable names and field names in declaration part.
-			// variable effects range, sub-actions are these kinds of modification?
-//			actionSets.addAll(new ActionFilter().filterOutUselessActions(allActionSets));
+
 			
 			ListSorter<HierarchicalActionSet> sorter = new ListSorter<>(allActionSets);
 			actionSets = sorter.sortAscending();
@@ -82,63 +68,14 @@ public class FixedViolationParser extends Parser {
 		}
 	}
 
-	/**
-	 * Read patch source code from buggy and fixed files.
-	 * @param prevFile
-	 * @param revFile
-	 * @param bugStartLineNum
-	 * @param bugEndLineNum
-	 * @param fixStartLineNum
-	 * @param fixEndLineNum
-	 * @param isInsert
-	 * @return
-	 */
-	protected String getPatchSourceCode(File prevFile, File revFile, int bugStartLineNum, int bugEndLineNum, int fixStartLineNum, int fixEndLineNum, boolean isInsert) {
-		String buggyStatements = "";
-		if (isInsert) {
-			buggyStatements = readSourceCode(prevFile, bugStartLineNum, bugEndLineNum, "");
-		} else {
-			buggyStatements = readSourceCode(prevFile, bugStartLineNum, bugEndLineNum, "-");
-		}
-		String fixedStatements = readSourceCode(revFile, fixStartLineNum, fixEndLineNum, "+");
-		return buggyStatements + fixedStatements;
-	}
 
-	private String readSourceCode(File file, int startLineNum, int endLineNum, String type) {
-		String sourceCode = "";
-		String fileContent = FileHelper.readFile(file);
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new StringReader(fileContent));
-			String line = null;
-			int lineIndex = 0;
-			while ((line = reader.readLine()) != null) {
-				lineIndex ++;
-				if (lineIndex >= startLineNum && lineIndex <= endLineNum) {
-					sourceCode += type + line + "\n";
-				}
-				if (lineIndex == endLineNum) break;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return sourceCode;
-	}
 
-	public String getAlarmTypes() {
-		return violationTypes;
-	}
 
-	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) {
 
-	}
+//	@Override
+//	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) {
+//
+//	}
 
 //	public void setUselessViolations(List<Violation> uselessViolations) {
 //		this.uselessViolations = uselessViolations;

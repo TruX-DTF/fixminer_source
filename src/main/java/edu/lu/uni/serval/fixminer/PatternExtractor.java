@@ -1,7 +1,5 @@
 package edu.lu.uni.serval.fixminer;
 
-import com.github.gumtreediff.tree.ITree;
-import com.github.gumtreediff.tree.TreeContext;
 import edu.lu.uni.serval.FixPattern.utils.Checker;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import org.slf4j.Logger;
@@ -21,7 +19,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.getASTTree;
 
 /**
  * Created by anilkoyuncu on 02/08/2018.
@@ -30,7 +27,7 @@ public class PatternExtractor {
     private static Logger log = LoggerFactory.getLogger(PatternExtractor.class);
 
 
-    public static void mainLaunch(String portInner,String serverWait, String numOfWorkers,String jobType,String port, String pythonPath, String datasetPath, String pjName, String dbNo, String actionType,String threshold) {
+    public static void mainLaunch(String portInner,String numOfWorkers,String jobType,String port, String pythonPath, String datasetPath, String pjName, String actionType,String threshold) {
 
 
         String dbDir;
@@ -55,7 +52,7 @@ public class PatternExtractor {
 
             switch (jobType) {
                 case "EXTRACTPATTERN":
-                    loadDB(gumOutput, portInner, serverWait, dbDir, actionType+dumpsName,actionType,fixes);
+                    loadDB(gumOutput, portInner, dbDir, actionType+dumpsName,actionType,fixes);
                     break;
                 case "GETPATTERN":
                     getPattern(fixes,actionType);
@@ -67,7 +64,7 @@ public class PatternExtractor {
     }
 
 
-    public static void loadDB(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String operation,List<String> fixes) throws Exception {
+    public static void loadDB(String inputPath,String portInner,String dbDir,String chunkName,String operation,List<String> fixes) throws Exception {
 //        String inputPath;
 //        String portInner;
 //        String serverWait;
@@ -246,24 +243,24 @@ public class PatternExtractor {
         }
     }
 
-    public static ITree getSimpliedTree(HierarchicalActionSet actionSet) {
-
-        ITree tree = null;
-        Jedis inner = null;
-        try {
-
-            ITree parent = null;
-            ITree children = null;
-            TreeContext tc = new TreeContext();
-            tree = getASTTree(actionSet, parent, children, tc);
-//            tree.setParent(null);
-            tc.validate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return tree;
-    }
+//    public static ITree getSimpliedTree(HierarchicalActionSet actionSet) {
+//
+//        ITree tree = null;
+//        Jedis inner = null;
+//        try {
+//
+//            ITree parent = null;
+//            ITree children = null;
+//            TreeContext tc = new TreeContext();
+//            tree = getASTTree(actionSet, parent, children, tc);
+////            tree.setParent(null);
+//            tc.validate();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return tree;
+//    }
 
 
 

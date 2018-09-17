@@ -1,11 +1,11 @@
 package edu.lu.uni.serval.gumtree.regroup;
 
+import com.github.gumtreediff.actions.model.Action;
+import com.github.gumtreediff.tree.ITree;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.tree.ITree;
 
 /**
  * Hierarchical-level results of GumTree results
@@ -29,11 +29,16 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet>,
 	private List<HierarchicalActionSet>	subActions = new ArrayList<>();
 	
 	private ITree node;
-	private SimpleTree abstractSimpleTree =  null;     // semi-source code tree. and AST node type tree
-	private SimpleTree abstractIdentifierTree = null;  // abstract identifier tree
-	private SimpleTree simpleTree = null;  			   // source code tree and AST node type tree
-	private SimpleTree originalTree = null;            // source code tree.
-	
+         // source code tree.
+
+	public int getBugEndPosition() {
+		return bugEndPosition;
+	}
+
+	public int getFixEndPosition() {
+		return fixEndPosition;
+	}
+
 	private int bugEndPosition;
 	private int fixEndPosition;
 
@@ -147,49 +152,12 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet>,
 		this.subActions = subActions;
 	}
 
-	public SimpleTree getAbstractSimpleTree() {
-		return abstractSimpleTree;
-	}
-
-	public void setAbstractSimpleTree(SimpleTree simpleTree) {
-		this.abstractSimpleTree = simpleTree;
-	}
-
-	public SimpleTree getAbstractIdentifierTree() {
-		return abstractIdentifierTree;
-	}
-
-	public void setAbstractIdentifierTree(SimpleTree abstractIdentifierTree) {
-		this.abstractIdentifierTree = abstractIdentifierTree;
-	}
-
-	public SimpleTree getSimpleTree() {
-		return simpleTree;
-	}
-
-	public void setSimpleTree(SimpleTree rawTokenTree) {
-		this.simpleTree = rawTokenTree;
-	}
-
-	public SimpleTree getOriginalTree() {
-		return originalTree;
-	}
-
-	public void setOriginalTree(SimpleTree originalTree) {
-		this.originalTree = originalTree;
-	}
-
-	public int getBugEndPosition() {
-		return bugEndPosition;
-	}
 
 	public void setBugEndPosition(int bugEndPosition) {
 		this.bugEndPosition = bugEndPosition;
 	}
 
-	public int getFixEndPosition() {
-		return fixEndPosition;
-	}
+
 
 	public void setFixEndPosition(int fixEndPosition) {
 		this.fixEndPosition = fixEndPosition;
@@ -197,10 +165,7 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet>,
 
 	@Override
 	public int compareTo(HierarchicalActionSet o) {
-//		int result = this.startPosition.compareTo(o.startPosition);
-//		if (result == 0) {
-//			result = this.length >= o.length ? -1 : 1;
-//		}
+
 		return this.startPosition.compareTo(o.startPosition);//this.action.compareTo(o.action);
 	}
 	
@@ -238,28 +203,5 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet>,
 		return str;
 	}
 	
-	public String toASTNodeLevelAction() {
-		if (strList.size() == 0) {
-			toString();
-		}
-		String astNodeStr = "";
-		for (String str : strList) {
-			astNodeStr += str.substring(0, str.indexOf("@@")) + "\n";
-		}
-		return astNodeStr;
-	}
-	
-	public String toRawCodeLevelAction() {
-		if (strList.size() == 0) {
-			toString();
-		}
-		String astNodeStr = "";
-		for (String str : strList) {
-			str = str.substring(0, str.indexOf(" @AT@")) + "\n";
-			int index1 = str.indexOf(" ") + 1;
-			int index2 = str.indexOf("@@") + 2;
-			astNodeStr += str.substring(0, index1) + str.substring(index2);
-		}
-		return astNodeStr;
-	}
+
 }

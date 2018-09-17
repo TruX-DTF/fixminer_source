@@ -2,24 +2,26 @@ package edu.lu.uni.serval.fixminer.cluster;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
-import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.FixPattern.utils.EDiffHelper;
+import edu.lu.uni.serval.FixPattern.utils.PoolBuilder;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.similarity.JaroWinklerDistance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.*;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.ScanParams;
+import redis.clients.jedis.ScanResult;
 
 import java.io.*;
-import java.time.Duration;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static edu.lu.uni.serval.fixminer.cluster.MultiThreadTreeLoader.getKeysByValue;
-import static edu.lu.uni.serval.fixminer.cluster.MultiThreadTreeLoaderCluster.fromString;
+
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -30,27 +32,24 @@ public class MultiThreadTreeLoaderCluster3 {
     private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoaderCluster3.class);
 
 
-//    public static void mainCompare(String inputPath,String port,String pairsCSVPath,String importScript) {
-    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String serverWait, String type) throws Exception {
+    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String type) throws Exception {
 
         CallShell cs = new CallShell();
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
-//        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
-        cs.runShell(cmd1,serverWait, port);
+        cs.runShell(cmd1, port);
 
         String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
-//        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
-        cs.runShell(cmd2,serverWait, port);
+        cs.runShell(cmd2, port);
 
         String cmd3;
         cmd3 = "bash " + importScript +" %s %s";
 
 
-        JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+        JedisPool jedisPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
 
-        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+        JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(port),20000000);
 
 
 
@@ -79,8 +78,7 @@ public class MultiThreadTreeLoaderCluster3 {
                     if (size == 0) {
                         String comd = String.format(cmd3, f.getPath(), portInner);
                         cs.runShell(comd);
-//                        edu.lu.uni.serval.fixminer.cluster.MultiThreadTreeLoaderCluster.
-//                                loadRedis(comd);
+
 
                         scan = jedis.scan("0", sc);
                         size = scan.getResult().size();
@@ -103,17 +101,10 @@ public class MultiThreadTreeLoaderCluster3 {
 
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
-//        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer1,serverWait, port);
+        cs.runShell(stopServer1, port);
 
         String stopServer2 = String.format(stopServer,Integer.valueOf(port));
-//        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer2,serverWait, port);
-
-
-
-
-//        }
+        cs.runShell(stopServer2, port);
 
 
 
@@ -151,13 +142,13 @@ public class MultiThreadTreeLoaderCluster3 {
             inner = outerPool.getResource();
             String fn = project + "/"+type+"/" + s + ".txt_" + actionSetPosition;
             String si= inner.get(fn);
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(si);
+            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
 
 
             ITree parent = null;
             ITree children =null;
             TreeContext tc = new TreeContext();
-            tree = getASTTree(actionSet, parent, children,tc);
+            tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
 //            tree.setParent(null);
             tc.validate();
 
@@ -176,46 +167,7 @@ public class MultiThreadTreeLoaderCluster3 {
 
     }
 
-    public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
 
-        int newType = 0;
-
-        String astNodeType = actionSet.getAstNodeType();
-
-        String label = actionSet.getAction().toString();
-        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
-
-        if(keysByValue.size() != 1){
-            log.error("Birden cok astnodemapmapping");
-        }
-        newType = keysByValue.get(0);
-        if(actionSet.getParent() == null){
-            //root
-
-//            parent = new Tree(newType,"");
-            parent = tc.createTree(newType, label, null);
-            tc.setRoot(parent);
-        }else{
-//            children = new Tree(newType,"");
-//            parent.addChild(children);
-            children = tc.createTree(newType, label, null);
-            children.setParentAndUpdateChildren(parent);
-        }
-        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
-        if (subActions.size() != 0){
-            for (HierarchicalActionSet subAction : subActions) {
-
-                if(actionSet.getParent() == null){
-                    children = parent;
-                }
-                getASTTree(subAction,children,null,tc);
-
-            }
-
-
-        }
-        return parent;
-    }
 
 
     public static List<String> getNames(ITree oldTree, List<String> oldTokens){
@@ -489,31 +441,6 @@ public class MultiThreadTreeLoaderCluster3 {
             String firstValue = resultMap.get("0");
             String secondValue = resultMap.get("1");
 
-//            if(firstValue.equals("7/0/7af9e0_e674f1_spring-social-web#src#main#java#org#springframework#social#connect#web#ConnectController.txt_0_SOCIAL") || secondValue.equals("7/0/7af9e0_e674f1_spring-social-web#src#main#java#org#springframework#social#connect#web#ConnectController.txt_0_SOCIAL")){
-//                log.info("");
-//            }
-
-            ///35/1/22b5f7_84bf27_ui#org.eclipse.pde.runtime#src#org#eclipse#pde#internal#runtime#registry#RegistryBrowserLabelProvider.txt_2_PDE
-
-
-
-//            firstValue = inputPath + firstValue;
-//            secondValue = inputPath + secondValue;
-
-//            String[] firstValueSplit = firstValue.split("/");
-//            String[] secondValueSplit = secondValue.split("/");
-//
-//            if (firstValueSplit.length == 1) {
-//                firstValue = inputPath + firstValueSplit[0];
-//            } else {
-//                firstValue = inputPath + firstValueSplit[1];
-//            }
-//
-//            if (secondValueSplit.length == 1) {
-//                secondValue = inputPath + secondValueSplit[0];
-//            } else {
-//                secondValue = inputPath + secondValueSplit[1];
-//            }
 
             try {
                 ITree oldTree = getTree(firstValue,outerPool,type);
@@ -526,30 +453,18 @@ public class MultiThreadTreeLoaderCluster3 {
                     return;
                 }
 
-//                ITree oldTree = oldPair.getValue0();
-//                ITree newTree = newPair.getValue0();
-//
-//                String oldProject = oldPair.getValue1();
-//                String newProject = newPair.getValue1();
+
 
                 List<String> oldTokens = new ArrayList<>();
                 List<String> newTokens = new ArrayList<>();
 
 
-//                if(secondValue.startsWith("/2/")){
-//                    log.info("newss");
-//                }
 
-                // 41 return statement
 
                 oldTokens = getNames(oldTree,oldTokens);
                 newTokens = getNames(newTree,newTokens);
 
-//                if(oldTokens.size() == 0 || newTokens.size() == 0){
-//                    log.error("Cluster {} has no tokens on pair {}",clusterName , name);
-//                }
-//                Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-//                m.match();
+
                 CharSequence[] oldSequences = oldTokens.toArray(new CharSequence[oldTokens.size()]);
                 CharSequence[] newSequences = newTokens.toArray(new CharSequence[newTokens.size()]);
                 JaroWinklerDistance jwd = new JaroWinklerDistance();
@@ -572,14 +487,7 @@ public class MultiThreadTreeLoaderCluster3 {
                 int retval = Double.compare(overallSimi, Double.valueOf(0.8));
                 if(retval >= 0){
 
-//                    log.info("YES");
-//                    log.info(name);
-//                    log.info(firstValue);
-//                    log.info(secondValue);
-//                    log.info("************");
-//                    if(!overallSimi.equals(1.0)){
-//                        log.info("");
-//                    }
+
                     String matchKey = "match-"+clusterName+"_" + (String.valueOf(i)) + "_" + String.valueOf(j);
                     String result = firstValue + "," + secondValue + ","+String.join(",", oldTokens);
                     jedis.select(1);
@@ -705,30 +613,6 @@ public class MultiThreadTreeLoaderCluster3 {
 
 
 
-
-
-    static final JedisPoolConfig poolConfig = buildPoolConfig();
-
-
-    private static JedisPoolConfig buildPoolConfig() {
-        final JedisPoolConfig poolConfig = new JedisPoolConfig();
-        poolConfig.setMaxTotal(128);
-        poolConfig.setMaxIdle(128);
-        poolConfig.setMinIdle(16);
-        poolConfig.setTestOnBorrow(true);
-        poolConfig.setTestOnReturn(true);
-        poolConfig.setTestWhileIdle(true);
-        poolConfig.setMinEvictableIdleTimeMillis(Duration.ofMinutes(60).toMillis());
-        poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofHours(30).toMillis());
-        poolConfig.setNumTestsPerEvictionRun(3);
-        poolConfig.setBlockWhenExhausted(true);
-
-        return poolConfig;
-    }
-
-
-
-//        return msgFiles;
 }
 
 

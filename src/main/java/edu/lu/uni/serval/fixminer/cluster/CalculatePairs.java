@@ -1,5 +1,6 @@
 package edu.lu.uni.serval.fixminer.cluster;
 
+import edu.lu.uni.serval.FixPattern.utils.PoolBuilder;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,6 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.List;
 
-import static edu.lu.uni.serval.fixminer.cluster.TreeLoaderClusterL1.poolConfig;
 
 /**
  * Created by anilkoyuncu on 05/04/2018.
@@ -21,21 +21,21 @@ import static edu.lu.uni.serval.fixminer.cluster.TreeLoaderClusterL1.poolConfig;
 public class CalculatePairs {
     private static Logger log = LoggerFactory.getLogger(CalculatePairs.class);
 
-    public static void main(String serverWait,String dbDir,String chunkName,String port,String outputPath,String pjName) throws Exception {
+    public static void main(String dbDir,String chunkName,String port,String outputPath,String pjName) throws Exception {
 
 
-        String parameters = String.format("\nport %s \nserverWait %s \nchunkName %s \ndbDir %s",port,serverWait,chunkName,dbDir);
+        String parameters = String.format("\nport %s \nchunkName %s \ndbDir %s",port,chunkName,dbDir);
         log.info(parameters);
 
         CallShell cs =new CallShell();
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(port));
 
-        cs.runShell(cmd,serverWait, port);
+        cs.runShell(cmd, port);
         FileHelper.createDirectory(outputPath);
 
 
-        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+        JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(port),20000000);
 
         ScanResult<String> scan;
         try (Jedis outer = outerPool.getResource()) {

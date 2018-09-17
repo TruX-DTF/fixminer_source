@@ -26,7 +26,7 @@ public class CallShell {
 
     }
 
-    public static void runShell(String command, String serverWait, String port) throws Exception {
+    public static void runShell(String command, String port) throws Exception {
 
         Process process = Runtime.getRuntime().exec(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -101,7 +101,7 @@ try{
     public static void main(String[] args) throws Exception {
 
 //        runPing("redis-cli -p 6380 ping");
-        runShell("bash /Users/anilkoyuncu/bugStudy/release/code/redis/startServer.sh /Users/anilkoyuncu/bugStudy/release/code/redis Defects4JALL0.txt.rdb 6380","1","6380");
+        runShell("bash /Users/anilkoyuncu/bugStudy/release/code/redis/startServer.sh /Users/anilkoyuncu/bugStudy/release/code/redis Defects4JALL0.txt.rdb 6380","6380");
     }
 
 

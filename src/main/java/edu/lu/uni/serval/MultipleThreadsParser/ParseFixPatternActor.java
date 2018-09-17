@@ -1,15 +1,14 @@
 package edu.lu.uni.serval.MultipleThreadsParser;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import akka.routing.RoundRobinPool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class ParseFixPatternActor extends UntypedActor {
 	

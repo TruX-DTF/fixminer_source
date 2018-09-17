@@ -1,5 +1,7 @@
 package edu.lu.uni.serval.fixminer.cluster;
 
+import edu.lu.uni.serval.FixPattern.utils.EDiffHelper;
+import edu.lu.uni.serval.FixPattern.utils.PoolBuilder;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,50 +11,28 @@ import redis.clients.jedis.JedisPool;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static edu.lu.uni.serval.fixminer.cluster.TreeLoaderClusterL1.poolConfig;
 
 /**
  * Created by anilkoyuncu on 03/04/2018.
  */
-public class StoreFile {
+public class StoreEDiffInCache {
 
-    private static Logger log = LoggerFactory.getLogger(StoreFile.class);
+    private static Logger log = LoggerFactory.getLogger(StoreEDiffInCache.class);
 
-//    public static void main(String[] args) {
-    public static void main(String inputPath,String portInner,String serverWait,String dbDir,String chunkName,String operation) throws Exception {
-//        String inputPath;
-//        String portInner;
-//        String serverWait;
-//        String dbDir;
-//        String chunkName;
-//        String numOfWorkers;
-//        if (args.length > 0) {
-//            inputPath = args[0];
-//            portInner = args[1];
-//            serverWait = args[2];
-//            chunkName = args[3];
-//            numOfWorkers = args[4];
-//            dbDir = args[5];
-//        } else {
-//            inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2";
-//            portInner = "6399";
-//            serverWait = "10000";
-//            chunkName ="dumps.rdb";
-//            dbDir = "/Users/anilkoyuncu/bugStudy/dataset/redis";
-//            numOfWorkers = "1";
-//        }
-        String parameters = String.format("\nInput path %s \nportInner %s \nserverWait %s \nchunkName %s \ndbDir %s \noperation %s",inputPath,portInner,serverWait,chunkName,dbDir,operation);
+
+    public static void main(String inputPath,String portInner,String dbDir,String chunkName,String operation) throws Exception {
+
+        String parameters = String.format("\nInput path %s \nportInner %s \nchunkName %s \ndbDir %s \noperation %s",inputPath,portInner,chunkName,dbDir,operation);
         log.info(parameters);
         CallShell cs = new CallShell();
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
-//        loadRedis(cmd,serverWait);
-        cs.runShell(cmd,serverWait, portInner);
+
+        cs.runShell(cmd, portInner);
 
         File folder = new File(inputPath);
         File[] subFolders = folder.listFiles();
@@ -98,7 +78,7 @@ public class StoreFile {
         }
         log.info(String.valueOf(workList.size()));
 
-        JedisPool innerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+        JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
 
         workList.stream().parallel()
                 .forEach(m -> storeCore(innerPool, m.split(",")[1],m.split(",")[0]));
@@ -107,9 +87,11 @@ public class StoreFile {
 
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer2 = String.format(stopServer,Integer.valueOf(portInner));
-//        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer2,serverWait, portInner);
+
+        cs.runShell(stopServer2, portInner);
     }
+
+
 
     public static void storeCore(JedisPool innerPool,String path,String key){
         try {
@@ -141,7 +123,7 @@ public class StoreFile {
 
             try (Jedis inner = innerPool.getResource()) {
 
-                inner.set(key,toString(actionSet));
+                inner.set(key, EDiffHelper.toString(actionSet));
             }
 
 
@@ -155,25 +137,7 @@ public class StoreFile {
     }
 
 
-    /** Read the object from Base64 string. */
-    private static Object fromString( String s ) throws IOException ,
-            ClassNotFoundException {
-        byte [] data = Base64.getDecoder().decode( s );
-        ObjectInputStream ois = new ObjectInputStream(
-                new ByteArrayInputStream(  data ) );
-        Object o  = ois.readObject();
-        ois.close();
-        return o;
-    }
 
-    /** Write the object to a Base64 string. */
-    private static String toString( Serializable o ) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( baos );
-        oos.writeObject( o );
-        oos.close();
-        return Base64.getEncoder().encodeToString(baos.toByteArray());
-    }
 
 
     }

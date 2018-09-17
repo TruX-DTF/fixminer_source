@@ -1,28 +1,17 @@
 package edu.lu.uni.serval.MultipleThreadsParser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import edu.lu.uni.serval.FixPatternParser.RunnableParser;
 import edu.lu.uni.serval.FixPatternParser.violations.FixedViolationHunkParser;
-import edu.lu.uni.serval.FixPatternParser.violations.Violation;
 import edu.lu.uni.serval.config.Configuration;
-import edu.lu.uni.serval.utils.FileHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.util.List;
+import java.util.concurrent.*;
 
 public class ParseFixPatternWorker extends UntypedActor {
 	private static Logger log = LoggerFactory.getLogger(ParseFixPatternActor.class);
@@ -79,10 +68,6 @@ public class ParseFixPatternWorker extends UntypedActor {
 				File diffentryFile = msgFile.getDiffEntryFile();
 
 
-//				File positionFile = msgFile.getPositionFile();
-				/*if (revFile.getName().toLowerCase().contains("test")) {
-					continue;
-				}*/
 				FixedViolationHunkParser parser =  new FixedViolationHunkParser();
 				
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -103,13 +88,7 @@ public class ParseFixPatternWorker extends UntypedActor {
 					
 					String editScript = parser.getAstEditScripts();
 					if ("".equals(editScript)) {
-//						if (parser.resultType == 1) {
-//							nullGumTreeResults += countAlarms(positionFile, "");
-//						} else if (parser.resultType == 2) {
-//							noSourceCodeChanges += countAlarms(positionFile, "");
-//						} else if (parser.resultType == 3) {
-//							noStatementChanges += countAlarms(positionFile, "");
-//						}
+
 					} else {
 						editScripts.append(editScript);
 						patchesSourceCode.append(parser.getPatchesSourceCode());
@@ -118,29 +97,21 @@ public class ParseFixPatternWorker extends UntypedActor {
 						
 						counter ++;
 						if (counter % 100 == 0) {
-//							FileHelper.outputToFile(editScriptsFilePath + "edistScripts_" + id + ".list", editScripts, true);
-//							FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
-//							FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
-//							FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
 							editScripts.setLength(0);
 							patchesSourceCode.setLength(0);
 							sizes.setLength(0);
 							tokens.setLength(0);
 							log.info("Worker #" + id +" finialized parsing " + counter + " files...");
-//							FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
 							testingInfo.setLength(0);
 						}
 					}
 				} catch (TimeoutException e) {
 					future.cancel(true);
-//					timeouts += countAlarms(positionFile, "#Timeout:");
 					System.err.println("#Timeout: " + revFile.getName());
 				} catch (InterruptedException e) {
-//					timeouts += countAlarms(positionFile, "#TimeInterrupted:");
 					System.err.println("#TimeInterrupted: " + revFile.getName());
 					e.printStackTrace();
 				} catch (ExecutionException e) {
-//					timeouts += countAlarms(positionFile, "#TimeAborted:");
 					System.err.println("#TimeAborted: " + revFile.getName());
 					e.printStackTrace();
 				} finally {
@@ -149,24 +120,13 @@ public class ParseFixPatternWorker extends UntypedActor {
 			}
 			
 			if (sizes.length() > 0) {
-//				FileHelper.outputToFile(editScriptsFilePath + "editScripts_" + id + ".list", editScripts, true);
-//				FileHelper.outputToFile(patchesSourceCodeFilePath + "patches_" + id + ".list", patchesSourceCode, true);
-//				FileHelper.outputToFile(editScriptSizesFilePath + "sizes_" + id + ".list", sizes, true);
-//				FileHelper.outputToFile(buggyTokensFilePath + "tokens_" + id + ".list", tokens, true);
 				editScripts.setLength(0);
 				patchesSourceCode.setLength(0);
 				sizes.setLength(0);
 				tokens.setLength(0);
 				
-//				FileHelper.outputToFile("OUTPUT/testingInfo_" + id + ".list", testingInfo, true);
 				testingInfo.setLength(0);
 			}
-//			String statistic = "\nNullGumTreeResults: " + nullGumTreeResults + "\nNoSourceCodeChanges: " + noSourceCodeChanges +
-//					"\nNoStatementChanges: " + noStatementChanges + "\nNullDiffEntry: " + nullDiffEntry + "\nNullMatchedGumTreeResults: " + nullMappingGumTreeResults +
-//					"\nPureDeletion: " + pureDeletion + "\nLargeHunk: " + largeHunk + "\nNullSourceCode: " + nullSourceCode +
-//					"\nTestingInfo: " + testInfos + "\nTimeout: " + timeouts;
-//			FileHelper.outputToFile("OUTPUT/statistic_" + id + ".list", statistic, false);
-//			FileHelper.outputToFile("OUTPUT/UnfixedV_" + id + ".list", builder, false);
 
 			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
 			log.info("Worker #" + id + " finialized the work...");

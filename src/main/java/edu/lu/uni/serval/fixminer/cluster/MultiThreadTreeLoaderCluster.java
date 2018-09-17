@@ -1,22 +1,29 @@
 package edu.lu.uni.serval.fixminer.cluster;
 
 import com.github.gumtreediff.actions.ActionGenerator;
-import com.github.gumtreediff.actions.model.*;
+import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
+import edu.lu.uni.serval.FixPattern.utils.EDiff;
+import edu.lu.uni.serval.FixPattern.utils.EDiffHelper;
+import edu.lu.uni.serval.FixPattern.utils.PoolBuilder;
 import edu.lu.uni.serval.gumtree.regroup.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.FileHelper;
-
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.*;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.ScanParams;
+import redis.clients.jedis.ScanResult;
 
 import java.io.*;
-import java.time.Duration;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,28 +35,27 @@ public class MultiThreadTreeLoaderCluster {
     private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoaderCluster.class);
 
 
-    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String serverWait,String type) throws Exception {
+    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String type) throws Exception {
 
         CallShell cs = new CallShell();
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd1 = String.format(cmd1, dbDir,chunkName,Integer.valueOf(portInner));
-//        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd1,"1000");
-        cs.runShell(cmd1,serverWait, port);
+        cs.runShell(cmd1, port);
 
 
         String cmd2 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
         cmd2 = String.format(cmd2, dbDir,dumpName,Integer.valueOf(port));
-        cs.runShell(cmd2,serverWait, port);
-//        edu.lu.uni.serval.fixminer.cluster.AkkaTreeLoader.loadRedis(cmd2,"10000");
+        cs.runShell(cmd2, port);
+
 
 
         String cmd3;
         cmd3 = "bash " + importScript +" %s %s";
 
 
-        JedisPool jedisPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(portInner),20000000);
+        JedisPool jedisPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
 
-        JedisPool outerPool = new JedisPool(poolConfig, "127.0.0.1",Integer.valueOf(port),20000000);
+        JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(port),20000000);
 
 
         File folder = new File(pairsCSVPath);
@@ -104,28 +110,15 @@ public class MultiThreadTreeLoaderCluster {
         }
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
-//        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer1,serverWait, port);
+       cs.runShell(stopServer1, port);
 
         String stopServer2 = String.format(stopServer,Integer.valueOf(port));
-//        loadRedis(stopServer2,serverWait);
-        cs.runShell(stopServer2,serverWait, port);
+        cs.runShell(stopServer2, port);
 
 
 
     }
 
-
-    /** Read the object from Base64 string. */
-    public static Object fromString( String s ) throws IOException ,
-            ClassNotFoundException {
-        byte [] data = Base64.getDecoder().decode( s );
-        ObjectInputStream ois = new ObjectInputStream(
-                new ByteArrayInputStream(  data ) );
-        Object o  = ois.readObject();
-        ois.close();
-        return o;
-    }
 
 
     public  static Pair<ITree,String> getTree(String firstValue, JedisPool outerPool,String type){
@@ -148,13 +141,13 @@ public class MultiThreadTreeLoaderCluster {
             inner = outerPool.getResource();
             String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
             String si= inner.get(filename);
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) fromString(si);
+            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
 
 
             ITree parent = null;
             ITree children =null;
             TreeContext tc = new TreeContext();
-            tree = getActionTree(actionSet, parent, children,tc);
+            tree = EDiff.getActionTree(actionSet, parent, children,tc);
             tree.setParent(null);
             tc.validate();
 
@@ -179,50 +172,7 @@ public class MultiThreadTreeLoaderCluster {
     }
 
 
-    public static ITree getActionTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
 
-        int newType = 0;
-
-        Action action = actionSet.getAction();
-        if (action instanceof Update){
-            newType = 101;
-        }else if(action instanceof Insert){
-            newType =100;
-        }else if(action instanceof Move){
-            newType = 102;
-        }else if(action instanceof Delete){
-            newType=103;
-        }else{
-            new Exception("unknow action");
-        }
-        if(actionSet.getParent() == null){
-            //root
-
-            parent = tc.createTree(newType, "", null);
-            tc.setRoot(parent);
-
-//            parent = new Tree(newType,"");
-        }else{
-            children = tc.createTree(newType, "", null);
-            children.setParentAndUpdateChildren(parent);
-//            children = new Tree(newType,"");
-//            parent.addChild(children);
-        }
-        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
-        if (subActions.size() != 0){
-            for (HierarchicalActionSet subAction : subActions) {
-
-                if(actionSet.getParent() == null){
-                    children = parent;
-                }
-                getActionTree(subAction,children,null,tc);
-
-            }
-
-
-        }
-        return parent;
-    }
 
 
     private static void coreCompare(String name , JedisPool jedisPool,String clusterName,JedisPool outerPool,String type) {
@@ -381,26 +331,6 @@ public class MultiThreadTreeLoaderCluster {
         log.info("Done pairs");
     }
 
-
-
-    static final JedisPoolConfig poolConfig = buildPoolConfig();
-
-
-    private static JedisPoolConfig buildPoolConfig() {
-        final JedisPoolConfig poolConfig = new JedisPoolConfig();
-        poolConfig.setMaxTotal(128);
-        poolConfig.setMaxIdle(128);
-        poolConfig.setMinIdle(16);
-        poolConfig.setTestOnBorrow(true);
-        poolConfig.setTestOnReturn(true);
-        poolConfig.setTestWhileIdle(true);
-        poolConfig.setMinEvictableIdleTimeMillis(Duration.ofMinutes(60).toMillis());
-        poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofHours(30).toMillis());
-        poolConfig.setNumTestsPerEvictionRun(3);
-        poolConfig.setBlockWhenExhausted(true);
-
-        return poolConfig;
-    }
 
 
 

@@ -1,21 +1,12 @@
 package edu.lu.uni.serval.gumtree.regroup;
 
-import java.io.File;
+import com.github.gumtreediff.actions.model.*;
+import com.github.gumtreediff.tree.ITree;
+import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
+import edu.lu.uni.serval.utils.ListSorter;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.actions.model.Addition;
-import com.github.gumtreediff.actions.model.Delete;
-import com.github.gumtreediff.actions.model.Insert;
-import com.github.gumtreediff.actions.model.Move;
-import com.github.gumtreediff.actions.model.Update;
-import com.github.gumtreediff.tree.ITree;
-
-import edu.lu.uni.serval.FixPattern.utils.ASTNodeMap;
-import edu.lu.uni.serval.FixPattern.utils.Checker;
-import edu.lu.uni.serval.gumtree.GumTreeComparer;
-import edu.lu.uni.serval.utils.ListSorter;
 
 /**
  * Regroup GumTree results to a hierarchical construction.
@@ -209,11 +200,6 @@ public class HierarchicalRegrouper {
 			}
 
 
-//		} else if (parent.getType() == 31) { // method declaration
-//			int type = action.getNode().getType();
-//			if (Checker.isStatement(type)) {// statements
-//				return null;
-//			}
 		}
 		
 		for (Action act : actions) {
