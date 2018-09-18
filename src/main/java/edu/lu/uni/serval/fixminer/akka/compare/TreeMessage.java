@@ -1,5 +1,6 @@
-package edu.lu.uni.serval.fixminer.cluster.akka;
+package edu.lu.uni.serval.fixminer.akka.compare;
 
+import edu.lu.uni.serval.fixminer.akka.BaseMessage;
 import redis.clients.jedis.JedisPool;
 
 import java.util.List;
@@ -7,25 +8,27 @@ import java.util.List;
 /**
  * Created by anilkoyuncu on 12/09/2018.
  */
-public class TreeMessage {
-    private int id;
+public class TreeMessage extends BaseMessage{
     private List<String> name;
     private JedisPool innerPool;
     private JedisPool outerPool;
 
-    public TreeMessage(int id, List<String> name, JedisPool innerPool, JedisPool outerPool) {
-        this.id = id;
+
+    public TreeMessage(int id, List<String> name, JedisPool innerPool, JedisPool outerPool,String eDiffTimeout) {
+        super(id,new Long(eDiffTimeout));
+
         this.name = name;
         this.innerPool = innerPool;
         this.outerPool = outerPool;
-    }
 
-    public int getId() {
-        return id;
     }
+    public TreeMessage(int id, List<String> name, JedisPool innerPool, JedisPool outerPool,Long eDiffTimeout) {
+        super(id,eDiffTimeout);
 
-    public void setId(int id) {
-        this.id = id;
+        this.name = name;
+        this.innerPool = innerPool;
+        this.outerPool = outerPool;
+
     }
 
     public List<String> getName() {

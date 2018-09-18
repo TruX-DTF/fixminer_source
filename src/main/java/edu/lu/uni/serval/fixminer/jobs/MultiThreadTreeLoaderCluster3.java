@@ -2,11 +2,11 @@ package edu.lu.uni.serval.fixminer.jobs;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
+import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
-import edu.lu.uni.serval.utils.PoolBuilder;
-import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.utils.PoolBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.similarity.JaroWinklerDistance;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class MultiThreadTreeLoaderCluster3 {
     private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoaderCluster3.class);
 
 
-    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String type) throws Exception {
+    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String type,int cursor) throws Exception {
 
         CallShell cs = new CallShell();
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
@@ -69,7 +69,7 @@ public class MultiThreadTreeLoaderCluster3 {
                 try (Jedis jedis = jedisPool.getResource()) {
                     // do operations with jedis resource
                     ScanParams sc = new ScanParams();
-                    sc.count(150000000);
+                    sc.count(cursor);
                     sc.match("pair_[0-9]*");
 
                     log.info("Scanning");
@@ -78,7 +78,7 @@ public class MultiThreadTreeLoaderCluster3 {
 
                     if (size == 0) {
                         String comd = String.format(cmd3, f.getPath(), portInner);
-                        cs.runShell(comd);
+                        cs.runShell(comd,portInner);
 
 
                         scan = jedis.scan("0", sc);
@@ -149,7 +149,7 @@ public class MultiThreadTreeLoaderCluster3 {
             ITree parent = null;
             ITree children =null;
             TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
+            tree = EDiffHelper.getTokenTree(actionSet, parent, children,tc);
 //            tree.setParent(null);
             tc.validate();
 
@@ -526,7 +526,7 @@ public class MultiThreadTreeLoaderCluster3 {
                 .collect(Collectors.toList());
 
         FileHelper.createDirectory(outputPath + "/pairs-2l"+type);
-
+        log.info("Calculating pairs");
         for (File pj : pjs) {
             File[] files = pj.listFiles();
             List<File> fileList = Arrays.asList(files);
@@ -536,6 +536,7 @@ public class MultiThreadTreeLoaderCluster3 {
                 }
                 File[] clusterFiles = cluster.listFiles();
                 List<File> clusterFilesL = Arrays.asList(clusterFiles);
+
                 readMessageFilesCluster(clusterFilesL, outputPath, inputPath, pj.getName(), cluster.getName(),type);
 
 
@@ -559,7 +560,7 @@ public class MultiThreadTreeLoaderCluster3 {
             treesFileNames.add(target.toString());
         }
 
-        log.info("Calculating pairs");
+
 //        treesFileNames = treesFileNames.subList(0,100);
 
         String filename = "cluster" + cluster + "_" + subCluster;
@@ -609,7 +610,7 @@ public class MultiThreadTreeLoaderCluster3 {
             e.printStackTrace();
         }
 
-        log.info("Done pairs");
+        log.info("Done pairs of {}",filename);
     }
 
 

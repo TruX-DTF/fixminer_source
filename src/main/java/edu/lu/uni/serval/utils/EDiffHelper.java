@@ -2,7 +2,7 @@ package edu.lu.uni.serval.utils;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
-import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
+import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +37,47 @@ public class EDiffHelper {
         oos.close();
         return Base64.getEncoder().encodeToString(baos.toByteArray());
     }
+
+
+    public static ITree getTokenTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
+
+        int newType = 0;
+
+        String astNodeType = actionSet.getAstNodeType();
+
+        String label = actionSet.getAction().toString();
+        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+
+        if(keysByValue.size() != 1){
+            log.error("More than 1");
+        }
+        newType = keysByValue.get(0);
+        if(actionSet.getParent() == null){
+            //root
+
+            parent = tc.createTree(newType, label, null);
+            tc.setRoot(parent);
+        }else{
+
+            children = tc.createTree(newType, label, null);
+            children.setParentAndUpdateChildren(parent);
+        }
+        List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+        if (subActions.size() != 0){
+            for (HierarchicalActionSet subAction : subActions) {
+
+                if(actionSet.getParent() == null){
+                    children = parent;
+                }
+                getTokenTree(subAction,children,null,tc);
+
+            }
+
+
+        }
+        return parent;
+    }
+
 
     public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc){
 

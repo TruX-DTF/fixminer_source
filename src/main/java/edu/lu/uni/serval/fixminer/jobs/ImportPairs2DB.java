@@ -44,7 +44,7 @@ public class ImportPairs2DB {
 
             cmd = String.format(cmd, pj.getPath(), portInt);
             log.info(cmd);
-            cs.runShell(cmd);
+            cs.runShell(cmd,portInner);
 
             String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
             String stopServer2 = String.format(stopServer,portInt);

@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.cluster.akka;
+package edu.lu.uni.serval.fixminer.akka.compare;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -19,7 +19,7 @@ public class AkkaTreeParser {
     private static Logger log = LoggerFactory.getLogger(AkkaTreeParser.class);
 
 
-    public static void akkaCompare(JedisPool innerPool, JedisPool outerPool, String numOfWorkers, String cursor){
+    public static void akkaCompare(JedisPool innerPool, JedisPool outerPool, String numOfWorkers, int cursor, String eDiffTimeout){
 
         final List<String> listOfPairs = getMessages(innerPool,cursor); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
@@ -28,7 +28,7 @@ public class AkkaTreeParser {
 
         ActorSystem system = null;
         ActorRef parsingActor = null;
-        final TreeMessage msg = new TreeMessage(0,listOfPairs, innerPool,outerPool);
+        final TreeMessage msg = new TreeMessage(0,listOfPairs, innerPool,outerPool,eDiffTimeout);
         try {
             log.info("Akka begins...");
             system = ActorSystem.create("Compare-EnhancedDiff-System");
@@ -41,7 +41,7 @@ public class AkkaTreeParser {
         }
     }
 
-    public static List<String> getMessages(JedisPool innerPool, String cursor){
+    public static List<String> getMessages(JedisPool innerPool, int cursor){
 
 
         ScanResult<String> scan;
@@ -54,7 +54,7 @@ public class AkkaTreeParser {
             ScanParams sc = new ScanParams();
             //150000000
             log.info("Scanning ");
-            sc.count(Integer.valueOf(cursor));
+            sc.count(cursor);
 
             sc.match("pair_[0-9]*");
 

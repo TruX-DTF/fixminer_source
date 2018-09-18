@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser;
+package edu.lu.uni.serval.fixminer.akka.ediff;
 
 import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.tree.ITree;

@@ -1,4 +1,9 @@
-package edu.lu.uni.serval.FixPatternParser;
+package edu.lu.uni.serval.fixminer.akka.ediff;
+
+import com.github.gumtreediff.actions.model.Delete;
+import com.github.gumtreediff.actions.model.Insert;
+import com.github.gumtreediff.actions.model.Move;
+import com.github.gumtreediff.actions.model.Update;
 
 import java.io.*;
 import java.util.List;
@@ -11,7 +16,7 @@ import java.util.List;
  * @author kui.liu
  *
  */
-public class FixedPatternHunkParser extends FixedPatternParser {
+public class EDiffHunkParser extends EDiffParser {
 	
 	public String testingInfo = "";
 	
@@ -25,30 +30,49 @@ public class FixedPatternHunkParser extends FixedPatternParser {
 	public String unfixedViolations = "";
 	
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile,String project) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile,String project,String actionType) {
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
 		if (actionSets.size() != 0) {
-//			boolean isUpdate =
-//					actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
-//			boolean isInsert =
-//					actionSets.stream().allMatch(p -> p.getAction() instanceof Insert);
-//			boolean isDelete =
-//					actionSets.stream().allMatch(p -> p.getAction() instanceof Delete);
-//			boolean isMove =
-//					actionSets.stream().allMatch(p -> p.getAction() instanceof Move);
+			String folder= null;
+			boolean processActionSet = false;
+			switch (actionType){
+				case "ALL":
+					folder = "/ALL/";
+					processActionSet = true;
+					break;
+				case "UPD":
+					processActionSet =
+							actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
+					folder = "/UPD/";
+					break;
+				case "INS":
+					processActionSet =
+							actionSets.stream().allMatch(p -> p.getAction() instanceof Insert);
+
+					folder = "/INS/";
+					break;
+				case "DEL":
+					processActionSet =
+							actionSets.stream().allMatch(p -> p.getAction() instanceof Delete);
+					folder = "/DEL/";
+					break;
+				case "MOV":
+					processActionSet =
+							actionSets.stream().allMatch(p -> p.getAction() instanceof Move);
+					folder = "/MOV/";
+					break;
+				default:
+					processActionSet = false;
+					System.err.print(actionType + "not known");
+					break;
+			}
+
+
 			int hunkSet = 0;
-//			if (isUpdate || isInsert || isDelete || isMove) {
+			if(processActionSet){
 				for (HierarchicalActionSet actionSet : actionSets) {
-					String folder = "/ALL/";
-//					if (isUpdate) {
-//						folder = "/UPD/";
-//					} else if (isDelete) {
-//						folder = "/DEL/";
-//					} else if (isInsert) {
-//						folder = "/INS/";
-//					} else if (isMove) {
-//						folder = "/MOV/";
-//					}
+
+
 
 
 					FileOutputStream f = null;
@@ -75,7 +99,7 @@ public class FixedPatternHunkParser extends FixedPatternParser {
 					hunkSet++;
 				}
 
-//			}
+			}
 		}
 
 	}

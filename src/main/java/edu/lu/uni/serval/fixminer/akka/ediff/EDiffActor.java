@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.cluster.akka;
+package edu.lu.uni.serval.fixminer.akka.ediff;
 
 import akka.actor.ActorRef;
 import akka.actor.Props;
@@ -7,72 +7,65 @@ import akka.japi.Creator;
 import akka.routing.RoundRobinPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 
-public class TreeActor extends UntypedActor {
-
-	private static Logger logger = LoggerFactory.getLogger(TreeActor.class);
+public class EDiffActor extends UntypedActor {
+	
+	private static Logger logger = LoggerFactory.getLogger(EDiffActor.class);
 
 	private ActorRef mineRouter;
 	private final int numberOfWorkers;
 	private int counter = 0;
-
-
-	public TreeActor(int numberOfWorkers) {
+	
+	public EDiffActor(int numberOfWorkers, String project) {
 		mineRouter = this.getContext().actorOf(new RoundRobinPool(numberOfWorkers)
-				.props(TreeWorker.props()), "tree-router");
+				.props(EDiffWorker.props(project)), "mine-fix-pattern-router");
 		this.numberOfWorkers = numberOfWorkers;
 	}
 
-	public static Props props(final int numberOfWorkers) {
-
-		return Props.create(new Creator<TreeActor>() {
+	public static Props props(final int numberOfWorkers, final String project) {
+		
+		return Props.create(new Creator<EDiffActor>() {
 
 			private static final long serialVersionUID = 9207427376110704705L;
 
 			@Override
-			public TreeActor create() throws Exception {
-				return new TreeActor(numberOfWorkers);
+			public EDiffActor create() throws Exception {
+				return new EDiffActor(numberOfWorkers, project);
 			}
-
+			
 		});
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if (message instanceof TreeMessage) {
-			List<String> pairs = ((TreeMessage) message).getName();
-			JedisPool innerPool = ((TreeMessage) message).getInnerPool();
-			JedisPool outerPool = ((TreeMessage) message).getOuterPool();
-
-
-			int size = pairs.size();
+		if (message instanceof EDiffMessage) {
+			List<MessageFile> files = ((EDiffMessage) message).getMsgFiles();
+			int size = files.size();
 			int average = size / numberOfWorkers;
 			int reminder = size % numberOfWorkers;
 			int counter = 0;
-
+			
 			for (int i = 0; i < numberOfWorkers; i ++) {
 				int fromIndex = i * average + counter;
 				if (counter < reminder) counter ++;
 				int toIndex = (i + 1) * average + counter;
-
-				List<String> pairsOfWorkers = pairs.subList(fromIndex, toIndex);
-				final TreeMessage workMsg = new TreeMessage(i + 1, pairsOfWorkers,innerPool,outerPool);
+				
+				List<MessageFile> filesOfWorkers = files.subList(fromIndex, toIndex);
+				final EDiffMessage workMsg = new EDiffMessage(i + 1, filesOfWorkers,((EDiffMessage) message).getSECONDS_TO_WAIT(),((EDiffMessage) message).getActionType());
 				mineRouter.tell(workMsg, getSelf());
 				logger.info("Assign a task to worker #" + (i + 1) + "...");
 			}
 		} else if ("STOP".equals(message.toString())) {
 			counter ++;
-			logger.info(counter + " workers finailized their work...");
+			logger.info(counter + " workers finalized their work...");
 			if (counter >= numberOfWorkers) {
-				logger.info("All workers finailized their work...");
+				logger.info("All workers finalized their work...");
 				this.getContext().stop(mineRouter);
 				this.getContext().stop(getSelf());
 				this.getContext().system().shutdown();
-
 			}
 		} else {
 			unhandled(message);

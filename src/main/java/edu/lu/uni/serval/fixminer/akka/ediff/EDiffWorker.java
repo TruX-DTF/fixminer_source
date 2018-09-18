@@ -1,11 +1,8 @@
-package edu.lu.uni.serval.fixminer.cluster.akka;
+package edu.lu.uni.serval.fixminer.akka.ediff;
 
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
-import edu.lu.uni.serval.FixPatternParser.FixedPatternHunkParser;
-import edu.lu.uni.serval.FixPatternParser.RunnableParser;
-import edu.lu.uni.serval.config.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,14 +65,15 @@ public class EDiffWorker extends UntypedActor {
 				File diffentryFile = msgFile.getDiffEntryFile();
 
 
-				FixedPatternHunkParser parser =  new FixedPatternHunkParser();
+
+				EDiffHunkParser parser =  new EDiffHunkParser();
 				
-				final ExecutorService executor = Executors.newSingleThreadExecutor();
+				final ExecutorService executor = Executors.newWorkStealingPool();
 				// schedule the work
-				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project));
+				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,msg.getActionType()));
 				try {
 					// wait for task to complete
-					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
+					future.get(msg.getSECONDS_TO_WAIT(), TimeUnit.SECONDS);
 
 					nullDiffEntry += parser.nullMatchedDiffEntry;
 					nullMappingGumTreeResults += parser.nullMappingGumTreeResult;
@@ -101,7 +99,7 @@ public class EDiffWorker extends UntypedActor {
 							patchesSourceCode.setLength(0);
 							sizes.setLength(0);
 							tokens.setLength(0);
-							log.info("Worker #" + id +" finialized parsing " + counter + " files...");
+							log.info("Worker #" + id +" finalized parsing " + counter + " files...");
 							testingInfo.setLength(0);
 						}
 					}
@@ -128,8 +126,8 @@ public class EDiffWorker extends UntypedActor {
 				testingInfo.setLength(0);
 			}
 
-			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
-			log.info("Worker #" + id + " finialized the work...");
+//			log.info("Worker #" + id +" finalized parsing " + counter + " files...");
+			log.info("Worker #" + id + " finalized the work...");
 			this.getSender().tell("STOP", getSelf());
 		} else {
 			unhandled(message);

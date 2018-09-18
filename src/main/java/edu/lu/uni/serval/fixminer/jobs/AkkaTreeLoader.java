@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static edu.lu.uni.serval.fixminer.cluster.akka.AkkaTreeParser.akkaCompare;
+import static edu.lu.uni.serval.fixminer.akka.compare.AkkaTreeParser.akkaCompare;
 
 /**
  * Created by anilkoyuncu on 19/03/2018.
@@ -24,7 +24,7 @@ public class AkkaTreeLoader {
     private static Logger log = LoggerFactory.getLogger(AkkaTreeLoader.class);
 
 
-    public static void main(String portInner, String dbDir, String chunkName, String port, String dumpsName, String pairsPath, String numOfWorkers, String cursor,String chunk) throws Exception {
+    public static void main(String portInner, String dbDir, String chunkName, String port, String dumpsName, String pairsPath, String numOfWorkers, int cursor,String chunk,String eDiffTimeout) throws Exception {
 
 
         String parameters = String.format("\nportInner %s \nchunkName %s \ndbDir %s \ndumpsName %s",portInner,chunkName,dbDir,dumpsName);
@@ -90,7 +90,17 @@ public class AkkaTreeLoader {
 
 
 
-        akkaCompare(innerPool,outerPool,numOfWorkers,cursor);
+        akkaCompare(innerPool,outerPool,numOfWorkers,cursor,eDiffTimeout);
+
+        String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
+        String stopServer2 = String.format(stopServer,Integer.valueOf(port));
+
+        cs.runShell(stopServer2,port);
+
+
+        String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
+
+        cs.runShell(stopServer1,portInner);
 
 
 

@@ -1,7 +1,7 @@
 package edu.lu.uni.serval.fixminer.jobs;
 
+import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.Checker;
-import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

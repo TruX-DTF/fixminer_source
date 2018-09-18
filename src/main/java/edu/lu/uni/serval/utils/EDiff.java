@@ -3,7 +3,7 @@ package edu.lu.uni.serval.utils;
 import com.github.gumtreediff.actions.model.*;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
-import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
+import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

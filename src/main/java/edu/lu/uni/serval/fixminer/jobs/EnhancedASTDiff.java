@@ -2,9 +2,9 @@ package edu.lu.uni.serval.fixminer.jobs;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import edu.lu.uni.serval.fixminer.cluster.akka.EDiffMessage;
-import edu.lu.uni.serval.fixminer.cluster.akka.MessageFile;
-import edu.lu.uni.serval.fixminer.cluster.akka.EDiffActor;
+import edu.lu.uni.serval.fixminer.akka.ediff.EDiffActor;
+import edu.lu.uni.serval.fixminer.akka.ediff.EDiffMessage;
+import edu.lu.uni.serval.fixminer.akka.ediff.MessageFile;
 import edu.lu.uni.serval.utils.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String outputPath,String numOfWorkers,String project) {
+	public static void main(String inputPath, String outputPath, String numOfWorkers, String project, String eDiffTimeout, String actionType) {
 
 
 		String parameters = String.format("\nInput path %s \nOutput path %s",inputPath,outputPath);
@@ -45,18 +45,19 @@ public class EnhancedASTDiff {
 
             String GUM_TREE_OUTPUT = outputPath + "/"+  pjName + "/";
 
-			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/UPD");
-			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/INS");
-			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/DEL");
-			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MOV");
-			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/ALL");
+//            a
+//			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/UPD");
+//			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/INS");
+//			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/DEL");
+//			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MOV");
+			FileHelper.createDirectory(GUM_TREE_OUTPUT + "/"+actionType);
 
 
             int a = 0;
 
 			ActorSystem system = null;
 			ActorRef parsingActor = null;
-			final EDiffMessage msg = new EDiffMessage(0, msgFiles);
+			final EDiffMessage msg = new EDiffMessage(0, msgFiles,eDiffTimeout,actionType);
 			try {
 				log.info("Akka begins...");
 				system = ActorSystem.create("Mining-FixPattern-System");

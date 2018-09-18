@@ -4,6 +4,9 @@ package edu.lu.uni.serval.utils;
  * Created by anilkoyuncu on 17/04/2018.
  */
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CallShell {
 
+    private static Logger log = LoggerFactory.getLogger(CallShell.class);
 
 
 
@@ -27,6 +31,8 @@ public class CallShell {
     }
 
     public static void runShell(String command, String port) throws Exception {
+
+        log.info(command);
 
         Process process = Runtime.getRuntime().exec(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(

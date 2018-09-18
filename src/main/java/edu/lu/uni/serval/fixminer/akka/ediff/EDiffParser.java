@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternParser;
+package edu.lu.uni.serval.fixminer.akka.ediff;
 
 import com.github.gumtreediff.actions.model.Action;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author kui.liu
  *
  */
-public class FixedPatternParser extends Parser {
+public class EDiffParser extends Parser {
 
 	/*
 	 * ResultType:
@@ -26,11 +26,7 @@ public class FixedPatternParser extends Parser {
 	 */
 	public int resultType = 0;
 
-	protected String violationTypes = "";
 
-	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile,String project) {
-	}
 
 	/**
 	 * Regroup GumTree results without remove the modification of variable names.
@@ -65,16 +61,11 @@ public class FixedPatternParser extends Parser {
 		}
 	}
 
+	@Override
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, String actionType) {
+
+	}
 
 
 
-
-//	@Override
-//	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile) {
-//
-//	}
-
-//	public void setUselessViolations(List<Violation> uselessViolations) {
-//		this.uselessViolations = uselessViolations;
-//	}
 }

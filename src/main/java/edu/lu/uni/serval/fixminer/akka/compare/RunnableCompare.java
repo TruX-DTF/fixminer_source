@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.fixminer.akka.compare;
 
 import redis.clients.jedis.JedisPool;
 

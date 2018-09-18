@@ -6,12 +6,8 @@ import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
-import edu.lu.uni.serval.utils.CallShell;
-import edu.lu.uni.serval.utils.EDiff;
-import edu.lu.uni.serval.utils.EDiffHelper;
-import edu.lu.uni.serval.utils.PoolBuilder;
-import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
-import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
+import edu.lu.uni.serval.utils.*;
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +32,7 @@ public class MultiThreadTreeLoaderCluster {
     private static Logger log = LoggerFactory.getLogger(MultiThreadTreeLoaderCluster.class);
 
 
-    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String type) throws Exception {
+    public static void mainCompare(String port,String pairsCSVPath,String importScript,String dbDir,String chunkName,String dumpName,String portInner,String type,int cursor) throws Exception {
 
         CallShell cs = new CallShell();
         String cmd1 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
@@ -74,7 +70,7 @@ public class MultiThreadTreeLoaderCluster {
                 try (Jedis jedis = jedisPool.getResource()) {
                     // do operations with jedis resource
                     ScanParams sc = new ScanParams();
-                    sc.count(150000000);
+                    sc.count(cursor);
                     sc.match("pair_[0-9]*");
 
                     log.info("Scanning");
@@ -84,13 +80,14 @@ public class MultiThreadTreeLoaderCluster {
                     if (size == 0) {
                         String comd = String.format(cmd3,f.getPath(),portInner);
 //                        loadRedis(comd);
-                        cs.runShell(comd);
+                        log.info("Importing {} pairs for cluster {}",size,f.getName());
+                        cs.runShell(comd,portInner);
 
                         scan = jedis.scan("0", sc);
                         size = scan.getResult().size();
 
                     }
-                    log.info("Scanned " + String.valueOf(size));
+                    log.info("Scanned {} for cluster {}",String.valueOf(size),f.getName());
 
 
                     String clusterName = f.getName().replaceAll("[^0-9]+", "");
@@ -247,7 +244,7 @@ public class MultiThreadTreeLoaderCluster {
 //                log.info("Completed " + resultKey);
 
             }catch (Exception e){
-                log.warn(e.toString() + " {}",(name));
+                log.debug(e.toString() + " {}",(name));
 
 
             }
@@ -329,7 +326,7 @@ public class MultiThreadTreeLoaderCluster {
             e.printStackTrace();
         }
 
-        log.info("Done pairs");
+        log.info("Done pairs of cluster {}",cluster);
     }
 
 

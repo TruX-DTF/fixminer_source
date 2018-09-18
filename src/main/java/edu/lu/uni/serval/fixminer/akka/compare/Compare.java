@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.cluster;
+package edu.lu.uni.serval.fixminer.akka.compare;
 
 import com.github.gumtreediff.actions.ActionGenerator;
 import com.github.gumtreediff.actions.model.Action;
@@ -71,7 +71,7 @@ public class Compare {
             if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
                     || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
                 String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-//                log.info(matchKey);
+                log.info("{} tagged to be similar" ,matchKey);
 
                 jedis.select(1);
                 jedis.set(matchKey, result);
@@ -86,7 +86,7 @@ public class Compare {
 
         } catch (Exception e) {
 
-            log.error(e.toString() + " {}", name);
+            log.debug("{} not comparable", name);
 //            e.printStackTrace();
 
 

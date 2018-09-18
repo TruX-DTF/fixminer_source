@@ -1,9 +1,9 @@
 package edu.lu.uni.serval.fixminer.jobs;
 
+import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
-import edu.lu.uni.serval.FixPatternParser.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -112,10 +112,10 @@ public class StoreEDiffInCache {
 
 
             } catch (FileNotFoundException e) {
-                log.error("File not found");
+                log.error("File not found {}" , path);
                 e.printStackTrace();
             } catch (IOException e) {
-                log.error("Error initializing stream");
+                log.error("Error initializing stream {}" , path);
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 // TODO Auto-generated catch block

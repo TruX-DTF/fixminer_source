@@ -1,11 +1,9 @@
-package edu.lu.uni.serval.fixminer.cluster.akka;
+package edu.lu.uni.serval.fixminer.akka.compare;
 
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import edu.lu.uni.serval.config.Configuration;
-import edu.lu.uni.serval.fixminer.cluster.Compare;
-import edu.lu.uni.serval.fixminer.cluster.RunnableCompare;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.JedisPool;
@@ -66,7 +64,7 @@ public class TreeWorker extends UntypedActor {
 		if(message instanceof TreeMessage) {
 
 
-//		if (message instanceof edu.lu.uni.serval.fixminer.cluster.akka.EDiffMessage) {
+//		if (message instanceof edu.lu.uni.serval.fixminer.akka.ediff.EDiffMessage) {
 			TreeMessage msg = (TreeMessage) message;
 			List<String> files = msg.getName();
 			JedisPool innerPool = msg.getInnerPool();
@@ -92,12 +90,12 @@ public class TreeWorker extends UntypedActor {
 //			}.counter;
 
 //
-				final ExecutorService executor = Executors.newFixedThreadPool(20);
+				final ExecutorService executor = Executors.newWorkStealingPool();
 //				// schedule the work
 				final Future<?> future = executor.submit(new RunnableCompare(name, innerPool, outerPool, new Compare()));
 				try {
 //					 wait for task to complete
-					future.get(Configuration.SECONDS_TO_WAIT, TimeUnit.SECONDS);
+					future.get(msg.getSECONDS_TO_WAIT(), TimeUnit.SECONDS);
 					Compare compare = new Compare();
 					compare.coreCompare(name, innerPool, outerPool);
 					counter++;
@@ -157,9 +155,8 @@ public class TreeWorker extends UntypedActor {
 				}
 			}
 
-			log.info("bitti");
-			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
-			log.info("Worker #" + id + " finialized the work...");
+//			log.info("Worker #" + id +"finialized parsing " + counter + " files...");
+			log.info("Worker #" + id + " finalized the work...");
 			this.getSender().tell("STOP", getSelf());
 //				String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
 //                stopServer = String.format(stopServer,Integer.valueOf(innerPort));

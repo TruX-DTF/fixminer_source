@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.cluster.akka;
+package edu.lu.uni.serval.fixminer.akka.ediff;
 
 import java.io.File;
 

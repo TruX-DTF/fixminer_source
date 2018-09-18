@@ -22,7 +22,7 @@ public class TreeLoaderClusterL1 {
 
     private static Logger log = LoggerFactory.getLogger(TreeLoaderClusterL1.class);
 
-    public static void main(String portInner,String port,String inputPath,String level1DB,String level1Path,String innerTypePrefix) throws Exception {
+    public static void main(String portInner,String port,String inputPath,String level1DB,String level1Path,String innerTypePrefix,int cursor) throws Exception {
 
 
 
@@ -59,7 +59,7 @@ public class TreeLoaderClusterL1 {
                 inner.select(1);
                 ScanParams sc = new ScanParams();
                 //150000000
-                sc.count(150000000);
+                sc.count(cursor);
                 sc.match("match_[0-9]*");
 
                 ScanResult<String> scan; scan = inner.scan("0", sc);
