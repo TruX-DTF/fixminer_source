@@ -39,23 +39,24 @@ public class Launcher {
         String chunk = appProps.getProperty("chunk","1.txt");
         String eDiffTimeout = appProps.getProperty("eDiffTimeout","900");
         String isBig = appProps.getProperty("isBigPair","true");
+        String parallelism = appProps.getProperty("parallelism","FORKJOIN");
         boolean isBigPair = Boolean.parseBoolean(isBig);
 
         String parameters = String.format("\nportInner %s " +
                 "\nnumOfWorkers %s " +
                 "\njobType %s \nport %s " +
                 "\npythonPath %s \ndatasetPath %s" +
-                "\npjName %s \nactionType %s \nthreshold %s \ncursor %s \neDiffTimeout %s \nisBigPair %s"
-                , portInner,  numOfWorkers, jobType, portDumps, pythonPath,datasetPath,pjName,actionType,threshold,cursor,eDiffTimeout,isBig);
+                "\npjName %s \nactionType %s \nthreshold %s \ncursor %s \neDiffTimeout %s \nisBigPair %s \nparallelism %s"
+                , portInner,  numOfWorkers, jobType, portDumps, pythonPath,datasetPath,pjName,actionType,threshold,cursor,eDiffTimeout,isBig,parallelism);
 
         log.info(parameters);
 
-        mainLaunch(portInner,  numOfWorkers, jobType, portDumps, pythonPath,datasetPath,pjName,actionType,threshold,cursor,chunk,eDiffTimeout,isBigPair);
+        mainLaunch(portInner,  numOfWorkers, jobType, portDumps, pythonPath,datasetPath,pjName,actionType,threshold,cursor,chunk,eDiffTimeout,isBigPair,parallelism);
 
 
     }
 
-    public static void mainLaunch(String portInner, String numOfWorkers, String jobType, String portDumps, String pythonPath, String datasetPath, String pjName, String actionType, String threshold, String cursor, String chunk, String eDiffTimeout, boolean isBigPair){
+    public static void mainLaunch(String portInner, String numOfWorkers, String jobType, String portDumps, String pythonPath, String datasetPath, String pjName, String actionType, String threshold, String cursor, String chunk, String eDiffTimeout, boolean isBigPair, String parallelism){
 
 
         String dbDir;
@@ -74,17 +75,17 @@ public class Launcher {
         try {
             switch (jobType) {
                 case "ENHANCEDASTDIFF":
-                    EnhancedASTDiff.main(gumInput, gumOutput, numOfWorkers, pjName, eDiffTimeout,actionType);
+                    EnhancedASTDiff.main(gumInput, gumOutput, numOfWorkers, pjName, eDiffTimeout,actionType,parallelism);
                     break;
                 case "CACHE":
                     StoreEDiffInCache.main(gumOutput, portDumps, dbDir, actionType+dumpsName,actionType);
                     break;
                 case "SI":
                     CalculatePairs.main(dbDir, actionType+dumpsName, portDumps, pairsPath+actionType, pjName+actionType,isBigPair,iCursor);
-                    ImportPairs2DB.main(pairsPath+actionType, portInner, dbDir,datasetPath);
+                    ImportPairs2DB.main(pairsPath+actionType, portInner, dbDir,datasetPath,chunk);
                     break;
                 case "SIMI":
-                    AkkaTreeLoader.main(portInner,  dbDir, pjName +actionType+chunk+".rdb" , portDumps, actionType+dumpsName,pairsPath+actionType,numOfWorkers,iCursor,chunk,eDiffTimeout);
+                    AkkaTreeLoader.main(portInner,  dbDir, pjName +actionType+chunk+".rdb" , portDumps, actionType+dumpsName,pairsPath+actionType,numOfWorkers,iCursor,chunk,eDiffTimeout,parallelism);
                     break;
 
                 case "LEVEL1":

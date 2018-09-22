@@ -38,27 +38,10 @@ public class EDiffWorker extends UntypedActor {
 		if (message instanceof EDiffMessage) {
 			EDiffMessage msg = (EDiffMessage) message;
 			List<MessageFile> files = msg.getMsgFiles();
-			StringBuilder editScripts = new StringBuilder();
-			StringBuilder patchesSourceCode = new StringBuilder();
-			StringBuilder sizes = new StringBuilder();
-			StringBuilder tokens = new StringBuilder();
-			StringBuilder testingInfo = new StringBuilder();
 
 			int id = msg.getId();
 			int counter = 0;
 			
-			int nullGumTreeResults = 0;
-			int noSourceCodeChanges = 0;
-			int noStatementChanges = 0;
-			int nullDiffEntry = 0;
-			int nullMappingGumTreeResults = 0;
-			int pureDeletion = 0;
-			int largeHunk = 0;
-			int nullSourceCode = 0;
-			int testInfos = 0;
-			int timeouts = 0;
-			StringBuilder builder = new StringBuilder();
-
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
@@ -67,41 +50,17 @@ public class EDiffWorker extends UntypedActor {
 
 
 				EDiffHunkParser parser =  new EDiffHunkParser();
-				
-				final ExecutorService executor = Executors.newWorkStealingPool();
+
+				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work
 				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,msg.getActionType()));
 				try {
 					// wait for task to complete
 					future.get(msg.getSECONDS_TO_WAIT(), TimeUnit.SECONDS);
 
-					nullDiffEntry += parser.nullMatchedDiffEntry;
-					nullMappingGumTreeResults += parser.nullMappingGumTreeResult;
-					pureDeletion += parser.pureDeletions;
-					largeHunk += parser.largeHunk;
-					nullSourceCode += parser.nullSourceCode;
-					testInfos += parser.testInfos;
-					testingInfo.append(parser.testingInfo);
-					builder.append(parser.unfixedViolations);
-					
-					String editScript = parser.getAstEditScripts();
-					if ("".equals(editScript)) {
-
-					} else {
-						editScripts.append(editScript);
-						patchesSourceCode.append(parser.getPatchesSourceCode());
-						sizes.append(parser.getSizes());
-						tokens.append(parser.getTokensOfSourceCode());
-						
-						counter ++;
-						if (counter % 100 == 0) {
-							editScripts.setLength(0);
-							patchesSourceCode.setLength(0);
-							sizes.setLength(0);
-							tokens.setLength(0);
-							log.info("Worker #" + id +" finalized parsing " + counter + " files...");
-							testingInfo.setLength(0);
-						}
+					counter ++;
+					if (counter % 10 == 0) {
+							log.info("Worker #" + id +" finalized parsing " + counter + " files... remaing "+ (files.size() - counter));
 					}
 				} catch (TimeoutException e) {
 					future.cancel(true);
@@ -116,17 +75,7 @@ public class EDiffWorker extends UntypedActor {
 					executor.shutdownNow();
 				}
 			}
-			
-			if (sizes.length() > 0) {
-				editScripts.setLength(0);
-				patchesSourceCode.setLength(0);
-				sizes.setLength(0);
-				tokens.setLength(0);
-				
-				testingInfo.setLength(0);
-			}
 
-//			log.info("Worker #" + id +" finalized parsing " + counter + " files...");
 			log.info("Worker #" + id + " finalized the work...");
 			this.getSender().tell("STOP", getSelf());
 		} else {

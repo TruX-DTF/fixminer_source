@@ -62,13 +62,13 @@ public class TreeActor extends UntypedActor {
 				List<String> pairsOfWorkers = pairs.subList(fromIndex, toIndex);
 				final TreeMessage workMsg = new TreeMessage(i + 1, pairsOfWorkers,innerPool,outerPool,((TreeMessage) message).getSECONDS_TO_WAIT());
 				mineRouter.tell(workMsg, getSelf());
-				logger.info("Assign a task to worker #" + (i + 1) + "...");
+				logger.info("Assign {} task to worker #" + (i + 1) + "...",pairsOfWorkers.size());
 			}
 		} else if ("STOP".equals(message.toString())) {
 			counter ++;
-			logger.info(counter + " workers finailized their work...");
+			logger.info(counter + " workers finalized their work...");
 			if (counter >= numberOfWorkers) {
-				logger.info("All workers finailized their work...");
+				logger.info("All workers finalized their work...");
 				this.getContext().stop(mineRouter);
 				this.getContext().stop(getSelf());
 				this.getContext().system().shutdown();

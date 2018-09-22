@@ -5,7 +5,7 @@ import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.utils.EDiff;
+import edu.lu.uni.serval.utils.EDiffHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -32,7 +32,6 @@ public class Compare {
 
         try {
             jedis = innerPool.getResource();
-//            resultMap = jedis.hgetAll(name);
 
             String[] split = name.split("_");
 
@@ -41,12 +40,9 @@ public class Compare {
             String j = split[2];
 
 
-//            String firstValue = resultMap.get("0");
-//            String secondValue = resultMap.get("1");
+            oldTree = EDiffHelper.getSimpliedTree(i,outerPool);
 
-            oldTree = EDiff.getSimpliedTree(i,outerPool);
-
-            newTree = EDiff.getSimpliedTree(j,outerPool);
+            newTree = EDiffHelper.getSimpliedTree(j,outerPool);
 
             Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
             m.match();

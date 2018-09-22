@@ -19,26 +19,57 @@ public class AkkaTreeParser {
     private static Logger log = LoggerFactory.getLogger(AkkaTreeParser.class);
 
 
-    public static void akkaCompare(JedisPool innerPool, JedisPool outerPool, String numOfWorkers, int cursor, String eDiffTimeout){
+    public static void akkaCompare(JedisPool innerPool, JedisPool outerPool, String numOfWorkers, int cursor, String eDiffTimeout, String parallelism){
 
         final List<String> listOfPairs = getMessages(innerPool,cursor); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
 
+        switch (parallelism){
+            case "AKKA":
+                ActorSystem system = null;
+                ActorRef parsingActor = null;
+                final TreeMessage msg = new TreeMessage(0,listOfPairs, innerPool,outerPool,eDiffTimeout);
+                try {
+                    log.info("Akka begins...");
+                    system = ActorSystem.create("Compare-EnhancedDiff-System");
 
+                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers)), "mine-fix-pattern-actor");
+                    parsingActor.tell(msg, ActorRef.noSender());
+                } catch (Exception e) {
+                    system.shutdown();
+                    e.printStackTrace();
+                }
+                break;
+            case "FORKJOIN":
+                int counter = new Object() {
+                    int counter = 0;
 
-        ActorSystem system = null;
-        ActorRef parsingActor = null;
-        final TreeMessage msg = new TreeMessage(0,listOfPairs, innerPool,outerPool,eDiffTimeout);
-        try {
-            log.info("Akka begins...");
-            system = ActorSystem.create("Compare-EnhancedDiff-System");
-
-            parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers)), "mine-fix-pattern-actor");
-            parsingActor.tell(msg, ActorRef.noSender());
-        } catch (Exception e) {
-            system.shutdown();
-            e.printStackTrace();
+                    {
+                        listOfPairs.stream().
+                                parallel().
+                                peek(x -> counter++).
+                                forEach(m ->
+                                        {
+                                            Compare compare =  new Compare();
+										    compare.coreCompare(m, innerPool, outerPool);
+                                            if (counter % 10 == 0) {
+                                                log.info("Finalized parsing " + counter + " files... remaing " + (listOfPairs.size() - counter));
+                                            }
+                                        }
+                                );
+                    }
+                }.counter;
+                log.info("Finished parsing {} files",counter);
+                break;
+            default:
+                log.error("Unknown parallelism {}", parallelism);
+                break;
         }
+
+
+
+
+
     }
 
     public static List<String> getMessages(JedisPool innerPool, int cursor){

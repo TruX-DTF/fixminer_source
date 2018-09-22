@@ -413,7 +413,7 @@ public class MultiThreadTreeLoaderCluster3 {
         }
 
 //        if (oldTokens.size() == 0 ) {// && (oldTree.getType() != 41 && oldTree.getType() != 21 && oldTree.getType() !=17 && oldTree.getType()!=60 && oldTree.getType() != 46)){
-//            log.info("dur bakalim nereye!???");
+//            log.info("!???");
 //        }
         return oldTokens;
     }

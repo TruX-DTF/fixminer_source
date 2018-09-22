@@ -48,24 +48,24 @@ public class StoreEDiffInCache {
             File[] files = pj.listFiles();
             Stream<File> fileStream = Arrays.stream(files);
             List<File> fs;
-            if (operation.equals("ALLOP")){
-                fs= fileStream
-                    .filter(x -> x.getName().startsWith("UPD") ||
-                            x.getName().startsWith("INS") ||
-                            x.getName().startsWith("DEL") ||
-                            x.getName().startsWith("MOV"))
-                    .collect(Collectors.toList());
-                File[] files1 = fs.get(0).listFiles();
-                File[] files2 = fs.get(1).listFiles();
-                File[] files3 = fs.get(2).listFiles();
-                File[] files4 = fs.get(3).listFiles();
-                dumps = Stream.of(files1, files2, files3,files4).flatMap(Stream::of).toArray(File[]::new);
-            }else{
+//            if (operation.equals("ALLOP")){
+//                fs= fileStream
+//                    .filter(x -> x.getName().startsWith("UPD") ||
+//                            x.getName().startsWith("INS") ||
+//                            x.getName().startsWith("DEL") ||
+//                            x.getName().startsWith("MOV"))
+//                    .collect(Collectors.toList());
+//                File[] files1 = fs.get(0).listFiles();
+//                File[] files2 = fs.get(1).listFiles();
+//                File[] files3 = fs.get(2).listFiles();
+//                File[] files4 = fs.get(3).listFiles();
+//                dumps = Stream.of(files1, files2, files3,files4).flatMap(Stream::of).toArray(File[]::new);
+//            }else{
                 fs = fileStream
                         .filter(x -> x.getName().startsWith(operation))
                         .collect(Collectors.toList());
                 dumps = fs.get(0).listFiles();
-            }
+//            }
 
 
             for (File f : dumps) {
@@ -115,7 +115,7 @@ public class StoreEDiffInCache {
                 log.error("File not found {}" , path);
                 e.printStackTrace();
             } catch (IOException e) {
-                log.error("Error initializing stream {}" , path);
+                log.error("Error initializing stream {}",  path);
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 // TODO Auto-generated catch block

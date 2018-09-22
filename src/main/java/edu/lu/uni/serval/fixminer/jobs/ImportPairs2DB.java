@@ -17,18 +17,21 @@ import java.util.stream.Stream;
 public class ImportPairs2DB {
     private static Logger log = LoggerFactory.getLogger(ImportPairs2DB.class);
 
-    public static void main(String csvInputPath,String portInner,String dbDir,String datasetPath) throws Exception {
+    public static void main(String csvInputPath, String portInner, String dbDir, String datasetPath, String chunk) throws Exception {
 
 
         String parameters = String.format("\nInput path %s \nportInner %s \ndbDir %s",csvInputPath,portInner,dbDir);
         log.info(parameters);
 
+        String[] splits = chunk.split("\\.");
+        String chunkType = splits[splits.length-1];
+        log.info("Chunk type {}",chunkType);
 
         File folder = new File(csvInputPath);
         File[] subFolders = folder.listFiles();
         Stream<File> stream = Arrays.stream(subFolders);
         List<File> pjs = stream
-                .filter(x -> x.getName().endsWith(".txt"))
+                .filter(x -> x.getName().endsWith(chunkType))
                 .collect(Collectors.toList());
         Integer portInt = Integer.valueOf(portInner);
 

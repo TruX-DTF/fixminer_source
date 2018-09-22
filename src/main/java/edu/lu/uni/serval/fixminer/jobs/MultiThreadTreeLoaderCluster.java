@@ -7,7 +7,10 @@ import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
 import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
-import edu.lu.uni.serval.utils.*;
+import edu.lu.uni.serval.utils.CallShell;
+import edu.lu.uni.serval.utils.EDiffHelper;
+import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.utils.PoolBuilder;
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -145,7 +148,7 @@ public class MultiThreadTreeLoaderCluster {
             ITree parent = null;
             ITree children =null;
             TreeContext tc = new TreeContext();
-            tree = EDiff.getActionTree(actionSet, parent, children,tc);
+            tree = EDiffHelper.getActionTree(actionSet, parent, children,tc);
             tree.setParent(null);
             tc.validate();
 

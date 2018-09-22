@@ -56,7 +56,7 @@ public class EDiffActor extends UntypedActor {
 				List<MessageFile> filesOfWorkers = files.subList(fromIndex, toIndex);
 				final EDiffMessage workMsg = new EDiffMessage(i + 1, filesOfWorkers,((EDiffMessage) message).getSECONDS_TO_WAIT(),((EDiffMessage) message).getActionType());
 				mineRouter.tell(workMsg, getSelf());
-				logger.info("Assign a task to worker #" + (i + 1) + "...");
+				logger.info("Assign {} task to worker #" + (i + 1) ,filesOfWorkers.size());
 			}
 		} else if ("STOP".equals(message.toString())) {
 			counter ++;
