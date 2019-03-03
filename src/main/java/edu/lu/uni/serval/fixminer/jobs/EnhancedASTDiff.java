@@ -50,15 +50,15 @@ public class EnhancedASTDiff {
 
 //            a
 
-			if (actionType.equals("ALL")) {
-				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/" + actionType);
-			} else {
-				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/UPD");
-				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/INS");
-				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/DEL");
-				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MOV");
-				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MIX");
-			}
+//			if (actionType.equals("ALL")) {
+//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/" + actionType);
+//			} else {
+//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/UPD");
+//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/INS");
+//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/DEL");
+//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MOV");
+//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MIX");
+//			}
 		}
 
 		switch (parallelism){

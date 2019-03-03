@@ -38,11 +38,12 @@ public class Compare {
 
             String i = split[1];
             String j = split[2];
+            String keyName = split[0];
 
 
-            oldTree = EDiffHelper.getSimpliedTree(i,outerPool);
+            oldTree = EDiffHelper.getSimpliedTree(keyName,i,outerPool);
 
-            newTree = EDiffHelper.getSimpliedTree(j,outerPool);
+            newTree = EDiffHelper.getSimpliedTree(keyName,j,outerPool);
 
             Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
             m.match();
@@ -66,7 +67,7 @@ public class Compare {
 
             if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
                     || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
-                String matchKey = "match_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                String matchKey = keyName+"_" + (String.valueOf(i)) + "_" + String.valueOf(j);
                 log.info("{} tagged to be similar" ,matchKey);
 
                 jedis.select(1);
@@ -76,7 +77,7 @@ public class Compare {
 
 
             jedis.select(0);
-            jedis.del("pair_" + (String.valueOf(i)) + "_" + String.valueOf(j));
+            jedis.del(keyName+"_" + (String.valueOf(i)) + "_" + String.valueOf(j));
 
 
 

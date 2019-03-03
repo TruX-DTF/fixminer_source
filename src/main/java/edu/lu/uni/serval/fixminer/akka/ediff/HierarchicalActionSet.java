@@ -168,7 +168,7 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet>,
 
 		return this.startPosition.compareTo(o.startPosition);//this.action.compareTo(o.action);
 	}
-	
+
 	private List<String> strList = new ArrayList<>();
 
 	@Override

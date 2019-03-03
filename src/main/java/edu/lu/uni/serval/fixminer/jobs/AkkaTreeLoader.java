@@ -8,11 +8,16 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static edu.lu.uni.serval.fixminer.akka.compare.AkkaTreeParser.akkaCompare;
 
@@ -47,44 +52,63 @@ public class AkkaTreeLoader {
 
 
 
-        String pairsIndexFile = pairsPath + "/"+ chunkName;
+//        String pairsIndexFile = pairsPath + "/"+ chunkName;
         //0.txt.rdb
-        pairsIndexFile = pairsIndexFile.replace(chunk+".rdb",".index");
+//        pairsIndexFile = pairsIndexFile.replace(chunk+".rdb",".index");
 
+        File folder = new File(pairsPath);
+        File[] rootsFolder = folder.listFiles();
 
-        Pattern pattern = Pattern.compile(",");
-        String csvFile = pairsIndexFile;
-        try {
-            try (BufferedReader in = new BufferedReader(new FileReader(csvFile));){
-                Map<String,String> namefreq = in
-                        .lines()
-                        .map(x -> pattern.split(x))
-                        .collect(HashMap::new, (map, x) ->
-                                        map.put(x[0], x[1]),
-                                Map::putAll);
+        Stream<File> stream = Arrays.stream(rootsFolder);
+        List<File> roots = stream
+                .filter(x -> !x.getName().startsWith("."))
+                .collect(Collectors.toList());
 
-                Jedis inner = null;
+        for(File root:roots) {
+
+            File[] files = root.listFiles();
+            Stream<File> fileStream = Arrays.stream(files);
+            List<File> pairsIndexFiles = fileStream
+                    .filter(x -> !x.getName().startsWith("."))
+                    .filter(x -> x.getName().endsWith(".index"))
+                    .collect(Collectors.toList());
+            for (File pairsIndexFile : pairsIndexFiles) {
+
+                Pattern pattern = Pattern.compile(",");
+                String csvFile = pairsIndexFile.getPath();
                 try {
-                    inner = outerPool.getResource();
+                    try (BufferedReader in = new BufferedReader(new FileReader(csvFile));) {
+                        Map<String, String> namefreq = in
+                                .lines()
+                                .map(x -> pattern.split(x))
+                                .collect(HashMap::new, (map, x) ->
+                                                map.put(root.getName()+"-"+pairsIndexFile.getName().split("\\.")[0]+"-"+x[0], x[1]),
+                                        Map::putAll);
 
-                    for (Map.Entry<String, String> entry : namefreq.entrySet()) {
-                        String key = entry.getKey();
-                        String value = entry.getValue();
-                        inner.select(1);
-                        inner.set(key,value);
+                        Jedis inner = null;
+                        try {
+                            inner = outerPool.getResource();
+
+                            for (Map.Entry<String, String> entry : namefreq.entrySet()) {
+                                String key = entry.getKey();
+                                String value = entry.getValue();
+                                inner.select(1);
+                                inner.set(key, value);
+                            }
+
+
+                        } finally {
+                            if (inner != null) {
+                                inner.close();
+                            }
+                        }
+
+
                     }
-
-
-                }finally {
-                    if (inner != null) {
-                        inner.close();
-                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
 

@@ -87,7 +87,8 @@ public class AkkaTreeParser {
             log.info("Scanning ");
             sc.count(cursor);
 
-            sc.match("pair_[0-9]*");
+            sc.match("*");
+//            sc.match("pair_[0-9]*");
 
             scan = inner.scan("0", sc);
             int size = scan.getResult().size();

@@ -30,36 +30,49 @@ public class ImportPairs2DB {
         File folder = new File(csvInputPath);
         File[] subFolders = folder.listFiles();
         Stream<File> stream = Arrays.stream(subFolders);
-        List<File> pjs = stream
-                .filter(x -> x.getName().endsWith(chunkType))
+        List<File> roots = stream
+//                .filter(x -> x.getName().endsWith(chunkType))
                 .collect(Collectors.toList());
+
         Integer portInt = Integer.valueOf(portInner);
 
-        for (File pj : pjs) {
+        String cmd = "bash " + dbDir + "/" + "startServer.sh" + " %s %s %s";
+        cmd = String.format(cmd, dbDir,"pairs.rdb", portInt);
+        log.info(cmd);
+        CallShell cs = new CallShell();
+        cs.runShell(cmd, portInner);
 
-            String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-            cmd = String.format(cmd, dbDir,pj.getName() +".rdb", portInt);
-            log.info(cmd);
-            CallShell cs = new CallShell();
-            cs.runShell(cmd, portInner);
+        for (File root : roots) {
 
-            cmd = "bash "+datasetPath + "/redisSingleImport.sh" +" %s %s";
+            File[] files = root.listFiles();
+            Stream<File> fileStream = Arrays.stream(files);
+            List<File> pairs = fileStream
+                .filter(x -> x.getName().endsWith(chunkType))
+                    .collect(Collectors.toList());
 
-            cmd = String.format(cmd, pj.getPath(), portInt);
-            log.info(cmd);
-            cs.runShell(cmd,portInner);
+            for(File pj:pairs) {
 
-            String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
-            String stopServer2 = String.format(stopServer,portInt);
-            cs.runShell(stopServer2, portInner);
 
-            portInt++;
+
+                cmd = "bash " + datasetPath + "/redisSingleImport.sh" + " %s %s %s";
+
+                cmd = String.format(cmd, pj.getPath(), portInt,root.getName()+"-"+pj.getName().split("\\.")[0]);
+
+                log.info(cmd);
+                cs.runShell(cmd,portInner);
+
+
+            }
 
 
 
         }
 
+        String stopServer = "bash " + dbDir + "/" + "stopServer.sh" + " %s";
+        String stopServer2 = String.format(stopServer, portInt);
+        cs.runShell(stopServer2, portInner);
 
+//        portInt++;
         log.info(parameters);
     }
 

@@ -25,11 +25,11 @@
 		    <version>1.2</version>
 		</dependency>
 				
-		<!--<dependency>-->
-			<!--<groupId>edu.lu.uni</groupId>-->
-			<!--<artifactId>simple-utils</artifactId>-->
-			<!--<version>0.0.1-SNAPSHOT</version>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>edu.lu.uni</groupId>
+			<artifactId>simple-utils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		
 		<!-- akka -->
 		<dependency>
@@ -135,7 +135,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										edu.lu.uni.serval.fixminer.Launcher
+										edu.lu.uni.serval.fixminer.akka.compare.CompareTrees
 									</mainClass>
 								</manifest>
 							</archive>

@@ -68,7 +68,7 @@ public class Launcher {
         gumInput = datasetPath +"/"+pjName+"/";
         gumOutput = datasetPath + "/EnhancedASTDiff" + pjName;
         dbDir = datasetPath + "/redis";
-        pairsPath = datasetPath + "/pairsImport"+pjName;
+        pairsPath = datasetPath + "/pairs";
         dumpsName = "dumps-"+pjName+".rdb";
         int iCursor =  Integer.valueOf(cursor);
 
@@ -81,11 +81,11 @@ public class Launcher {
                     StoreEDiffInCache.main(gumOutput, portDumps, dbDir, actionType+dumpsName,actionType);
                     break;
                 case "SI":
-                    CalculatePairs.main(dbDir, actionType+dumpsName, portDumps, pairsPath+actionType, pjName+actionType,isBigPair,iCursor);
-                    ImportPairs2DB.main(pairsPath+actionType, portInner, dbDir,datasetPath,chunk);
+//                    CalculatePairs.main(dbDir, actionType+dumpsName, portDumps, pairsPath+actionType, pjName+actionType,isBigPair,iCursor);
+                    ImportPairs2DB.main(pairsPath, portInner, dbDir,datasetPath,chunk);
                     break;
                 case "SIMI":
-                    AkkaTreeLoader.main(portInner,  dbDir, pjName +actionType+chunk+".rdb" , portDumps, actionType+dumpsName,pairsPath+actionType,numOfWorkers,iCursor,chunk,eDiffTimeout,parallelism);
+                    AkkaTreeLoader.main(portInner,  dbDir, "pairs.rdb" , portDumps, actionType+dumpsName,pairsPath,numOfWorkers,iCursor,chunk,eDiffTimeout,parallelism);
                     break;
 
                 case "LEVEL1":
@@ -136,9 +136,9 @@ public class Launcher {
 
     private static void level2(String port, String pythonPath, String datasetPath, String pjName, String actionType, String threshold, String dbDir, String dumpsName, String gumInput,int cursor) throws Exception {
         String stopServer;
-        MultiThreadTreeLoaderCluster.calculatePairsOfClusters(datasetPath + "/cluster"+pjName+ actionType, datasetPath,actionType);
+//        MultiThreadTreeLoaderCluster.calculatePairsOfClusters(datasetPath + "/cluster"+pjName+ actionType, datasetPath,actionType);
 
-        MultiThreadTreeLoaderCluster.mainCompare("6300", datasetPath+"/pairs"+actionType, datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-"+pjName+actionType+".rdb", actionType+dumpsName, "6301",actionType,cursor);
+        MultiThreadTreeLoaderCluster.mainCompare(port, datasetPath+"/pairsAction", datasetPath + "/redisSingleImport.sh", dbDir, "clusterl1-"+pjName+actionType+".rdb", actionType+dumpsName, "6380",actionType,cursor);
 
         CallShell cs3 =new CallShell();
         String db22 = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";

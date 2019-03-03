@@ -20,10 +20,8 @@ import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,8 +47,8 @@ public class MultiThreadTreeLoaderCluster {
 
 
 
-        String cmd3;
-        cmd3 = "bash " + importScript +" %s %s";
+//        String cmd3;
+//        cmd3 = "bash " + importScript +" %s %s";
 
 
         JedisPool jedisPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
@@ -65,41 +63,74 @@ public class MultiThreadTreeLoaderCluster {
                 .filter(x -> !x.getName().startsWith("."))
                 .collect(Collectors.toList());
 
-        for (File f:folders){
+        for (File f:folders) {
 
 //            if(f.getName().startsWith("cluster0")) {
+            File[] files = f.listFiles();
+            Stream<File> fileStream = Arrays.stream(files);
+
+            List<File> pairs = fileStream
+                    .filter(x -> !x.getName().startsWith("."))
+                    .filter(x -> !x.getName().endsWith(".index"))
+                    .collect(Collectors.toList());
+            for (File pair : pairs) {
 
 
                 try (Jedis jedis = jedisPool.getResource()) {
                     // do operations with jedis resource
                     ScanParams sc = new ScanParams();
                     sc.count(cursor);
-                    sc.match("pair_[0-9]*");
+                    sc.match(f.getName()+"*");
 
                     log.info("Scanning");
                     ScanResult<String> scan = jedis.scan("0", sc);
                     int size = scan.getResult().size();
 
                     if (size == 0) {
-                        String comd = String.format(cmd3,f.getPath(),portInner);
+                        String cmd3 = "bash " + importScript  + " %s %s %s";
+
+                        cmd3 = String.format(cmd3, pair.getPath(), portInner,f.getName()+"-"+pair.getName().split("\\.")[0]);
+//                        String comd = String.format(cmd3, f.getPath(), portInner);
 //                        loadRedis(comd);
-                        log.info("Importing {} pairs for cluster {}",size,f.getName());
-                        cs.runShell(comd,portInner);
+                        log.info("Importing {} pairs for cluster {}", size, f.getName());
+                        cs.runShell(cmd3, portInner);
 
                         scan = jedis.scan("0", sc);
                         size = scan.getResult().size();
 
                     }
-                    log.info("Scanned {} for cluster {}",String.valueOf(size),f.getName());
+                    log.info("Scanned {} for cluster {}", String.valueOf(size), f.getName());
+
+                    Pattern pattern = Pattern.compile(",");
+                    String csvFile = pair.getPath();
+                    csvFile = csvFile.replace("txt","index");
+                    try (BufferedReader in = new BufferedReader(new FileReader(csvFile));) {
+                        Map<String, String> namefreq = in
+                                .lines()
+                                .map(x -> pattern.split(x))
+                                .collect(HashMap::new, (map, x) ->
+                                                map.put(f.getName()+"-"+pair.getName().split("\\.")[0]+"-"+x[0], x[1]),
+                                        Map::putAll);
+
+                       for (Map.Entry<String, String> entry : namefreq.entrySet()) {
+                                String key = entry.getKey();
+                                String value = entry.getValue();
+                                jedis.select(1);
+                                jedis.set(key, value);
+                            }
 
 
-                    String clusterName = f.getName().replaceAll("[^0-9]+", "");
+
+                    }
+
+
+//                    String clusterName = f.getName().replaceAll("[^0-9]+", "");
 
 
                     //76
 
                     scan.getResult().parallelStream()
-                            .forEach(m -> coreCompare(m, jedisPool, clusterName,outerPool,type));
+                            .forEach(m -> coreCompare(m, jedisPool, f.getName(), outerPool, type));
 
 
                     jedis.save();
@@ -108,6 +139,7 @@ public class MultiThreadTreeLoaderCluster {
 //            }
 
 
+            }
         }
         String stopServer = "bash "+dbDir + "/" + "stopServer.sh" +" %s";
         String stopServer1 = String.format(stopServer,Integer.valueOf(portInner));
@@ -122,26 +154,40 @@ public class MultiThreadTreeLoaderCluster {
 
 
 
-    public  static Pair<ITree,String> getTree(String firstValue, JedisPool outerPool,String type){
+    public  static Pair<ITree,String> getTree(String prefix,String firstValue, JedisPool outerPool,JedisPool innerPool){
 
 
         ITree tree = null;
         Jedis inner = null;
-        String[] split2 = firstValue.split("/");
-
-        String fullFileName = split2[split2.length-1];
-        String[] split = fullFileName.split(".txt_");
-        String pureFileName = split[0];
-        String[] splitPJ = split[1].split("_");
-        String project = splitPJ[1];
-        String actionSetPosition = splitPJ[0];
+        Jedis outer = null;
+//        String[] split2 = firstValue.split("/");
+//
+//        String fullFileName = split2[split2.length-1];
+//        String[] split = fullFileName.split(".txt_");
+//        String pureFileName = split[0];
+//        String[] splitPJ = split[1].split("_");
+//        String project = splitPJ[1];
+//        String actionSetPosition = splitPJ[0];
 
 
 
         try {
-            inner = outerPool.getResource();
-            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
-            String si= inner.get(filename);
+            inner = innerPool.getResource();
+            inner.select(1);
+            String dist2load = inner.get(prefix+"-"+firstValue);
+            outer = outerPool.getResource();
+            outer.select(0);
+            String s = null;//inner.get(prefix.replace("-","/") +"/"+dist2load);
+            Set<String> keys = outer.keys(prefix.split("-")[0] + "/*/" + dist2load);
+            if(keys.size() == 1) {
+                s = (String) keys.toArray()[0];
+            }else{
+                throw new Error("cok key");
+            }
+
+
+//            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
+            String si= outer.get(s);
             HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
 
 
@@ -161,8 +207,11 @@ public class MultiThreadTreeLoaderCluster {
             if (inner != null) {
                 inner.close();
             }
+            if (outer != null) {
+                outer.close();
+            }
         }
-        Pair<ITree, String> pair = new Pair<>(tree,project);
+        Pair<ITree, String> pair = new Pair<>(tree,null);
         return pair;
 
 
@@ -197,19 +246,20 @@ public class MultiThreadTreeLoaderCluster {
             catch (Exception e){
                 e.printStackTrace();
             }
-            String firstValue = resultMap.get("0");
-            String secondValue = resultMap.get("1");
+//            String firstValue = resultMap.get("0");
+//            String secondValue = resultMap.get("1");
 
 
             try {
-                Pair<ITree, String> oldPair = getTree(firstValue, outerPool,type);
-                Pair<ITree, String> newPair = getTree(secondValue, outerPool,type);
+                String keyName = split[0];
+                Pair<ITree, String> oldPair = getTree(keyName,i, outerPool,jedisPool);
+                Pair<ITree, String> newPair = getTree(keyName,j, outerPool,jedisPool);
 
                 ITree oldTree = oldPair.getValue0();
                 ITree newTree = newPair.getValue0();
 
-                String oldProject = oldPair.getValue1();
-                String newProject = newPair.getValue1();
+//                String oldProject = oldPair.getValue1();
+//                String newProject = newPair.getValue1();
 
 
 
@@ -231,23 +281,24 @@ public class MultiThreadTreeLoaderCluster {
 
                 String editDistance = String.valueOf(actions.size());
 //            jedis.select(1);
-                String result = resultMap.get("0") + "," + oldProject +"," + resultMap.get("1") + "," +newProject+ "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
+                String result = i+ "," + j + "," + chawatheSimilarity + "," + diceSimilarity + "," + jaccardSimilarity + "," + editDistance;
 //            jedis.set(resultKey, result);
 
+                String matchKey = keyName+"_" + (String.valueOf(i)) + "_" + String.valueOf(j);
                 if (((Double) chawatheSimilarity1).equals(1.0) || ((Double) diceSimilarity1).equals(1.0)
                         || ((Double) jaccardSimilarity1).equals(1.0) || actions.size() == 0) {
-                    String matchKey = "match-"+clusterName+"_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                    jedis.select(1);
+                    jedis.select(2);
                     jedis.set(matchKey, result);
                 }
                 jedis.select(0);
-                String pairKey = "pair_" + (String.valueOf(i)) + "_" + String.valueOf(j);
-                jedis.del(pairKey);
+
+                jedis.del(matchKey);
 
 //                log.info("Completed " + resultKey);
 
             }catch (Exception e){
                 log.debug(e.toString() + " {}",(name));
+                e.printStackTrace();
 
 
             }

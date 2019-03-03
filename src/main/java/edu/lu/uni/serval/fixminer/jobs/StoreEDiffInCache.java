@@ -38,42 +38,55 @@ public class StoreEDiffInCache {
         File folder = new File(inputPath);
         File[] subFolders = folder.listFiles();
         Stream<File> stream = Arrays.stream(subFolders);
-        List<File> pjs = stream
+        List<File> roots = stream
                 .filter(x -> !x.getName().startsWith("."))
                 .collect(Collectors.toList());
         List<String> workList = new ArrayList<String>();
         File[] dumps;
-        for (File pj : pjs) {
-            String pjName = pj.getName();
-            File[] files = pj.listFiles();
-            Stream<File> fileStream = Arrays.stream(files);
-            List<File> fs;
-//            if (operation.equals("ALLOP")){
-//                fs= fileStream
-//                    .filter(x -> x.getName().startsWith("UPD") ||
-//                            x.getName().startsWith("INS") ||
-//                            x.getName().startsWith("DEL") ||
-//                            x.getName().startsWith("MOV"))
-//                    .collect(Collectors.toList());
-//                File[] files1 = fs.get(0).listFiles();
-//                File[] files2 = fs.get(1).listFiles();
-//                File[] files3 = fs.get(2).listFiles();
-//                File[] files4 = fs.get(3).listFiles();
-//                dumps = Stream.of(files1, files2, files3,files4).flatMap(Stream::of).toArray(File[]::new);
-//            }else{
-                fs = fileStream
-                        .filter(x -> x.getName().startsWith(operation))
-                        .collect(Collectors.toList());
-                dumps = fs.get(0).listFiles();
-//            }
+        for (File root : roots) {
+            String pjName = root.getName();
+            File[] sizes = root.listFiles();
+            Stream<File> sizesStream = Arrays.stream(sizes);
+            List<File> sizeFolders = sizesStream
+                    .filter(x -> !x.getName().startsWith("."))
+                    .collect(Collectors.toList());
+
+            for (File sf:sizeFolders){
+                File[] files = sf.listFiles();
+                int length = files.length;
+                if (length == 1)
+                    continue;
+
+                Stream<File> fileStream = Arrays.stream(files);
+                List<File> fs;
+    //            if (operation.equals("ALLOP")){
+    //                fs= fileStream
+    //                    .filter(x -> x.getName().startsWith("UPD") ||
+    //                            x.getName().startsWith("INS") ||
+    //                            x.getName().startsWith("DEL") ||
+    //                            x.getName().startsWith("MOV"))
+    //                    .collect(Collectors.toList());
+    //                File[] files1 = fs.get(0).listFiles();
+    //                File[] files2 = fs.get(1).listFiles();
+    //                File[] files3 = fs.get(2).listFiles();
+    //                File[] files4 = fs.get(3).listFiles();
+    //                dumps = Stream.of(files1, files2, files3,files4).flatMap(Stream::of).toArray(File[]::new);
+    //            }else{
+//                    fs = fileStream
+//                            .filter(x -> x.getName().startsWith(operation))
+//                            .collect(Collectors.toList());
+//                    dumps = fs.get(0).listFiles();
+    //            }
 
 
-            for (File f : dumps) {
-                String name = f.getName();
+                    for (File f : files) {
+                        String name = f.getName();
 
-                String key = pjName + "/"+ operation+"/" + name;
-                String result = key +","+f.getPath();
-                workList.add(result);
+                        String key = pjName + "/"+ sf.getName()+"/" + name;
+                        String result = key +","+f.getPath();
+                        workList.add(result);
+                    }
+
             }
 
         }
