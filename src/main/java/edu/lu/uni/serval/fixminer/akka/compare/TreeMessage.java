@@ -13,21 +13,32 @@ public class TreeMessage extends BaseMessage{
     private JedisPool innerPool;
     private JedisPool outerPool;
 
+    public String getType() {
+        return type;
+    }
 
-    public TreeMessage(int id, List<String> name, JedisPool innerPool, JedisPool outerPool,String eDiffTimeout) {
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String type;
+
+
+    public TreeMessage(int id, List<String> name, JedisPool innerPool, JedisPool outerPool,String eDiffTimeout,String treeType) {
         super(id,new Long(eDiffTimeout));
 
         this.name = name;
         this.innerPool = innerPool;
         this.outerPool = outerPool;
-
+        this.type = treeType;
     }
-    public TreeMessage(int id, List<String> name, JedisPool innerPool, JedisPool outerPool,Long eDiffTimeout) {
+    public TreeMessage(int id, List<String> name, JedisPool innerPool, JedisPool outerPool,Long eDiffTimeout,String treeType) {
         super(id,eDiffTimeout);
 
         this.name = name;
         this.innerPool = innerPool;
         this.outerPool = outerPool;
+        this.type = treeType;
 
     }
 

@@ -4,6 +4,7 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
+import akka.routing.BalancingPool;
 import akka.routing.RoundRobinPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ public class TreeActor extends UntypedActor {
 
 
 	public TreeActor(int numberOfWorkers) {
-		mineRouter = this.getContext().actorOf(new RoundRobinPool(numberOfWorkers)
+		mineRouter = this.getContext().actorOf(new BalancingPool(numberOfWorkers)
 				.props(TreeWorker.props()), "tree-router");
 		this.numberOfWorkers = numberOfWorkers;
 	}
@@ -47,6 +48,7 @@ public class TreeActor extends UntypedActor {
 			List<String> pairs = ((TreeMessage) message).getName();
 			JedisPool innerPool = ((TreeMessage) message).getInnerPool();
 			JedisPool outerPool = ((TreeMessage) message).getOuterPool();
+			String type = ((TreeMessage) message).getType();
 
 
 			int size = pairs.size();
@@ -60,7 +62,7 @@ public class TreeActor extends UntypedActor {
 				int toIndex = (i + 1) * average + counter;
 
 				List<String> pairsOfWorkers = pairs.subList(fromIndex, toIndex);
-				final TreeMessage workMsg = new TreeMessage(i + 1, pairsOfWorkers,innerPool,outerPool,((TreeMessage) message).getSECONDS_TO_WAIT());
+				final TreeMessage workMsg = new TreeMessage(i + 1, pairsOfWorkers,innerPool,outerPool,((TreeMessage) message).getSECONDS_TO_WAIT(),type);
 				mineRouter.tell(workMsg, getSelf());
 				logger.info("Assign {} task to worker #" + (i + 1) + "...",pairsOfWorkers.size());
 			}

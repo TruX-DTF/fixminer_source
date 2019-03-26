@@ -26,19 +26,19 @@ public class AkkaTreeParser {
 
         switch (parallelism){
             case "AKKA":
-                ActorSystem system = null;
-                ActorRef parsingActor = null;
-                final TreeMessage msg = new TreeMessage(0,listOfPairs, innerPool,outerPool,eDiffTimeout);
-                try {
-                    log.info("Akka begins...");
-                    system = ActorSystem.create("Compare-EnhancedDiff-System");
-
-                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers)), "mine-fix-pattern-actor");
-                    parsingActor.tell(msg, ActorRef.noSender());
-                } catch (Exception e) {
-                    system.shutdown();
-                    e.printStackTrace();
-                }
+//                ActorSystem system = null;
+//                ActorRef parsingActor = null;
+//                final TreeMessage msg = new TreeMessage(0,listOfPairs, innerPool,outerPool,eDiffTimeout);
+//                try {
+//                    log.info("Akka begins...");
+//                    system = ActorSystem.create("Compare-EnhancedDiff-System");
+//
+//                    parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers)), "mine-fix-pattern-actor");
+//                    parsingActor.tell(msg, ActorRef.noSender());
+//                } catch (Exception e) {
+//                    system.shutdown();
+//                    e.printStackTrace();
+//                }
                 break;
             case "FORKJOIN":
                 int counter = new Object() {
@@ -71,6 +71,15 @@ public class AkkaTreeParser {
 
 
     }
+    public static List<String> getRMessages(JedisPool innerPool, int cursor){
+        try (Jedis inner = innerPool.getResource()) {
+            while (!inner.ping().equals("PONG")){
+                log.info("wait");
+            }
+            List<String> pairs = inner.srandmember("pairs", cursor);
+            return pairs;
+        }
+    }
 
     public static List<String> getMessages(JedisPool innerPool, int cursor){
 
@@ -81,7 +90,6 @@ public class AkkaTreeParser {
             while (!inner.ping().equals("PONG")){
                 log.info("wait");
             }
-
             ScanParams sc = new ScanParams();
             //150000000
             log.info("Scanning ");
@@ -91,12 +99,35 @@ public class AkkaTreeParser {
 //            sc.match("pair_[0-9]*");
 
             scan = inner.scan("0", sc);
+
             int size = scan.getResult().size();
             log.info("Scanned " + String.valueOf(size));
         }
         List<String> result = scan.getResult();
         log.info("Getting results");
         return  result;
+
+
+
+
+
+    }
+
+    public static String getMessage(JedisPool innerPool){
+
+
+        ScanResult<String> scan;
+
+        try (Jedis inner = innerPool.getResource()) {
+            while (!inner.ping().equals("PONG")){
+                log.info("wait");
+            }
+
+            String myset = inner.spop("pairs");
+            return myset;
+
+        }
+
 
 
 

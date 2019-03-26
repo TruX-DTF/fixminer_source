@@ -81,6 +81,7 @@ try{
 
                     runPing(command);
                 }else{
+                    TimeUnit.MINUTES.sleep(1);
                     System.out.println(e);
 
                 }

@@ -7,17 +7,19 @@ public class RunnableCompare implements Runnable {
 	private String name;
 	private JedisPool innerPool;
 	private JedisPool outerPool;
-	private Compare comparer;
+	private CompareTrees comparer;
+	private String type;
 
-	public RunnableCompare(String name , JedisPool innerPool, JedisPool outerPool, Compare comp) {
+	public RunnableCompare(String name , JedisPool innerPool, JedisPool outerPool,String type) {
 		this.name = name;
 		this.innerPool = innerPool;
 		this.outerPool = outerPool;
-		this.comparer = comp;
+		this.type = type;
+
 	}
 
 	@Override
 	public void run() {
-		comparer.coreCompare(name, innerPool, outerPool);
+		comparer.coreCompare(name,type, innerPool, outerPool);
 	}
 }

@@ -2,6 +2,7 @@ package edu.lu.uni.serval.fixminer.jobs;
 
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
+import com.github.gumtreediff.tree.TreeUtils;
 import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
@@ -171,6 +172,7 @@ public class MultiThreadTreeLoaderCluster3 {
 
 
 
+
     public static List<String> getNames(ITree oldTree, List<String> oldTokens){
 
         List<ITree> descendants = oldTree.getDescendants();
@@ -209,17 +211,26 @@ public class MultiThreadTreeLoaderCluster3 {
                 List<String> m = new ArrayList<String>();
                 if(label.startsWith("UPD")){
                     upd = true;
-                    java.util.regex.Matcher matcher;
-                    if(sType.equals("53")){
-                        String timeRegex = ".*@@(ClassInstanceCreation:new [a-zA-Z0-9]+).*@TO@\\s(ClassInstanceCreation:new [a-zA-Z0-9]+).*";
-                        Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
-                        matcher= pattern.matcher(split[1]);
-                    }else {
-                        String timeRegex = "@@(.*)@TO@(.*)";
-                        Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
-                        matcher = pattern.matcher(split[1]);
-                    }
+
+                    String timeRegex = "UPD (AnonymousClassDeclaration|ArrayAccess|ArrayCreation|ArrayInitializer|ArrayType|AssertStatement|Assignment|Block|BooleanLiteral|BreakStatement|CastExpression|CatchClause|CharacterLiteral|ClassInstanceCreation|CompilationUnit|ConditionalExpression|ConstructorInvocation|ContinueStatement|DoStatement|EmptyStatement|ExpressionStatement|FieldAccess|FieldDeclaration|ForStatement|IfStatement|ImportDeclaration|InfixExpression|Initializer|Javadoc|LabeledStatement|MethodDeclaration|MethodInvocation|NullLiteral|NumberLiteral|PackageDeclaration|ParenthesizedExpression|PostfixExpression|PrefixExpression|PrimitiveType|QualifiedName|ReturnStatement|SimpleName|SimpleType|SingleVariableDeclaration|StringLiteral|SuperConstructorInvocation|SuperFieldAccess|SuperMethodInvocation|SwitchCase|SwitchStatement|SynchronizedStatement|ThisExpression|ThrowStatement|TryStatement|TypeDeclaration|TypeDeclarationStatement|TypeLiteral|VariableDeclarationExpression|VariableDeclarationFragment|VariableDeclarationStatement|WhileStatement|InstanceofExpression|LineComment|BlockComment|TagElement|TextElement|MemberRef|MethodRef|MethodRefParameter|EnhancedForStatement|EnumDeclaration|EnumConstantDeclaration|TypeParameter|ParameterizedType|QualifiedType|WildcardType|NormalAnnotation|MarkerAnnotation|SingleMemberAnnotation|MemberValuePair|AnnotationTypeDeclaration|AnnotationTypeMemberDeclaration|Modifier|UnionType|Dimension|LambdaExpression|IntersectionType|NameQualifiedType|CreationReference|ExpressionMethodReference|SuperMethodReference|TypeMethodReference)@@(.*)@TO@(.*)@AT@";
+//                    java.util.regex.Matcher matcher;
+//                    if(sType.equals("53")){
+//                        String timeRegex = ".*@@(ClassInstanceCreation:new [a-zA-Z0-9]+).*@TO@\\s(ClassInstanceCreation:new [a-zA-Z0-9]+).*";
+//                        Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
+//                        matcher= pattern.matcher(split[1]);
+//                    }else {
+//                        String timeRegex = "@@(.*)@TO@(.*)";
+//                        Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
+//                        matcher = pattern.matcher(split[1]);
+//                    }
+                    Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
+                    java.util.regex.Matcher matcher = pattern.matcher(label);
+
+
                     if (matcher.matches()) {
+                        String group = matcher.group(2);
+                        String group1 = matcher.group(3);
+
                         String hours = matcher.group(1);
                         String to = matcher.group(2);
                         if(sType.equals("31")){
@@ -296,11 +307,16 @@ public class MultiThreadTreeLoaderCluster3 {
 
                     }
                 }else if(label.startsWith("INS") && upd == false){
-                    String timeRegex = "@@(.*)@TO@(.*)";
+                    String timeRegex ="MOV (AnonymousClassDeclaration|ArrayAccess|ArrayCreation|ArrayInitializer|ArrayType|AssertStatement|Assignment|Block|BooleanLiteral|BreakStatement|CastExpression|CatchClause|CharacterLiteral|ClassInstanceCreation|CompilationUnit|ConditionalExpression|ConstructorInvocation|ContinueStatement|DoStatement|EmptyStatement|ExpressionStatement|FieldAccess|FieldDeclaration|ForStatement|IfStatement|ImportDeclaration|InfixExpression|Initializer|Javadoc|LabeledStatement|MethodDeclaration|MethodInvocation|NullLiteral|NumberLiteral|PackageDeclaration|ParenthesizedExpression|PostfixExpression|PrefixExpression|PrimitiveType|QualifiedName|ReturnStatement|SimpleName|SimpleType|SingleVariableDeclaration|StringLiteral|SuperConstructorInvocation|SuperFieldAccess|SuperMethodInvocation|SwitchCase|SwitchStatement|SynchronizedStatement|ThisExpression|ThrowStatement|TryStatement|TypeDeclaration|TypeDeclarationStatement|TypeLiteral|VariableDeclarationExpression|VariableDeclarationFragment|VariableDeclarationStatement|WhileStatement|InstanceofExpression|LineComment|BlockComment|TagElement|TextElement|MemberRef|MethodRef|MethodRefParameter|EnhancedForStatement|EnumDeclaration|EnumConstantDeclaration|TypeParameter|ParameterizedType|QualifiedType|WildcardType|NormalAnnotation|MarkerAnnotation|SingleMemberAnnotation|MemberValuePair|AnnotationTypeDeclaration|AnnotationTypeMemberDeclaration|Modifier|UnionType|Dimension|LambdaExpression|IntersectionType|NameQualifiedType|CreationReference|ExpressionMethodReference|SuperMethodReference|TypeMethodReference)@@(.*)@TO@ (AnonymousClassDeclaration|ArrayAccess|ArrayCreation|ArrayInitializer|ArrayType|AssertStatement|Assignment|Block|BooleanLiteral|BreakStatement|CastExpression|CatchClause|CharacterLiteral|ClassInstanceCreation|CompilationUnit|ConditionalExpression|ConstructorInvocation|ContinueStatement|DoStatement|EmptyStatement|ExpressionStatement|FieldAccess|FieldDeclaration|ForStatement|IfStatement|ImportDeclaration|InfixExpression|Initializer|Javadoc|LabeledStatement|MethodDeclaration|MethodInvocation|NullLiteral|NumberLiteral|PackageDeclaration|ParenthesizedExpression|PostfixExpression|PrefixExpression|PrimitiveType|QualifiedName|ReturnStatement|SimpleName|SimpleType|SingleVariableDeclaration|StringLiteral|SuperConstructorInvocation|SuperFieldAccess|SuperMethodInvocation|SwitchCase|SwitchStatement|SynchronizedStatement|ThisExpression|ThrowStatement|TryStatement|TypeDeclaration|TypeDeclarationStatement|TypeLiteral|VariableDeclarationExpression|VariableDeclarationFragment|VariableDeclarationStatement|WhileStatement|InstanceofExpression|LineComment|BlockComment|TagElement|TextElement|MemberRef|MethodRef|MethodRefParameter|EnhancedForStatement|EnumDeclaration|EnumConstantDeclaration|TypeParameter|ParameterizedType|QualifiedType|WildcardType|NormalAnnotation|MarkerAnnotation|SingleMemberAnnotation|MemberValuePair|AnnotationTypeDeclaration|AnnotationTypeMemberDeclaration|Modifier|UnionType|Dimension|LambdaExpression|IntersectionType|NameQualifiedType|CreationReference|ExpressionMethodReference|SuperMethodReference|TypeMethodReference)@@(.*)@AT@";
+//
+//                    String timeRegex = "@@(.*)@TO@(.*)";
                     Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
-                    java.util.regex.Matcher matcher = pattern.matcher(split[1]);
+                    java.util.regex.Matcher matcher = pattern.matcher(label);
 
                     if (matcher.matches()) {
+                        String group = matcher.group(2);
+                        String group1 = matcher.group(4);
+
                         String hours = matcher.group(1);
                         if (hours.startsWith("MethodName:")) {
                             String methodName = hours.split(":")[1];
@@ -313,11 +329,13 @@ public class MultiThreadTreeLoaderCluster3 {
                     }
 
                 }else if(label.startsWith("DEL") && upd == false){
-                    String timeRegex = "@@(.*)";
+                    String timeRegex = "DEL (AnonymousClassDeclaration|ArrayAccess|ArrayCreation|ArrayInitializer|ArrayType|AssertStatement|Assignment|Block|BooleanLiteral|BreakStatement|CastExpression|CatchClause|CharacterLiteral|ClassInstanceCreation|CompilationUnit|ConditionalExpression|ConstructorInvocation|ContinueStatement|DoStatement|EmptyStatement|ExpressionStatement|FieldAccess|FieldDeclaration|ForStatement|IfStatement|ImportDeclaration|InfixExpression|Initializer|Javadoc|LabeledStatement|MethodDeclaration|MethodInvocation|NullLiteral|NumberLiteral|PackageDeclaration|ParenthesizedExpression|PostfixExpression|PrefixExpression|PrimitiveType|QualifiedName|ReturnStatement|SimpleName|SimpleType|SingleVariableDeclaration|StringLiteral|SuperConstructorInvocation|SuperFieldAccess|SuperMethodInvocation|SwitchCase|SwitchStatement|SynchronizedStatement|ThisExpression|ThrowStatement|TryStatement|TypeDeclaration|TypeDeclarationStatement|TypeLiteral|VariableDeclarationExpression|VariableDeclarationFragment|VariableDeclarationStatement|WhileStatement|InstanceofExpression|LineComment|BlockComment|TagElement|TextElement|MemberRef|MethodRef|MethodRefParameter|EnhancedForStatement|EnumDeclaration|EnumConstantDeclaration|TypeParameter|ParameterizedType|QualifiedType|WildcardType|NormalAnnotation|MarkerAnnotation|SingleMemberAnnotation|MemberValuePair|AnnotationTypeDeclaration|AnnotationTypeMemberDeclaration|Modifier|UnionType|Dimension|LambdaExpression|IntersectionType|NameQualifiedType|CreationReference|ExpressionMethodReference|SuperMethodReference|TypeMethodReference)@@(.*)@AT@";
+//                    String timeRegex = "@@(.*)";
                     Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
-                    java.util.regex.Matcher matcher = pattern.matcher(split[1]);
+                    java.util.regex.Matcher matcher = pattern.matcher(label);
 
                     if (matcher.matches()) {
+                        String group = matcher.group(2);
                         String hours = matcher.group(1);
                         if (hours.startsWith("MethodName:")){
                             String methodName = hours.split(":")[1];
@@ -327,11 +345,15 @@ public class MultiThreadTreeLoaderCluster3 {
                         }
                     }
                 }else if(label.startsWith("MOV")  && upd == false){
-                    String timeRegex = "@@(.*)@TO@(.*)";
+                    String timeRegex ="MOV (AnonymousClassDeclaration|ArrayAccess|ArrayCreation|ArrayInitializer|ArrayType|AssertStatement|Assignment|Block|BooleanLiteral|BreakStatement|CastExpression|CatchClause|CharacterLiteral|ClassInstanceCreation|CompilationUnit|ConditionalExpression|ConstructorInvocation|ContinueStatement|DoStatement|EmptyStatement|ExpressionStatement|FieldAccess|FieldDeclaration|ForStatement|IfStatement|ImportDeclaration|InfixExpression|Initializer|Javadoc|LabeledStatement|MethodDeclaration|MethodInvocation|NullLiteral|NumberLiteral|PackageDeclaration|ParenthesizedExpression|PostfixExpression|PrefixExpression|PrimitiveType|QualifiedName|ReturnStatement|SimpleName|SimpleType|SingleVariableDeclaration|StringLiteral|SuperConstructorInvocation|SuperFieldAccess|SuperMethodInvocation|SwitchCase|SwitchStatement|SynchronizedStatement|ThisExpression|ThrowStatement|TryStatement|TypeDeclaration|TypeDeclarationStatement|TypeLiteral|VariableDeclarationExpression|VariableDeclarationFragment|VariableDeclarationStatement|WhileStatement|InstanceofExpression|LineComment|BlockComment|TagElement|TextElement|MemberRef|MethodRef|MethodRefParameter|EnhancedForStatement|EnumDeclaration|EnumConstantDeclaration|TypeParameter|ParameterizedType|QualifiedType|WildcardType|NormalAnnotation|MarkerAnnotation|SingleMemberAnnotation|MemberValuePair|AnnotationTypeDeclaration|AnnotationTypeMemberDeclaration|Modifier|UnionType|Dimension|LambdaExpression|IntersectionType|NameQualifiedType|CreationReference|ExpressionMethodReference|SuperMethodReference|TypeMethodReference)@@(.*)@TO@ (AnonymousClassDeclaration|ArrayAccess|ArrayCreation|ArrayInitializer|ArrayType|AssertStatement|Assignment|Block|BooleanLiteral|BreakStatement|CastExpression|CatchClause|CharacterLiteral|ClassInstanceCreation|CompilationUnit|ConditionalExpression|ConstructorInvocation|ContinueStatement|DoStatement|EmptyStatement|ExpressionStatement|FieldAccess|FieldDeclaration|ForStatement|IfStatement|ImportDeclaration|InfixExpression|Initializer|Javadoc|LabeledStatement|MethodDeclaration|MethodInvocation|NullLiteral|NumberLiteral|PackageDeclaration|ParenthesizedExpression|PostfixExpression|PrefixExpression|PrimitiveType|QualifiedName|ReturnStatement|SimpleName|SimpleType|SingleVariableDeclaration|StringLiteral|SuperConstructorInvocation|SuperFieldAccess|SuperMethodInvocation|SwitchCase|SwitchStatement|SynchronizedStatement|ThisExpression|ThrowStatement|TryStatement|TypeDeclaration|TypeDeclarationStatement|TypeLiteral|VariableDeclarationExpression|VariableDeclarationFragment|VariableDeclarationStatement|WhileStatement|InstanceofExpression|LineComment|BlockComment|TagElement|TextElement|MemberRef|MethodRef|MethodRefParameter|EnhancedForStatement|EnumDeclaration|EnumConstantDeclaration|TypeParameter|ParameterizedType|QualifiedType|WildcardType|NormalAnnotation|MarkerAnnotation|SingleMemberAnnotation|MemberValuePair|AnnotationTypeDeclaration|AnnotationTypeMemberDeclaration|Modifier|UnionType|Dimension|LambdaExpression|IntersectionType|NameQualifiedType|CreationReference|ExpressionMethodReference|SuperMethodReference|TypeMethodReference)@@(.*)@AT@";
+//                    String timeRegex = "@@(.*)@TO@(.*)";
                     Pattern pattern = Pattern.compile(timeRegex, Pattern.DOTALL);
-                    java.util.regex.Matcher matcher = pattern.matcher(split[1]);
+                    java.util.regex.Matcher matcher = pattern.matcher(label);
 
                     if (matcher.matches()) {
+                        String group = matcher.group(2);
+                        String group1 = matcher.group(4);
+
                         String hours = matcher.group(1);
                         if (hours.startsWith("MethodName:")){
                             String methodName = hours.split(":")[1];

@@ -41,6 +41,7 @@ public class TreeWorker extends UntypedActor {
 			List<String> files = msg.getName();
 			JedisPool innerPool = msg.getInnerPool();
 			JedisPool outerPool = msg.getOuterPool();
+			String type = msg.getType();
 
 			int id = msg.getId();
 			int counter = 0;
@@ -49,19 +50,21 @@ public class TreeWorker extends UntypedActor {
 				{
 
 
-				Compare compare = new Compare();
-				final ExecutorService executor = Executors.newSingleThreadExecutor();
+
+
+				final ExecutorService executor = Executors.newFixedThreadPool(1);
 //				// schedule the work
-				final Future<?> future = executor.submit(new RunnableCompare(name, innerPool, outerPool, compare));
+				final Future<?> future = executor.submit(new RunnableCompare(name, innerPool, outerPool,type));
 				try {
 //					 wait for task to complete
 					future.get(msg.getSECONDS_TO_WAIT(), TimeUnit.SECONDS);
 					counter++;
-						if (counter % 100 == 0) {
+						if (counter % 1000 == 0) {
 							log.info("Worker #" + id +" finalized parsing " + counter + " pairs... remaing "+ (files.size() - counter));
 						}
 				} catch (TimeoutException e) {
 					future.cancel(true);
+					System.err.println("#Timeout: " + name);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} catch (ExecutionException e) {

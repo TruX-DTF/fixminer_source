@@ -171,6 +171,10 @@ public class HierarchicalActionSet implements Comparable<HierarchicalActionSet>,
 
 	private List<String> strList = new ArrayList<>();
 
+	public int getActionSize(){
+		return strList.size();
+	}
+
 	@Override
 	public String toString() {
 		String str = actionString;

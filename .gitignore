@@ -10,6 +10,7 @@ OUTPUT/
 *.csv
 *.pdf
 logs/
+.idea/
 GumTreeInput/
 GumTreeInput1/
 GumTreeOutput1/

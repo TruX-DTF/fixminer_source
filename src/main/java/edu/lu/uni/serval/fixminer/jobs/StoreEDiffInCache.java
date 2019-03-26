@@ -25,9 +25,9 @@ public class StoreEDiffInCache {
     private static Logger log = LoggerFactory.getLogger(StoreEDiffInCache.class);
 
 
-    public static void main(String inputPath,String portInner,String dbDir,String chunkName,String operation) throws Exception {
+    public static void main(String inputPath,String portInner,String dbDir,String chunkName) throws Exception {
 
-        String parameters = String.format("\nInput path %s \nportInner %s \nchunkName %s \ndbDir %s \noperation %s",inputPath,portInner,chunkName,dbDir,operation);
+        String parameters = String.format("\nInput path %s \nportInner %s \nchunkName %s \ndbDir %s \noperation %s",inputPath,portInner,chunkName,dbDir);
         log.info(parameters);
         CallShell cs = new CallShell();
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
