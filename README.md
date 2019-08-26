@@ -6,6 +6,7 @@ Clone and install `edu.lu.uni:simple-utils`.
 
 ```
 git clone https://github.com/SerVal-DTF/simple-utils
+cd simple-utils
 mvn install
 ```
 
@@ -13,6 +14,7 @@ Clone and install the modified version of Gumtree.
 
 ```
 git clone https://github.com/SerVal-DTF/gumtree
+cd gumtree
 mvn install
 ```
 
@@ -20,6 +22,7 @@ Clone and install fixminer.
 
 ```
 git clone https://github.com/SerVal-DTF/fixminer_source
+cd fixminer_source
 mvn install
 ```
 
