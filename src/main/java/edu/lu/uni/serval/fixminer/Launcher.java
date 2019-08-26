@@ -71,6 +71,7 @@ public class Launcher {
         pairsPath = datasetPath + "/pairs";
         dumpsName = "dumps-"+pjName+".rdb";
         int iCursor =  Integer.valueOf(cursor);
+//        jobType = "CACHE";
 
         try {
             switch (jobType) {

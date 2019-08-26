@@ -105,7 +105,7 @@ public class EDiffHunkParser extends EDiffParser {
 
 						try (Jedis inner = innerPool.getResource()) {
 
-							inner.set(key, EDiffHelper.toString(actionSet));
+							inner.set(key.getBytes(), EDiffHelper.toByteArray(actionSet));
 						}
 
 					} catch (FileNotFoundException e) {

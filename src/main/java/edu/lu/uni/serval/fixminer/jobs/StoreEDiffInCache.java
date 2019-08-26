@@ -4,6 +4,8 @@ import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -137,7 +139,7 @@ public class StoreEDiffInCache {
 
             try (Jedis inner = innerPool.getResource()) {
 
-                inner.set(key, EDiffHelper.toString(actionSet));
+                inner.set(key.getBytes(), EDiffHelper.toByteArray(actionSet));
             }
 
 

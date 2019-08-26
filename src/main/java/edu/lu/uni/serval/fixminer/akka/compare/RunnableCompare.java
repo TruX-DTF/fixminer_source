@@ -20,6 +20,6 @@ public class RunnableCompare implements Runnable {
 
 	@Override
 	public void run() {
-		comparer.coreCompare(name,type, innerPool, outerPool);
+//		comparer.coreCompare(name,type, innerPool, outerPool);
 	}
 }

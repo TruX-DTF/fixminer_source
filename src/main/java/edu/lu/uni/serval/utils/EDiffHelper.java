@@ -43,6 +43,24 @@ public class EDiffHelper {
     }
 
 
+    public static Object fromByteArray( byte[] data ) throws IOException,
+            ClassNotFoundException {
+//        byte [] data = Base64.getDecoder().decode( s );
+        ObjectInputStream ois = new ObjectInputStream(
+                new ByteArrayInputStream(  data ) );
+        Object o  = ois.readObject();
+        ois.close();
+        return o;
+    }
+    /** Write the object to a Base64 string. */
+    public static byte[] toByteArray(Serializable o ) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream( baos );
+        oos.writeObject( o );
+        oos.close();
+        return baos.toByteArray();
+    }
+
     public static ITree getTokenTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
 
         int newType = 0;
@@ -230,39 +248,44 @@ public class EDiffHelper {
     public static ITree getShapes(String prefix, String fn, JedisPool outerPool,JedisPool innerPool) {
 
         ITree tree = null;
-        Jedis inner = null;
-        Jedis outer = null;
-        try {
-            inner = innerPool.getResource();
-            while (!inner.ping().equals("PONG")){
-                log.info("wait");
-            }
-            inner.select(1);
-            String dist2load = inner.get(prefix+"-"+fn);
-            outer = outerPool.getResource();
-            outer.select(0);
-            String s = outer.get(prefix.replace("-","/") +"/"+dist2load);
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(s);
+//        Jedis inner = null;
+//        Jedis outer = null;
+        try (Jedis inner = innerPool.getResource(); Jedis outer = outerPool.getResource()) {
+//            inner = innerPool.getResource();
+            try {
+                while (!inner.ping().equals("PONG")) {
+                    log.info("wait");
+                }
+                inner.select(1);
+                String dist2load = inner.get(prefix + "-" + fn);
 
-            ITree parent = null;
-            ITree children =null;
-            TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
-            //tree.setParent(null);
-            tc.validate();
+//            outer = outerPool.getResource();
+                outer.select(0);
+                String key = prefix.replace("-", "/") + "/" + dist2load;
+                byte[] s = outer.get(key.getBytes());
+                HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromByteArray(s);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }finally {
-            if (inner != null) {
-                inner.close();
-            }
-            if (outer != null) {
-                outer.close();
+                ITree parent = null;
+                ITree children = null;
+                TreeContext tc = new TreeContext();
+                tree = EDiffHelper.getASTTree(actionSet, parent, children, tc);
+                //tree.setParent(null);
+                tc.validate();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
+//            finally {
+//            if (inner != null) {
+//                inner.close();
+//            }
+//            if (outer != null) {
+//                outer.close();
+//            }
+//        }
         return tree;
 
     }
@@ -381,28 +404,31 @@ public class EDiffHelper {
 
         try {
             String dist2load = null;
-            String si = null;
-            try (Jedis inner = innerPool.getResource()){
+            byte[] si = null;
+            try (Jedis inner = innerPool.getResource();Jedis outer = outerPool.getResource()){
 
-            inner.select(1);
-            dist2load = inner.get(prefix + "-" + firstValue);
-            }
-            try(Jedis outer = outerPool.getResource()) {
+                inner.select(1);
+                dist2load = inner.get(prefix + "-" + firstValue);
+
                 outer.select(0);
+                String[] split = prefix.split("-");
                 String s = null;//inner.get(prefix.replace("-","/") +"/"+dist2load);
-                Set<String> keys = outer.keys(prefix.split("-")[0] + "/*/" + dist2load);
-                if (keys.size() == 1) {
-                    s = (String) keys.toArray()[0];
-                } else {
-                    throw new Error("cok key");
-                }
-                si = outer.get(s);
-            }
+//                Set<String> keys = outer.keys(split[0] + "/"+split[1]+"/" + dist2load);
+                String key = split[0] + "/"+split[1]+"/" + dist2load;
+//                if (keys.size() == 1) {
+//                    s = (String) keys.toArray()[0];
+//                } else {
+//                    throw new Error("cok key");
+//                }
+                si = outer.get(key.getBytes());
 
+//            String key = prefix.replace("-", "/") + "/" + dist2load;
+//            byte[] s = outer.get(key.getBytes());
+            actionSet = (HierarchicalActionSet) EDiffHelper.fromByteArray(si);
 
 //            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
-            actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
-
+//            actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
+            }
 
             ITree parent = null;
             ITree children = null;
@@ -439,28 +465,33 @@ public class EDiffHelper {
 
 
         ITree tree = null;
-        Jedis inner = null;
-        Jedis outer = null;
+//        Jedis inner = null;
+//        Jedis outer = null;
 
-
-        try {
-            inner = innerPool.getResource();
+        try{
+        try (Jedis inner = innerPool.getResource();Jedis outer = outerPool.getResource()) {
+//            inner = innerPool.getResource();
             inner.select(1);
             String dist2load = inner.get(prefix + "-" + firstValue);
-            outer = outerPool.getResource();
+//            outer = outerPool.getResource();
             outer.select(0);
-            String s = null;//inner.get(prefix.replace("-","/") +"/"+dist2load);
-            Set<String> keys = outer.keys(prefix.split("-")[0] + "/*/" + dist2load);
-            if (keys.size() == 1) {
-                s = (String) keys.toArray()[0];
-            } else {
-                throw new Error("cok key");
-            }
+//            String s = null;//inner.get(prefix.replace("-","/") +"/"+dist2load);
+//            Set<String> keys = outer.keys(prefix.split("-")[0] + "/*/" + dist2load);
+//            if (keys.size() == 1) {
+//                s = (String) keys.toArray()[0];
+//            } else {
+//                throw new Error("cok key");
+//            }
 
 
 //            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
-            String si = outer.get(s);
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
+            String[] split = prefix.split("-");
+//            String s = null;//inner.get(prefix.replace("-","/") +"/"+dist2load);
+//                Set<String> keys = outer.keys(split[0] + "/"+split[1]+"/" + dist2load);
+            String key = split[0] + "/"+split[1]+"/" + dist2load;
+            byte[] si = outer.get(key.getBytes());
+//            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
+            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromByteArray(si);
 
 
             ITree parent = null;
@@ -470,20 +501,23 @@ public class EDiffHelper {
             tree.setParent(null);
             tc.validate();
 //            getLeaves(tree);
+        }
 
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            if (inner != null) {
-                inner.close();
-            }
-            if (outer != null) {
-                outer.close();
-            }
         }
+
+//        finally {
+//            if (inner != null) {
+//                inner.close();
+//            }
+//            if (outer != null) {
+//                outer.close();
+//            }
+
 
         return tree;
     }

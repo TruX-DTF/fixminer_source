@@ -15,6 +15,9 @@ public class PoolBuilder {
     static final JedisPoolConfig poolConfig = buildPoolConfig();
 
 
+
+
+
     private static JedisPoolConfig buildPoolConfig() {
         final JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxTotal(1024);

@@ -138,6 +138,18 @@
 			<version>2.4</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+			<version>9.4.4.v20170414</version>
+			<scope>compile</scope>
+		</dependency>
+
 
 	</dependencies>
 
@@ -180,3 +192,8 @@
 		</plugins>
 	</build>
 </project>
+
+		<!--edu.lu.uni.serval.fixminer.Launcher
+		edu.lu.uni.serval.fixminer.akka.compare.CompareTrees
+edu.lu.uni.serval.utils.ClusterToPattern
+		-->

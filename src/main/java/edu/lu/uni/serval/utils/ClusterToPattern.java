@@ -22,37 +22,37 @@ public class ClusterToPattern {
         Jedis jedis = new Jedis("127.0.0.1",Integer.valueOf(port),20000000);
 //        writeTofFile(shapesFolder, outerPool);
 
-        File file = new File(shapesFolder);
-
-
-        File[] files = file.listFiles();
-        ArrayList<String> strings = new ArrayList<>();
-        List<File> folders = Arrays.stream(files).filter(x -> x.isDirectory())
-                .collect(Collectors.toList());
-        for (File target : folders) {
-            File[] files2 = target.listFiles();
-            for (File file1 : files2) {
-                File[] files1 = file1.listFiles();
-                strings.add(((File)files1[0]).listFiles()[0].getName());
-//                System.out.println();
-
-            }
-
-//            Collection<File> files1 = FileUtils.listFiles(target, null, true);
-
-        }
-
-        for (String string : strings) {
-            export("*"+string,jedis);
-        }
+//        File file = new File(shapesFolder);
+//
+//
+//        File[] files = file.listFiles();
+//        ArrayList<String> strings = new ArrayList<>();
+//        List<File> folders = Arrays.stream(files).filter(x -> x.isDirectory())
+//                .collect(Collectors.toList());
+//        for (File target : folders) {
+//            File[] files2 = target.listFiles();
+//            for (File file1 : files2) {
+//                File[] files1 = file1.listFiles();
+//                strings.add(((File)files1[0]).listFiles()[0].getName());
+////                System.out.println();
+//
+//            }
+//
+////            Collection<File> files1 = FileUtils.listFiles(target, null, true);
+//
+//        }
+//
+//        for (String string : strings) {
+//            export("*"+string,jedis);
+//        }
 
 //        String export = export("VariableDeclarationStatement"+"/*/camel_8f0c15_ab3e17_camel-core#src#main#java#org#apache#camel#component#bean#BeanInfo.txt_0", jedis);
-//        String export = export(args[0], jedis);
-//        System.out.println(export);
+        String export = export(args[0], jedis);
+        System.out.println(export);
 
     }
 
-    private static void export(String filename,Jedis outer) throws IOException, ClassNotFoundException {
+    private static String export(String filename,Jedis outer) throws IOException, ClassNotFoundException {
 
 //        String key = shape.getName() + "/*/" + file.getName();
 //        Jedis outer = outerPool.getResource();
@@ -64,30 +64,31 @@ public class ClusterToPattern {
             throw new Error("cok key");
         }
 
-        String si = outer.get(s);
-        HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
-        ITree tree = null;
-        ITree parent = null;
-        ITree children =null;
-        TreeContext tc = new TreeContext();
-        tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
-        tree.setParent(null);
-        tc.validate();
+        byte[] si = outer.get(s.getBytes());
+//        HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
+        HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromByteArray(si);
+//        ITree tree = null;
+//        ITree parent = null;
+//        ITree children =null;
+//        TreeContext tc = new TreeContext();
+//        tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
+//        tree.setParent(null);
+//        tc.validate();
+//
+//        String s2 = tree.toStaticHashString();
+//        try(FileWriter fw = new FileWriter("myfile.txt", true);
+//            BufferedWriter bw = new BufferedWriter(fw);
+//            PrintWriter out = new PrintWriter(bw))
+//        {
+//            out.println(s2);
+//            //more code
+//        } catch (IOException e) {
+//            //exception handling left as an exercise for the reader
+//        }
 
-        String s2 = tree.toStaticHashString();
-        try(FileWriter fw = new FileWriter("myfile.txt", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw))
-        {
-            out.println(s2);
-            //more code
-        } catch (IOException e) {
-            //exception handling left as an exercise for the reader
-        }
-
-//        String s1 = actionSet.toString();
-//        outer.close();
-//        return s1;
+        String s1 = actionSet.toString();
+        outer.close();
+        return s1;
     }
 
 
