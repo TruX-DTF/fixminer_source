@@ -71,14 +71,15 @@ public class Launcher {
         pairsPath = datasetPath + "/pairs";
         dumpsName = "dumps-"+pjName+".rdb";
         int iCursor =  Integer.valueOf(cursor);
+//        jobType = "CACHE";
 
         try {
             switch (jobType) {
                 case "ENHANCEDASTDIFF":
-                    EnhancedASTDiff.main(gumInput, gumOutput, numOfWorkers, pjName, eDiffTimeout,actionType,parallelism);
+                    EnhancedASTDiff.main(gumInput, gumOutput, numOfWorkers, pjName, eDiffTimeout,actionType,parallelism,portDumps, dbDir, actionType+dumpsName);
                     break;
                 case "CACHE":
-                    StoreEDiffInCache.main(gumOutput, portDumps, dbDir, actionType+dumpsName,actionType);
+                    StoreEDiffInCache.main(gumOutput, portDumps, dbDir, actionType+dumpsName);
                     break;
                 case "SI":
 //                    CalculatePairs.main(dbDir, actionType+dumpsName, portDumps, pairsPath+actionType, pjName+actionType,isBigPair,iCursor);

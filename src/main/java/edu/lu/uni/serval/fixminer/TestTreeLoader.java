@@ -22,7 +22,8 @@ public class TestTreeLoader {
 
 
 //        String inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput/ENTESB/ASTDumps";
-        String inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
+//        String inputPath = "/Users/anilkoyuncu/bugStudy/dataset/GumTreeOutput2/";
+        String inputPath ="/Users/anil.koyuncu/projects/fixminer-all/enhancedASTDiff/python/data/EnhancedASTDiffgumInput-old/AssertStatement";
         File folder = new File(inputPath);
         File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);

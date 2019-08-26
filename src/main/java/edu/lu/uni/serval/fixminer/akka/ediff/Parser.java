@@ -1,5 +1,7 @@
 package edu.lu.uni.serval.fixminer.akka.ediff;
 
+import redis.clients.jedis.JedisPool;
+
 import java.io.File;
 
 /**
@@ -18,7 +20,7 @@ public abstract class Parser implements ParserInterface {
 	protected String originalTree = ""; 		// Guide of generating patches.
 	protected String actionSets = ""; 		// Guide of generating patches.
 
-	public abstract void parseFixPatterns(File prevFile, File revFile, File diffEntryFile,String project,String actionType);
+	public abstract void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool);
 	
 
 	@Override

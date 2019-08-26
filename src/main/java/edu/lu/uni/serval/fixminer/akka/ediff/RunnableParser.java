@@ -1,5 +1,7 @@
 package edu.lu.uni.serval.fixminer.akka.ediff;
 
+import redis.clients.jedis.JedisPool;
+
 import java.io.File;
 
 public class RunnableParser implements Runnable {
@@ -9,7 +11,7 @@ public class RunnableParser implements Runnable {
 	private File diffentryFile;
 	private Parser parser;
 	private String project;
-	private String actionType;
+	private JedisPool pool;
 	
 	public RunnableParser(File prevFile, File revFile, File diffentryFile, Parser parser) {
 		this.prevFile = prevFile;
@@ -18,17 +20,17 @@ public class RunnableParser implements Runnable {
 		this.parser = parser;
 	}
 
-	public RunnableParser(File prevFile, File revFile, File diffentryFile, Parser parser,String project,String actionType) {
+	public RunnableParser(File prevFile, File revFile, File diffentryFile, Parser parser, String project, JedisPool innerPool) {
 		this.prevFile = prevFile;
 		this.revFile = revFile;
 		this.diffentryFile = diffentryFile;
 		this.parser = parser;
 		this.project = project;
-		this.actionType= actionType;
+		this.pool = innerPool;
 	}
 
 	@Override
 	public void run() {
-		parser.parseFixPatterns(prevFile, revFile, diffentryFile,project,actionType);
+		parser.parseFixPatterns(prevFile, revFile, diffentryFile,project,pool);
 	}
 }

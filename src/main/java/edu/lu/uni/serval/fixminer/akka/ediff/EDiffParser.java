@@ -3,6 +3,7 @@ package edu.lu.uni.serval.fixminer.akka.ediff;
 import com.github.gumtreediff.actions.model.Action;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 import edu.lu.uni.serval.utils.ListSorter;
+import redis.clients.jedis.JedisPool;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class EDiffParser extends Parser {
 	}
 
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, String actionType) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool) {
 
 	}
 

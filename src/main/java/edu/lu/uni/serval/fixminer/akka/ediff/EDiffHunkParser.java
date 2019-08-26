@@ -4,9 +4,13 @@ import com.github.gumtreediff.actions.model.Delete;
 import com.github.gumtreediff.actions.model.Insert;
 import com.github.gumtreediff.actions.model.Move;
 import com.github.gumtreediff.actions.model.Update;
+import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.FileHelper;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +25,7 @@ public class EDiffHunkParser extends EDiffParser {
 	
 
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile,String project,String actionType) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile, String project, JedisPool innerPool) {
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
 		if (actionSets.size() != 0) {
 //			String folder= null;
@@ -73,8 +77,9 @@ public class EDiffHunkParser extends EDiffParser {
 					try {
 
 						String astNodeType = actionSet.getAstNodeType();
-						int size = actionSet.toString().split("\\n").length;
-
+//						int size = actionSet.toString().split("\\n").length;
+						actionSet.toString();
+						int size = actionSet.getActionSize();
 //						int size = actionSet.strList.size();
 
 						String datasetName = project;
@@ -82,19 +87,30 @@ public class EDiffHunkParser extends EDiffParser {
 						String root = split1[0];
 						String pj = split1[1].split("/")[1];
 
-						File file = new File(root + "EnhancedASTDiff" + datasetName + "/"+astNodeType+"/"+String.valueOf(size)+"/");
-						file.mkdirs();
-						String hunkTreeFileName = root + "EnhancedASTDiff" + datasetName + "/"+astNodeType+"/"+String.valueOf(size)+"/" + pj +"_" + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
+//						File file = new File(root + "EnhancedASTDiff" + datasetName + "/"+astNodeType+"/"+String.valueOf(size)+"/");
+//						file.mkdirs();
+//						String hunkTreeFileName = root + "EnhancedASTDiff" + datasetName + "/"+astNodeType+"/"+String.valueOf(size)+"/" + pj +"_" + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
 //						String hunkTreeFileName = root + "EnhancedASTDiff" + datasetName + "/" + pj + folder + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
-						f = new FileOutputStream(new File(hunkTreeFileName));
-						ObjectOutputStream o = new ObjectOutputStream(f);
-						o.writeObject(actionSet);
 
-						o.close();
-						f.close();
+//						f = new FileOutputStream(new File(hunkTreeFileName));
+//						ObjectOutputStream o = new ObjectOutputStream(f);
+//						o.writeObject(actionSet);
+//
+//						o.close();
+//						f.close();
+
+//						String name = f.getName();
+
+						String key = astNodeType+"/"+String.valueOf(size)+"/" + pj +"_" + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
+
+						try (Jedis inner = innerPool.getResource()) {
+
+							inner.set(key.getBytes(), EDiffHelper.toByteArray(actionSet));
+						}
+
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
-					} catch (IOException e) {
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 					hunkSet++;

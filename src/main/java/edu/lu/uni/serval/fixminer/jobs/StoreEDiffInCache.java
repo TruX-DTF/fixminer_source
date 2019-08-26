@@ -4,6 +4,8 @@ import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -25,9 +27,9 @@ public class StoreEDiffInCache {
     private static Logger log = LoggerFactory.getLogger(StoreEDiffInCache.class);
 
 
-    public static void main(String inputPath,String portInner,String dbDir,String chunkName,String operation) throws Exception {
+    public static void main(String inputPath,String portInner,String dbDir,String chunkName) throws Exception {
 
-        String parameters = String.format("\nInput path %s \nportInner %s \nchunkName %s \ndbDir %s \noperation %s",inputPath,portInner,chunkName,dbDir,operation);
+        String parameters = String.format("\nInput path %s \nportInner %s \nchunkName %s \ndbDir %s \noperation %s",inputPath,portInner,chunkName,dbDir);
         log.info(parameters);
         CallShell cs = new CallShell();
         String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
@@ -137,7 +139,7 @@ public class StoreEDiffInCache {
 
             try (Jedis inner = innerPool.getResource()) {
 
-                inner.set(key, EDiffHelper.toString(actionSet));
+                inner.set(key.getBytes(), EDiffHelper.toByteArray(actionSet));
             }
 
 

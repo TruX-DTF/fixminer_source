@@ -5,6 +5,7 @@ import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.JedisPool;
 
 import java.io.File;
 import java.util.List;
@@ -41,7 +42,8 @@ public class EDiffWorker extends UntypedActor {
 
 			int id = msg.getId();
 			int counter = 0;
-			
+			JedisPool innerPool = msg.getInnerPool();
+
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
 				File prevFile = msgFile.getPrevFile();
@@ -53,7 +55,7 @@ public class EDiffWorker extends UntypedActor {
 
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work
-				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,msg.getActionType()));
+				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,msg.getInnerPool()));
 				try {
 					// wait for task to complete
 					future.get(msg.getSECONDS_TO_WAIT(), TimeUnit.SECONDS);

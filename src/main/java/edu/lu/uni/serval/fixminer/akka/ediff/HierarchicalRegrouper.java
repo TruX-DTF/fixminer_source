@@ -187,7 +187,7 @@ public class HierarchicalRegrouper {
 		if (action instanceof Addition) {
 			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
 		}
-		
+
 		if (parent.getType() == 55)  {
 			int type = action.getNode().getType();
 			// Modifier, NormalAnnotation, MarkerAnnotation, SingleMemberAnnotation
