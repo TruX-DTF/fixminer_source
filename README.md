@@ -1,5 +1,9 @@
 # Code of FixMiner
 
+## Prequisites
+
+redis should be installed on the machine.
+
 ## Build
 
 Clone and install `edu.lu.uni:simple-utils`.
