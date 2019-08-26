@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FixPatternMiner.iml" filepath="$PROJECT_DIR$/FixPatternMiner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gumtree/client/client.iml" filepath="$PROJECT_DIR$/../gumtree/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gumtree/client.diff/client.diff.iml" filepath="$PROJECT_DIR$/../gumtree/client.diff/client.diff.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gumtree/core/core.iml" filepath="$PROJECT_DIR$/../gumtree/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gumtree/gen.jdt/gen.jdt.iml" filepath="$PROJECT_DIR$/../gumtree/gen.jdt/gen.jdt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gumtree/gumtree.iml" filepath="$PROJECT_DIR$/../gumtree/gumtree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../simple-utils/simple-utils.iml" filepath="$PROJECT_DIR$/../simple-utils/simple-utils.iml" />
+    </modules>
+  </component>
+</project>
