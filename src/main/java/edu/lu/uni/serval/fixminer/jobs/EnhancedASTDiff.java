@@ -91,25 +91,25 @@ public class EnhancedASTDiff {
 				}
 				break;
 			case "FORKJOIN":
-//				int counter = new Object() {
-//					int counter = 0;
-//
-//					{
-//						allMessageFiles.stream().
-//								parallel().
-//								peek(x -> counter++).
-//								forEach(m ->
-//										{
-//											EDiffHunkParser parser =  new EDiffHunkParser();
-//											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,msg.getInnerPool());
-//											if (counter % 10 == 0) {
-//												log.info("Finalized parsing " + counter + " files... remaing " + (allMessageFiles.size() - counter));
-//											}
-//										}
-//								);
-//					}
-//				}.counter;
-//				log.info("Finished parsing {} files",counter);
+				int counter = new Object() {
+					int counter = 0;
+
+					{
+						allMessageFiles.stream().
+								parallel().
+								peek(x -> counter++).
+								forEach(m ->
+										{
+											EDiffHunkParser parser =  new EDiffHunkParser();
+											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,msg.getInnerPool());
+											if (counter % 10 == 0) {
+												log.info("Finalized parsing " + counter + " files... remaing " + (allMessageFiles.size() - counter));
+											}
+										}
+								);
+					}
+				}.counter;
+				log.info("Finished parsing {} files",counter);
 				break;
 			default:
 				log.error("Unknown parallelism {}", parallelism);
