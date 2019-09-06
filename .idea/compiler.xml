@@ -6,22 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="client" />
-        <module name="client.diff" />
-        <module name="core" />
         <module name="FixPatternMiner" />
-        <module name="gen.jdt" />
-        <module name="simple-utils" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="client" target="1.8" />
-      <module name="client.diff" target="1.8" />
-      <module name="core" target="1.8" />
-      <module name="FixPatternMiner" target="1.8" />
-      <module name="gen.jdt" target="1.8" />
-      <module name="gumtree" target="1.8" />
-      <module name="simple-utils" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -24,10 +24,10 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String outputPath, String numOfWorkers, String project, String eDiffTimeout, String actionType, String parallelism, String portInner, String dbDir, String chunkName) throws Exception {
+	public static void main(String inputPath, String numOfWorkers, String project, String eDiffTimeout, String parallelism, String portInner, String dbDir, String chunkName) throws Exception {
 
 
-		String parameters = String.format("\nInput path %s \nOutput path %s",inputPath,outputPath);
+		String parameters = String.format("\nInput path %s",inputPath);
 		log.info(parameters);
 
 		CallShell cs = new CallShell();
@@ -48,29 +48,15 @@ public class EnhancedASTDiff {
 
 		List<MessageFile> allMessageFiles = new ArrayList<>();
         for (File target : folders) {
-			String pjName = target.getName();
-
 
 			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/"); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
-//            System.out.println(msgFiles.size());
+
 			if (msgFiles == null)
 				continue;
 			allMessageFiles.addAll(msgFiles);
 
-			String GUM_TREE_OUTPUT = outputPath + "/" + pjName + "/";
 
-//            a
-
-//			if (actionType.equals("ALL")) {
-//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/" + actionType);
-//			} else {
-//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/UPD");
-//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/INS");
-//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/DEL");
-//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MOV");
-//				FileHelper.createDirectory(GUM_TREE_OUTPUT + "/MIX");
-//			}
 		}
 
 		switch (parallelism){
@@ -101,9 +87,9 @@ public class EnhancedASTDiff {
 								forEach(m ->
 										{
 											EDiffHunkParser parser =  new EDiffHunkParser();
-											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,msg.getInnerPool());
+											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool);
 											if (counter % 10 == 0) {
-												log.info("Finalized parsing " + counter + " files... remaing " + (allMessageFiles.size() - counter));
+												log.info("Finalized parsing " + counter + " files... remaining " + (allMessageFiles.size() - counter));
 											}
 										}
 								);
@@ -111,6 +97,8 @@ public class EnhancedASTDiff {
 				}.counter;
 				log.info("Finished parsing {} files",counter);
 				break;
+
+
 			default:
 				log.error("Unknown parallelism {}", parallelism);
 				break;

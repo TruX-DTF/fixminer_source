@@ -1,16 +1,13 @@
 package edu.lu.uni.serval.fixminer.akka.ediff;
 
-import com.github.gumtreediff.actions.model.Delete;
-import com.github.gumtreediff.actions.model.Insert;
-import com.github.gumtreediff.actions.model.Move;
-import com.github.gumtreediff.actions.model.Update;
 import edu.lu.uni.serval.utils.EDiffHelper;
-import edu.lu.uni.serval.utils.FileHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 
@@ -22,95 +19,41 @@ import java.util.List;
  *
  */
 public class EDiffHunkParser extends EDiffParser {
-	
 
+	private static Logger logger = LoggerFactory.getLogger(EDiffHunkParser.class);
 	@Override
 	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile, String project, JedisPool innerPool) {
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
 		if (actionSets.size() != 0) {
-//			String folder= null;
-			boolean processActionSet = true;
-//			switch (actionType){
-//				case "ALL":
-//			if(actionType.equals("ALL")){
-//					folder = "/ALL/";
-//					processActionSet = true;
-//			}else if(actionType.equals("UPD") || actionType.equals("INS") || actionType.equals("DEL") || actionType.equals("MOV")|| actionType.equals("MIX")){
-//				boolean isUPD = actionSets.stream().allMatch(p -> p.getAction() instanceof Update);
-//				boolean isINS = actionSets.stream().allMatch(p -> p.getAction() instanceof Insert);
-//				boolean isDEL = actionSets.stream().allMatch(p -> p.getAction() instanceof Delete);
-//				boolean isMOV = actionSets.stream().allMatch(p -> p.getAction() instanceof Move);
-//				if(isUPD){
-//					folder = "/UPD/";
-//					processActionSet = true;
-//				}else if(isINS){
-//					folder = "/INS/";
-//					processActionSet = true;
-//				}else if(isDEL){
-//					folder = "/DEL/";
-//					processActionSet = true;
-//				}else if(isMOV){
-//					folder = "/MOV/";
-//					processActionSet = true;
-//				}else{
-//					folder = "/MIX/";
-//					processActionSet = true;
-//				}
-//			}else{
-//
-//
-//					processActionSet = false;
-//					System.err.print(actionType + "not known");
-//
-//			}
 
+			boolean processActionSet = true;
 
 			int hunkSet = 0;
 			if(processActionSet){
 				for (HierarchicalActionSet actionSet : actionSets) {
-
-
-
-
 					FileOutputStream f = null;
 
 					try {
 
 						String astNodeType = actionSet.getAstNodeType();
-//						int size = actionSet.toString().split("\\n").length;
 						actionSet.toString();
 						int size = actionSet.getActionSize();
-//						int size = actionSet.strList.size();
 
 						String datasetName = project;
 						String[] split1 = diffentryFile.getParent().split(datasetName);
 						String root = split1[0];
 						String pj = split1[1].split("/")[1];
 
-//						File file = new File(root + "EnhancedASTDiff" + datasetName + "/"+astNodeType+"/"+String.valueOf(size)+"/");
-//						file.mkdirs();
-//						String hunkTreeFileName = root + "EnhancedASTDiff" + datasetName + "/"+astNodeType+"/"+String.valueOf(size)+"/" + pj +"_" + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
-//						String hunkTreeFileName = root + "EnhancedASTDiff" + datasetName + "/" + pj + folder + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
-
-//						f = new FileOutputStream(new File(hunkTreeFileName));
-//						ObjectOutputStream o = new ObjectOutputStream(f);
-//						o.writeObject(actionSet);
-//
-//						o.close();
-//						f.close();
-
-//						String name = f.getName();
 
 						String key = astNodeType+"/"+String.valueOf(size)+"/" + pj +"_" + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
 
 						try (Jedis inner = innerPool.getResource()) {
 
-							inner.set(key.getBytes(), EDiffHelper.toByteArray(actionSet));
+							inner.hset("dump".getBytes(),key.getBytes(),EDiffHelper.kryoSerialize(actionSet));
 						}
 
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
 					} catch (Exception e) {
+						logger.error("error",e);
 						e.printStackTrace();
 					}
 					hunkSet++;

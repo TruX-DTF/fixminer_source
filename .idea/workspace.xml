@@ -1,161 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b5ed080-e2fb-4060-b49a-7b2beb7dcc68" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="1c20f95f-4c0f-46a8-9b1c-3c643f73b30a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_mpkorstanje_simmetrics_core_3_0_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_11_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_18_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_nanohttpd_nanohttpd_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_nanohttpd_nanohttpd_webserver_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_rabbitmq_amqp_client_4_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sparkjava_spark_core_2_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_typesafe_akka_akka_actor_2_11_2_4_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_typesafe_config_1_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_3_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_trove4j_trove4j_3_0_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sourceforge_jexcelapi_jxl_2_6_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_4_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_text_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_3_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_birt_runtime_org_eclipse_core_resources_3_10_0_v20150423_0755.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_core_contenttype_3_4_200_v20140207_1251.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_core_jobs_3_6_0_v20140424_0053.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_core_runtime_3_10_0_v20140318_2214.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_equinox_app_1_3_200_v20130910_1609.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_equinox_common_3_6_200_v20130402_1505.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_equinox_preferences_3_5_200_v20140224_1527.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_equinox_registry_3_5_400_v20140428_1507.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_client_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_http_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_io_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_security_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_server_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_servlet_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_util_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_webapp_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_xml_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_api_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_client_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_common_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_server_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_servlet_9_4_4_v20170414.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_osgi_3_10_0_v20140606_1445.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_tycho_org_eclipse_jdt_core_3_12_2_v20161117_1814.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_16_1_GA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javatuples_javatuples_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_reflections_reflections_0_9_9_RC1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_rendersnake_rendersnake_1_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_modules_scala_java8_compat_2_11_0_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_library_2_11_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_2_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FixPatternMiner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FixPatternMiner.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FixPatternMiner.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/TestTreeLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/DocumentSimilarity.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/Compare.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/RunnableCompare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/RunnableCompare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/RunnableCompare.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeActor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeWorker.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalActionSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalActionSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalRegrouper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalRegrouper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/RunnableParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/RunnableParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/AkkaTreeLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/CalculatePairs.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/ImportPairs2DB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/PatternExtractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/TreeLoaderClusterL1.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/CallShell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/CallShell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/Checker.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/PoolBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/PoolBuilder.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
-    <ignored path="$PROJECT_DIR$/../gumtree/gen.jdt/target/" />
-    <ignored path="$PROJECT_DIR$/../gumtree/core/target/" />
-    <ignored path="$PROJECT_DIR$/../gumtree/target/" />
-    <ignored path="$PROJECT_DIR$/../gumtree/client.diff/target/" />
-    <ignored path="$PROJECT_DIR$/../gumtree/client/target/" />
-    <ignored path="$PROJECT_DIR$/../simple-utils/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="FixPatternMiner" />
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/DefaultKryoContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="73" column="35" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+            <state relative-caret-position="452">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/BaseMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="229" column="24" selection-start-line="229" selection-start-column="24" selection-end-line="229" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/Jedis.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="405" column="4" selection-start-line="405" selection-start-column="4" selection-end-line="405" selection-end-column="4" />
-              <folding>
-                <element signature="e#1325#1326#0" expanded="true" />
-                <element signature="e#1367#1368#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/BinaryJedis.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="56" column="29" lean-forward="true" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/Client.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-              <folding>
-                <element signature="e#795#796#0" expanded="true" />
-                <element signature="e#828#829#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/BinaryClient.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-              <folding>
-                <element signature="e#872#873#0" expanded="true" />
-                <element signature="e#905#906#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2475">
-              <caret line="165" column="37" selection-start-line="165" selection-start-column="37" selection-end-line="165" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-actor_2.11/2.4.11/akka-actor_2.11-2.4.11.jar!/akka/actor/ActorSystem.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="79" column="30" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
-              <folding>
-                <element signature="e#17513#17514#0" expanded="true" />
-                <element signature="e#17569#17570#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="405">
+              <caret line="27" selection-start-line="27" selection-end-line="31" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -171,97 +168,32 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>redis</find>
-      <find>stemmi</find>
+      <find>mk</find>
+      <find>ObjectInputStream</find>
+      <find>InputStre</find>
+      <find>resultMap</find>
       <find>hget</find>
-      <find>AstNode</find>
-      <find>ConstructorInvocation</find>
-      <find>ClassCreationIns</find>
-      <find>AnonymousClassDeclaration</find>
-      <find>ClassDe</find>
-      <find>ASTNod</find>
-      <find>TO</find>
-      <find>ASTNode</find>
-      <find>ASTN</find>
-      <find>met</find>
-      <find>Exec</find>
-      <find>Executors.</find>
-      <find>shared</find>
-      <find>retrain</find>
-      <find>leaf</find>
-      <find>reverse</find>
-      <find>TreeU</find>
-      <find>[(60@@[(59@@[(42@@)])])]</find>
-      <find>[(60@@[(59@@[</find>
-      <find>[(60@@[(59@@[(</find>
-      <find>regex</find>
-      <find>Pattern.com</find>
-      <find>valid_id</find>
-      <find>checkout</find>
-      <find>time</find>
-      <find>async</find>
-      <find>Compare-EnhancedDiff-System</find>
     </findStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/../gumtree</dir>
-      <dir>$MAVEN_REPOSITORY$/org/apache/commons/commons-text/1.3/commons-text-1.3.jar</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="TreeDump" />
-      </map>
-    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/FixPattern/utils/FileHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/TestHunkParserSingleFile.java" />
-        <option value="$PROJECT_DIR$/../gumtree/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/cluster/CallShell.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/FixPatternParser/violations/FixedViolationHunkParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/MultipleThreadsParser/ParseFixPatternWorker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/EnhancedASTDiff.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/cluster/StoreEDiffInCache.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/config/Configuration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/ImportPairs2DB.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/AkkaTreeLoader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/Compare.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/RunnableCompareTrees.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalActionSet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/DocumentSimilarity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/KryoContext.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/KryoClassRegistrator.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/CallShell.java" />
-        <option value="$PROJECT_DIR$/../gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gen/jdt/exp/ExpJdtVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalRegrouper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/Parser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/RunnableParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffWorker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/CompareMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/RunnableCompare.java" />
-        <option value="$PROJECT_DIR$/../gumtree/core/src/main/java/com/github/gumtreediff/matchers/heuristic/cd/ChangeDistillerLeavesMatcher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/PoolBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeWorker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/DefaultKryoContext.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -284,19 +216,12 @@
           <item name="FixPatternMiner" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="GumTree" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
       </expand>
       <select />
     </treeState>
   </component>
-  <component name="MavenRunner">
-    <option name="jreName" value="1.8" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="1274" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="535" />
     <option name="height" value="1440" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -305,6 +230,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -316,27 +243,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553628066157" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="edu.lu.uni.serval.fixminer.akka.ediff" />
-      <recent name="edu.lu.uni.serval.fixminer.akka.compare" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/FixPattern/utils" />
-    </key>
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567787706640" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -350,25 +260,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CompareTrees">
-    <configuration name="ClusterToPattern" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.utils.ClusterToPattern" />
-      <module name="FixPatternMiner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Launcher">
     <configuration name="CompareTrees" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.fixminer.akka.compare.CompareTrees" />
       <module name="FixPatternMiner" />
-      <option name="PROGRAM_PARAMETERS" value="shape $PROJECT_DIR$/../enhancedASTDiff/python/data/redis ALLdumps-gumInput.rdb clusterl-gumInputALL.rdb 100 localhost" />
-      <option name="VM_PARAMETERS" value="-Xmx8096m " />
+      <option name="PROGRAM_PARAMETERS" value="shape $PROJECT_DIR$/../fixminer-core/python/data/redis ALLdumps-gumInput.rdb clusterl0-gumInputALL.rdb $PROJECT_DIR$/../fixminer-core/python/data/richEditScript" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="edu.lu.uni.serval.fixminer.akka.compare.*" />
@@ -379,23 +275,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DocumentSimilarity" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.fixminer.akka.DocumentSimilarity" />
-      <module name="FixPatternMiner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.fixminer.akka.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.fixminer.Launcher" />
       <module name="FixPatternMiner" />
-      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/../enhancedASTDiff/app.properties" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/../fixminer-core/python/data/app.properties L2" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="edu.lu.uni.serval.fixminer.*" />
@@ -406,45 +289,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="core [install]" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="install" />
-                <option value="-DskipTests" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/../gumtree/core" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.Launcher" />
       <item itemvalue="Application.CompareTrees" />
-      <item itemvalue="Application.ClusterToPattern" />
-      <item itemvalue="Application.DocumentSimilarity" />
-      <item itemvalue="Maven.core [install]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CompareTrees" />
         <item itemvalue="Application.Launcher" />
-        <item itemvalue="Application.ClusterToPattern" />
-        <item itemvalue="Application.DocumentSimilarity" />
+        <item itemvalue="Application.CompareTrees" />
       </list>
     </recent_temporary>
   </component>
@@ -453,73 +305,44 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7b5ed080-e2fb-4060-b49a-7b2beb7dcc68" name="Default Changelist" comment="" />
-      <created>1550924800456</created>
+      <changelist id="1c20f95f-4c0f-46a8-9b1c-3c643f73b30a" name="Default Changelist" comment="" />
+      <created>1567410812558</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1550924800456</updated>
+      <updated>1567410812558</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1440" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49839228" visible="true" weight="0.24861" />
-      <window_info id="Image Layers" order="1" />
-      <window_info id="Designer" order="2" />
-      <window_info id="UI Designer" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="Favorites" order="5" sideWeight="0.5016077" side_tool="true" weight="0.24861" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980143" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" weight="0.329927" />
+      <window_info anchor="bottom" id="Terminal" weight="0.329927" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.329927" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329927" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32919708" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.26569343" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.329927" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3189781" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.329927" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32919708" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" visible="true" weight="0.32962668" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" visible="true" weight="0.32327244" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Structure" order="8" sideWeight="0.5005441" weight="0.2466243" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49839228" visible="true" weight="0.24861" />
-      <window_info id="Image Layers" order="1" />
-      <window_info id="Designer" order="2" />
-      <window_info id="UI Designer" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="Favorites" order="5" sideWeight="0.5016077" side_tool="true" visible="true" weight="0.24861" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.329927" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32919708" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.26569343" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3189781" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.329927" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32919708" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" visible="true" weight="0.32327244" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Structure" order="8" sideWeight="0.5005441" weight="0.2466243" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -536,505 +359,271 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>25</line>
+          <line>29</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>83</line>
+          <line>50</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/cluster/CalculatePairs.java</url>
-          <line>26</line>
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java</url>
+          <line>62</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/cluster/CalculatePairs.java</url>
-          <line>33</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>77</line>
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java</url>
+          <line>74</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>80</line>
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java</url>
+          <line>56</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java</url>
+          <line>61</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
+          <line>56</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
+          <line>81</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java</url>
+          <line>276</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
+          <line>107</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java</url>
+          <line>44</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java</url>
-          <line>31</line>
-          <properties />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java</url>
-          <line>84</line>
-          <properties />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java</url>
-          <line>82</line>
-          <properties />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java</url>
-          <line>37</line>
+          <line>51</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java</url>
-          <line>94</line>
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
+          <line>64</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
+          <line>28</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java</url>
-          <line>104</line>
-          <properties />
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>72</line>
+          <line>95</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java</url>
-          <line>85</line>
-          <properties />
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>84</line>
-          <properties />
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/ImportPairs2DB.java</url>
-          <line>72</line>
-          <properties />
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/AkkaTreeLoader.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/AkkaTreeLoader.java</url>
-          <line>54</line>
-          <properties />
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/Compare.java</url>
-          <line>33</line>
-          <properties />
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java</url>
-          <line>23</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/AkkaTreeLoader.java</url>
-          <line>116</line>
-          <properties />
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/Compare.java</url>
-          <line>47</line>
-          <properties />
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>140</line>
-          <properties />
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster.java</url>
-          <line>78</line>
-          <properties />
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster.java</url>
-          <line>114</line>
-          <properties />
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster.java</url>
-          <line>131</line>
-          <properties />
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster.java</url>
-          <line>184</line>
-          <properties />
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>119</line>
-          <properties />
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>11</line>
-          <properties />
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>18</line>
-          <properties />
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>22</line>
-          <properties />
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>50</line>
-          <properties />
-          <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>89</line>
-          <properties />
-          <option name="timeStamp" value="81" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>59</line>
-          <properties />
-          <option name="timeStamp" value="82" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>101</line>
-          <properties />
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java</url>
-          <line>75</line>
-          <properties />
-          <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffParser.java</url>
-          <line>42</line>
-          <properties />
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>259</line>
-          <properties />
-          <option name="timeStamp" value="103" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java</url>
-          <line>426</line>
-          <properties />
-          <option name="timeStamp" value="116" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>177</line>
-          <properties />
-          <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>230</line>
-          <properties />
-          <option name="timeStamp" value="118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>316</line>
-          <properties />
-          <option name="timeStamp" value="119" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>353</line>
-          <properties />
-          <option name="timeStamp" value="120" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>337</line>
-          <properties />
-          <option name="timeStamp" value="122" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>214</line>
-          <properties />
-          <option name="timeStamp" value="124" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>309</line>
-          <properties />
-          <option name="timeStamp" value="125" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>331</line>
-          <properties />
-          <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java</url>
-          <line>347</line>
-          <properties />
-          <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java</url>
-          <line>80</line>
-          <properties />
-          <option name="timeStamp" value="129" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>87</line>
-          <properties />
-          <option name="timeStamp" value="130" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>27</line>
-          <properties />
-          <option name="timeStamp" value="131" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>36</line>
-          <properties />
-          <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>76</line>
-          <properties />
-          <option name="timeStamp" value="134" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java</url>
-          <line>646</line>
-          <properties />
-          <option name="timeStamp" value="143" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>204</line>
-          <properties />
-          <option name="timeStamp" value="157" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>170</line>
-          <properties />
-          <option name="timeStamp" value="158" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>198</line>
-          <properties />
-          <option name="timeStamp" value="159" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>233</line>
-          <properties />
-          <option name="timeStamp" value="160" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>74</line>
-          <properties />
-          <option name="timeStamp" value="161" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java</url>
-          <line>92</line>
-          <properties />
-          <option name="timeStamp" value="162" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>62</line>
-          <properties />
-          <option name="timeStamp" value="163" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="allActionSets" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>load.getAnyRef(&quot;max-pool-size-max&quot;)</expression-string>
+        <expression-string>String[] split = prefix.split(&quot;-&quot;);
+String s = null;//inner.get(prefix.replace(&quot;-&quot;,&quot;/&quot;) +&quot;/&quot;+dist2load);
+//                Set&lt;String&gt; keys = outer.keys(split[0] + &quot;/&quot;+split[1]+&quot;/&quot; + dist2load);
+String key = split[0] + &quot;/&quot;+split[1]+&quot;/&quot; + dist2load;</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>load.getConfig()</expression-string>
+        <expression-string>actionSetRead.toString().equals(actionSet.toString())</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>load.getConfig(&quot;SimpleConfigObject&quot;)</expression-string>
+        <expression-string>actionSetRead.toString()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>keyName.split(&quot;-&quot;)</expression-string>
+        <expression-string>actionSetRead.equals(actionSet)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-m.match();
-
-
-ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-ag.generate();
-List&lt;Action&gt; actions = ag.getActions();</expression-string>
+        <expression-string>HierarchicalActionSet actionSetRead = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>m.match()</expression-string>
+        <expression-string>EDiffHelper.kryoSerialize(actionSet)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);</expression-string>
+        <expression-string>s = outer.hget(&quot;dump&quot;,key);</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>m.match();</expression-string>
+        <expression-string>filenames.get(prefix + &quot;-&quot; + fn)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>String.join(&quot; &quot;,res);</expression-string>
+        <expression-string>filenames[prefix + &quot;-&quot; + fn]</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="setValue">
-      <expression>
-        <expression-string>1</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>&quot;JDT&quot;</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../gumtree/core/src/main/java/com/github/gumtreediff/tree/TreeContext.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        <state relative-caret-position="264">
+          <caret line="274" column="11" selection-start-line="274" selection-start-column="11" selection-end-line="274" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/concurrent/ForkJoinPool.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="1254" column="8" selection-start-line="1254" selection-start-column="8" selection-end-line="1254" selection-end-column="8" />
+        <state relative-caret-position="264">
+          <caret line="295" column="9" selection-start-line="295" selection-start-column="9" selection-end-line="295" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffMessage.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/zip/Deflater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="30" column="79" selection-start-line="30" selection-start-column="79" selection-end-line="30" selection-end-column="79" />
-          <folding>
-            <element signature="e#314#315#0" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-            <element signature="e#387#388#0" expanded="true" />
-            <element signature="e#420#421#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1275">
+          <caret line="108" column="28" selection-start-line="108" selection-start-column="28" selection-end-line="108" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/MessageFile.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/zip/GZIPOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="107" column="11" selection-start-line="107" selection-start-column="11" selection-end-line="107" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/esotericsoftware/kryo/4.0.2/kryo-4.0.2.jar!/com/esotericsoftware/kryo/Kryo.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="1394" column="63" selection-start-line="1394" selection-start-column="43" selection-end-line="1394" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/objenesis/objenesis/2.5.1/objenesis-2.5.1.jar!/org/objenesis/strategy/StdInstantiatorStrategy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/objenesis/objenesis/2.5.1/objenesis-2.5.1.jar!/org/objenesis/strategy/SerializingInstantiatorStrategy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="18" column="44" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/AkkaTreeLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1455">
+          <caret line="116" column="8" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/Compare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-196">
+          <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/RunnableCompare.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffWorker.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="68" column="20" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="73" />
+        <state relative-caret-position="3180">
+          <caret line="235" column="21" selection-start-line="235" selection-start-column="12" selection-end-line="235" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/TreeLoaderClusterL1.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-767">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/AkkaTreeLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="116" column="13" lean-forward="true" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/Compare.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="45" column="39" lean-forward="true" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
+        <state relative-caret-position="6405">
+          <caret line="448" column="41" selection-start-line="448" selection-start-column="32" selection-end-line="448" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1042,95 +631,90 @@ List&lt;Action&gt; actions = ag.getActions();</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-182">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/StoreEDiffInCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1247">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/TreeLoaderClusterL1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/CalculatePairs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/PatternExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4422">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/ParserInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/RunnableParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="257" selection-start-line="257" selection-end-line="261" selection-end-column="58" />
+        <state relative-caret-position="150">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/PoolBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#233#234#0" expanded="true" />
+            <element signature="e#266#267#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gumtree/core/src/main/java/com/github/gumtreediff/tree/AbstractTree.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="75">
+          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myfile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="308" column="32" lean-forward="true" selection-start-line="308" selection-start-column="32" selection-end-line="308" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalActionSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-890">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding>
-            <element signature="e#1328#1329#0" expanded="true" />
-            <element signature="e#1348#1349#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/MultiThreadTreeLoaderCluster3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="214" column="1592" lean-forward="true" selection-start-line="214" selection-start-column="1588" selection-end-line="214" selection-end-column="1592" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gumtree/core/src/main/java/com/github/gumtreediff/tree/TreeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="177" selection-start-line="177" selection-end-line="177" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/Collection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="579" column="22" selection-start-line="579" selection-start-column="22" selection-end-line="579" selection-end-column="22" />
-          <folding>
-            <element signature="e#26957#26958#0" expanded="true" />
-            <element signature="e#27022#27023#0" expanded="true" />
-            <element signature="e#27751#27752#0" expanded="true" />
-            <element signature="e#27815#27816#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalRegrouper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="18" column="60" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="60" />
+          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffParser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="38" column="42" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+        <state relative-caret-position="-167">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1139,350 +723,166 @@ List&lt;Action&gt; actions = ag.getActions();</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-61">
-          <caret line="28" column="72" lean-forward="true" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
+        <state relative-caret-position="137">
+          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gumtree/core/src/main/java/com/github/gumtreediff/actions/ActionGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="46" column="37" lean-forward="true" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
+        <state relative-caret-position="210">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-text/1.3/commons-text-1.3.jar!/org/apache/commons/text/similarity/JaccardDistance.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffWorker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="42" />
+        <state relative-caret-position="-317">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-text/1.3/commons-text-1.3.jar!/org/apache/commons/text/similarity/JaroWinklerDistance.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalActionSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="26" />
+        <state relative-caret-position="-1322">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HierarchicalRegrouper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/KryoClassRegistrator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/KryoContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/MessageFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/DocumentSimilarity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7890">
+          <caret line="596" column="12" selection-start-line="596" selection-start-column="12" selection-end-line="596" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/DefaultKryoContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+        <state relative-caret-position="389">
+          <caret line="44" column="57" lean-forward="true" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/BaseMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="70" column="41" lean-forward="true" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/util/Pool.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/TestTreeLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="116" column="37" selection-start-line="116" selection-start-column="33" selection-end-line="116" selection-end-column="37" />
+        <state relative-caret-position="2649">
+          <caret line="192" column="41" lean-forward="true" selection-start-line="192" selection-start-column="41" selection-end-line="192" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/JedisPool.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/CallShell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="70" column="8" lean-forward="true" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+        <state relative-caret-position="328">
+          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/RunnableCompare.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/Checker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="91" lean-forward="true" selection-start-line="12" selection-start-column="91" selection-end-line="12" selection-end-column="91" />
+        <state relative-caret-position="553">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/stream/Stream.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/edu/lu/uni/serval/FixPatternMiner/AppTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="497" column="9" selection-start-line="497" selection-start-column="9" selection-end-line="497" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar!/org/apache/commons/pool2/impl/BaseObjectPoolConfig.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="145" selection-start-line="145" selection-end-line="145" />
-          <folding>
-            <element signature="e#4874#4875#0" expanded="true" />
-            <element signature="e#4934#4935#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar!/org/apache/commons/pool2/impl/GenericObjectPoolConfig.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-          <folding>
-            <element signature="e#610#611#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/PoolBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-          <folding>
-            <element signature="e#233#234#0" expanded="true" />
-            <element signature="e#266#267#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="1230" column="46" selection-start-line="1230" selection-start-column="34" selection-end-line="1230" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/concurrent/Executors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="123" column="34" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="54" column="79" selection-start-line="54" selection-start-column="79" selection-end-line="54" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-actor_2.11/2.4.11/akka-actor_2.11-2.4.11.jar!/akka/actor/ActorRef.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-          <folding>
-            <element signature="e#3267#3268#0" expanded="true" />
-            <element signature="e#3323#3324#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-actor_2.11/2.4.11/akka-actor_2.11-2.4.11.jar!/akka/actor/ActorRefFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-actor_2.11/2.4.11/akka-actor_2.11-2.4.11.jar!/akka/routing/RoundRobinPool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="326" column="25" selection-start-line="326" selection-start-column="11" selection-end-line="326" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#386#387#0" expanded="true" />
-            <element signature="e#413#414#0" expanded="true" />
-            <element signature="e#453#454#0" expanded="true" />
-            <element signature="e#485#486#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/TreeActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="26" column="46" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-actor_2.11/2.4.11/akka-actor_2.11-2.4.11.jar!/akka/actor/ActorSystem.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="79" column="30" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
-          <folding>
-            <element signature="e#17513#17514#0" expanded="true" />
-            <element signature="e#17569#17570#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/BinaryClient.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-          <folding>
-            <element signature="e#872#873#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/Client.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-          <folding>
-            <element signature="e#795#796#0" expanded="true" />
-            <element signature="e#828#829#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/BinaryJedis.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="56" column="29" lean-forward="true" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2475">
-          <caret line="165" column="37" selection-start-line="165" selection-start-column="37" selection-end-line="165" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="73" column="35" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
+        <state relative-caret-position="405">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="229" column="24" selection-start-line="229" selection-start-column="24" selection-end-line="229" selection-end-column="24" />
+        <state relative-caret-position="4035">
+          <caret line="286" column="9" selection-start-line="286" selection-start-column="9" selection-end-line="286" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.8.1/jedis-2.8.1.jar!/redis/clients/jedis/Jedis.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ASTNodeMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="405" column="4" selection-start-line="405" selection-start-column="4" selection-end-line="405" selection-end-column="4" />
-          <folding>
-            <element signature="e#1325#1326#0" expanded="true" />
-            <element signature="e#1367#1368#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="128">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="31" selection-end-column="25" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>client</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: ch.qos.logback:logback-classic:1.1.2</last-edited>
+          <last-edited>1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

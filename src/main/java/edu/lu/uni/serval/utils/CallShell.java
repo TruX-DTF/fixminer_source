@@ -32,14 +32,15 @@ public class CallShell {
 
     public static void runShell(String command, String port) throws Exception {
 
-        log.info(command);
+        log.trace(command);
 
         Process process = Runtime.getRuntime().exec(command);
         BufferedReader reader = new BufferedReader(new InputStreamReader(
                 process.getInputStream()));
         String s;
         while ((s = reader.readLine()) != null) {
-            System.out.println("Script output: " + s);
+//            System.out.println("Script output: " + s);
+            log.trace("Script output: " + s);
         }
 //        Thread.sleep(Integer.valueOf(serverWait));
 
@@ -72,7 +73,8 @@ try{
             s = reader.readLine();
 
             if(s !=null && s.equals("PONG")){
-                System.out.println(s);
+//                System.out.println(s);
+                log.trace(s);
 
             }else{
                 String e;

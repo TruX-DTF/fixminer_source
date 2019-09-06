@@ -4,12 +4,14 @@ import com.github.gumtreediff.actions.model.*;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
 import com.github.gumtreediff.tree.TreeUtils;
+import edu.lu.uni.serval.fixminer.akka.ediff.DefaultKryoContext;
 import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
+import edu.lu.uni.serval.fixminer.akka.ediff.KryoContext;
+import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import org.javatuples.Pair;
 
 import java.io.*;
 import java.util.*;
@@ -59,6 +61,17 @@ public class EDiffHelper {
         oos.writeObject( o );
         oos.close();
         return baos.toByteArray();
+    }
+
+
+    public static byte[] kryoSerialize(Serializable o ){
+        KryoContext kryoContext = DefaultKryoContext.newKryoContextFactory();
+        return kryoContext.serialze(o);
+    }
+
+    public static Object kryoDeseerialize(byte[] data ){
+        KryoContext kryoContext = DefaultKryoContext.newKryoContextFactory();
+        return kryoContext.deserialze(HierarchicalActionSet.class,data);
     }
 
     public static ITree getTokenTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
@@ -245,25 +258,21 @@ public class EDiffHelper {
     }
 
 
-    public static ITree getShapes(String prefix, String fn, JedisPool outerPool,JedisPool innerPool) {
+    public static ITree getShapes(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
 
         ITree tree = null;
-//        Jedis inner = null;
-//        Jedis outer = null;
-        try (Jedis inner = innerPool.getResource(); Jedis outer = outerPool.getResource()) {
-//            inner = innerPool.getResource();
+
+        try (Jedis outer = outerPool.getResource()) {
             try {
-                while (!inner.ping().equals("PONG")) {
+                while (!outer.ping().equals("PONG")) {
                     log.info("wait");
                 }
-                inner.select(1);
-                String dist2load = inner.get(prefix + "-" + fn);
+                String dist2load = filenames.get(prefix + "-" + fn);
 
-//            outer = outerPool.getResource();
-                outer.select(0);
                 String key = prefix.replace("-", "/") + "/" + dist2load;
-                byte[] s = outer.get(key.getBytes());
-                HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromByteArray(s);
+
+                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
+                HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
 
                 ITree parent = null;
                 ITree children = null;
@@ -272,69 +281,9 @@ public class EDiffHelper {
                 //tree.setParent(null);
                 tc.validate();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-//            finally {
-//            if (inner != null) {
-//                inner.close();
-//            }
-//            if (outer != null) {
-//                outer.close();
-//            }
-//        }
-        return tree;
-
-    }
-
-
-    public static ITree getTargets(String prefix, String fn, JedisPool outerPool,JedisPool innerPool) {
-
-        ITree tree = null;
-//        Jedis inner = null;
-//        Jedis outer = null;
-        try {
-            String dist2load =  null;
-            String si = null;
-            try(Jedis inner = innerPool.getResource()){
-                inner.select(1);
-                dist2load = inner.get(prefix+"-"+fn);
-
-            }
-//            while (!inner.ping().equals("PONG")){
-//                log.info("wait");
-//            }
-            try(Jedis outer = outerPool.getResource()){
-                outer.select(0);
-                String s = null;
-                Set<String> keys = outer.keys(prefix.split("-")[0] + "/*/" + dist2load);
-                if (keys.size() == 1) {
-                    s = (String) keys.toArray()[0];
-                } else {
-                    throw new Error("cok key");
-                }
-                si = outer.get(s);
-
-            }
-
-
-//            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
-
-            ITree parent = null;
-            ITree children =null;
-            TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getTargetTree(actionSet, parent, children,tc);
-            //tree.setParent(null);
-            tc.validate();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return tree;
 
@@ -344,35 +293,7 @@ public class EDiffHelper {
     public static ITree getTargets(HierarchicalActionSet actionSet) {
 
         ITree tree = null;
-//        Jedis inner = null;
-//        Jedis outer = null;
         try {
-//            String dist2load =  null;
-//            String si = null;
-//            try(Jedis inner = innerPool.getResource()){
-//                inner.select(1);
-//                dist2load = inner.get(prefix+"-"+fn);
-//
-//            }
-////            while (!inner.ping().equals("PONG")){
-////                log.info("wait");
-////            }
-//            try(Jedis outer = outerPool.getResource()){
-//                outer.select(0);
-//                String s = null;
-//                Set<String> keys = outer.keys(prefix.split("-")[0] + "/*/" + dist2load);
-//                if (keys.size() == 1) {
-//                    s = (String) keys.toArray()[0];
-//                } else {
-//                    throw new Error("cok key");
-//                }
-//                si = outer.get(s);
-//
-//            }
-//
-//
-////            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
-//            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
 
             ITree parent = null;
             ITree children =null;
@@ -383,69 +304,47 @@ public class EDiffHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
         return tree;
 
     }
 
 
-    public  static Pair<ITree,HierarchicalActionSet> getActions(String prefix,String firstValue, JedisPool outerPool,JedisPool innerPool) {
+    public  static Pair<ITree,HierarchicalActionSet> getActions(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
 
 
         ITree tree = null;
-//        Jedis inner = null;
-//        Jedis outer = null;
         HierarchicalActionSet actionSet = null;
 
-        try {
-            String dist2load = null;
-            byte[] si = null;
-            try (Jedis inner = innerPool.getResource();Jedis outer = outerPool.getResource()){
+        try (Jedis outer = outerPool.getResource()) {
+            try {
+                while (!outer.ping().equals("PONG")) {
+                    log.info("wait");
+                }
 
-                inner.select(1);
-                dist2load = inner.get(prefix + "-" + firstValue);
 
-                outer.select(0);
+                String dist2load = filenames.get(prefix + "-" + fn);
+
                 String[] split = prefix.split("-");
-                String s = null;//inner.get(prefix.replace("-","/") +"/"+dist2load);
-//                Set<String> keys = outer.keys(split[0] + "/"+split[1]+"/" + dist2load);
                 String key = split[0] + "/"+split[1]+"/" + dist2load;
-//                if (keys.size() == 1) {
-//                    s = (String) keys.toArray()[0];
-//                } else {
-//                    throw new Error("cok key");
-//                }
-                si = outer.get(key.getBytes());
 
-//            String key = prefix.replace("-", "/") + "/" + dist2load;
-//            byte[] s = outer.get(key.getBytes());
-            actionSet = (HierarchicalActionSet) EDiffHelper.fromByteArray(si);
+                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
+                actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
 
-//            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
-//            actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
+
+                ITree parent = null;
+                ITree children = null;
+                TreeContext tc = new TreeContext();
+                tree = EDiffHelper.getActionTree(actionSet, parent, children, tc);
+                //tree.setParent(null);
+                tc.validate();
+            }catch (Exception e) {
+                e.printStackTrace();
             }
-
-            ITree parent = null;
-            ITree children = null;
-            TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getActionTree(actionSet, parent, children, tc);
-            //tree.setParent(null);
-            tc.validate();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
+
         Pair<ITree, HierarchicalActionSet> pair = new Pair<>(tree,actionSet);
         return pair;
-//        return tree;
+
     }
 
     public static void getLeaves(ITree tc){
@@ -461,63 +360,38 @@ public class EDiffHelper {
         }
     }
 
-    public  static ITree getTokens(String prefix,String firstValue, JedisPool outerPool,JedisPool innerPool) {
+    public  static ITree getTokens(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
 
 
         ITree tree = null;
-//        Jedis inner = null;
-//        Jedis outer = null;
 
-        try{
-        try (Jedis inner = innerPool.getResource();Jedis outer = outerPool.getResource()) {
-//            inner = innerPool.getResource();
-            inner.select(1);
-            String dist2load = inner.get(prefix + "-" + firstValue);
-//            outer = outerPool.getResource();
-            outer.select(0);
-//            String s = null;//inner.get(prefix.replace("-","/") +"/"+dist2load);
-//            Set<String> keys = outer.keys(prefix.split("-")[0] + "/*/" + dist2load);
-//            if (keys.size() == 1) {
-//                s = (String) keys.toArray()[0];
-//            } else {
-//                throw new Error("cok key");
-//            }
+        HierarchicalActionSet actionSet = null;
+        try (Jedis outer = outerPool.getResource()) {
+            try {
+                while (!outer.ping().equals("PONG")) {
+                    log.info("wait");
+                }
+                String dist2load = filenames.get(prefix + "-" + fn);
 
+                String[] split = prefix.split("-");
+                String key = split[0] + "/"+split[1]+"/" + dist2load;
 
-//            String filename = project + "/"+type+"/" + pureFileName + ".txt_" + actionSetPosition;
-            String[] split = prefix.split("-");
-//            String s = null;//inner.get(prefix.replace("-","/") +"/"+dist2load);
-//                Set<String> keys = outer.keys(split[0] + "/"+split[1]+"/" + dist2load);
-            String key = split[0] + "/"+split[1]+"/" + dist2load;
-            byte[] si = outer.get(key.getBytes());
-//            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(si);
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromByteArray(si);
+                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
+                actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
 
-
-            ITree parent = null;
-            ITree children = null;
-            TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getTokenTree(actionSet, parent, children, tc);
-            tree.setParent(null);
-            tc.validate();
+                ITree parent = null;
+                ITree children = null;
+                TreeContext tc = new TreeContext();
+                tree = EDiffHelper.getTokenTree(actionSet, parent, children, tc);
+                tree.setParent(null);
+                tc.validate();
 //            getLeaves(tree);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-//        finally {
-//            if (inner != null) {
-//                inner.close();
-//            }
-//            if (outer != null) {
-//                outer.close();
-//            }
-
 
         return tree;
     }

@@ -1,14 +1,6 @@
 package edu.lu.uni.serval.fixminer.akka.compare;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import com.github.gumtreediff.actions.ActionGenerator;
-import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.matchers.Matcher;
-import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.ITree;
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
 import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
@@ -21,11 +13,8 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static edu.lu.uni.serval.fixminer.jobs.MultiThreadTreeLoaderCluster3.getNames;
 
 
 /**
@@ -36,20 +25,20 @@ public class CompareTrees {
     private static Logger log = LoggerFactory.getLogger(CompareTrees.class);
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String redisPath, String portInner, String portDumps, String dumpsName, String compareDBName, String job) throws Exception {
 
+        // shape /Users/anil.koyuncu/projects/test/fixminer-core/python/data/redis ALLdumps-gumInput.rdb clusterl0-gumInputALL.rdb /Users/anil.koyuncu/projects/test/fixminer-core/python/data/richEditScript
 
-
-        String portInner = "6380";
-        String port = "6399";
+//        String portInner = "6380";
+        String port = portDumps; //"6399";
         CallShell cs = new CallShell();
-        String cmd = "bash "+args[1] + "/" + "startServer.sh" +" %s %s %s";
-        cmd = String.format(cmd, args[1],args[2],Integer.valueOf(port));
+        String cmd = "bash "+redisPath + "/" + "startServer.sh" +" %s %s %s";
+        cmd = String.format(cmd, redisPath,dumpsName,Integer.valueOf(port));
         log.info(cmd);
         cs.runShell(cmd, port);
 
-        String cmdInner = "bash "+args[1] + "/" + "startServer.sh" +" %s %s %s";
-        cmdInner = String.format(cmdInner, args[1],args[3],Integer.valueOf(portInner));
+        String cmdInner = "bash "+redisPath + "/" + "startServer.sh" +" %s %s %s";
+        cmdInner = String.format(cmdInner, redisPath,compareDBName,Integer.valueOf(portInner));
         log.info(cmdInner);
         cs.runShell(cmdInner, portInner);
 
@@ -62,48 +51,17 @@ public class CompareTrees {
         final JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), host,Integer.valueOf(port),20000000);
 
         List<String> listOfPairs = AkkaTreeParser.getMessages(innerPool,Integer.valueOf(numOfWorkers));
-
-//        String pair = AkkaTreeParser.getMessage(innerPool);
-
+        HashMap<String, String> filenames = AkkaTreeParser.filenames(innerPool);
 
 
-//        ActorSystem system = null;
-//        ActorRef parsingActor = null;
-//        final TreeMessage msg = new TreeMessage(0,listOfPairs, innerPool,outerPool,timeout,args[0]);
-//        try {
-//            log.info("Akka begins...");
-//            Config load = ConfigFactory.load();
-//            system = ActorSystem.create("Compare-EnhancedDiff-System");
-//
-//            parsingActor = system.actorOf(TreeActor.props(Integer.valueOf(numOfWorkers)), "mine-fix-pattern-actor");
-//            parsingActor.tell(msg, ActorRef.noSender());
-//        } catch (Exception e) {
-//            system.shutdown();
-//            e.printStackTrace();
-//        }
-//        try {
-//            coreCompare(pair, args[0], innerPool, outerPool);
-//        } catch (Exception e) {
-//            try (Jedis inner = innerPool.getResource()) {
-//
-//                inner.sadd("pairs",pair);
-//
-//
-//            }
-//        }
         ArrayList<String> samePairs = new ArrayList<>();
         ArrayList<String> errorPairs = new ArrayList<>();
 
 
 
-        listOfPairs.stream().parallel().forEach(m->coreCompare(m, args[0],innerPool, outerPool,samePairs,errorPairs));
+        listOfPairs.stream().parallel().forEach(m->coreCompare(m, job,innerPool, samePairs,errorPairs,filenames,outerPool));
 
-//        int size = samePairs.size();
         try (Jedis jedis = innerPool.getResource()) {
-//            jedis.select(2);
-//            for (String samePair : samePairs) {
-//                jedis.set(samePair,"1");
-//            }
 
             jedis.select(0);
             jedis.flushDB();
@@ -114,34 +72,8 @@ public class CompareTrees {
 
         }
         log.info("End process");
-//        listOfPairs.parallelStream().forEach(m->coreCompare(m, args[0],innerPool, outerPool));
-
-//        for (String listOfPair : listOfPairs) {
-//            coreCompare(listOfPair, args[0],innerPool, outerPool);
-//        }
-
-
-//        int counter = new Object() {
-//            int counter = 0;
-//
-//            {
-//
-//                listOfPairs.parallelStream().
-//                        peek(x -> counter++).
-//                        forEach(m ->
-//                                {
-////                                    Compare compare =  new Compare();
-//                                    coreCompare(m, args[0],innerPool, outerPool);
-//                                    if (counter % 1000 == 0) {
-//                                        log.info("Finalized parsing " + counter + " files... remaing " + (listOfPairs.size() - counter));
-//                                    }
-//                                }
-//                        );
-//            }
-//        }.counter;
-//        coreCompare(args[0],args[1],args[2],args[3]);
     }
-    public static void coreCompare(String pairName, String treeType,JedisPool innerPool,JedisPool outerPool,ArrayList<String> samePairs,ArrayList<String> errorPairs ) {
+    public static void coreCompare(String pairName, String treeType,JedisPool innerPool,ArrayList<String> samePairs,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
 
 //        if (samePairs.size() % 1000 == 0) {
 //            log.info("Same pairs size "+samePairs.size());
@@ -170,23 +102,24 @@ public class CompareTrees {
 //                    return;
 //                }
 //                    jedis.srem("pairs",matchKey);
-
+//                JedisPool outerPool = null;
                 switch (treeType) {
                     case "shape":
-                        oldTree = EDiffHelper.getShapes(keyName, i, outerPool, innerPool);
-                        newTree = EDiffHelper.getShapes(keyName, j, outerPool, innerPool);
+                        oldTree = EDiffHelper.getShapes(keyName, i,  outerPool,filenames);
+                        newTree = EDiffHelper.getShapes(keyName, j,  outerPool,filenames);
                         break;
                     case "action":
-                        oldPair = EDiffHelper.getActions(keyName, i, outerPool, innerPool);
-                        newPair = EDiffHelper.getActions(keyName, j, outerPool, innerPool);
+
+                        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
+                        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);
                         oldTree = oldPair.getValue0();
                         newTree = newPair.getValue0();
 
 
                         break;
                     case "token":
-                        oldTree = EDiffHelper.getTokens(keyName, i, outerPool, innerPool);
-                        newTree = EDiffHelper.getTokens(keyName, j, outerPool, innerPool);
+                        oldTree = EDiffHelper.getTokens(keyName, i, outerPool, filenames);
+                        newTree = EDiffHelper.getTokens(keyName, j, outerPool, filenames);
 
                         String oldTokens = EDiffHelper.getNames2(oldTree);
                         String newTokens = EDiffHelper.getNames2(newTree);
