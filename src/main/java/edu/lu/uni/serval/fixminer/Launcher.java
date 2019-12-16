@@ -22,8 +22,8 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-//        String appConfigPath = "/Users/anilkoyuncu/bugStudy/release/code/app.properties";
-        String appConfigPath = args[0];
+        String appConfigPath = "/Users/haoyetian/Documents/Lu_code/FixMiner/fixminer_source/src/main/resource/app.properties";
+//        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
         String portInner = appProps.getProperty("portInner","6380");
@@ -36,8 +36,10 @@ public class Launcher {
         String input = appProps.getProperty("inputPath","FORKJOIN");
         String redisPath = appProps.getProperty("redisPath","FORKJOIN");
 
-        String parameter = args[2];
-        String jobType = args[1];
+//        String parameter = args[2];
+        String parameter = null;
+//        String jobType = args[1];
+        String jobType = "RICHEDITSCRIPT";
 
 //        String parameters = String.format("\nportInner %s " +
 //                "\nnumOfWorkers %s " +

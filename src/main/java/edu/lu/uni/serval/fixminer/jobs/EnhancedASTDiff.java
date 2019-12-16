@@ -118,7 +118,7 @@ public class EnhancedASTDiff {
 		log.info(revFilesPath.getPath());
 		File[] revFiles = revFilesPath.listFiles();
 		if (revFiles!= null ){
-	//		List<File> collect = Arrays.stream(revFiles).filter(x -> x.getName().startsWith("b50867_6e80c3_src#main#java#org#apache#hadoop#hbase#regionserver#HRegion"))
+	//		List<File> collect = Arrays.stream(revFiles).filter(x -> x.getName().startsWith("0a2756_7598f8_components#camel-cxf#src#main#java#org#apache#camel#component#cxf#CxfHeaderFilterStrategy"))
 	//				.collect(Collectors.toList());// project folders
 			List<MessageFile> msgFiles = new ArrayList<>();
 			for (File revFile : revFiles) {

@@ -1,7 +1,9 @@
 package edu.lu.uni.serval.fixminer.akka.ediff;
 
 import com.github.gumtreediff.actions.model.Action;
+import com.github.gumtreediff.gen.srcml.GumTreeCComparer;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
+
 import edu.lu.uni.serval.utils.ListSorter;
 import redis.clients.jedis.JedisPool;
 
@@ -39,7 +41,16 @@ public class EDiffParser extends Parser {
 	protected List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree2(File prevFile, File revFile) {
 		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		// GumTree results
-		List<Action> gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
+		boolean isJava =false;
+		List<Action> gumTreeResults = null;
+		if (revFile.getName().endsWith(".c") & prevFile.getName().endsWith(".c")){
+//			gumTreeResults = new GumTreeComparer().compareCFilesWithGumTree(prevFile, revFile);
+
+			gumTreeResults = new GumTreeCComparer().compareCFilesWithGumTree(prevFile, revFile);
+		}else{
+			gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
+			isJava = true;
+		}
 		if (gumTreeResults == null) {
 			this.resultType = 1;
 			return null;
@@ -48,16 +59,21 @@ public class EDiffParser extends Parser {
 			return actionSets;
 		} else {
 			// Regroup GumTre results.
-			List<HierarchicalActionSet> allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
+			List<HierarchicalActionSet> allActionSets = null;
+			if (isJava){
+				allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
+			}else{
+				allActionSets = new HierarchicalRegrouperForC().regroupGumTreeResults(gumTreeResults);
+			}
 
-			
+
 			ListSorter<HierarchicalActionSet> sorter = new ListSorter<>(allActionSets);
 			actionSets = sorter.sortAscending();
-			
+
 			if (actionSets.size() == 0) {
 				this.resultType = 3;
 			}
-			
+
 			return actionSets;
 		}
 	}
