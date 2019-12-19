@@ -287,7 +287,7 @@ public class HierarchicalRegrouperForC {
 				|| nodeType == 34 || nodeType == 35 || nodeType == 36 || nodeType == 40
 				|| nodeType == 41 || nodeType == 49 || nodeType == 73 || nodeType == 81 || nodeType == 80 || nodeType == 46 || nodeType == 60
 				||nodeType == 62 || nodeType == 64 || nodeType == 45 || nodeType == 85 || nodeType == 86 || nodeType == 59 || nodeType == 27 || nodeType == 25
-				|| nodeType == 26 || nodeType ==93 || nodeType == 37 || nodeType == 38 || nodeType == 39) {// TODO
+				|| nodeType == 26 || nodeType ==93 || nodeType == 37 || nodeType == 38 || nodeType == 39 || nodeType == 89) {// TODO
 			return true;
 		}
 		return false;
