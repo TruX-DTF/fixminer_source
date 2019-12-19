@@ -3,6 +3,7 @@ package edu.lu.uni.serval.fixminer.akka.ediff;
 
 import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.actions.model.*;
+import com.github.gumtreediff.gen.srcml.NodeMap_new;
 import com.github.gumtreediff.io.CNodeMap;
 import com.github.gumtreediff.tree.ITree;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
@@ -44,6 +45,9 @@ public class HierarchicalRegrouperForC {
 		 */
 		HierarchicalActionSet actionSet = null;
 		for(Action act : actions){
+			if(act.getNode().getType() == 2){
+				continue;
+			}
 			Action parentAct = findParentAction(act, actions);
 			
 			if (parentAct == null) {
@@ -73,7 +77,9 @@ public class HierarchicalRegrouperForC {
 //				if (astNodeType.endsWith("TypeDeclaration") || astNodeType.endsWith("FieldDeclaration")  || astNodeType.endsWith("EnumDeclaration") ||
 //						astNodeType.endsWith("MethodDeclaration") || astNodeType.endsWith("Statement") ||
 //						astNodeType.endsWith("ConstructorInvocation") || astNodeType.endsWith("CatchClause") || astNodeType.endsWith("SwitchCase")) {
+				if (isStatement(actSet.getNode())) {
 					reActionSets.add(actSet);
+				}
 //				}
 			}
 		}
@@ -103,8 +109,8 @@ public class HierarchicalRegrouperForC {
 				if (Character.isDigit(nodeType.charAt(0)) || (nodeType.startsWith("-") && Character.isDigit(nodeType.charAt(1)))) {
 					try {
 						int typeInt = Integer.parseInt(nodeType);
-						if (CNodeMap.map.containsKey(typeInt)) {
-							String type = CNodeMap.map.get(Integer.parseInt(nodeType));
+						if (NodeMap_new.map.containsKey(typeInt)) {
+							String type = NodeMap_new.map.get(Integer.parseInt(nodeType));
 							nodeType = type;
 						}
 					} catch (NumberFormatException e) {
@@ -194,15 +200,27 @@ public class HierarchicalRegrouperForC {
 		return false;
 	}
 
-	List<Action> newParentActions = new ArrayList<>();
 	private Action findParentAction(Action action, List<Action> actions) {
-		
+
 		ITree parent = action.getNode().getParent();
-		if (parent == null) return null;
 		if (action instanceof Addition) {
 			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
 		}
-		
+
+//		if (parent.getType() == 55)  {
+//			int type = action.getNode().getType();
+//			// Modifier, NormalAnnotation, MarkerAnnotation, SingleMemberAnnotation
+//			if (type != 83 && type != 77 && type != 78 && type != 79
+//					&& type != 5 && type != 39 && type != 43 && type != 74 && type != 75
+//					&& type != 76 && type != 84 && type != 87 && type != 88 && type != 42) {
+//				// ArrayType, PrimitiveType, SimpleType, ParameterizedType,
+//				// QualifiedType, WildcardType, UnionType, IntersectionType, NameQualifiedType, SimpleName
+//				return null;
+//			}
+//
+//
+//		}
+
 		for (Action act : actions) {
 			if (act.getNode().equals(parent)) {
 				if (areRelatedActions(act, action)) {
@@ -210,35 +228,55 @@ public class HierarchicalRegrouperForC {
 				}
 			}
 		}
-		for (Action act : newParentActions) {
-			if (act.getNode().equals(parent)) {
-				if (areRelatedActions(act, action)) {
-					return act;
-				}
-			}
-		}
-		
-		ITree tree = action.getNode();
-		Action parentAction = null;
-		if (!isStatement(tree)) {
-			parentAction = new Update(parent, action.getNode().getParent());
-			newParentActions.add(parentAction);
-			
-			Action higherParentAct = findParentAction(parentAction, actions);
-			HierarchicalActionSet actionSet = null;
-			if (higherParentAct == null) {
-				actionSet = createActionSet(parentAction, higherParentAct, null);
-				actionSets.add(actionSet);
-			} else {
-				if (!addToAactionSet(parentAction, higherParentAct, actionSets)) {
-					// The index of the parent action in the actions' list is larger than the index of this action.
-					actionSet = createActionSet(parentAction, higherParentAct, null);
-					actionSets.add(actionSet);
-				}
-			}
-		}
-		return parentAction;
+		return null;
 	}
+
+//	List<Action> newParentActions = new ArrayList<>();
+//	//TODO
+//	private Action findParentAction(Action action, List<Action> actions) {
+//
+//		ITree parent = action.getNode().getParent();
+//		if (parent == null) return null;
+//		if (action instanceof Addition) {
+//			parent = ((Addition) action).getParent(); // parent in the fixed source code tree
+//		}
+//
+//		for (Action act : actions) {
+//			if (act.getNode().equals(parent)) {
+//				if (areRelatedActions(act, action)) {
+//					return act;
+//				}
+//			}
+//		}
+//		for (Action act : newParentActions) {
+//			if (act.getNode().equals(parent)) {
+//				if (areRelatedActions(act, action)) {
+//					return act;
+//				}
+//			}
+//		}
+//
+//		ITree tree = action.getNode();
+//		Action parentAction = null;
+//		if (!isStatement(tree)) {
+//			parentAction = new Update(parent, action.getNode().getParent());
+//			newParentActions.add(parentAction);
+//
+//			Action higherParentAct = findParentAction(parentAction, actions);
+//			HierarchicalActionSet actionSet = null;
+//			if (higherParentAct == null) {
+//				actionSet = createActionSet(parentAction, higherParentAct, null);
+//				actionSets.add(actionSet);
+//			} else {
+//				if (!addToAactionSet(parentAction, higherParentAct, actionSets)) {
+//					// The index of the parent action in the actions' list is larger than the index of this action.
+//					actionSet = createActionSet(parentAction, higherParentAct, null);
+//					actionSets.add(actionSet);
+//				}
+//			}
+//		}
+//		return parentAction;
+//	}
 	
 	private boolean isStatement(ITree tree) {
 		int nodeType = tree.getType();
@@ -247,7 +285,9 @@ public class HierarchicalRegrouperForC {
 				|| nodeType == 22 || nodeType == 23 || nodeType == 24 || nodeType == 84
 				|| 30 == nodeType || nodeType == 31 || nodeType == 32 || nodeType == 33
 				|| nodeType == 34 || nodeType == 35 || nodeType == 36 || nodeType == 40
-				|| nodeType == 41 || nodeType == 49 || nodeType == 73) {// TODO
+				|| nodeType == 41 || nodeType == 49 || nodeType == 73 || nodeType == 81 || nodeType == 80 || nodeType == 46 || nodeType == 60
+				||nodeType == 62 || nodeType == 64 || nodeType == 45 || nodeType == 85 || nodeType == 86 || nodeType == 59 || nodeType == 27 || nodeType == 25
+				|| nodeType == 26 || nodeType ==93 || nodeType == 37 || nodeType == 38 || nodeType == 39) {// TODO
 			return true;
 		}
 		return false;

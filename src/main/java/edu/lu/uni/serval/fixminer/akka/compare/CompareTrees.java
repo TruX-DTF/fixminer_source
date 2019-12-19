@@ -87,13 +87,13 @@ public class CompareTrees {
 
             try {
 
-                String[] split = pairName.split("_");
+                String[] split = pairName.split("/");
 
 
                 String i = split[1];
                 String j = split[2];
                 String keyName = split[0];
-                matchKey = keyName + "_" + (String.valueOf(i)) + "_" + String.valueOf(j);
+                matchKey = keyName + "/" + (String.valueOf(i)) + "/" + String.valueOf(j);
 //                jedis.select(0);
 //                Set<String> keys = jedis.keys(matchKey);
 //                if (keys.size() > 0) {

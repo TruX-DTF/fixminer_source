@@ -1,6 +1,7 @@
 package edu.lu.uni.serval.utils;
 
 import com.github.gumtreediff.actions.model.*;
+import com.github.gumtreediff.gen.srcml.NodeMap_new;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
 import com.github.gumtreediff.tree.TreeUtils;
@@ -81,7 +82,8 @@ public class EDiffHelper {
         String astNodeType = actionSet.getAstNodeType();
 
         String label = actionSet.getAction().toString();
-        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+//        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+        List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
 
         if(keysByValue.size() != 1){
             log.error("More than 1");
@@ -124,7 +126,8 @@ public class EDiffHelper {
         Action action = actionSet.getAction();
         if (action instanceof Update){
             astNodeType = actionSet.getAstNodeType();
-            List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+//            List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+            List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
 
             if(keysByValue.size() != 1){
                 log.error("More than 1");
@@ -136,7 +139,8 @@ public class EDiffHelper {
             newType = ((Move)action).getParent().getType();
         }else if(action instanceof Delete){
             astNodeType = actionSet.getAstNodeType();
-            List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+//            List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+            List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
 
             if(keysByValue.size() != 1){
                 log.error("More than 1");
@@ -179,7 +183,8 @@ public class EDiffHelper {
         int newType = 0;
 
         String astNodeType = actionSet.getAstNodeType();
-        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+//        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+        List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
 
         if(keysByValue.size() != 1){
             log.error("More than 1");

@@ -51,7 +51,7 @@ public class EnhancedASTDiff {
 
 			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/"); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
-
+			msgFiles = msgFiles.subList(0,10000);
 			if (msgFiles == null)
 				continue;
 			allMessageFiles.addAll(msgFiles);
@@ -125,7 +125,7 @@ public class EnhancedASTDiff {
 	//		for (File revFile : collect) {
 				String fileName = revFile.getName();
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
-				fileName = fileName.replace(".java", ".txt");
+				fileName = fileName + ".txt";
 				File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
 
 				MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
