@@ -32,7 +32,10 @@ mvn install
 
 ## Main classes
 
-* `src/main/java/edu/lu/uni/serval/fixminer/Launcher.java` computes the edit scripts from local file pairs and pushes them to a Redis database: `mvn exec:java -Dexec.mainClass=edu.lu.uni.serval.fixminer.Launcher -Dexec.args=../fixminer-core/python/data/app.properties`
+* `src/main/java/edu/lu/uni/serval/fixminer/Launcher.java` computes the edit scripts from local file pairs and pushes them to a Redis database: 
+  * first run `redis-server`
+  * edit `app.properties` in particular `portInner`, `portDumps`, `inputPath`
+  * `mvn exec:java -Dexec.mainClass=edu.lu.uni.serval.fixminer.Launcher -Dexec.args="../fixminer-core/python/data/app.properties RICHEDITSCRIPT dummy"`
 * `src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java` extracts the Rich Edit Script from the Gumtree output from the database
 * `src/main/java/edu/lu/uni/serval/utils/CallShell.java`
 * `src/main/java/edu/lu/uni/serval/fixminer/TestTreeLoader.java`
