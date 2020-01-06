@@ -24,7 +24,7 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String numOfWorkers, String project, String eDiffTimeout, String parallelism, String portInner, String dbDir, String chunkName) throws Exception {
+	public static void main(String inputPath, String numOfWorkers, String project, String eDiffTimeout, String parallelism, String portInner, String dbDir, String chunkName,String srcMLPath) throws Exception {
 
 
 		String parameters = String.format("\nInput path %s",inputPath);
@@ -51,7 +51,7 @@ public class EnhancedASTDiff {
 
 			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/"); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
-			msgFiles = msgFiles.subList(0,10000);
+//			msgFiles = msgFiles.subList(0,10000);
 			if (msgFiles == null)
 				continue;
 			allMessageFiles.addAll(msgFiles);
@@ -63,7 +63,8 @@ public class EnhancedASTDiff {
 			case "AKKA":
 				ActorSystem system = null;
 				ActorRef parsingActor = null;
-				final EDiffMessage msg = new EDiffMessage(0, allMessageFiles,eDiffTimeout,innerPool);
+
+				final EDiffMessage msg = new EDiffMessage(0, allMessageFiles,eDiffTimeout,innerPool,srcMLPath);
 				try {
 					log.info("Akka begins...");
 					log.info("{} files to process ...", allMessageFiles.size());
@@ -87,7 +88,7 @@ public class EnhancedASTDiff {
 								forEach(m ->
 										{
 											EDiffHunkParser parser =  new EDiffHunkParser();
-											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool);
+											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,"/Users/anilkoyuncu/Downloads/srcML2/src2srcml");
 											if (counter % 10 == 0) {
 												log.info("Finalized parsing " + counter + " files... remaining " + (allMessageFiles.size() - counter));
 											}

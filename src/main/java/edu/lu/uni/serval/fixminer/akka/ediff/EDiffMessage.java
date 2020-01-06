@@ -10,6 +10,7 @@ public class EDiffMessage extends BaseMessage{
 
 	private List<MessageFile> msgFiles;
 
+
 	public JedisPool getInnerPool() {
 		return innerPool;
 	}
@@ -20,14 +21,21 @@ public class EDiffMessage extends BaseMessage{
 
 	private JedisPool innerPool;
 
+	public String getSrcMLPath() {
+		return srcMLPath;
+	}
+
+	private String srcMLPath;
+
 
 
 
 	
-	public EDiffMessage(int id, List<MessageFile> msgFiles,String eDiffTimeout,JedisPool pool) {
+	public EDiffMessage(int id, List<MessageFile> msgFiles,String eDiffTimeout,JedisPool pool,String srcMLPath) {
 		super(id,new Long(eDiffTimeout));
 		this.msgFiles = msgFiles;
 		this.innerPool = pool;
+		this.srcMLPath = srcMLPath;
 	}
 	public EDiffMessage(int id, List<MessageFile> msgFiles,Long eDiffTimeout,JedisPool pool) {
 		super(id,eDiffTimeout);
@@ -35,6 +43,14 @@ public class EDiffMessage extends BaseMessage{
 		this.innerPool = pool;
 	}
 
+
+	public EDiffMessage(int id, List<MessageFile> filesOfWorkers, long seconds_to_wait, JedisPool innerPool, String srcMLPath) {
+
+		super(id,seconds_to_wait);
+		this.msgFiles = filesOfWorkers;
+		this.innerPool = innerPool;
+		this.srcMLPath = srcMLPath;
+	}
 
 	public List<MessageFile> getMsgFiles() {
 		return msgFiles;

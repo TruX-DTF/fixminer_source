@@ -12,6 +12,7 @@ public class RunnableParser implements Runnable {
 	private Parser parser;
 	private String project;
 	private JedisPool pool;
+	private String srcMLPath;
 	
 	public RunnableParser(File prevFile, File revFile, File diffentryFile, Parser parser) {
 		this.prevFile = prevFile;
@@ -29,8 +30,18 @@ public class RunnableParser implements Runnable {
 		this.pool = innerPool;
 	}
 
+	public RunnableParser(File prevFile, File revFile, File diffentryFile, Parser parser, String project, JedisPool innerPool,String srcMLPath) {
+		this.prevFile = prevFile;
+		this.revFile = revFile;
+		this.diffentryFile = diffentryFile;
+		this.parser = parser;
+		this.project = project;
+		this.pool = innerPool;
+		this.srcMLPath = srcMLPath;
+	}
+
 	@Override
 	public void run() {
-		parser.parseFixPatterns(prevFile, revFile, diffentryFile,project,pool);
+		parser.parseFixPatterns(prevFile, revFile, diffentryFile,project,pool,srcMLPath);
 	}
 }

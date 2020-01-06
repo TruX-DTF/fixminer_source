@@ -22,8 +22,8 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-        String appConfigPath = "/Users/haoyetian/Documents/Lu_code/FixMiner/fixminer_source/src/main/resource/app.properties";
-//        String appConfigPath = args[0];
+//        String appConfigPath = "/Users/haoyetian/Documents/Lu_code/FixMiner/fixminer_source/src/main/resource/app.properties";
+        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
         String portInner = appProps.getProperty("portInner","6380");
@@ -33,13 +33,15 @@ public class Launcher {
         String actionType = appProps.getProperty("actionType","ALL");
         String eDiffTimeout = appProps.getProperty("eDiffTimeout","900");
         String parallelism = appProps.getProperty("parallelism","FORKJOIN");
+
         String input = appProps.getProperty("inputPath","FORKJOIN");
         String redisPath = appProps.getProperty("redisPath","FORKJOIN");
+        String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
 
-//        String parameter = args[2];
-        String parameter = null;
-//        String jobType = args[1];
-        String jobType = "RICHEDITSCRIPT";
+        String parameter = args[2];
+//        String parameter = null;
+        String jobType = args[1];
+//        String jobType = "RICHEDITSCRIPT";
 
 //        String parameters = String.format("\nportInner %s " +
 //                "\nnumOfWorkers %s " +
@@ -50,12 +52,12 @@ public class Launcher {
 //
 //        log.info(parameters);
 
-        mainLaunch(portInner,  numOfWorkers, jobType, portDumps, pjName,actionType,eDiffTimeout,parallelism,input,redisPath,parameter);
+        mainLaunch(portInner,  numOfWorkers, jobType, portDumps, pjName,actionType,eDiffTimeout,parallelism,input,redisPath,parameter, srcMLPath);
 
 
     }
 
-    public static void mainLaunch(String portInner, String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String eDiffTimeout,  String parallelism,String input, String redisPath,String parameter){
+    public static void mainLaunch(String portInner, String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String eDiffTimeout,  String parallelism,String input, String redisPath,String parameter,String srcMLPath){
 
 
         String dbDir;
@@ -71,7 +73,7 @@ public class Launcher {
         try {
             switch (jobType) {
                 case "RICHEDITSCRIPT":
-                    EnhancedASTDiff.main(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName);
+                    EnhancedASTDiff.main(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName, srcMLPath);
                     break;
 
                 case "COMPARE":

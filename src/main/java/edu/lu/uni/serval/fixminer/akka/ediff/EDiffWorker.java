@@ -43,6 +43,7 @@ public class EDiffWorker extends UntypedActor {
 			int id = msg.getId();
 			int counter = 0;
 			JedisPool innerPool = msg.getInnerPool();
+			String srcMLPath = msg.getSrcMLPath();
 
 			for (MessageFile msgFile : files) {
 				File revFile = msgFile.getRevFile();
@@ -55,7 +56,9 @@ public class EDiffWorker extends UntypedActor {
 
 				final ExecutorService executor = Executors.newSingleThreadExecutor();
 				// schedule the work
-				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,msg.getInnerPool()));
+
+
+				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,msg.getInnerPool(),srcMLPath));
 				try {
 					// wait for task to complete
 					future.get(msg.getSECONDS_TO_WAIT(), TimeUnit.SECONDS);

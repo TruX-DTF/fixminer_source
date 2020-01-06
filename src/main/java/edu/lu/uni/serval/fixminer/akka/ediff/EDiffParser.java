@@ -38,7 +38,7 @@ public class EDiffParser extends Parser {
 	 * @param revFile
 	 * @return
 	 */
-	protected List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree2(File prevFile, File revFile) {
+	protected List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree2(File prevFile, File revFile,String srcMLPath) {
 		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		// GumTree results
 		boolean isJava =false;
@@ -46,7 +46,9 @@ public class EDiffParser extends Parser {
 		if (revFile.getName().endsWith(".c") & prevFile.getName().endsWith(".c") || revFile.getName().endsWith(".h") & prevFile.getName().endsWith(".h")){
 //			gumTreeResults = new GumTreeComparer().compareCFilesWithGumTree(prevFile, revFile);
 
-			gumTreeResults = new GumTreeCComparer().compareCFilesWithGumTree(prevFile, revFile);
+
+
+			gumTreeResults = new GumTreeCComparer().compareCFilesWithGumTree(prevFile, revFile,srcMLPath);
 		}else{
 			gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
 			isJava = true;
@@ -79,9 +81,14 @@ public class EDiffParser extends Parser {
 	}
 
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool, String srcMLPath) {
 
 	}
+
+//	@Override
+//	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool) {
+//
+//	}
 
 
 

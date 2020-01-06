@@ -8,6 +8,8 @@ import redis.clients.jedis.JedisPool;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 
@@ -22,8 +24,8 @@ public class EDiffHunkParser extends EDiffParser {
 
 	private static Logger logger = LoggerFactory.getLogger(EDiffHunkParser.class);
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile, String project, JedisPool innerPool) {
-		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile);
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile, String project, JedisPool innerPool,String srcMLPath) {
+		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile,srcMLPath);
 		if (actionSets.size() != 0) {
 
 			boolean processActionSet = true;
@@ -31,7 +33,7 @@ public class EDiffHunkParser extends EDiffParser {
 			int hunkSet = 0;
 			if(processActionSet){
 				for (HierarchicalActionSet actionSet : actionSets) {
-					FileOutputStream f = null;
+//					FileOutputStream f = null;
 
 					try {
 
@@ -51,6 +53,16 @@ public class EDiffHunkParser extends EDiffParser {
 
 							inner.hset("dump".getBytes(),key.getBytes(),EDiffHelper.kryoSerialize(actionSet));
 						}
+//						File f = new File(root+"dumps/"+astNodeType+"/"+String.valueOf(size)+"/");
+//						f.mkdirs();
+//						f = new File(root+"dumps/"+key);
+//
+//
+//						FileOutputStream fos = new FileOutputStream(f);
+//						ObjectOutputStream oos = new ObjectOutputStream(fos);
+//						oos.writeObject(EDiffHelper.kryoSerialize(actionSet));
+//						oos.flush();
+//						oos.close();
 
 					} catch (Exception e) {
 						logger.error("error",e);
