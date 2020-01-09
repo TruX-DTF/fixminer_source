@@ -81,7 +81,7 @@ public class EDiffParser extends Parser {
 	}
 
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool, String srcMLPath) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool, String srcMLPath,String rootType) {
 
 	}
 

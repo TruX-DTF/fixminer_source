@@ -7,6 +7,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,8 +72,37 @@ public class AkkaTreeParser {
 
         }
 
-        log.info("Getting results");
+//        log.info("Getting results %d",fileMap.s);
         return  fileMap;
+    }
+
+    public static List<String>  files2compare(JedisPool innerPool){
+
+
+//        HashMap<String, String> fileMap =new HashMap<String, String>();
+        List<String> result = new ArrayList<String>();
+        try (Jedis inner = innerPool.getResource()) {
+            while (!inner.ping().equals("PONG")){
+                log.info("wait");
+            }
+
+//            inner.select(1);
+            Map<String, String> filenames = inner.hgetAll("compare");
+
+
+            for (Map.Entry<String, String> stringStringEntry : filenames.entrySet().stream().collect(Collectors.toList())) {
+//                fileMap.put(stringStringEntry.getKey(),stringStringEntry.getValue());
+                result.add(stringStringEntry.getKey());
+            }
+
+
+
+
+
+        }
+
+        log.info("Getting results :" + result.size());
+        return  result;
     }
 
 

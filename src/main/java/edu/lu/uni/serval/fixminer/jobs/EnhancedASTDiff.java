@@ -2,18 +2,20 @@ package edu.lu.uni.serval.fixminer.jobs;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import edu.lu.uni.serval.fixminer.akka.ediff.EDiffActor;
-import edu.lu.uni.serval.fixminer.akka.ediff.EDiffHunkParser;
-import edu.lu.uni.serval.fixminer.akka.ediff.EDiffMessage;
-import edu.lu.uni.serval.fixminer.akka.ediff.MessageFile;
+import edu.lu.uni.serval.fixminer.akka.ediff.*;
 import edu.lu.uni.serval.utils.CallShell;
+import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +26,7 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String numOfWorkers, String project, String eDiffTimeout, String parallelism, String portInner, String dbDir, String chunkName,String srcMLPath) throws Exception {
+	public static void main(String inputPath, String numOfWorkers, String project, String eDiffTimeout, String parallelism, String portInner, String dbDir, String chunkName,String srcMLPath,String rootType) throws Exception {
 
 
 		String parameters = String.format("\nInput path %s",inputPath);
@@ -32,7 +34,11 @@ public class EnhancedASTDiff {
 
 		CallShell cs = new CallShell();
 		String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-		cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
+		if (rootType == null){
+			cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
+		}else{
+			cmd = String.format(cmd, dbDir,rootType+chunkName,Integer.valueOf(portInner));
+		}
 
 		cs.runShell(cmd, portInner);
 
@@ -64,7 +70,7 @@ public class EnhancedASTDiff {
 				ActorSystem system = null;
 				ActorRef parsingActor = null;
 
-				final EDiffMessage msg = new EDiffMessage(0, allMessageFiles,eDiffTimeout,innerPool,srcMLPath);
+				final EDiffMessage msg = new EDiffMessage(0, allMessageFiles,eDiffTimeout,innerPool,srcMLPath,rootType);
 				try {
 					log.info("Akka begins...");
 					log.info("{} files to process ...", allMessageFiles.size());
@@ -88,7 +94,7 @@ public class EnhancedASTDiff {
 								forEach(m ->
 										{
 											EDiffHunkParser parser =  new EDiffHunkParser();
-											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,"/Users/anilkoyuncu/Downloads/srcML2/src2srcml");
+											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,"/Users/anilkoyuncu/Downloads/srcML2/src2srcml",null);
 											if (counter % 10 == 0) {
 												log.info("Finalized parsing " + counter + " files... remaining " + (allMessageFiles.size() - counter));
 											}
@@ -140,6 +146,70 @@ public class EnhancedASTDiff {
 			return null;
 		}
 	}
+
+	public static void load(String inputPath, String numOfWorkers, String project, String eDiffTimeout, String parallelism, String portInner, String dbDir, String chunkName,String srcMLPath,String rootType) throws Exception {
+
+
+		String parameters = String.format("\nInput path %s",inputPath);
+		log.info(parameters);
+
+		CallShell cs = new CallShell();
+		String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+		cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
+//		if (rootType == null){
+//			cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
+//		}else{
+//			cmd = String.format(cmd, dbDir,rootType+chunkName,Integer.valueOf(portInner));
+//		}
+
+		cs.runShell(cmd, portInner);
+
+		JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
+		try (Jedis inner = innerPool.getResource()) {
+			inner.flushAll();
+		}
+		File folder = new File(new File(inputPath).getParent() + "/dumps/" + rootType);
+		File[] listOfFiles = folder.listFiles();
+		Stream<File> stream = Arrays.stream(listOfFiles);
+		List<File> folders = stream
+				.filter(x -> !x.getName().startsWith("."))
+				.collect(Collectors.toList());
+		List<File> allMessageFiles = new ArrayList<>();
+
+		for (File target : folders) {
+			if(target.getName().startsWith("."))
+				continue;
+			List<File> files = Arrays.asList(target.listFiles());
+			if (files.size() > 1){
+				allMessageFiles.addAll(files);
+			}
+		}
+
+		log.info("Message size: "+allMessageFiles.size());
+
+		allMessageFiles.stream().
+				parallel().
+				forEach(x-> loadCore(x,innerPool));
+
+	}
+
+	public static void loadCore(File file2load, JedisPool innerPool){
+		try (Jedis inner = innerPool.getResource()) {
+
+//			byte[] dump = Files.readAllBytes(Paths.get(file2load.getPath()));
+			byte[] dump = FileUtils.readFileToByteArray(file2load);
+//			HierarchicalActionSet actionSet = (HierarchicalActionSet)  EDiffHelper.kryoDeseerialize(dump);
+			String key  = file2load.getPath().split("/dumps/")[1];
+			inner.hset("dump".getBytes(),key.getBytes(),dump);
+//			actionSet.toString();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 
 
 }

@@ -22,7 +22,7 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-//        String appConfigPath = "/Users/haoyetian/Documents/Lu_code/FixMiner/fixminer_source/src/main/resource/app.properties";
+//        String appConfigPath = "/Users/anil.koyuncu/projects/test/fixminerC/src/main/resource/app.properties";
         String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
@@ -40,8 +40,12 @@ public class Launcher {
 
         String parameter = args[2];
 //        String parameter = null;
+//        String parameter = "decl";
+//        String parameter = "L2";
         String jobType = args[1];
 //        String jobType = "RICHEDITSCRIPT";
+//        String jobType = "LOAD";
+//        String jobType = "COMPARE";
 
 //        String parameters = String.format("\nportInner %s " +
 //                "\nnumOfWorkers %s " +
@@ -73,7 +77,11 @@ public class Launcher {
         try {
             switch (jobType) {
                 case "RICHEDITSCRIPT":
-                    EnhancedASTDiff.main(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName, srcMLPath);
+                    EnhancedASTDiff.main(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName, srcMLPath,parameter);
+                    break;
+
+                case "LOAD":
+                    EnhancedASTDiff.load(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName, srcMLPath,parameter);
                     break;
 
                 case "COMPARE":
