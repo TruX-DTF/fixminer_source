@@ -57,7 +57,7 @@ public class EnhancedASTDiff {
 
 			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/"); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
-//			msgFiles = msgFiles.subList(0,1000);
+//			msgFiles = msgFiles.subList(0,3000);
 			if (msgFiles == null)
 				continue;
 			allMessageFiles.addAll(msgFiles);

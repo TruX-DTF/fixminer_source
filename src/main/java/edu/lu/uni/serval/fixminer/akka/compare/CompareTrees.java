@@ -60,26 +60,82 @@ public class CompareTrees {
 
 
 
-        listOfPairs.stream().parallel().forEach(m->coreCompare(m, job,null, samePairs,errorPairs,filenames,outerPool));
+//        listOfPairs.stream().parallel().forEach(m->coreCompare(m, job,null, samePairs,errorPairs,filenames,outerPool));
+        listOfPairs.stream().parallel().forEach(m->newCoreCompare(m, job, samePairs,errorPairs,filenames,outerPool));
 
-        try (Jedis jedis = outerPool.getResource()) {
-            jedis.select(2);
-            for (String samePair : samePairs) {
+//        try (Jedis jedis = outerPool.getResource()) {
+//            jedis.select(2);
+//            for (String samePair : samePairs) {
+////                jedis.hset("compare", errorPair, "1");
+//                jedis.set(samePair, "1");
+//            }
+//            jedis.select(0);
+////            jedis.flushDB();
+//            jedis.del("compare");
+//            for (String errorPair : errorPairs) {
 //                jedis.hset("compare", errorPair, "1");
-                jedis.set(samePair, "1");
-            }
-            jedis.select(0);
-//            jedis.flushDB();
-            jedis.del("compare");
-            for (String errorPair : errorPairs) {
-                jedis.hset("compare", errorPair, "1");
-            }
-
-
-        }
+//            }
+//
+//
+//        }
         log.info("End process");
     }
-    public static void coreCompare(String pairName, String treeType,JedisPool innerPool,ArrayList<String> samePairs,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
+    public static void newCoreCompare(String pairName, String treeType,ArrayList<String> samePairs,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
+
+
+
+        String matchKey = null;
+        try {
+
+            String[] split = pairName.split("/");
+
+
+            String i = split[1];
+            String j = split[2];
+            String keyName = split[0];
+            matchKey = keyName + "/" + (String.valueOf(i)) + "/" + String.valueOf(j);
+
+            switch (treeType) {
+                case "single":
+
+                    if (matchKey == null){
+                        System.out.println();
+                    }
+                    String oldShapeTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames, "shapeTree");
+                    String newShapeTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames, "shapeTree");
+
+                    String oldActionTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames, "actionTree");
+                    String newActionTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames, "actionTree");
+
+                    String oldTargetTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames, "targetTree");
+                    String newTargetTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames, "targetTree");
+
+
+                    if (oldShapeTree.equals(newShapeTree)) {
+                        if (oldActionTree.equals(newActionTree)) {
+                            if (oldTargetTree.equals(newTargetTree)) {
+//                                samePairs.add(matchKey);
+                                try (Jedis jedis = outerPool.getResource()) {
+////                            jedis.del(matchKey);
+                                    jedis.select(2);
+                                    jedis.set(matchKey, "1");
+                                }
+                            }
+                        }
+                    }
+                    return;
+                default:
+                    break;
+            }
+        }catch (Exception e) {
+            errorPairs.add(matchKey);
+            log.debug("{} not comparable", pairName);
+        }
+
+
+    }
+
+        public static void coreCompare(String pairName, String treeType,JedisPool innerPool,ArrayList<String> samePairs,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
 
 //        if (samePairs.size() % 1000 == 0) {
 //            log.info("Same pairs size "+samePairs.size());
@@ -113,23 +169,20 @@ public class CompareTrees {
 //                JedisPool outerPool = null;
                 switch (treeType) {
                     case "single":
-                        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
-                        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);
-                        ITree oldActionTree = oldPair.getValue0();
-                        ITree newActionTree = newPair.getValue0();
-                        HierarchicalActionSet oldProject = oldPair.getValue1();
-                        HierarchicalActionSet newProject = newPair.getValue1();
+
+                        String oldShapeTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"shapeTree");
+                        String newShapeTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"shapeTree");
+
+                        String oldActionTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"actionTree");
+                        String newActionTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"actionTree");
+
+                        String oldTargetTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"targetTree");
+                        String newTargetTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"targetTree");
 
 
-                        ITree oldShapeTree = EDiffHelper.getShapeTree(oldProject);
-                        ITree newShapeTree = EDiffHelper.getShapeTree(newProject);
-
-                        ITree oldTargetTree = EDiffHelper.getTargets(oldProject);
-                        ITree newTargetTree = EDiffHelper.getTargets(newProject);
-
-                        if(oldShapeTree.toStaticHashString().equals(newShapeTree.toStaticHashString())){
-                            if(oldActionTree.toStaticHashString().equals(newActionTree.toStaticHashString())){
-                                if(oldTargetTree.toStaticHashString().equals(newTargetTree.toStaticHashString())){
+                        if(oldShapeTree.equals(newShapeTree)){
+                            if(oldActionTree.equals(newActionTree)){
+                                if(oldTargetTree.equals(newTargetTree)){
                                     samePairs.add(matchKey);
                                 }
                             }

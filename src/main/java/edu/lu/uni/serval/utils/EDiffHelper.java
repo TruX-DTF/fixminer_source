@@ -328,6 +328,26 @@ public class EDiffHelper {
 
     }
 
+    public  static String getTreeString(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames, String treeType) {
+        try (Jedis outer = outerPool.getResource()) {
+            try {
+                while (!outer.ping().equals("PONG")) {
+                    log.info("wait");
+                }
+
+
+                String dist2load = filenames.get(prefix + "-" + fn);
+
+                String[] split = prefix.split("-");
+                String key = split[0] + "/" + split[1] + "/" + dist2load;
+                String treeString = outer.hget(key, treeType);
+                return treeString;
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 
     public  static Pair<ITree,HierarchicalActionSet> getActions(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
 
@@ -351,12 +371,7 @@ public class EDiffHelper {
                 actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
 
 
-                ITree parent = null;
-                ITree children = null;
-                TreeContext tc = new TreeContext();
-                tree = EDiffHelper.getActionTree(actionSet, parent, children, tc);
-                //tree.setParent(null);
-                tc.validate();
+                tree = getActionTrees(actionSet);
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -365,6 +380,17 @@ public class EDiffHelper {
         Pair<ITree, HierarchicalActionSet> pair = new Pair<>(tree,actionSet);
         return pair;
 
+    }
+
+    public static ITree getActionTrees(HierarchicalActionSet actionSet) {
+        ITree tree = null;
+        ITree parent = null;
+        ITree children = null;
+        TreeContext tc = new TreeContext();
+        tree = EDiffHelper.getActionTree(actionSet, parent, children, tc);
+        //tree.setParent(null);
+        tc.validate();
+        return tree;
     }
 
     public static void getLeaves(ITree tc){

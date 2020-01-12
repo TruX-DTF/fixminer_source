@@ -1,5 +1,6 @@
 package edu.lu.uni.serval.fixminer.akka.ediff;
 
+import com.github.gumtreediff.tree.ITree;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -53,15 +54,21 @@ public class EDiffHunkParser extends EDiffParser {
 
 						String key = astNodeType+"/"+String.valueOf(size)+"/" + pj +"_" + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
 
-//						try (Jedis inner = innerPool.getResource()) {
-//
-//							inner.hset("dump".getBytes(),key.getBytes(),EDiffHelper.kryoSerialize(actionSet));
-//						}
-						File f = new File(root+"dumps/"+astNodeType+"/"+String.valueOf(size)+"/");
-						f.mkdirs();
-						f = new File(root+"dumps/"+key);
+						ITree targetTree = EDiffHelper.getTargets(actionSet);
+						ITree actionTree = EDiffHelper.getActionTrees(actionSet);
+						ITree shapeTree = EDiffHelper.getShapeTree(actionSet);
+						try (Jedis inner = innerPool.getResource()) {
 
-						FileUtils.writeByteArrayToFile(f,EDiffHelper.kryoSerialize(actionSet));
+							inner.hset("dump",key,actionSet.toString());
+							inner.hset(key,"actionTree",actionTree.toStaticHashString());
+							inner.hset(key,"targetTree",targetTree.toStaticHashString());
+							inner.hset(key,"shapeTree",shapeTree.toStaticHashString());
+						}
+//						File f = new File(root+"dumps/"+astNodeType+"/"+String.valueOf(size)+"/");
+//						f.mkdirs();
+//						f = new File(root+"dumps/"+key);
+//
+//						FileUtils.writeByteArrayToFile(f,EDiffHelper.kryoSerialize(actionSet));
 //						FileUtils.writeByteArrayToFile(f,EDiffHelper.commonsSerialize(actionSet));
 //						FileUtils.writeByteArrayToFile(f,actionSet.toString().getBytes());
 //						FileOutputStream fos = new FileOutputStream(f);

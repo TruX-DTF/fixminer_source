@@ -30,12 +30,12 @@ public class ClusterToPattern {
             while (!outer.ping().equals("PONG")) {
                 log.info("wait");
             }
-            byte[] s = outer.hget("dump".getBytes(), filename.getBytes());
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
-            if (actionSet == null){
-                throw new Error(filename +" not found");
-            }
-            String s1 = actionSet.toString();
+//            byte[] s = outer.hget("dump".getBytes(), filename.getBytes());
+//            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
+//            if (actionSet == null){
+//                throw new Error(filename +" not found");
+//            }
+            String s1 = outer.hget("dump",filename);
 //            outer.close();
             return s1;
         }
