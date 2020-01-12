@@ -62,6 +62,8 @@ public class EDiffHunkParser extends EDiffParser {
 						f = new File(root+"dumps/"+key);
 
 						FileUtils.writeByteArrayToFile(f,EDiffHelper.kryoSerialize(actionSet));
+//						FileUtils.writeByteArrayToFile(f,EDiffHelper.commonsSerialize(actionSet));
+//						FileUtils.writeByteArrayToFile(f,actionSet.toString().getBytes());
 //						FileOutputStream fos = new FileOutputStream(f);
 //						ObjectOutputStream oos = new ObjectOutputStream(fos);
 //						oos.writeObject(EDiffHelper.kryoSerialize(actionSet));

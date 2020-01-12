@@ -8,6 +8,7 @@ import com.github.gumtreediff.tree.TreeUtils;
 import edu.lu.uni.serval.fixminer.akka.ediff.DefaultKryoContext;
 import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.fixminer.akka.ediff.KryoContext;
+import org.apache.commons.lang3.SerializationUtils;
 import org.javatuples.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +63,14 @@ public class EDiffHelper {
         oos.writeObject( o );
         oos.close();
         return baos.toByteArray();
+    }
+
+    public static byte[] commonsSerialize(Serializable o){
+        return SerializationUtils.serialize(o);
+    }
+
+    public static Object commonsDeserialize(byte[] data){
+        return SerializationUtils.deserialize(data);
     }
 
 
@@ -279,12 +288,7 @@ public class EDiffHelper {
                 byte[] s = outer.hget("dump".getBytes(), key.getBytes());
                 HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
 
-                ITree parent = null;
-                ITree children = null;
-                TreeContext tc = new TreeContext();
-                tree = EDiffHelper.getASTTree(actionSet, parent, children, tc);
-                //tree.setParent(null);
-                tc.validate();
+                tree = getShapeTree(actionSet);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -292,6 +296,17 @@ public class EDiffHelper {
         }
         return tree;
 
+    }
+
+    public static ITree getShapeTree(HierarchicalActionSet actionSet) {
+        ITree tree = null;
+        ITree parent = null;
+        ITree children = null;
+        TreeContext tc = new TreeContext();
+        tree = EDiffHelper.getASTTree(actionSet, parent, children, tc);
+        //tree.setParent(null);
+        tc.validate();
+        return tree;
     }
 
 

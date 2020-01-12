@@ -42,7 +42,7 @@ public class CompareTrees {
 //        log.info(cmdInner);
 //        cs.runShell(cmdInner, portInner);
 
-        String numOfWorkers = "100000000";//args[4];
+//        String numOfWorkers = "100000000";//args[4];
         String host = "localhost";//args[5];
 //  -Djava.util.concurrent.ForkJoinPool.common.parallelism=256
 
@@ -63,7 +63,11 @@ public class CompareTrees {
         listOfPairs.stream().parallel().forEach(m->coreCompare(m, job,null, samePairs,errorPairs,filenames,outerPool));
 
         try (Jedis jedis = outerPool.getResource()) {
-
+            jedis.select(2);
+            for (String samePair : samePairs) {
+//                jedis.hset("compare", errorPair, "1");
+                jedis.set(samePair, "1");
+            }
             jedis.select(0);
 //            jedis.flushDB();
             jedis.del("compare");
@@ -108,6 +112,32 @@ public class CompareTrees {
 //                    jedis.srem("pairs",matchKey);
 //                JedisPool outerPool = null;
                 switch (treeType) {
+                    case "single":
+                        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
+                        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);
+                        ITree oldActionTree = oldPair.getValue0();
+                        ITree newActionTree = newPair.getValue0();
+                        HierarchicalActionSet oldProject = oldPair.getValue1();
+                        HierarchicalActionSet newProject = newPair.getValue1();
+
+
+                        ITree oldShapeTree = EDiffHelper.getShapeTree(oldProject);
+                        ITree newShapeTree = EDiffHelper.getShapeTree(newProject);
+
+                        ITree oldTargetTree = EDiffHelper.getTargets(oldProject);
+                        ITree newTargetTree = EDiffHelper.getTargets(newProject);
+
+                        if(oldShapeTree.toStaticHashString().equals(newShapeTree.toStaticHashString())){
+                            if(oldActionTree.toStaticHashString().equals(newActionTree.toStaticHashString())){
+                                if(oldTargetTree.toStaticHashString().equals(newTargetTree.toStaticHashString())){
+                                    samePairs.add(matchKey);
+                                }
+                            }
+                        }
+                        return;
+//                        break;
+
+
                     case "shape":
                         oldTree = EDiffHelper.getShapes(keyName, i,  outerPool,filenames);
                         newTree = EDiffHelper.getShapes(keyName, j,  outerPool,filenames);
@@ -145,12 +175,12 @@ public class CompareTrees {
                             String result = i + "," + j + "," + String.join(",", oldTokens);
 //                            jedis.select(2);
 //                            jedis.set(matchKey, result);
-                            try (Jedis jedis = innerPool.getResource()) {
-//                            jedis.del(matchKey);
-                                jedis.select(2);
-                                jedis.set(matchKey, result);
-                            }
-//                            samePairs.add(matchKey);
+//                            try (Jedis jedis = innerPool.getResource()) {
+////                            jedis.del(matchKey);
+//                                jedis.select(2);
+//                                jedis.set(matchKey, result);
+//                            }
+                            samePairs.add(matchKey);
 //                            try (Jedis jedis = innerPool.getResource()) {
 ////                                jedis.del(matchKey);
 //                                jedis.select(2);
@@ -180,18 +210,22 @@ public class CompareTrees {
                             oldTree = EDiffHelper.getTargets(oldProject);
                             newTree = EDiffHelper.getTargets(newProject);
                             if (oldTree.toStaticHashString().equals(newTree.toStaticHashString())) {
-                                try (Jedis jedis = innerPool.getResource()) {
-//                                    jedis.del(matchKey);
-                                    jedis.select(2);
-                                    jedis.set(matchKey, result);
-                                }
+                                samePairs.add(matchKey);
+//                                try (Jedis jedis = innerPool.getResource()) {
+////                                    jedis.del(matchKey);
+//                                    jedis.select(2);
+//                                    jedis.set(matchKey, result);
+//
+//                                }
                             }
                         } else {
-                            try (Jedis jedis = innerPool.getResource()) {
-//                            jedis.del(matchKey);
-                                jedis.select(2);
-                                jedis.set(matchKey, result);
-                            }
+                            samePairs.add(matchKey);
+//                            try (Jedis jedis = innerPool.getResource()) {
+////                            jedis.del(matchKey);
+//                                jedis.select(2);
+//                                jedis.set(matchKey, result);
+//
+//                            }
                         }
                     }
 

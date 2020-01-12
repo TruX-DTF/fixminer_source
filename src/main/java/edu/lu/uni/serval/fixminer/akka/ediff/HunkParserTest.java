@@ -1,9 +1,14 @@
 package edu.lu.uni.serval.fixminer.akka.ediff;
 
+import com.github.gumtreediff.gen.srcml.NodeMap_new;
+import com.github.gumtreediff.tree.ITree;
+import com.github.gumtreediff.tree.TreeContext;
+import edu.lu.uni.serval.fixminer.akka.compare.AkkaTreeParser;
 import edu.lu.uni.serval.fixminer.akka.ediff.EDiffHunkParser;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
 import org.apache.commons.io.FileUtils;
+import org.javatuples.Pair;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -13,6 +18,9 @@ import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HunkParserTest {
 
@@ -89,18 +97,77 @@ public class HunkParserTest {
         final JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), "localhost",Integer.valueOf("6399"),20000000);
 
         EDiffHunkParser parser = new EDiffHunkParser();
-        String root = "/Users/anil.koyuncu/projects/test/fixminer-core/python/data/gumInputLinux/linux/";
-        String filename = "bb67dd_0922c7_sound#soc#sof#intel#hda.c";
+        String root = "/Users/anil.koyuncu/projects/fixminer/gumInputLinux/linux/";
+        String filename = "43f8987_f596c8_drivers#acpi#nfit#core.c";
         File revFile = new File(root + "revFiles/"+ filename);
         File prevFile =new File(root + "prevFiles/prev_"+filename);
         File diffFile = new File(root + "DiffEntries/"+filename+".txt");
         String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML/src2srcml";
         parser.parseFixPatterns(prevFile,revFile,diffFile,"gumInputLinux",outerPool,srcMLPath,"if");
         String key = "if/3/linux_bb67dd_0922c7_sound#soc#sof#intel#hda.c.txt_0";
-        File file2load = new File("/Users/anil.koyuncu/projects/test/fixminer-core/python/data/dumps/"+ key);
+        File file2load = new File("/Users/anil.koyuncu/projects/fixminer/dumps/"+ key);
         byte[] dump = FileUtils.readFileToByteArray(file2load);
 
+//        String line = FileHelper.readFile(file2load);
+//        ITree parent = null;
+//        ITree children = null;
+////        if(line.isEmpty())
+////            continue;
+//        TreeContext tc = new TreeContext();
+//        line = line.replace("\"", "");
+//        String[] split1 = line.split("\n");
+//        int length = split1.length;
+//        List<String> strings = new LinkedList<String>(Arrays.asList(split1));
+//        ITree treeFromString = null;
+//        int prevLev = 0;
+//        int childPosition = 0;
+//        for (String l:strings) {
+//            int level = 0;
+//            Pattern pattern = Pattern.compile("---");
+//            Matcher matcher = pattern.matcher(l);
+//            while (matcher.find())
+//                level++;
+//
+//            l = l.replace("---","");
+//            l = l.trim();
+//
+//            String[] split2;
+//            List<Integer> keysByValue;
+//            split2 = l.split(" ");
+//            keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.map, split2[1]);
+//
+//
+//
+//            if(level == 0){
+//                parent = tc.createTree(keysByValue.get(0), split2[0], null);
+//                tc.setRoot(parent);
+//
+//            }else if (level > prevLev) {
+//                if (children == null) {
+//                    children = tc.createTree(keysByValue.get(0), split2[0], null);
+//                    children.setParentAndUpdateChildren(parent);
+//                } else {
+//
+//                    ITree tree = tc.createTree(keysByValue.get(0), split2[0], null);
+//                    tree.setParentAndUpdateChildren(children);
+//                    children = tree;
+//                }
+//            }else if (level == prevLev){
+//                ITree innerParent = children.getParent();
+//                children = tc.createTree(keysByValue.get(0), split2[0], null);
+//                children.setParentAndUpdateChildren(innerParent);
+//            }else {
+//                ITree innerParent = children.getParent();
+//                children = tc.createTree(keysByValue.get(0), split2[0], null);
+//                children.setParentAndUpdateChildren(innerParent.getParent());
+//            }
+//            prevLev = level;
+//        }
+//        tc.validate();
+//        parent.getLength();
+
         HierarchicalActionSet actionSet = (HierarchicalActionSet)  EDiffHelper.kryoDeseerialize(dump);
+//        HierarchicalActionSet actionSet = (HierarchicalActionSet)  EDiffHelper.commonsDeserialize(dump);
         actionSet.toString();
 
 
@@ -122,5 +189,43 @@ public class HunkParserTest {
 //            }
 //        }
     }
+    @Test
+    public void testCompare(){
+        final JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), "localhost",Integer.valueOf("6399"),20000000);
+
+        Pair<ITree, HierarchicalActionSet> oldPair = null;
+        Pair<ITree, HierarchicalActionSet> newPair = null;
+        String matchKey = null;
+        ArrayList<String> samePairs = new ArrayList<>();
+
+        String keyName = "if-3";
+        String i = "2";
+        String j = "21";
+        HashMap<String, String> filenames = AkkaTreeParser.filenames(outerPool);
+
+        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
+        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);
+        ITree oldActionTree = oldPair.getValue0();
+        ITree newActionTree = newPair.getValue0();
+        HierarchicalActionSet oldProject = oldPair.getValue1();
+        HierarchicalActionSet newProject = newPair.getValue1();
+
+        ITree oldShapeTree = EDiffHelper.getShapeTree(oldProject);
+        ITree newShapeTree = EDiffHelper.getShapeTree(newProject);
+
+        ITree oldTargetTree = EDiffHelper.getTargets(oldProject);
+        ITree newTargetTree = EDiffHelper.getTargets(newProject);
+        String oldShape = oldShapeTree.toStaticHashString();
+        String newShape = newShapeTree.toStaticHashString();
+
+        if(oldShape.equals(newShape)){
+            if(oldActionTree.toStaticHashString().equals(newActionTree.toStaticHashString())){
+                if(oldTargetTree.toStaticHashString().equals(newTargetTree.toStaticHashString())){
+                    samePairs.add(matchKey);
+                }
+            }
+        }
+    }
+
 
 }
