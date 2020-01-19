@@ -14,7 +14,11 @@ import redis.clients.jedis.JedisPool;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 /**
@@ -52,37 +56,72 @@ public class CompareTrees {
 
 //        List<String> listOfPairs = AkkaTreeParser.getMessages(innerPool,Integer.valueOf(numOfWorkers));
         HashMap<String, String> filenames = AkkaTreeParser.filenames(outerPool);
-        List<String> listOfPairs = AkkaTreeParser.files2compare(outerPool);
+//        List<String> listOfPairs = AkkaTreeParser.files2compare(outerPool);
 
 
         ArrayList<String> samePairs = new ArrayList<>();
         ArrayList<String> errorPairs = new ArrayList<>();
 
 
+        final ExecutorService executor = Executors.newWorkStealingPool();
+        // schedule the work
 
-//        listOfPairs.stream().parallel().forEach(m->coreCompare(m, job,null, samePairs,errorPairs,filenames,outerPool));
-        listOfPairs.stream().parallel().forEach(m->newCoreCompare(m, job, samePairs,errorPairs,filenames,outerPool));
+        final Future<?> future = executor.submit( new RunnableCompare( job,errorPairs,filenames,outerPool));
 
-//        try (Jedis jedis = outerPool.getResource()) {
-//            jedis.select(2);
-//            for (String samePair : samePairs) {
-////                jedis.hset("compare", errorPair, "1");
-//                jedis.set(samePair, "1");
-//            }
-//            jedis.select(0);
-////            jedis.flushDB();
-//            jedis.del("compare");
-//            for (String errorPair : errorPairs) {
-//                jedis.hset("compare", errorPair, "1");
-//            }
-//
-//
-//        }
+        try {
+            // wait for task to complete
+            future.get();
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+
+            e.printStackTrace();
+        } finally {
+            executor.shutdownNow();
+        }
+
+
+
         log.info("End process");
     }
-    public static void newCoreCompare(String pairName, String treeType,ArrayList<String> samePairs,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
 
 
+    public static class RunnableCompare implements Runnable {
+        String job;
+        ArrayList<String> errorPairs;
+        HashMap<String, String> filenames;
+        JedisPool outerPool;
+
+        public RunnableCompare(String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool) {
+            this.job = treeType;
+            this.errorPairs = errorPairs;
+            this.filenames = filenames;
+            this.outerPool = outerPool;
+        }
+
+        @Override
+        public void run() {
+            int dbsize = 1;
+            while(dbsize>0) {
+                try (Jedis outer = outerPool.getResource()) {
+                    dbsize = Math.toIntExact(outer.scard("compare"));
+                }
+                if (dbsize != 0){
+                    newCoreCompare(job, errorPairs, filenames, outerPool);
+                }
+            }
+        }
+    }
+
+
+    public static void newCoreCompare( String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
+
+        String pairName;
+        try (Jedis outer = outerPool.getResource()) {
+            pairName = outer.spop("compare");
+        }
 
         String matchKey = null;
         try {
@@ -101,14 +140,17 @@ public class CompareTrees {
                     if (matchKey == null){
                         System.out.println();
                     }
-                    String oldShapeTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames, "shapeTree");
-                    String newShapeTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames, "shapeTree");
+                    Map<String, String> oldTreeString = EDiffHelper.getTreeString(keyName, i, outerPool, filenames);
+                    Map<String, String> newTreeString = EDiffHelper.getTreeString(keyName, j, outerPool, filenames);
 
-                    String oldActionTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames, "actionTree");
-                    String newActionTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames, "actionTree");
+                    String oldShapeTree =oldTreeString.get("shapeTree");
+                    String newShapeTree =newTreeString.get("shapeTree");
 
-                    String oldTargetTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames, "targetTree");
-                    String newTargetTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames, "targetTree");
+                    String oldActionTree = oldTreeString.get("actionTree");
+                    String newActionTree = newTreeString.get("actionTree");
+
+                    String oldTargetTree = oldTreeString.get("targetTree");
+                    String newTargetTree = newTreeString.get("targetTree");
 
 
                     if (oldShapeTree.equals(newShapeTree)) {
@@ -170,23 +212,23 @@ public class CompareTrees {
                 switch (treeType) {
                     case "single":
 
-                        String oldShapeTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"shapeTree");
-                        String newShapeTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"shapeTree");
-
-                        String oldActionTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"actionTree");
-                        String newActionTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"actionTree");
-
-                        String oldTargetTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"targetTree");
-                        String newTargetTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"targetTree");
-
-
-                        if(oldShapeTree.equals(newShapeTree)){
-                            if(oldActionTree.equals(newActionTree)){
-                                if(oldTargetTree.equals(newTargetTree)){
-                                    samePairs.add(matchKey);
-                                }
-                            }
-                        }
+//                        String oldShapeTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"shapeTree");
+//                        String newShapeTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"shapeTree");
+//
+//                        String oldActionTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"actionTree");
+//                        String newActionTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"actionTree");
+//
+//                        String oldTargetTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"targetTree");
+//                        String newTargetTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"targetTree");
+//
+//
+//                        if(oldShapeTree.equals(newShapeTree)){
+//                            if(oldActionTree.equals(newActionTree)){
+//                                if(oldTargetTree.equals(newTargetTree)){
+//                                    samePairs.add(matchKey);
+//                                }
+//                            }
+//                        }
                         return;
 //                        break;
 
