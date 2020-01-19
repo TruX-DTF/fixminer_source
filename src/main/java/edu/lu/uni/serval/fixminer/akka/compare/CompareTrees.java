@@ -25,7 +25,7 @@ public class CompareTrees {
     private static Logger log = LoggerFactory.getLogger(CompareTrees.class);
 
 
-    public static void main(String redisPath, String portInner, String portDumps, String dumpsName, String compareDBName, String job) throws Exception {
+    public static void main(String redisPath, String portDumps, String dumpsName, String job) throws Exception {
 
         // shape /Users/anil.koyuncu/projects/test/fixminer-core/python/data/redis ALLdumps-gumInput.rdb clusterl0-gumInputALL.rdb /Users/anil.koyuncu/projects/test/fixminer-core/python/data/richEditScript
 
