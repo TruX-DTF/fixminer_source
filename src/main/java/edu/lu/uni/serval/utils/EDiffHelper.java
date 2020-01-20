@@ -328,7 +328,7 @@ public class EDiffHelper {
 
     }
 
-    public  static String getTreeString(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames, String treeType) {
+    public  static Map<String, String>  getTreeString(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
         try (Jedis outer = outerPool.getResource()) {
             try {
                 while (!outer.ping().equals("PONG")) {
@@ -340,8 +340,8 @@ public class EDiffHelper {
 
                 String[] split = prefix.split("-");
                 String key = split[0] + "/" + split[1] + "/" + dist2load;
-                String treeString = outer.hget(key, treeType);
-                return treeString;
+                Map<String, String> treeMap = outer.hgetAll(key);
+                return treeMap;
             }catch (Exception e) {
                 e.printStackTrace();
             }
