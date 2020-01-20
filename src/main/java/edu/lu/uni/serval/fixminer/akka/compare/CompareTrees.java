@@ -103,20 +103,21 @@ public class CompareTrees {
 
         @Override
         public void run() {
-            int dbsize = 1;
-            while(dbsize>0) {
-                try (Jedis outer = outerPool.getResource()) {
-                    dbsize = Math.toIntExact(outer.scard("compare"));
-                }
-                if (dbsize != 0){
-                    newCoreCompare(job, errorPairs, filenames, outerPool);
-                }
+//            int dbsize = 1;
+            boolean stop = true;
+            while(stop) {
+//                try (Jedis outer = outerPool.getResource()) {
+//                    dbsize = Math.toIntExact(outer.scard("compare"));
+//                }
+//                if (dbsize != 0){
+                    stop = newCoreCompare(job, errorPairs, filenames, outerPool);
+//                }
             }
         }
     }
 
 
-    public static void newCoreCompare( String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
+    public static boolean newCoreCompare( String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
 
         String pairName;
         try (Jedis outer = outerPool.getResource()) {
@@ -138,7 +139,7 @@ public class CompareTrees {
                 case "single":
 
                     if (matchKey == null){
-                        System.out.println();
+                        return false;
                     }
                     Map<String, String> oldTreeString = EDiffHelper.getTreeString(keyName, i, outerPool, filenames);
                     Map<String, String> newTreeString = EDiffHelper.getTreeString(keyName, j, outerPool, filenames);
@@ -165,16 +166,20 @@ public class CompareTrees {
                             }
                         }
                     }
-                    return;
+                    return true;
                 default:
-                    break;
+                    return true;
+//                    break;
             }
         }catch (Exception e) {
             errorPairs.add(matchKey);
+            if (pairName == null)
+                return false;
             log.debug("{} not comparable", pairName);
         }
 
 
+        return true;
     }
 
         public static void coreCompare(String pairName, String treeType,JedisPool innerPool,ArrayList<String> samePairs,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
