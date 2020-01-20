@@ -7,10 +7,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -87,13 +84,14 @@ public class AkkaTreeParser {
             }
 
 //            inner.select(1);
-            Map<String, String> filenames = inner.hgetAll("compare");
+            Set<String> compare = inner.hkeys("compare");
+//            compare.size();
+            result= new ArrayList<String>(compare);
 
-
-            for (Map.Entry<String, String> stringStringEntry : filenames.entrySet().stream().collect(Collectors.toList())) {
-//                fileMap.put(stringStringEntry.getKey(),stringStringEntry.getValue());
-                result.add(stringStringEntry.getKey());
-            }
+//            for (Map.Entry<String, String> stringStringEntry : filenames.entrySet().stream().collect(Collectors.toList())) {
+////                fileMap.put(stringStringEntry.getKey(),stringStringEntry.getValue());
+//                result.add(stringStringEntry.getKey());
+//            }
 
 
 
