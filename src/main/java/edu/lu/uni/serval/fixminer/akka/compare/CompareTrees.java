@@ -14,6 +14,7 @@ import redis.clients.jedis.JedisPool;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -29,7 +30,7 @@ public class CompareTrees {
     private static Logger log = LoggerFactory.getLogger(CompareTrees.class);
 
 
-    public static void main(String redisPath, String portDumps, String dumpsName, String job) throws Exception {
+    public static void main(String redisPath, String portDumps, String dumpsName, String job,String numOfWorkers,String host) throws Exception {
 
         // shape /Users/anil.koyuncu/projects/test/fixminer-core/python/data/redis ALLdumps-gumInput.rdb clusterl0-gumInputALL.rdb /Users/anil.koyuncu/projects/test/fixminer-core/python/data/richEditScript
 
@@ -47,7 +48,7 @@ public class CompareTrees {
 //        cs.runShell(cmdInner, portInner);
 
 //        String numOfWorkers = "100000000";//args[4];
-        String host = "localhost";//args[5];
+//        String host = "localhost";//args[5];
 //  -Djava.util.concurrent.ForkJoinPool.common.parallelism=256
 
 //        final JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), host,Integer.valueOf(portInner),20000000);
@@ -62,25 +63,35 @@ public class CompareTrees {
         ArrayList<String> samePairs = new ArrayList<>();
         ArrayList<String> errorPairs = new ArrayList<>();
 
+        Integer numberOfWorkers = Integer.valueOf(numOfWorkers);
+        final ExecutorService executor = Executors.newWorkStealingPool(numberOfWorkers);
+        ArrayList<Future<?>> results = new ArrayList<Future<?>>();
+        for (int i = 1; i <numberOfWorkers ; i++) {
 
-        final ExecutorService executor = Executors.newWorkStealingPool();
-        // schedule the work
 
-        final Future<?> future = executor.submit( new RunnableCompare( job,errorPairs,filenames,outerPool));
-
-        try {
-            // wait for task to complete
-            future.get();
-
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-
-            e.printStackTrace();
-        } finally {
-            executor.shutdownNow();
+            // schedule the work
+            log.info("Starting job {}",i);
+            final Future<?> future = executor.submit(new RunnableCompare(job, errorPairs, filenames, outerPool, i));
+            results.add(future);
         }
+
+        for (Future<?> future:results){
+            try {
+                // wait for task to complete
+                future.get();
+
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+
+                e.printStackTrace();
+            } finally {
+                executor.shutdownNow();
+            }
+        }
+
+
 
 
 
@@ -93,12 +104,14 @@ public class CompareTrees {
         ArrayList<String> errorPairs;
         HashMap<String, String> filenames;
         JedisPool outerPool;
+        Integer threadID;
 
-        public RunnableCompare(String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool) {
+        public RunnableCompare(String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool,Integer threadID) {
             this.job = treeType;
             this.errorPairs = errorPairs;
             this.filenames = filenames;
             this.outerPool = outerPool;
+            this.threadID = threadID;
         }
 
         @Override
@@ -113,6 +126,7 @@ public class CompareTrees {
                     stop = newCoreCompare(job, errorPairs, filenames, outerPool);
 //                }
             }
+            log.info("Completed worker {}",threadID);
         }
     }
 

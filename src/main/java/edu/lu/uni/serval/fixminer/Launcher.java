@@ -22,8 +22,8 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-        String appConfigPath = "/Users/anil.koyuncu/projects/fixminer/fixminer_source/src/main/resource/app.properties";
-//        String appConfigPath = args[0];
+//        String appConfigPath = "/Users/anil.koyuncu/projects/fixminer/fixminer_source/src/main/resource/app.properties";
+        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
 //        String portInner = appProps.getProperty("portInner","6380");
@@ -33,17 +33,18 @@ public class Launcher {
         String actionType = appProps.getProperty("actionType","ALL");
         String eDiffTimeout = appProps.getProperty("eDiffTimeout","900");
         String parallelism = appProps.getProperty("parallelism","FORKJOIN");
+        String hostname = appProps.getProperty("hostname","localhost");
 
         String input = appProps.getProperty("inputPath","FORKJOIN");
         String redisPath = appProps.getProperty("redisPath","FORKJOIN");
         String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
 
-//        String parameter = args[2];
-//        String parameter = null;
+        String parameter = args[2];
+//        String parameter = "L1";
 //        String parameter = "if";
-        String parameter = "add";
-//        String jobType = args[1];
-        String jobType = "RICHEDITSCRIPT";
+//        String parameter = "add";
+        String jobType = args[1];
+//        String jobType = "RICHEDITSCRIPT";
 //        String jobType = "LOAD";
 //        String jobType = "COMPARE";
 
@@ -56,12 +57,12 @@ public class Launcher {
 //
 //        log.info(parameters);
 
-        mainLaunch( numOfWorkers, jobType, portDumps, pjName,actionType,eDiffTimeout,parallelism,input,redisPath,parameter, srcMLPath);
+        mainLaunch( numOfWorkers, jobType, portDumps, pjName,actionType,eDiffTimeout,parallelism,input,redisPath,parameter, srcMLPath,hostname);
 
 
     }
 
-    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String eDiffTimeout,  String parallelism,String input, String redisPath,String parameter,String srcMLPath){
+    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String eDiffTimeout,  String parallelism,String input, String redisPath,String parameter,String srcMLPath,String hostname){
 
 
         String dbDir;
@@ -106,7 +107,7 @@ public class Launcher {
                     }
 
 
-                    CompareTrees.main(redisPath, portDumps,actionType+dumpsName, job);
+                    CompareTrees.main(redisPath, portDumps,actionType+dumpsName, job,numOfWorkers,hostname);
                     break;
                 case "PATTERN":
                     ClusterToPattern.main(portDumps,redisPath, actionType+dumpsName, parameter);

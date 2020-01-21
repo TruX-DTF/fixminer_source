@@ -34,15 +34,28 @@ public class EnhancedASTDiff {
 
 		CallShell cs = new CallShell();
 		String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
-		if (rootType == null){
-			cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
-		}else{
-			cmd = String.format(cmd, dbDir,rootType+chunkName,Integer.valueOf(portInner));
-		}
+//		if (rootType == null){
+		cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
+//		}else{
+//			cmd = String.format(cmd, dbDir,rootType+chunkName,Integer.valueOf(portInner));
+//		}
 
 		cs.runShell(cmd, portInner);
 
 		JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
+
+		if (rootType == "add"){
+			try (Jedis inner = innerPool.getResource()) {
+				inner.select(2);
+				inner.flushDB();
+				inner.select(1);
+				inner.flushDB();
+				inner.select(0);
+				inner.del("compare");
+
+			}
+
+		}
 
 		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
@@ -79,8 +92,10 @@ public class EnhancedASTDiff {
 					parsingActor = system.actorOf(EDiffActor.props(Integer.valueOf(numOfWorkers), project), "mine-fix-pattern-actor");
 					parsingActor.tell(msg, ActorRef.noSender());
 				} catch (Exception e) {
-					system.shutdown();
+					system.terminate();
 					e.printStackTrace();
+				}finally {
+					system.terminate();
 				}
 				break;
 			case "FORKJOIN":

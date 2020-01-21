@@ -40,9 +40,9 @@ public class EDiffHunkParser extends EDiffParser {
 					try {
 
 						String astNodeType = actionSet.getAstNodeType();
-						if (astNodeType.equals(rootType)){
-
-						}
+//						if (astNodeType.equals(rootType)){
+//
+//						}
 						actionSet.toString();
 						int size = actionSet.getActionSize();
 
