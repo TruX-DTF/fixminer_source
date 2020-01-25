@@ -5,6 +5,7 @@ import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
 import edu.lu.uni.serval.fixminer.akka.compare.AkkaTreeParser;
 import edu.lu.uni.serval.fixminer.akka.ediff.EDiffHunkParser;
+import edu.lu.uni.serval.utils.ClusterToPattern;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
 import org.apache.commons.io.FileUtils;
@@ -16,6 +17,8 @@ import redis.clients.jedis.JedisPool;
 import java.io.File;
 import java.io.IOException;
 import java.lang.instrument.Instrumentation;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -28,33 +31,73 @@ public class HunkParserTest {
     public void testSimple() throws IOException {
 //        String input = "/Users/anil.koyuncu/projects/test/fixminer-core/python/data/gumInputLinux/revFiles/7f52f3_3845d29_drivers#pci#host#pcie-altera.c";
 
-        String root = "/Users/anil.koyuncu/projects/test/fixminer-core/python/data/gumInputLinux/linux/";
+//        String root = "/Users/anil.koyuncu/projects/fixminer/gumInputLinux/linux/";
+        String root = "/Users/anil.koyuncu/projects/fixminer/fixminer-core/python/data/gumInputLinux/";
+        String filename ="";
+//        filename ="freebsd_ceca9b8_b864ac4_sys#kern#sched_ule.c"; //too long
+//        filename ="openbsd_e592ec_39c81a_sys#arch#i386#pci#pci_machdep.c"; //not parseable 56 "parameter_list" "" () ( (57 "parameter" "" () ( (22 "decl" "" () ())))
+//        filename ="openbsd_cbb6d2_4cab495_sys#lib#libsa#printf.c";
+//        filename ="freebsd_bb1ce4_10d4c2_sbin#gvinum#gvinum.c"; //too long
+//        filename ="freebsd_253913_35ea52_sys#netinet#ip_carp.c"; //ok
+//        filename ="FFmpeg_4c9d1c_3da860_libavutil#file_open.c"; //not sure ifdef
+//        filename ="gstreamer_0af74c_e8bae0_libs#gst#net#gstptpclock.c"; //not sure ifder
+//        filename ="freebsd_abdbcc6_030063_sys#netinet#ip_carp.c"; //ok
+//        filename ="linux_80d348_5b394b_fs#overlayfs#inode.c"; //ok
+//        filename ="openbsd_43b185_e7495b_usr.bin#cvs#rcs.c"; //okish
+//        filename ="openbsd_e592ec_39c81a_sys#arch#i386#pci#pci_machdep.c"; //(56 "parameter_list" "" () ( (57 "parameter" "" () ( (22 "decl" "" () ())))
+//        filename ="openbsd_cbb6d2_4cab495_sys#lib#libsa#printf.c"; //not parseable 56 "parameter_list" "" () ( (57 "parameter" "" () ( (22 "decl" "" () ())))
+//        filename ="FFmpeg_9219ec_647696_libavfilter#trim.c"; //partial
+//        filename ="vlc_92b7fd_f745f6_modules#control#dbus#dbus.c"; //okish
+//        filename ="vlc_eeb662_966879_modules#video_chroma#copy.c"; //ok
+//        filename ="omp_19fae3_1e4dcd_src#mca#mpool#sm#mpool_sm_mmap.c"; // cannot find
+//        filename ="FFmpeg_a8343bf_2b2039_libavformat#riff.c"; // ok
+//        filename ="freebsd_32766e4_200ff4_sbin#routed#parms.c"; // ok
+         filename ="openbsd_150ddd_cf0e20_usr.sbin#user#user.c"; //notok
+         filename ="openbsd_6fac1e_c3b383_usr.bin#tmux#window-copy.c"; //notok
+         filename ="freebsd_0cb6f2_b4c742_sys#dev#ipw#if_ipw.c"; //notok
+         filename ="php-src_7defd5_da06f7_ext#mbstring#mbstring.c"; //notok (19 "expr_stmt" "" () ()))))
+         filename ="libtiff_177169_71715f_tools#tiff2ps.c"; //notok (19 "expr_stmt" "" () ()))))
+         filename ="linux_955c1dd_0aaee4_drivers#gpu#drm#i915#gvt#handlers.c"; //notok (19 "expr_stmt" "" () ()))))
 
-//        String filename  = "8dd302_c4ef85_net#core#dev_ioctl.c"; //ok
-//        String filename = "1e793f6_77f18a_drivers#scsi#megaraid#megaraid_sas_base.c"; //OK
-//        String filename = "6a28fd_93ad867_drivers#tty#goldfish.c"; //m,issing
-//        String filename = "b90f7c_ff51ff_kernel#sched#fair.c"; //wrong and wired
-//        String filename = "ed8f68_b1c8047_fs#ext3#dir.c";//ok
+//        filename ="FFmpeg_0726b2_66d2ff_libav#jpeg.c";
+        String pj = filename.split("_")[0];
+        filename = filename.replace(pj+"_","");
+        root = root + pj + "/";
+//        root = root + "codeflaws/";
 
-//        String filename = "bc3d12_9a26653_drivers#scsi#libfc#fc_disc.c"; //okish
-        String filename = "118154_0c5f81_arch#x86#kvm#svm.c";
-//        String filename = "bcbd94f_43e43c9_drivers#md#dm-crypt.c"; //emin degilim
-//        String filename = "f1727b4_6c1e7e_arch#x86#kvm#vmx#nested.c"; //komplex not sure
-//        String filename  = "5924f17_5925a05_net#ipv4#tcp.c";
-//        String filename = "bd0b9ac_b237721_drivers#irqchip#irq-dw-apb-ictl.c"; //missing
-//        String filename  = "052831_3985e8_include#net#ip_tunnels.h";
-//        String filename  = "e76019_28647b_drivers#gpu#drm#i915#i915_drv.h";
-//        String filename  = "4cbe4d_b124f4_include#linux#mlx4#device.h";  //enum case stops at block
-//        String filename  = "7bf7eac_c01daf_include#linux#dax.h";
+
+
+//        filename = "474-A-15925943-15925951.c"; //mot ok
+//        filename = "6-C-11536006-11536039.c"; //okish
+//        filename = "500-A-18298071-18298124.c"; //ok
+//        filename = "106-B-4027414-4027447.c"; //ok
+//        filename = "572-B-12669194-12669278.c"; //ok
+//        filename = "514-A-16254510-16254521.c"; //ok
+//        filename = "405-B-12287356-12287584.c"; //ok
+//        filename = "630-R-17825199-17825235.c"; //notok
         File revFile = new File(root + "revFiles/"+ filename);
         File prevFile =new File(root + "prevFiles/prev_"+filename);
+//        File diffFile =new File();
+        String path = root + "DiffEntries/"+filename + ".txt";
+        System.out.println(path);
+//        String data = "";
+//        data = new String(Files.readAllBytes(Paths.get(root + "DiffEntries/"+filename + ".txt")));
+
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML/src2srcml";
+        String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML.0.9.5/bin/srcml";
+//        String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML.0.9.5/bin/srcml";
         parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
 //        ITree t = new SrcmlCppTreeGenerator().generateFromFile(input).getRoot();
 //        Assert.assertEquals(148, t.getSize());
 
+    }
+
+    @Test
+    public void dumpFnction() throws Exception {
+        String pattern = "function/20/gstreamer_0af74c_e8bae0_libs#gst#net#gstptpclock.c.txt_0";
+//        String pattern = "function/20/FFmpeg_4c9d1c_3da860_libavutil#file_open.c.txt_0";
+        ClusterToPattern.main("6399","/Users/anil.koyuncu/projects/fixminer/fixminer-core/python/data/redis","ALLdumps-gumInput.rdb ",pattern);
     }
 
     @Test

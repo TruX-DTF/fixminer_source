@@ -34,6 +34,7 @@ public class Launcher {
         String eDiffTimeout = appProps.getProperty("eDiffTimeout","900");
         String parallelism = appProps.getProperty("parallelism","FORKJOIN");
         String hostname = appProps.getProperty("hostname","localhost");
+        String hunkLimit = appProps.getProperty("hunkLimit","10");
 
         String input = appProps.getProperty("inputPath","FORKJOIN");
         String redisPath = appProps.getProperty("redisPath","FORKJOIN");
@@ -57,12 +58,12 @@ public class Launcher {
 //
 //        log.info(parameters);
 
-        mainLaunch( numOfWorkers, jobType, portDumps, pjName,actionType,eDiffTimeout,parallelism,input,redisPath,parameter, srcMLPath,hostname);
+        mainLaunch( numOfWorkers, jobType, portDumps, pjName,actionType,eDiffTimeout,parallelism,input,redisPath,parameter, srcMLPath,hostname,hunkLimit);
 
 
     }
 
-    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String eDiffTimeout,  String parallelism,String input, String redisPath,String parameter,String srcMLPath,String hostname){
+    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String eDiffTimeout,  String parallelism,String input, String redisPath,String parameter,String srcMLPath,String hostname,String hunkLimit){
 
 
         String dbDir;
@@ -78,7 +79,7 @@ public class Launcher {
         try {
             switch (jobType) {
                 case "RICHEDITSCRIPT":
-                    EnhancedASTDiff.main(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName, srcMLPath,parameter);
+                    EnhancedASTDiff.main(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName, srcMLPath,parameter,hunkLimit);
                     break;
 
                 case "LOAD":

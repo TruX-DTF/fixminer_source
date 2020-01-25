@@ -65,7 +65,7 @@ public class EDiffWorker extends UntypedActor {
 					future.get(msg.getSECONDS_TO_WAIT(), TimeUnit.SECONDS);
 
 					counter ++;
-					if (counter % 10 == 0) {
+					if (counter % 1000 == 0) {
 							log.info("Worker #" + id +" finalized parsing " + counter + " files... remaing "+ (files.size() - counter));
 					}
 				} catch (TimeoutException e) {

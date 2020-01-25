@@ -26,11 +26,16 @@ public class EDiffHunkParser extends EDiffParser {
 
 	private static Logger logger = LoggerFactory.getLogger(EDiffHunkParser.class);
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile, String project, JedisPool innerPool,String srcMLPath,String rootType) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile, String project, JedisPool innerPool,String srcMLPath,String hunkLimit) {
 		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile,srcMLPath);
-		if (actionSets.size() != 0) {
+		if (actionSets != null && actionSets.size() != 0) {
 
 			boolean processActionSet = true;
+
+			if (actionSets.size() > Integer.valueOf(hunkLimit)){
+				processActionSet = false;
+				logger.debug("Skipping {} set size {}",diffentryFile.getName(),hunkLimit);
+			}
 
 			int hunkSet = 0;
 			if(processActionSet){
@@ -79,7 +84,7 @@ public class EDiffHunkParser extends EDiffParser {
 
 					} catch (Exception e) {
 						logger.error("error",e);
-						e.printStackTrace();
+//						e.printStackTrace();
 					}
 					hunkSet++;
 				}

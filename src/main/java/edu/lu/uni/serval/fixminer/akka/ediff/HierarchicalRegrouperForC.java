@@ -11,6 +11,7 @@ import edu.lu.uni.serval.utils.ListSorter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Regroup GumTree results to a hierarchical construction.
@@ -147,19 +148,19 @@ public class HierarchicalRegrouperForC {
 	}
 
 	private boolean isPossibileSubAction(Action parent, Action child) {
-		if ((parent instanceof Update && !(child instanceof Addition))
-				|| (parent instanceof Delete && child instanceof Delete)
-				|| (parent instanceof Insert && (child instanceof Insert))) {
-				int startPosition = child.getPosition();
-				int length = child.getLength();
-				int startPosition2 = parent.getPosition();
-				int length2 = parent.getLength();
-				
-				if (!(startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2)) {
-					// when act is not the sub-set of action.
-					return false;
-				}
-		}
+//		if ((parent instanceof Update && !(child instanceof Addition))
+//				|| (parent instanceof Delete && child instanceof Delete)
+//				|| (parent instanceof Insert && (child instanceof Insert))) {
+//				int startPosition = child.getPosition();
+//				int length = child.getLength();
+//				int startPosition2 = parent.getPosition();
+//				int length2 = parent.getLength();
+//
+//				if (!(startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2)) {
+//					// when act is not the sub-set of action.
+//					return false;
+//				}
+//		}
 		return true;
 	}
 
@@ -282,10 +283,18 @@ public class HierarchicalRegrouperForC {
 
 
 		int nodeType = tree.getType();
-
+//		List<ITree> collect = tree.getChildren().stream().filter(m -> m.getType() == 6).collect(Collectors.toList());
+//		if (collect.size() > 0){
+//			return true;
+//		}
 		if (NodeMap_new.StatementMap.containsKey(nodeType)){
 			return true;
 		}
+//		else{
+//			if((nodeType ==6) && tree.getParent().getType() == 1){
+//				return true;
+//			}
+//		}
 
 //		if (nodeType == 11 || nodeType == 16 || nodeType == 18 || nodeType == 21
 //				|| nodeType == 22 || nodeType == 23 || nodeType == 24 || nodeType == 84

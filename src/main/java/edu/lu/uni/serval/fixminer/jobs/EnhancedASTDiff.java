@@ -26,7 +26,7 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String numOfWorkers, String project, String eDiffTimeout, String parallelism, String portInner, String dbDir, String chunkName,String srcMLPath,String rootType) throws Exception {
+	public static void main(String inputPath, String numOfWorkers, String project, String eDiffTimeout, String parallelism, String portInner, String dbDir, String chunkName,String srcMLPath,String rootType,String hunkLimit) throws Exception {
 
 
 		String parameters = String.format("\nInput path %s",inputPath);
@@ -62,6 +62,8 @@ public class EnhancedASTDiff {
         Stream<File> stream = Arrays.stream(listOfFiles);
         List<File> folders = stream
 				.filter(x -> !x.getName().startsWith("."))
+				.filter(x -> !x.getName().startsWith("cocci"))
+				.filter(x -> !x.getName().endsWith(".index"))
 				.collect(Collectors.toList());
 
 
@@ -83,7 +85,7 @@ public class EnhancedASTDiff {
 				ActorSystem system = null;
 				ActorRef parsingActor = null;
 
-				final EDiffMessage msg = new EDiffMessage(0, allMessageFiles,eDiffTimeout,innerPool,srcMLPath,rootType);
+				final EDiffMessage msg = new EDiffMessage(0, allMessageFiles,eDiffTimeout,innerPool,srcMLPath,hunkLimit);
 				try {
 					log.info("Akka begins...");
 					log.info("{} files to process ...", allMessageFiles.size());
@@ -92,10 +94,11 @@ public class EnhancedASTDiff {
 					parsingActor = system.actorOf(EDiffActor.props(Integer.valueOf(numOfWorkers), project), "mine-fix-pattern-actor");
 					parsingActor.tell(msg, ActorRef.noSender());
 				} catch (Exception e) {
-					system.terminate();
+					system.shutdown();
 					e.printStackTrace();
 				}finally {
-					system.terminate();
+					system.awaitTermination();
+//					system.shutdown();
 				}
 				break;
 			case "FORKJOIN":
