@@ -7,7 +7,7 @@ import com.github.gumtreediff.gen.srcml.NodeMap_new;
 import com.github.gumtreediff.io.CNodeMap;
 import com.github.gumtreediff.tree.ITree;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
-import edu.lu.uni.serval.utils.ListSorter;
+
 
 import java.util.ArrayList;
 import java.util.List;

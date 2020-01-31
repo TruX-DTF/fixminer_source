@@ -4,7 +4,7 @@ import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.gen.srcml.GumTreeCComparer;
 import edu.lu.uni.serval.gumtree.GumTreeComparer;
 
-import edu.lu.uni.serval.utils.ListSorter;
+
 import redis.clients.jedis.JedisPool;
 
 import java.io.File;
