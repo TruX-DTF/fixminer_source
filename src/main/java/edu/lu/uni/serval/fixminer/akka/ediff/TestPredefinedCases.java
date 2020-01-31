@@ -12,24 +12,32 @@ import org.junit.Test;
 import redis.clients.jedis.JedisPool;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 
 public class TestPredefinedCases {
 
 
+
+
     @Test
     public void testIFCase1() throws IOException {
-        File revFile = new File("/Users/anilkoyuncu/projects/fixminer/fixminer_source/src/main/resource/testFiles/if_example_1.c");
-        File prevFile =new File("/Users/anilkoyuncu/projects/fixminer/fixminer_source/src/main/resource/testFiles/prev_if_example_1.c");
+        Properties appProps = new Properties();
+        appProps.load(new FileInputStream("src/main/resource/app.properties"));
+        String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
+
+        File revFile = new File("src/main/resource/testFiles/if_example_1.c");
+        File prevFile =new File("src/main/resource/testFiles/prev_if_example_1.c");
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        String srcMLPath = "/usr/local/bin/srcml";
+
 
         List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
         hierarchicalActionSets.size();
@@ -42,16 +50,18 @@ public class TestPredefinedCases {
     }
     @Test
     public void testForCase1() throws IOException {
+        Properties appProps = new Properties();
+        appProps.load(new FileInputStream("src/main/resource/app.properties"));
+        String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
 
-
-        File revFile = new File("/Users/anilkoyuncu/projects/fixminer/fixminer_source/src/main/resource/testFiles/for_example_1.c");
-        File prevFile =new File("/Users/anilkoyuncu/projects/fixminer/fixminer_source/src/main/resource/testFiles/prev_for_example_1.c");
+        File revFile = new File("src/main/resource/testFiles/for_example_1.c");
+        File prevFile =new File("src/main/resource/testFiles/prev_for_example_1.c");
 
 
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        String srcMLPath = "/usr/local/bin/srcml";
+
 
         List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
         hierarchicalActionSets.size();
@@ -70,16 +80,16 @@ public class TestPredefinedCases {
     }
     @Test
     public void testWhileCase1() throws IOException {
+        Properties appProps = new Properties();
+        appProps.load(new FileInputStream("src/main/resource/app.properties"));
+        String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
 
-
-        File revFile = new File("/Users/anilkoyuncu/projects/fixminer/fixminer_source/src/main/resource/testFiles/while_example_1.c");
-        File prevFile =new File("/Users/anilkoyuncu/projects/fixminer/fixminer_source/src/main/resource/testFiles/prev_while_example_1.c");
+        File revFile = new File("src/main/resource/testFiles/while_example_1.c");
+        File prevFile =new File("src/main/resource/testFiles/prev_while_example_1.c");
 
 
 
         EDiffHunkParser parser = new EDiffHunkParser();
-
-        String srcMLPath = "/usr/local/bin/srcml";
 
         List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
         hierarchicalActionSets.size();
