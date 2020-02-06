@@ -85,27 +85,68 @@ public class HierarchicalRegrouperForC {
 			}
 		}
 
-		List<HierarchicalActionSet> re2ActionSets = new ArrayList<>();
-		for (HierarchicalActionSet act:reActionSets){
-			if (!act.getAction().getClass().equals(Update.class))
-				re2ActionSets.add(act);
-			if (((Update) act.getAction()).getflag() == true)
-				re2ActionSets.add(act);
-			findRealAction(act, re2ActionSets);
+		List<HierarchicalActionSet> reActionSets1 = new ArrayList<>();
+		for(HierarchicalActionSet a:reActionSets){
+			HierarchicalActionSet hierarchicalActionSet = removeBlocks(a);
+			hierarchicalActionSet = removeIFthenBlocks(hierarchicalActionSet);
+			reActionSets1.add(hierarchicalActionSet);
 
 		}
-
-		return re2ActionSets;
+		return reActionSets1;
+//		return reActionSets;
 	}
 
-	private void findRealAction(HierarchicalActionSet act, List<HierarchicalActionSet> re2ActionSets) {
-		if (!act.getAction().getClass().equals(Update.class) || ((Update) act.getAction()).getflag() == true){
-			re2ActionSets.add(act);
-			return;
+	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
+		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+		if (subActions.size() == 1){
+			HierarchicalActionSet subaction = subActions.get(0);
+			//else,then,block
+			if(subaction.getAstNodeType().equals("block")){//|| subaction.getAstNodeType().equals("then") || subaction.getAstNodeType().equals("else")){
+				List<HierarchicalActionSet> subSubActions = subaction.getSubActions();
+				if(subSubActions.size() == 1){
+
+					HierarchicalActionSet subsubsubAction = subSubActions.get(0);
+					List<Integer> keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, subsubsubAction.getAstNodeType());
+					if(keysByValue != null && keysByValue.size() ==1){
+						subsubsubAction.setParent(null);
+						return removeBlocks(subsubsubAction);
+
+					}
+				}
+			}
 		}
-		for (HierarchicalActionSet a:act.getSubActions()){
-			findRealAction(a, re2ActionSets);
+		return actionSet;
+
+	}
+	private HierarchicalActionSet removeIFthenBlocks(HierarchicalActionSet actionSet){
+		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+		if (subActions.size() == 1){
+			HierarchicalActionSet subaction = subActions.get(0);
+			//else,then,block
+			if(subaction.getAstNodeType().equals("then")|| subaction.getAstNodeType().equals("else")){//|| subaction.getAstNodeType().equals("then") || subaction.getAstNodeType().equals("else")){
+				List<HierarchicalActionSet> subSubActions = subaction.getSubActions();
+				if(subSubActions.size() == 1){
+
+					HierarchicalActionSet subsubsubAction = subSubActions.get(0);
+					if(subsubsubAction.getAstNodeType().equals("block")){
+						List<HierarchicalActionSet> subActions1 = subsubsubAction.getSubActions();
+						if (subActions1.size() ==1){
+							HierarchicalActionSet hierarchicalActionSet = subActions1.get(0);
+							List<Integer> keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, hierarchicalActionSet.getAstNodeType());
+							if(keysByValue != null && keysByValue.size() ==1){
+								hierarchicalActionSet.setParent(null);
+								return removeBlocks(hierarchicalActionSet);
+
+							}
+						}
+					}
+
+				}
+			}
 		}
+		return actionSet;
+
+
 	}
 
 	private HierarchicalActionSet createActionSet(Action act, Action parentAct, HierarchicalActionSet parent) {
