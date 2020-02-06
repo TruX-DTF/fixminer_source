@@ -50,7 +50,7 @@ public class HierarchicalRegrouperForC {
 				continue;
 			}
 			Action parentAct = findParentAction(act, actions);
-			
+
 			if (parentAct == null) {
 				actionSet = createActionSet(act, parentAct, null);
 				actionSets.add(actionSet);
@@ -78,13 +78,34 @@ public class HierarchicalRegrouperForC {
 //				if (astNodeType.endsWith("TypeDeclaration") || astNodeType.endsWith("FieldDeclaration")  || astNodeType.endsWith("EnumDeclaration") ||
 //						astNodeType.endsWith("MethodDeclaration") || astNodeType.endsWith("Statement") ||
 //						astNodeType.endsWith("ConstructorInvocation") || astNodeType.endsWith("CatchClause") || astNodeType.endsWith("SwitchCase")) {
-				if (isStatement(actSet.getNode())) {
+//				if (isStatement(actSet.getNode())) {
 					reActionSets.add(actSet);
-				}
+//				}
 //				}
 			}
 		}
-		return reActionSets;
+
+		List<HierarchicalActionSet> re2ActionSets = new ArrayList<>();
+		for (HierarchicalActionSet act:reActionSets){
+			if (!act.getAction().getClass().equals(Update.class))
+				re2ActionSets.add(act);
+			if (((Update) act.getAction()).getflag() == true)
+				re2ActionSets.add(act);
+			findRealAction(act, re2ActionSets);
+
+		}
+
+		return re2ActionSets;
+	}
+
+	private void findRealAction(HierarchicalActionSet act, List<HierarchicalActionSet> re2ActionSets) {
+		if (!act.getAction().getClass().equals(Update.class) || ((Update) act.getAction()).getflag() == true){
+			re2ActionSets.add(act);
+			return;
+		}
+		for (HierarchicalActionSet a:act.getSubActions()){
+			findRealAction(a, re2ActionSets);
+		}
 	}
 
 	private HierarchicalActionSet createActionSet(Action act, Action parentAct, HierarchicalActionSet parent) {
