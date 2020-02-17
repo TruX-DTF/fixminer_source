@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c20f95f-4c0f-46a8-9b1c-3c643f73b30a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/DefaultKryoContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HunkParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/HunkParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/TestIntroClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/TestIntroClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resource/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resource/app.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,22 +230,26 @@
       <screen x="0" y="-1440" width="2560" height="1440" />
     </state>
     <state x="854" y="-1129" key="#gumtree_[install]/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581953568803" />
-    <state width="2518" height="423" key="GridCell.Tab.0.bottom" timestamp="1581957957101">
+    <state width="2518" height="423" key="GridCell.Tab.0.bottom" timestamp="1581958051741">
       <screen x="0" y="-1440" width="2560" height="1440" />
     </state>
     <state width="2518" height="423" key="GridCell.Tab.0.bottom/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581957957101" />
-    <state width="2518" height="423" key="GridCell.Tab.0.center" timestamp="1581957957100">
+    <state width="2518" height="423" key="GridCell.Tab.0.bottom/0.-1440.2560.1440/49.23.1743.1097@0.-1440.2560.1440" timestamp="1581958051741" />
+    <state width="2518" height="423" key="GridCell.Tab.0.center" timestamp="1581958051739">
       <screen x="0" y="-1440" width="2560" height="1440" />
     </state>
     <state width="2518" height="423" key="GridCell.Tab.0.center/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581957957100" />
-    <state width="2518" height="423" key="GridCell.Tab.0.left" timestamp="1581957957098">
+    <state width="2518" height="423" key="GridCell.Tab.0.center/0.-1440.2560.1440/49.23.1743.1097@0.-1440.2560.1440" timestamp="1581958051739" />
+    <state width="2518" height="423" key="GridCell.Tab.0.left" timestamp="1581958051738">
       <screen x="0" y="-1440" width="2560" height="1440" />
     </state>
     <state width="2518" height="423" key="GridCell.Tab.0.left/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581957957098" />
-    <state width="2518" height="423" key="GridCell.Tab.0.right" timestamp="1581957957100">
+    <state width="2518" height="423" key="GridCell.Tab.0.left/0.-1440.2560.1440/49.23.1743.1097@0.-1440.2560.1440" timestamp="1581958051738" />
+    <state width="2518" height="423" key="GridCell.Tab.0.right" timestamp="1581958051740">
       <screen x="0" y="-1440" width="2560" height="1440" />
     </state>
     <state width="2518" height="423" key="GridCell.Tab.0.right/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581957957100" />
+    <state width="2518" height="423" key="GridCell.Tab.0.right/0.-1440.2560.1440/49.23.1743.1097@0.-1440.2560.1440" timestamp="1581958051740" />
     <state width="2518" height="519" key="GridCell.Tab.1.bottom" timestamp="1581955054072">
       <screen x="0" y="-1440" width="2560" height="1440" />
     </state>
