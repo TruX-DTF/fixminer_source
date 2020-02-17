@@ -62,7 +62,7 @@ public class EnhancedASTDiff {
 				.filter(x -> !x.getName().startsWith("."))
 				.filter(x -> !x.getName().startsWith("cocci"))
 				.filter(x -> !x.getName().endsWith(".index"))
-				.filter(x -> x.getName().endsWith("codeflaws"))
+//				.filter(x -> x.getName().endsWith("codeflaws"))
 				.collect(Collectors.toList());
 
 

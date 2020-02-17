@@ -12,7 +12,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<akka.version>2.4.11</akka.version>
+		<akka.version>2.4.17</akka.version>
 		<logback.version>1.1.2</logback.version>
 		<slf4j-api.version>1.7.7</slf4j-api.version>
 	</properties>
@@ -25,12 +25,6 @@
 		    <version>1.2</version>
 		</dependency>
 				
-		<!--<dependency>-->
-			<!--<groupId>edu.lu.uni</groupId>-->
-			<!--<artifactId>simple-utils</artifactId>-->
-			<!--<version>0.0.1-SNAPSHOT</version>-->
-		<!--</dependency>-->
-		
 		<!-- akka -->
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
@@ -41,18 +35,21 @@
 		<dependency>
 			<groupId>com.github.gumtreediff</groupId>
 			<artifactId>core</artifactId>
+			<scope>compile</scope>
 			<version>2.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.github.gumtreediff</groupId>
 			<artifactId>gen.jdt</artifactId>
+			<scope>compile</scope>
 			<version>2.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.github.gumtreediff</groupId>
 			<artifactId>gen.srcml</artifactId>
+			<scope>compile</scope>
 			<version>2.0.0-SNAPSHOT</version>
 		</dependency>
 
@@ -75,18 +72,11 @@
 			<version>${logback.version}</version>
 		</dependency>
 		
-
-		<!--<dependency>-->
-			<!--<groupId>edu.lu.uni.serval</groupId>-->
-			<!--<artifactId>GitTraveller</artifactId>-->
-			<!--<version>0.0.1-SNAPSHOT</version>-->
-		<!--</dependency>-->
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
+<!--			<scope>test</scope>-->
 		</dependency>
 
 		<dependency>
@@ -102,65 +92,14 @@
 			<version>1.3</version>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>com.rabbitmq</groupId>-->
-<!--			<artifactId>amqp-client</artifactId>-->
-<!--			<version>4.0.0</version>-->
-<!--		</dependency>-->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-        </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.lucene</groupId>-->
-<!--			<artifactId>lucene-core</artifactId>-->
-<!--			<version>4.8.0</version>-->
-<!--		</dependency>-->
-		<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.lucene</groupId>-->
-<!--			<artifactId>lucene-analyzers-common</artifactId>-->
-<!--			<version>4.8.0</version>-->
-<!--		</dependency>-->
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math3</artifactId>
-			<version>3.6.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
-		<dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>xstream</artifactId>
-			<version>1.3.1</version>
-		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson</artifactId>
-			<version>3.3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-util</artifactId>
-			<version>9.4.4.v20170414</version>
-			<scope>compile</scope>
-		</dependency>
 
-		<dependency>
-			<groupId>com.esotericsoftware</groupId>
-			<artifactId>kryo</artifactId>
-			<version>4.0.2</version>
-		</dependency>
 
 
 

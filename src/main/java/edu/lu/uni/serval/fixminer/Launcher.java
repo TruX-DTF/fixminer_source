@@ -22,7 +22,7 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-        String appConfigPath = "/Users/anilkoyuncu/projects/fixminer/fixminer_source/src/main/resource/app.properties";
+        String appConfigPath = "src/main/resource/app.properties";
 //        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
@@ -40,12 +40,12 @@ public class Launcher {
         String redisPath = appProps.getProperty("redisPath","FORKJOIN");
         String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
 
-        String parameter = args[2];
-//        String parameter = "L1";
+//        String parameter = args[2];
+        String parameter = "L1";
 //        String parameter = "if";
 //        String parameter = "add";
-        String jobType = args[1];
-//        String jobType = "RICHEDITSCRIPT";
+//        String jobType = args[1];
+        String jobType = "RICHEDITSCRIPT";
 //        String jobType = "LOAD";
 //        String jobType = "COMPARE";
 

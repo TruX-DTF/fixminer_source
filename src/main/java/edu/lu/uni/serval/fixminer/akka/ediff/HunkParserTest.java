@@ -211,9 +211,9 @@ public class HunkParserTest {
 //        tc.validate();
 //        parent.getLength();
 
-        HierarchicalActionSet actionSet = (HierarchicalActionSet)  EDiffHelper.kryoDeseerialize(dump);
+//        HierarchicalActionSet actionSet = (HierarchicalActionSet)  EDiffHelper.kryoDeseerialize(dump);
 //        HierarchicalActionSet actionSet = (HierarchicalActionSet)  EDiffHelper.commonsDeserialize(dump);
-        actionSet.toString();
+//        actionSet.toString();
 
 
 // CODE HERE
@@ -248,8 +248,8 @@ public class HunkParserTest {
         String j = "21";
         HashMap<String, String> filenames = AkkaTreeParser.filenames(outerPool);
 
-        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
-        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);
+//        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
+//        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);
         ITree oldActionTree = oldPair.getValue0();
         ITree newActionTree = newPair.getValue0();
         HierarchicalActionSet oldProject = oldPair.getValue1();

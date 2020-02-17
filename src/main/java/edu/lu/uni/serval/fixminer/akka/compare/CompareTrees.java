@@ -196,226 +196,226 @@ public class CompareTrees {
         return true;
     }
 
-        public static void coreCompare(String pairName, String treeType,JedisPool innerPool,ArrayList<String> samePairs,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
-
-//        if (samePairs.size() % 1000 == 0) {
-//            log.info("Same pairs size "+samePairs.size());
-//        }
-
-        ITree oldTree = null;
-        ITree newTree = null;
-        Pair<ITree, HierarchicalActionSet> oldPair = null;
-        Pair<ITree, HierarchicalActionSet> newPair = null;
-        String matchKey = null;
-
-        innerPool = outerPool;
-
-            try {
-
-                String[] split = pairName.split("/");
-
-
-                String i = split[1];
-                String j = split[2];
-                String keyName = split[0];
-                matchKey = keyName + "/" + (String.valueOf(i)) + "/" + String.valueOf(j);
-//                jedis.select(0);
-//                Set<String> keys = jedis.keys(matchKey);
-//                if (keys.size() > 0) {
-//                    jedis.del(matchKey);
-//                } else {
-//                    return;
-//                }
-//                    jedis.srem("pairs",matchKey);
-//                JedisPool outerPool = null;
-                switch (treeType) {
-                    case "single":
-
-//                        String oldShapeTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"shapeTree");
-//                        String newShapeTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"shapeTree");
+//        public static void coreCompare(String pairName, String treeType,JedisPool innerPool,ArrayList<String> samePairs,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
 //
-//                        String oldActionTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"actionTree");
-//                        String newActionTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"actionTree");
+////        if (samePairs.size() % 1000 == 0) {
+////            log.info("Same pairs size "+samePairs.size());
+////        }
 //
-//                        String oldTargetTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"targetTree");
-//                        String newTargetTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"targetTree");
+//        ITree oldTree = null;
+//        ITree newTree = null;
+//        Pair<ITree, HierarchicalActionSet> oldPair = null;
+//        Pair<ITree, HierarchicalActionSet> newPair = null;
+//        String matchKey = null;
+//
+//        innerPool = outerPool;
+//
+//            try {
+//
+//                String[] split = pairName.split("/");
 //
 //
-//                        if(oldShapeTree.equals(newShapeTree)){
-//                            if(oldActionTree.equals(newActionTree)){
-//                                if(oldTargetTree.equals(newTargetTree)){
-//                                    samePairs.add(matchKey);
-//                                }
-//                            }
-//                        }
-                        return;
-//                        break;
-
-
-                    case "shape":
-                        oldTree = EDiffHelper.getShapes(keyName, i,  outerPool,filenames);
-                        newTree = EDiffHelper.getShapes(keyName, j,  outerPool,filenames);
-                        break;
-                    case "action":
-
-                        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
-                        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);
-                        oldTree = oldPair.getValue0();
-                        newTree = newPair.getValue0();
-
-
-                        break;
-                    case "token":
-                        oldTree = EDiffHelper.getTokens(keyName, i, outerPool, filenames);
-                        newTree = EDiffHelper.getTokens(keyName, j, outerPool, filenames);
-
-                        String oldTokens = EDiffHelper.getNames2(oldTree);
-                        String newTokens = EDiffHelper.getNames2(newTree);
-
-                        JaroWinklerDistance jwd = new JaroWinklerDistance();
-
-
-                        Double overallSimi = Double.valueOf(0);
-
-                        if (!(oldTokens.trim().isEmpty() || newTokens.trim().isEmpty())) {
-                            overallSimi = jwd.apply(oldTokens, newTokens);
-
-                        }
-
-
-                        int retval = Double.compare(overallSimi, Double.valueOf(1));
-
-                        if (retval >= 0) {
-                            String result = i + "," + j + "," + String.join(",", oldTokens);
-//                            jedis.select(2);
-//                            jedis.set(matchKey, result);
-//                            try (Jedis jedis = innerPool.getResource()) {
-////                            jedis.del(matchKey);
-//                                jedis.select(2);
-//                                jedis.set(matchKey, result);
-//                            }
-                            samePairs.add(matchKey);
-//                            try (Jedis jedis = innerPool.getResource()) {
-////                                jedis.del(matchKey);
-//                                jedis.select(2);
-//                                jedis.set(matchKey, result);
-//                            }
-                        }
-//                    jedis.select(0);
+//                String i = split[1];
+//                String j = split[2];
+//                String keyName = split[0];
+//                matchKey = keyName + "/" + (String.valueOf(i)) + "/" + String.valueOf(j);
+////                jedis.select(0);
+////                Set<String> keys = jedis.keys(matchKey);
+////                if (keys.size() > 0) {
+////                    jedis.del(matchKey);
+////                } else {
+////                    return;
+////                }
 ////                    jedis.srem("pairs",matchKey);
-//                    jedis.del(matchKey);
-
-                        return;
-                    default:
-                        break;
-                }
-
-
-
-                if(oldTree.toStaticHashString().equals(newTree.toStaticHashString())){
-                    String editDistance = "0";
-                    String result = i + "," + j + "," + editDistance;
-                    if (editDistance.equals("0")) {
-
-                        if (treeType.equals("action")) {
-                            HierarchicalActionSet oldProject = oldPair.getValue1();
-                            HierarchicalActionSet newProject = newPair.getValue1();
-
-                            oldTree = EDiffHelper.getTargets(oldProject);
-                            newTree = EDiffHelper.getTargets(newProject);
-                            if (oldTree.toStaticHashString().equals(newTree.toStaticHashString())) {
-                                samePairs.add(matchKey);
-//                                try (Jedis jedis = innerPool.getResource()) {
-////                                    jedis.del(matchKey);
-//                                    jedis.select(2);
-//                                    jedis.set(matchKey, result);
+////                JedisPool outerPool = null;
+//                switch (treeType) {
+//                    case "single":
 //
-//                                }
-                            }
-                        } else {
-                            samePairs.add(matchKey);
-//                            try (Jedis jedis = innerPool.getResource()) {
-////                            jedis.del(matchKey);
-//                                jedis.select(2);
-//                                jedis.set(matchKey, result);
-//
-//                            }
-                        }
-                    }
-
-
-                }
-//                if(oldTree.toString().equals(newTree.toString())) {
-//                    Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
-//                    m.match();
+////                        String oldShapeTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"shapeTree");
+////                        String newShapeTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"shapeTree");
+////
+////                        String oldActionTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"actionTree");
+////                        String newActionTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"actionTree");
+////
+////                        String oldTargetTree = EDiffHelper.getTreeString(keyName, i, outerPool, filenames,"targetTree");
+////                        String newTargetTree = EDiffHelper.getTreeString(keyName, j, outerPool, filenames,"targetTree");
+////
+////
+////                        if(oldShapeTree.equals(newShapeTree)){
+////                            if(oldActionTree.equals(newActionTree)){
+////                                if(oldTargetTree.equals(newTargetTree)){
+////                                    samePairs.add(matchKey);
+////                                }
+////                            }
+////                        }
+//                        return;
+////                        break;
 //
 //
-//                    ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-//                    ag.generate();
-//                    List<Action> actions = ag.getActions();
+//                    case "shape":
+//                        oldTree = EDiffHelper.getShapes(keyName, i,  outerPool,filenames);
+//                        newTree = EDiffHelper.getShapes(keyName, j,  outerPool,filenames);
+//                        break;
+//                    case "action":
+//
+//                        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
+//                        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);
+//                        oldTree = oldPair.getValue0();
+//                        newTree = newPair.getValue0();
 //
 //
-//                    String editDistance;
+//                        break;
+//                    case "token":
+//                        oldTree = EDiffHelper.getTokens(keyName, i, outerPool, filenames);
+//                        newTree = EDiffHelper.getTokens(keyName, j, outerPool, filenames);
 //
-//                    editDistance = String.valueOf(actions.size());
+//                        String oldTokens = EDiffHelper.getNames2(oldTree);
+//                        String newTokens = EDiffHelper.getNames2(newTree);
+//
+//                        JaroWinklerDistance jwd = new JaroWinklerDistance();
+//
+//
+//                        Double overallSimi = Double.valueOf(0);
+//
+//                        if (!(oldTokens.trim().isEmpty() || newTokens.trim().isEmpty())) {
+//                            overallSimi = jwd.apply(oldTokens, newTokens);
+//
+//                        }
+//
+//
+//                        int retval = Double.compare(overallSimi, Double.valueOf(1));
+//
+//                        if (retval >= 0) {
+//                            String result = i + "," + j + "," + String.join(",", oldTokens);
+////                            jedis.select(2);
+////                            jedis.set(matchKey, result);
+////                            try (Jedis jedis = innerPool.getResource()) {
+//////                            jedis.del(matchKey);
+////                                jedis.select(2);
+////                                jedis.set(matchKey, result);
+////                            }
+//                            samePairs.add(matchKey);
+////                            try (Jedis jedis = innerPool.getResource()) {
+//////                                jedis.del(matchKey);
+////                                jedis.select(2);
+////                                jedis.set(matchKey, result);
+////                            }
+//                        }
+////                    jedis.select(0);
+//////                    jedis.srem("pairs",matchKey);
+////                    jedis.del(matchKey);
+//
+//                        return;
+//                    default:
+//                        break;
+//                }
+//
+//
+//
+//                if(oldTree.toStaticHashString().equals(newTree.toStaticHashString())){
+//                    String editDistance = "0";
 //                    String result = i + "," + j + "," + editDistance;
-//
-//
 //                    if (editDistance.equals("0")) {
 //
 //                        if (treeType.equals("action")) {
-//
 //                            HierarchicalActionSet oldProject = oldPair.getValue1();
 //                            HierarchicalActionSet newProject = newPair.getValue1();
 //
 //                            oldTree = EDiffHelper.getTargets(oldProject);
 //                            newTree = EDiffHelper.getTargets(newProject);
-//
-//                            if(oldTree.toString().equals(newTree.toString())) {
-//                                m = Matchers.getInstance().getMatcher(oldTree, newTree);
-//                                m.match();
-//
-//
-//                                ag = new ActionGenerator(oldTree, newTree, m.getMappings());
-//                                ag.generate();
-//                                actions = ag.getActions();
-//
-//                                editDistance = String.valueOf(actions.size());
-//
-//                                if (editDistance.equals("0")) {
-//                                    try (Jedis jedis = innerPool.getResource()) {
-//                                        jedis.del(matchKey);
-//                                        jedis.select(2);
-//                                        jedis.set(matchKey, result);
-//                                    }
-//                                }
+//                            if (oldTree.toStaticHashString().equals(newTree.toStaticHashString())) {
+//                                samePairs.add(matchKey);
+////                                try (Jedis jedis = innerPool.getResource()) {
+//////                                    jedis.del(matchKey);
+////                                    jedis.select(2);
+////                                    jedis.set(matchKey, result);
+////
+////                                }
 //                            }
-//
-//
 //                        } else {
-//                            try (Jedis jedis = innerPool.getResource()) {
-//                                jedis.del(matchKey);
-//                                jedis.select(2);
-//                                jedis.set(matchKey, result);
-//                            }
-////                        jedis.select(2);
-////                        jedis.set(matchKey, result);
-////                        samePairs.add(matchKey);
+//                            samePairs.add(matchKey);
+////                            try (Jedis jedis = innerPool.getResource()) {
+//////                            jedis.del(matchKey);
+////                                jedis.select(2);
+////                                jedis.set(matchKey, result);
+////
+////                            }
 //                        }
-//
 //                    }
-//                }
-
-            } catch (Exception e) {
-                errorPairs.add(matchKey);
-//                jedis.select(0);
-////            jedis.srem("pairs",matchKey);
 //
-//                jedis.hset(matchKey, "0", "1");
-
-                log.debug("{} not comparable", pairName);
-            }
-    }
+//
+//                }
+////                if(oldTree.toString().equals(newTree.toString())) {
+////                    Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);
+////                    m.match();
+////
+////
+////                    ActionGenerator ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+////                    ag.generate();
+////                    List<Action> actions = ag.getActions();
+////
+////
+////                    String editDistance;
+////
+////                    editDistance = String.valueOf(actions.size());
+////                    String result = i + "," + j + "," + editDistance;
+////
+////
+////                    if (editDistance.equals("0")) {
+////
+////                        if (treeType.equals("action")) {
+////
+////                            HierarchicalActionSet oldProject = oldPair.getValue1();
+////                            HierarchicalActionSet newProject = newPair.getValue1();
+////
+////                            oldTree = EDiffHelper.getTargets(oldProject);
+////                            newTree = EDiffHelper.getTargets(newProject);
+////
+////                            if(oldTree.toString().equals(newTree.toString())) {
+////                                m = Matchers.getInstance().getMatcher(oldTree, newTree);
+////                                m.match();
+////
+////
+////                                ag = new ActionGenerator(oldTree, newTree, m.getMappings());
+////                                ag.generate();
+////                                actions = ag.getActions();
+////
+////                                editDistance = String.valueOf(actions.size());
+////
+////                                if (editDistance.equals("0")) {
+////                                    try (Jedis jedis = innerPool.getResource()) {
+////                                        jedis.del(matchKey);
+////                                        jedis.select(2);
+////                                        jedis.set(matchKey, result);
+////                                    }
+////                                }
+////                            }
+////
+////
+////                        } else {
+////                            try (Jedis jedis = innerPool.getResource()) {
+////                                jedis.del(matchKey);
+////                                jedis.select(2);
+////                                jedis.set(matchKey, result);
+////                            }
+//////                        jedis.select(2);
+//////                        jedis.set(matchKey, result);
+//////                        samePairs.add(matchKey);
+////                        }
+////
+////                    }
+////                }
+//
+//            } catch (Exception e) {
+//                errorPairs.add(matchKey);
+////                jedis.select(0);
+//////            jedis.srem("pairs",matchKey);
+////
+////                jedis.hset(matchKey, "0", "1");
+//
+//                log.debug("{} not comparable", pairName);
+//            }
+//    }
 
 
 }
