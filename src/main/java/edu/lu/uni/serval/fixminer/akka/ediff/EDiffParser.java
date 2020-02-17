@@ -43,7 +43,8 @@ public class EDiffParser extends Parser {
 		// GumTree results
 		boolean isJava =false;
 		List<Action> gumTreeResults = null;
-		if (revFile.getName().endsWith(".c") & prevFile.getName().endsWith(".c") || revFile.getName().endsWith(".h") & prevFile.getName().endsWith(".h")){
+		if (true){
+//		if (revFile.getName().endsWith(".c") & prevFile.getName().endsWith(".c") || revFile.getName().endsWith(".h") & prevFile.getName().endsWith(".h")){
 //			gumTreeResults = new GumTreeComparer().compareCFilesWithGumTree(prevFile, revFile);
 
 

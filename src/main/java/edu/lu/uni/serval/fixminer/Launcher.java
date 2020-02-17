@@ -22,8 +22,8 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-//        String appConfigPath = "/Users/anil.koyuncu/projects/fixminer/fixminer_source/src/main/resource/app.properties";
-        String appConfigPath = args[0];
+        String appConfigPath = "/Users/anilkoyuncu/projects/fixminer/fixminer_source/src/main/resource/app.properties";
+//        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
 //        String portInner = appProps.getProperty("portInner","6380");

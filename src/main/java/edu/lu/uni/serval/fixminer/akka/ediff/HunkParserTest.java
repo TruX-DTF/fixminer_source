@@ -10,6 +10,7 @@ import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
 import org.apache.commons.io.FileUtils;
 import org.javatuples.Pair;
+import org.junit.Assert;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -31,8 +32,8 @@ public class HunkParserTest {
     public void testSimple() throws IOException {
 //        String input = "/Users/anil.koyuncu/projects/test/fixminer-core/python/data/gumInputLinux/revFiles/7f52f3_3845d29_drivers#pci#host#pcie-altera.c";
 
-//        String root = "/Users/anil.koyuncu/projects/fixminer/gumInputLinux/linux/";
-        String root = "/Users/anil.koyuncu/projects/fixminer/fixminer-core/python/data/gumInputLinux/";
+//        String root = "//Users/anilkoyuncu/projects/gumInputLinux/";
+        String root = "/Users/anilkoyuncu/projects/fixminer/fixminer-core/python/data/gumInputLinux/";
         String filename ="";
 //        filename ="freebsd_ceca9b8_b864ac4_sys#kern#sched_ule.c"; //too long
 //        filename ="openbsd_e592ec_39c81a_sys#arch#i386#pci#pci_machdep.c"; //not parseable 56 "parameter_list" "" () ( (57 "parameter" "" () ( (22 "decl" "" () ())))
@@ -52,21 +53,21 @@ public class HunkParserTest {
 //        filename ="omp_19fae3_1e4dcd_src#mca#mpool#sm#mpool_sm_mmap.c"; // cannot find
 //        filename ="FFmpeg_a8343bf_2b2039_libavformat#riff.c"; // ok
 //        filename ="freebsd_32766e4_200ff4_sbin#routed#parms.c"; // ok
-         filename ="openbsd_150ddd_cf0e20_usr.sbin#user#user.c"; //notok
-         filename ="openbsd_6fac1e_c3b383_usr.bin#tmux#window-copy.c"; //notok
-         filename ="freebsd_0cb6f2_b4c742_sys#dev#ipw#if_ipw.c"; //notok
-         filename ="php-src_7defd5_da06f7_ext#mbstring#mbstring.c"; //notok (19 "expr_stmt" "" () ()))))
-         filename ="libtiff_177169_71715f_tools#tiff2ps.c"; //notok (19 "expr_stmt" "" () ()))))
+//         filename ="openbsd_150ddd_cf0e20_usr.sbin#user#user.c"; //notok
+//         filename ="openbsd_6fac1e_c3b383_usr.bin#tmux#window-copy.c"; //notok
+//         filename ="freebsd_0cb6f2_b4c742_sys#dev#ipw#if_ipw.c"; //notok
+//         filename ="php-src_7defd5_da06f7_ext#mbstring#mbstring.c"; //notok (19 "expr_stmt" "" () ()))))
+//         filename ="libtiff_177169_71715f_tools#tiff2ps.c"; //notok (19 "expr_stmt" "" () ()))))
          filename ="linux_955c1dd_0aaee4_drivers#gpu#drm#i915#gvt#handlers.c"; //notok (19 "expr_stmt" "" () ()))))
 
 //        filename ="FFmpeg_0726b2_66d2ff_libav#jpeg.c";
         String pj = filename.split("_")[0];
         filename = filename.replace(pj+"_","");
-        root = root + pj + "/";
-//        root = root + "codeflaws/";
+//        root = root + pj + "/";
+        root = root + "codeflaws/";
 
 
-
+        filename ="287-A-14208510-14208532.c";
 //        filename = "474-A-15925943-15925951.c"; //mot ok
 //        filename = "6-C-11536006-11536039.c"; //okish
 //        filename = "500-A-18298071-18298124.c"; //ok
@@ -85,13 +86,14 @@ public class HunkParserTest {
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML.0.9.5/bin/srcml";
+        String srcMLPath = "/usr/local/bin/srcml";
 //        String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML.0.9.5/bin/srcml";
         parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
 //        ITree t = new SrcmlCppTreeGenerator().generateFromFile(input).getRoot();
 //        Assert.assertEquals(148, t.getSize());
 
     }
+
 
     @Test
     public void dumpFnction() throws Exception {

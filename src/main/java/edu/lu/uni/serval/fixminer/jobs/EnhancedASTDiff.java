@@ -4,8 +4,6 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import edu.lu.uni.serval.fixminer.akka.ediff.*;
 import edu.lu.uni.serval.utils.CallShell;
-import edu.lu.uni.serval.utils.EDiffHelper;
-import edu.lu.uni.serval.utils.FileHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -13,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,6 +62,7 @@ public class EnhancedASTDiff {
 				.filter(x -> !x.getName().startsWith("."))
 				.filter(x -> !x.getName().startsWith("cocci"))
 				.filter(x -> !x.getName().endsWith(".index"))
+				.filter(x -> x.getName().endsWith("codeflaws"))
 				.collect(Collectors.toList());
 
 
@@ -152,7 +151,8 @@ public class EnhancedASTDiff {
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
 				fileName = fileName + ".txt";
 				File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
-
+//				if(FileHelper.readFile(diffentryFile).split("@@\\s\\-\\d+,*\\d*\\s\\+\\d+,*\\d*\\s@@").length > 2)
+//					continue;
 				MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
 
 				msgFiles.add(msgFile);
