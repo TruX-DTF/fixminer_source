@@ -44,6 +44,7 @@ public class HierarchicalRegrouperForC {
 		/*
 		 * Second, group actions by their positions.
 		 */
+
 		HierarchicalActionSet actionSet = null;
 		for(Action act : actions){
 			if(act.getNode().getType() == 2){
@@ -55,6 +56,7 @@ public class HierarchicalRegrouperForC {
 				actionSet = createActionSet(act, parentAct, null);
 				actionSets.add(actionSet);
 			} else {
+//				if (!addToAactionSet(act, parentAct, actionSets)) {
 				if (!addToAactionSet(act, parentAct, actionSets)) {
 					// The index of the parent action in the actions' list is larger than the index of this action.
 					actionSet = createActionSet(act, parentAct, null);
@@ -71,6 +73,7 @@ public class HierarchicalRegrouperForC {
 			Action parentAct = actSet.getParentAction();
 			if (parentAct != null) {
 				addToActionSets(actSet, parentAct, actionSets);
+				actionSets.set(actionSets.indexOf(actSet), null);
 			} else {
 				// TypeDeclaration, FieldDeclaration, MethodDeclaration, Statement. 
 				// CatchClause, ConstructorInvocation, SuperConstructorInvocation, SwitchCase
@@ -85,15 +88,39 @@ public class HierarchicalRegrouperForC {
 			}
 		}
 
+
+//		return reActionSets1;
+//		return reActionSets;
+
+		List<HierarchicalActionSet> re2ActionSets = new ArrayList<>();
+		for (HierarchicalActionSet act:reActionSets){
+			if (!act.getAction().getClass().equals(Update.class) || ((Update) act.getAction()).getflag() == true){
+				re2ActionSets.add(act);
+				continue;
+			}
+			findRealAction(act, re2ActionSets);
+
+		}
+
 		List<HierarchicalActionSet> reActionSets1 = new ArrayList<>();
-		for(HierarchicalActionSet a:reActionSets){
+		for(HierarchicalActionSet a:re2ActionSets){
 			HierarchicalActionSet hierarchicalActionSet = removeBlocks(a);
 			hierarchicalActionSet = removeIFthenBlocks(hierarchicalActionSet);
 			reActionSets1.add(hierarchicalActionSet);
 
 		}
+
 		return reActionSets1;
-//		return reActionSets;
+	}
+
+	private void findRealAction(HierarchicalActionSet act, List<HierarchicalActionSet> re2ActionSets) {
+		if (!act.getAction().getClass().equals(Update.class) || ((Update) act.getAction()).getflag() == true){
+			re2ActionSets.add(act);
+			return;
+		}
+		for (HierarchicalActionSet a:act.getSubActions()){
+			findRealAction(a, re2ActionSets);
+		}
 	}
 
 	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
@@ -191,7 +218,7 @@ public class HierarchicalRegrouperForC {
 	private void addToActionSets(HierarchicalActionSet actionSet, Action parentAct, List<HierarchicalActionSet> actionSets) {
 		Action act = actionSet.getAction();
 		for (HierarchicalActionSet actSet : actionSets) {
-			if (actSet.equals(actionSet)) continue;
+			if (actSet == null || actSet.equals(actionSet)) continue;
 			Action action = actSet.getAction();
 			
 			if (!areRelatedActions(action, act)) continue;
