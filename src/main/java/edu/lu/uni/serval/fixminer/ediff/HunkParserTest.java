@@ -1,30 +1,19 @@
-package edu.lu.uni.serval.fixminer.akka.ediff;
+package edu.lu.uni.serval.fixminer.ediff;
 
-import com.github.gumtreediff.gen.srcml.NodeMap_new;
 import com.github.gumtreediff.tree.ITree;
-import com.github.gumtreediff.tree.TreeContext;
-import edu.lu.uni.serval.fixminer.akka.compare.AkkaTreeParser;
-import edu.lu.uni.serval.fixminer.akka.ediff.EDiffHunkParser;
 import edu.lu.uni.serval.utils.ClusterToPattern;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
 import org.apache.commons.io.FileUtils;
 import org.javatuples.Pair;
-import org.junit.Assert;
 import org.junit.Test;
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.instrument.Instrumentation;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class HunkParserTest {
 
@@ -246,7 +235,7 @@ public class HunkParserTest {
         String keyName = "if-3";
         String i = "2";
         String j = "21";
-        HashMap<String, String> filenames = AkkaTreeParser.filenames(outerPool);
+//        HashMap<String, String> filenames = AkkaTreeParser.filenames(outerPool);
 
 //        oldPair = EDiffHelper.getActions(keyName, i, outerPool, filenames);
 //        newPair = EDiffHelper.getActions(keyName, j, outerPool, filenames);

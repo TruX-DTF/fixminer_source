@@ -1,6 +1,6 @@
 package edu.lu.uni.serval.fixminer;
 
-import edu.lu.uni.serval.fixminer.akka.compare.CompareTrees;
+import edu.lu.uni.serval.fixminer.jobs.CompareTrees;
 import edu.lu.uni.serval.fixminer.jobs.EnhancedASTDiff;
 import edu.lu.uni.serval.utils.ClusterToPattern;
 import org.slf4j.Logger;
@@ -26,16 +26,16 @@ public class Launcher {
 //        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
-//        String portInner = appProps.getProperty("portInner","6380");
         String numOfWorkers = appProps.getProperty("numOfWorkers", "10");
         String portDumps = appProps.getProperty("portDumps","6399");
         String pjName = appProps.getProperty("pjName","allDataset");
         String actionType = appProps.getProperty("actionType","ALL");
-        String eDiffTimeout = appProps.getProperty("eDiffTimeout","900");
-        String parallelism = appProps.getProperty("parallelism","FORKJOIN");
+
         String hostname = appProps.getProperty("hostname","localhost");
         String hunkLimit = appProps.getProperty("hunkLimit","10");
-
+        String patchSize = appProps.getProperty("patchSize","50");
+        String projectL = appProps.getProperty("projectList","");
+        String[] projectList = projectL.split(",");
         String input = appProps.getProperty("inputPath","FORKJOIN");
         String redisPath = appProps.getProperty("redisPath","FORKJOIN");
         String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
@@ -58,12 +58,12 @@ public class Launcher {
 //
 //        log.info(parameters);
 
-        mainLaunch( numOfWorkers, jobType, portDumps, pjName,actionType,eDiffTimeout,parallelism,input,redisPath,parameter, srcMLPath,hostname,hunkLimit);
+        mainLaunch( numOfWorkers, jobType, portDumps, pjName,actionType,input,redisPath,parameter, srcMLPath,hostname,hunkLimit,projectList,patchSize);
 
 
     }
 
-    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String eDiffTimeout,  String parallelism,String input, String redisPath,String parameter,String srcMLPath,String hostname,String hunkLimit){
+    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String input, String redisPath,String parameter,String srcMLPath,String hostname,String hunkLimit,String[] projectList,String patchSize){
 
 
         String dbDir;
@@ -79,11 +79,7 @@ public class Launcher {
         try {
             switch (jobType) {
                 case "RICHEDITSCRIPT":
-                    EnhancedASTDiff.main(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName, srcMLPath,parameter,hunkLimit);
-                    break;
-
-                case "LOAD":
-                    EnhancedASTDiff.load(gumInput, numOfWorkers, pjName, eDiffTimeout,parallelism,portDumps, dbDir, actionType+dumpsName, srcMLPath,parameter);
+                    EnhancedASTDiff.main(gumInput, pjName, portDumps, dbDir, actionType+dumpsName, srcMLPath,parameter,hunkLimit,projectList,patchSize);
                     break;
 
                 case "COMPARE":
