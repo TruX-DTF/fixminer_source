@@ -2,9 +2,11 @@ package edu.lu.uni.serval.fixminer.jobs;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import edu.lu.uni.serval.fixminer.akka.compare.CompareTrees;
 import edu.lu.uni.serval.fixminer.akka.ediff.*;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.PoolBuilder;
+import me.tongfei.progressbar.ProgressBar;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,6 +59,14 @@ public class EnhancedASTDiff {
 
 		}
 
+		Predicate<File> predicate1 = x->x.getName().endsWith("libtiff");
+		Predicate<File> predicate2 = x->x.getName().endsWith("php-src");
+		Predicate<File> predicate3 = x->x.getName().endsWith("cpython");
+		Predicate<File> predicate4 = x->x.getName().endsWith("wireshark");
+		Predicate<File> predicate5 = x->x.getName().endsWith("gzip");
+		Predicate<File> predicate6 = x->x.getName().endsWith("gmp");
+		Predicate<File> predicate7 = x->x.getName().endsWith("lighttpd1.4");
+		Predicate<File> predicate8 = x->x.getName().endsWith("lighttpd2");
 		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
@@ -62,6 +74,7 @@ public class EnhancedASTDiff {
 				.filter(x -> !x.getName().startsWith("."))
 				.filter(x -> !x.getName().startsWith("cocci"))
 				.filter(x -> !x.getName().endsWith(".index"))
+				.filter(predicate1.or(predicate2).or(predicate3).or(predicate4).or(predicate5).or(predicate6).or(predicate7).or(predicate8))
 //				.filter(x -> x.getName().endsWith("codeflaws"))
 				.collect(Collectors.toList());
 
@@ -111,7 +124,7 @@ public class EnhancedASTDiff {
 								forEach(m ->
 										{
 											EDiffHunkParser parser =  new EDiffHunkParser();
-											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,"/Users/anilkoyuncu/Downloads/srcML2/src2srcml",null);
+											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,srcMLPath,hunkLimit);
 											if (counter % 10 == 0) {
 												log.info("Finalized parsing " + counter + " files... remaining " + (allMessageFiles.size() - counter));
 											}
@@ -124,6 +137,64 @@ public class EnhancedASTDiff {
 
 
 			default:
+//				ProgressBar.wrap(allMessageFiles.stream().
+//						parallel(),"Task").
+//						forEach(m ->
+//								{
+//									EDiffHunkParser parser =  new EDiffHunkParser();
+//									parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,srcMLPath,hunkLimit);
+////									if (counter % 10 == 0) {
+////										log.info("Finalized parsing " + counter + " files... remaining " + (allMessageFiles.size() - counter));
+////									}
+//								}
+//						);
+
+
+				Integer numberOfWorkers = Integer.valueOf(numOfWorkers);
+				final ExecutorService executor = Executors.newWorkStealingPool(numberOfWorkers);
+				ArrayList<Future<?>> results = new ArrayList<Future<?>>();
+				for (MessageFile msgFile : allMessageFiles) {
+					File revFile = msgFile.getRevFile();
+					File prevFile = msgFile.getPrevFile();
+					File diffentryFile = msgFile.getDiffEntryFile();
+
+
+
+					// schedule the work
+//					log.info("Starting job {}",i);
+//					final Future<?> future = executor.submit(new CompareTrees.RunnableCompare(job, errorPairs, filenames, outerPool, i));
+					EDiffHunkParser parser =  new EDiffHunkParser();
+					final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,innerPool,srcMLPath,hunkLimit));
+					results.add(future);
+				}
+				try(ProgressBar compare = new ProgressBar("Compare", allMessageFiles.size())){
+//				for (Future<?> future : ProgressBar.wrap(results, "Comparing")){
+        		for (Future<?> future:results){
+					try {
+						// wait for task to complete
+//						future.get();
+						future.get(new Long(eDiffTimeout), TimeUnit.SECONDS);
+						compare.step();
+					} catch (TimeoutException e) {
+						future.cancel(true);
+						compare.step();
+
+					} catch (InterruptedException e) {
+
+						e.printStackTrace();
+					} catch (ExecutionException e) {
+
+						e.printStackTrace();
+					}
+//            finally {
+//                executor.shutdownNow();
+//            }
+				}
+				}
+				executor.shutdownNow();
+
+
+
 				log.error("Unknown parallelism {}", parallelism);
 				break;
 		}
