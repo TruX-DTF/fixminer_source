@@ -59,7 +59,7 @@ public class EDiffWorker extends UntypedActor {
 				// schedule the work
 
 
-				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,msg.getInnerPool(),srcMLPath,rootType));
+				final Future<?> future = executor.submit(new RunnableParser(prevFile, revFile, diffentryFile, parser,project,msg.getInnerPool(),srcMLPath,rootType,false));
 				try {
 					// wait for task to complete
 					future.get(msg.getSECONDS_TO_WAIT(), TimeUnit.SECONDS);

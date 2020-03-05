@@ -77,7 +77,7 @@ public class HunkParserTest {
 
         String srcMLPath = "/usr/local/bin/srcml";
 //        String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML.0.9.5/bin/srcml";
-        parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+        parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
 //        ITree t = new SrcmlCppTreeGenerator().generateFromFile(input).getRoot();
 //        Assert.assertEquals(148, t.getSize());
 
@@ -101,7 +101,7 @@ public class HunkParserTest {
         File prevFile =new File(root + "prevFiles/prev_"+filename);
         File diffFile = new File(root + "DiffEntries/"+filename+".txt");
         EDiffHunkParser parser = new EDiffHunkParser();
-        parser.parseFixPatterns(prevFile,revFile,diffFile,"gumInputLinux",null,srcMLPath,null);
+        parser.parseFixPatterns(prevFile,revFile,diffFile,"gumInputLinux",null,srcMLPath,null,false);
     }
 
 
@@ -118,7 +118,7 @@ public class HunkParserTest {
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile,"");
+        parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile,"",true);
 //        ITree t = new SrcmlCppTreeGenerator().generateFromFile(input).getRoot();
 //        Assert.assertEquals(148, t.getSize());
     }
@@ -137,7 +137,7 @@ public class HunkParserTest {
         File prevFile =new File(root + "prevFiles/prev_"+filename);
         File diffFile = new File(root + "DiffEntries/"+filename+".txt");
         String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML/src2srcml";
-        parser.parseFixPatterns(prevFile,revFile,diffFile,"gumInputLinux",outerPool,srcMLPath,"if");
+        parser.parseFixPatterns(prevFile,revFile,diffFile,"gumInputLinux",outerPool,srcMLPath,"if",false);
         String key = "if/3/linux_bb67dd_0922c7_sound#soc#sof#intel#hda.c.txt_0";
         File file2load = new File("/Users/anil.koyuncu/projects/fixminer/dumps/"+ key);
         byte[] dump = FileUtils.readFileToByteArray(file2load);
@@ -244,11 +244,11 @@ public class HunkParserTest {
         HierarchicalActionSet oldProject = oldPair.getValue1();
         HierarchicalActionSet newProject = newPair.getValue1();
 
-        ITree oldShapeTree = EDiffHelper.getShapeTree(oldProject);
-        ITree newShapeTree = EDiffHelper.getShapeTree(newProject);
+        ITree oldShapeTree = EDiffHelper.getShapeTree(oldProject,false);
+        ITree newShapeTree = EDiffHelper.getShapeTree(newProject,false);
 
-        ITree oldTargetTree = EDiffHelper.getTargets(oldProject);
-        ITree newTargetTree = EDiffHelper.getTargets(newProject);
+        ITree oldTargetTree = EDiffHelper.getTargets(oldProject,false);
+        ITree newTargetTree = EDiffHelper.getTargets(newProject,false);
         String oldShape = oldShapeTree.toStaticHashString();
         String newShape = newShapeTree.toStaticHashString();
 

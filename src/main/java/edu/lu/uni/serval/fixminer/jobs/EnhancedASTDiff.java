@@ -26,7 +26,7 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String project, String portInner, String dbDir, String chunkName,String srcMLPath,String parameter,String hunkLimit,String[] projectList,String patchSize) throws Exception {
+	public static void main(String inputPath, String project, String portInner, String dbDir, String chunkName,String srcMLPath,String parameter,String hunkLimit,String[] projectList,String patchSize,String projectType) throws Exception {
 
 
 		String parameters = String.format("\nInput path %s",inputPath);
@@ -47,6 +47,11 @@ public class EnhancedASTDiff {
 			allPredicates.add(predicate);
 		}
 
+		boolean isJava = false;
+		if (projectType.equals("java")){
+			isJava =true;
+		}
+
 		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
@@ -61,7 +66,7 @@ public class EnhancedASTDiff {
 		List<MessageFile> allMessageFiles = new ArrayList<>();
         for (File target : folders) {
 
-			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/",project,patchSize); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
+			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/",project,patchSize,isJava); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
 //			msgFiles = msgFiles.subList(0,3000);
 			if (msgFiles == null)
@@ -82,12 +87,13 @@ public class EnhancedASTDiff {
 			allMessageFiles = allMessageFiles.stream().filter(f -> !diffEntry.containsKey(f.getProject() + "_" + f.getDiffEntryFile().getName())).collect(Collectors.toList());
 			log.info("{} files to process ...", allMessageFiles.size());
 		}
+		boolean finalIsJava = isJava;
 		ProgressBar.wrap(allMessageFiles.stream().
 				parallel(),"Task").
 				forEach(m ->
 						{
 							EDiffHunkParser parser =  new EDiffHunkParser();
-							parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,srcMLPath,hunkLimit);
+							parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,srcMLPath,hunkLimit, finalIsJava);
 						}
 				);
 
@@ -95,7 +101,7 @@ public class EnhancedASTDiff {
 
 	
 
-	private static List<MessageFile> getMessageFiles(String gumTreeInput,String datasetName,String patchSize) {
+	private static List<MessageFile> getMessageFiles(String gumTreeInput,String datasetName,String patchSize,boolean isJava) {
 		String inputPath = gumTreeInput; // prevFiles  revFiles diffentryFile positionsFile
 		File revFilesPath = new File(inputPath + "revFiles/");
 		log.info(revFilesPath.getPath());
@@ -108,7 +114,11 @@ public class EnhancedASTDiff {
 	//		for (File revFile : collect) {
 				String fileName = revFile.getName();
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
-				fileName = fileName + ".txt";
+				if (isJava){
+					fileName = fileName.replace(".java",".txt");
+				}else{
+					fileName = fileName + ".txt";
+				}
 				File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
 				String s = FileHelper.readFile(diffentryFile);
 

@@ -113,17 +113,23 @@ public class EDiffHelper {
 
 
 
-    public static ITree getTargetTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc){
+    public static ITree getTargetTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc,boolean isJava){
 
         int newType = 0;
 
         String astNodeType = null;
+        Map<Integer, String> nodeMap;
+        if(isJava){
+             nodeMap = ASTNodeMap.map;
+        }else{
+            nodeMap = NodeMap_new.map;
+        }
 
         Action action = actionSet.getAction();
         if (action instanceof Update){
             astNodeType = actionSet.getAstNodeType();
-//            List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
-            List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
+
+            List<Integer> keysByValue = getKeysByValue(nodeMap, astNodeType);
 
             if(keysByValue.size() != 1){
                 log.error("More than 1");
@@ -135,8 +141,8 @@ public class EDiffHelper {
             newType = ((Move)action).getParent().getType();
         }else if(action instanceof Delete){
             astNodeType = actionSet.getAstNodeType();
-//            List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
-            List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
+
+            List<Integer> keysByValue = getKeysByValue(nodeMap, astNodeType);
 
             if(keysByValue.size() != 1){
                 log.error("More than 1");
@@ -165,7 +171,7 @@ public class EDiffHelper {
                 if(actionSet.getParent() == null){
                     children = parent;
                 }
-                getTargetTree(subAction,children,null,tc);
+                getTargetTree(subAction,children,null,tc,isJava);
 
             }
 
@@ -174,13 +180,18 @@ public class EDiffHelper {
         return parent;
     }
 
-    public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc){
+    public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc,boolean isJava){
 
         int newType = 0;
-
+        Map<Integer, String> nodeMap;
+        if(isJava){
+            nodeMap = ASTNodeMap.map;
+        }else{
+            nodeMap = NodeMap_new.map;
+        }
         String astNodeType = actionSet.getAstNodeType();
-//        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
-        List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
+
+        List<Integer> keysByValue = getKeysByValue(nodeMap, astNodeType);
 
         if(keysByValue.size() != 1){
             log.error("More than 1");
@@ -205,7 +216,7 @@ public class EDiffHelper {
                 if(actionSet.getParent() == null){
                     children = parent;
                 }
-                getASTTree(subAction,children,null,tc);
+                getASTTree(subAction,children,null,tc,isJava);
 
             }
 
@@ -223,40 +234,40 @@ public class EDiffHelper {
                 .collect(Collectors.toList());
     }
 
-    public static ITree getSimpliedTree(String prefix, String fn, JedisPool outerPool) {
-
-        ITree tree = null;
-        Jedis inner = null;
-        try {
-            inner = outerPool.getResource();
-            while (!inner.ping().equals("PONG")){
-                log.info("wait");
-            }
-            inner.select(1);
-            String dist2load = inner.get(prefix+"-"+fn);
-            inner.select(0);
-            String s = inner.get(prefix.replace("-","/") +"/"+dist2load);
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(s);
-
-            ITree parent = null;
-            ITree children =null;
-            TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
-            tree.setParent(null);
-            tc.validate();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }finally {
-            if (inner != null) {
-                inner.close();
-            }
-        }
-        return tree;
-
-    }
+//    public static ITree getSimpliedTree(String prefix, String fn, JedisPool outerPool) {
+//
+//        ITree tree = null;
+//        Jedis inner = null;
+//        try {
+//            inner = outerPool.getResource();
+//            while (!inner.ping().equals("PONG")){
+//                log.info("wait");
+//            }
+//            inner.select(1);
+//            String dist2load = inner.get(prefix+"-"+fn);
+//            inner.select(0);
+//            String s = inner.get(prefix.replace("-","/") +"/"+dist2load);
+//            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(s);
+//
+//            ITree parent = null;
+//            ITree children =null;
+//            TreeContext tc = new TreeContext();
+//            tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
+//            tree.setParent(null);
+//            tc.validate();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }finally {
+//            if (inner != null) {
+//                inner.close();
+//            }
+//        }
+//        return tree;
+//
+//    }
 
 
 //    public static ITree getShapes(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
@@ -285,19 +296,19 @@ public class EDiffHelper {
 //
 //    }
 
-    public static ITree getShapeTree(HierarchicalActionSet actionSet) {
+    public static ITree getShapeTree(HierarchicalActionSet actionSet,boolean isJava) {
         ITree tree = null;
         ITree parent = null;
         ITree children = null;
         TreeContext tc = new TreeContext();
-        tree = EDiffHelper.getASTTree(actionSet, parent, children, tc);
+        tree = EDiffHelper.getASTTree(actionSet, parent, children, tc, isJava);
         //tree.setParent(null);
         tc.validate();
         return tree;
     }
 
 
-    public static ITree getTargets(HierarchicalActionSet actionSet) {
+    public static ITree getTargets(HierarchicalActionSet actionSet,boolean isJava) {
 
         ITree tree = null;
         try {
@@ -305,7 +316,7 @@ public class EDiffHelper {
             ITree parent = null;
             ITree children =null;
             TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getTargetTree(actionSet, parent, children,tc);
+            tree = EDiffHelper.getTargetTree(actionSet, parent, children,tc,isJava);
             //tree.setParent(null);
             tc.validate();
         } catch (Exception e) {

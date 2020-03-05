@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Properties;
 
 /**
@@ -22,16 +24,33 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-        String appConfigPath = "src/main/resource/app.properties";
+        String hostname = "Unknown";
+        try
+        {
+            InetAddress addr;
+            addr = InetAddress.getLocalHost();
+            hostname = addr.getHostName();
+        }
+        catch (UnknownHostException ex)
+        {
+            System.out.println("Hostname can not be resolved");
+        }
+        String appConfigPath;
+        if (hostname.equals("Unknown")){
+             appConfigPath = "src/main/resource/app.properties";
+        }
+        else{
+             appConfigPath = "src/main/resource/"+hostname+".app.properties";
+        }
 //        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
         String numOfWorkers = appProps.getProperty("numOfWorkers", "10");
         String portDumps = appProps.getProperty("portDumps","6399");
         String pjName = appProps.getProperty("pjName","allDataset");
-        String actionType = appProps.getProperty("actionType","ALL");
+        String projectType = appProps.getProperty("projectType","java");
 
-        String hostname = appProps.getProperty("hostname","localhost");
+//        String hostname = appProps.getProperty("hostname","localhost");
         String hunkLimit = appProps.getProperty("hunkLimit","10");
         String patchSize = appProps.getProperty("patchSize","50");
         String projectL = appProps.getProperty("projectList","");
@@ -45,9 +64,8 @@ public class Launcher {
 //        String parameter = "if";
 //        String parameter = "add";
 //        String jobType = args[1];
-        String jobType = "RICHEDITSCRIPT";
-//        String jobType = "LOAD";
-//        String jobType = "COMPARE";
+//        String jobType = "RICHEDITSCRIPT";
+        String jobType = "COMPARE";
 
 //        String parameters = String.format("\nportInner %s " +
 //                "\nnumOfWorkers %s " +
@@ -58,12 +76,12 @@ public class Launcher {
 //
 //        log.info(parameters);
 
-        mainLaunch( numOfWorkers, jobType, portDumps, pjName,actionType,input,redisPath,parameter, srcMLPath,hostname,hunkLimit,projectList,patchSize);
+        mainLaunch( numOfWorkers, jobType, portDumps, pjName,projectType,input,redisPath,parameter, srcMLPath,hostname,hunkLimit,projectList,patchSize);
 
 
     }
 
-    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String actionType, String input, String redisPath,String parameter,String srcMLPath,String hostname,String hunkLimit,String[] projectList,String patchSize){
+    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String projectType, String input, String redisPath,String parameter,String srcMLPath,String hostname,String hunkLimit,String[] projectList,String patchSize){
 
 
         String dbDir;
@@ -79,7 +97,7 @@ public class Launcher {
         try {
             switch (jobType) {
                 case "RICHEDITSCRIPT":
-                    EnhancedASTDiff.main(gumInput, pjName, portDumps, dbDir, actionType+dumpsName, srcMLPath,parameter,hunkLimit,projectList,patchSize);
+                    EnhancedASTDiff.main(gumInput, pjName, portDumps, dbDir, dumpsName, srcMLPath,parameter,hunkLimit,projectList,patchSize,projectType);
                     break;
 
                 case "COMPARE":
@@ -104,10 +122,10 @@ public class Launcher {
                     }
 
 
-                    CompareTrees.main(redisPath, portDumps,actionType+dumpsName, job,numOfWorkers,hostname);
+                    CompareTrees.main(redisPath, portDumps,dumpsName, job,numOfWorkers,hostname);
                     break;
                 case "PATTERN":
-                    ClusterToPattern.main(portDumps,redisPath, actionType+dumpsName, parameter);
+                    ClusterToPattern.main(portDumps,redisPath, dumpsName, parameter);
                     break;
                 default:
                     throw new Error("unknown Job");

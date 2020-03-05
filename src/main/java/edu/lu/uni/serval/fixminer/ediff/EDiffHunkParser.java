@@ -22,7 +22,7 @@ public class EDiffHunkParser extends EDiffParser {
 
 	private static Logger logger = LoggerFactory.getLogger(EDiffHunkParser.class);
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile, String project, JedisPool innerPool,String srcMLPath,String hunkLimit) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffentryFile, String project, JedisPool innerPool,String srcMLPath,String hunkLimit,boolean isJava) {
 
 		String datasetName = project;
 		String[] split1 = diffentryFile.getParent().split(datasetName);
@@ -30,7 +30,7 @@ public class EDiffHunkParser extends EDiffParser {
 		String pj = split1[1].split("/")[1];
 
 
-		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+		List<HierarchicalActionSet> actionSets = parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,isJava);
 
 		if (actionSets != null && actionSets.size() != 0) {
 
@@ -59,9 +59,9 @@ public class EDiffHunkParser extends EDiffParser {
 
 						String key = astNodeType + "/" + String.valueOf(size) + "/" + pj + "_" + diffentryFile.getName() + "_" + String.valueOf(hunkSet);
 
-						ITree targetTree = EDiffHelper.getTargets(actionSet);
+						ITree targetTree = EDiffHelper.getTargets(actionSet,isJava);
 						ITree actionTree = EDiffHelper.getActionTrees(actionSet);
-						ITree shapeTree = EDiffHelper.getShapeTree(actionSet);
+						ITree shapeTree = EDiffHelper.getShapeTree(actionSet,isJava);
 						try (Jedis inner = innerPool.getResource()) {
 
 							inner.hset("dump", key, actionSet.toString());

@@ -433,7 +433,7 @@ public class TestIntroClass {
         EDiffHunkParser parser = new EDiffHunkParser();
 
 
-        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         return hierarchicalActionSets;
     }
 

@@ -20,7 +20,7 @@ public abstract class Parser implements ParserInterface {
 	protected String originalTree = ""; 		// Guide of generating patches.
 	protected String actionSets = ""; 		// Guide of generating patches.
 
-	public abstract void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool, String srcMLPath,String rootType);
+	public abstract void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool, String srcMLPath,String rootType,boolean isJava);
 	
 
 	@Override

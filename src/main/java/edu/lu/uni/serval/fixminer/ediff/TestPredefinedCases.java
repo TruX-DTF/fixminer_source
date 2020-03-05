@@ -28,7 +28,7 @@ public class TestPredefinedCases {
 
 
 
-        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         hierarchicalActionSets.size();
         Assert.assertEquals(hierarchicalActionSets.size(),1);
         Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if x >= 5 y += 4 @TO@ if x > 5 y += 4 @AT@ 2 @LENGTH@ 16\n" +
@@ -52,7 +52,7 @@ public class TestPredefinedCases {
 
 
 
-        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         hierarchicalActionSets.size();
         Assert.assertEquals(hierarchicalActionSets.size(),1);
         Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@i = 0 i < max i ++ if line ] == ' ' if line ] == '\\t' tab ++ @TO@ i = 0 i < max i ++ if line ] == ' ' space ++ if line ] == '\\t' tab ++ @AT@ 4 @LENGTH@ 60\n" +
@@ -79,7 +79,7 @@ public class TestPredefinedCases {
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         hierarchicalActionSets.size();
         Assert.assertEquals(hierarchicalActionSets.size(), 1);
 
@@ -109,7 +109,7 @@ public class TestPredefinedCases {
 
             EDiffHunkParser parser = new EDiffHunkParser();
 
-            List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+            List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
             hierarchicalActionSets.size();
 //            Assert.assertEquals(hierarchicalActionSets.size(),1);
         }
@@ -126,7 +126,7 @@ public class TestPredefinedCases {
 
             EDiffHunkParser parser = new EDiffHunkParser();
 
-            List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+            List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
             hierarchicalActionSets.size();
     //            Assert.assertEquals(hierarchicalActionSets.size(),1);
         }
@@ -144,7 +144,7 @@ public class TestPredefinedCases {
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         hierarchicalActionSets.size();
         //            Assert.assertEquals(hierarchicalActionSets.size(),1);
     }

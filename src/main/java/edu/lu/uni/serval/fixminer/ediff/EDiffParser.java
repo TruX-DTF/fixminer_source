@@ -39,21 +39,21 @@ public class EDiffParser extends Parser {
 	 * @param revFile
 	 * @return
 	 */
-	protected List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree2(File prevFile, File revFile,String srcMLPath) {
+	protected List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree2(File prevFile, File revFile,String srcMLPath,boolean isJava) {
 		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		// GumTree results
-		boolean isJava =false;
+//		boolean isJava =false;
 		List<Action> gumTreeResults = null;
-		if (true){
+		if (isJava){
 //		if (revFile.getName().endsWith(".c") & prevFile.getName().endsWith(".c") || revFile.getName().endsWith(".h") & prevFile.getName().endsWith(".h")){
 //			gumTreeResults = new GumTreeComparer().compareCFilesWithGumTree(prevFile, revFile);
 
-
-
-			gumTreeResults = new GumTreeCComparer().compareCFilesWithGumTree(prevFile, revFile,srcMLPath);
-		}else{
 			gumTreeResults = new GumTreeComparer().compareTwoFilesWithGumTree(prevFile, revFile);
-			isJava = true;
+
+
+		}else{
+			gumTreeResults = new GumTreeCComparer().compareCFilesWithGumTree(prevFile, revFile,srcMLPath);
+
 		}
 		if (gumTreeResults == null) {
 			this.resultType = 1;
@@ -83,7 +83,7 @@ public class EDiffParser extends Parser {
 	}
 
 	@Override
-	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool, String srcMLPath,String rootType) {
+	public void parseFixPatterns(File prevFile, File revFile, File diffEntryFile, String project, JedisPool innerPool, String srcMLPath,String rootType,boolean isJava) {
 
 	}
 

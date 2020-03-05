@@ -653,9 +653,9 @@ public class TestRealCases {
                 "------UPD expr@@sum >= k @TO@ sum > k @AT@ 859 @LENGTH@ 8\n" +
                 "---------UPD operator@@>= @TO@ > @AT@ 862 @LENGTH@ 2\n");
         HierarchicalActionSet actionSet = hierarchicalActionSets.get(0);
-        ITree targetTree = EDiffHelper.getTargets(actionSet);
+        ITree targetTree = EDiffHelper.getTargets(actionSet,false);
         ITree actionTree = EDiffHelper.getActionTrees(actionSet);
-        ITree shapeTree = EDiffHelper.getShapeTree(actionSet);
+        ITree shapeTree = EDiffHelper.getShapeTree(actionSet,false);
         actionSet.getActionSize();
     }
     //102-A-14574020-14574054
@@ -705,7 +705,7 @@ public class TestRealCases {
         EDiffHunkParser parser = new EDiffHunkParser();
 
 
-        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath);
+        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         return hierarchicalActionSets;
     }
 
