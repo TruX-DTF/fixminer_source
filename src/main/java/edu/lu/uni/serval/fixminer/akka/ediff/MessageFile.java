@@ -8,14 +8,22 @@ public class MessageFile {
 	private File prevFile;
 	private File diffEntryFile;
 	private File positionFile;
+
+
+
+	private String project;
 	
-	public MessageFile(File revFile, File prevFile, File diffEntryFile) {
+	public MessageFile(File revFile, File prevFile, File diffEntryFile,String project) {
 		super();
 		this.revFile = revFile;
 		this.prevFile = prevFile;
 		this.diffEntryFile = diffEntryFile;
+		this.project =  project;
 	}
 
+	public String getProject() { return project;}
+
+	public void setProject(String project) { this.project = project;}
 	public File getRevFile() {
 		return revFile;
 	}

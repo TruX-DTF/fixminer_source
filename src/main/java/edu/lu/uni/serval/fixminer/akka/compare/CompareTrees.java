@@ -5,6 +5,7 @@ import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
+import me.tongfei.progressbar.ProgressBar;
 import org.apache.commons.text.similarity.JaroWinklerDistance;
 import org.javatuples.Pair;
 import org.slf4j.Logger;
@@ -74,8 +75,8 @@ public class CompareTrees {
             final Future<?> future = executor.submit(new RunnableCompare(job, errorPairs, filenames, outerPool, i));
             results.add(future);
         }
-
-        for (Future<?> future:results){
+        for (Future<?> future : ProgressBar.wrap(results, "Comparing")){
+//        for (Future<?> future:results){
             try {
                 // wait for task to complete
                 future.get();
@@ -86,11 +87,12 @@ public class CompareTrees {
             } catch (ExecutionException e) {
 
                 e.printStackTrace();
-            } finally {
-                executor.shutdownNow();
             }
+//            finally {
+//                executor.shutdownNow();
+//            }
         }
-
+        executor.shutdownNow();
 
 
 
