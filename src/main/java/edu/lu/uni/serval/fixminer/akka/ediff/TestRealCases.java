@@ -315,6 +315,62 @@ public class TestRealCases {
                 "------------UPD operator@@<= @TO@ < @AT@ 268 @LENGTH@ 2\n");
 
     }
+    @Test
+    public void test_344_A_17290259_17290309() throws IOException {
+        //TODO
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("344-A-17290259-17290309.c");
+
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = p i <= k i ++ printf \"%c\" a ][i @TO@ for i = p i < k i ++ printf \"%c\" a ][i @AT@ 262 @LENGTH@ 39\n" +
+                "---UPD control@@i = p i <= k i ++ @TO@ i = p i < k i ++ @AT@ 262 @LENGTH@ 15\n" +
+                "------UPD condition@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
+                "---------UPD expr@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
+                "------------UPD operator@@<= @TO@ < @AT@ 268 @LENGTH@ 2\n");
+
+    }
+    @Test
+    public void test_452_B_7271987_7272004() throws IOException {
+        //TODO
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("452-B-7271987-7272004.c");
+
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = p i <= k i ++ printf \"%c\" a ][i @TO@ for i = p i < k i ++ printf \"%c\" a ][i @AT@ 262 @LENGTH@ 39\n" +
+                "---UPD control@@i = p i <= k i ++ @TO@ i = p i < k i ++ @AT@ 262 @LENGTH@ 15\n" +
+                "------UPD condition@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
+                "---------UPD expr@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
+                "------------UPD operator@@<= @TO@ < @AT@ 268 @LENGTH@ 2\n");
+
+    }
+    @Test
+    public void test_158_E_1314159_1314160() throws IOException {
+        //TODO
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("158-E-1314159-1314160.c");
+
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD expr_stmt@@ans = max ans 86401 - dp ][k @TO@ ans = max ans 86400 - dp ][k @AT@ 377 @LENGTH@ 28\n" +
+                "---UPD expr@@ans = max ans 86401 - dp ][k @TO@ ans = max ans 86400 - dp ][k @AT@ 377 @LENGTH@ 28\n" +
+                "------UPD call@@max ans 86401 - dp ][k @TO@ max ans 86400 - dp ][k @AT@ 383 @LENGTH@ 22\n" +
+                "---------UPD argument_list@@ans 86401 - dp ][k @TO@ ans 86400 - dp ][k @AT@ 386 @LENGTH@ 23\n" +
+                "------------UPD argument@@86401 - dp ][k @TO@ 86400 - dp ][k @AT@ 393 @LENGTH@ 14\n" +
+                "---------------UPD expr@@86401 - dp ][k @TO@ 86400 - dp ][k @AT@ 393 @LENGTH@ 14\n" +
+                "------------------UPD literal@@86401 @TO@ 86400 @AT@ 393 @LENGTH@ 5\n");
+
+    }
+    @Test
+    public void test_250_A_2762401_2762408() throws IOException {
+        //TODO
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("250-A-2762401-2762408.c");
+
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD expr_stmt@@folders = ceil negative / 2 @TO@ folders = ceil negative / 2.0 @AT@ 289 @LENGTH@ 27\n" +
+                "---UPD expr@@folders = ceil negative / 2 @TO@ folders = ceil negative / 2.0 @AT@ 289 @LENGTH@ 27\n" +
+                "------UPD call@@ceil negative / 2 @TO@ ceil negative / 2.0 @AT@ 299 @LENGTH@ 17\n" +
+                "---------UPD argument_list@@negative / 2 @TO@ negative / 2.0 @AT@ 303 @LENGTH@ 13\n" +
+                "------------UPD argument@@negative / 2 @TO@ negative / 2.0 @AT@ 304 @LENGTH@ 12\n" +
+                "---------------UPD expr@@negative / 2 @TO@ negative / 2.0 @AT@ 304 @LENGTH@ 12\n" +
+                "------------------UPD literal@@2 @TO@ 2.0 @AT@ 313 @LENGTH@ 1\n");
+
+    }
 
     @Test
     public void test_31_B_6435804_6435825() throws IOException {
