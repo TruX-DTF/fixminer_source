@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.akka.ediff;
+package edu.lu.uni.serval.utils;
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.File;

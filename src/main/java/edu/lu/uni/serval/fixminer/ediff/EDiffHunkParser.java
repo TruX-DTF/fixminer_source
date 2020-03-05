@@ -1,17 +1,13 @@
-package edu.lu.uni.serval.fixminer.akka.ediff;
+package edu.lu.uni.serval.fixminer.ediff;
 
 import com.github.gumtreediff.tree.ITree;
 import edu.lu.uni.serval.utils.EDiffHelper;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.ObjectOutputStream;
 import java.util.List;
 
 

@@ -1,8 +1,8 @@
 package edu.lu.uni.serval.fixminer.jobs;
 
-import edu.lu.uni.serval.fixminer.akka.ediff.EDiffHunkParser;
-import edu.lu.uni.serval.fixminer.akka.ediff.FileHelper;
-import edu.lu.uni.serval.fixminer.akka.ediff.MessageFile;
+import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
+import edu.lu.uni.serval.utils.FileHelper;
+import edu.lu.uni.serval.fixminer.ediff.MessageFile;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.PoolBuilder;
 import me.tongfei.progressbar.ProgressBar;

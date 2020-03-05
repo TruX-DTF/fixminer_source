@@ -1,23 +1,12 @@
-package edu.lu.uni.serval.fixminer.akka.ediff;
+package edu.lu.uni.serval.fixminer.ediff;
 
-import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.fixminer.akka.compare.AkkaTreeParser;
-import edu.lu.uni.serval.utils.ClusterToPattern;
-import edu.lu.uni.serval.utils.EDiffHelper;
-import edu.lu.uni.serval.utils.PoolBuilder;
-import org.apache.commons.io.FileUtils;
-import org.javatuples.Pair;
+
 import org.junit.Assert;
 import org.junit.Test;
-import redis.clients.jedis.JedisPool;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 

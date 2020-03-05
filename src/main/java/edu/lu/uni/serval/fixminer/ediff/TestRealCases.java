@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.akka.ediff;
+package edu.lu.uni.serval.fixminer.ediff;
 
 import com.github.gumtreediff.tree.ITree;
 import edu.lu.uni.serval.utils.EDiffHelper;

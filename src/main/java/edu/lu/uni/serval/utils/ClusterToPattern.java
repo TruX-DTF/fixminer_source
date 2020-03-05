@@ -1,6 +1,5 @@
 package edu.lu.uni.serval.utils;
 
-import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

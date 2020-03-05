@@ -1,6 +1,6 @@
 package edu.lu.uni.serval.fixminer;
 
-import edu.lu.uni.serval.fixminer.akka.compare.CompareTrees;
+import edu.lu.uni.serval.fixminer.jobs.CompareTrees;
 import edu.lu.uni.serval.fixminer.jobs.EnhancedASTDiff;
 import edu.lu.uni.serval.utils.ClusterToPattern;
 import org.slf4j.Logger;
