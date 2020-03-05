@@ -19,8 +19,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import java.util.concurrent.*;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -59,6 +62,7 @@ public class EnhancedASTDiff {
 
 		}
 
+
 		Predicate<File> predicate1 = x->x.getName().endsWith("libtiff");
 		Predicate<File> predicate2 = x->x.getName().endsWith("php-src");
 		Predicate<File> predicate3 = x->x.getName().endsWith("cpython");
@@ -67,6 +71,7 @@ public class EnhancedASTDiff {
 		Predicate<File> predicate6 = x->x.getName().endsWith("gmp");
 		Predicate<File> predicate7 = x->x.getName().endsWith("lighttpd1.4");
 		Predicate<File> predicate8 = x->x.getName().endsWith("lighttpd2");
+
 		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
@@ -75,7 +80,7 @@ public class EnhancedASTDiff {
 				.filter(x -> !x.getName().startsWith("cocci"))
 				.filter(x -> !x.getName().endsWith(".index"))
 				.filter(predicate1.or(predicate2).or(predicate3).or(predicate4).or(predicate5).or(predicate6).or(predicate7).or(predicate8))
-//				.filter(x -> x.getName().endsWith("codeflaws"))
+
 				.collect(Collectors.toList());
 
 
@@ -222,6 +227,16 @@ public class EnhancedASTDiff {
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
 				fileName = fileName + ".txt";
 				File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
+				String s = FileHelper.readFile(diffentryFile);
+
+				Pattern pattern = Pattern.compile("^[\\+|\\-]\\s*",Pattern.MULTILINE);
+				Matcher matcher = pattern.matcher(s);
+				int count = 0;
+				while (matcher.find())
+					count++;
+				if(count>51)
+//				if(count>201)
+					continue;
 //				if(FileHelper.readFile(diffentryFile).split("@@\\s\\-\\d+,*\\d*\\s\\+\\d+,*\\d*\\s@@").length > 2)
 //					continue;
 				MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
