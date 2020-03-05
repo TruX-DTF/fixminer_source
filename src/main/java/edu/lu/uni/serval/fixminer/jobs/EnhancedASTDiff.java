@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,6 +58,11 @@ public class EnhancedASTDiff {
 
 		}
 
+		Predicate<File> predicate1 = x -> x.getName().endsWith("libtiff");
+		Predicate<File> predicate2 = x -> x.getName().endsWith("php-src");
+		Predicate<File> predicate3 = x -> x.getName().endsWith("cpython");
+		Predicate<File> predicate4 = x -> x.getName().endsWith("wireshark");
+		Predicate<File> predicate5 = x -> x.getName().endsWith("gzip");
 		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
         Stream<File> stream = Arrays.stream(listOfFiles);
@@ -62,7 +70,8 @@ public class EnhancedASTDiff {
 				.filter(x -> !x.getName().startsWith("."))
 				.filter(x -> !x.getName().startsWith("cocci"))
 				.filter(x -> !x.getName().endsWith(".index"))
-//				.filter(x -> x.getName().endsWith("codeflaws"))
+//				.filter(x -> x.getName().endsWith("libtiff"))
+				.filter(predicate1.or(predicate2).or(predicate3).or(predicate4).or(predicate5))
 				.collect(Collectors.toList());
 
 
@@ -111,7 +120,7 @@ public class EnhancedASTDiff {
 								forEach(m ->
 										{
 											EDiffHunkParser parser =  new EDiffHunkParser();
-											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,"/Users/anilkoyuncu/Downloads/srcML2/src2srcml",null);
+											parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,srcMLPath,hunkLimit);
 											if (counter % 10 == 0) {
 												log.info("Finalized parsing " + counter + " files... remaining " + (allMessageFiles.size() - counter));
 											}
@@ -151,6 +160,16 @@ public class EnhancedASTDiff {
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
 				fileName = fileName + ".txt";
 				File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
+				String s = FileHelper.readFile(diffentryFile);
+
+				Pattern pattern = Pattern.compile("^[\\+|\\-]\\s*",Pattern.MULTILINE);
+				Matcher matcher = pattern.matcher(s);
+				int count = 0;
+				while (matcher.find())
+					count++;
+				if(count>51)
+//				if(count>201)
+					continue;
 //				if(FileHelper.readFile(diffentryFile).split("@@\\s\\-\\d+,*\\d*\\s\\+\\d+,*\\d*\\s@@").length > 2)
 //					continue;
 				MessageFile msgFile = new MessageFile(revFile, prevFile, diffentryFile);
