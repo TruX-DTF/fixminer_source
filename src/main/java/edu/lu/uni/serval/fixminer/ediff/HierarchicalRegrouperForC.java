@@ -1,17 +1,15 @@
-package edu.lu.uni.serval.fixminer.akka.ediff;
+package edu.lu.uni.serval.fixminer.ediff;
 
 
 import com.github.gumtreediff.actions.model.Action;
 import com.github.gumtreediff.actions.model.*;
 import com.github.gumtreediff.gen.srcml.NodeMap_new;
-import com.github.gumtreediff.io.CNodeMap;
 import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.gumtree.GumTreeComparer;
+import edu.lu.uni.serval.utils.ListSorter;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Regroup GumTree results to a hierarchical construction.

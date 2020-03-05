@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.akka.ediff;
+package edu.lu.uni.serval.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;

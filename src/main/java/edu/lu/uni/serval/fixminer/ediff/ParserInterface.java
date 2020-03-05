@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.akka.ediff;
+package edu.lu.uni.serval.fixminer.ediff;
 
 public interface ParserInterface {
 	
