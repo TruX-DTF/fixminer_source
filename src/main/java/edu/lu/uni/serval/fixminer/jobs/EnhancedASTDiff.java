@@ -26,7 +26,7 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String project, String portInner, String dbDir, String chunkName,String srcMLPath,String parameter,String hunkLimit,String[] projectList,String patchSize,String projectType) throws Exception {
+	public static void main(String inputPath, String portInner, String dbDir, String chunkName,String srcMLPath,String parameter,String hunkLimit,String[] projectList,String patchSize,String projectType) throws Exception {
 
 
 		String parameters = String.format("\nInput path %s",inputPath);
@@ -62,7 +62,7 @@ public class EnhancedASTDiff {
 				.filter(allPredicates.stream().reduce(x->false, Predicate::or))
 				.collect(Collectors.toList());
 
-
+		String project = folder.getName();
 		List<MessageFile> allMessageFiles = new ArrayList<>();
         for (File target : folders) {
 

@@ -47,10 +47,8 @@ public class Launcher {
 
         String numOfWorkers = appProps.getProperty("numOfWorkers", "10");
         String portDumps = appProps.getProperty("portDumps","6399");
-        String pjName = appProps.getProperty("pjName","allDataset");
         String projectType = appProps.getProperty("projectType","java");
 
-//        String hostname = appProps.getProperty("hostname","localhost");
         String hunkLimit = appProps.getProperty("hunkLimit","10");
         String patchSize = appProps.getProperty("patchSize","50");
         String projectL = appProps.getProperty("projectList","");
@@ -61,34 +59,24 @@ public class Launcher {
 
 //        String parameter = args[2];
         String parameter = "L1";
-//        String parameter = "if";
-//        String parameter = "add";
 //        String jobType = args[1];
 //        String jobType = "RICHEDITSCRIPT";
         String jobType = "COMPARE";
 
-//        String parameters = String.format("\nportInner %s " +
-//                "\nnumOfWorkers %s " +
-//                "\njobType %s \nport %s " +
-//                "\npythonPath %s \ndatasetPath %s" +
-//                "\npjName %s \nactionType %s \nthreshold %s \ncursor %s \neDiffTimeout %s \nisBigPair %s \nparallelism %s"
-//                , portInner,  numOfWorkers, jobType, portDumps, pythonPath,datasetPath,pjName,actionType,threshold,cursor,eDiffTimeout,isBig,parallelism);
-//
-//        log.info(parameters);
 
-        mainLaunch( numOfWorkers, jobType, portDumps, pjName,projectType,input,redisPath,parameter, srcMLPath,hostname,hunkLimit,projectList,patchSize);
+        mainLaunch( numOfWorkers, jobType, portDumps,projectType,input,redisPath,parameter, srcMLPath,hunkLimit,projectList,patchSize);
 
 
     }
 
-    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String pjName, String projectType, String input, String redisPath,String parameter,String srcMLPath,String hostname,String hunkLimit,String[] projectList,String patchSize){
+    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String projectType, String input, String redisPath,String parameter,String srcMLPath,String hunkLimit,String[] projectList,String patchSize){
 
 
         String dbDir;
         String dumpsName;
         String gumInput;
 
-        dumpsName = "dumps-"+pjName+".rdb";
+        dumpsName = "dumps-"+projectType+".rdb";
 
         gumInput = input;
         dbDir = redisPath;
@@ -97,7 +85,7 @@ public class Launcher {
         try {
             switch (jobType) {
                 case "RICHEDITSCRIPT":
-                    EnhancedASTDiff.main(gumInput, pjName, portDumps, dbDir, dumpsName, srcMLPath,parameter,hunkLimit,projectList,patchSize,projectType);
+                    EnhancedASTDiff.main(gumInput, portDumps, dbDir, dumpsName, srcMLPath,parameter,hunkLimit,projectList,patchSize,projectType);
                     break;
 
                 case "COMPARE":
@@ -122,7 +110,7 @@ public class Launcher {
                     }
 
 
-                    CompareTrees.main(redisPath, portDumps,dumpsName, job,numOfWorkers,hostname);
+                    CompareTrees.main(redisPath, portDumps,dumpsName, job,numOfWorkers);
                     break;
                 case "PATTERN":
                     ClusterToPattern.main(portDumps,redisPath, dumpsName, parameter);

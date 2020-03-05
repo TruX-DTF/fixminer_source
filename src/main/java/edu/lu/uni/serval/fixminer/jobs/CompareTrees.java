@@ -27,7 +27,7 @@ public class CompareTrees {
     private static Logger log = LoggerFactory.getLogger(CompareTrees.class);
 
 
-    public static void main(String redisPath, String portDumps, String dumpsName, String job,String numOfWorkers,String host) throws Exception {
+    public static void main(String redisPath, String portDumps, String dumpsName, String job,String numOfWorkers) throws Exception {
 
         // shape /Users/anil.koyuncu/projects/test/fixminer-core/python/data/redis ALLdumps-gumInput.rdb clusterl0-gumInputALL.rdb /Users/anil.koyuncu/projects/test/fixminer-core/python/data/richEditScript
 
@@ -50,7 +50,7 @@ public class CompareTrees {
 
 //        final JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), host,Integer.valueOf(portInner),20000000);
 
-        final JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), host,Integer.valueOf(port),20000000);
+        final JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), "localhost",Integer.valueOf(port),20000000);
 
 //        List<String> listOfPairs = AkkaTreeParser.getMessages(innerPool,Integer.valueOf(numOfWorkers));
         HashMap<String, String> filenames = getFilenames(outerPool);
