@@ -23,7 +23,8 @@ public class Launcher {
         Properties appProps = new Properties();
 
 //        String appConfigPath = "/Users/anil.koyuncu/projects/fixminer/fixminer_source/src/main/resource/app.properties";
-        String appConfigPath = args[0];
+//        String appConfigPath = args[0];
+        String appConfigPath = "src/main/resource/app.properties";
         appProps.load(new FileInputStream(appConfigPath));
 
 //        String portInner = appProps.getProperty("portInner","6380");
@@ -40,12 +41,12 @@ public class Launcher {
         String redisPath = appProps.getProperty("redisPath","FORKJOIN");
         String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
 
-        String parameter = args[2];
-//        String parameter = "L1";
+//        String parameter = args[2];
+        String parameter = "L1";
 //        String parameter = "if";
 //        String parameter = "add";
-        String jobType = args[1];
-//        String jobType = "RICHEDITSCRIPT";
+//        String jobType = args[1];
+        String jobType = "RICHEDITSCRIPT";
 //        String jobType = "LOAD";
 //        String jobType = "COMPARE";
 
@@ -93,6 +94,7 @@ public class Launcher {
                         case "L1":
 //                            job = "shape";
                             job = "single";
+
                             compareDBName = "clusterl0-gumInputALL.rdb";
                             break;
                         case "L2":

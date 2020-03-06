@@ -159,7 +159,7 @@ public class EDiffHelper {
 
 
 
-        if(actionSet.getParent() == null){
+        if(actionSet.getParent() == null || ( actionSet.getParent().getAction().getClass().equals(Update.class) && ((Update) actionSet.getParent().getAction()).getflag() == false)){
             //root
 
 //            parent = new Tree(newType,"");
@@ -175,7 +175,7 @@ public class EDiffHelper {
         if (subActions.size() != 0){
             for (HierarchicalActionSet subAction : subActions) {
 
-                if(actionSet.getParent() == null){
+                if(actionSet.getParent() == null || ( actionSet.getParent().getAction().getClass().equals(Update.class) && ((Update) actionSet.getParent().getAction()).getflag() == false)){
                     children = parent;
                 }
                 getTargetTree(subAction,children,null,tc);
@@ -199,7 +199,7 @@ public class EDiffHelper {
             log.error("More than 1");
         }
         newType = keysByValue.get(0);
-        if(actionSet.getParent() == null){
+        if(actionSet.getParent() == null || ( actionSet.getParent().getAction().getClass().equals(Update.class) && ((Update) actionSet.getParent().getAction()).getflag() == false)){
             //root
 
 //            parent = new Tree(newType,"");
@@ -215,7 +215,7 @@ public class EDiffHelper {
         if (subActions.size() != 0){
             for (HierarchicalActionSet subAction : subActions) {
 
-                if(actionSet.getParent() == null){
+                if(actionSet.getParent() == null || ( actionSet.getParent().getAction().getClass().equals(Update.class) && ((Update) actionSet.getParent().getAction()).getflag() == false)){
                     children = parent;
                 }
                 getASTTree(subAction,children,null,tc);
@@ -461,7 +461,7 @@ public class EDiffHelper {
         }else{
             new Exception("unknow action");
         }
-        if(actionSet.getParent() == null){
+        if(actionSet.getParent() == null  || ( actionSet.getParent().getAction().getClass().equals(Update.class) && ((Update) actionSet.getParent().getAction()).getflag() == false)){
             //root
 
             parent = tc.createTree(newType, "", null);
@@ -476,7 +476,7 @@ public class EDiffHelper {
         if (subActions.size() != 0){
             for (HierarchicalActionSet subAction : subActions) {
 
-                if(actionSet.getParent() == null){
+                if(actionSet.getParent() == null || ( actionSet.getParent().getAction().getClass().equals(Update.class) && ((Update) actionSet.getParent().getAction()).getflag() == false)){
                     children = parent;
                 }
                 getActionTree(subAction,children,null,tc);

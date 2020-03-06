@@ -66,7 +66,7 @@ public class CompareTrees {
         Integer numberOfWorkers = Integer.valueOf(numOfWorkers);
         final ExecutorService executor = Executors.newWorkStealingPool(numberOfWorkers);
         ArrayList<Future<?>> results = new ArrayList<Future<?>>();
-        for (int i = 1; i <numberOfWorkers ; i++) {
+        for (int i = 0; i <numberOfWorkers ; i++) {
 
 
             // schedule the work
