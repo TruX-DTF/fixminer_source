@@ -1,5 +1,6 @@
 package edu.lu.uni.serval.fixminer.jobs;
 
+import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
@@ -17,6 +18,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 /**
@@ -57,38 +59,54 @@ public class CompareTrees {
 //        List<String> listOfPairs = AkkaTreeParser.files2compare(outerPool);
 
 
-        ArrayList<String> samePairs = new ArrayList<>();
+//        ArrayList<String> samePairs = new ArrayList<>();
         ArrayList<String> errorPairs = new ArrayList<>();
 
-        Integer numberOfWorkers = Integer.valueOf(numOfWorkers);
-        final ExecutorService executor = Executors.newWorkStealingPool(numberOfWorkers);
-        ArrayList<Future<?>> results = new ArrayList<Future<?>>();
-        for (int i = 1; i <numberOfWorkers ; i++) {
-
-
-            // schedule the work
-            log.info("Starting job {}",i);
-            final Future<?> future = executor.submit(new RunnableCompare(job, errorPairs, filenames, outerPool, i));
-            results.add(future);
+//        Integer numberOfWorkers = Integer.valueOf(numOfWorkers);
+//        final ExecutorService executor = Executors.newWorkStealingPool(numberOfWorkers);
+        Long compare;
+        try (Jedis inner = outerPool.getResource()) {
+            compare = inner.scard("compare");
         }
-        for (Future<?> future : ProgressBar.wrap(results, "Comparing")){
-//        for (Future<?> future:results){
-            try {
-                // wait for task to complete
-                future.get();
+        IntStream stream = IntStream.range(0, compare.intValue());
 
-            } catch (InterruptedException e) {
+        ProgressBar.wrap(stream.
+                parallel(),"Task").
 
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+                forEach(m ->
+                        {
+                            newCoreCompare(job, errorPairs, filenames, outerPool);
+                        }
+                );
 
-                e.printStackTrace();
-            }
-//            finally {
-//                executor.shutdownNow();
+//
+//        ArrayList<Future<?>> results = new ArrayList<Future<?>>();
+//        for (int i = 0; i <numberOfWorkers ; i++) {
+//
+//
+//            // schedule the work
+//            log.info("Starting job {}",i);
+//            final Future<?> future = executor.submit(new RunnableCompare(job, errorPairs, filenames, outerPool, i));
+//            results.add(future);
+//        }
+//        for (Future<?> future : ProgressBar.wrap(results, "Comparing")){
+////        for (Future<?> future:results){
+//            try {
+//                // wait for task to complete
+//                future.get();
+//
+//            } catch (InterruptedException e) {
+//
+//                e.printStackTrace();
+//            } catch (ExecutionException e) {
+//
+//                e.printStackTrace();
 //            }
-        }
-        executor.shutdownNow();
+////            finally {
+////                executor.shutdownNow();
+////            }
+//        }
+//        executor.shutdownNow();
 
 
 
@@ -97,36 +115,36 @@ public class CompareTrees {
     }
 
 
-    public static class RunnableCompare implements Runnable {
-        String job;
-        ArrayList<String> errorPairs;
-        HashMap<String, String> filenames;
-        JedisPool outerPool;
-        Integer threadID;
-
-        public RunnableCompare(String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool,Integer threadID) {
-            this.job = treeType;
-            this.errorPairs = errorPairs;
-            this.filenames = filenames;
-            this.outerPool = outerPool;
-            this.threadID = threadID;
-        }
-
-        @Override
-        public void run() {
-//            int dbsize = 1;
-            boolean stop = true;
-            while(stop) {
-//                try (Jedis outer = outerPool.getResource()) {
-//                    dbsize = Math.toIntExact(outer.scard("compare"));
-//                }
-//                if (dbsize != 0){
-                    stop = newCoreCompare(job, errorPairs, filenames, outerPool);
-//                }
-            }
-            log.info("Completed worker {}",threadID);
-        }
-    }
+//    public static class RunnableCompare implements Runnable {
+//        String job;
+//        ArrayList<String> errorPairs;
+//        HashMap<String, String> filenames;
+//        JedisPool outerPool;
+//        Integer threadID;
+//
+//        public RunnableCompare(String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool,Integer threadID) {
+//            this.job = treeType;
+//            this.errorPairs = errorPairs;
+//            this.filenames = filenames;
+//            this.outerPool = outerPool;
+//            this.threadID = threadID;
+//        }
+//
+//        @Override
+//        public void run() {
+////            int dbsize = 1;
+//            boolean stop = true;
+//            while(stop) {
+////                try (Jedis outer = outerPool.getResource()) {
+////                    dbsize = Math.toIntExact(outer.scard("compare"));
+////                }
+////                if (dbsize != 0){
+//                    stop = newCoreCompare(job, errorPairs, filenames, outerPool);
+////                }
+//            }
+//            log.info("Completed worker {}",threadID);
+//        }
+//    }
 
 
     public static boolean newCoreCompare( String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
