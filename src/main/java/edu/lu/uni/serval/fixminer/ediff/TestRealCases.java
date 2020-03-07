@@ -158,7 +158,7 @@ public class TestRealCases {
     public void test_189_B_17295034_17295064() throws IOException {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("189-B-17295034-17295064.c");
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for b = 2 b <= w b += 2 count += ( w - a + 1 ) * ( h - b + 1 ) @TO@ for b = 2 b <= h b += 2 count += ( w - a + 1 ) * ( h - b + 1 ) @AT@ 183 @LENGTH@ 62\n" +
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for b = 2 b <= w b += 2 @TO@ for b = 2 b <= h b += 2 @AT@ 183 @LENGTH@ 23\n" +
                 "---UPD control@@b = 2 b <= w b += 2 @TO@ b = 2 b <= h b += 2 @AT@ 183 @LENGTH@ 16\n" +
                 "------UPD condition@@b <= w @TO@ b <= h @AT@ 188 @LENGTH@ 6\n" +
                 "---------UPD expr@@b <= w @TO@ b <= h @AT@ 188 @LENGTH@ 6\n" +
@@ -171,24 +171,23 @@ public class TestRealCases {
         //TODO not sure
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("244-B-5291533-5291541.c");
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if a <= 101 printf \"%d\\n\" a elseif if a == 123 printf \"113\\n\" elseif if a == 1000 printf \"352\\n\" elseif if a == 1000000000 printf \"40744\\n\" elseif if a == 999999999 printf \"40743\\n\" elseif if a == 999999998 printf \"40742\\n\" elseif if a == 999999997 printf \"40741\\n\" elseif if a == 909090901 printf \"38532\\n\" elseif if a == 142498040 printf \"21671\\n\" elseif if a == 603356456 printf \"31623\\n\" elseif if a == 64214872 printf \"15759\\n\" elseif if a == 820040584 printf \"36407\\n\" elseif if a == 442198 printf \"3071\\n\" elseif if a == 642678 printf \"3615\\n\" elseif if a == 468390 printf \"3223\\n\" elseif if a == 326806 printf \"2759\\n\" elseif if a == 940 printf \"331\\n\" elseif if a == 356 printf \"175\\n\" elseif if a == 132 printf \"114\\n\" elseif if a == 102 printf \"101\\n\" @TO@ if a <= 101 printf \"%d\\n\" a elseif if a == 123 printf \"113\\n\" elseif if a == 1000 printf \"352\\n\" elseif if a == 1000000000 printf \"40744\\n\" elseif if a == 999999999 printf \"40743\\n\" elseif if a == 999999998 printf \"40742\\n\" elseif if a == 999999997 printf \"40741\\n\" elseif if a == 909090901 printf \"38532\\n\" elseif if a == 142498040 printf \"21671\\n\" elseif if a == 603356456 printf \"31623\\n\" elseif if a == 64214872 printf \"15759\\n\" elseif if a == 820040584 printf \"36407\\n\" elseif if a == 442198 printf \"3071\\n\" elseif if a == 784262 printf \"4079\\n\" elseif if a == 642678 printf \"3615\\n\" elseif if a == 468390 printf \"3223\\n\" elseif if a == 326806 printf \"2759\\n\" elseif if a == 940 printf \"331\\n\" elseif if a == 356 printf \"175\\n\" elseif if a == 132 printf \"114\\n\" elseif if a == 102 printf \"101\\n\" @AT@ 110 @LENGTH@ 762\n" +
-                "---INS elseif@@elseif if a == 784262 printf \"4079\\n\" @TO@ if@@if a <= 101 printf \"%d\\n\" a elseif if a == 123 printf \"113\\n\" elseif if a == 1000 printf \"352\\n\" elseif if a == 1000000000 printf \"40744\\n\" elseif if a == 999999999 printf \"40743\\n\" elseif if a == 999999998 printf \"40742\\n\" elseif if a == 999999997 printf \"40741\\n\" elseif if a == 909090901 printf \"38532\\n\" elseif if a == 142498040 printf \"21671\\n\" elseif if a == 603356456 printf \"31623\\n\" elseif if a == 64214872 printf \"15759\\n\" elseif if a == 820040584 printf \"36407\\n\" elseif if a == 442198 printf \"3071\\n\" elseif if a == 642678 printf \"3615\\n\" elseif if a == 468390 printf \"3223\\n\" elseif if a == 326806 printf \"2759\\n\" elseif if a == 940 printf \"331\\n\" elseif if a == 356 printf \"175\\n\" elseif if a == 132 printf \"114\\n\" elseif if a == 102 printf \"101\\n\" @AT@ 877 @LENGTH@ 37\n" +
-                "------INS if@@if a == 784262 printf \"4079\\n\" @TO@ elseif@@elseif if a == 784262 printf \"4079\\n\" @AT@ 877 @LENGTH@ 30\n" +
-                "---------INS condition@@a == 784262 @TO@ if@@if a == 784262 printf \"4079\\n\" @AT@ 877 @LENGTH@ 12\n" +
-                "------------INS expr@@a == 784262 @TO@ condition@@a == 784262 @AT@ 878 @LENGTH@ 11\n" +
-                "---------------INS name@@a @TO@ expr@@a == 784262 @AT@ 878 @LENGTH@ 1\n" +
-                "---------------INS operator@@== @TO@ expr@@a == 784262 @AT@ 879 @LENGTH@ 2\n" +
-                "---------------INS literal@@784262 @TO@ expr@@a == 784262 @AT@ 881 @LENGTH@ 6\n" +
-                "---------INS then@@printf \"4079\\n\" @TO@ if@@if a == 784262 printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
-                "------------INS block@@printf \"4079\\n\" @TO@ then@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
-                "---------------INS expr_stmt@@printf \"4079\\n\" @TO@ block@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
-                "------------------INS expr@@printf \"4079\\n\" @TO@ expr_stmt@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
-                "---------------------INS call@@printf \"4079\\n\" @TO@ expr@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
-                "------------------------INS name@@printf @TO@ call@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 6\n" +
-                "------------------------INS argument_list@@\"4079\\n\" @TO@ call@@printf \"4079\\n\" @AT@ 907 @LENGTH@ 11\n" +
-                "---------------------------INS argument@@\"4079\\n\" @TO@ argument_list@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n" +
-                "------------------------------INS expr@@\"4079\\n\" @TO@ argument@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n" +
-                "---------------------------------INS literal@@\"4079\\n\" @TO@ expr@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n");
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"INS elseif@@elseif if a == 784262 printf \"4079\\n\" @TO@ if@@if a <= 101 printf \"%d\\n\" a elseif if a == 123 printf \"113\\n\" elseif if a == 1000 printf \"352\\n\" elseif if a == 1000000000 printf \"40744\\n\" elseif if a == 999999999 printf \"40743\\n\" elseif if a == 999999998 printf \"40742\\n\" elseif if a == 999999997 printf \"40741\\n\" elseif if a == 909090901 printf \"38532\\n\" elseif if a == 142498040 printf \"21671\\n\" elseif if a == 603356456 printf \"31623\\n\" elseif if a == 64214872 printf \"15759\\n\" elseif if a == 820040584 printf \"36407\\n\" elseif if a == 442198 printf \"3071\\n\" elseif if a == 642678 printf \"3615\\n\" elseif if a == 468390 printf \"3223\\n\" elseif if a == 326806 printf \"2759\\n\" elseif if a == 940 printf \"331\\n\" elseif if a == 356 printf \"175\\n\" elseif if a == 132 printf \"114\\n\" elseif if a == 102 printf \"101\\n\" @AT@ 877 @LENGTH@ 37\n" +
+                "---INS if@@if a == 784262 printf \"4079\\n\" @TO@ elseif@@elseif if a == 784262 printf \"4079\\n\" @AT@ 877 @LENGTH@ 30\n" +
+                "------INS condition@@a == 784262 @TO@ if@@if a == 784262 printf \"4079\\n\" @AT@ 877 @LENGTH@ 12\n" +
+                "---------INS expr@@a == 784262 @TO@ condition@@a == 784262 @AT@ 878 @LENGTH@ 11\n" +
+                "------------INS name@@a @TO@ expr@@a == 784262 @AT@ 878 @LENGTH@ 1\n" +
+                "------------INS operator@@== @TO@ expr@@a == 784262 @AT@ 879 @LENGTH@ 2\n" +
+                "------------INS literal@@784262 @TO@ expr@@a == 784262 @AT@ 881 @LENGTH@ 6\n" +
+                "------INS then@@printf \"4079\\n\" @TO@ if@@if a == 784262 printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
+                "---------INS block@@printf \"4079\\n\" @TO@ then@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
+                "------------INS expr_stmt@@printf \"4079\\n\" @TO@ block@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
+                "---------------INS expr@@printf \"4079\\n\" @TO@ expr_stmt@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
+                "------------------INS call@@printf \"4079\\n\" @TO@ expr@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
+                "---------------------INS name@@printf @TO@ call@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 6\n" +
+                "---------------------INS argument_list@@\"4079\\n\" @TO@ call@@printf \"4079\\n\" @AT@ 907 @LENGTH@ 11\n" +
+                "------------------------INS argument@@\"4079\\n\" @TO@ argument_list@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n" +
+                "---------------------------INS expr@@\"4079\\n\" @TO@ argument@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n" +
+                "------------------------------INS literal@@\"4079\\n\" @TO@ expr@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n");
 
     }
     @Test
@@ -263,14 +262,14 @@ public class TestRealCases {
         //TODO not sure
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("405-B-9434593-9434605.c");
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if input ][0 == '.' count = 1 @TO@ if input ][0 == '.' count = 1 else i1 = 0 @AT@ 260 @LENGTH@ 29\n" +
-                "---INS else@@else i1 = 0 @TO@ if@@if input ][0 == '.' count = 1 @AT@ 295 @LENGTH@ 11\n" +
-                "------INS block@@i1 = 0 @TO@ else@@else i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
-                "---------INS expr_stmt@@i1 = 0 @TO@ block@@i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
-                "------------INS expr@@i1 = 0 @TO@ expr_stmt@@i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
-                "---------------INS name@@i1 @TO@ expr@@i1 = 0 @AT@ 295 @LENGTH@ 2\n" +
-                "---------------INS operator@@= @TO@ expr@@i1 = 0 @AT@ 297 @LENGTH@ 1\n" +
-                "---------------INS literal@@0 @TO@ expr@@i1 = 0 @AT@ 298 @LENGTH@ 1\n");
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),
+                "INS else@@else i1 = 0 @TO@ if@@if input ][0 == '.' count = 1 @AT@ 295 @LENGTH@ 11\n" +
+                "---INS block@@i1 = 0 @TO@ else@@else i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
+                "------INS expr_stmt@@i1 = 0 @TO@ block@@i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
+                "---------INS expr@@i1 = 0 @TO@ expr_stmt@@i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
+                "------------INS name@@i1 @TO@ expr@@i1 = 0 @AT@ 295 @LENGTH@ 2\n" +
+                "------------INS operator@@= @TO@ expr@@i1 = 0 @AT@ 297 @LENGTH@ 1\n" +
+                "------------INS literal@@0 @TO@ expr@@i1 = 0 @AT@ 298 @LENGTH@ 1\n");
 
     }
 
@@ -308,7 +307,7 @@ public class TestRealCases {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("612-A-15750192-15750273.c");
 
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = p i <= k i ++ printf \"%c\" a ][i @TO@ for i = p i < k i ++ printf \"%c\" a ][i @AT@ 262 @LENGTH@ 39\n" +
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = p i <= k i ++ @TO@ for i = p i < k i ++ @AT@ 262 @LENGTH@ 21\n" +
                 "---UPD control@@i = p i <= k i ++ @TO@ i = p i < k i ++ @AT@ 262 @LENGTH@ 15\n" +
                 "------UPD condition@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
                 "---------UPD expr@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
@@ -320,12 +319,20 @@ public class TestRealCases {
         //TODO
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("344-A-17290259-17290309.c");
 
-        Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = p i <= k i ++ printf \"%c\" a ][i @TO@ for i = p i < k i ++ printf \"%c\" a ][i @AT@ 262 @LENGTH@ 39\n" +
-                "---UPD control@@i = p i <= k i ++ @TO@ i = p i < k i ++ @AT@ 262 @LENGTH@ 15\n" +
-                "------UPD condition@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
-                "---------UPD expr@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
-                "------------UPD operator@@<= @TO@ < @AT@ 268 @LENGTH@ 2\n");
+        Assert.assertEquals(hierarchicalActionSets.size(),2);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = 0 i < n i ++ @TO@ for i = 0 i < n - 1 i ++ @AT@ 158 @LENGTH@ 20\n" +
+                "---UPD control@@i = 0 i < n i ++ @TO@ i = 0 i < n - 1 i ++ @AT@ 158 @LENGTH@ 14\n" +
+                "------UPD condition@@i < n @TO@ i < n - 1 @AT@ 163 @LENGTH@ 5\n" +
+                "---------UPD expr@@i < n @TO@ i < n - 1 @AT@ 163 @LENGTH@ 5\n" +
+                "------------INS operator@@- @TO@ expr@@i < n @AT@ 166 @LENGTH@ 1\n" +
+                "------------INS literal@@1 @TO@ expr@@i < n @AT@ 167 @LENGTH@ 1\n");
+        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"DEL expr_stmt@@i = i + 2 @AT@ 233 @LENGTH@ 9\n" +
+                "---DEL expr@@i = i + 2 @AT@ 233 @LENGTH@ 9\n" +
+                "------DEL name@@i @AT@ 233 @LENGTH@ 1\n" +
+                "------DEL operator@@= @AT@ 234 @LENGTH@ 1\n" +
+                "------DEL name@@i @AT@ 235 @LENGTH@ 1\n" +
+                "------DEL operator@@+ @AT@ 236 @LENGTH@ 1\n" +
+                "------DEL literal@@2 @AT@ 237 @LENGTH@ 1\n");
 
     }
     @Test
@@ -333,12 +340,18 @@ public class TestRealCases {
         //TODO
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("452-B-7271987-7272004.c");
 
-        Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = p i <= k i ++ printf \"%c\" a ][i @TO@ for i = p i < k i ++ printf \"%c\" a ][i @AT@ 262 @LENGTH@ 39\n" +
-                "---UPD control@@i = p i <= k i ++ @TO@ i = p i < k i ++ @AT@ 262 @LENGTH@ 15\n" +
-                "------UPD condition@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
-                "---------UPD expr@@i <= k @TO@ i < k @AT@ 267 @LENGTH@ 6\n" +
-                "------------UPD operator@@<= @TO@ < @AT@ 268 @LENGTH@ 2\n");
+        Assert.assertEquals(hierarchicalActionSets.size(),2);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD expr_stmt@@printf \"%d %d\\n0 0 \\n%d \\n0 %d\\n\" n m n m @TO@ printf \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" n m n m @AT@ 1318 @LENGTH@ 41\n" +
+                "---UPD expr@@printf \"%d %d\\n0 0 \\n%d \\n0 %d\\n\" n m n m @TO@ printf \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" n m n m @AT@ 1318 @LENGTH@ 41\n" +
+                "------UPD call@@printf \"%d %d\\n0 0 \\n%d \\n0 %d\\n\" n m n m @TO@ printf \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" n m n m @AT@ 1318 @LENGTH@ 41\n" +
+                "---------UPD argument_list@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" n m n m @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" n m n m @AT@ 1324 @LENGTH@ 37\n" +
+                "------------UPD argument@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" @AT@ 1325 @LENGTH@ 26\n" +
+                "---------------UPD expr@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" @AT@ 1325 @LENGTH@ 26\n" +
+                "------------------UPD literal@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" @AT@ 1325 @LENGTH@ 26\n");
+        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"INS return@@0 @TO@ block@@int i j n m x i_temp 1 scanf \"%d %d\" & n & m if n == 0 printf \"0 1\\n\" printf \"0 %d\\n\" m printf \"0 0\\n\" printf \"0 %d\\n\" ( m - 1 ) 0 elseif if m == 0 printf \"1 0\\n\" printf \"%d 0\\n\" n printf \"0 0\\n\" printf \"%d 0\\n\" ( n - 1 ) 0 elseif if ( m == n ) && ( n == 1 ) printf \"%d %d\\n\" n m printf \"0 0\\n\" printf \"%d 0\\n\" n printf \"0 %d\\n\" ( m ) 0 elseif if m == n if m + m * 1.41f > ( 2 * sqrt double m * m + ( m - 1 ) * ( m - 1 ) ) printf \"%d %d\\n\" n m printf \"0 0\\n\" printf \"%d 0\\n\" n printf \"0 %d\\n\" n else printf \"%d %d\\n\" n - 1 m printf \"0 0\\n\" printf \"%d %d\\n\" n m printf \"1 0\\n\" 0 elseif if n < m elseif if n > m @AT@ 1385 @LENGTH@ 10\n" +
+                "---INS expr@@0 @TO@ return@@0 @AT@ 1392 @LENGTH@ 1\n" +
+                "------INS literal@@0 @TO@ expr@@0 @AT@ 1392 @LENGTH@ 1\n");
+        Assert.fail();
 
     }
     @Test
@@ -390,7 +403,7 @@ public class TestRealCases {
         //TODO
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("644-A-18166947-18166954.c");
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = 0 i < b i ++ for j = 0 j < b j ++ printf \"%lld \" array ][i ][j printf \"\\n\" @TO@ for i = 0 i < a i ++ for j = 0 j < b j ++ printf \"%lld \" array ][i ][j printf \"\\n\" @AT@ 1251 @LENGTH@ 82\n" +
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD for@@for i = 0 i < b i ++ for j = 0 j < b j ++ printf \"\\n\" @TO@ for i = 0 i < a i ++ for j = 0 j < b j ++ printf \"\\n\" @AT@ 1251 @LENGTH@ 53\n" +
                 "---UPD control@@i = 0 i < b i ++ @TO@ i = 0 i < a i ++ @AT@ 1251 @LENGTH@ 14\n" +
                 "------UPD condition@@i < b @TO@ i < a @AT@ 1256 @LENGTH@ 5\n" +
                 "---------UPD expr@@i < b @TO@ i < a @AT@ 1256 @LENGTH@ 5\n" +
@@ -522,7 +535,7 @@ public class TestRealCases {
 
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("328-B-4080800-4080805.c");
         Assert.assertEquals(hierarchicalActionSets.size(), 1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(), "DEL for@@for i = 0 i < 10 i ++ printf \"%d %d\\n\" num ][i tnum ][i @AT@ 453 @LENGTH@ 55\n" +
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(), "DEL for@@for i = 0 i < 10 i ++ @AT@ 453 @LENGTH@ 21\n" +
                 "---DEL control@@i = 0 i < 10 i ++ @AT@ 453 @LENGTH@ 15\n" +
                 "------DEL init@@i = 0 @AT@ 454 @LENGTH@ 5\n" +
                 "---------DEL expr@@i = 0 @AT@ 454 @LENGTH@ 5\n" +
@@ -538,7 +551,7 @@ public class TestRealCases {
                 "---------DEL expr@@i ++ @AT@ 463 @LENGTH@ 4\n" +
                 "------------DEL name@@i @AT@ 463 @LENGTH@ 1\n" +
                 "------------DEL operator@@++ @AT@ 464 @LENGTH@ 2\n" +
-                "---DEL block@@printf \"%d %d\\n\" num ][i tnum ][i @AT@ 467 @LENGTH@ 50\n" +
+                "---DEL block@@ @AT@ 467 @LENGTH@ 50\n" +
                 "------DEL expr_stmt@@printf \"%d %d\\n\" num ][i tnum ][i @AT@ 477 @LENGTH@ 33\n" +
                 "---------DEL expr@@printf \"%d %d\\n\" num ][i tnum ][i @AT@ 477 @LENGTH@ 33\n" +
                 "------------DEL call@@printf \"%d %d\\n\" num ][i tnum ][i @AT@ 477 @LENGTH@ 33\n" +
@@ -599,22 +612,21 @@ public class TestRealCases {
 
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("10-A-5914564-5914663.c");
         Assert.assertEquals(hierarchicalActionSets.size(), 1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if lr + t1 + t2 <= a power += ( t2 * p2 ) + ( a - lr - t1 - t2 ) * p3 @TO@ if lr + t1 + t2 <= a power += ( t2 * p2 ) + ( a - lr - t1 - t2 ) * p3 else power += ( a - lr - t1 ) * p2 @AT@ 406 @LENGTH@ 69\n" +
-                "---INS else@@else power += ( a - lr - t1 ) * p2 @TO@ if@@if lr + t1 + t2 <= a power += ( t2 * p2 ) + ( a - lr - t1 - t2 ) * p3 @AT@ 501 @LENGTH@ 34\n" +
-                "------INS block@@power += ( a - lr - t1 ) * p2 @TO@ else@@else power += ( a - lr - t1 ) * p2 @AT@ 501 @LENGTH@ 29\n" +
-                "---------INS expr_stmt@@power += ( a - lr - t1 ) * p2 @TO@ block@@power += ( a - lr - t1 ) * p2 @AT@ 501 @LENGTH@ 29\n" +
-                "------------INS expr@@power += ( a - lr - t1 ) * p2 @TO@ expr_stmt@@power += ( a - lr - t1 ) * p2 @AT@ 501 @LENGTH@ 29\n" +
-                "---------------INS name@@power @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 501 @LENGTH@ 5\n" +
-                "---------------INS operator@@+= @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 506 @LENGTH@ 2\n" +
-                "---------------INS operator@@( @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 508 @LENGTH@ 1\n" +
-                "---------------INS name@@a @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 509 @LENGTH@ 1\n" +
-                "---------------INS operator@@- @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 510 @LENGTH@ 1\n" +
-                "---------------INS name@@lr @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 511 @LENGTH@ 2\n" +
-                "---------------INS operator@@- @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 513 @LENGTH@ 1\n" +
-                "---------------INS name@@t1 @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 514 @LENGTH@ 2\n" +
-                "---------------INS operator@@) @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 516 @LENGTH@ 1\n" +
-                "---------------INS operator@@* @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 517 @LENGTH@ 1\n" +
-                "---------------INS name@@p2 @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 518 @LENGTH@ 2\n");
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"INS else@@else power += ( a - lr - t1 ) * p2 @TO@ if@@if lr + t1 + t2 <= a power += ( t2 * p2 ) + ( a - lr - t1 - t2 ) * p3 @AT@ 501 @LENGTH@ 34\n" +
+                "---INS block@@power += ( a - lr - t1 ) * p2 @TO@ else@@else power += ( a - lr - t1 ) * p2 @AT@ 501 @LENGTH@ 29\n" +
+                "------INS expr_stmt@@power += ( a - lr - t1 ) * p2 @TO@ block@@power += ( a - lr - t1 ) * p2 @AT@ 501 @LENGTH@ 29\n" +
+                "---------INS expr@@power += ( a - lr - t1 ) * p2 @TO@ expr_stmt@@power += ( a - lr - t1 ) * p2 @AT@ 501 @LENGTH@ 29\n" +
+                "------------INS name@@power @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 501 @LENGTH@ 5\n" +
+                "------------INS operator@@+= @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 506 @LENGTH@ 2\n" +
+                "------------INS operator@@( @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 508 @LENGTH@ 1\n" +
+                "------------INS name@@a @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 509 @LENGTH@ 1\n" +
+                "------------INS operator@@- @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 510 @LENGTH@ 1\n" +
+                "------------INS name@@lr @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 511 @LENGTH@ 2\n" +
+                "------------INS operator@@- @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 513 @LENGTH@ 1\n" +
+                "------------INS name@@t1 @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 514 @LENGTH@ 2\n" +
+                "------------INS operator@@) @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 516 @LENGTH@ 1\n" +
+                "------------INS operator@@* @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 517 @LENGTH@ 1\n" +
+                "------------INS name@@p2 @TO@ expr@@power += ( a - lr - t1 ) * p2 @AT@ 518 @LENGTH@ 2\n");
     }
 
     //10-D-1434543-1434549
