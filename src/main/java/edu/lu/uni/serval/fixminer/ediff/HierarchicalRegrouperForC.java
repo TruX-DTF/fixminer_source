@@ -10,6 +10,8 @@ import edu.lu.uni.serval.utils.ListSorter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Regroup GumTree results to a hierarchical construction.
@@ -44,9 +46,9 @@ public class HierarchicalRegrouperForC {
 		 */
 		HierarchicalActionSet actionSet = null;
 		for(Action act : actions){
-//			if(act.getNode().getType() == 2){
-//				continue;
-//			}
+			if(act.getNode().getType() == 19 && act.getNode().getLabel().equals("")){
+				continue;
+			}
 			Action parentAct = findParentAction(act, actions);
 			
 			if (parentAct == null) {
@@ -84,16 +86,42 @@ public class HierarchicalRegrouperForC {
 		}
 		List<HierarchicalActionSet> reActionSets1 = new ArrayList<>();
 		for(HierarchicalActionSet a:reActionSets){
-			HierarchicalActionSet hierarchicalActionSet = removeBlocks(a);
-			hierarchicalActionSet = removeIFthenBlocks(hierarchicalActionSet);
-			hierarchicalActionSet = removeParentForSingle(hierarchicalActionSet);
-			hierarchicalActionSet = removeParentNode(hierarchicalActionSet);
-			reActionSets1.add(hierarchicalActionSet);
+			HierarchicalActionSet hierarchicalActionSet = purifyActionSet(a);
+			List<HierarchicalActionSet> hierarchicalActionSets = divideBlocks(hierarchicalActionSet);
+			if(hierarchicalActionSets != null){
+				reActionSets1.addAll(hierarchicalActionSets);
+			}else{
+				reActionSets1.add(hierarchicalActionSet);
+			}
 
 		}
 		return reActionSets1;
 //		return reActionSets;
 	}
+	private HierarchicalActionSet purifyActionSet(HierarchicalActionSet actionSet){
+		HierarchicalActionSet hierarchicalActionSet = removeBlocks(actionSet);
+		hierarchicalActionSet = removeIFthenBlocks(hierarchicalActionSet);
+		hierarchicalActionSet = removeParentForSingle(hierarchicalActionSet);
+		hierarchicalActionSet = removeParentNode(hierarchicalActionSet);
+		return hierarchicalActionSet;
+	}
+
+	private List<HierarchicalActionSet> divideBlocks(HierarchicalActionSet actionSet){
+		if (actionSet.getAstNodeType().equals("block")){
+			List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+			if (subActions.size() > 1) {
+				boolean b = subActions.stream().allMatch(p -> NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, p.getAstNodeType()).size() == 1 && p.getAstNodeType().equals(subActions.get(0).getAstNodeType()) && p.getAction().getName().equals(subActions.get(0).getAction().getName()));
+				if (b ) {
+					subActions.stream().forEach(p -> p.setParent(null));
+					List<HierarchicalActionSet> collect = subActions.stream().map(p -> purifyActionSet(p)).collect(Collectors.toList());
+					return collect;
+				}
+
+			}
+		}
+		return null;
+	}
+
 	private HierarchicalActionSet removeParentNode(HierarchicalActionSet actionSet){
 		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
 		Action action = actionSet.getAction();

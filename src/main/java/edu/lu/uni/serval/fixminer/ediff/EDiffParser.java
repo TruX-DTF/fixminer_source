@@ -10,6 +10,8 @@ import redis.clients.jedis.JedisPool;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -67,6 +69,11 @@ public class EDiffParser extends Parser {
 			if (isJava){
 				allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
 			}else{
+				HashSet<Integer> removeType = new HashSet<Integer>(Arrays.asList(171,172,99,100,101,102));
+				boolean b = gumTreeResults.stream().anyMatch(p -> removeType.contains(p.getNode().getType()));
+				if(b){
+					return actionSets;
+				}
 				allActionSets = new HierarchicalRegrouperForC().regroupGumTreeResults(gumTreeResults);
 			}
 
