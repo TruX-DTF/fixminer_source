@@ -1,5 +1,6 @@
 package edu.lu.uni.serval.fixminer.ediff;
 
+import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -68,8 +69,12 @@ public class TestInputCases {
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_f4a70fa_7f527d_Zend#zend_object_handlers.c");// wrong
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("wireshark_26f28b_84f7a0_plugins#profinet#packet-pn-dcp.c");//ok
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("wireshark_a9e926_877728_epan#dissectors#packet-ndps.c");//wrong
+//          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_041867_5d66c3_ext#pdo#pdo_dbh.c");//wrong
+//          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_d810cf_2d8fd4_Zend#zend_builtin_functions.c");//wrong
+          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_c56492_008fb2_sapi#phpdbg#phpdbg.c");//wrong
+
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_67a100_505f61_TSRM#tsrm_virtual_cwd.c");//
-          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_2cf5d3_9a0d7a_Objects#object.c");//
+//          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_2cf5d3_9a0d7a_Objects#object.c");//
 
 //        List<HierarchicalActionSet> hierarchicalActionSets1 = getHierarchicalActionSets("php-src_fc0349_0ed538_Zend#zend.c");//
 //        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_477e2b3_98599a_main#fopen_wrappers.c");//
@@ -79,6 +84,15 @@ public class TestInputCases {
         Assert.assertEquals(hierarchicalActionSets.size(),1);
         Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"");
 
+    }
+    @Test
+    public void test_php_src_a0a56e_7afbb7() throws IOException {
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_a0a56e_7afbb7_ext#com_dotnet#com_extension.c");//ok
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD expr_stmt@@( ) STD_PHP_INI_ENTRY \"com.allow_dcom\" \"0\" PHP_INI_SYSTEM OnUpdateBool allow_dcom zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_verbose\" \"0\" PHP_INI_ALL OnUpdateBool autoreg_verbose zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_typelib\" \"0\" PHP_INI_ALL OnUpdateBool autoreg_on zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_casesensitive\" \"1\" PHP_INI_ALL OnUpdateBool autoreg_case_sensitive zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.code_page\" \"\" PHP_INI_ALL OnUpdateLong code_page zend_com_dotnet_globals com_dotnet_globals PHP_INI_ENTRY \"com.typelib_file\" \"\" PHP_INI_SYSTEM OnTypeLibFileUpdate PHP_INI_END static PHP_GINIT_FUNCTION com_dotnet memset com_dotnet_globals 0 * com_dotnet_globals com_dotnet_globals -> code_page = CP_ACP PHP_MINIT_FUNCTION com_dotnet zend_class_entry ce * tmp REGISTER_INI_ENTRIES php_com_wrapper_minit INIT_FUNC_ARGS_PASSTHRU php_com_persist_minit INIT_FUNC_ARGS_PASSTHRU INIT_CLASS_ENTRY ce \"com_exception\" NULL php_com_exception_class_entry = zend_register_internal_class_ex &ce zend_exception_get_default(TSRMLS_C) NULL TSRMLS_CC php_com_exception_class_entry -> ce_flags |= ZEND_ACC_FINAL INIT_CLASS_ENTRY ce \"com_safearray_proxy\" NULL php_com_saproxy_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_saproxy_class_entry -> ce_flags |= ZEND_ACC_FINAL php_com_saproxy_class_entry -> get_iterator = php_com_saproxy_iter_get INIT_CLASS_ENTRY ce \"variant\" NULL ce . create_object = php_com_object_new php_com_variant_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_variant_class_entry -> get_iterator = php_com_iter_get INIT_CLASS_ENTRY ce \"com\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get zend_ts_hash_init & php_com_typelibraries 0 NULL php_com_typelibrary_dtor 1 HAVE_MSCOREE_H INIT_CLASS_ENTRY ce \"dotnet\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get COM_CONST x REGISTER_LONG_CONSTANT(#x, x, CONST_CS|CONST_PERSISTENT) COM_CONST CLSCTX_INPROC_SERVER COM_CONST CLSCTX_INPROC_HANDLER COM_CONST CLSCTX_LOCAL_SERVER COM_CONST CLSCTX_REMOTE_SERVER COM_CONST CLSCTX_SERVER COM_CONST CLSCTX_ALL 0 COM_CONST VT_NULL COM_CONST VT_EMPTY COM_CONST VT_UI1 COM_CONST VT_I1 COM_CONST VT_UI2 COM_CONST VT_I2 COM_CONST VT_UI4 COM_CONST VT_I4 COM_CONST VT_R4 COM_CONST VT_R8 COM_CONST VT_BOOL COM_CONST VT_ERROR COM_CONST VT_CY COM_CONST VT_DATE COM_CONST VT_BSTR COM_CONST VT_DECIMAL COM_CONST VT_UNKNOWN COM_CONST VT_DISPATCH COM_CONST VT_VARIANT COM_CONST VT_INT COM_CONST VT_UINT COM_CONST VT_ARRAY COM_CONST VT_BYREF COM_CONST CP_ACP COM_CONST CP_MACCP COM_CONST CP_OEMCP COM_CONST CP_UTF7 COM_CONST CP_UTF8 COM_CONST CP_SYMBOL COM_CONST CP_THREAD_ACP COM_CONST VARCMP_LT COM_CONST VARCMP_EQ COM_CONST VARCMP_GT COM_CONST VARCMP_NULL COM_CONST NORM_IGNORECASE COM_CONST NORM_IGNORENONSPACE COM_CONST NORM_IGNORESYMBOLS COM_CONST NORM_IGNOREWIDTH COM_CONST NORM_IGNOREKANATYPE NORM_IGNOREKASHIDA COM_CONST NORM_IGNOREKASHIDA COM_CONST DISP_E_DIVBYZERO COM_CONST DISP_E_OVERFLOW COM_CONST DISP_E_BADINDEX COM_CONST MK_E_UNAVAILABLE return SUCCESS @TO@ ( ) STD_PHP_INI_ENTRY \"com.allow_dcom\" \"0\" PHP_INI_SYSTEM OnUpdateBool allow_dcom zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_verbose\" \"0\" PHP_INI_ALL OnUpdateBool autoreg_verbose zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_typelib\" \"0\" PHP_INI_ALL OnUpdateBool autoreg_on zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_casesensitive\" \"1\" PHP_INI_ALL OnUpdateBool autoreg_case_sensitive zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.code_page\" \"\" PHP_INI_ALL OnUpdateLong code_page zend_com_dotnet_globals com_dotnet_globals PHP_INI_ENTRY \"com.typelib_file\" \"\" PHP_INI_SYSTEM OnTypeLibFileUpdate PHP_INI_END static PHP_GINIT_FUNCTION com_dotnet memset com_dotnet_globals 0 * com_dotnet_globals com_dotnet_globals -> code_page = CP_ACP PHP_MINIT_FUNCTION com_dotnet zend_class_entry ce * tmp php_com_wrapper_minit INIT_FUNC_ARGS_PASSTHRU php_com_persist_minit INIT_FUNC_ARGS_PASSTHRU INIT_CLASS_ENTRY ce \"com_exception\" NULL php_com_exception_class_entry = zend_register_internal_class_ex &ce zend_exception_get_default(TSRMLS_C) NULL TSRMLS_CC php_com_exception_class_entry -> ce_flags |= ZEND_ACC_FINAL INIT_CLASS_ENTRY ce \"com_safearray_proxy\" NULL php_com_saproxy_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_saproxy_class_entry -> ce_flags |= ZEND_ACC_FINAL php_com_saproxy_class_entry -> get_iterator = php_com_saproxy_iter_get INIT_CLASS_ENTRY ce \"variant\" NULL ce . create_object = php_com_object_new php_com_variant_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_variant_class_entry -> get_iterator = php_com_iter_get INIT_CLASS_ENTRY ce \"com\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get zend_ts_hash_init & php_com_typelibraries 0 NULL php_com_typelibrary_dtor 1 HAVE_MSCOREE_H INIT_CLASS_ENTRY ce \"dotnet\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get REGISTER_INI_ENTRIES COM_CONST x REGISTER_LONG_CONSTANT(#x, x, CONST_CS|CONST_PERSISTENT) COM_CONST CLSCTX_INPROC_SERVER COM_CONST CLSCTX_INPROC_HANDLER COM_CONST CLSCTX_LOCAL_SERVER COM_CONST CLSCTX_REMOTE_SERVER COM_CONST CLSCTX_SERVER COM_CONST CLSCTX_ALL 0 COM_CONST VT_NULL COM_CONST VT_EMPTY COM_CONST VT_UI1 COM_CONST VT_I1 COM_CONST VT_UI2 COM_CONST VT_I2 COM_CONST VT_UI4 COM_CONST VT_I4 COM_CONST VT_R4 COM_CONST VT_R8 COM_CONST VT_BOOL COM_CONST VT_ERROR COM_CONST VT_CY COM_CONST VT_DATE COM_CONST VT_BSTR COM_CONST VT_DECIMAL COM_CONST VT_UNKNOWN COM_CONST VT_DISPATCH COM_CONST VT_VARIANT COM_CONST VT_INT COM_CONST VT_UINT COM_CONST VT_ARRAY COM_CONST VT_BYREF COM_CONST CP_ACP COM_CONST CP_MACCP COM_CONST CP_OEMCP COM_CONST CP_UTF7 COM_CONST CP_UTF8 COM_CONST CP_SYMBOL COM_CONST CP_THREAD_ACP COM_CONST VARCMP_LT COM_CONST VARCMP_EQ COM_CONST VARCMP_GT COM_CONST VARCMP_NULL COM_CONST NORM_IGNORECASE COM_CONST NORM_IGNORENONSPACE COM_CONST NORM_IGNORESYMBOLS COM_CONST NORM_IGNOREWIDTH COM_CONST NORM_IGNOREKANATYPE NORM_IGNOREKASHIDA COM_CONST NORM_IGNOREKASHIDA COM_CONST DISP_E_DIVBYZERO COM_CONST DISP_E_OVERFLOW COM_CONST DISP_E_BADINDEX COM_CONST MK_E_UNAVAILABLE return SUCCESS @AT@ 4914 @LENGTH@ 3385\n" +
+                "---UPD expr@@( ) STD_PHP_INI_ENTRY \"com.allow_dcom\" \"0\" PHP_INI_SYSTEM OnUpdateBool allow_dcom zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_verbose\" \"0\" PHP_INI_ALL OnUpdateBool autoreg_verbose zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_typelib\" \"0\" PHP_INI_ALL OnUpdateBool autoreg_on zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_casesensitive\" \"1\" PHP_INI_ALL OnUpdateBool autoreg_case_sensitive zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.code_page\" \"\" PHP_INI_ALL OnUpdateLong code_page zend_com_dotnet_globals com_dotnet_globals PHP_INI_ENTRY \"com.typelib_file\" \"\" PHP_INI_SYSTEM OnTypeLibFileUpdate PHP_INI_END static PHP_GINIT_FUNCTION com_dotnet memset com_dotnet_globals 0 * com_dotnet_globals com_dotnet_globals -> code_page = CP_ACP PHP_MINIT_FUNCTION com_dotnet zend_class_entry ce * tmp REGISTER_INI_ENTRIES php_com_wrapper_minit INIT_FUNC_ARGS_PASSTHRU php_com_persist_minit INIT_FUNC_ARGS_PASSTHRU INIT_CLASS_ENTRY ce \"com_exception\" NULL php_com_exception_class_entry = zend_register_internal_class_ex &ce zend_exception_get_default(TSRMLS_C) NULL TSRMLS_CC php_com_exception_class_entry -> ce_flags |= ZEND_ACC_FINAL INIT_CLASS_ENTRY ce \"com_safearray_proxy\" NULL php_com_saproxy_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_saproxy_class_entry -> ce_flags |= ZEND_ACC_FINAL php_com_saproxy_class_entry -> get_iterator = php_com_saproxy_iter_get INIT_CLASS_ENTRY ce \"variant\" NULL ce . create_object = php_com_object_new php_com_variant_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_variant_class_entry -> get_iterator = php_com_iter_get INIT_CLASS_ENTRY ce \"com\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get zend_ts_hash_init & php_com_typelibraries 0 NULL php_com_typelibrary_dtor 1 HAVE_MSCOREE_H INIT_CLASS_ENTRY ce \"dotnet\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get COM_CONST x REGISTER_LONG_CONSTANT(#x, x, CONST_CS|CONST_PERSISTENT) COM_CONST CLSCTX_INPROC_SERVER COM_CONST CLSCTX_INPROC_HANDLER COM_CONST CLSCTX_LOCAL_SERVER COM_CONST CLSCTX_REMOTE_SERVER COM_CONST CLSCTX_SERVER COM_CONST CLSCTX_ALL 0 COM_CONST VT_NULL COM_CONST VT_EMPTY COM_CONST VT_UI1 COM_CONST VT_I1 COM_CONST VT_UI2 COM_CONST VT_I2 COM_CONST VT_UI4 COM_CONST VT_I4 COM_CONST VT_R4 COM_CONST VT_R8 COM_CONST VT_BOOL COM_CONST VT_ERROR COM_CONST VT_CY COM_CONST VT_DATE COM_CONST VT_BSTR COM_CONST VT_DECIMAL COM_CONST VT_UNKNOWN COM_CONST VT_DISPATCH COM_CONST VT_VARIANT COM_CONST VT_INT COM_CONST VT_UINT COM_CONST VT_ARRAY COM_CONST VT_BYREF COM_CONST CP_ACP COM_CONST CP_MACCP COM_CONST CP_OEMCP COM_CONST CP_UTF7 COM_CONST CP_UTF8 COM_CONST CP_SYMBOL COM_CONST CP_THREAD_ACP COM_CONST VARCMP_LT COM_CONST VARCMP_EQ COM_CONST VARCMP_GT COM_CONST VARCMP_NULL COM_CONST NORM_IGNORECASE COM_CONST NORM_IGNORENONSPACE COM_CONST NORM_IGNORESYMBOLS COM_CONST NORM_IGNOREWIDTH COM_CONST NORM_IGNOREKANATYPE NORM_IGNOREKASHIDA COM_CONST NORM_IGNOREKASHIDA COM_CONST DISP_E_DIVBYZERO COM_CONST DISP_E_OVERFLOW COM_CONST DISP_E_BADINDEX COM_CONST MK_E_UNAVAILABLE return SUCCESS @TO@ ( ) STD_PHP_INI_ENTRY \"com.allow_dcom\" \"0\" PHP_INI_SYSTEM OnUpdateBool allow_dcom zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_verbose\" \"0\" PHP_INI_ALL OnUpdateBool autoreg_verbose zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_typelib\" \"0\" PHP_INI_ALL OnUpdateBool autoreg_on zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.autoregister_casesensitive\" \"1\" PHP_INI_ALL OnUpdateBool autoreg_case_sensitive zend_com_dotnet_globals com_dotnet_globals STD_PHP_INI_ENTRY \"com.code_page\" \"\" PHP_INI_ALL OnUpdateLong code_page zend_com_dotnet_globals com_dotnet_globals PHP_INI_ENTRY \"com.typelib_file\" \"\" PHP_INI_SYSTEM OnTypeLibFileUpdate PHP_INI_END static PHP_GINIT_FUNCTION com_dotnet memset com_dotnet_globals 0 * com_dotnet_globals com_dotnet_globals -> code_page = CP_ACP PHP_MINIT_FUNCTION com_dotnet zend_class_entry ce * tmp php_com_wrapper_minit INIT_FUNC_ARGS_PASSTHRU php_com_persist_minit INIT_FUNC_ARGS_PASSTHRU INIT_CLASS_ENTRY ce \"com_exception\" NULL php_com_exception_class_entry = zend_register_internal_class_ex &ce zend_exception_get_default(TSRMLS_C) NULL TSRMLS_CC php_com_exception_class_entry -> ce_flags |= ZEND_ACC_FINAL INIT_CLASS_ENTRY ce \"com_safearray_proxy\" NULL php_com_saproxy_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_saproxy_class_entry -> ce_flags |= ZEND_ACC_FINAL php_com_saproxy_class_entry -> get_iterator = php_com_saproxy_iter_get INIT_CLASS_ENTRY ce \"variant\" NULL ce . create_object = php_com_object_new php_com_variant_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_variant_class_entry -> get_iterator = php_com_iter_get INIT_CLASS_ENTRY ce \"com\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get zend_ts_hash_init & php_com_typelibraries 0 NULL php_com_typelibrary_dtor 1 HAVE_MSCOREE_H INIT_CLASS_ENTRY ce \"dotnet\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get REGISTER_INI_ENTRIES COM_CONST x REGISTER_LONG_CONSTANT(#x, x, CONST_CS|CONST_PERSISTENT) COM_CONST CLSCTX_INPROC_SERVER COM_CONST CLSCTX_INPROC_HANDLER COM_CONST CLSCTX_LOCAL_SERVER COM_CONST CLSCTX_REMOTE_SERVER COM_CONST CLSCTX_SERVER COM_CONST CLSCTX_ALL 0 COM_CONST VT_NULL COM_CONST VT_EMPTY COM_CONST VT_UI1 COM_CONST VT_I1 COM_CONST VT_UI2 COM_CONST VT_I2 COM_CONST VT_UI4 COM_CONST VT_I4 COM_CONST VT_R4 COM_CONST VT_R8 COM_CONST VT_BOOL COM_CONST VT_ERROR COM_CONST VT_CY COM_CONST VT_DATE COM_CONST VT_BSTR COM_CONST VT_DECIMAL COM_CONST VT_UNKNOWN COM_CONST VT_DISPATCH COM_CONST VT_VARIANT COM_CONST VT_INT COM_CONST VT_UINT COM_CONST VT_ARRAY COM_CONST VT_BYREF COM_CONST CP_ACP COM_CONST CP_MACCP COM_CONST CP_OEMCP COM_CONST CP_UTF7 COM_CONST CP_UTF8 COM_CONST CP_SYMBOL COM_CONST CP_THREAD_ACP COM_CONST VARCMP_LT COM_CONST VARCMP_EQ COM_CONST VARCMP_GT COM_CONST VARCMP_NULL COM_CONST NORM_IGNORECASE COM_CONST NORM_IGNORENONSPACE COM_CONST NORM_IGNORESYMBOLS COM_CONST NORM_IGNOREWIDTH COM_CONST NORM_IGNOREKANATYPE NORM_IGNOREKASHIDA COM_CONST NORM_IGNOREKASHIDA COM_CONST DISP_E_DIVBYZERO COM_CONST DISP_E_OVERFLOW COM_CONST DISP_E_BADINDEX COM_CONST MK_E_UNAVAILABLE return SUCCESS @AT@ 4914 @LENGTH@ 3385\n" +
+                "------UPD block@@zend_class_entry ce * tmp REGISTER_INI_ENTRIES php_com_wrapper_minit INIT_FUNC_ARGS_PASSTHRU php_com_persist_minit INIT_FUNC_ARGS_PASSTHRU INIT_CLASS_ENTRY ce \"com_exception\" NULL php_com_exception_class_entry = zend_register_internal_class_ex &ce zend_exception_get_default(TSRMLS_C) NULL TSRMLS_CC php_com_exception_class_entry -> ce_flags |= ZEND_ACC_FINAL INIT_CLASS_ENTRY ce \"com_safearray_proxy\" NULL php_com_saproxy_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_saproxy_class_entry -> ce_flags |= ZEND_ACC_FINAL php_com_saproxy_class_entry -> get_iterator = php_com_saproxy_iter_get INIT_CLASS_ENTRY ce \"variant\" NULL ce . create_object = php_com_object_new php_com_variant_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_variant_class_entry -> get_iterator = php_com_iter_get INIT_CLASS_ENTRY ce \"com\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get zend_ts_hash_init & php_com_typelibraries 0 NULL php_com_typelibrary_dtor 1 HAVE_MSCOREE_H INIT_CLASS_ENTRY ce \"dotnet\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get COM_CONST x REGISTER_LONG_CONSTANT(#x, x, CONST_CS|CONST_PERSISTENT) COM_CONST CLSCTX_INPROC_SERVER COM_CONST CLSCTX_INPROC_HANDLER COM_CONST CLSCTX_LOCAL_SERVER COM_CONST CLSCTX_REMOTE_SERVER COM_CONST CLSCTX_SERVER COM_CONST CLSCTX_ALL 0 COM_CONST VT_NULL COM_CONST VT_EMPTY COM_CONST VT_UI1 COM_CONST VT_I1 COM_CONST VT_UI2 COM_CONST VT_I2 COM_CONST VT_UI4 COM_CONST VT_I4 COM_CONST VT_R4 COM_CONST VT_R8 COM_CONST VT_BOOL COM_CONST VT_ERROR COM_CONST VT_CY COM_CONST VT_DATE COM_CONST VT_BSTR COM_CONST VT_DECIMAL COM_CONST VT_UNKNOWN COM_CONST VT_DISPATCH COM_CONST VT_VARIANT COM_CONST VT_INT COM_CONST VT_UINT COM_CONST VT_ARRAY COM_CONST VT_BYREF COM_CONST CP_ACP COM_CONST CP_MACCP COM_CONST CP_OEMCP COM_CONST CP_UTF7 COM_CONST CP_UTF8 COM_CONST CP_SYMBOL COM_CONST CP_THREAD_ACP COM_CONST VARCMP_LT COM_CONST VARCMP_EQ COM_CONST VARCMP_GT COM_CONST VARCMP_NULL COM_CONST NORM_IGNORECASE COM_CONST NORM_IGNORENONSPACE COM_CONST NORM_IGNORESYMBOLS COM_CONST NORM_IGNOREWIDTH COM_CONST NORM_IGNOREKANATYPE NORM_IGNOREKASHIDA COM_CONST NORM_IGNOREKASHIDA COM_CONST DISP_E_DIVBYZERO COM_CONST DISP_E_OVERFLOW COM_CONST DISP_E_BADINDEX COM_CONST MK_E_UNAVAILABLE return SUCCESS @TO@ zend_class_entry ce * tmp php_com_wrapper_minit INIT_FUNC_ARGS_PASSTHRU php_com_persist_minit INIT_FUNC_ARGS_PASSTHRU INIT_CLASS_ENTRY ce \"com_exception\" NULL php_com_exception_class_entry = zend_register_internal_class_ex &ce zend_exception_get_default(TSRMLS_C) NULL TSRMLS_CC php_com_exception_class_entry -> ce_flags |= ZEND_ACC_FINAL INIT_CLASS_ENTRY ce \"com_safearray_proxy\" NULL php_com_saproxy_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_saproxy_class_entry -> ce_flags |= ZEND_ACC_FINAL php_com_saproxy_class_entry -> get_iterator = php_com_saproxy_iter_get INIT_CLASS_ENTRY ce \"variant\" NULL ce . create_object = php_com_object_new php_com_variant_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_variant_class_entry -> get_iterator = php_com_iter_get INIT_CLASS_ENTRY ce \"com\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get zend_ts_hash_init & php_com_typelibraries 0 NULL php_com_typelibrary_dtor 1 HAVE_MSCOREE_H INIT_CLASS_ENTRY ce \"dotnet\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get REGISTER_INI_ENTRIES COM_CONST x REGISTER_LONG_CONSTANT(#x, x, CONST_CS|CONST_PERSISTENT) COM_CONST CLSCTX_INPROC_SERVER COM_CONST CLSCTX_INPROC_HANDLER COM_CONST CLSCTX_LOCAL_SERVER COM_CONST CLSCTX_REMOTE_SERVER COM_CONST CLSCTX_SERVER COM_CONST CLSCTX_ALL 0 COM_CONST VT_NULL COM_CONST VT_EMPTY COM_CONST VT_UI1 COM_CONST VT_I1 COM_CONST VT_UI2 COM_CONST VT_I2 COM_CONST VT_UI4 COM_CONST VT_I4 COM_CONST VT_R4 COM_CONST VT_R8 COM_CONST VT_BOOL COM_CONST VT_ERROR COM_CONST VT_CY COM_CONST VT_DATE COM_CONST VT_BSTR COM_CONST VT_DECIMAL COM_CONST VT_UNKNOWN COM_CONST VT_DISPATCH COM_CONST VT_VARIANT COM_CONST VT_INT COM_CONST VT_UINT COM_CONST VT_ARRAY COM_CONST VT_BYREF COM_CONST CP_ACP COM_CONST CP_MACCP COM_CONST CP_OEMCP COM_CONST CP_UTF7 COM_CONST CP_UTF8 COM_CONST CP_SYMBOL COM_CONST CP_THREAD_ACP COM_CONST VARCMP_LT COM_CONST VARCMP_EQ COM_CONST VARCMP_GT COM_CONST VARCMP_NULL COM_CONST NORM_IGNORECASE COM_CONST NORM_IGNORENONSPACE COM_CONST NORM_IGNORESYMBOLS COM_CONST NORM_IGNOREWIDTH COM_CONST NORM_IGNOREKANATYPE NORM_IGNOREKASHIDA COM_CONST NORM_IGNOREKASHIDA COM_CONST DISP_E_DIVBYZERO COM_CONST DISP_E_OVERFLOW COM_CONST DISP_E_BADINDEX COM_CONST MK_E_UNAVAILABLE return SUCCESS @AT@ 5962 @LENGTH@ 2498\n" +
+                "---------MOV expr@@REGISTER_INI_ENTRIES @TO@ block@@zend_class_entry ce * tmp REGISTER_INI_ENTRIES php_com_wrapper_minit INIT_FUNC_ARGS_PASSTHRU php_com_persist_minit INIT_FUNC_ARGS_PASSTHRU INIT_CLASS_ENTRY ce \"com_exception\" NULL php_com_exception_class_entry = zend_register_internal_class_ex &ce zend_exception_get_default(TSRMLS_C) NULL TSRMLS_CC php_com_exception_class_entry -> ce_flags |= ZEND_ACC_FINAL INIT_CLASS_ENTRY ce \"com_safearray_proxy\" NULL php_com_saproxy_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_saproxy_class_entry -> ce_flags |= ZEND_ACC_FINAL php_com_saproxy_class_entry -> get_iterator = php_com_saproxy_iter_get INIT_CLASS_ENTRY ce \"variant\" NULL ce . create_object = php_com_object_new php_com_variant_class_entry = zend_register_internal_class &ce TSRMLS_CC php_com_variant_class_entry -> get_iterator = php_com_iter_get INIT_CLASS_ENTRY ce \"com\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get zend_ts_hash_init & php_com_typelibraries 0 NULL php_com_typelibrary_dtor 1 HAVE_MSCOREE_H INIT_CLASS_ENTRY ce \"dotnet\" NULL ce . create_object = php_com_object_new tmp = zend_register_internal_class_ex & ce php_com_variant_class_entry \"variant\" TSRMLS_CC tmp -> get_iterator = php_com_iter_get COM_CONST x REGISTER_LONG_CONSTANT(#x, x, CONST_CS|CONST_PERSISTENT) COM_CONST CLSCTX_INPROC_SERVER COM_CONST CLSCTX_INPROC_HANDLER COM_CONST CLSCTX_LOCAL_SERVER COM_CONST CLSCTX_REMOTE_SERVER COM_CONST CLSCTX_SERVER COM_CONST CLSCTX_ALL 0 COM_CONST VT_NULL COM_CONST VT_EMPTY COM_CONST VT_UI1 COM_CONST VT_I1 COM_CONST VT_UI2 COM_CONST VT_I2 COM_CONST VT_UI4 COM_CONST VT_I4 COM_CONST VT_R4 COM_CONST VT_R8 COM_CONST VT_BOOL COM_CONST VT_ERROR COM_CONST VT_CY COM_CONST VT_DATE COM_CONST VT_BSTR COM_CONST VT_DECIMAL COM_CONST VT_UNKNOWN COM_CONST VT_DISPATCH COM_CONST VT_VARIANT COM_CONST VT_INT COM_CONST VT_UINT COM_CONST VT_ARRAY COM_CONST VT_BYREF COM_CONST CP_ACP COM_CONST CP_MACCP COM_CONST CP_OEMCP COM_CONST CP_UTF7 COM_CONST CP_UTF8 COM_CONST CP_SYMBOL COM_CONST CP_THREAD_ACP COM_CONST VARCMP_LT COM_CONST VARCMP_EQ COM_CONST VARCMP_GT COM_CONST VARCMP_NULL COM_CONST NORM_IGNORECASE COM_CONST NORM_IGNORENONSPACE COM_CONST NORM_IGNORESYMBOLS COM_CONST NORM_IGNOREWIDTH COM_CONST NORM_IGNOREKANATYPE NORM_IGNOREKASHIDA COM_CONST NORM_IGNOREKASHIDA COM_CONST DISP_E_DIVBYZERO COM_CONST DISP_E_OVERFLOW COM_CONST DISP_E_BADINDEX COM_CONST MK_E_UNAVAILABLE return SUCCESS @AT@ 5994 @LENGTH@ 20\n");
     }
     @Test
     public void test_php_src_a29791_796ff1() throws IOException {
@@ -277,7 +291,7 @@ public class TestInputCases {
                 "---------MOV name@@subs ][walk ][1 - '0' @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 9806 @LENGTH@ 21\n" +
                 "---------MOV name@@subs ][walk ][1 - '0' @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 9835 @LENGTH@ 21\n");
     }
-    @Test
+    @Test//TODO
     public void test_php_src_f91b3d_5f1bff() throws IOException {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_f91b3d_5f1bff_ext#ereg#ereg.c");//removeParentForSingle?? and others maybe
         Assert.assertEquals(hierarchicalActionSets.size(),2);
@@ -677,55 +691,55 @@ public class TestInputCases {
     @Test
     public void test_php_src_470a39_b38730() throws IOException {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_470a39_b38730_Zend#zend_stream.c");//can write test case
-        Assert.assertEquals(hierarchicalActionSets.size(),2);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD block@@ buf . st_size @TO@  S_ISREG if ! S_ISREG  buf . st_mode  0  buf . st_size @AT@ 2021 @LENGTH@ 27\n" +
-                "---INS ifdef@@S_ISREG @TO@ block@@ buf . st_size @AT@ 2024 @LENGTH@ 7\n" +
-                "------INS directive@@ @TO@ ifdef@@S_ISREG @AT@ 2024 @LENGTH@ 0\n" +
-                "------INS name@@S_ISREG @TO@ ifdef@@S_ISREG @AT@ 2030 @LENGTH@ 7\n" +
-                "---INS if@@if ! S_ISREG  buf . st_mode  0 @TO@ block@@ buf . st_size @AT@ 2043 @LENGTH@ 30\n" +
-                "------INS condition@@ ! S_ISREG  buf . st_mode @TO@ if@@if ! S_ISREG  buf . st_mode  0 @AT@ 2043 @LENGTH@ 24\n" +
-                "---------INS expr@@! S_ISREG  buf . st_mode @TO@ condition@@ ! S_ISREG  buf . st_mode @AT@ 2044 @LENGTH@ 24\n" +
-                "------------INS operator@@! @TO@ expr@@! S_ISREG  buf . st_mode @AT@ 2044 @LENGTH@ 1\n" +
-                "------------INS call@@S_ISREG  buf . st_mode @TO@ expr@@! S_ISREG  buf . st_mode @AT@ 2045 @LENGTH@ 22\n" +
-                "---------------INS name@@S_ISREG @TO@ call@@S_ISREG  buf . st_mode @AT@ 2045 @LENGTH@ 7\n" +
-                "---------------INS argument_list@@ buf . st_mode @TO@ call@@S_ISREG  buf . st_mode @AT@ 2052 @LENGTH@ 14\n" +
-                "------------------INS argument@@buf . st_mode @TO@ argument_list@@ buf . st_mode @AT@ 2053 @LENGTH@ 13\n" +
-                "---------------------INS expr@@buf . st_mode @TO@ argument@@buf . st_mode @AT@ 2053 @LENGTH@ 13\n" +
-                "------------------------INS name@@buf . st_mode @TO@ expr@@buf . st_mode @AT@ 2053 @LENGTH@ 13\n" +
-                "---------------------------INS name@@buf @TO@ name@@buf . st_mode @AT@ 2053 @LENGTH@ 3\n" +
-                "---------------------------INS operator@@. @TO@ name@@buf . st_mode @AT@ 2056 @LENGTH@ 1\n" +
-                "---------------------------INS name@@st_mode @TO@ name@@buf . st_mode @AT@ 2057 @LENGTH@ 7\n" +
-                "------INS then@@ 0 @TO@ if@@if ! S_ISREG  buf . st_mode  0 @AT@ 2067 @LENGTH@ 2\n" +
-                "---------INS block@@ 0 @TO@ then@@ 0 @AT@ 2067 @LENGTH@ 19\n" +
-                "------------INS return@@ 0 @TO@ block@@ 0 @AT@ 2072 @LENGTH@ 10\n" +
-                "---------------INS expr@@0 @TO@ return@@ 0 @AT@ 2079 @LENGTH@ 1\n" +
-                "------------------INS literal@@0 @TO@ expr@@0 @AT@ 2079 @LENGTH@ 1\n" +
-                "---INS endif@@ @TO@ block@@ buf . st_size @AT@ 2087 @LENGTH@ 0\n" +
-                "------INS directive@@ @TO@ endif@@ @AT@ 2087 @LENGTH@ 0\n");
-        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD block@@ buf . st_size @TO@  S_ISREG if ! S_ISREG  buf . st_mode  0  buf . st_size @AT@ 3287 @LENGTH@ 27\n" +
-                "---INS ifdef@@S_ISREG @TO@ block@@ buf . st_size @AT@ 3360 @LENGTH@ 7\n" +
-                "------INS directive@@ @TO@ ifdef@@S_ISREG @AT@ 3360 @LENGTH@ 0\n" +
-                "------INS name@@S_ISREG @TO@ ifdef@@S_ISREG @AT@ 3366 @LENGTH@ 7\n" +
-                "---INS if@@if ! S_ISREG  buf . st_mode  0 @TO@ block@@ buf . st_size @AT@ 3379 @LENGTH@ 30\n" +
-                "------INS condition@@ ! S_ISREG  buf . st_mode @TO@ if@@if ! S_ISREG  buf . st_mode  0 @AT@ 3379 @LENGTH@ 24\n" +
-                "---------INS expr@@! S_ISREG  buf . st_mode @TO@ condition@@ ! S_ISREG  buf . st_mode @AT@ 3380 @LENGTH@ 24\n" +
-                "------------INS operator@@! @TO@ expr@@! S_ISREG  buf . st_mode @AT@ 3380 @LENGTH@ 1\n" +
-                "------------INS call@@S_ISREG  buf . st_mode @TO@ expr@@! S_ISREG  buf . st_mode @AT@ 3381 @LENGTH@ 22\n" +
-                "---------------INS name@@S_ISREG @TO@ call@@S_ISREG  buf . st_mode @AT@ 3381 @LENGTH@ 7\n" +
-                "---------------INS argument_list@@ buf . st_mode @TO@ call@@S_ISREG  buf . st_mode @AT@ 3388 @LENGTH@ 14\n" +
-                "------------------INS argument@@buf . st_mode @TO@ argument_list@@ buf . st_mode @AT@ 3389 @LENGTH@ 13\n" +
-                "---------------------INS expr@@buf . st_mode @TO@ argument@@buf . st_mode @AT@ 3389 @LENGTH@ 13\n" +
-                "------------------------INS name@@buf . st_mode @TO@ expr@@buf . st_mode @AT@ 3389 @LENGTH@ 13\n" +
-                "---------------------------INS name@@buf @TO@ name@@buf . st_mode @AT@ 3389 @LENGTH@ 3\n" +
-                "---------------------------INS operator@@. @TO@ name@@buf . st_mode @AT@ 3392 @LENGTH@ 1\n" +
-                "---------------------------INS name@@st_mode @TO@ name@@buf . st_mode @AT@ 3393 @LENGTH@ 7\n" +
-                "------INS then@@ 0 @TO@ if@@if ! S_ISREG  buf . st_mode  0 @AT@ 3403 @LENGTH@ 2\n" +
-                "---------INS block@@ 0 @TO@ then@@ 0 @AT@ 3403 @LENGTH@ 19\n" +
-                "------------INS return@@ 0 @TO@ block@@ 0 @AT@ 3408 @LENGTH@ 10\n" +
-                "---------------INS expr@@0 @TO@ return@@ 0 @AT@ 3415 @LENGTH@ 1\n" +
-                "------------------INS literal@@0 @TO@ expr@@0 @AT@ 3415 @LENGTH@ 1\n" +
-                "---INS endif@@ @TO@ block@@ buf . st_size @AT@ 3423 @LENGTH@ 0\n" +
-                "------INS directive@@ @TO@ endif@@ @AT@ 3423 @LENGTH@ 0\n");
+        Assert.assertEquals(hierarchicalActionSets.size(),0);
+//        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD block@@ buf . st_size @TO@  S_ISREG if ! S_ISREG  buf . st_mode  0  buf . st_size @AT@ 2021 @LENGTH@ 27\n" +
+//                "---INS ifdef@@S_ISREG @TO@ block@@ buf . st_size @AT@ 2024 @LENGTH@ 7\n" +
+//                "------INS directive@@ @TO@ ifdef@@S_ISREG @AT@ 2024 @LENGTH@ 0\n" +
+//                "------INS name@@S_ISREG @TO@ ifdef@@S_ISREG @AT@ 2030 @LENGTH@ 7\n" +
+//                "---INS if@@if ! S_ISREG  buf . st_mode  0 @TO@ block@@ buf . st_size @AT@ 2043 @LENGTH@ 30\n" +
+//                "------INS condition@@ ! S_ISREG  buf . st_mode @TO@ if@@if ! S_ISREG  buf . st_mode  0 @AT@ 2043 @LENGTH@ 24\n" +
+//                "---------INS expr@@! S_ISREG  buf . st_mode @TO@ condition@@ ! S_ISREG  buf . st_mode @AT@ 2044 @LENGTH@ 24\n" +
+//                "------------INS operator@@! @TO@ expr@@! S_ISREG  buf . st_mode @AT@ 2044 @LENGTH@ 1\n" +
+//                "------------INS call@@S_ISREG  buf . st_mode @TO@ expr@@! S_ISREG  buf . st_mode @AT@ 2045 @LENGTH@ 22\n" +
+//                "---------------INS name@@S_ISREG @TO@ call@@S_ISREG  buf . st_mode @AT@ 2045 @LENGTH@ 7\n" +
+//                "---------------INS argument_list@@ buf . st_mode @TO@ call@@S_ISREG  buf . st_mode @AT@ 2052 @LENGTH@ 14\n" +
+//                "------------------INS argument@@buf . st_mode @TO@ argument_list@@ buf . st_mode @AT@ 2053 @LENGTH@ 13\n" +
+//                "---------------------INS expr@@buf . st_mode @TO@ argument@@buf . st_mode @AT@ 2053 @LENGTH@ 13\n" +
+//                "------------------------INS name@@buf . st_mode @TO@ expr@@buf . st_mode @AT@ 2053 @LENGTH@ 13\n" +
+//                "---------------------------INS name@@buf @TO@ name@@buf . st_mode @AT@ 2053 @LENGTH@ 3\n" +
+//                "---------------------------INS operator@@. @TO@ name@@buf . st_mode @AT@ 2056 @LENGTH@ 1\n" +
+//                "---------------------------INS name@@st_mode @TO@ name@@buf . st_mode @AT@ 2057 @LENGTH@ 7\n" +
+//                "------INS then@@ 0 @TO@ if@@if ! S_ISREG  buf . st_mode  0 @AT@ 2067 @LENGTH@ 2\n" +
+//                "---------INS block@@ 0 @TO@ then@@ 0 @AT@ 2067 @LENGTH@ 19\n" +
+//                "------------INS return@@ 0 @TO@ block@@ 0 @AT@ 2072 @LENGTH@ 10\n" +
+//                "---------------INS expr@@0 @TO@ return@@ 0 @AT@ 2079 @LENGTH@ 1\n" +
+//                "------------------INS literal@@0 @TO@ expr@@0 @AT@ 2079 @LENGTH@ 1\n" +
+//                "---INS endif@@ @TO@ block@@ buf . st_size @AT@ 2087 @LENGTH@ 0\n" +
+//                "------INS directive@@ @TO@ endif@@ @AT@ 2087 @LENGTH@ 0\n");
+//        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD block@@ buf . st_size @TO@  S_ISREG if ! S_ISREG  buf . st_mode  0  buf . st_size @AT@ 3287 @LENGTH@ 27\n" +
+//                "---INS ifdef@@S_ISREG @TO@ block@@ buf . st_size @AT@ 3360 @LENGTH@ 7\n" +
+//                "------INS directive@@ @TO@ ifdef@@S_ISREG @AT@ 3360 @LENGTH@ 0\n" +
+//                "------INS name@@S_ISREG @TO@ ifdef@@S_ISREG @AT@ 3366 @LENGTH@ 7\n" +
+//                "---INS if@@if ! S_ISREG  buf . st_mode  0 @TO@ block@@ buf . st_size @AT@ 3379 @LENGTH@ 30\n" +
+//                "------INS condition@@ ! S_ISREG  buf . st_mode @TO@ if@@if ! S_ISREG  buf . st_mode  0 @AT@ 3379 @LENGTH@ 24\n" +
+//                "---------INS expr@@! S_ISREG  buf . st_mode @TO@ condition@@ ! S_ISREG  buf . st_mode @AT@ 3380 @LENGTH@ 24\n" +
+//                "------------INS operator@@! @TO@ expr@@! S_ISREG  buf . st_mode @AT@ 3380 @LENGTH@ 1\n" +
+//                "------------INS call@@S_ISREG  buf . st_mode @TO@ expr@@! S_ISREG  buf . st_mode @AT@ 3381 @LENGTH@ 22\n" +
+//                "---------------INS name@@S_ISREG @TO@ call@@S_ISREG  buf . st_mode @AT@ 3381 @LENGTH@ 7\n" +
+//                "---------------INS argument_list@@ buf . st_mode @TO@ call@@S_ISREG  buf . st_mode @AT@ 3388 @LENGTH@ 14\n" +
+//                "------------------INS argument@@buf . st_mode @TO@ argument_list@@ buf . st_mode @AT@ 3389 @LENGTH@ 13\n" +
+//                "---------------------INS expr@@buf . st_mode @TO@ argument@@buf . st_mode @AT@ 3389 @LENGTH@ 13\n" +
+//                "------------------------INS name@@buf . st_mode @TO@ expr@@buf . st_mode @AT@ 3389 @LENGTH@ 13\n" +
+//                "---------------------------INS name@@buf @TO@ name@@buf . st_mode @AT@ 3389 @LENGTH@ 3\n" +
+//                "---------------------------INS operator@@. @TO@ name@@buf . st_mode @AT@ 3392 @LENGTH@ 1\n" +
+//                "---------------------------INS name@@st_mode @TO@ name@@buf . st_mode @AT@ 3393 @LENGTH@ 7\n" +
+//                "------INS then@@ 0 @TO@ if@@if ! S_ISREG  buf . st_mode  0 @AT@ 3403 @LENGTH@ 2\n" +
+//                "---------INS block@@ 0 @TO@ then@@ 0 @AT@ 3403 @LENGTH@ 19\n" +
+//                "------------INS return@@ 0 @TO@ block@@ 0 @AT@ 3408 @LENGTH@ 10\n" +
+//                "---------------INS expr@@0 @TO@ return@@ 0 @AT@ 3415 @LENGTH@ 1\n" +
+//                "------------------INS literal@@0 @TO@ expr@@0 @AT@ 3415 @LENGTH@ 1\n" +
+//                "---INS endif@@ @TO@ block@@ buf . st_size @AT@ 3423 @LENGTH@ 0\n" +
+//                "------INS directive@@ @TO@ endif@@ @AT@ 3423 @LENGTH@ 0\n");
     }
     @Test
     public void test_php_src_9baa92_f9c232() throws IOException {
@@ -824,15 +838,17 @@ public class TestInputCases {
                 "------------------------INS operator@@( @TO@ expr@@hf @AT@ 1456 @LENGTH@ 1\n" +
                 "------------------------INS name@@int @TO@ expr@@hf @AT@ 1457 @LENGTH@ 3\n" +
                 "------------------------INS operator@@) @TO@ expr@@hf @AT@ 1460 @LENGTH@ 1\n");
-        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD block@@UINT result = ( UINT ) _write hf memory cb if result != cb * err = errno @TO@ UINT result = ( UINT ) _write ( int ) hf memory cb if result != cb * err = errno @AT@ 1573 @LENGTH@ 72\n" +
-                "---UPD expr@@UINT result = ( UINT ) _write hf memory cb @TO@ UINT result = ( UINT ) _write ( int ) hf memory cb @AT@ 1573 @LENGTH@ 42\n" +
-                "------UPD call@@_write hf memory cb @TO@ _write ( int ) hf memory cb @AT@ 1593 @LENGTH@ 19\n" +
-                "---------UPD argument_list@@hf memory cb @TO@ ( int ) hf memory cb @AT@ 1599 @LENGTH@ 12\n" +
-                "------------UPD argument@@hf @TO@ ( int ) hf @AT@ 1600 @LENGTH@ 2\n" +
-                "---------------UPD expr@@hf @TO@ ( int ) hf @AT@ 1600 @LENGTH@ 2\n" +
-                "------------------INS operator@@( @TO@ expr@@hf @AT@ 1605 @LENGTH@ 1\n" +
-                "------------------INS name@@int @TO@ expr@@hf @AT@ 1606 @LENGTH@ 3\n" +
-                "------------------INS operator@@) @TO@ expr@@hf @AT@ 1609 @LENGTH@ 1\n");
+        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD expr_stmt@@static FNFCIWRITE cb_write UINT result = ( UINT ) _write hf memory cb if result != cb * err = errno @TO@ static FNFCIWRITE cb_write UINT result = ( UINT ) _write ( int ) hf memory cb if result != cb * err = errno @AT@ 1539 @LENGTH@ 99\n" +
+                "---UPD expr@@static FNFCIWRITE cb_write UINT result = ( UINT ) _write hf memory cb if result != cb * err = errno @TO@ static FNFCIWRITE cb_write UINT result = ( UINT ) _write ( int ) hf memory cb if result != cb * err = errno @AT@ 1539 @LENGTH@ 99\n" +
+                "------UPD block@@UINT result = ( UINT ) _write hf memory cb if result != cb * err = errno @TO@ UINT result = ( UINT ) _write ( int ) hf memory cb if result != cb * err = errno @AT@ 1573 @LENGTH@ 72\n" +
+                "---------UPD expr@@UINT result = ( UINT ) _write hf memory cb @TO@ UINT result = ( UINT ) _write ( int ) hf memory cb @AT@ 1573 @LENGTH@ 42\n" +
+                "------------UPD call@@_write hf memory cb @TO@ _write ( int ) hf memory cb @AT@ 1593 @LENGTH@ 19\n" +
+                "---------------UPD argument_list@@hf memory cb @TO@ ( int ) hf memory cb @AT@ 1599 @LENGTH@ 12\n" +
+                "------------------UPD argument@@hf @TO@ ( int ) hf @AT@ 1600 @LENGTH@ 2\n" +
+                "---------------------UPD expr@@hf @TO@ ( int ) hf @AT@ 1600 @LENGTH@ 2\n" +
+                "------------------------INS operator@@( @TO@ expr@@hf @AT@ 1605 @LENGTH@ 1\n" +
+                "------------------------INS name@@int @TO@ expr@@hf @AT@ 1606 @LENGTH@ 3\n" +
+                "------------------------INS operator@@) @TO@ expr@@hf @AT@ 1609 @LENGTH@ 1\n");
         Assert.assertEquals(hierarchicalActionSets.get(2).toString(),"UPD decl_stmt@@int result _close hf @TO@ int result _close ( int ) hf @AT@ 1717 @LENGTH@ 20\n" +
                 "---UPD decl@@int result _close hf @TO@ int result _close ( int ) hf @AT@ 1717 @LENGTH@ 20\n" +
                 "------UPD init@@_close hf @TO@ _close ( int ) hf @AT@ 1730 @LENGTH@ 9\n" +
@@ -849,7 +865,7 @@ public class TestInputCases {
                 "------UPD block@@long result = ( long ) _lseek hf dist seektype if result == - 1 * err = errno @TO@ long result = ( long ) _lseek ( int ) hf dist seektype if result == - 1 * err = errno @AT@ 1839 @LENGTH@ 77\n" +
                 "---------UPD expr@@long result = ( long ) _lseek hf dist seektype @TO@ long result = ( long ) _lseek ( int ) hf dist seektype @AT@ 1839 @LENGTH@ 46\n" +
                 "------------UPD call@@_lseek hf dist seektype @TO@ _lseek ( int ) hf dist seektype @AT@ 1859 @LENGTH@ 23\n" +
-                "---------------UPD argument_list@@hf dist seektype @TO@ ( int ) hf dist seektype @AT@ 1865 @LENGTH@ 21\n" +
+                "---------------UPD argument_list@@hf dist seektype @TO@ ( int ) hf dist seektype @AT@ 1865 @LENGTH@ 16\n" +
                 "------------------UPD argument@@hf @TO@ ( int ) hf @AT@ 1866 @LENGTH@ 2\n" +
                 "---------------------UPD expr@@hf @TO@ ( int ) hf @AT@ 1866 @LENGTH@ 2\n" +
                 "------------------------INS operator@@( @TO@ expr@@hf @AT@ 1881 @LENGTH@ 1\n" +
@@ -957,7 +973,7 @@ public class TestInputCases {
                 "------------INS expr@@FAILURE @TO@ return@@return FAILURE @AT@ 11754 @LENGTH@ 7\n" +
                 "---------------INS name@@FAILURE @TO@ expr@@FAILURE @AT@ 11754 @LENGTH@ 7\n");
     }
-    @Test
+    @Test//TODO
     public void test_php_src_c71358_283565() throws IOException {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_c71358_283565_main#main.c");//
         Assert.assertEquals(hierarchicalActionSets.size(),2);
@@ -1079,11 +1095,12 @@ public class TestInputCases {
         Properties appProps = new Properties();
         appProps.load(new FileInputStream("src/main/resource/app.properties"));
         String srcMLPath = appProps.getProperty("srcMLPath", "FORKJOIN");
-        String root = appProps.getProperty("inputPath");
+//        String root = appProps.getProperty("inputPath");
+        String root = "src/main/resource/testFiles";
         String project = s.split("_")[0];
         root = root + "/"+project+"/";
         String filename = s.replace(project+"_","");
-
+    try{
         File revFile = new File(root + "revFiles/" + filename);
         File prevFile = new File(root + "prevFiles/prev_" + filename);
 
@@ -1092,6 +1109,16 @@ public class TestInputCases {
 
         List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         return hierarchicalActionSets;
+    }catch (NullPointerException n){
+        String cmd = "cp /Users/anil.koyuncu/projects/test/fixminer-data/patches/"+project+"/"+n.getMessage().split(root)[1] + " /Users/anil.koyuncu/projects/test/fixminerC/"+n.getMessage();
+        CallShell cs = new CallShell();
+        try {
+            cs.runShell(cmd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     }
 
 

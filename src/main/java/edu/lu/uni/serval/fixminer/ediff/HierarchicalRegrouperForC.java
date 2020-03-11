@@ -8,8 +8,10 @@ import com.github.gumtreediff.tree.ITree;
 import edu.lu.uni.serval.utils.ListSorter;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -46,9 +48,9 @@ public class HierarchicalRegrouperForC {
 		 */
 		HierarchicalActionSet actionSet = null;
 		for(Action act : actions){
-			if(act.getNode().getType() == 19 && act.getNode().getLabel().equals("")){
-				continue;
-			}
+//			if(act.getNode().getType() == 19 && act.getNode().getLabel().equals("")){
+//				continue;
+//			}
 			Action parentAct = findParentAction(act, actions);
 			
 			if (parentAct == null) {
@@ -122,6 +124,27 @@ public class HierarchicalRegrouperForC {
 		return null;
 	}
 
+	public List<HierarchicalActionSet> postOrder(HierarchicalActionSet a) {
+		List<HierarchicalActionSet> trees = new ArrayList<>();
+		getAllSubActions(a, trees);
+		return trees;
+	}
+	private void getAllSubActions(HierarchicalActionSet a,List<HierarchicalActionSet> as) {
+
+		List<HierarchicalActionSet> subActions = a.getSubActions();
+		if (subActions.size() != 0){
+			for (HierarchicalActionSet s : subActions) {
+				getAllSubActions(s, as);
+			}
+
+		}
+		as.add(a);
+//		List<HierarchicalActionSet> b = new ArrayList<HierarchicalActionSet>();
+//		for (HierarchicalActionSet child: this.getSubActions())
+//			b.add(child);
+//		return b;
+	}
+
 	private HierarchicalActionSet removeParentNode(HierarchicalActionSet actionSet){
 		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
 		Action action = actionSet.getAction();
@@ -143,9 +166,16 @@ public class HierarchicalRegrouperForC {
 
 	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
 		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+		Predicate<HierarchicalActionSet> predicate = x->NodeMap_new.getKeysByValue(NodeMap_new.StatementMap,x.getAstNodeType()).size() == 1 ;
+		Predicate<HierarchicalActionSet> predicate1 = x->!x.getAstNodeType().equals("block");
+
+
 		Action action = actionSet.getAction();
 		if (subActions.size() == 1){
 			HierarchicalActionSet subaction = subActions.get(0);
+			if(!postOrder(subaction).stream().anyMatch(predicate.and(predicate1))){
+				return actionSet;
+			}
 			Action action1 = subaction.getAction();
 			//else,then,block
 			if(action.getClass().equals(action1.getClass()) && action.getName().equals("UPD")) {
