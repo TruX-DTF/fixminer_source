@@ -71,8 +71,9 @@ public class TestInputCases {
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("wireshark_a9e926_877728_epan#dissectors#packet-ndps.c");//wrong
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_041867_5d66c3_ext#pdo#pdo_dbh.c");//wrong
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_d810cf_2d8fd4_Zend#zend_builtin_functions.c");//wrong
-          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_c56492_008fb2_sapi#phpdbg#phpdbg.c");//wrong
-
+//          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_c56492_008fb2_sapi#phpdbg#phpdbg.c");//wrong
+          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("wireshark_96ba09_755c08_epan#dissectors#packet-gsm_a_rr.c");//wrong
+//php-src_acd809_1d3d39_ext#standard#scanf.c
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_67a100_505f61_TSRM#tsrm_virtual_cwd.c");//
 //          List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_2cf5d3_9a0d7a_Objects#object.c");//
 
@@ -82,8 +83,100 @@ public class TestInputCases {
 //        String s = EDiffHelper.getShapeTree(hierarchicalActionSets.get(0), false).toStaticHashString();
 //        String s1 = EDiffHelper.getShapeTree(hierarchicalActionSets1.get(0), false).toStaticHashString();
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"");
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if gsm_rr_csn_HL_flag tvb subtree tvb_len bit_offset ++ \"Priority 2\" \"Present\" \"Not present\" @TO@ if gsm_rr_csn_HL_flag tvb subtree tvb_len bit_offset ++ \"Priority 2\" \"Present\" \"Not present\" item2 = proto_tree_add_bits_item subtree hf_gsm_a_call_prio tvb bit_offset 3 FALSE bit_offset += 3 proto_item_append_text item2 \" for Mobile Identity 2\" @AT@ 157870 @LENGTH@ 92\n" +
+                "---UPD then@@ @TO@ item2 = proto_tree_add_bits_item subtree hf_gsm_a_call_prio tvb bit_offset 3 FALSE bit_offset += 3 proto_item_append_text item2 \" for Mobile Identity 2\" @AT@ -1 @LENGTH@ 0\n" +
+                "------MOV block@@item2 = proto_tree_add_bits_item subtree hf_gsm_a_call_prio tvb bit_offset 3 FALSE bit_offset += 3 proto_item_append_text item2 \" for Mobile Identity 2\" @TO@ then@@ @AT@ 157973 @LENGTH@ 152\n");
 
+    }
+    @Test
+    public void test_wireshark_96ba09_755c08() throws IOException {
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("wireshark_96ba09_755c08_epan#dissectors#packet-gsm_a_rr.c");
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if gsm_rr_csn_HL_flag tvb subtree tvb_len bit_offset ++ \"Priority 2\" \"Present\" \"Not present\" @TO@ if gsm_rr_csn_HL_flag tvb subtree tvb_len bit_offset ++ \"Priority 2\" \"Present\" \"Not present\" item2 = proto_tree_add_bits_item subtree hf_gsm_a_call_prio tvb bit_offset 3 FALSE bit_offset += 3 proto_item_append_text item2 \" for Mobile Identity 2\" @AT@ 157870 @LENGTH@ 92\n" +
+                "---UPD then@@ @TO@ item2 = proto_tree_add_bits_item subtree hf_gsm_a_call_prio tvb bit_offset 3 FALSE bit_offset += 3 proto_item_append_text item2 \" for Mobile Identity 2\" @AT@ -1 @LENGTH@ 0\n" +
+                "------MOV block@@item2 = proto_tree_add_bits_item subtree hf_gsm_a_call_prio tvb bit_offset 3 FALSE bit_offset += 3 proto_item_append_text item2 \" for Mobile Identity 2\" @TO@ then@@ @AT@ 157973 @LENGTH@ 152\n");
+
+    }
+    @Test
+    public void test_php_src_cf4a29_40becd() throws IOException {//todo upd mov with delete (get rid of delete
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_cf4a29_40becd_main#safe_mode.c");//wrong
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if mode == CHECKUID_DISALLOW_FILE_NOT_EXISTS php_error E_WARNING \"Unable to access %s\" filename return 0 elseif if mode == CHECKUID_ALLOW_FILE_NOT_EXISTS php_error E_WARNING \"Unable to access %s\" filename @TO@ if mode == CHECKUID_DISALLOW_FILE_NOT_EXISTS php_error E_WARNING \"Unable to access %s\" filename return 0 elseif if mode == CHECKUID_ALLOW_FILE_NOT_EXISTS php_error E_WARNING \"Unable to access %s\" filename return 1 @AT@ 2519 @LENGTH@ 204\n" +
+                "---UPD elseif@@elseif if mode == CHECKUID_ALLOW_FILE_NOT_EXISTS php_error E_WARNING \"Unable to access %s\" filename @TO@ elseif if mode == CHECKUID_ALLOW_FILE_NOT_EXISTS php_error E_WARNING \"Unable to access %s\" filename return 1 @AT@ 2651 @LENGTH@ 99\n" +
+                "------UPD if@@if mode == CHECKUID_ALLOW_FILE_NOT_EXISTS php_error E_WARNING \"Unable to access %s\" filename @TO@ if mode == CHECKUID_ALLOW_FILE_NOT_EXISTS php_error E_WARNING \"Unable to access %s\" filename return 1 @AT@ 2651 @LENGTH@ 92\n" +
+                "---------UPD then@@php_error E_WARNING \"Unable to access %s\" filename @TO@ php_error E_WARNING \"Unable to access %s\" filename return 1 @AT@ 2696 @LENGTH@ 50\n" +
+                "------------UPD block@@php_error E_WARNING \"Unable to access %s\" filename @TO@ php_error E_WARNING \"Unable to access %s\" filename return 1 @AT@ 2696 @LENGTH@ 50\n" +
+                "---------------MOV return@@return 1 @TO@ block@@php_error E_WARNING \"Unable to access %s\" filename @AT@ 2756 @LENGTH@ 8\n");
+    }
+    @Test
+    public void test_cpython_1a8501_c47253() throws IOException {//todo wrong
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_1a8501_c47253_Modules#signalmodule.c");//wrong
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"");
+    }
+    @Test
+    public void test_cpython_58fb90_c9e435() throws IOException {//TODO definitely wrong
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_58fb90_c9e435_Modules#_stringio.c");//wrong
+        Assert.assertEquals(hierarchicalActionSets.size(),2);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"");
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"");
+    }
+    @Test
+    public void test_cpython_1c76b7_d6056b() throws IOException {
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_1c76b7_d6056b_Modules#faulthandler.c");//wrong
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD function@@static void faulthandler_thread void * unused PyLockStatus st const char * errmsg PyThreadState * current int ok do  thread . running = 0 PyThread_release_lock thread . join_event PyThread_release_lock thread . cancel_event @TO@ static void faulthandler_thread void * unused PyLockStatus st const char * errmsg PyThreadState * current int ok do  thread . running = 0 PyThread_release_lock thread . join_event @AT@ 10367 @LENGTH@ 223\n" +
+                "---UPD block@@PyLockStatus st const char * errmsg PyThreadState * current int ok do  thread . running = 0 PyThread_release_lock thread . join_event PyThread_release_lock thread . cancel_event @TO@ PyLockStatus st const char * errmsg PyThreadState * current int ok do  thread . running = 0 PyThread_release_lock thread . join_event @AT@ 10413 @LENGTH@ 177\n");
+        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"MOV expr_stmt@@PyThread_release_lock thread . cancel_event @TO@ block@@break; @AT@ 11259 @LENGTH@ 43\n");
+    }
+    @Test
+    public void test_php_src_acd809_1d3d39() throws IOException {
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_acd809_1d3d39_ext#standard#scanf.c");
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD switch@@* ch 'n' if ! ( flags & SCAN_SUPPRESS ) if numVars zend_uint refcount current = args ][objIndex ++ refcount = ( * current ) -> refcount zval_dtor * current ZVAL_LONG * current long string - baseString ( * current ) -> refcount = refcount ( * current ) -> is_ref = 1 else add_index_long * return_value objIndex ++ string - baseString nconversions ++ continue; 'd' 'D' op = 'i' base = 10 fn = ( long * ) strtol break; 'i' op = 'i' base = 0 fn = ( long * ) strtol break; 'o' op = 'i' base = 8 fn = ( long * ) strtol break; 'x' op = 'i' base = 16 fn = ( long * ) strtol break; 'u' op = 'i' base = 10 flags |= SCAN_UNSIGNED fn = ( long * ) strtoul break; 'f' 'e' 'E' 'g' op = 'f' break; 's' op = 's' break; 'c' op = 's' flags |= SCAN_NOSKIP if 0 == width width = 1 break; '[' op = '[' flags |= SCAN_NOSKIP break; @TO@ * ch 'n' if ! ( flags & SCAN_SUPPRESS ) if numVars zend_uint refcount current = args ][objIndex ++ refcount = ( * current ) -> refcount zval_dtor * current ZVAL_LONG * current long string - baseString ( * current ) -> refcount = refcount ( * current ) -> is_ref = 1 else add_index_long * return_value objIndex ++ string - baseString nconversions ++ continue; 'd' 'D' op = 'i' base = 10 fn = ( long * ) strtol break; 'i' op = 'i' base = 0 fn = ( long * ) strtol break; 'o' op = 'i' base = 8 fn = ( long * ) strtol break; 'x' 'X' op = 'i' base = 16 fn = ( long * ) strtol break; 'u' op = 'i' base = 10 flags |= SCAN_UNSIGNED fn = ( long * ) strtoul break; 'f' 'e' 'E' 'g' op = 'f' break; 's' op = 's' break; 'c' op = 's' flags |= SCAN_NOSKIP if 0 == width width = 1 break; '[' op = '[' flags |= SCAN_NOSKIP break; @AT@ 19173 @LENGTH@ 807\n" +
+                "---UPD block@@'n' if ! ( flags & SCAN_SUPPRESS ) if numVars zend_uint refcount current = args ][objIndex ++ refcount = ( * current ) -> refcount zval_dtor * current ZVAL_LONG * current long string - baseString ( * current ) -> refcount = refcount ( * current ) -> is_ref = 1 else add_index_long * return_value objIndex ++ string - baseString nconversions ++ continue; 'd' 'D' op = 'i' base = 10 fn = ( long * ) strtol break; 'i' op = 'i' base = 0 fn = ( long * ) strtol break; 'o' op = 'i' base = 8 fn = ( long * ) strtol break; 'x' op = 'i' base = 16 fn = ( long * ) strtol break; 'u' op = 'i' base = 10 flags |= SCAN_UNSIGNED fn = ( long * ) strtoul break; 'f' 'e' 'E' 'g' op = 'f' break; 's' op = 's' break; 'c' op = 's' flags |= SCAN_NOSKIP if 0 == width width = 1 break; '[' op = '[' flags |= SCAN_NOSKIP break; @TO@ 'n' if ! ( flags & SCAN_SUPPRESS ) if numVars zend_uint refcount current = args ][objIndex ++ refcount = ( * current ) -> refcount zval_dtor * current ZVAL_LONG * current long string - baseString ( * current ) -> refcount = refcount ( * current ) -> is_ref = 1 else add_index_long * return_value objIndex ++ string - baseString nconversions ++ continue; 'd' 'D' op = 'i' base = 10 fn = ( long * ) strtol break; 'i' op = 'i' base = 0 fn = ( long * ) strtol break; 'o' op = 'i' base = 8 fn = ( long * ) strtol break; 'x' 'X' op = 'i' base = 16 fn = ( long * ) strtol break; 'u' op = 'i' base = 10 flags |= SCAN_UNSIGNED fn = ( long * ) strtoul break; 'f' 'e' 'E' 'g' op = 'f' break; 's' op = 's' break; 'c' op = 's' flags |= SCAN_NOSKIP if 0 == width width = 1 break; '[' op = '[' flags |= SCAN_NOSKIP break; @AT@ 19179 @LENGTH@ 802\n" +
+                "------INS case@@'X' @TO@ block@@'n' if ! ( flags & SCAN_SUPPRESS ) if numVars zend_uint refcount current = args ][objIndex ++ refcount = ( * current ) -> refcount zval_dtor * current ZVAL_LONG * current long string - baseString ( * current ) -> refcount = refcount ( * current ) -> is_ref = 1 else add_index_long * return_value objIndex ++ string - baseString nconversions ++ continue; 'd' 'D' op = 'i' base = 10 fn = ( long * ) strtol break; 'i' op = 'i' base = 0 fn = ( long * ) strtol break; 'o' op = 'i' base = 8 fn = ( long * ) strtol break; 'x' op = 'i' base = 16 fn = ( long * ) strtol break; 'u' op = 'i' base = 10 flags |= SCAN_UNSIGNED fn = ( long * ) strtoul break; 'f' 'e' 'E' 'g' op = 'f' break; 's' op = 's' break; 'c' op = 's' flags |= SCAN_NOSKIP if 0 == width width = 1 break; '[' op = '[' flags |= SCAN_NOSKIP break; @AT@ 19912 @LENGTH@ 3\n" +
+                "---------INS expr@@'X' @TO@ case@@'X' @AT@ 19917 @LENGTH@ 3\n" +
+                "------------INS literal@@'X' @TO@ expr@@'X' @AT@ 19917 @LENGTH@ 3\n");
+    }
+    @Test
+    public void test_lighttpd14_f27b8d_4a86d3() throws IOException {//TODO not sure
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("lighttpd1.4_f27b8d_4a86d3_src#connections.c");//wrong
+        Assert.assertEquals(hierarchicalActionSets.size(),3);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD block@@400 505 207 break; default: con -> http_status = 501 break; @TO@ 400 414 505 207 break; default: con -> http_status = 501 break; @AT@ 8385 @LENGTH@ 59\n" +
+                "---INS case@@414 @TO@ block@@400 505 207 break; default: con -> http_status = 501 break; @AT@ 8421 @LENGTH@ 3\n" +
+                "------INS expr@@414 @TO@ case@@414 @AT@ 8426 @LENGTH@ 3\n" +
+                "---------INS literal@@414 @TO@ expr@@414 @AT@ 8426 @LENGTH@ 3\n");
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD expr_stmt@@log_error_write srv __FILE__ __LINE__ \"sd\" \"http-header larger then 64k -> disconnected\" chunkqueue_length cq @TO@ log_error_write srv __FILE__ __LINE__ \"s\" \"oversized request-header -> sending Status 414\" @AT@ 23540 @LENGTH@ 109\n" +
+                "---UPD expr@@log_error_write srv __FILE__ __LINE__ \"sd\" \"http-header larger then 64k -> disconnected\" chunkqueue_length cq @TO@ log_error_write srv __FILE__ __LINE__ \"s\" \"oversized request-header -> sending Status 414\" @AT@ 23540 @LENGTH@ 109\n" +
+                "------UPD call@@log_error_write srv __FILE__ __LINE__ \"sd\" \"http-header larger then 64k -> disconnected\" chunkqueue_length cq @TO@ log_error_write srv __FILE__ __LINE__ \"s\" \"oversized request-header -> sending Status 414\" @AT@ 23540 @LENGTH@ 109\n" +
+                "---------UPD argument_list@@srv __FILE__ __LINE__ \"sd\" \"http-header larger then 64k -> disconnected\" chunkqueue_length cq @TO@ srv __FILE__ __LINE__ \"s\" \"oversized request-header -> sending Status 414\" @AT@ 23555 @LENGTH@ 93\n" +
+                "------------UPD argument@@\"sd\" @TO@ \"s\" @AT@ 23581 @LENGTH@ 4\n" +
+                "---------------UPD expr@@\"sd\" @TO@ \"s\" @AT@ 23581 @LENGTH@ 4\n" +
+                "------------------UPD literal@@\"sd\" @TO@ \"s\" @AT@ 23581 @LENGTH@ 4\n" +
+                "------------UPD argument@@\"http-header larger then 64k -> disconnected\" @TO@ \"oversized request-header -> sending Status 414\" @AT@ 23587 @LENGTH@ 45\n" +
+                "---------------UPD expr@@\"http-header larger then 64k -> disconnected\" @TO@ \"oversized request-header -> sending Status 414\" @AT@ 23587 @LENGTH@ 45\n" +
+                "------------------UPD literal@@\"http-header larger then 64k -> disconnected\" @TO@ \"oversized request-header -> sending Status 414\" @AT@ 23587 @LENGTH@ 45\n" +
+                "------------DEL argument@@chunkqueue_length cq @AT@ 23634 @LENGTH@ 20\n" +
+                "---------------DEL expr@@chunkqueue_length cq @AT@ 23634 @LENGTH@ 20\n" +
+                "------------------DEL call@@chunkqueue_length cq @AT@ 23634 @LENGTH@ 20\n" +
+                "---------------------DEL name@@chunkqueue_length @AT@ 23634 @LENGTH@ 17\n" +
+                "---------------------DEL argument_list@@cq @AT@ 23651 @LENGTH@ 2\n" +
+                "------------------------DEL argument@@cq @AT@ 23652 @LENGTH@ 2\n" +
+                "---------------------------DEL expr@@cq @AT@ 23652 @LENGTH@ 2\n" +
+                "------------------------------DEL name@@cq @AT@ 23652 @LENGTH@ 2\n");
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD expr_stmt@@connection_set_state srv con CON_STATE_REQUEST_END @TO@ connection_set_state srv con CON_STATE_HANDLE_REQUEST @AT@ 23741 @LENGTH@ 50\n" +
+                "---UPD expr@@connection_set_state srv con CON_STATE_REQUEST_END @TO@ connection_set_state srv con CON_STATE_HANDLE_REQUEST @AT@ 23741 @LENGTH@ 50\n" +
+                "------UPD call@@connection_set_state srv con CON_STATE_REQUEST_END @TO@ connection_set_state srv con CON_STATE_HANDLE_REQUEST @AT@ 23741 @LENGTH@ 50\n" +
+                "---------UPD argument_list@@srv con CON_STATE_REQUEST_END @TO@ srv con CON_STATE_HANDLE_REQUEST @AT@ 23761 @LENGTH@ 29\n" +
+                "------------UPD argument@@CON_STATE_REQUEST_END @TO@ CON_STATE_HANDLE_REQUEST @AT@ 23772 @LENGTH@ 21\n" +
+                "---------------UPD expr@@CON_STATE_REQUEST_END @TO@ CON_STATE_HANDLE_REQUEST @AT@ 23772 @LENGTH@ 21\n" +
+                "------------------UPD name@@CON_STATE_REQUEST_END @TO@ CON_STATE_HANDLE_REQUEST @AT@ 23772 @LENGTH@ 21\n");
+    }
+    @Test
+    public void test_wireshark_87646b_2cc0fb() throws IOException {
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("wireshark_87646b_2cc0fb_epan#proto.c");//wrong
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
     }
     @Test
     public void test_php_src_a0a56e_7afbb7() throws IOException {

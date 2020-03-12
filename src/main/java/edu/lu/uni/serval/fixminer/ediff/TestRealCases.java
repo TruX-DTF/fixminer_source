@@ -31,12 +31,12 @@ public class TestRealCases {
                 "------INS expr@@d = 0 @TO@ expr_stmt@@d = 0 @AT@ 548 @LENGTH@ 5\n" +
                 "---------INS name@@d @TO@ expr@@d = 0 @AT@ 548 @LENGTH@ 1\n" +
                 "---------INS operator@@= @TO@ expr@@d = 0 @AT@ 549 @LENGTH@ 1\n" +
-                "---------INS literal@@0 @TO@ expr@@d = 0 @AT@ 550 @LENGTH@ 1\n" +
+                "---------INS literal:number@@0 @TO@ expr@@d = 0 @AT@ 550 @LENGTH@ 1\n" +
                 "---INS expr_stmt@@h = 0 @TO@ block@@if g ][i ][j == '.' d ++ else h ++ if g ][i ][j + 1 == '.' d ++ else h ++ if g ][i + 1 ][j == '.' d ++ else h ++ if g ][i + 1 ][j + 1 == '.' d ++ else h ++ if d == 3 || h == 3 printf \"YES\" return 0 @AT@ 553 @LENGTH@ 5\n" +
                 "------INS expr@@h = 0 @TO@ expr_stmt@@h = 0 @AT@ 553 @LENGTH@ 5\n" +
                 "---------INS name@@h @TO@ expr@@h = 0 @AT@ 553 @LENGTH@ 1\n" +
                 "---------INS operator@@= @TO@ expr@@h = 0 @AT@ 554 @LENGTH@ 1\n" +
-                "---------INS literal@@0 @TO@ expr@@h = 0 @AT@ 555 @LENGTH@ 1\n");
+                "---------INS literal:number@@0 @TO@ expr@@h = 0 @AT@ 555 @LENGTH@ 1\n");
 
     }
 
@@ -44,17 +44,16 @@ public class TestRealCases {
     public void test_287_A_14208521_14208532() throws IOException {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("287-A-14208521-14208532.c");
         Assert.assertEquals(hierarchicalActionSets.size(),2);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD block@@ if g ][i ][j == '.' d ++ else h ++ if g ][i ][j + 1 == '.' d ++ else h ++ if g ][i + 1 ][j == '.' d ++ else h ++ if g ][i + 1 ][j + 1 == '.' d ++ else h ++ if d >= 3 || h >= 3  printf  \"YES\"  0 @TO@  if g ][i ][j == '.' d ++ else h ++ if g ][i ][j + 1 == '.' d ++ else h ++ if g ][i + 1 ][j == '.' d ++ else h ++ if g ][i + 1 ][j + 1 == '.' d ++ else h ++ if d >= 3 || h >= 3  printf  \"YES\"  0 d = 0 h = 0 @AT@ 199 @LENGTH@ 347\n" +
-                "---INS expr_stmt@@d = 0 @TO@ block@@ if g ][i ][j == '.' d ++ else h ++ if g ][i ][j + 1 == '.' d ++ else h ++ if g ][i + 1 ][j == '.' d ++ else h ++ if g ][i + 1 ][j + 1 == '.' d ++ else h ++ if d >= 3 || h >= 3  printf  \"YES\"  0 @AT@ 548 @LENGTH@ 5\n" +
-                "------INS expr@@d = 0 @TO@ expr_stmt@@d = 0 @AT@ 548 @LENGTH@ 5\n" +
-                "---------INS name@@d @TO@ expr@@d = 0 @AT@ 548 @LENGTH@ 1\n" +
-                "---------INS operator@@= @TO@ expr@@d = 0 @AT@ 549 @LENGTH@ 1\n" +
-                "---------INS literal@@0 @TO@ expr@@d = 0 @AT@ 550 @LENGTH@ 1\n" +
-                "---INS expr_stmt@@h = 0 @TO@ block@@ if g ][i ][j == '.' d ++ else h ++ if g ][i ][j + 1 == '.' d ++ else h ++ if g ][i + 1 ][j == '.' d ++ else h ++ if g ][i + 1 ][j + 1 == '.' d ++ else h ++ if d >= 3 || h >= 3  printf  \"YES\"  0 @AT@ 553 @LENGTH@ 5\n" +
-                "------INS expr@@h = 0 @TO@ expr_stmt@@h = 0 @AT@ 553 @LENGTH@ 5\n" +
-                "---------INS name@@h @TO@ expr@@h = 0 @AT@ 553 @LENGTH@ 1\n" +
-                "---------INS operator@@= @TO@ expr@@h = 0 @AT@ 554 @LENGTH@ 1\n" +
-                "---------INS literal@@0 @TO@ expr@@h = 0 @AT@ 555 @LENGTH@ 1\n");
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"INS expr_stmt@@d = 0 @TO@ block@@if g ][i ][j == '.' d ++ else h ++ if g ][i ][j + 1 == '.' d ++ else h ++ if g ][i + 1 ][j == '.' d ++ else h ++ if g ][i + 1 ][j + 1 == '.' d ++ else h ++ if d >= 3 || h >= 3 printf \"YES\" return 0 @AT@ 548 @LENGTH@ 5\n" +
+                "---INS expr@@d = 0 @TO@ expr_stmt@@d = 0 @AT@ 548 @LENGTH@ 5\n" +
+                "------INS name@@d @TO@ expr@@d = 0 @AT@ 548 @LENGTH@ 1\n" +
+                "------INS operator@@= @TO@ expr@@d = 0 @AT@ 549 @LENGTH@ 1\n" +
+                "------INS literal:number@@0 @TO@ expr@@d = 0 @AT@ 550 @LENGTH@ 1\n");
+        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"INS expr_stmt@@h = 0 @TO@ block@@if g ][i ][j == '.' d ++ else h ++ if g ][i ][j + 1 == '.' d ++ else h ++ if g ][i + 1 ][j == '.' d ++ else h ++ if g ][i + 1 ][j + 1 == '.' d ++ else h ++ if d >= 3 || h >= 3 printf \"YES\" return 0 @AT@ 553 @LENGTH@ 5\n" +
+                "---INS expr@@h = 0 @TO@ expr_stmt@@h = 0 @AT@ 553 @LENGTH@ 5\n" +
+                "------INS name@@h @TO@ expr@@h = 0 @AT@ 553 @LENGTH@ 1\n" +
+                "------INS operator@@= @TO@ expr@@h = 0 @AT@ 554 @LENGTH@ 1\n" +
+                "------INS literal:number@@0 @TO@ expr@@h = 0 @AT@ 555 @LENGTH@ 1\n");
 
     }
 
@@ -91,23 +90,15 @@ public class TestRealCases {
     @Test
     public void test_680_A_18343132_18343191() throws IOException {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("680-A-18343132-18343191.c");
-        Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD block@@ int i a ][5 b ][101  0 t 0 temp max 0 for i = 0 i < 5 i ++  scanf  \"%d\" & a ][i b ][a ][i ++ t += a ][i for i = 0 i < 5 i ++  if b ][a ][i == 3  max = 3 * a ][i break; for i = 0 i < 5 i ++  if b ][a ][i == 2  temp = a ][i * 2 if temp > max  max = temp break; printf  \"%d\" t - max  0 @TO@  int i a ][5 b ][101  0 t 0 temp max 0 for i = 0 i < 5 i ++  scanf  \"%d\" & a ][i b ][a ][i ++ t += a ][i for i = 0 i < 5 i ++  if b ][a ][i >= 3  max = 3 * a ][i break; for i = 0 i < 5 i ++  if b ][a ][i == 2  temp = a ][i * 2 if temp > max  max = temp printf  \"%d\" t - max  0 @AT@ 50 @LENGTH@ 295\n" +
-                "---UPD for@@for i = 0 i < 5 i ++  if b ][a ][i == 3  max = 3 * a ][i break; @TO@ for i = 0 i < 5 i ++  if b ][a ][i >= 3  max = 3 * a ][i break; @AT@ 158 @LENGTH@ 63\n" +
-                "------UPD block@@ if b ][a ][i == 3  max = 3 * a ][i break; @TO@  if b ][a ][i >= 3  max = 3 * a ][i break; @AT@ 173 @LENGTH@ 44\n" +
-                "---------UPD if@@if b ][a ][i == 3  max = 3 * a ][i break; @TO@ if b ][a ][i >= 3  max = 3 * a ][i break; @AT@ 176 @LENGTH@ 41\n" +
-                "------------UPD condition@@ b ][a ][i == 3 @TO@  b ][a ][i >= 3 @AT@ 176 @LENGTH@ 13\n" +
-                "---------------UPD expr@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 177 @LENGTH@ 14\n" +
-                "------------------UPD operator@@== @TO@ >= @AT@ 184 @LENGTH@ 2\n" +
-                "---UPD for@@for i = 0 i < 5 i ++  if b ][a ][i == 2  temp = a ][i * 2 if temp > max  max = temp break; @TO@ for i = 0 i < 5 i ++  if b ][a ][i == 2  temp = a ][i * 2 if temp > max  max = temp @AT@ 221 @LENGTH@ 90\n" +
-                "------UPD block@@ if b ][a ][i == 2  temp = a ][i * 2 if temp > max  max = temp break; @TO@  if b ][a ][i == 2  temp = a ][i * 2 if temp > max  max = temp @AT@ 236 @LENGTH@ 77\n" +
-                "---------UPD if@@if b ][a ][i == 2  temp = a ][i * 2 if temp > max  max = temp break; @TO@ if b ][a ][i == 2  temp = a ][i * 2 if temp > max  max = temp @AT@ 239 @LENGTH@ 68\n" +
-                "------------UPD then@@ temp = a ][i * 2 if temp > max  max = temp break; @TO@  temp = a ][i * 2 if temp > max  max = temp @AT@ 253 @LENGTH@ 50\n" +
-                "---------------UPD block@@ temp = a ][i * 2 if temp > max  max = temp break; @TO@  temp = a ][i * 2 if temp > max  max = temp @AT@ 253 @LENGTH@ 57\n" +
-                "------------------UPD if@@if temp > max  max = temp break; @TO@ if temp > max  max = temp @AT@ 270 @LENGTH@ 32\n" +
-                "---------------------UPD then@@ max = temp break; @TO@  max = temp @AT@ 282 @LENGTH@ 18\n" +
-                "------------------------UPD block@@ max = temp break; @TO@  max = temp @AT@ 282 @LENGTH@ 24\n" +
-                "---------------------------DEL break@@break; @AT@ 296 @LENGTH@ 6\n");
+        Assert.assertEquals(hierarchicalActionSets.size(),2);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if b ][a ][i == 3 max = 3 * a ][i break; @TO@ if b ][a ][i >= 3 max = 3 * a ][i break; @AT@ 176 @LENGTH@ 40\n" +
+                "---UPD condition@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 176 @LENGTH@ 14\n" +
+                "------UPD expr@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 177 @LENGTH@ 14\n" +
+                "---------UPD operator@@== @TO@ >= @AT@ 184 @LENGTH@ 2\n");
+        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD if@@if b ][a ][i == 3 max = 3 * a ][i break; @TO@ if b ][a ][i >= 3 max = 3 * a ][i break; @AT@ 176 @LENGTH@ 40\n" +
+                "---UPD condition@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 176 @LENGTH@ 14\n" +
+                "------UPD expr@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 177 @LENGTH@ 14\n" +
+                "---------UPD operator@@== @TO@ >= @AT@ 184 @LENGTH@ 2\n");
 
     }
 
@@ -146,7 +137,7 @@ public class TestRealCases {
                 "------------UPD index@@][j + 1 @TO@ ][j @AT@ 591 @LENGTH@ 7\n" +
                 "---------------UPD expr@@[j + 1 @TO@ [j @AT@ 591 @LENGTH@ 6\n" +
                 "------------------DEL operator@@+ @AT@ 592 @LENGTH@ 1\n" +
-                "------------------DEL literal@@1 @AT@ 593 @LENGTH@ 1\n");
+                "------------------DEL literal:number@@1 @AT@ 593 @LENGTH@ 1\n");
 
     }
 
@@ -185,7 +176,7 @@ public class TestRealCases {
                 "---------INS expr@@a == 784262 @TO@ condition@@a == 784262 @AT@ 878 @LENGTH@ 11\n" +
                 "------------INS name@@a @TO@ expr@@a == 784262 @AT@ 878 @LENGTH@ 1\n" +
                 "------------INS operator@@== @TO@ expr@@a == 784262 @AT@ 879 @LENGTH@ 2\n" +
-                "------------INS literal@@784262 @TO@ expr@@a == 784262 @AT@ 881 @LENGTH@ 6\n" +
+                "------------INS literal:number@@784262 @TO@ expr@@a == 784262 @AT@ 881 @LENGTH@ 6\n" +
                 "------INS then@@printf \"4079\\n\" @TO@ if@@if a == 784262 printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
                 "---------INS block@@printf \"4079\\n\" @TO@ then@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
                 "------------INS expr_stmt@@printf \"4079\\n\" @TO@ block@@printf \"4079\\n\" @AT@ 901 @LENGTH@ 15\n" +
@@ -195,7 +186,7 @@ public class TestRealCases {
                 "---------------------INS argument_list@@\"4079\\n\" @TO@ call@@printf \"4079\\n\" @AT@ 907 @LENGTH@ 8\n" +
                 "------------------------INS argument@@\"4079\\n\" @TO@ argument_list@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n" +
                 "---------------------------INS expr@@\"4079\\n\" @TO@ argument@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n" +
-                "------------------------------INS literal@@\"4079\\n\" @TO@ expr@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n");
+                "------------------------------INS literal:string@@\"4079\\n\" @TO@ expr@@\"4079\\n\" @AT@ 908 @LENGTH@ 8\n");
 
     }
     @Test
@@ -209,14 +200,14 @@ public class TestRealCases {
                 "------------UPD index@@][( n + 1 ) / 2 @TO@ ][( n + 1 ) / 2 - 1 @AT@ 778 @LENGTH@ 15\n" +
                 "---------------UPD expr@@[( n + 1 ) / 2 @TO@ [( n + 1 ) / 2 - 1 @AT@ 778 @LENGTH@ 14\n" +
                 "------------------INS operator@@- @TO@ expr@@[( n + 1 ) / 2 @AT@ 785 @LENGTH@ 1\n" +
-                "------------------INS literal@@1 @TO@ expr@@[( n + 1 ) / 2 @AT@ 786 @LENGTH@ 1\n" +
+                "------------------INS literal:number@@1 @TO@ expr@@[( n + 1 ) / 2 @AT@ 786 @LENGTH@ 1\n" +
                 "---INS elseif@@elseif if n == 1 printf \"0\\n\" @TO@ if@@if array ][( n + 1 ) / 2 == x printf \"0\\n\" elseif if last < ( n + 1 ) / 2 printf \"%d\\n\" n - 2 * last elseif if first > ( n + 1 ) / 2 printf \"%d\\n\" 2 * first - n - 1 @AT@ 925 @LENGTH@ 29\n" +
                 "------INS if@@if n == 1 printf \"0\\n\" @TO@ elseif@@elseif if n == 1 printf \"0\\n\" @AT@ 925 @LENGTH@ 22\n" +
                 "---------INS condition@@n == 1 @TO@ if@@if n == 1 printf \"0\\n\" @AT@ 925 @LENGTH@ 6\n" +
                 "------------INS expr@@n == 1 @TO@ condition@@n == 1 @AT@ 926 @LENGTH@ 6\n" +
                 "---------------INS name@@n @TO@ expr@@n == 1 @AT@ 926 @LENGTH@ 1\n" +
                 "---------------INS operator@@== @TO@ expr@@n == 1 @AT@ 927 @LENGTH@ 2\n" +
-                "---------------INS literal@@1 @TO@ expr@@n == 1 @AT@ 929 @LENGTH@ 1\n" +
+                "---------------INS literal:number@@1 @TO@ expr@@n == 1 @AT@ 929 @LENGTH@ 1\n" +
                 "---------INS then@@printf \"0\\n\" @TO@ if@@if n == 1 printf \"0\\n\" @AT@ 932 @LENGTH@ 12\n" +
                 "------------INS block@@printf \"0\\n\" @TO@ then@@printf \"0\\n\" @AT@ 932 @LENGTH@ 12\n" +
                 "---------------INS expr_stmt@@printf \"0\\n\" @TO@ block@@printf \"0\\n\" @AT@ 932 @LENGTH@ 12\n" +
@@ -226,7 +217,7 @@ public class TestRealCases {
                 "------------------------INS argument_list@@\"0\\n\" @TO@ call@@printf \"0\\n\" @AT@ 938 @LENGTH@ 5\n" +
                 "---------------------------INS argument@@\"0\\n\" @TO@ argument_list@@\"0\\n\" @AT@ 939 @LENGTH@ 5\n" +
                 "------------------------------INS expr@@\"0\\n\" @TO@ argument@@\"0\\n\" @AT@ 939 @LENGTH@ 5\n" +
-                "---------------------------------INS literal@@\"0\\n\" @TO@ expr@@\"0\\n\" @AT@ 939 @LENGTH@ 5\n");
+                "---------------------------------INS literal:string@@\"0\\n\" @TO@ expr@@\"0\\n\" @AT@ 939 @LENGTH@ 5\n");
 
     }
 
@@ -243,7 +234,7 @@ public class TestRealCases {
                 "------------INS expr@@[j @TO@ index@@][j @AT@ 379 @LENGTH@ 2\n" +
                 "---------------INS name@@[j @TO@ expr@@[j @AT@ 379 @LENGTH@ 2\n" +
                 "------INS operator@@= @TO@ expr@@a ][j = 0 @AT@ 381 @LENGTH@ 1\n" +
-                "------INS literal@@0 @TO@ expr@@a ][j = 0 @AT@ 382 @LENGTH@ 1\n");
+                "------INS literal:number@@0 @TO@ expr@@a ][j = 0 @AT@ 382 @LENGTH@ 1\n");
 
     }
 
@@ -261,7 +252,7 @@ public class TestRealCases {
                 "---------------INS expr@@[i @TO@ index@@][i @AT@ 243 @LENGTH@ 2\n" +
                 "------------------INS name@@[i @TO@ expr@@[i @AT@ 243 @LENGTH@ 2\n" +
                 "---------INS operator@@!= @TO@ expr@@ara ][i >= ara ][k - 1 @AT@ 245 @LENGTH@ 2\n" +
-                "---------INS literal@@0 @TO@ expr@@ara ][i >= ara ][k - 1 @AT@ 247 @LENGTH@ 1\n");
+                "---------INS literal:number@@0 @TO@ expr@@ara ][i >= ara ][k - 1 @AT@ 247 @LENGTH@ 1\n");
 
     }
 
@@ -272,12 +263,12 @@ public class TestRealCases {
         Assert.assertEquals(hierarchicalActionSets.size(),1);
         Assert.assertEquals(hierarchicalActionSets.get(0).toString(),
                 "INS else@@else i1 = 0 @TO@ if@@if input ][0 == '.' count = 1 @AT@ 295 @LENGTH@ 11\n" +
-                "---INS block@@i1 = 0 @TO@ else@@else i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
-                "------INS expr_stmt@@i1 = 0 @TO@ block@@i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
-                "---------INS expr@@i1 = 0 @TO@ expr_stmt@@i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
-                "------------INS name@@i1 @TO@ expr@@i1 = 0 @AT@ 295 @LENGTH@ 2\n" +
-                "------------INS operator@@= @TO@ expr@@i1 = 0 @AT@ 297 @LENGTH@ 1\n" +
-                "------------INS literal@@0 @TO@ expr@@i1 = 0 @AT@ 298 @LENGTH@ 1\n");
+                        "---INS block@@i1 = 0 @TO@ else@@else i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
+                        "------INS expr_stmt@@i1 = 0 @TO@ block@@i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
+                        "---------INS expr@@i1 = 0 @TO@ expr_stmt@@i1 = 0 @AT@ 295 @LENGTH@ 6\n" +
+                        "------------INS name@@i1 @TO@ expr@@i1 = 0 @AT@ 295 @LENGTH@ 2\n" +
+                        "------------INS operator@@= @TO@ expr@@i1 = 0 @AT@ 297 @LENGTH@ 1\n" +
+                        "------------INS literal:number@@0 @TO@ expr@@i1 = 0 @AT@ 298 @LENGTH@ 1\n");
 
     }
 
@@ -303,7 +294,7 @@ public class TestRealCases {
                 "---------UPD expr@@a < ( r1 % 10 ) @TO@ a < r1 @AT@ 193 @LENGTH@ 15\n" +
                 "------------DEL operator@@( @AT@ 195 @LENGTH@ 1\n" +
                 "------------DEL operator@@% @AT@ 198 @LENGTH@ 1\n" +
-                "------------DEL literal@@10 @AT@ 199 @LENGTH@ 2\n" +
+                "------------DEL literal:number@@10 @AT@ 199 @LENGTH@ 2\n" +
                 "------------DEL operator@@) @AT@ 201 @LENGTH@ 1\n");
 
     }
@@ -333,7 +324,7 @@ public class TestRealCases {
                 "------UPD condition@@i < n @TO@ i < n - 1 @AT@ 163 @LENGTH@ 5\n" +
                 "---------UPD expr@@i < n @TO@ i < n - 1 @AT@ 163 @LENGTH@ 5\n" +
                 "------------INS operator@@- @TO@ expr@@i < n @AT@ 166 @LENGTH@ 1\n" +
-                "------------INS literal@@1 @TO@ expr@@i < n @AT@ 167 @LENGTH@ 1\n" +
+                "------------INS literal:number@@1 @TO@ expr@@i < n @AT@ 167 @LENGTH@ 1\n" +
                 "---UPD block@@if a ][i + 1 == a ][i d = d + 1 else f = f + 1 i = i + 2 @TO@ if a ][i + 1 == a ][i d = d + 1 else f = f + 1 @AT@ 173 @LENGTH@ 56\n" +
                 "------UPD if@@if a ][i + 1 == a ][i d = d + 1 else f = f + 1 i = i + 2 @TO@ if a ][i + 1 == a ][i d = d + 1 else f = f + 1 @AT@ 179 @LENGTH@ 56\n" +
                 "---------UPD else@@else f = f + 1 i = i + 2 @TO@ else f = f + 1 @AT@ 218 @LENGTH@ 24\n" +
@@ -344,7 +335,7 @@ public class TestRealCases {
                 "---------------------DEL operator@@= @AT@ 234 @LENGTH@ 1\n" +
                 "---------------------DEL name@@i @AT@ 235 @LENGTH@ 1\n" +
                 "---------------------DEL operator@@+ @AT@ 236 @LENGTH@ 1\n" +
-                "---------------------DEL literal@@2 @AT@ 237 @LENGTH@ 1\n");
+                "---------------------DEL literal:number@@2 @AT@ 237 @LENGTH@ 1\n");
 
     }
     @Test
@@ -368,10 +359,10 @@ public class TestRealCases {
                 "------------------------------------UPD argument_list@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" n m n m @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" n m n m @AT@ 1324 @LENGTH@ 34\n" +
                 "---------------------------------------UPD argument@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" @AT@ 1325 @LENGTH@ 26\n" +
                 "------------------------------------------UPD expr@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" @AT@ 1325 @LENGTH@ 26\n" +
-                "---------------------------------------------UPD literal@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" @AT@ 1325 @LENGTH@ 26\n" +
+                "---------------------------------------------UPD literal:string@@\"%d %d\\n0 0 \\n%d \\n0 %d\\n\" @TO@ \"%d %d\\n0 0 \\n%d 0\\n0 %d\\n\" @AT@ 1325 @LENGTH@ 26\n" +
                 "---INS return@@return 0 @TO@ block@@int i j n m x i_temp 1 scanf \"%d %d\" & n & m if n == 0 printf \"0 1\\n\" printf \"0 %d\\n\" m printf \"0 0\\n\" printf \"0 %d\\n\" ( m - 1 ) return 0 elseif if m == 0 printf \"1 0\\n\" printf \"%d 0\\n\" n printf \"0 0\\n\" printf \"%d 0\\n\" ( n - 1 ) return 0 elseif if ( m == n ) && ( n == 1 ) printf \"%d %d\\n\" n m printf \"0 0\\n\" printf \"%d 0\\n\" n printf \"0 %d\\n\" ( m ) return 0 elseif if m == n if m + m * 1.41f > ( 2 * sqrt double m * m + ( m - 1 ) * ( m - 1 ) ) printf \"%d %d\\n\" n m printf \"0 0\\n\" printf \"%d 0\\n\" n printf \"0 %d\\n\" n else printf \"%d %d\\n\" n - 1 m printf \"0 0\\n\" printf \"%d %d\\n\" n m printf \"1 0\\n\" return 0 elseif if n < m if m + sqrt ( double ) n * n + m * m < ( 2 * sqrt double n - 1 * ( n - 1 ) + ( m ) * ( m ) ) printf \"%d %d\\n\" n - 1 m printf \"0 0\\n\" printf \"%d %d\\n\" n m printf \"1 0\\n\" return 0 else printf \"%d %d\\n0 0 \\n0 %d\\n%d 0\\n\" n m m n return 0 elseif if n > m if n + sqrt ( double ) n * n + m * m < ( 2 * sqrt ( double ) n * n + ( m - 1 ) * ( m - 1 ) ) printf \"%d %d\\n\" n m - 1 printf \"0 0\\n\" printf \"%d %d\\n\" n m printf \"0 1\\n\" return 0 else printf \"%d %d\\n0 0 \\n%d \\n0 %d\\n\" n m n m return 0 @AT@ 1385 @LENGTH@ 8\n" +
                 "------INS expr@@0 @TO@ return@@return 0 @AT@ 1392 @LENGTH@ 1\n" +
-                "---------INS literal@@0 @TO@ expr@@0 @AT@ 1392 @LENGTH@ 1\n");
+                "---------INS literal:number@@0 @TO@ expr@@0 @AT@ 1392 @LENGTH@ 1\n");
 
 
     }
@@ -387,7 +378,7 @@ public class TestRealCases {
                 "---------UPD argument_list@@ans 86401 - dp ][k @TO@ ans 86400 - dp ][k @AT@ 386 @LENGTH@ 18\n" +
                 "------------UPD argument@@86401 - dp ][k @TO@ 86400 - dp ][k @AT@ 393 @LENGTH@ 14\n" +
                 "---------------UPD expr@@86401 - dp ][k @TO@ 86400 - dp ][k @AT@ 393 @LENGTH@ 14\n" +
-                "------------------UPD literal@@86401 @TO@ 86400 @AT@ 393 @LENGTH@ 5\n");
+                "------------------UPD literal:number@@86401 @TO@ 86400 @AT@ 393 @LENGTH@ 5\n");
 
     }
     @Test
@@ -402,7 +393,7 @@ public class TestRealCases {
                 "---------UPD argument_list@@negative / 2 @TO@ negative / 2.0 @AT@ 303 @LENGTH@ 12\n" +
                 "------------UPD argument@@negative / 2 @TO@ negative / 2.0 @AT@ 304 @LENGTH@ 12\n" +
                 "---------------UPD expr@@negative / 2 @TO@ negative / 2.0 @AT@ 304 @LENGTH@ 12\n" +
-                "------------------UPD literal@@2 @TO@ 2.0 @AT@ 313 @LENGTH@ 1\n");
+                "------------------UPD literal:number@@2 @TO@ 2.0 @AT@ 313 @LENGTH@ 1\n");
 
     }
 
@@ -468,7 +459,7 @@ public class TestRealCases {
                 "---------------INS expr@@[i @TO@ index@@][i @AT@ 522 @LENGTH@ 2\n" +
                 "------------------INS name@@[i @TO@ expr@@[i @AT@ 522 @LENGTH@ 2\n" +
                 "---------INS operator@@!= @TO@ expr@@a ][i >= a ][k && i <= n @AT@ 524 @LENGTH@ 2\n" +
-                "---------INS literal@@0 @TO@ expr@@a ][i >= a ][k && i <= n @AT@ 526 @LENGTH@ 1\n");
+                "---------INS literal:number@@0 @TO@ expr@@a ][i >= a ][k && i <= n @AT@ 526 @LENGTH@ 1\n");
 
     }
 
@@ -562,12 +553,12 @@ public class TestRealCases {
                 "---------DEL expr@@i = 0 @AT@ 454 @LENGTH@ 5\n" +
                 "------------DEL name@@i @AT@ 454 @LENGTH@ 1\n" +
                 "------------DEL operator@@= @AT@ 455 @LENGTH@ 1\n" +
-                "------------DEL literal@@0 @AT@ 456 @LENGTH@ 1\n" +
+                "------------DEL literal:number@@0 @AT@ 456 @LENGTH@ 1\n" +
                 "------DEL condition@@i < 10 @AT@ 458 @LENGTH@ 6\n" +
                 "---------DEL expr@@i < 10 @AT@ 458 @LENGTH@ 6\n" +
                 "------------DEL name@@i @AT@ 458 @LENGTH@ 1\n" +
                 "------------DEL operator@@< @AT@ 459 @LENGTH@ 1\n" +
-                "------------DEL literal@@10 @AT@ 460 @LENGTH@ 2\n" +
+                "------------DEL literal:number@@10 @AT@ 460 @LENGTH@ 2\n" +
                 "------DEL incr@@i ++ @AT@ 463 @LENGTH@ 4\n" +
                 "---------DEL expr@@i ++ @AT@ 463 @LENGTH@ 4\n" +
                 "------------DEL name@@i @AT@ 463 @LENGTH@ 1\n" +
@@ -580,7 +571,7 @@ public class TestRealCases {
                 "---------------DEL argument_list@@\"%d %d\\n\" num ][i tnum ][i @AT@ 483 @LENGTH@ 26\n" +
                 "------------------DEL argument@@\"%d %d\\n\" @AT@ 484 @LENGTH@ 9\n" +
                 "---------------------DEL expr@@\"%d %d\\n\" @AT@ 484 @LENGTH@ 9\n" +
-                "------------------------DEL literal@@\"%d %d\\n\" @AT@ 484 @LENGTH@ 9\n" +
+                "------------------------DEL literal:string@@\"%d %d\\n\" @AT@ 484 @LENGTH@ 9\n" +
                 "------------------DEL argument@@num ][i @AT@ 494 @LENGTH@ 7\n" +
                 "---------------------DEL expr@@num ][i @AT@ 494 @LENGTH@ 7\n" +
                 "------------------------DEL name@@num ][i @AT@ 494 @LENGTH@ 7\n" +
@@ -660,7 +651,7 @@ public class TestRealCases {
                 "------INS expr@@max == 0 @TO@ condition@@max == 0 @AT@ 693 @LENGTH@ 8\n" +
                 "---------INS name@@max @TO@ expr@@max == 0 @AT@ 693 @LENGTH@ 3\n" +
                 "---------INS operator@@== @TO@ expr@@max == 0 @AT@ 696 @LENGTH@ 2\n" +
-                "---------INS literal@@0 @TO@ expr@@max == 0 @AT@ 698 @LENGTH@ 1\n" +
+                "---------INS literal:number@@0 @TO@ expr@@max == 0 @AT@ 698 @LENGTH@ 1\n" +
                 "---INS then@@printf \"0\\n\" continue; @TO@ if@@if max == 0 printf \"0\\n\" continue; @AT@ 702 @LENGTH@ 22\n" +
                 "------INS block@@printf \"0\\n\" continue; @TO@ then@@printf \"0\\n\" continue; @AT@ 702 @LENGTH@ 22\n" +
                 "---------INS expr_stmt@@printf \"0\\n\" @TO@ block@@printf \"0\\n\" continue; @AT@ 703 @LENGTH@ 12\n" +
@@ -670,7 +661,7 @@ public class TestRealCases {
                 "------------------INS argument_list@@\"0\\n\" @TO@ call@@printf \"0\\n\" @AT@ 709 @LENGTH@ 5\n" +
                 "---------------------INS argument@@\"0\\n\" @TO@ argument_list@@\"0\\n\" @AT@ 710 @LENGTH@ 5\n" +
                 "------------------------INS expr@@\"0\\n\" @TO@ argument@@\"0\\n\" @AT@ 710 @LENGTH@ 5\n" +
-                "---------------------------INS literal@@\"0\\n\" @TO@ expr@@\"0\\n\" @AT@ 710 @LENGTH@ 5\n" +
+                "---------------------------INS literal:string@@\"0\\n\" @TO@ expr@@\"0\\n\" @AT@ 710 @LENGTH@ 5\n" +
                 "---------INS continue@@continue; @TO@ block@@printf \"0\\n\" continue; @AT@ 717 @LENGTH@ 9\n");
     }
 
@@ -723,6 +714,46 @@ public class TestRealCases {
                 "------INS operator@@= @TO@ expr@@b ][x ][y = 1 @AT@ 262 @LENGTH@ 1\n");
     }
 
+    @Test
+    public void test_254_B_2751488_2751528() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("254-B-2751488-2751528.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if d <= 0 * m = * m - 1 * d = days ][* m @TO@ if * d <= 0 * m = * m - 1 * d = days ][* m @AT@ 197 @LENGTH@ 40\n" +
+                "---UPD condition@@d <= 0 @TO@ * d <= 0 @AT@ 197 @LENGTH@ 6\n" +
+                "------UPD expr@@d <= 0 @TO@ * d <= 0 @AT@ 198 @LENGTH@ 6\n" +
+                "---------INS operator@@* @TO@ expr@@d <= 0 @AT@ 198 @LENGTH@ 1\n");
+    }
+
+    //codeflaws_430-C-6594918-6595299.c
+    @Test
+    public void test_430_C_6594918_6595299() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("430-C-6594918-6595299.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD block@@stk ][front ++ = nn -> v v ][nn -> v -> c = 0 if cc == 1 val ][nn -> v ++ @TO@ stk ][front ++ = nn -> v v ][nn -> v -> c = 0 val ][nn -> v += val ][stk ][rear @AT@ 1733 @LENGTH@ 73\n" +
+                "---DEL if@@if cc == 1 val ][nn -> v ++ @AT@ 1832 @LENGTH@ 27\n" +
+                "------DEL condition@@cc == 1 @AT@ 1832 @LENGTH@ 7\n" +
+                "---------DEL expr@@cc == 1 @AT@ 1833 @LENGTH@ 7\n" +
+                "------------DEL name@@cc @AT@ 1833 @LENGTH@ 2\n" +
+                "------------DEL operator@@== @AT@ 1835 @LENGTH@ 2\n" +
+                "------------DEL literal:number@@1 @AT@ 1837 @LENGTH@ 1\n" +
+                "------DEL then@@val ][nn -> v ++ @AT@ 1864 @LENGTH@ 16\n" +
+                "---------DEL block@@val ][nn -> v ++ @AT@ 1864 @LENGTH@ 16\n" +
+                "---MOV expr_stmt@@val ][nn -> v ++ @TO@ block@@stk ][front ++ = nn -> v v ][nn -> v -> c = 0 if cc == 1 val ][nn -> v ++ @AT@ 1864 @LENGTH@ 16\n" +
+                "------UPD expr_stmt@@val ][nn -> v ++ @TO@ val ][nn -> v += val ][stk ][rear @AT@ 1864 @LENGTH@ 16\n" +
+                "---------UPD expr@@val ][nn -> v ++ @TO@ val ][nn -> v += val ][stk ][rear @AT@ 1864 @LENGTH@ 16\n" +
+                "------------INS name@@val ][stk ][rear @TO@ expr@@val ][nn -> v ++ @AT@ 1842 @LENGTH@ 16\n" +
+                "---------------INS name@@val @TO@ name@@val ][stk ][rear @AT@ 1842 @LENGTH@ 3\n" +
+                "---------------INS index@@][stk ][rear @TO@ name@@val ][stk ][rear @AT@ 1846 @LENGTH@ 12\n" +
+                "------------------INS expr@@[stk ][rear @TO@ index@@][stk ][rear @AT@ 1846 @LENGTH@ 11\n" +
+                "---------------------INS name@@[stk ][rear @TO@ expr@@[stk ][rear @AT@ 1846 @LENGTH@ 11\n" +
+                "------------------------INS name@@[stk @TO@ name@@[stk ][rear @AT@ 1846 @LENGTH@ 4\n" +
+                "------------------------INS index@@][rear @TO@ name@@[stk ][rear @AT@ 1850 @LENGTH@ 6\n" +
+                "---------------------------INS expr@@[rear @TO@ index@@][rear @AT@ 1850 @LENGTH@ 5\n" +
+                "------------------------------INS name@@[rear @TO@ expr@@[rear @AT@ 1850 @LENGTH@ 5\n" +
+                "------------UPD operator@@++ @TO@ += @AT@ 1874 @LENGTH@ 2\n");
+    }
     public List<HierarchicalActionSet> getHierarchicalActionSets(String s) throws IOException {
         Properties appProps = new Properties();
         appProps.load(new FileInputStream("src/main/resource/app.properties"));

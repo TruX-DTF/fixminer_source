@@ -86,6 +86,7 @@ public class HierarchicalRegrouperForC {
 //				}
 			}
 		}
+
 		List<HierarchicalActionSet> reActionSets1 = new ArrayList<>();
 		for(HierarchicalActionSet a:reActionSets){
 			HierarchicalActionSet hierarchicalActionSet = purifyActionSet(a);
@@ -97,6 +98,9 @@ public class HierarchicalRegrouperForC {
 			}
 
 		}
+
+
+
 		return reActionSets1;
 //		return reActionSets;
 	}
@@ -106,10 +110,11 @@ public class HierarchicalRegrouperForC {
 		hierarchicalActionSet = removeParentForSingle(hierarchicalActionSet);
 		hierarchicalActionSet = removeParentNode(hierarchicalActionSet);
 		return hierarchicalActionSet;
+//		return actionSet;
 	}
 
 	private List<HierarchicalActionSet> divideBlocks(HierarchicalActionSet actionSet){
-		if (actionSet.getAstNodeType().equals("block")){
+		if (actionSet.getAstNodeType().equals("block") || actionSet.getAstNodeType().equals("function")){
 			List<HierarchicalActionSet> subActions = actionSet.getSubActions();
 			if (subActions.size() > 1) {
 				boolean b = subActions.stream().allMatch(p -> NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, p.getAstNodeType()).size() == 1 && p.getAstNodeType().equals(subActions.get(0).getAstNodeType()) && p.getAction().getName().equals(subActions.get(0).getAction().getName()));
@@ -145,6 +150,53 @@ public class HierarchicalRegrouperForC {
 //		return b;
 	}
 
+
+
+	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
+		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+		Predicate<HierarchicalActionSet> predicate = x->NodeMap_new.getKeysByValue(NodeMap_new.StatementMap,x.getAstNodeType()).size() == 1 ;
+		Predicate<HierarchicalActionSet> predicate1 = x->!x.getAstNodeType().equals("block");
+		Predicate<HierarchicalActionSet> predicate2 = x->!x.getAstNodeType().equals("then");
+
+
+		Action action = actionSet.getAction();
+		if (subActions.size() == 1){
+			HierarchicalActionSet subaction = subActions.get(0);
+			if(!postOrder(subaction).stream().anyMatch(predicate.and(predicate1.and(predicate2)))){
+				return actionSet;
+			}
+			Action action1 = subaction.getAction();
+			//else,then,block
+			if(action.getClass().equals(action1.getClass()) && action.getName().equals("UPD")) {
+
+				List<Integer> keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, subaction.getAstNodeType());
+				if (keysByValue != null && keysByValue.size() == 1) {
+
+					subaction.setParent(null);
+					return removeBlocks(subaction);
+
+				}
+//			if(areRelatedActions(action,action1)) {
+//				if (subaction.getAstNodeType().equals("block")) {//|| subaction.getAstNodeType().equals("then") || subaction.getAstNodeType().equals("else")){
+//					List<HierarchicalActionSet> subSubActions = subaction.getSubActions();
+//					if (subSubActions.size() == 1) {
+//
+//						HierarchicalActionSet subsubsubAction = subSubActions.get(0);
+//						List<Integer> keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, subsubsubAction.getAstNodeType());
+//						if (keysByValue != null && keysByValue.size() == 1) {
+//
+//							subsubsubAction.setParent(null);
+//							return removeBlocks(subsubsubAction);
+//
+//						}
+//					}
+//				}
+			}
+		}
+		return actionSet;
+
+	}
+
 	private HierarchicalActionSet removeParentNode(HierarchicalActionSet actionSet){
 		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
 		Action action = actionSet.getAction();
@@ -162,42 +214,6 @@ public class HierarchicalRegrouperForC {
 
 		}
 		return actionSet;
-	}
-
-	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
-		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
-		Predicate<HierarchicalActionSet> predicate = x->NodeMap_new.getKeysByValue(NodeMap_new.StatementMap,x.getAstNodeType()).size() == 1 ;
-		Predicate<HierarchicalActionSet> predicate1 = x->!x.getAstNodeType().equals("block");
-
-
-		Action action = actionSet.getAction();
-		if (subActions.size() == 1){
-			HierarchicalActionSet subaction = subActions.get(0);
-			if(!postOrder(subaction).stream().anyMatch(predicate.and(predicate1))){
-				return actionSet;
-			}
-			Action action1 = subaction.getAction();
-			//else,then,block
-			if(action.getClass().equals(action1.getClass()) && action.getName().equals("UPD")) {
-//			if(areRelatedActions(action,action1)) {
-//				if (subaction.getAstNodeType().equals("block")) {//|| subaction.getAstNodeType().equals("then") || subaction.getAstNodeType().equals("else")){
-					List<HierarchicalActionSet> subSubActions = subaction.getSubActions();
-					if (subSubActions.size() == 1) {
-
-						HierarchicalActionSet subsubsubAction = subSubActions.get(0);
-						List<Integer> keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, subsubsubAction.getAstNodeType());
-						if (keysByValue != null && keysByValue.size() == 1) {
-
-							subsubsubAction.setParent(null);
-							return removeBlocks(subsubsubAction);
-
-						}
-					}
-//				}
-			}
-		}
-		return actionSet;
-
 	}
 
 	private HierarchicalActionSet removeParentForSingle(HierarchicalActionSet actionSet){
@@ -395,7 +411,12 @@ public class HierarchicalRegrouperForC {
 //		}
 
 		for (Action act : actions) {
-			if (act.getNode().equals(parent)) {
+			if (act instanceof Move){
+				if(act.getNode().equals(action.getNode())){
+					return act;
+				}
+			}
+			else if (act.getNode().equals(parent)) {
 				if (areRelatedActions(act, action)) {
 					return act;
 				}
@@ -481,9 +502,9 @@ public class HierarchicalRegrouperForC {
 	}
 
 	private boolean areRelatedActions(Action parent, Action child) {
-		if (parent instanceof Move && !(child instanceof Move)) {// If action is MOV, its children must be MOV.
-			return false;
-		}
+//		if (parent instanceof Move && !(child instanceof Move)) {// If action is MOV, its children must be MOV.
+//			return false;
+//		}
 		if (parent instanceof Delete && !(child instanceof Delete)) {// If action is DEL, its children must be DEL.
 			return false;
 		}
