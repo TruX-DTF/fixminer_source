@@ -137,7 +137,7 @@ public class TestInputCases {
                 "---UPD block@@'n' if ! ( flags & SCAN_SUPPRESS ) if numVars zend_uint refcount current = args ][objIndex ++ refcount = ( * current ) -> refcount zval_dtor * current ZVAL_LONG * current long string - baseString ( * current ) -> refcount = refcount ( * current ) -> is_ref = 1 else add_index_long * return_value objIndex ++ string - baseString nconversions ++ continue; 'd' 'D' op = 'i' base = 10 fn = ( long * ) strtol break; 'i' op = 'i' base = 0 fn = ( long * ) strtol break; 'o' op = 'i' base = 8 fn = ( long * ) strtol break; 'x' op = 'i' base = 16 fn = ( long * ) strtol break; 'u' op = 'i' base = 10 flags |= SCAN_UNSIGNED fn = ( long * ) strtoul break; 'f' 'e' 'E' 'g' op = 'f' break; 's' op = 's' break; 'c' op = 's' flags |= SCAN_NOSKIP if 0 == width width = 1 break; '[' op = '[' flags |= SCAN_NOSKIP break; @TO@ 'n' if ! ( flags & SCAN_SUPPRESS ) if numVars zend_uint refcount current = args ][objIndex ++ refcount = ( * current ) -> refcount zval_dtor * current ZVAL_LONG * current long string - baseString ( * current ) -> refcount = refcount ( * current ) -> is_ref = 1 else add_index_long * return_value objIndex ++ string - baseString nconversions ++ continue; 'd' 'D' op = 'i' base = 10 fn = ( long * ) strtol break; 'i' op = 'i' base = 0 fn = ( long * ) strtol break; 'o' op = 'i' base = 8 fn = ( long * ) strtol break; 'x' 'X' op = 'i' base = 16 fn = ( long * ) strtol break; 'u' op = 'i' base = 10 flags |= SCAN_UNSIGNED fn = ( long * ) strtoul break; 'f' 'e' 'E' 'g' op = 'f' break; 's' op = 's' break; 'c' op = 's' flags |= SCAN_NOSKIP if 0 == width width = 1 break; '[' op = '[' flags |= SCAN_NOSKIP break; @AT@ 19179 @LENGTH@ 802\n" +
                 "------INS case@@'X' @TO@ block@@'n' if ! ( flags & SCAN_SUPPRESS ) if numVars zend_uint refcount current = args ][objIndex ++ refcount = ( * current ) -> refcount zval_dtor * current ZVAL_LONG * current long string - baseString ( * current ) -> refcount = refcount ( * current ) -> is_ref = 1 else add_index_long * return_value objIndex ++ string - baseString nconversions ++ continue; 'd' 'D' op = 'i' base = 10 fn = ( long * ) strtol break; 'i' op = 'i' base = 0 fn = ( long * ) strtol break; 'o' op = 'i' base = 8 fn = ( long * ) strtol break; 'x' op = 'i' base = 16 fn = ( long * ) strtol break; 'u' op = 'i' base = 10 flags |= SCAN_UNSIGNED fn = ( long * ) strtoul break; 'f' 'e' 'E' 'g' op = 'f' break; 's' op = 's' break; 'c' op = 's' flags |= SCAN_NOSKIP if 0 == width width = 1 break; '[' op = '[' flags |= SCAN_NOSKIP break; @AT@ 19912 @LENGTH@ 3\n" +
                 "---------INS expr@@'X' @TO@ case@@'X' @AT@ 19917 @LENGTH@ 3\n" +
-                "------------INS literal@@'X' @TO@ expr@@'X' @AT@ 19917 @LENGTH@ 3\n");
+                "------------INS literal:char@@'X' @TO@ expr@@'X' @AT@ 19917 @LENGTH@ 3\n");
     }
     @Test
     public void test_lighttpd14_f27b8d_4a86d3() throws IOException {//TODO not sure
@@ -253,22 +253,22 @@ public class TestInputCases {
                 "---INS expr@@param_length -= 4 @TO@ expr_stmt@@param_length -= 4 @AT@ 43110 @LENGTH@ 17\n" +
                 "------INS name@@param_length @TO@ expr@@param_length -= 4 @AT@ 43110 @LENGTH@ 12\n" +
                 "------INS operator@@-= @TO@ expr@@param_length -= 4 @AT@ 43123 @LENGTH@ 2\n" +
-                "------INS literal@@4 @TO@ expr@@param_length -= 4 @AT@ 43126 @LENGTH@ 1\n");
+                "------INS literal:number@@4 @TO@ expr@@param_length -= 4 @AT@ 43126 @LENGTH@ 1\n");
         Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"INS expr_stmt@@param_length -= 4 @TO@ block@@char * ip_string ip_string = IP_to_string offset tvb little_endian buff_tmp proto_item_append_text ti \"%c %s\" sep ip_string proto_tree_add_text rtps_parameter_tree tvb offset param_length \"Address[%d]: %s\" i ip_string ++ i offset += 4 sep = ',' @AT@ 43696 @LENGTH@ 17\n" +
                 "---INS expr@@param_length -= 4 @TO@ expr_stmt@@param_length -= 4 @AT@ 43696 @LENGTH@ 17\n" +
                 "------INS name@@param_length @TO@ expr@@param_length -= 4 @AT@ 43696 @LENGTH@ 12\n" +
                 "------INS operator@@-= @TO@ expr@@param_length -= 4 @AT@ 43709 @LENGTH@ 2\n" +
-                "------INS literal@@4 @TO@ expr@@param_length -= 4 @AT@ 43712 @LENGTH@ 1\n");
+                "------INS literal:number@@4 @TO@ expr@@param_length -= 4 @AT@ 43712 @LENGTH@ 1\n");
         Assert.assertEquals(hierarchicalActionSets.get(2).toString(),"INS expr_stmt@@param_length -= 4 @TO@ block@@char * ip_string ip_string = IP_to_string offset tvb little_endian buff_tmp proto_item_append_text ti \"%c %s\" sep ip_string proto_tree_add_text rtps_parameter_tree tvb offset param_length \"Address[%d]: %s\" i ip_string ++ i offset += 4 @AT@ 46139 @LENGTH@ 17\n" +
                 "---INS expr@@param_length -= 4 @TO@ expr_stmt@@param_length -= 4 @AT@ 46139 @LENGTH@ 17\n" +
                 "------INS name@@param_length @TO@ expr@@param_length -= 4 @AT@ 46139 @LENGTH@ 12\n" +
                 "------INS operator@@-= @TO@ expr@@param_length -= 4 @AT@ 46152 @LENGTH@ 2\n" +
-                "------INS literal@@4 @TO@ expr@@param_length -= 4 @AT@ 46155 @LENGTH@ 1\n");
+                "------INS literal:number@@4 @TO@ expr@@param_length -= 4 @AT@ 46155 @LENGTH@ 1\n");
         Assert.assertEquals(hierarchicalActionSets.get(3).toString(),"INS expr_stmt@@param_length -= 4 @TO@ block@@guint32 manager_key manager_key = get_guint32 tvb offset little_endian proto_item_append_text ti \"%c 0x%X\" sep manager_key proto_tree_add_text rtps_parameter_tree tvb offset param_length \"Key[%d]: 0x%X\" i manager_key ++ i offset += 4 sep = ',' @AT@ 46723 @LENGTH@ 17\n" +
                 "---INS expr@@param_length -= 4 @TO@ expr_stmt@@param_length -= 4 @AT@ 46723 @LENGTH@ 17\n" +
                 "------INS name@@param_length @TO@ expr@@param_length -= 4 @AT@ 46723 @LENGTH@ 12\n" +
                 "------INS operator@@-= @TO@ expr@@param_length -= 4 @AT@ 46736 @LENGTH@ 2\n" +
-                "------INS literal@@4 @TO@ expr@@param_length -= 4 @AT@ 46739 @LENGTH@ 1\n");
+                "------INS literal:number@@4 @TO@ expr@@param_length -= 4 @AT@ 46739 @LENGTH@ 1\n");
     }
     @Test
     public void test_wireshark_3f2283_9e184d() throws IOException {
@@ -344,6 +344,7 @@ public class TestInputCases {
     @Test
     public void test_php_src_a347ed_d2b435() throws IOException {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_a347ed_d2b435_ext#ereg#ereg.c");//removeParentForSingle?? and others maybe
+        Assert.fail(); //todo wrong
         Assert.assertEquals(hierarchicalActionSets.size(),2);
         Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if '\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 new_l += subs ][walk ][1 - '0' . rm_eo - subs ][walk ][1 - '0' . rm_so walk += 2 else new_l ++ walk ++ @TO@ if '\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && walk ][1 - '0' <= re . re_nsub && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 new_l += subs ][walk ][1 - '0' . rm_eo - subs ][walk ][1 - '0' . rm_so walk += 2 else new_l ++ walk ++ @AT@ 8933 @LENGTH@ 236\n" +
                 "---UPD condition@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 @TO@ '\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && walk ][1 - '0' <= re . re_nsub && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 @AT@ 8933 @LENGTH@ 130\n" +
@@ -352,9 +353,9 @@ public class TestInputCases {
                 "------------INS name@@walk @TO@ name@@walk ][1 @AT@ 8997 @LENGTH@ 4\n" +
                 "------------INS index@@][1 @TO@ name@@walk ][1 @AT@ 9002 @LENGTH@ 3\n" +
                 "---------------INS expr@@[1 @TO@ index@@][1 @AT@ 9002 @LENGTH@ 2\n" +
-                "------------------INS literal@@[1 @TO@ expr@@[1 @AT@ 9002 @LENGTH@ 2\n" +
+                "------------------INS literal:number@@[1 @TO@ expr@@[1 @AT@ 9002 @LENGTH@ 2\n" +
                 "---------INS operator@@- @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 @AT@ 9005 @LENGTH@ 1\n" +
-                "---------INS literal@@'0' @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 @AT@ 9007 @LENGTH@ 3\n" +
+                "---------INS literal:char@@'0' @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 @AT@ 9007 @LENGTH@ 3\n" +
                 "---------INS operator@@<= @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 @AT@ 9011 @LENGTH@ 2\n" +
                 "---------INS name@@re . re_nsub @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 @AT@ 9014 @LENGTH@ 12\n" +
                 "------------INS name@@re @TO@ name@@re . re_nsub @AT@ 9014 @LENGTH@ 2\n" +
@@ -371,7 +372,7 @@ public class TestInputCases {
                 "---------MOV name@@subs ][walk ][1 - '0' @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 8997 @LENGTH@ 21\n" +
                 "---------MOV name@@[walk ][1 @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 9680 @LENGTH@ 9\n" +
                 "---------MOV operator@@- @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 9688 @LENGTH@ 1\n" +
-                "---------MOV literal@@'0' @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 9690 @LENGTH@ 3\n" +
+                "---------MOV literal:char@@'0' @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 9690 @LENGTH@ 3\n" +
                 "---------DEL operator@@. @AT@ 9694 @LENGTH@ 1\n" +
                 "---------MOV name@@subs ][walk ][1 - '0' @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 9714 @LENGTH@ 21\n" +
                 "---------INS operator@@<= @TO@ expr@@'\\\\' == * walk && '0' <= walk ][1 && '9' >= walk ][1 && subs ][walk ][1 - '0' . rm_so > - 1 && subs ][walk ][1 - '0' . rm_eo > - 1 && subs ][walk ][1 - '0' . rm_so <= subs ][walk ][1 - '0' . rm_eo @AT@ 9725 @LENGTH@ 2\n" +
@@ -523,7 +524,7 @@ public class TestInputCases {
                 "---UPD control@@i = 1 i <= count i ++ @TO@ i = 0 i < count i ++ @AT@ 47203 @LENGTH@ 21\n" +
                 "------UPD init@@i = 1 @TO@ i = 0 @AT@ 47204 @LENGTH@ 5\n" +
                 "---------UPD expr@@i = 1 @TO@ i = 0 @AT@ 47204 @LENGTH@ 5\n" +
-                "------------UPD literal@@1 @TO@ 0 @AT@ 47207 @LENGTH@ 1\n" +
+                "------------UPD literal:number@@1 @TO@ 0 @AT@ 47207 @LENGTH@ 1\n" +
                 "------UPD condition@@i <= count @TO@ i < count @AT@ 47210 @LENGTH@ 10\n" +
                 "---------UPD expr@@i <= count @TO@ i < count @AT@ 47210 @LENGTH@ 10\n" +
                 "------------UPD operator@@<= @TO@ < @AT@ 47212 @LENGTH@ 2\n");
@@ -531,7 +532,7 @@ public class TestInputCases {
                 "---UPD control@@i = 1 i <= count i ++ @TO@ i = 0 i < count i ++ @AT@ 47203 @LENGTH@ 21\n" +
                 "------UPD init@@i = 1 @TO@ i = 0 @AT@ 47204 @LENGTH@ 5\n" +
                 "---------UPD expr@@i = 1 @TO@ i = 0 @AT@ 47204 @LENGTH@ 5\n" +
-                "------------UPD literal@@1 @TO@ 0 @AT@ 47207 @LENGTH@ 1\n" +
+                "------------UPD literal:number@@1 @TO@ 0 @AT@ 47207 @LENGTH@ 1\n" +
                 "------UPD condition@@i <= count @TO@ i < count @AT@ 47210 @LENGTH@ 10\n" +
                 "---------UPD expr@@i <= count @TO@ i < count @AT@ 47210 @LENGTH@ 10\n" +
                 "------------UPD operator@@<= @TO@ < @AT@ 47212 @LENGTH@ 2\n");
@@ -539,7 +540,7 @@ public class TestInputCases {
                 "---UPD control@@i = 1 i <= count i ++ @TO@ i = 0 i < count i ++ @AT@ 47203 @LENGTH@ 21\n" +
                 "------UPD init@@i = 1 @TO@ i = 0 @AT@ 47204 @LENGTH@ 5\n" +
                 "---------UPD expr@@i = 1 @TO@ i = 0 @AT@ 47204 @LENGTH@ 5\n" +
-                "------------UPD literal@@1 @TO@ 0 @AT@ 47207 @LENGTH@ 1\n" +
+                "------------UPD literal:number@@1 @TO@ 0 @AT@ 47207 @LENGTH@ 1\n" +
                 "------UPD condition@@i <= count @TO@ i < count @AT@ 47210 @LENGTH@ 10\n" +
                 "---------UPD expr@@i <= count @TO@ i < count @AT@ 47210 @LENGTH@ 10\n" +
                 "------------UPD operator@@<= @TO@ < @AT@ 47212 @LENGTH@ 2\n");
@@ -584,7 +585,7 @@ public class TestInputCases {
                 "------DEL expr@@is_array = 0 @AT@ 10183 @LENGTH@ 12\n" +
                 "---------DEL name@@is_array @AT@ 10183 @LENGTH@ 8\n" +
                 "---------DEL operator@@= @AT@ 10192 @LENGTH@ 1\n" +
-                "---------DEL literal@@0 @AT@ 10194 @LENGTH@ 1\n");
+                "---------DEL literal:number@@0 @AT@ 10194 @LENGTH@ 1\n");
     }
     @Test
     public void test_cpython_09705f_db2a0f() throws IOException {
@@ -594,7 +595,7 @@ public class TestInputCases {
                 "---UPD decl@@static char copyright [] \" SRE 2.2.1 Copyright (c) 1997-2001 by Secret Labs AB \" @TO@ static char copyright [] \" SRE 2.2.2 Copyright (c) 1997-2002 by Secret Labs AB \" @AT@ 2421 @LENGTH@ 80\n" +
                 "------UPD init@@\" SRE 2.2.1 Copyright (c) 1997-2001 by Secret Labs AB \" @TO@ \" SRE 2.2.2 Copyright (c) 1997-2002 by Secret Labs AB \" @AT@ 2451 @LENGTH@ 55\n" +
                 "---------UPD expr@@\" SRE 2.2.1 Copyright (c) 1997-2001 by Secret Labs AB \" @TO@ \" SRE 2.2.2 Copyright (c) 1997-2002 by Secret Labs AB \" @AT@ 2451 @LENGTH@ 55\n" +
-                "------------UPD literal@@\" SRE 2.2.1 Copyright (c) 1997-2001 by Secret Labs AB \" @TO@ \" SRE 2.2.2 Copyright (c) 1997-2002 by Secret Labs AB \" @AT@ 2451 @LENGTH@ 55\n");
+                "------------UPD literal:string@@\" SRE 2.2.1 Copyright (c) 1997-2001 by Secret Labs AB \" @TO@ \" SRE 2.2.2 Copyright (c) 1997-2002 by Secret Labs AB \" @AT@ 2451 @LENGTH@ 55\n");
         Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD return@@return PyString_FromString \"\" @TO@ return PySequence_GetSlice pattern 0 0 @AT@ 52066 @LENGTH@ 29\n" +
                 "---UPD expr@@PyString_FromString \"\" @TO@ PySequence_GetSlice pattern 0 0 @AT@ 52073 @LENGTH@ 22\n" +
                 "------UPD call@@PyString_FromString \"\" @TO@ PySequence_GetSlice pattern 0 0 @AT@ 52073 @LENGTH@ 22\n" +
@@ -605,10 +606,10 @@ public class TestInputCases {
                 "------------------INS name@@pattern @TO@ expr@@pattern @AT@ 51091 @LENGTH@ 7\n" +
                 "------------INS argument@@0 @TO@ argument_list@@\"\" @AT@ 51103 @LENGTH@ 1\n" +
                 "---------------INS expr@@0 @TO@ argument@@0 @AT@ 51103 @LENGTH@ 1\n" +
-                "------------------INS literal@@0 @TO@ expr@@0 @AT@ 51103 @LENGTH@ 1\n" +
+                "------------------INS literal:number@@0 @TO@ expr@@0 @AT@ 51103 @LENGTH@ 1\n" +
                 "------------UPD argument@@\"\" @TO@ 0 @AT@ 52093 @LENGTH@ 2\n" +
                 "---------------UPD expr@@\"\" @TO@ 0 @AT@ 52093 @LENGTH@ 2\n" +
-                "------------------UPD literal@@\"\" @TO@ 0 @AT@ 52093 @LENGTH@ 2\n");
+                "------------------UPD literal:string@@\"\" @TO@ 0 @AT@ 52093 @LENGTH@ 2\n");
     }
     @Test
     public void test_cpython_03897e_8fcc8e() throws IOException {
@@ -632,7 +633,7 @@ public class TestInputCases {
                 "---------------------------INS name@@PyExc_RuntimeError @TO@ expr@@PyExc_RuntimeError @AT@ 1720 @LENGTH@ 18\n" +
                 "---------------------INS argument@@\"lost __builtin__\" @TO@ argument_list@@PyExc_RuntimeError \"lost __builtin__\" @AT@ 1740 @LENGTH@ 18\n" +
                 "------------------------INS expr@@\"lost __builtin__\" @TO@ argument@@\"lost __builtin__\" @AT@ 1740 @LENGTH@ 18\n" +
-                "---------------------------INS literal@@\"lost __builtin__\" @TO@ expr@@\"lost __builtin__\" @AT@ 1740 @LENGTH@ 18\n" +
+                "---------------------------INS literal:string@@\"lost __builtin__\" @TO@ expr@@\"lost __builtin__\" @AT@ 1740 @LENGTH@ 18\n" +
                 "---------INS return@@return NULL @TO@ block@@PyErr_SetString PyExc_RuntimeError \"lost __builtin__\" return NULL @AT@ 1763 @LENGTH@ 11\n" +
                 "------------INS expr@@NULL @TO@ return@@return NULL @AT@ 1770 @LENGTH@ 4\n" +
                 "---------------INS name@@NULL @TO@ expr@@NULL @AT@ 1770 @LENGTH@ 4\n");
@@ -645,7 +646,7 @@ public class TestInputCases {
                 "---UPD decl@@chtype cch @TO@ chtype cch 0 @AT@ 20374 @LENGTH@ 10\n" +
                 "------INS init@@0 @TO@ decl@@chtype cch @AT@ 20387 @LENGTH@ 1\n" +
                 "---------INS expr@@0 @TO@ init@@0 @AT@ 20387 @LENGTH@ 1\n" +
-                "------------INS literal@@0 @TO@ expr@@0 @AT@ 20387 @LENGTH@ 1\n");
+                "------------INS literal:number@@0 @TO@ expr@@0 @AT@ 20387 @LENGTH@ 1\n");
     }
     @Test
     public void test_cpython_516999_437567() throws IOException {
@@ -728,11 +729,11 @@ public class TestInputCases {
                 "---UPD expr@@NULL @TO@ - 1 @AT@ 17157 @LENGTH@ 4\n" +
                 "------INS operator@@- @TO@ expr@@NULL @AT@ 17157 @LENGTH@ 1\n" +
                 "------DEL name@@NULL @AT@ 17157 @LENGTH@ 4\n" +
-                "------INS literal@@1 @TO@ expr@@NULL @AT@ 17158 @LENGTH@ 1\n");
+                "------INS literal:number@@1 @TO@ expr@@NULL @AT@ 17158 @LENGTH@ 1\n");
         Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD return@@return NULL @TO@ return - 1 @AT@ 17461 @LENGTH@ 11\n" +
                 "---UPD expr@@NULL @TO@ - 1 @AT@ 17468 @LENGTH@ 4\n" +
                 "------INS operator@@- @TO@ expr@@NULL @AT@ 17466 @LENGTH@ 1\n" +
-                "------INS literal@@1 @TO@ expr@@NULL @AT@ 17467 @LENGTH@ 1\n" +
+                "------INS literal:number@@1 @TO@ expr@@NULL @AT@ 17467 @LENGTH@ 1\n" +
                 "------DEL name@@NULL @AT@ 17468 @LENGTH@ 4\n");
     }
     @Test
@@ -758,26 +759,26 @@ public class TestInputCases {
                 "---UPD expr@@NULL @TO@ - 1 @AT@ 18835 @LENGTH@ 4\n" +
                 "------INS operator@@- @TO@ expr@@NULL @AT@ 18835 @LENGTH@ 1\n" +
                 "------DEL name@@NULL @AT@ 18835 @LENGTH@ 4\n" +
-                "------INS literal@@1 @TO@ expr@@NULL @AT@ 18836 @LENGTH@ 1\n");
+                "------INS literal:number@@1 @TO@ expr@@NULL @AT@ 18836 @LENGTH@ 1\n");
         Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD return@@return NULL @TO@ return - 1 @AT@ 19249 @LENGTH@ 11\n" +
                 "---UPD expr@@NULL @TO@ - 1 @AT@ 19256 @LENGTH@ 4\n" +
                 "------INS operator@@- @TO@ expr@@NULL @AT@ 19254 @LENGTH@ 1\n" +
-                "------INS literal@@1 @TO@ expr@@NULL @AT@ 19255 @LENGTH@ 1\n" +
+                "------INS literal:number@@1 @TO@ expr@@NULL @AT@ 19255 @LENGTH@ 1\n" +
                 "------DEL name@@NULL @AT@ 19256 @LENGTH@ 4\n");
         Assert.assertEquals(hierarchicalActionSets.get(2).toString(),"UPD return@@return NULL @TO@ return - 1 @AT@ 19728 @LENGTH@ 11\n" +
                 "---UPD expr@@NULL @TO@ - 1 @AT@ 19735 @LENGTH@ 4\n" +
                 "------INS operator@@- @TO@ expr@@NULL @AT@ 19731 @LENGTH@ 1\n" +
-                "------INS literal@@1 @TO@ expr@@NULL @AT@ 19732 @LENGTH@ 1\n" +
+                "------INS literal:number@@1 @TO@ expr@@NULL @AT@ 19732 @LENGTH@ 1\n" +
                 "------DEL name@@NULL @AT@ 19735 @LENGTH@ 4\n");
         Assert.assertEquals(hierarchicalActionSets.get(3).toString(),"UPD return@@return NULL @TO@ return - 1 @AT@ 20231 @LENGTH@ 11\n" +
                 "---UPD expr@@NULL @TO@ - 1 @AT@ 20238 @LENGTH@ 4\n" +
                 "------INS operator@@- @TO@ expr@@NULL @AT@ 20232 @LENGTH@ 1\n" +
-                "------INS literal@@1 @TO@ expr@@NULL @AT@ 20233 @LENGTH@ 1\n" +
+                "------INS literal:number@@1 @TO@ expr@@NULL @AT@ 20233 @LENGTH@ 1\n" +
                 "------DEL name@@NULL @AT@ 20238 @LENGTH@ 4\n");
         Assert.assertEquals(hierarchicalActionSets.get(4).toString(),"UPD return@@return NULL @TO@ return - 1 @AT@ 25175 @LENGTH@ 11\n" +
                 "---UPD expr@@NULL @TO@ - 1 @AT@ 25182 @LENGTH@ 4\n" +
                 "------INS operator@@- @TO@ expr@@NULL @AT@ 25174 @LENGTH@ 1\n" +
-                "------INS literal@@1 @TO@ expr@@NULL @AT@ 25175 @LENGTH@ 1\n" +
+                "------INS literal:number@@1 @TO@ expr@@NULL @AT@ 25175 @LENGTH@ 1\n" +
                 "------DEL name@@NULL @AT@ 25182 @LENGTH@ 4\n");
     }
 
@@ -880,10 +881,10 @@ public class TestInputCases {
                 "---------INS argument_list@@\"\" 0 @TO@ call@@estrndup \"\" 0 @AT@ 9234 @LENGTH@ 4\n" +
                 "------------INS argument@@\"\" @TO@ argument_list@@\"\" 0 @AT@ 9235 @LENGTH@ 2\n" +
                 "---------------INS expr@@\"\" @TO@ argument@@\"\" @AT@ 9235 @LENGTH@ 2\n" +
-                "------------------INS literal@@\"\" @TO@ expr@@\"\" @AT@ 9235 @LENGTH@ 2\n" +
+                "------------------INS literal:string@@\"\" @TO@ expr@@\"\" @AT@ 9235 @LENGTH@ 2\n" +
                 "------------INS argument@@0 @TO@ argument_list@@\"\" 0 @AT@ 9239 @LENGTH@ 1\n" +
                 "---------------INS expr@@0 @TO@ argument@@0 @AT@ 9239 @LENGTH@ 1\n" +
-                "------------------INS literal@@0 @TO@ expr@@0 @AT@ 9239 @LENGTH@ 1\n" +
+                "------------------INS literal:number@@0 @TO@ expr@@0 @AT@ 9239 @LENGTH@ 1\n" +
                 "------DEL operator@@( @AT@ 9226 @LENGTH@ 1\n" +
                 "------DEL name@@char @AT@ 9227 @LENGTH@ 4\n" +
                 "------DEL operator@@* @AT@ 9232 @LENGTH@ 1\n" +
@@ -979,7 +980,7 @@ public class TestInputCases {
                 "------------INS expr@@code == 39 || ! quote_style @TO@ condition@@code == 39 || ! quote_style @AT@ 31582 @LENGTH@ 27\n" +
                 "---------------INS name@@code @TO@ expr@@code == 39 || ! quote_style @AT@ 31582 @LENGTH@ 4\n" +
                 "---------------INS operator@@== @TO@ expr@@code == 39 || ! quote_style @AT@ 31587 @LENGTH@ 2\n" +
-                "---------------INS literal@@39 @TO@ expr@@code == 39 || ! quote_style @AT@ 31590 @LENGTH@ 2\n" +
+                "---------------INS literal:number@@39 @TO@ expr@@code == 39 || ! quote_style @AT@ 31590 @LENGTH@ 2\n" +
                 "---------------INS operator@@|| @TO@ expr@@code == 39 || ! quote_style @AT@ 31593 @LENGTH@ 2\n" +
                 "---------------INS operator@@! @TO@ expr@@code == 39 || ! quote_style @AT@ 31596 @LENGTH@ 1\n" +
                 "---------------INS name@@quote_style @TO@ expr@@code == 39 || ! quote_style @AT@ 31597 @LENGTH@ 11\n" +
@@ -989,7 +990,7 @@ public class TestInputCases {
                 "------------------INS expr@@invalid_code = 1 @TO@ expr_stmt@@invalid_code = 1 @AT@ 31622 @LENGTH@ 16\n" +
                 "---------------------INS name@@invalid_code @TO@ expr@@invalid_code = 1 @AT@ 31622 @LENGTH@ 12\n" +
                 "---------------------INS operator@@= @TO@ expr@@invalid_code = 1 @AT@ 31635 @LENGTH@ 1\n" +
-                "---------------------INS literal@@1 @TO@ expr@@invalid_code = 1 @AT@ 31637 @LENGTH@ 1\n");
+                "---------------------INS literal:number@@1 @TO@ expr@@invalid_code = 1 @AT@ 31637 @LENGTH@ 1\n");
     }
     @Test
     public void test_wireshark_c3a535_1153ff() throws IOException {
@@ -1004,7 +1005,7 @@ public class TestInputCases {
                 "---------------INS argument_list@@\"</field>\\n\" pdata -> fh @TO@ call@@fputs \"</field>\\n\" pdata -> fh @AT@ 14001 @LENGTH@ 24\n" +
                 "------------------INS argument@@\"</field>\\n\" @TO@ argument_list@@\"</field>\\n\" pdata -> fh @AT@ 14002 @LENGTH@ 12\n" +
                 "---------------------INS expr@@\"</field>\\n\" @TO@ argument@@\"</field>\\n\" @AT@ 14002 @LENGTH@ 12\n" +
-                "------------------------INS literal@@\"</field>\\n\" @TO@ expr@@\"</field>\\n\" @AT@ 14002 @LENGTH@ 12\n" +
+                "------------------------INS literal:string@@\"</field>\\n\" @TO@ expr@@\"</field>\\n\" @AT@ 14002 @LENGTH@ 12\n" +
                 "------------------INS argument@@pdata -> fh @TO@ argument_list@@\"</field>\\n\" pdata -> fh @AT@ 14016 @LENGTH@ 11\n" +
                 "---------------------INS expr@@pdata -> fh @TO@ argument@@pdata -> fh @AT@ 14016 @LENGTH@ 11\n" +
                 "------------------------INS name@@pdata -> fh @TO@ expr@@pdata -> fh @AT@ 14016 @LENGTH@ 11\n" +
@@ -1043,10 +1044,10 @@ public class TestInputCases {
                 "------------------------------------INS name@@error @TO@ expr@@error @AT@ 11577 @LENGTH@ 5\n" +
                 "------------------------------INS argument@@4096 @TO@ argument_list@@error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" fname @AT@ 11584 @LENGTH@ 4\n" +
                 "---------------------------------INS expr@@4096 @TO@ argument@@4096 @AT@ 11584 @LENGTH@ 4\n" +
-                "------------------------------------INS literal@@4096 @TO@ expr@@4096 @AT@ 11584 @LENGTH@ 4\n" +
+                "------------------------------------INS literal:number@@4096 @TO@ expr@@4096 @AT@ 11584 @LENGTH@ 4\n" +
                 "------------------------------INS argument@@\"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" @TO@ argument_list@@error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" fname @AT@ 11590 @LENGTH@ 65\n" +
                 "---------------------------------INS expr@@\"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" @TO@ argument@@\"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" @AT@ 11590 @LENGTH@ 65\n" +
-                "------------------------------------INS literal@@\"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" @TO@ expr@@\"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" @AT@ 11590 @LENGTH@ 65\n" +
+                "------------------------------------INS literal:string@@\"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" @TO@ expr@@\"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" @AT@ 11590 @LENGTH@ 65\n" +
                 "------------------------------INS argument@@fname @TO@ argument_list@@error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" fname @AT@ 11657 @LENGTH@ 5\n" +
                 "---------------------------------INS expr@@fname @TO@ argument@@fname @AT@ 11657 @LENGTH@ 5\n" +
                 "------------------------------------INS name@@fname @TO@ expr@@fname @AT@ 11657 @LENGTH@ 5\n" +
@@ -1177,7 +1178,7 @@ public class TestInputCases {
                 "---------------INS operator@@( @TO@ expr@@n = dlen - ( ll + 1 ) @AT@ 13192 @LENGTH@ 1\n" +
                 "---------------INS name@@ll @TO@ expr@@n = dlen - ( ll + 1 ) @AT@ 13193 @LENGTH@ 2\n" +
                 "---------------INS operator@@+ @TO@ expr@@n = dlen - ( ll + 1 ) @AT@ 13196 @LENGTH@ 1\n" +
-                "---------------INS literal@@1 @TO@ expr@@n = dlen - ( ll + 1 ) @AT@ 13198 @LENGTH@ 1\n" +
+                "---------------INS literal:number@@1 @TO@ expr@@n = dlen - ( ll + 1 ) @AT@ 13198 @LENGTH@ 1\n" +
                 "---------------INS operator@@) @TO@ expr@@n = dlen - ( ll + 1 ) @AT@ 13199 @LENGTH@ 1\n");
 
     }

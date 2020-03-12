@@ -95,10 +95,10 @@ public class TestRealCases {
                 "---UPD condition@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 176 @LENGTH@ 14\n" +
                 "------UPD expr@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 177 @LENGTH@ 14\n" +
                 "---------UPD operator@@== @TO@ >= @AT@ 184 @LENGTH@ 2\n");
-        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD if@@if b ][a ][i == 3 max = 3 * a ][i break; @TO@ if b ][a ][i >= 3 max = 3 * a ][i break; @AT@ 176 @LENGTH@ 40\n" +
-                "---UPD condition@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 176 @LENGTH@ 14\n" +
-                "------UPD expr@@b ][a ][i == 3 @TO@ b ][a ][i >= 3 @AT@ 177 @LENGTH@ 14\n" +
-                "---------UPD operator@@== @TO@ >= @AT@ 184 @LENGTH@ 2\n");
+        Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD if@@if temp > max max = temp break; @TO@ if temp > max max = temp @AT@ 270 @LENGTH@ 31\n" +
+                "---UPD then@@max = temp break; @TO@ max = temp @AT@ 282 @LENGTH@ 17\n" +
+                "------UPD block@@max = temp break; @TO@ max = temp @AT@ 282 @LENGTH@ 17\n" +
+                "---------DEL break@@break; @AT@ 296 @LENGTH@ 6\n");
 
     }
 

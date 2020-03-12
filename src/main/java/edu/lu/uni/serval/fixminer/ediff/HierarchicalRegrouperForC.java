@@ -151,12 +151,12 @@ public class HierarchicalRegrouperForC {
 	}
 
 
-
+	Predicate<HierarchicalActionSet> predicate = x->NodeMap_new.getKeysByValue(NodeMap_new.StatementMap,x.getAstNodeType()).size() == 1 ;
+	Predicate<HierarchicalActionSet> predicate1 = x->!x.getAstNodeType().equals("block");
+	Predicate<HierarchicalActionSet> predicate2 = x->!x.getAstNodeType().equals("then");
 	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
 		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
-		Predicate<HierarchicalActionSet> predicate = x->NodeMap_new.getKeysByValue(NodeMap_new.StatementMap,x.getAstNodeType()).size() == 1 ;
-		Predicate<HierarchicalActionSet> predicate1 = x->!x.getAstNodeType().equals("block");
-		Predicate<HierarchicalActionSet> predicate2 = x->!x.getAstNodeType().equals("then");
+
 
 
 		Action action = actionSet.getAction();
@@ -202,6 +202,9 @@ public class HierarchicalRegrouperForC {
 		Action action = actionSet.getAction();
 		if (subActions.size() == 1) {
 			HierarchicalActionSet subaction = subActions.get(0);
+			if(!postOrder(subaction).stream().anyMatch(predicate.and(predicate1.and(predicate2)))){
+				return actionSet;
+			}
 			Action action1 = subaction.getAction();
 			if (!action.getClass().equals(action1.getClass())) {
 				List<Integer> keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, subaction.getAstNodeType());
@@ -221,6 +224,9 @@ public class HierarchicalRegrouperForC {
 		Action action = actionSet.getAction();
 		if (subActions.size() == 1){
 			HierarchicalActionSet subaction = subActions.get(0);
+			if(!postOrder(subaction).stream().anyMatch(predicate.and(predicate1.and(predicate2)))){
+				return actionSet;
+			}
 			//else,then,block
 			Action action1 = subaction.getAction();
 			//else,then,block
@@ -254,6 +260,9 @@ public class HierarchicalRegrouperForC {
 					if (subSubActions.size() == 1) {
 
 						HierarchicalActionSet subsubsubAction = subSubActions.get(0);
+						if(!postOrder(subsubsubAction).stream().anyMatch(predicate.and(predicate1.and(predicate2)))){
+							return actionSet;
+						}
 						if (subsubsubAction.getAstNodeType().equals("block")) {
 							List<HierarchicalActionSet> subActions1 = subsubsubAction.getSubActions();
 							if (subActions1.size() == 1) {
