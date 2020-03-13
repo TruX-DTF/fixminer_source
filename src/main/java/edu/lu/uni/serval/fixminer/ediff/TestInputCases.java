@@ -601,15 +601,16 @@ public class TestInputCases {
                 "------UPD call@@PyString_FromString \"\" @TO@ PySequence_GetSlice pattern 0 0 @AT@ 52073 @LENGTH@ 22\n" +
                 "---------UPD name@@PyString_FromString @TO@ PySequence_GetSlice @AT@ 52073 @LENGTH@ 19\n" +
                 "---------UPD argument_list@@\"\" @TO@ pattern 0 0 @AT@ 52092 @LENGTH@ 2\n" +
-                "------------INS argument@@pattern @TO@ argument_list@@\"\" @AT@ 51091 @LENGTH@ 7\n" +
-                "---------------INS expr@@pattern @TO@ argument@@pattern @AT@ 51091 @LENGTH@ 7\n" +
-                "------------------INS name@@pattern @TO@ expr@@pattern @AT@ 51091 @LENGTH@ 7\n" +
+                "------------INS argument@@0 @TO@ argument_list@@\"\" @AT@ 51100 @LENGTH@ 1\n" +
+                "---------------INS expr@@0 @TO@ argument@@0 @AT@ 51100 @LENGTH@ 1\n" +
+                "------------------INS literal:number@@0 @TO@ expr@@0 @AT@ 51100 @LENGTH@ 1\n" +
                 "------------INS argument@@0 @TO@ argument_list@@\"\" @AT@ 51103 @LENGTH@ 1\n" +
                 "---------------INS expr@@0 @TO@ argument@@0 @AT@ 51103 @LENGTH@ 1\n" +
                 "------------------INS literal:number@@0 @TO@ expr@@0 @AT@ 51103 @LENGTH@ 1\n" +
-                "------------UPD argument@@\"\" @TO@ 0 @AT@ 52093 @LENGTH@ 2\n" +
-                "---------------UPD expr@@\"\" @TO@ 0 @AT@ 52093 @LENGTH@ 2\n" +
-                "------------------UPD literal:string@@\"\" @TO@ 0 @AT@ 52093 @LENGTH@ 2\n");
+                "------------UPD argument@@\"\" @TO@ pattern @AT@ 52093 @LENGTH@ 2\n" +
+                "---------------UPD expr@@\"\" @TO@ pattern @AT@ 52093 @LENGTH@ 2\n" +
+                "------------------INS name@@pattern @TO@ expr@@\"\" @AT@ 51091 @LENGTH@ 7\n" +
+                "------------------DEL literal:string@@\"\" @AT@ 52093 @LENGTH@ 2\n");
     }
     @Test
     public void test_cpython_03897e_8fcc8e() throws IOException {
@@ -865,9 +866,9 @@ public class TestInputCases {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_719f5f_dcc6ef_Objects#intobject.c");//wrong
 
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD block@@long d m if i_divmod x y & d & m < 0 return NULL newintobject m @TO@ long d m if i_divmod x y & d & m < 0 return NULL return newintobject m @AT@ 4993 @LENGTH@ 63\n" +
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD block@@long d long m if i_divmod x y & d & m < 0 return NULL newintobject m @TO@ long d long m if i_divmod x y & d & m < 0 return NULL return newintobject m @AT@ 4993 @LENGTH@ 68\n" +
                 "---DEL expr_stmt@@newintobject m @AT@ 5056 @LENGTH@ 14\n" +
-                "---INS return@@return newintobject m @TO@ block@@long d m if i_divmod x y & d & m < 0 return NULL newintobject m @AT@ 5112 @LENGTH@ 21\n" +
+                "---INS return@@return newintobject m @TO@ block@@long d long m if i_divmod x y & d & m < 0 return NULL newintobject m @AT@ 5112 @LENGTH@ 21\n" +
                 "------MOV expr@@newintobject m @TO@ return@@return newintobject m @AT@ 5056 @LENGTH@ 14\n");
     }
     @Test
@@ -1017,7 +1018,7 @@ public class TestInputCases {
     public void test_php_src_a10e77_634012() throws IOException {
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_a10e77_634012_ext#phar#tar.c");//
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"INS if@@if entry . filename_len == UINT_MAX if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE @TO@ block@@last_was_longlink = 1 entry . filename_len = entry . uncompressed_filesize entry . filename = pemalloc entry . filename_len + 1 myphar -> is_persistent read = php_stream_read fp entry . filename entry . filename_len if read != entry . filename_len efree entry . filename if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (truncated)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE entry . filename ][entry . filename_len = '\\0' size = ( ( size + 511 ) & ~ 511 ) - size php_stream_seek fp size SEEK_CUR if ( uint ) php_stream_tell fp > totalsize efree entry . filename if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (truncated)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE read = php_stream_read fp buf buf if read != buf efree entry . filename if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (truncated)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE continue; @AT@ 11511 @LENGTH@ 211\n" +
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"INS if@@if entry . filename_len == UINT_MAX if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE @TO@ block@@last_was_longlink = 1 entry . filename_len = entry . uncompressed_filesize entry . filename = pemalloc entry . filename_len + 1 myphar -> is_persistent read = php_stream_read fp entry . filename entry . filename_len if read != entry . filename_len efree entry . filename if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (truncated)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE entry . filename ][entry . filename_len = '\\0' size = ( ( size + 511 ) & ~ 511 ) - size php_stream_seek fp size SEEK_CUR if ( uint ) php_stream_tell fp > totalsize efree entry . filename if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (truncated)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE read = php_stream_read fp buf sizeof buf if read != sizeof buf efree entry . filename if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (truncated)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE continue; @AT@ 11511 @LENGTH@ 211\n" +
                 "---INS condition@@entry . filename_len == UINT_MAX @TO@ if@@if entry . filename_len == UINT_MAX if error spprintf error 4096 \"phar error: \\\"%s\\\" is a corrupted tar file (invalid entry size)\" fname php_stream_close fp phar_destroy_phar_data myphar TSRMLS_CC return FAILURE @AT@ 11511 @LENGTH@ 32\n" +
                 "------INS expr@@entry . filename_len == UINT_MAX @TO@ condition@@entry . filename_len == UINT_MAX @AT@ 11512 @LENGTH@ 32\n" +
                 "---------INS name@@entry . filename_len @TO@ expr@@entry . filename_len == UINT_MAX @AT@ 11512 @LENGTH@ 20\n" +
@@ -1183,7 +1184,36 @@ public class TestInputCases {
 
     }
 
+    @Test
+    public void test_php_src_e76cf8_39753f() throws IOException {
 
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("php-src_e76cf8_39753f_Zend#zend.c");
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+    }
+    @Test
+    public void test_cpython_f62026_71eb864() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_f62026_71eb864_Python#ceval.c");
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+    }
+    @Test
+    public void test_cpython_df0d00_1254d7() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_df0d00_1254d7_Python#ceval.c");
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+    }
+    @Test
+    public void test_cpython_6a619f_46ab6d() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("cpython_6a619f_46ab6d_Modules#posixmodule.c");
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+    }
+    @Test
+    public void test_gzip_051ed8_8b83dc() throws IOException {
+        //null pointer
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("gzip_051ed8_8b83dc_gzip.c");
+        Assert.assertEquals(hierarchicalActionSets.size(),1);
+    }
 
     public List<HierarchicalActionSet> getHierarchicalActionSets(String s) throws IOException {
         Properties appProps = new Properties();
@@ -1200,7 +1230,7 @@ public class TestInputCases {
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-
+//        srcMLPath = "/usr/local/bin/srcml";
         List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         return hierarchicalActionSets;
     }catch (NullPointerException n){

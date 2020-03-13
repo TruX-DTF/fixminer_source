@@ -468,8 +468,7 @@ public class TestRealCases {
 
         List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("31-B-136044-136045.c");
         Assert.assertEquals(hierarchicalActionSets.size(),1);
-        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"MOV if@@if flag puts ans + 1 else printf \"No solution\\n\" @TO@ block@@long i l flag 0 tot 0 gets str + 1 l = strlen str + 1 if str ][1 == '@' || str ][l == '@' end for i = 1 i <= l - 2 i ++ if str ][i == '@' && ( str ][i + 1 == '@' || str ][i + 2 == '@' ) end for i = 1 i <= l i ++ if flag && str ][i + 1 == '@' ans ][++ tot = ',' if str ][i == '@' flag = 1 ans ][++ tot = str ][i if flag puts ans + 1 else printf \"No solution\\n\" end return 0 @AT@ 937 @LENGTH@ 48\n");
-
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"MOV if@@if flag puts ans + 1 else printf \"No solution\\n\" @TO@ block@@long i long l long flag 0 long tot 0 gets str + 1 l = strlen str + 1 if str ][1 == '@' || str ][l == '@' end for i = 1 i <= l - 2 i ++ if str ][i == '@' && ( str ][i + 1 == '@' || str ][i + 2 == '@' ) end for i = 1 i <= l i ++ if flag && str ][i + 1 == '@' ans ][++ tot = ',' if str ][i == '@' flag = 1 ans ][++ tot = str ][i if flag puts ans + 1 else printf \"No solution\\n\" end return 0 @AT@ 937 @LENGTH@ 48\n");
     }
 
     @Test
@@ -754,6 +753,117 @@ public class TestRealCases {
                 "------------------------------INS name@@[rear @TO@ expr@@[rear @AT@ 1850 @LENGTH@ 5\n" +
                 "------------UPD operator@@++ @TO@ += @AT@ 1874 @LENGTH@ 2\n");
     }
+
+    @Test
+    public void test_496_A_15303159_15303846() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("496-A-15303159-15303846.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"INS expr_stmt@@max = 0 @TO@ block@@for j = 0 j < n - 1 j ++ if i == j + 1 && max < a ][j + 2 - a ][j max = a ][j + 2 - a ][j elseif if max < a ][j + 1 - a ][j max = a ][j + 1 - a ][j b ][i = max @AT@ 155 @LENGTH@ 7\n" +
+                "---INS expr@@max = 0 @TO@ expr_stmt@@max = 0 @AT@ 155 @LENGTH@ 7\n" +
+                "------INS name@@max @TO@ expr@@max = 0 @AT@ 155 @LENGTH@ 3\n" +
+                "------INS operator@@= @TO@ expr@@max = 0 @AT@ 158 @LENGTH@ 1\n" +
+                "------INS literal:number@@0 @TO@ expr@@max = 0 @AT@ 159 @LENGTH@ 1\n");
+    }
+
+    @Test
+    public void test_430_B_10625991_10626001() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("430-B-10625991-10626001.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"INS else@@else break; @TO@ if@@if A ][start == A ][end && ( start && A ][start - 1 == A ][end ) && ( end != n - 1 && A ][start == A ][end + 1 ) count2 = 4 , start -= 2 , end += 2 elseif if ( A ][start == A ][end ) && ( start && A ][start - 1 == A ][end ) count2 = 3 , start -= 2 , end += 1 elseif if ( A ][start == A ][end ) && ( end != n - 1 && A ][start == A ][end + 1 ) count2 = 3 , start -= 1 , end += 2 @AT@ 803 @LENGTH@ 11\n" +
+                "---INS block@@break; @TO@ else@@else break; @AT@ 803 @LENGTH@ 6\n" +
+                "------INS break@@break; @TO@ block@@break; @AT@ 803 @LENGTH@ 6\n");
+    }
+    @Test
+    public void test_60_A_510615_510619() throws IOException {
+        //wrong
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("60-A-510615-510619.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"INS else@@else break; @TO@ if@@if A ][start == A ][end && ( start && A ][start - 1 == A ][end ) && ( end != n - 1 && A ][start == A ][end + 1 ) count2 = 4 , start -= 2 , end += 2 elseif if ( A ][start == A ][end ) && ( start && A ][start - 1 == A ][end ) count2 = 3 , start -= 2 , end += 1 elseif if ( A ][start == A ][end ) && ( end != n - 1 && A ][start == A ][end + 1 ) count2 = 3 , start -= 1 , end += 2 @AT@ 803 @LENGTH@ 11\n" +
+                "---INS block@@break; @TO@ else@@else break; @AT@ 803 @LENGTH@ 6\n" +
+                "------INS break@@break; @TO@ block@@break; @AT@ 803 @LENGTH@ 6\n");
+    }
+    @Test
+    public void test_509_B_11349359_11354327() throws IOException {
+        //wrong//
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("509-B-11349359-11354327.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD ternary@@j < min 1 else j - min + 1 @TO@ j <= min 1 else j - min @AT@ 368 @LENGTH@ 26\n" +
+                "---UPD condition@@j < min @TO@ j <= min @AT@ 368 @LENGTH@ 7\n" +
+                "------UPD expr@@j < min @TO@ j <= min @AT@ 368 @LENGTH@ 7\n" +
+                "---------UPD operator@@< @TO@ <= @AT@ 369 @LENGTH@ 1\n" +
+                "---UPD else@@else j - min + 1 @TO@ else j - min @AT@ 380 @LENGTH@ 16\n" +
+                "------UPD expr@@j - min + 1 @TO@ j - min @AT@ 380 @LENGTH@ 11\n" +
+                "---------DEL operator@@+ @AT@ 385 @LENGTH@ 1\n" +
+                "---------DEL literal:number@@1 @AT@ 386 @LENGTH@ 1\n");
+    }
+    @Test
+    public void test_6_C_12776326_12776346() throws IOException {
+        //wrong//
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("6-C-12776326-12776346.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if n == 1 printf \"1 0\\n\" @TO@ if n == 1 printf \"1 0\\n\" return 0 @AT@ 83 @LENGTH@ 24\n" +
+                "---UPD then@@printf \"1 0\\n\" @TO@ printf \"1 0\\n\" return 0 @AT@ 94 @LENGTH@ 14\n" +
+                "------UPD block@@printf \"1 0\\n\" @TO@ printf \"1 0\\n\" return 0 @AT@ 94 @LENGTH@ 14\n" +
+                "---------MOV return@@return 0 @TO@ block@@printf \"1 0\\n\" @AT@ 111 @LENGTH@ 8\n");
+    }
+
+    @Test
+    public void test_494_A_10139010_10139025() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("494-A-10139010-10139025.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD if@@if sum == 0 && h > 0 flag = 0 @TO@ if ( sum == 0 && h > 0 ) || sum - h + 1 <= 0 flag = 0 @AT@ 298 @LENGTH@ 29\n" +
+                "---UPD condition@@sum == 0 && h > 0 @TO@ ( sum == 0 && h > 0 ) || sum - h + 1 <= 0 @AT@ 298 @LENGTH@ 17\n" +
+                "------UPD expr@@sum == 0 && h > 0 @TO@ ( sum == 0 && h > 0 ) || sum - h + 1 <= 0 @AT@ 299 @LENGTH@ 17\n" +
+                "---------INS operator@@( @TO@ expr@@sum == 0 && h > 0 @AT@ 299 @LENGTH@ 1\n" +
+                "---------INS operator@@) @TO@ expr@@sum == 0 && h > 0 @AT@ 313 @LENGTH@ 1\n" +
+                "---------INS operator@@|| @TO@ expr@@sum == 0 && h > 0 @AT@ 315 @LENGTH@ 2\n" +
+                "---------INS name@@sum @TO@ expr@@sum == 0 && h > 0 @AT@ 318 @LENGTH@ 3\n" +
+                "---------INS operator@@- @TO@ expr@@sum == 0 && h > 0 @AT@ 321 @LENGTH@ 1\n" +
+                "---------INS name@@h @TO@ expr@@sum == 0 && h > 0 @AT@ 322 @LENGTH@ 1\n" +
+                "---------INS operator@@+ @TO@ expr@@sum == 0 && h > 0 @AT@ 323 @LENGTH@ 1\n" +
+                "---------INS literal:number@@1 @TO@ expr@@sum == 0 && h > 0 @AT@ 324 @LENGTH@ 1\n" +
+                "---------INS operator@@<= @TO@ expr@@sum == 0 && h > 0 @AT@ 325 @LENGTH@ 2\n" +
+                "---------INS literal:number@@0 @TO@ expr@@sum == 0 && h > 0 @AT@ 327 @LENGTH@ 1\n");
+    }
+
+    @Test
+    public void test_248_B_3757114_3757122() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("248-B-3757114-3757122.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD expr_stmt@@printf \"%3d\\n\" suf ][n % P @TO@ printf \"%.*d\\n\" 3 suf ][n % P @AT@ 334 @LENGTH@ 26\n" +
+                "---UPD expr@@printf \"%3d\\n\" suf ][n % P @TO@ printf \"%.*d\\n\" 3 suf ][n % P @AT@ 334 @LENGTH@ 26\n" +
+                "------UPD call@@printf \"%3d\\n\" suf ][n % P @TO@ printf \"%.*d\\n\" 3 suf ][n % P @AT@ 334 @LENGTH@ 26\n" +
+                "---------UPD argument_list@@\"%3d\\n\" suf ][n % P @TO@ \"%.*d\\n\" 3 suf ][n % P @AT@ 341 @LENGTH@ 19\n" +
+                "------------UPD argument@@\"%3d\\n\" @TO@ \"%.*d\\n\" @AT@ 342 @LENGTH@ 7\n" +
+                "---------------UPD expr@@\"%3d\\n\" @TO@ \"%.*d\\n\" @AT@ 342 @LENGTH@ 7\n" +
+                "------------------UPD literal:string@@\"%3d\\n\" @TO@ \"%.*d\\n\" @AT@ 342 @LENGTH@ 7\n" +
+                "------------INS argument@@3 @TO@ argument_list@@\"%3d\\n\" suf ][n % P @AT@ 352 @LENGTH@ 1\n" +
+                "---------------INS expr@@3 @TO@ argument@@3 @AT@ 352 @LENGTH@ 1\n" +
+                "------------------INS literal:number@@3 @TO@ expr@@3 @AT@ 352 @LENGTH@ 1\n");
+    }
+
+    //codeflaws_31-B-14288247-14288278.c
+    @Test
+    public void test_31_B_14288247_14288278() throws IOException {
+
+        List<HierarchicalActionSet> hierarchicalActionSets = getHierarchicalActionSets("31-B-14288247-14288278.c");
+        Assert.assertEquals(hierarchicalActionSets.size(), 1);
+        Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD expr_stmt@@printf \"%3d\\n\" suf ][n % P @TO@ printf \"%.*d\\n\" 3 suf ][n % P @AT@ 334 @LENGTH@ 26\n" +
+                "---UPD expr@@printf \"%3d\\n\" suf ][n % P @TO@ printf \"%.*d\\n\" 3 suf ][n % P @AT@ 334 @LENGTH@ 26\n" +
+                "------UPD call@@printf \"%3d\\n\" suf ][n % P @TO@ printf \"%.*d\\n\" 3 suf ][n % P @AT@ 334 @LENGTH@ 26\n" +
+                "---------UPD argument_list@@\"%3d\\n\" suf ][n % P @TO@ \"%.*d\\n\" 3 suf ][n % P @AT@ 341 @LENGTH@ 19\n" +
+                "------------UPD argument@@\"%3d\\n\" @TO@ \"%.*d\\n\" @AT@ 342 @LENGTH@ 7\n" +
+                "---------------UPD expr@@\"%3d\\n\" @TO@ \"%.*d\\n\" @AT@ 342 @LENGTH@ 7\n" +
+                "------------------UPD literal:string@@\"%3d\\n\" @TO@ \"%.*d\\n\" @AT@ 342 @LENGTH@ 7\n" +
+                "------------INS argument@@3 @TO@ argument_list@@\"%3d\\n\" suf ][n % P @AT@ 352 @LENGTH@ 1\n" +
+                "---------------INS expr@@3 @TO@ argument@@3 @AT@ 352 @LENGTH@ 1\n" +
+                "------------------INS literal:number@@3 @TO@ expr@@3 @AT@ 352 @LENGTH@ 1\n");
+    }
+
     public List<HierarchicalActionSet> getHierarchicalActionSets(String s) throws IOException {
         Properties appProps = new Properties();
         appProps.load(new FileInputStream("src/main/resource/app.properties"));

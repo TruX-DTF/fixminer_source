@@ -106,9 +106,9 @@ public class HierarchicalRegrouperForC {
 	}
 	private HierarchicalActionSet purifyActionSet(HierarchicalActionSet actionSet){
 		HierarchicalActionSet hierarchicalActionSet = removeBlocks(actionSet);
-		hierarchicalActionSet = removeIFthenBlocks(hierarchicalActionSet);
-		hierarchicalActionSet = removeParentForSingle(hierarchicalActionSet);
-		hierarchicalActionSet = removeParentNode(hierarchicalActionSet);
+//		hierarchicalActionSet = removeIFthenBlocks(hierarchicalActionSet);
+//		hierarchicalActionSet = removeParentForSingle(hierarchicalActionSet);
+//		hierarchicalActionSet = removeParentNode(hierarchicalActionSet);
 		return hierarchicalActionSet;
 //		return actionSet;
 	}
@@ -154,6 +154,7 @@ public class HierarchicalRegrouperForC {
 	Predicate<HierarchicalActionSet> predicate = x->NodeMap_new.getKeysByValue(NodeMap_new.StatementMap,x.getAstNodeType()).size() == 1 ;
 	Predicate<HierarchicalActionSet> predicate1 = x->!x.getAstNodeType().equals("block");
 	Predicate<HierarchicalActionSet> predicate2 = x->!x.getAstNodeType().equals("then");
+//	Predicate<HierarchicalActionSet> predicate3 = p->p.getAction().getName().equals(subActions.get(0).getAction().getName()));
 	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
 		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
 
@@ -162,20 +163,28 @@ public class HierarchicalRegrouperForC {
 		Action action = actionSet.getAction();
 		if (subActions.size() == 1){
 			HierarchicalActionSet subaction = subActions.get(0);
-			if(!postOrder(subaction).stream().anyMatch(predicate.and(predicate1.and(predicate2)))){
+//			if(!postOrder(subaction).stream().anyMatch(predicate.and(predicate1.and(predicate2)))){
+//				return actionSet;
+//			}
+			List<HierarchicalActionSet> collect = postOrder(subaction).stream().filter(predicate.and(predicate1.and(predicate2))).collect(Collectors.toList());
+			if(collect.size() == 0){
+				return actionSet;
+			}
+			boolean b = collect.stream().anyMatch(p -> p.getAction().getName().equals(subActions.get(0).getAction().getName()));
+			if(!b){
 				return actionSet;
 			}
 			Action action1 = subaction.getAction();
 			//else,then,block
 			if(action.getClass().equals(action1.getClass()) && action.getName().equals("UPD")) {
 
-				List<Integer> keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, subaction.getAstNodeType());
-				if (keysByValue != null && keysByValue.size() == 1) {
+//				List<Integer> keysByValue = NodeMap_new.getKeysByValue(NodeMap_new.StatementMap, subaction.getAstNodeType());
+//				if (keysByValue != null && keysByValue.size() == 1) {
 
 					subaction.setParent(null);
 					return removeBlocks(subaction);
 
-				}
+//				}
 //			if(areRelatedActions(action,action1)) {
 //				if (subaction.getAstNodeType().equals("block")) {//|| subaction.getAstNodeType().equals("then") || subaction.getAstNodeType().equals("else")){
 //					List<HierarchicalActionSet> subSubActions = subaction.getSubActions();
