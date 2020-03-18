@@ -41,26 +41,39 @@ public class EnhancedASTDiff {
 
 		JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
 
-		List<Predicate<File>> allPredicates = new ArrayList<Predicate<File>>();
-		for (String s : projectList) {
-			Predicate<File> predicate = x->x.getName().endsWith(s);
-			allPredicates.add(predicate);
-		}
-
 		boolean isJava = false;
 		if (projectType.equals("java")){
 			isJava =true;
 		}
-
 		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
-        Stream<File> stream = Arrays.stream(listOfFiles);
-        List<File> folders = stream
-				.filter(x -> !x.getName().startsWith("."))
-				.filter(x -> !x.getName().startsWith("cocci"))
-				.filter(x -> !x.getName().endsWith(".index"))
-				.filter(allPredicates.stream().reduce(x->false, Predicate::or))
-				.collect(Collectors.toList());
+		Stream<File> stream = Arrays.stream(listOfFiles);
+		List<File> folders;
+		if (projectList.length == 1 && projectList[0].equals("")){
+			folders = stream
+					.filter(x -> !x.getName().startsWith("."))
+					.filter(x -> !x.getName().startsWith("cocci"))
+					.filter(x -> !x.getName().endsWith(".index"))
+					.collect(Collectors.toList());
+		}
+		else {
+			List<Predicate<File>> allPredicates = new ArrayList<Predicate<File>>();
+			for (String s : projectList) {
+				Predicate<File> predicate = x -> x.getName().endsWith(s);
+				allPredicates.add(predicate);
+			}
+			folders = stream
+					.filter(x -> !x.getName().startsWith("."))
+					.filter(x -> !x.getName().startsWith("cocci"))
+					.filter(x -> !x.getName().endsWith(".index"))
+					.filter(allPredicates.stream().reduce(x->false, Predicate::or))
+					.collect(Collectors.toList());
+		}
+
+
+
+
+
 
 		String project = folder.getName();
 		List<MessageFile> allMessageFiles = new ArrayList<>();
