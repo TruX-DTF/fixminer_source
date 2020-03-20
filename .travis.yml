@@ -1,0 +1,13 @@
+language: java
+
+install:
+- git clone https://github.com/SerVal-DTF/simple-utils
+- cd simple-utils
+- mvn install -DskipTests
+- cd ..
+- git clone https://github.com/SerVal-DTF/gumtree
+- cd gumtree
+- mvn install -DskipTests
+- cd ..
+
+script: mvn test
