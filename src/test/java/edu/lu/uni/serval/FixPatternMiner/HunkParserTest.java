@@ -1,11 +1,14 @@
-package edu.lu.uni.serval.fixminer.ediff;
+package edu.lu.uni.serval.FixPatternMiner;
 
 import com.github.gumtreediff.tree.ITree;
+import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
+import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.ClusterToPattern;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
 import org.apache.commons.io.FileUtils;
 import org.javatuples.Pair;
+import org.junit.Ignore;
 import org.junit.Test;
 import redis.clients.jedis.JedisPool;
 
@@ -14,8 +17,8 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
-
-public class HunkParserTest {
+@Ignore
+public class HunkParserTest extends BaseTest{
 
     @Test
     public void testSimple() throws IOException {

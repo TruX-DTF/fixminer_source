@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.fixminer.akka;
+package edu.lu.uni.serval.fixminer.ediff;
 
 /**
  * Created by anilkoyuncu on 18/09/2018.

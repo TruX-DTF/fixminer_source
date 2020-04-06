@@ -41,7 +41,7 @@ public class EDiffParser extends Parser {
 	 * @param revFile
 	 * @return
 	 */
-	protected List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree2(File prevFile, File revFile,String srcMLPath,boolean isJava) {
+	public List<HierarchicalActionSet> parseChangedSourceCodeWithGumTree2(File prevFile, File revFile,String srcMLPath,boolean isJava) {
 		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		// GumTree results
 //		boolean isJava =false;

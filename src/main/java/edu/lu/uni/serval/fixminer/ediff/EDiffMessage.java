@@ -1,6 +1,5 @@
 package edu.lu.uni.serval.fixminer.ediff;
 
-import edu.lu.uni.serval.fixminer.akka.BaseMessage;
 import redis.clients.jedis.JedisPool;
 
 import java.util.List;

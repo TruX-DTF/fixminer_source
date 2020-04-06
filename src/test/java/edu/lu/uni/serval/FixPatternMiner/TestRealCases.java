@@ -1,9 +1,12 @@
-package edu.lu.uni.serval.fixminer.ediff;
+package edu.lu.uni.serval.FixPatternMiner;
 
 import com.github.gumtreediff.tree.ITree;
+import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
+import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -11,8 +14,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-
-public class TestRealCases {
+@Ignore
+public class TestRealCases extends BaseTest {
 
 
 
@@ -864,35 +867,7 @@ public class TestRealCases {
                 "------------------INS literal:number@@3 @TO@ expr@@3 @AT@ 352 @LENGTH@ 1\n");
     }
 
-    public List<HierarchicalActionSet> getHierarchicalActionSets(String s) throws IOException {
-        Properties appProps = new Properties();
-        appProps.load(new FileInputStream("src/main/resource/app.properties"));
-        String srcMLPath = appProps.getProperty("srcMLPath", "FORKJOIN");
-//        String root = appProps.getProperty("inputPath");
-        String root = "src/main/resource/testFiles";
-        root = root + "/codeflaws/";
-        String filename = s;
-        try{
-            File revFile = new File(root + "revFiles/" + filename);
-            File prevFile = new File(root + "prevFiles/prev_" + filename);
 
-            EDiffHunkParser parser = new EDiffHunkParser();
-
-
-            List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
-            return hierarchicalActionSets;
-        }catch (NullPointerException n){
-            String cmd = "cp /Users/anil.koyuncu/projects/test/fixminer-data/patches/codeflaws/"+n.getMessage().split(root)[1] + " /Users/anil.koyuncu/projects/test/fixminerC/"+n.getMessage();
-            CallShell cs = new CallShell();
-            try {
-                cs.runShell(cmd);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-    }
 
 
 }

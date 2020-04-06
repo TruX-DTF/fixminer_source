@@ -1,5 +1,7 @@
-package edu.lu.uni.serval.fixminer.ediff;
+package edu.lu.uni.serval.FixPatternMiner;
 
+import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
+import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import org.junit.Assert;
@@ -11,7 +13,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-
+@Ignore
 public class TestInputCases {
 
 
