@@ -7,7 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FixPatternMiner" />
+        <module name="gen.jdt" />
+        <module name="gen.srcml" />
+        <module name="client.diff" />
+        <module name="fixminer_source" />
+        <module name="client" />
+        <module name="core" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="simple-utils" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

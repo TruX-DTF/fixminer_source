@@ -1,13 +1,12 @@
 package edu.lu.uni.serval.utils;
 
 import com.github.gumtreediff.actions.model.*;
+import com.github.gumtreediff.gen.srcml.NodeMap_new;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
 import com.github.gumtreediff.tree.TreeUtils;
-import edu.lu.uni.serval.fixminer.akka.ediff.DefaultKryoContext;
-import edu.lu.uni.serval.fixminer.akka.ediff.HierarchicalActionSet;
-import edu.lu.uni.serval.fixminer.akka.ediff.KryoContext;
-import org.javatuples.Pair;
+import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
+import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -63,16 +62,14 @@ public class EDiffHelper {
         return baos.toByteArray();
     }
 
-
-    public static byte[] kryoSerialize(Serializable o ){
-        KryoContext kryoContext = DefaultKryoContext.newKryoContextFactory();
-        return kryoContext.serialze(o);
+    public static byte[] commonsSerialize(Serializable o){
+        return SerializationUtils.serialize(o);
     }
 
-    public static Object kryoDeseerialize(byte[] data ){
-        KryoContext kryoContext = DefaultKryoContext.newKryoContextFactory();
-        return kryoContext.deserialze(HierarchicalActionSet.class,data);
+    public static Object commonsDeserialize(byte[] data){
+        return SerializationUtils.deserialize(data);
     }
+
 
     public static ITree getTokenTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
 
@@ -81,7 +78,8 @@ public class EDiffHelper {
         String astNodeType = actionSet.getAstNodeType();
 
         String label = actionSet.getAction().toString();
-        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+//        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+        List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
 
         if(keysByValue.size() != 1){
             log.error("More than 1");
@@ -115,16 +113,23 @@ public class EDiffHelper {
 
 
 
-    public static ITree getTargetTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc){
+    public static ITree getTargetTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc,boolean isJava){
 
         int newType = 0;
 
         String astNodeType = null;
+        Map<Integer, String> nodeMap;
+        if(isJava){
+             nodeMap = ASTNodeMap.map;
+        }else{
+            nodeMap = NodeMap_new.map;
+        }
 
         Action action = actionSet.getAction();
         if (action instanceof Update){
             astNodeType = actionSet.getAstNodeType();
-            List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+
+            List<Integer> keysByValue = getKeysByValue(nodeMap, astNodeType);
 
             if(keysByValue.size() != 1){
                 log.error("More than 1");
@@ -136,7 +141,8 @@ public class EDiffHelper {
             newType = ((Move)action).getParent().getType();
         }else if(action instanceof Delete){
             astNodeType = actionSet.getAstNodeType();
-            List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+
+            List<Integer> keysByValue = getKeysByValue(nodeMap, astNodeType);
 
             if(keysByValue.size() != 1){
                 log.error("More than 1");
@@ -165,7 +171,7 @@ public class EDiffHelper {
                 if(actionSet.getParent() == null){
                     children = parent;
                 }
-                getTargetTree(subAction,children,null,tc);
+                getTargetTree(subAction,children,null,tc,isJava);
 
             }
 
@@ -174,12 +180,18 @@ public class EDiffHelper {
         return parent;
     }
 
-    public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc){
+    public static ITree getASTTree(HierarchicalActionSet actionSet, ITree parent, ITree children, TreeContext tc,boolean isJava){
 
         int newType = 0;
-
+        Map<Integer, String> nodeMap;
+        if(isJava){
+            nodeMap = ASTNodeMap.map;
+        }else{
+            nodeMap = NodeMap_new.map;
+        }
         String astNodeType = actionSet.getAstNodeType();
-        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
+
+        List<Integer> keysByValue = getKeysByValue(nodeMap, astNodeType);
 
         if(keysByValue.size() != 1){
             log.error("More than 1");
@@ -204,7 +216,7 @@ public class EDiffHelper {
                 if(actionSet.getParent() == null){
                     children = parent;
                 }
-                getASTTree(subAction,children,null,tc);
+                getASTTree(subAction,children,null,tc,isJava);
 
             }
 
@@ -222,83 +234,89 @@ public class EDiffHelper {
                 .collect(Collectors.toList());
     }
 
-    public static ITree getSimpliedTree(String prefix, String fn, JedisPool outerPool) {
+//    public static ITree getSimpliedTree(String prefix, String fn, JedisPool outerPool) {
+//
+//        ITree tree = null;
+//        Jedis inner = null;
+//        try {
+//            inner = outerPool.getResource();
+//            while (!inner.ping().equals("PONG")){
+//                log.info("wait");
+//            }
+//            inner.select(1);
+//            String dist2load = inner.get(prefix+"-"+fn);
+//            inner.select(0);
+//            String s = inner.get(prefix.replace("-","/") +"/"+dist2load);
+//            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(s);
+//
+//            ITree parent = null;
+//            ITree children =null;
+//            TreeContext tc = new TreeContext();
+//            tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
+//            tree.setParent(null);
+//            tc.validate();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }finally {
+//            if (inner != null) {
+//                inner.close();
+//            }
+//        }
+//        return tree;
+//
+//    }
+
+
+//    public static ITree getShapes(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
+//
+//        ITree tree = null;
+//
+//        try (Jedis outer = outerPool.getResource()) {
+//            try {
+//                while (!outer.ping().equals("PONG")) {
+//                    log.info("wait");
+//                }
+//                String dist2load = filenames.get(prefix + "-" + fn);
+//
+//                String key = prefix.replace("-", "/") + "/" + dist2load;
+//
+//                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
+//                HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
+//
+//                tree = getShapeTree(actionSet);
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return tree;
+//
+//    }
+
+    public static ITree getShapeTree(HierarchicalActionSet actionSet,boolean isJava) {
+        ITree tree = null;
+        ITree parent = null;
+        ITree children = null;
+        TreeContext tc = new TreeContext();
+        tree = EDiffHelper.getASTTree(actionSet, parent, children, tc, isJava);
+        //tree.setParent(null);
+        tc.validate();
+        return tree;
+    }
+
+
+    public static ITree getTargets(HierarchicalActionSet actionSet,boolean isJava) {
 
         ITree tree = null;
-        Jedis inner = null;
         try {
-            inner = outerPool.getResource();
-            while (!inner.ping().equals("PONG")){
-                log.info("wait");
-            }
-            inner.select(1);
-            String dist2load = inner.get(prefix+"-"+fn);
-            inner.select(0);
-            String s = inner.get(prefix.replace("-","/") +"/"+dist2load);
-            HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.fromString(s);
 
             ITree parent = null;
             ITree children =null;
             TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getASTTree(actionSet, parent, children,tc);
-            tree.setParent(null);
-            tc.validate();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }finally {
-            if (inner != null) {
-                inner.close();
-            }
-        }
-        return tree;
-
-    }
-
-
-    public static ITree getShapes(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
-
-        ITree tree = null;
-
-        try (Jedis outer = outerPool.getResource()) {
-            try {
-                while (!outer.ping().equals("PONG")) {
-                    log.info("wait");
-                }
-                String dist2load = filenames.get(prefix + "-" + fn);
-
-                String key = prefix.replace("-", "/") + "/" + dist2load;
-
-                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
-                HierarchicalActionSet actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
-
-                ITree parent = null;
-                ITree children = null;
-                TreeContext tc = new TreeContext();
-                tree = EDiffHelper.getASTTree(actionSet, parent, children, tc);
-                //tree.setParent(null);
-                tc.validate();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return tree;
-
-    }
-
-
-    public static ITree getTargets(HierarchicalActionSet actionSet) {
-
-        ITree tree = null;
-        try {
-
-            ITree parent = null;
-            ITree children =null;
-            TreeContext tc = new TreeContext();
-            tree = EDiffHelper.getTargetTree(actionSet, parent, children,tc);
+            tree = EDiffHelper.getTargetTree(actionSet, parent, children,tc,isJava);
             //tree.setParent(null);
             tc.validate();
         } catch (Exception e) {
@@ -308,13 +326,7 @@ public class EDiffHelper {
 
     }
 
-
-    public  static Pair<ITree,HierarchicalActionSet> getActions(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
-
-
-        ITree tree = null;
-        HierarchicalActionSet actionSet = null;
-
+    public  static Map<String, String>  getTreeString(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
         try (Jedis outer = outerPool.getResource()) {
             try {
                 while (!outer.ping().equals("PONG")) {
@@ -325,26 +337,58 @@ public class EDiffHelper {
                 String dist2load = filenames.get(prefix + "-" + fn);
 
                 String[] split = prefix.split("-");
-                String key = split[0] + "/"+split[1]+"/" + dist2load;
-
-                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
-                actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
-
-
-                ITree parent = null;
-                ITree children = null;
-                TreeContext tc = new TreeContext();
-                tree = EDiffHelper.getActionTree(actionSet, parent, children, tc);
-                //tree.setParent(null);
-                tc.validate();
+                String key = split[0] + "/" + split[1] + "/" + dist2load;
+                Map<String, String> treeMap = outer.hgetAll(key);
+                return treeMap;
             }catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return null;
+    }
 
-        Pair<ITree, HierarchicalActionSet> pair = new Pair<>(tree,actionSet);
-        return pair;
+//    public  static Pair<ITree,HierarchicalActionSet> getActions(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
+//
+//
+//        ITree tree = null;
+//        HierarchicalActionSet actionSet = null;
+//
+//        try (Jedis outer = outerPool.getResource()) {
+//            try {
+//                while (!outer.ping().equals("PONG")) {
+//                    log.info("wait");
+//                }
+//
+//
+//                String dist2load = filenames.get(prefix + "-" + fn);
+//
+//                String[] split = prefix.split("-");
+//                String key = split[0] + "/"+split[1]+"/" + dist2load;
+//
+//                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
+//                actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
+//
+//
+//                tree = getActionTrees(actionSet);
+//            }catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        Pair<ITree, HierarchicalActionSet> pair = new Pair<>(tree,actionSet);
+//        return pair;
+//
+//    }
 
+    public static ITree getActionTrees(HierarchicalActionSet actionSet) {
+        ITree tree = null;
+        ITree parent = null;
+        ITree children = null;
+        TreeContext tc = new TreeContext();
+        tree = EDiffHelper.getActionTree(actionSet, parent, children, tc);
+        //tree.setParent(null);
+        tc.validate();
+        return tree;
     }
 
     public static void getLeaves(ITree tc){
@@ -360,41 +404,41 @@ public class EDiffHelper {
         }
     }
 
-    public  static ITree getTokens(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
-
-
-        ITree tree = null;
-
-        HierarchicalActionSet actionSet = null;
-        try (Jedis outer = outerPool.getResource()) {
-            try {
-                while (!outer.ping().equals("PONG")) {
-                    log.info("wait");
-                }
-                String dist2load = filenames.get(prefix + "-" + fn);
-
-                String[] split = prefix.split("-");
-                String key = split[0] + "/"+split[1]+"/" + dist2load;
-
-                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
-                actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
-
-                ITree parent = null;
-                ITree children = null;
-                TreeContext tc = new TreeContext();
-                tree = EDiffHelper.getTokenTree(actionSet, parent, children, tc);
-                tree.setParent(null);
-                tc.validate();
-//            getLeaves(tree);
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return tree;
-    }
+//    public  static ITree getTokens(String prefix, String fn, JedisPool outerPool, HashMap<String, String> filenames) {
+//
+//
+//        ITree tree = null;
+//
+//        HierarchicalActionSet actionSet = null;
+//        try (Jedis outer = outerPool.getResource()) {
+//            try {
+//                while (!outer.ping().equals("PONG")) {
+//                    log.info("wait");
+//                }
+//                String dist2load = filenames.get(prefix + "-" + fn);
+//
+//                String[] split = prefix.split("-");
+//                String key = split[0] + "/"+split[1]+"/" + dist2load;
+//
+//                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
+//                actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
+//
+//                ITree parent = null;
+//                ITree children = null;
+//                TreeContext tc = new TreeContext();
+//                tree = EDiffHelper.getTokenTree(actionSet, parent, children, tc);
+//                tree.setParent(null);
+//                tc.validate();
+////            getLeaves(tree);
+//
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        return tree;
+//    }
 
 
 
