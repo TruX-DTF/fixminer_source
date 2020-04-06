@@ -1,4 +1,4 @@
-# FixMiner ![Build Status](https://travis-ci.org/GumTreeDiff/gumtree.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/GumTreeDiff/gumtree/badge.svg?branch=master)](https://coveralls.io/r/GumTreeDiff/gumtree?branch=master)
+# FixMiner ![Build Status](https://travis-ci.com/SerVal-DTF/fixminer_source.svg?branch=master)[![Coverage Status](https://coveralls.io/repos/github/SerVal-DTF/fixminer_source/badge.svg?branch=master)](https://coveralls.io/github/SerVal-DTF/fixminer_source?branch=master)
 
 # Code of FixMiner
 
