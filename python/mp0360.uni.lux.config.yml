@@ -1,0 +1,20 @@
+java:
+    8home:  /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
+spinfer:
+    home:   /Users/anil.koyuncu/projects/fixminer/spinfer/spinfer.native
+    #home:   /Users/anil.koyuncu/projects/spinfer/spinfer.native
+dataset:
+#    home:   /Users/anil.koyuncu/projects/test/fixminer-core/python/data/gumInputLinux/
+    home:   /Users/anil.koyuncu/projects/fixminer/fixminer-data/patches/
+#    home:   /data/fixminer-core/python/data/gumInputLinux/
+    repo:   /Users/anil.koyuncu/projects/datasets
+
+coccinelle:
+    home:   /Users/anil.koyuncu/projects/fixminer/spinfer/statics
+    #home:   /Users/anil.koyuncu/projects/spinfer/statics
+
+
+fixminer:
+#    datapath: /Users/anil.koyuncu/projects/test/fixminer-core/python/data/
+    datapath: /Users/anil.koyuncu/projects/fixminer/fixminer-data
+#    datapath: /data/fixminer-core/python/data/

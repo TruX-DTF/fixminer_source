@@ -1,0 +1,13 @@
+name: fixminerEnv
+channels:
+  - anaconda
+  - defaults
+dependencies:
+  - numpy
+  - tqdm
+  - pandas
+  - pyyaml
+  - redis-py
+  - scikit-learn
+  - networkx=2.1
+

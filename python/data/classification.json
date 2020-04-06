@@ -1,0 +1,371 @@
+{
+	"Repair Actions": {
+		"Assignment": {
+			"assignAdd": {
+				"name": "Addition",
+				"fullname": "Assignment addition"
+			},
+			"assignRem": {
+				"name": "Removal",
+				"fullname": "Assignment removal"
+			},
+			"assignExpChange": {
+				"name": "Expression modification",
+				"fullname": "Assignment expression modification"
+			}
+		},
+		"Conditional": {
+			"condBranIfAdd": {
+				"name": "if branch addition",
+				"fullname": "Conditional (if) branch addition"
+			},
+			"condBranIfElseAdd": {
+				"name": "if-else branches addition",
+				"fullname": "Conditional (if-else) branches addition"
+			},
+			"condBranElseAdd": {
+				"name": "else branch addition",
+				"fullname": "Conditional (else) branch addition"	
+			},
+			"condBranCaseAdd": {
+				"name": "case branch addition",
+				"fullname": "Conditional (case in switch) branch addition"	
+			},
+			"condBranRem": {
+				"name": "Removal",
+				"fullname": "Conditional (if or else) branch removal"		
+			},
+			"condExpExpand": {
+				"name": "Expression expansion",
+				"fullname": "Conditional expression expansion"
+			},
+			"condExpRed": {
+				"name": "Expression reduction",
+				"fullname": "Conditional expression reduction"
+			},
+			"condExpMod": {
+				"name": "Expression modification",
+				"fullname": "Conditional expression modification"
+			}
+		},
+		"Loop": {
+			"loopAdd": {
+				"name": "Addition",
+				"fullname": "Loop addition"
+			},
+			"loopRem": {
+				"name": "Removal",
+				"fullname": "Loop removal"
+			},
+			"loopCondChange": {
+				"name": "Conditional expression modification",
+				"fullname": "Loop conditional expression modification"
+			},
+			"loopInitChange": {
+				"name": "Initialization field modification",
+				"fullname": "Loop initialization field modification"
+			}
+		},
+		"Method Call": {
+			"mcAdd": {
+				"name": "Addition",
+				"fullname": "Method call addition"
+			},
+			"mcRem": {
+				"name": "Removal",
+				"fullname": "Method call removal"
+			},
+			"mcRepl": {
+				"name": "Replacement",
+				"fullname": "Method call replacement"
+			},
+			"mcMove": {
+				"name": "Moving",
+				"fullname": "Method call moving"
+			},
+			"mcParAdd": {
+				"name": "Parameter addition",
+				"fullname": "Method call parameter addition"
+			},
+			"mcParRem": {
+				"name": "Parameter removal",
+				"fullname": "Method call parameter removal"
+			},
+			"mcParSwap": {
+				"name": "Parameter value swapping",
+				"fullname": "Method call parameter value swapping"
+			},
+			"mcParValChange": {
+				"name": "Parameter value modification",
+				"fullname": "Method call parameter value modification"
+			}
+		},
+		"Method Definition": {
+			"mdAdd": {
+				"name": "Addition",
+				"fullname": "Method definition addition"
+			},
+			"mdRem": {
+				"name": "Removal",
+				"fullname": "Method definition removal"
+			},
+			"mdRen": {
+				"name": "Renaming",
+				"fullname": "Method definition renaming"
+			},
+			"mdParAdd": {
+				"name": "Parameter addition",
+				"fullname": "Parameter addition in method definition"
+			},
+			"mdParRem": {
+				"name": "Parameter removal",
+				"fullname": "Parameter removal from method definition"
+			},
+			"mdParTyChange": {
+				"name": "Parameter type modification",
+				"fullname": "Parameter type modification in method definition"
+			},
+			"mdRetTyChange": {
+				"name": "Return type modification",
+				"fullname": "Method return type modification"
+			},
+			"mdModChange": {
+				"name": "Modifier change",
+				"fullname": "Method modifier change"
+			},
+			"mdOverride": {
+				"name": "Method overriding related change",
+				"fullname": "Method overriding addition or removal"
+			}
+		},
+		"Object Instantiation": {
+			"objInstAdd": {
+				"name": "Addition",
+				"fullname": "Object instantiation addition"
+			},
+			"objInstRem": {
+				"name": "Removal",
+				"fullname": "Object instantiation removal"
+			},
+			"objInstMod": {
+				"name": "Modification",
+				"fullname": "Object instantiation modification"
+			}
+		},
+		"Exception": {
+			"exTryCatchAdd": {
+				"name": "try-catch addition"
+			},
+			"exTryCatchRem": {
+				"name": "try-catch removal"
+			},
+			"exThrowsAdd": {
+				"name": "throw addition"
+			},
+			"exThrowsRem": {
+				"name": "throw removal"
+			}
+		},
+		"Return": {
+			"retBranchAdd": {
+				"name": "Addition",
+				"fullname": "Return statement addition"
+			},
+			"retRem": {
+				"name": "Removal",
+				"fullname": "Return statement removal"
+			},
+			"retExpChange": {
+				"name": "Expression modification",
+				"fullname": "Return expression modification"
+			}
+		},
+		"Variable": {
+			"varAdd": {
+				"name": "Addition",
+				"fullname": "Variable addition"
+			},
+			"varRem": {
+				"name": "Removal",
+				"fullname": "Variable removal"
+			},
+			"varTyChange": {
+				"name": "Type change",
+				"fullname": "Variable type change"
+			},
+			"varModChange": {
+				"name": "Modifier change",
+				"fullname": "Variable modifier change"
+			},
+			"varReplVar": {
+				"name": "Replacement by Another Variable",
+				"fullname": "Variable replacement by another variable"
+			},
+			"varReplMc": {
+				"name": "Replacement by Method Call",
+				"fullname": "Variable replacement by method call"
+			}
+		},
+		"Type": {
+			"tyAdd": {
+				"name": "Type addition",
+				"fullname": "Type addition"
+			},
+			"tyImpInterf": {
+				"name": "Type implemented interface modification",
+				"fullname": "Type implemented interface modification"
+			}
+		}
+	},
+	"Repair Patterns": {
+		"Conditional Block": {
+			"condBlockOthersAdd": {
+				"name": "Conditional block addition",
+				"fullname": "Conditional block addition"
+			},
+			"condBlockRetAdd": {
+				"name": "Addition with return statement",
+				"fullname": "Conditional block addition with return statement"
+
+			},
+			"condBlockExcAdd": {
+				"name": "Addition with exception throwing",
+				"fullname": "Conditional block addition with exception throwing"
+			},
+			"condBlockRem": {
+				"name": "Conditional block removal",
+				"fullname": "Conditional block removal"
+			}
+		},
+		"Expression Fix": {
+			"expLogicExpand": {
+				"name": "Logic expression expansion",
+				"fullname": "Logic expression expansion"
+			},
+			"expLogicReduce": {
+				"name": "Logic expression reduction",
+				"fullname": "Logic expression reduction"
+			},
+			"expLogicMod": {
+				"name": "Logic expression modification",
+				"fullname": "Logic expression modification"
+			},
+			"expArithMod": {
+				"name": "Arithmetic expression modification",
+				"fullname": "Arithmetic expression modification"
+			}
+		},
+		"Wraps-with/Unwraps-from": {
+			"wrapsIf": {
+				"name": "Wraps-with if statement",
+				"fullname": "Wraps-with if statement"
+			},
+			"wrapsIfElse": {
+				"name": "Wraps-with if-else statement",
+				"fullname": "Wraps-with if-else statement"
+			},
+			"wrapsElse": {
+				"name": "Wraps-with else statement",
+				"fullname": "Wraps-with else statement"
+			},
+			"wrapsTryCatch": {
+				"name": "Wraps-with try-catch block",
+				"fullname": "Wraps-with try-catch block"
+			},
+			"wrapsMethod": {
+				"name": "Wraps-with method call",
+				"fullname": "Wraps-with method call"
+			},
+			"wrapsLoop": {
+				"name": "Wraps-with loop",
+				"fullname": "Wraps-with loop"
+			},
+			"unwrapIfElse": {
+				"name": "Unwraps-from if-else statement"
+			},
+			"unwrapMethod": {
+				"name": "Unwraps-from method call"
+			},
+			"unwrapTryCatch": {
+				"name": "Unwraps-from try-catch block"
+			}
+		},
+		"Wrong Reference": {
+			"wrongVarRef": {
+				"name": "Variable",
+				"fullname": "Wrong Variable Reference"
+			},
+			"wrongMethodRef": {
+				"name": "Method",
+				"fullname": "Wrong Method Reference"
+			}
+		},
+		"Missing Null-Check": {
+			"missNullCheckP": {
+				"name": "Missing null check",
+				"fullname": "Missing null check addition"
+			},
+			"missNullCheckN": {
+				"name": "Missing non-null check",
+				"fullname": "Missing non-null check addition"
+			}
+		},
+		"Other": {
+			"singleLine": {
+				"name": "Single Line"
+			},
+			"copyPaste": {
+				"name": "Copy/Paste"
+			},
+			"constChange": {
+				"name": "Constant Change"
+			},
+			"codeMove": {
+				"name": "Code Moving"
+			},
+			"notClassified": {
+				"name": "Not classified"
+			}
+		}
+	},
+	"Runtime Information": {
+		"Automatic Repair": {
+			"rtAcs": {
+				"name": "ACS"
+			},
+			"rtCardumen": {
+				"name": "Cardumen"
+			},
+			"rtDeepRepair": {
+				"name": "DeepRepair"
+			},
+			"rtDynaMoth": {
+				"name": "DynaMoth"
+			},
+			"rtElixir": {
+				"name": "Elixir"
+			},
+			"rtGPFL": {
+				"name": "GPFL"
+			},
+			"rtHDRepair": {
+				"name": "HDRepair"
+			},
+			"rtGenProg": {
+				"name": "jGenProg"
+			},
+			"rtKali": {
+				"name": "jKali"
+			},
+			"rtNopol": {
+				"name": "Nopol"
+			},
+			"rtssFix": {
+				"name": "ssFix"
+			},
+			"rtJAID": {
+				"name": "JAID"
+			}
+		}
+	}
+}
