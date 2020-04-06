@@ -1,445 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ChangeListManager">
-    <list default="true" id="1c20f95f-4c0f-46a8-9b1c-3c643f73b30a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
+  <component name="GradleLocalSettings">
+    <option name="modificationStamps">
+      <map>
+        <entry key="$USER_HOME$/Downloads/gumtree" value="2992802384000" />
+        <entry key="$USER_HOME$/Downloads/gumtree-develop" value="2966194824000" />
+      </map>
+    </option>
+    <option name="externalProjectsViewState">
+      <projects_view />
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>mk</find>
-      <find>ObjectInputStream</find>
-      <find>InputStre</find>
-      <find>resultMap</find>
-      <find>hget</find>
-    </findStrings>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="1XwN74yK7nfe6Qw7o3T7vMcUoNV" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
-    <option name="showLibraryContents" value="true" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567787706640" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Launcher">
-    <configuration name="CompareTrees" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.fixminer.akka.compare.CompareTrees" />
-      <module name="FixPatternMiner" />
-      <option name="PROGRAM_PARAMETERS" value="shape $PROJECT_DIR$/../fixminer-core/python/data/redis ALLdumps-gumInput.rdb clusterl0-gumInputALL.rdb $PROJECT_DIR$/../fixminer-core/python/data/richEditScript" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.fixminer.akka.compare.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+  <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.fixminer.Launcher" />
-      <module name="fixminer_source" />
-      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/../fixminer-core/python/data/app.properties L2 RICHEDITSCRIPT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.fixminer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestRealCases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="fixminer_source" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.fixminer.akka.ediff.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.lu.uni.serval.fixminer.akka.ediff" />
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.fixminer.akka.ediff.TestRealCases" />
+    <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestRealCases.test_31_B_136044_136045" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="fixminer_source" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.fixminer.akka.ediff.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.lu.uni.serval.fixminer.akka.ediff" />
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.fixminer.akka.ediff.TestRealCases" />
-      <option name="METHOD_NAME" value="test_31_B_136044_136045" />
-      <option name="TEST_OBJECT" value="method" />
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="gen.srcml [install]" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
               <list>
-                <option value="install" />
-                <option value="-DskipTests" />
+                <option value="0.2" />
               </list>
             </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/../gumtree/gen.srcml" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <configuration name="gumtree [install]" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
               <list>
-                <option value="install" />
-                <option value="-DskipTests" />
+                <option value="0.2" />
               </list>
             </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
             </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/../gumtree" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Application.Launcher" />
-      <item itemvalue="Application.CompareTrees" />
-      <item itemvalue="Maven.gen.srcml [install]" />
-      <item itemvalue="Maven.gumtree [install]" />
-      <item itemvalue="JUnit.TestRealCases" />
-      <item itemvalue="JUnit.TestRealCases.test_31_B_136044_136045" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Launcher" />
-        <item itemvalue="JUnit.TestRealCases" />
-        <item itemvalue="JUnit.TestRealCases.test_31_B_136044_136045" />
-        <item itemvalue="Application.CompareTrees" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="1c20f95f-4c0f-46a8-9b1c-3c643f73b30a" name="Default Changelist" comment="" />
-      <created>1567410812558</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1567410812558</updated>
-    </task>
-    <servers />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1166" y="-948" key="#Launcher" timestamp="1581954807122">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state x="1166" y="-948" key="#Launcher/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581954807122" />
-    <state x="100" y="-1340" width="2360" height="1240" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1581954640313">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state x="100" y="-1340" width="2360" height="1240" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581954640313" />
-    <state x="854" y="-1129" key="#gen.srcml_[install]" timestamp="1581953518814">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state x="854" y="-1129" key="#gen.srcml_[install]/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581953518814" />
-    <state x="854" y="-1129" key="#gumtree_[install]" timestamp="1581953568803">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state x="854" y="-1129" key="#gumtree_[install]/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581953568803" />
-    <state width="2518" height="423" key="GridCell.Tab.0.bottom" timestamp="1581958051741">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="423" key="GridCell.Tab.0.bottom/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581957957101" />
-    <state width="2518" height="423" key="GridCell.Tab.0.bottom/0.-1440.2560.1440/49.23.1743.1097@0.-1440.2560.1440" timestamp="1581958051741" />
-    <state width="2518" height="423" key="GridCell.Tab.0.center" timestamp="1581958051739">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="423" key="GridCell.Tab.0.center/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581957957100" />
-    <state width="2518" height="423" key="GridCell.Tab.0.center/0.-1440.2560.1440/49.23.1743.1097@0.-1440.2560.1440" timestamp="1581958051739" />
-    <state width="2518" height="423" key="GridCell.Tab.0.left" timestamp="1581958051738">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="423" key="GridCell.Tab.0.left/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581957957098" />
-    <state width="2518" height="423" key="GridCell.Tab.0.left/0.-1440.2560.1440/49.23.1743.1097@0.-1440.2560.1440" timestamp="1581958051738" />
-    <state width="2518" height="423" key="GridCell.Tab.0.right" timestamp="1581958051740">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="423" key="GridCell.Tab.0.right/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581957957100" />
-    <state width="2518" height="423" key="GridCell.Tab.0.right/0.-1440.2560.1440/49.23.1743.1097@0.-1440.2560.1440" timestamp="1581958051740" />
-    <state width="2518" height="519" key="GridCell.Tab.1.bottom" timestamp="1581955054072">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="519" key="GridCell.Tab.1.bottom/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581955054072" />
-    <state width="2518" height="519" key="GridCell.Tab.1.center" timestamp="1581955054071">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="519" key="GridCell.Tab.1.center/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581955054071" />
-    <state width="2518" height="519" key="GridCell.Tab.1.left" timestamp="1581955054070">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="519" key="GridCell.Tab.1.left/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581955054070" />
-    <state width="2518" height="519" key="GridCell.Tab.1.right" timestamp="1581955054071">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="519" key="GridCell.Tab.1.right/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581955054071" />
-    <state x="947" y="-1016" key="NewModule_or_Project.wizard" timestamp="1581953235296">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state x="947" y="-1016" key="NewModule_or_Project.wizard/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581953235296" />
-    <state x="768" y="-1137" key="SettingsEditor" timestamp="1581953241154">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state x="768" y="-1137" key="SettingsEditor/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581953241154" />
-    <state width="1280" height="720" key="XDebugger.FullValuePopup" timestamp="1581954433376">
-      <screen x="0" y="-1440" width="2560" height="1440" />
-    </state>
-    <state width="1280" height="720" key="XDebugger.FullValuePopup/0.-1440.2560.1440/0.0.1792.1120@0.-1440.2560.1440" timestamp="1581954433376" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java</url>
-          <line>265</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/CompareTrees.java</url>
-          <line>107</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/compare/AkkaTreeParser.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/EDiffHunkParser.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/utils/ClusterToPattern.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/akka/ediff/TestRealCases.java</url>
-          <line>387</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java</url>
-          <line>133</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java</url>
-          <line>456</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateCodeFragment">
-      <expression>
-        <expression-string>String[] split = prefix.split(&quot;-&quot;);
-String s = null;//inner.get(prefix.replace(&quot;-&quot;,&quot;/&quot;) +&quot;/&quot;+dist2load);
-//                Set&lt;String&gt; keys = outer.keys(split[0] + &quot;/&quot;+split[1]+&quot;/&quot; + dist2load);
-String key = split[0] + &quot;/&quot;+split[1]+&quot;/&quot; + dist2load;</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>actionSetRead.toString().equals(actionSet.toString())</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>actionSetRead.toString()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>actionSetRead.equals(actionSet)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>HierarchicalActionSet actionSetRead = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>EDiffHelper.kryoSerialize(actionSet)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>s = outer.hget(&quot;dump&quot;,key);</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>filenames.get(prefix + &quot;-&quot; + fn)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>filenames[prefix + &quot;-&quot; + fn]</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-    </expressions>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

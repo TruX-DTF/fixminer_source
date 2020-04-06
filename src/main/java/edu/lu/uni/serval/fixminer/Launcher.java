@@ -1,5 +1,6 @@
 package edu.lu.uni.serval.fixminer;
 
+
 import edu.lu.uni.serval.fixminer.jobs.CompareTrees;
 import edu.lu.uni.serval.fixminer.jobs.EnhancedASTDiff;
 import edu.lu.uni.serval.utils.ClusterToPattern;
@@ -24,25 +25,25 @@ public class Launcher {
 
         Properties appProps = new Properties();
 
-        String hostname = "Unknown";
-        try
-        {
-            InetAddress addr;
-            addr = InetAddress.getLocalHost();
-            hostname = addr.getHostName();
-        }
-        catch (UnknownHostException ex)
-        {
-            System.out.println("Hostname can not be resolved");
-        }
-        String appConfigPath;
-        if (hostname.equals("Unknown")){
-             appConfigPath = "src/main/resource/app.properties";
-        }
-        else{
-             appConfigPath = "src/main/resource/"+hostname+".app.properties";
-        }
-//        String appConfigPath = args[0];
+//        String hostname = "Unknown";
+//        try
+//        {
+//            InetAddress addr;
+//            addr = InetAddress.getLocalHost();
+//            hostname = addr.getHostName();
+//        }
+//        catch (UnknownHostException ex)
+//        {
+//            System.out.println("Hostname can not be resolved");
+//        }
+//        String appConfigPath;
+//        if (hostname.equals("Unknown")){
+//             appConfigPath = "src/main/resource/app.properties";
+//        }
+//        else{
+//             appConfigPath = "src/main/resource/"+hostname.split("\\.")[0]+".app.properties";
+//        }
+        String appConfigPath = args[0];
         appProps.load(new FileInputStream(appConfigPath));
 
         String numOfWorkers = appProps.getProperty("numOfWorkers", "10");
