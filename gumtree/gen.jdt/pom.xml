@@ -9,11 +9,11 @@
 	<packaging>jar</packaging>
 	<name>Gumtree JDT Tree Generator</name>
 	<dependencies>
-		<dependency>
-			<groupId>edu.lu.uni</groupId>
-			<artifactId>simple-utils</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>edu.lu.uni</groupId>-->
+<!--			<artifactId>simple-utils</artifactId>-->
+<!--			<version>0.0.1-SNAPSHOT</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>com.github.gumtreediff</groupId>
 			<artifactId>core</artifactId>
