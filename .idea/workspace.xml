@@ -2,53 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75ef5724-93bc-4ed4-82b2-ff12411188dc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/MF0012.local.config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/python/MF0012.local.config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/abstractPatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/abstractPatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/common/commons.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/common/commons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/python/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/data/Cluster2Pattern.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/data/CompareTrees.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/data/RichEditScript.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/fixminer.sh" beforeDir="false" afterPath="$PROJECT_DIR$/python/fixminer.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/mp0360.uni.lux.config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/python/mp0360.uni.lux.config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/otherDatasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/otherDatasets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/wmp00080.uni.lux.config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/python/wmp00080.uni.lux.config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/Launcher2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/BaseMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/BaseMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/EDiffActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/EDiffHunkParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffHunkParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/EDiffMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/EDiffParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/EDiffWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/HierarchicalActionSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalActionSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/HierarchicalRegrouper.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/HierarchicalRegrouperForC.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouperForC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/MessageFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/MessageFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/ParserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/ParserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/ediff/RunnableParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/RunnableParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/jobs/CompareTrees.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/jobs/CompareTrees.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/jobs/EnhancedASTDiff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/resource/MF0012.local.app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/resource/MF0012.local.app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/resource/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/resource/app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/main/resource/wmp00080.uni.lux.app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/resource/wmp00080.uni.lux.app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/HunkParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/HunkParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/TestInputCases.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/TestInputCases.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/TestIntroClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/TestIntroClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/TestPredefinedCases.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/TestPredefinedCases.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/TestRealCases.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/TestRealCases.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/MF0012.local.app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MF0012.local.app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/wmp00080.app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/wmp00080.app.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -148,7 +102,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
@@ -157,7 +111,24 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>richedit</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>fixminer</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -166,7 +137,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/gumtree/gen.srcml/pom.xml" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/Launcher2.java" />
         <option value="$PROJECT_DIR$/python/data/dataset.csv" />
         <option value="$PROJECT_DIR$/python/wmp00080.uni.lux.config.yml" />
@@ -192,6 +162,7 @@
         <option value="$PROJECT_DIR$/richedit/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -253,63 +224,6 @@
             <path>
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
@@ -541,6 +455,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30708182" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -708,13 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -936,6 +844,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
@@ -987,7 +902,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>fixminer_source</last-edited>
+          <last-edited>RichEdit</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
