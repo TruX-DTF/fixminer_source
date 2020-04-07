@@ -1,7 +1,7 @@
 package edu.lu.uni.serval.FixPatternMiner;
 
-import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
-import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
+import edu.lu.uni.serval.richedit.ediff.EDiffHunkParser;
+import edu.lu.uni.serval.richedit.ediff.HierarchicalActionSet;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,7 +33,7 @@ public class BaseTest {
             List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
             return hierarchicalActionSets;
         }catch (NullPointerException n){
-//            String cmd = "cp /Users/anil.koyuncu/projects/test/fixminer-data/patches/codeflaws/"+n.getMessage().split(root)[1] + " /Users/anil.koyuncu/projects/test/fixminerC/"+n.getMessage();
+//            String cmd = "cp /Users/anil.koyuncu/projects/test/richedit-data/patches/codeflaws/"+n.getMessage().split(root)[1] + " /Users/anil.koyuncu/projects/test/fixminerC/"+n.getMessage();
 //            CallShell cs = new CallShell();
 //            try {
 //                cs.runShell(cmd);

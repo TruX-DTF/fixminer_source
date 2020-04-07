@@ -179,7 +179,7 @@ def clusterCore(clusterPath, level, match, pairsPath, root, s,action ,token=''):
     parallelRun(dumpFilesCore,workList)
     # for wl in workList:
     #     dumpFilesCore(wl)
-    # dumpFilesCore(('hive_d65d5c_96c1dc_ql#src#gen#protobuf#gen-java#org#apache#hadoop#hive#ql#io#orc#OrcProto.txt_31', 'ReturnStatement', 'tokens', '/Users/anil.koyuncu/projects/fixminer-all/enhancedASTDiff/python/data/tokens', '3', '1', '0', 10))
+    # dumpFilesCore(('hive_d65d5c_96c1dc_ql#src#gen#protobuf#gen-java#org#apache#hadoop#hive#ql#io#orc#OrcProto.txt_31', 'ReturnStatement', 'tokens', '/Users/anil.koyuncu/projects/richedit-all/enhancedASTDiff/python/data/tokens', '3', '1', '0', 10))
 
 
 def dumpFilesCore(t):

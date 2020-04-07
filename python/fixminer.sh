@@ -1,6 +1,6 @@
 #!/bin/bash
 
 
-source activate redisEnv
+source activate fixminerEnv
 
-PYTHONPATH=$(pwd) python -u main.py -root $(pwd) -job $1
+PYTHONPATH=$(pwd) python -u main.py -root $(pwd) -job $1 -prop $2

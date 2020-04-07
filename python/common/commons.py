@@ -26,6 +26,8 @@ from collections import Counter
 
 import datetime
 import subprocess
+from pathlib import Path
+
 
 
 sourceCodeColumns = ['packageName', 'className', 'methodNames', 'formalParameter',
@@ -72,13 +74,15 @@ def setEnv(args):
 
 
     import yaml
-    if os.uname().nodename != '':
-        with open(join(os.environ["ROOT_DIR"], os.uname().nodename + ".config.yml"), 'r') as ymlfile:
-            cfg = yaml.load(ymlfile)
-    else:
-        with open(join(os.environ["ROOT_DIR"], "config.yml"), 'r') as ymlfile:
-            cfg = yaml.load(ymlfile)
+    # if os.uname().nodename != '':
+    #     with open(join(os.environ["ROOT_DIR"], os.uname().nodename + ".config.yml"), 'r') as ymlfile:
+    #         cfg = yaml.load(ymlfile)
+    # else:
+    #     with open(join(os.environ["ROOT_DIR"], "config.yml"), 'r') as ymlfile:
+    #         cfg = yaml.load(ymlfile)
 
+    with open(args.prop, 'r') as ymlfile:
+        cfg = yaml.load(ymlfile)
     # for section in cfg:
     #     print(section)
     # print(cfg['mysql'])
@@ -88,10 +92,11 @@ def setEnv(args):
     os.environ["JDK8"] = cfg['java']['8home']
     os.environ["spinfer"] = cfg['spinfer']['home']
     os.environ["coccinelle"] = cfg['coccinelle']['home']
-    os.environ["dataset"] = cfg['dataset']['home']
+    os.environ["dataset"] = cfg['dataset']['inputPath']
     os.environ["REPO_PATH"] = cfg['dataset']['repo']
     os.environ["DATA_PATH"] = cfg['fixminer']['datapath']
     os.environ["PROJECT_TYPE"] = cfg['fixminer']['projectType']
+    os.environ["PROJECT_LIST"] = cfg['fixminer']['projectList']
 
     # import yaml
     #
@@ -160,11 +165,12 @@ def getRun():
     # parser.add_argument('-subject', dest='subject', help='Environment')
     parser.add_argument('-root', dest='root', help='root folder')
     parser.add_argument('-job',dest='job',help='job name')
+    parser.add_argument('-prop',dest='prop',help='property file')
 
 
     args = parser.parse_args()
 
-    if args.root is None or args.job is None:
+    if args.root is None or args.job is None or args.prop is None:
         parser.print_help()
         raise AttributeError
     return args

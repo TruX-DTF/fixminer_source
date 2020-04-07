@@ -21,7 +21,7 @@
       <module name="fixminer_source" target="1.8" />
       <module name="gen.jdt" target="1.8" />
       <module name="gen.srcml" target="1.8" />
-      <module name="gumtree (1) (com.github.gumtreediff)" target="1.8" />
+      <module name="gumtree" target="1.8" />
       <module name="RichEdit" target="1.8" />
     </bytecodeTargetLevel>
   </component>

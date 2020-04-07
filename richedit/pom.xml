@@ -5,7 +5,13 @@
 	<groupId>edu.lu.uni.serval</groupId>
 	<artifactId>RichEdit</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+
+<!--	<parent>-->
+<!--		<groupId>edu.lu.uni.serval</groupId>-->
+<!--		<artifactId>FixPatternMiner</artifactId>-->
+<!--		<version>1.0.0</version>-->
+<!--	</parent>-->
+<!--	<packaging>pom</packaging>-->
 
 	<name>RichEdit</name>
 	<url>http://maven.apache.org</url>
@@ -35,7 +41,7 @@
 			<artifactId>progressbar</artifactId>
 			<version>0.8.1</version>
 		</dependency>
-				
+
 		<!-- akka -->
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
@@ -46,21 +52,21 @@
 		<dependency>
 			<groupId>com.github.gumtreediff</groupId>
 			<artifactId>core</artifactId>
-			<scope>compile</scope>
+<!--			<scope>compile</scope>-->
 			<version>${gumtree.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.github.gumtreediff</groupId>
 			<artifactId>gen.jdt</artifactId>
-			<scope>compile</scope>
+<!--			<scope>compile</scope>-->
 			<version>${gumtree.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.github.gumtreediff</groupId>
 			<artifactId>gen.srcml</artifactId>
-			<scope>compile</scope>
+<!--			<scope>compile</scope>-->
 			<version>${gumtree.version}</version>
 		</dependency>
 
@@ -82,7 +88,7 @@
 			<artifactId>logback-core</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -110,6 +116,11 @@
 			<version>${commons-io.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>1.21</version>
+		</dependency>
 
 
 
@@ -127,6 +138,19 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -141,8 +165,8 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										<!--edu.lu.uni.serval.fixminer.jobs.CompareTrees-->
-										edu.lu.uni.serval.fixminer.Launcher
+										<!--edu.lu.uni.serval.richedit.jobs.CompareTrees-->
+										edu.lu.uni.serval.Launcher
 									</mainClass>
 								</manifest>
 							</archive>
@@ -155,9 +179,11 @@
 			</plugin>
 		</plugins>
 	</build>
+
+
 </project>
 
-		<!--edu.lu.uni.serval.fixminer.Launcher
-		edu.lu.uni.serval.fixminer.jobs.CompareTrees
+		<!--edu.lu.uni.serval.richedit.Launcher
+		edu.lu.uni.serval.richedit.jobs.CompareTrees
 edu.lu.uni.serval.utils.ClusterToPattern
 		-->

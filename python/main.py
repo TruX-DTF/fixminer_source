@@ -15,7 +15,6 @@ if __name__ == '__main__':
         setEnv(args)
 
         job = args.job
-        job = 'indexClusters'
         ROOT_DIR = os.environ["ROOT_DIR"]
         REPO_PATH = os.environ["REPO_PATH"]
         CODE_PATH = os.environ["CODE_PATH"]
@@ -36,24 +35,24 @@ if __name__ == '__main__':
         print(job)
 
 
-        if job == 'dataset':
+        if job == 'dataset4j':
             from javaDS import createDS
             createDS(subject)
-        elif job == 'linuxDS':
-            from linuxDataset import collectBugFixPatches
-            collectBugFixPatches()
-        elif job =='otherDS':
+        # elif job == 'linuxDS':
+        #     from linuxDataset import collectBugFixPatches
+        #     collectBugFixPatches()
+        elif job =='dataset4c':
             from otherDatasets import core
             core()
         elif job =='richEditScript':
-            cmd = "JAVA_HOME='" + jdk8 + "' java -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " RICHEDITSCRIPT " + 'L1'
+            cmd = "JAVA_HOME='" + jdk8 + "' java  -jar " + join(Path(ROOT_DIR).parent, 'target','FixPatternMiner-1.0.0-jar-with-dependencies.jar') + " " + args.prop + " RICHEDITSCRIPT "
             output = shellCallTemplate(cmd)
             logging.info(output)
 
-        elif job =='loadRES':
-            cmd = "JAVA_HOME='" + jdk8 + "' java -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " LOAD " + rootType
-            output = shellCallTemplate(cmd)
-            logging.info(output)
+        # elif job =='loadRES':
+        #     cmd = "JAVA_HOME='" + jdk8 + "' java -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " LOAD " + rootType
+        #     output = shellCallTemplate(cmd)
+        #     logging.info(output)
 
         elif job =='shapeSI':
             from pairs import shapePairs
@@ -66,14 +65,14 @@ if __name__ == '__main__':
             importShape()
 
         elif job =='compareShapes':
-             # cmd = "mvn exec:java -f '/data/fixminer_source/' -Dexec.mainClass='edu.lu.uni.serval.fixminer.akka.compare.CompareTrees' -Dexec.args='"+ " shape " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl0-gumInputALL.rdb /data/fixminer-core/python/data/richEditScript'"
-            cmd = "JAVA_HOME='" + jdk8 + "' java  -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " COMPARE " + 'L1'
+             # cmd = "mvn exec:java -f '/data/fixminer_source/' -Dexec.mainClass='edu.lu.uni.serval.richedit.akka.compare.CompareTrees' -Dexec.args='"+ " shape " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl0-gumInputALL.rdb /data/richedit-core/python/data/richEditScript'"
+            cmd = "JAVA_HOME='" + jdk8 + "' java  -jar " + join(Path(ROOT_DIR).parent, 'target','FixPatternMiner-1.0.0-jar-with-dependencies.jar') + " " + args.prop + " COMPARE "
             output = shellCallTemplate(cmd)
             logging.info(output)
 
-        elif job == 'clusterAdditional':
-            from addNewData import cluster
-            cluster()
+        # elif job == 'clusterAdditional':
+        #     from addNewData import cluster
+        #     cluster()
 
         elif job == 'cluster':
             from abstractPatch import cluster
@@ -125,11 +124,11 @@ if __name__ == '__main__':
             cluster(join(DATA_PATH, 'tokens'), join(DATA_PATH, 'pairsToken'),'tokens')
             stopDB(dbDir, "6380", "clusterl2-gumInputALL.rdb")
 
-        elif job == 'additional':
-            from addNewData import core
-            core()
-            # from addNewData import checkWrongMembers
-            # checkWrongMembers()
+        # elif job == 'additional':
+        #     from addNewData import core
+        #     core()
+        #     # from addNewData import checkWrongMembers
+        #     # checkWrongMembers()
 
         elif job == 'codeflaws':
             from otherDatasets import codeflaws

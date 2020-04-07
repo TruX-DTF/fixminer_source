@@ -1,8 +1,7 @@
 package edu.lu.uni.serval.FixPatternMiner;
 
 import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
-import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
+import edu.lu.uni.serval.richedit.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import org.junit.Assert;

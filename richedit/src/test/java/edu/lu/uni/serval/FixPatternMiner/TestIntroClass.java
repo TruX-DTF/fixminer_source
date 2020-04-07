@@ -1,7 +1,7 @@
 package edu.lu.uni.serval.FixPatternMiner;
 
-import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
-import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
+import edu.lu.uni.serval.richedit.ediff.EDiffHunkParser;
+import edu.lu.uni.serval.richedit.ediff.HierarchicalActionSet;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Ignore;

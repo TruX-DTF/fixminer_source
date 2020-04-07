@@ -12,7 +12,12 @@
             <groupId>edu.lu.uni.serval</groupId>
             <artifactId>RichEdit</artifactId>
             <version>1.0.0</version>
-            <scope>compile</scope>
+<!--            <scope>compile</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.21</version>
         </dependency>
     </dependencies>
     <packaging>pom</packaging>
@@ -24,6 +29,7 @@
 
 
     <build>
+        <sourceDirectory>richedit/src/main/java/</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -47,10 +53,8 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>
-                                        <!--edu.lu.uni.serval.fixminer.jobs.CompareTrees-->
-                                        edu.lu.uni.serval.fixminer.Launcher
-                                    </mainClass>
+                                    <addClasspath>true</addClasspath>
+                                    <mainClass>edu.lu.uni.serval.Launcher</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

@@ -3,14 +3,14 @@ java:
 spinfer:
     home:   /Users/anil.koyuncu/projects/spinfer/spinfer.native
 dataset:
-    home:   /Users/anil.koyuncu/projects/test/fixminer-data/patches/
-    repo:   /Users/anil.koyuncu/projects/test/fixminer-data/datasets
-#    home:   /data/fixminer-core/python/data/gumInputLinux/
+    home:   /Users/anil.koyuncu/projects/test/richedit-data/patches/
+    repo:   /Users/anil.koyuncu/projects/test/richedit-data/datasets
+#    home:   /data/richedit-core/python/data/gumInputLinux/
 
 coccinelle:
     home:   /Users/anil.koyuncu/projects/spinfer/statics
 
 fixminer:
-    datapath: /Users/anil.koyuncu/projects/test/fixminer-data/
+    datapath: /Users/anil.koyuncu/projects/test/richedit-data/
     projectType : c
-#    datapath: /data/fixminer-core/python/data/
+#    datapath: /data/richedit-core/python/data/

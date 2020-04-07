@@ -1,8 +1,8 @@
 package edu.lu.uni.serval.FixPatternMiner;
 
 import com.github.gumtreediff.tree.ITree;
-import edu.lu.uni.serval.fixminer.ediff.EDiffHunkParser;
-import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
+import edu.lu.uni.serval.richedit.ediff.EDiffHunkParser;
+import edu.lu.uni.serval.richedit.ediff.HierarchicalActionSet;
 import edu.lu.uni.serval.utils.ClusterToPattern;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
@@ -16,16 +16,17 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+
 @Ignore
 public class HunkParserTest extends BaseTest{
 
     @Test
     public void testSimple() throws IOException {
-//        String input = "/Users/anil.koyuncu/projects/test/fixminer-core/python/data/gumInputLinux/revFiles/7f52f3_3845d29_drivers#pci#host#pcie-altera.c";
+//        String input = "/Users/anil.koyuncu/projects/test/richedit-core/python/data/gumInputLinux/revFiles/7f52f3_3845d29_drivers#pci#host#pcie-altera.c";
 
 //        String root = "//Users/anilkoyuncu/projects/gumInputLinux/";
-        String root = "/Users/anilkoyuncu/projects/fixminer/fixminer-core/python/data/gumInputLinux/";
+        String root = "/Users/anilkoyuncu/projects/richedit/richedit-core/python/data/gumInputLinux/";
         String filename ="";
 //        filename ="freebsd_ceca9b8_b864ac4_sys#kern#sched_ule.c"; //too long
 //        filename ="openbsd_e592ec_39c81a_sys#arch#i386#pci#pci_machdep.c"; //not parseable 56 "parameter_list" "" () ( (57 "parameter" "" () ( (22 "decl" "" () ())))
@@ -91,7 +92,7 @@ public class HunkParserTest extends BaseTest{
     public void dumpFnction() throws Exception {
         String pattern = "function/20/gstreamer_0af74c_e8bae0_libs#gst#net#gstptpclock.c.txt_0";
 //        String pattern = "function/20/FFmpeg_4c9d1c_3da860_libavutil#file_open.c.txt_0";
-        ClusterToPattern.main("6399","/Users/anil.koyuncu/projects/fixminer/fixminer-core/python/data/redis","ALLdumps-gumInput.rdb ",pattern);
+        ClusterToPattern.main("6399","/Users/anil.koyuncu/projects/richedit/richedit-core/python/data/redis","ALLdumps-gumInput.rdb ",pattern);
     }
 
     @Test
@@ -112,7 +113,7 @@ public class HunkParserTest extends BaseTest{
     public void testSimpleJava() throws IOException {
 
 
-        String root = "/Users/anil.koyuncu/projects/test/fixminer-core/python/data/gumInput/spring-amqp/";
+        String root = "/Users/anil.koyuncu/projects/test/richedit-core/python/data/gumInput/spring-amqp/";
 
         String filename = "5d6e02_e597c5_spring-rabbit#src#main#java#org#springframework#amqp#rabbit#connection#ConnectionFactoryUtils.java";
         File revFile = new File(root +"/revFiles/"+filename);
@@ -134,7 +135,7 @@ public class HunkParserTest extends BaseTest{
         final JedisPool outerPool = new JedisPool(PoolBuilder.getPoolConfig(), "localhost",Integer.valueOf("6399"),20000000);
 
         EDiffHunkParser parser = new EDiffHunkParser();
-        String root = "/Users/anil.koyuncu/projects/fixminer/gumInputLinux/linux/";
+        String root = "/Users/anil.koyuncu/projects/richedit/gumInputLinux/linux/";
         String filename = "43f8987_f596c8_drivers#acpi#nfit#core.c";
         File revFile = new File(root + "revFiles/"+ filename);
         File prevFile =new File(root + "prevFiles/prev_"+filename);
@@ -142,7 +143,7 @@ public class HunkParserTest extends BaseTest{
         String srcMLPath = "/Users/anil.koyuncu/Downloads/srcML/src2srcml";
         parser.parseFixPatterns(prevFile,revFile,diffFile,"gumInputLinux",outerPool,srcMLPath,"if",false);
         String key = "if/3/linux_bb67dd_0922c7_sound#soc#sof#intel#hda.c.txt_0";
-        File file2load = new File("/Users/anil.koyuncu/projects/fixminer/dumps/"+ key);
+        File file2load = new File("/Users/anil.koyuncu/projects/richedit/dumps/"+ key);
         byte[] dump = FileUtils.readFileToByteArray(file2load);
 
 //        String line = FileHelper.readFile(file2load);

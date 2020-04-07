@@ -5,6 +5,7 @@ COMMIT_DFS = os.environ["COMMIT_DFS"]
 DATASET_PATH = os.environ["REPO_PATH"]
 DATASET = os.environ["dataset"]
 ROOT = os.environ["ROOT_DIR"]
+PROJECT_LIST = os.environ["PROJECT_LIST"]
 
 def filetype_fileter(filename):
     # return filename.endswith(u'.java') and not bool(re.search('test.*\/', filename))
@@ -266,16 +267,24 @@ def getAllCommits(datasetName):
 def core():
     datasets = pd.read_csv(join(ROOT,'data', 'datasets.csv'))
     # repoList = ['FFmpeg','curl','nginx','openssl','redis','tmux','vlc']
-    pjs = listdir(DATASET_PATH)
-    # newRepo = ['php-src','libtiff','cpython']
-    pjs = [i for i in pjs if not (i.startswith('.') or i.startswith('codeflaws'))]
-    # pjs = [i for i in pjs if (i in newRepo )]
-    repoList = pjs
+
+    pjList = PROJECT_LIST.split(',')
+    if not os.path.exists(DATASET_PATH):
+        os.mkdir(DATASET_PATH)
+
     for repo,src in datasets.values.tolist():
-        cmd = 'git -C ' + DATASET_PATH + ' clone ' + src
-        shellCallTemplate(cmd)
-        logging.info(repo)
-        collectBugFixPatches(repo)
+        if(pjList != ['ALL']):
+            if repo in pjList:
+                 print(repo)
+                 cmd = 'git -C ' + DATASET_PATH + ' clone ' + src
+                 shellCallTemplate(cmd)
+                 logging.info(repo)
+                 collectBugFixPatches(repo)
+        else:
+            cmd = 'git -C ' + DATASET_PATH + ' clone ' + src
+            shellCallTemplate(cmd)
+            logging.info(repo)
+            collectBugFixPatches(repo)
 
 def codeflaws():
     cf = listdir(join(DATASET_PATH,'codeflaws'))

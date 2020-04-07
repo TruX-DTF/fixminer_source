@@ -5,7 +5,7 @@ import com.github.gumtreediff.gen.srcml.NodeMap_new;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
 import com.github.gumtreediff.tree.TreeUtils;
-import edu.lu.uni.serval.fixminer.ediff.HierarchicalActionSet;
+import edu.lu.uni.serval.richedit.ediff.HierarchicalActionSet;
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
