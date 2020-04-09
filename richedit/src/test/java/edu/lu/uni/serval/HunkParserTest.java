@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval;
 
 import com.github.gumtreediff.tree.ITree;
 import edu.lu.uni.serval.richedit.ediff.EDiffHunkParser;

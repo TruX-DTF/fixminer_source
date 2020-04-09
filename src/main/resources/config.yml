@@ -11,7 +11,7 @@ dataset:
     repo:   /Users/anilkoyuncu/projects/test/fixminer-data/datasets
 
 fixminer:
-    projectType : c
+    projectType : java
     datapath: /Users/anilkoyuncu/projects/test/fixminer-data/
 
 
@@ -22,7 +22,7 @@ fixminer:
     hunkLimit : 10
     patchSize : 50
 
-    projectList : libtiff,gzip,gmp,lighttpd1.4,lighttpd2
+    projectList : spring-shell,fuse,metadata
     inputPath : /Users/anilkoyuncu/projects/test/fixminer-data/patches
-    redisPath : /Users/anilkoyuncu/projects/test/fixminer-core/python/data/redis
+    redisPath : /Users/anilkoyuncu/projects/release/test/fixminer_source/python/data/redis
     srcMLPath :  /usr/local/bin/srcml

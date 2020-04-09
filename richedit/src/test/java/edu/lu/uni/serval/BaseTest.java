@@ -1,4 +1,6 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval;
+
+
 
 import edu.lu.uni.serval.richedit.ediff.EDiffHunkParser;
 import edu.lu.uni.serval.richedit.ediff.HierarchicalActionSet;

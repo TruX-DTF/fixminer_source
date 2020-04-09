@@ -1,18 +1,15 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval;
 
 import com.github.gumtreediff.tree.ITree;
 import edu.lu.uni.serval.richedit.ediff.HierarchicalActionSet;
-import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
+
 @Ignore
 public class TestRealCases extends BaseTest {
 

@@ -23,10 +23,12 @@ import com.github.gumtreediff.io.TreeIoUtils;
 import com.github.gumtreediff.tree.ITree;
 import com.github.gumtreediff.tree.TreeContext;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
-
+//TODO
+@Ignore
 public class TestSrcmlJavaGenerator {
 
     @Test

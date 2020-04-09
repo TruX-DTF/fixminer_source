@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.FixPatternMiner;
+package edu.lu.uni.serval;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -12,3 +12,6 @@ OUTPUT/
 Dataset/
 logs/
 gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeTester.java
+*.pyc
+app.log
+*.rdb

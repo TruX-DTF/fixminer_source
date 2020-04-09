@@ -130,11 +130,12 @@ public class EnhancedASTDiff {
 	//		for (File revFile : collect) {
 				String fileName = revFile.getName();
 				File prevFile = new File(gumTreeInput + "prevFiles/prev_" + fileName);// previous file
-				if (isJava){
-					fileName = fileName.replace(".java",".txt");
-				}else{
-					fileName = fileName + ".txt";
-				}
+//				if (isJava){
+//					fileName = fileName.replace(".java",".txt");
+//				}else{
+//					fileName = fileName + ".txt";
+//				}
+				fileName = fileName + ".txt";
 				File diffentryFile = new File(gumTreeInput + "DiffEntries/" + fileName); // DiffEntry file
 				String s = FileHelper.readFile(diffentryFile);
 

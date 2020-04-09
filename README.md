@@ -73,29 +73,25 @@ In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
 *FixMiner* needs to specify a job to run.
 
    1. __dataset4j__ / __dataset4c__: Create a java/c mining dataset from the projects listed in [subjects.csv](python/data/subjects.csv) or [datasets.csv](python/data/datasets.csv) for c
-   
-        
+      
    2. __richEditScript__: Calls the jar file produced as the results as maven package to compute Rich edit scripts.
    This step can be invoke natively from java or using the [Launcher](src/main/java/edu/lu/uni/serval/richedit/Launcher.java) with appropriate arguments.
-   
- ```powershell
- java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml RICHEDITSCRIPT
 
- ```   
-
-     
+         ```powershell
+         java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml RICHEDITSCRIPT
+         ```   
+   3. __shapeSI__: Search index creation for shapes. The output of this step is written to __pairs__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
     
-   3. __shapeSI__: Search index creation for shapes. The output of this step is written to __pairs__ which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
-    
-   4. __compareShapes__ : Calls the jar file produced as the results as maven package to compare the trees.
+   4. __compare__ : Calls the jar file produced as the results as maven package to compare the trees.
                              This step can be invoke natively from java or using the [Launcher](src/main/java/edu/lu/uni/serval/richedit/Launcher.java) with appropriate arguments.
                              
                            ```powershell
-                           java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml COMPARETREES
+                           java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml COMPARE
                           
-                           ```   
-    
-   5. 'cluster': Forms clusters of identical shapetree. The output of this step is written to [shapes](python/data/shapes)
+                           ```     
+   5. __cluster__ : Forms clusters of identical trees. The output of this step is written to __shapes__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
+                                                                                                                   
+   <!--
     
     6. 'actionSI': Search index creation for actions. The output of this step is written to [pairs](python/data/pairsAction)
     
@@ -110,7 +106,8 @@ In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
     11. 'clusterTokens': Forms clusters of identical TokenTree. The output of this step is written to [shapes](python/data/tokens)
     
     12. 'stats' : Calculate some statistics about patterns under python/data/statsactions.csv,statsshapes.csv,statstokens.csv, and export FixPatterns of APR integration [fixpatterns](actionPattern2verify.csv)
-
+    
+   -->
 
 <!--
 App.properties:

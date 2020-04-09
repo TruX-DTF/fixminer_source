@@ -649,9 +649,9 @@ public final class TreeIoUtils {
                         StartElement s = (StartElement) e;
                         if (!s.getName().getLocalPart().equals("tree")) // FIXME need to deal with options
                             continue;
-//                        int type = Integer.parseInt(s.getAttributeByName(TYPE).getValue());
-                        List<Integer> keysByValue = getKeysByValue(CNodeMap.map, s.getAttributeByName(TYPE).getValue());
-                        int type = keysByValue.get(0);
+                        int type = Integer.parseInt(s.getAttributeByName(TYPE).getValue());
+//                        List<Integer> keysByValue = getKeysByValue(CNodeMap.map, s.getAttributeByName(TYPE).getValue());
+//                        int type = keysByValue.get(0);
 
 
                         ITree t = context.createTree(type,
