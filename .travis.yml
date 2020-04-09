@@ -1,4 +1,5 @@
 sudo: required
+dist: bionic
 language: java
 before_install:
   - chmod +x .travis_native_dependencies.sh
