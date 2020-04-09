@@ -1,6 +1,8 @@
 sudo: required
 language: java
-before_install: ./.travis_native_dependencies.sh
+before_install:
+  - chmod +x travis_native_dependencies.sh
+  - ./.travis_native_dependencies.sh
 jdk:
   - openjdk8
 install: true
