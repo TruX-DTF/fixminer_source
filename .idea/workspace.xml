@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="75ef5724-93bc-4ed4-82b2-ff12411188dc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,7 +33,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -70,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+              <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
               <folding>
                 <element signature="e#1585#1586#0" expanded="true" />
               </folding>
@@ -78,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+            <state>
+              <caret column="14" selection-start-column="14" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -186,10 +183,10 @@
         <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/BaseTest.java" />
         <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java" />
         <option value="$PROJECT_DIR$/.travis_native_dependencies.sh" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java" />
         <option value="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java" />
         <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -210,27 +207,12 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="FixPatternMiner" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="RichEdit" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="FixPatternMiner" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="RichEdit" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="FixPatternMiner" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="FixPatternMiner" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Run Configurations" type="21c1f71a:MavenProjectsStructure$RunConfigurationsNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="FixPatternMiner" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
         </path>
       </expand>
       <select />
@@ -589,8 +571,8 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49829933" visible="true" weight="0.30708182" />
-      <window_info id="Structure" order="1" sideWeight="0.5017007" side_tool="true" visible="true" weight="0.30708182" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49923897" visible="true" weight="0.30708182" />
+      <window_info id="Structure" order="1" sideWeight="0.50076103" side_tool="true" visible="true" weight="0.30708182" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -599,11 +581,11 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993895" weight="0.32959184" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4920635" weight="0.32959184" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4981685" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4981685" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.71428573" weight="0.32959184" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.71428573" visible="true" weight="0.32959184" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50183153" side_tool="true" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498779" weight="0.32959184" />
@@ -614,7 +596,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" weight="0.23260073" />
+      <window_info anchor="right" id="Maven" order="4" visible="true" weight="0.23260073" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
@@ -1099,17 +1081,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
           <folding>
             <element signature="e#1585#1586#0" expanded="true" />
           </folding>
@@ -1151,6 +1126,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>

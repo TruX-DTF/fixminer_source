@@ -1,3 +1,4 @@
+sudo: required
 language: java
 before_install: ./.travis_native_dependencies.sh
 jdk:
