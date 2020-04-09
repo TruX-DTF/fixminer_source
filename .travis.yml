@@ -1,6 +1,6 @@
 language: java
+before_install: ./.travis_native_dependencies.sh
 jdk:
-  - oraclejdk8
   - openjdk8
 install: true
 script: mvn clean package #-DskipTests=true

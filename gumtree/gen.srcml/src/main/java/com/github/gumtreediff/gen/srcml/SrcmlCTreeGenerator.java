@@ -35,7 +35,9 @@ import java.util.regex.Pattern;
 public class SrcmlCTreeGenerator extends AbstractSrcmlTreeGenerator {
 
     public SrcmlCTreeGenerator(String SRCML_CMD) {
-        super.setSRCML_CMD(SRCML_CMD);
+        if (!SRCML_CMD.equals("")){
+            super.setSRCML_CMD(SRCML_CMD);
+        }
     }
 
     @Override

@@ -44,8 +44,8 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
 
 
 
-    //    private static final String SRCML_CMD = System.getProperty("gumtree.srcml.path", "srcml");
-    private String SRCML_CMD = "/Users/anil.koyuncu/Downloads22/srcML/src2srcml";
+    private  String SRCML_CMD = System.getProperty("gt.srcml.path", "srcml");
+//    private String SRCML_CMD = "/Users/anil.koyuncu/Downloads22/srcML/src2srcml";
     //    private static String namespace = "http://www.sdml.info/srcML/position";
     private static String namespace = "http://www.srcML.org/srcML/position";
     private static final QName LINE = new  QName(namespace, "line", "pos");

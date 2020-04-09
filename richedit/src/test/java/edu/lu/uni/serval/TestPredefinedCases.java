@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-@Ignore
+
 public class TestPredefinedCases {
 
 
@@ -68,6 +68,8 @@ public class TestPredefinedCases {
                 "---------DEL continue@@continue; @AT@ 62 @LENGTH@ 9\n");
 
     }
+    //TODO
+    @Ignore
     @Test
     public void testWhileCase1() throws IOException {
         Properties appProps = new Properties();
@@ -80,7 +82,7 @@ public class TestPredefinedCases {
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
+        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, "",false);
         hierarchicalActionSets.size();
         Assert.assertEquals(hierarchicalActionSets.size(), 1);
 

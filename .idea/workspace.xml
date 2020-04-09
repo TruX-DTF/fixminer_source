@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="75ef5724-93bc-4ed4-82b2-ff12411188dc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,20 +36,80 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="60">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
+              <folding>
+                <element signature="e#2020#2029#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/GumTreeCComparer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="54" selection-start-line="54" selection-end-line="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+              <folding>
+                <element signature="e#1585#1586#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="73" selection-start-line="73" selection-end-line="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/gen/TreeGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.travis_native_dependencies.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -122,8 +185,11 @@
         <option value="$PROJECT_DIR$/gumtree/gen.srcml/src/test/java/com/github/gumtreediff/gen/srcml/TestSrcmlJavaGenerator.java" />
         <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/BaseTest.java" />
         <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java" />
-        <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java" />
+        <option value="$PROJECT_DIR$/.travis_native_dependencies.sh" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java" />
+        <option value="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java" />
+        <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java" />
       </list>
     </option>
   </component>
@@ -195,20 +261,20 @@
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
               <item name="gumtree" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="gen.srcml" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
               <item name="gumtree" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="gen.srcml" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
               <item name="gumtree" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="gen.srcml" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -216,7 +282,7 @@
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
               <item name="gumtree" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="gen.srcml" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -225,77 +291,11 @@
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
               <item name="gumtree" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="gumtree" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+              <item name="gen.srcml" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="serval" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="richedit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="serval" type="462c0819:PsiDirectoryNode" />
+              <item name="srcml" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
@@ -348,7 +348,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestPredefinedCases">
+  <component name="RunManager" selected="JUnit.TestPredefinedCases.testWhileCase1">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -411,6 +411,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestPredefinedCases.testWhileCase1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RichEdit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.lu.uni.serval.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
+      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestPredefinedCases" />
+      <option name="METHOD_NAME" value="testWhileCase1" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestRealCases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RichEdit" />
       <extension name="coverage">
@@ -422,23 +439,6 @@
       <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
       <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestRealCases" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestRealCases.test_287_A_14208510_14208532 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RichEdit" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestRealCases" />
-      <option name="METHOD_NAME" value="test_287_A_14208510_14208532" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -524,19 +524,19 @@
     <list>
       <item itemvalue="Maven.FixPatternMiner [assembly:assembly]" />
       <item itemvalue="Maven.FixPatternMiner [package]" />
-      <item itemvalue="JUnit.TestRealCases.test_287_A_14208510_14208532 (1)" />
       <item itemvalue="JUnit.TestIntroClass.test_manybugs_gmp_14166_14167" />
       <item itemvalue="JUnit.TestRealCases" />
       <item itemvalue="JUnit.TestPredefinedCases.testIFCase1" />
       <item itemvalue="JUnit.TestPredefinedCases" />
+      <item itemvalue="JUnit.TestPredefinedCases.testWhileCase1" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestPredefinedCases.testWhileCase1" />
         <item itemvalue="JUnit.TestPredefinedCases" />
         <item itemvalue="JUnit.TestPredefinedCases.testIFCase1" />
         <item itemvalue="JUnit.TestRealCases" />
         <item itemvalue="JUnit.TestIntroClass.test_manybugs_gmp_14166_14167" />
-        <item itemvalue="JUnit.TestRealCases.test_287_A_14208510_14208532 (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -554,12 +554,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestTreeUtils_testPostOrderNumbering - 2020.04.09 at 13h 19m 51s.xml">
-      <configuration name="TestTreeUtils.testPostOrderNumbering" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestActionGenerator_testWithActionExample - 2020.04.09 at 13h 21m 30s.xml">
-      <configuration name="TestActionGenerator.testWithActionExample" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestActionGenerator_testWithActionExample - 2020.04.09 at 13h 21m 37s.xml">
       <configuration name="TestActionGenerator.testWithActionExample" configurationId="JUnit" />
     </history-entry>
@@ -584,13 +578,19 @@
     <history-entry file="TestPredefinedCases - 2020.04.09 at 13h 35m 47s.xml">
       <configuration name="TestPredefinedCases" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestPredefinedCases_testWhileCase1 - 2020.04.09 at 14h 07m 12s.xml">
+      <configuration name="TestPredefinedCases.testWhileCase1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestPredefinedCases_testWhileCase1 - 2020.04.09 at 14h 08m 58s.xml">
+      <configuration name="TestPredefinedCases.testWhileCase1" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49923897" visible="true" weight="0.30708182" />
-      <window_info id="Structure" order="1" sideWeight="0.50076103" side_tool="true" visible="true" weight="0.30708182" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49829933" visible="true" weight="0.30708182" />
+      <window_info id="Structure" order="1" sideWeight="0.5017007" side_tool="true" visible="true" weight="0.30708182" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -599,11 +599,11 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993895" weight="0.32959184" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4920635" weight="0.32959184" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4981685" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4981685" visible="true" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.71428573" visible="true" weight="0.32959184" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.71428573" weight="0.32959184" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50183153" side_tool="true" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498779" weight="0.32959184" />
@@ -712,11 +712,38 @@
           <properties />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java</url>
+          <line>71</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>System.getProperty(&quot;gt.srcml.path&quot;, &quot;srcml&quot;);</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>!SRCML_CMD.equals(&quot;&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>SRCML_CMD.equals(&quot;&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>Integer.parseInt(s.getAttributeByName(TYPE).getValue());</expression-string>
         <language-id>JAVA</language-id>
@@ -747,62 +774,9 @@
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>subjects[subjects.Repo.isin(pjList)]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>subjects.Repo.isin(pjList)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>subjects[['Repo','GitRepo']]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="453" column="25" selection-start-line="453" selection-start-column="12" selection-end-line="453" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/environment.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/python/fixminer.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="22" selection-start-line="3" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="168" column="62" selection-start-line="168" selection-start-column="62" selection-end-line="168" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/Launcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -1014,13 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/gen/TreeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/io/TreeIoUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -1125,17 +1092,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java">
+    <entry file="file://$PROJECT_DIR$/.travis_native_dependencies.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        <state relative-caret-position="15">
+          <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+          <folding>
+            <element signature="e#1585#1586#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/gen/TreeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/GumTreeCComparer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="e#2020#2029#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
