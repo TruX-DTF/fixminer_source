@@ -120,8 +120,9 @@ def prepareFiles(t,dsName):
         nonTest = []
         for k,v in files.items():
             if v == 'M':
-                if k.endswith('.c') or k.endswith(u'.h'):
-                   nonTest.append(k)
+                nonTest.append(k)
+                # if k.endswith('.c') or k.endswith(u'.h'):
+                #    nonTest.append(k)
         # nonTest = [f for f in files.keys() if f.endswith('.c') or f.endswith(u'.h')]
 
         cmd = 'git -C ' + join(DATASET_PATH,dsName) + ' rev-parse --short=6 ' + shaOld
@@ -276,6 +277,8 @@ def core():
         if(pjList != ['ALL']):
             if repo in pjList:
                  print(repo)
+                 cmd = 'git config --global http.postBuffer 157286400'
+                 shellCallTemplate(cmd)
                  cmd = 'git -C ' + DATASET_PATH + ' clone ' + src
                  shellCallTemplate(cmd)
                  logging.info(repo)

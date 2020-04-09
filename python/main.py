@@ -15,6 +15,7 @@ if __name__ == '__main__':
         setEnv(args)
 
         job = args.job
+        job = "cluster"
         ROOT_DIR = os.environ["ROOT_DIR"]
         REPO_PATH = os.environ["REPO_PATH"]
         CODE_PATH = os.environ["CODE_PATH"]
@@ -25,11 +26,12 @@ if __name__ == '__main__':
         FEATURE_DIR = os.environ["FEATURE_DIR"]
         DATASET_DIR = os.environ["DATASET_DIR"]
         PROJECT_TYPE = os.environ["PROJECT_TYPE"]
+        REDIS_PORT = os.environ["REDIS_PORT"]
         jdk8 = os.environ["JDK8"]
         pd.options.mode.chained_assignment = None
 
 
-        subject = 'ALL'
+        # subject = 'ALL'
         rootType = 'if'
 
         print(job)
@@ -37,7 +39,7 @@ if __name__ == '__main__':
 
         if job == 'dataset4j':
             from javaDS import createDS
-            createDS(subject)
+            createDS()
         # elif job == 'linuxDS':
         #     from linuxDataset import collectBugFixPatches
         #     collectBugFixPatches()
@@ -45,6 +47,8 @@ if __name__ == '__main__':
             from otherDatasets import core
             core()
         elif job =='richEditScript':
+            dbDir = join(DATA_PATH, 'redis')
+            stopDB(dbDir, REDIS_PORT)
             cmd = "JAVA_HOME='" + jdk8 + "' java  -jar " + join(Path(ROOT_DIR).parent, 'target','FixPatternMiner-1.0.0-jar-with-dependencies.jar') + " " + args.prop + " RICHEDITSCRIPT "
             output = shellCallTemplate(cmd)
             logging.info(output)
@@ -64,7 +68,7 @@ if __name__ == '__main__':
             from pairs import importShape
             importShape()
 
-        elif job =='compareShapes':
+        elif job =='compare':
              # cmd = "mvn exec:java -f '/data/fixminer_source/' -Dexec.mainClass='edu.lu.uni.serval.richedit.akka.compare.CompareTrees' -Dexec.args='"+ " shape " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl0-gumInputALL.rdb /data/richedit-core/python/data/richEditScript'"
             cmd = "JAVA_HOME='" + jdk8 + "' java  -jar " + join(Path(ROOT_DIR).parent, 'target','FixPatternMiner-1.0.0-jar-with-dependencies.jar') + " " + args.prop + " COMPARE "
             output = shellCallTemplate(cmd)
@@ -81,27 +85,27 @@ if __name__ == '__main__':
             startDB(dbDir, "6399", PROJECT_TYPE)
             cluster(join(DATA_PATH,'shapes'),join(DATA_PATH, 'pairs'),'shapes',rootType)
 
-        elif job =='actionSI':
-            from pairs import actionPairs
-            actionPairs(rootType)
-
-        # elif job =='importActionPairs':
-            from pairs import importAction
-            importAction(rootType)
-
-        elif job =='compareActions':
-            # cmd = "JAVA_HOME='"+jdk8+"' java -Xmx8096m -Djava.util.concurrent.ForkJoinPool.common.parallelism=64 -jar "+  join(DATA_PATH,'CompareTrees.jar') + " action " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl1-gumInputALL.rdb"
-
-            cmd = "JAVA_HOME='" + jdk8 + "' java -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " COMPARE " + 'L2'
-            output = shellCallTemplate(cmd)
-            logging.info(output)
-
-        elif job == 'clusterActions':
-            from abstractPatch import cluster
-
-            dbDir = join(DATA_PATH, 'redis')
-            startDB(dbDir, "6399", PROJECT_TYPE)
-            cluster( join(DATA_PATH, 'actions'),join(DATA_PATH, 'pairsAction'),'actions',rootType)
+        # elif job =='actionSI':
+        #     from pairs import actionPairs
+        #     actionPairs(rootType)
+        #
+        # # elif job =='importActionPairs':
+        #     from pairs import importAction
+        #     importAction(rootType)
+        #
+        # elif job =='compareActions':
+        #     # cmd = "JAVA_HOME='"+jdk8+"' java -Xmx8096m -Djava.util.concurrent.ForkJoinPool.common.parallelism=64 -jar "+  join(DATA_PATH,'CompareTrees.jar') + " action " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl1-gumInputALL.rdb"
+        #
+        #     cmd = "JAVA_HOME='" + jdk8 + "' java -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " COMPARE " + 'L2'
+        #     output = shellCallTemplate(cmd)
+        #     logging.info(output)
+        #
+        # elif job == 'clusterActions':
+        #     from abstractPatch import cluster
+        #
+        #     dbDir = join(DATA_PATH, 'redis')
+        #     startDB(dbDir, "6399", PROJECT_TYPE)
+        #     cluster( join(DATA_PATH, 'actions'),join(DATA_PATH, 'pairsAction'),'actions',rootType)
 
         elif job == 'tokenSI':
             from pairs import tokenPairs

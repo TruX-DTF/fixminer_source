@@ -97,6 +97,7 @@ def setEnv(args):
     os.environ["DATA_PATH"] = cfg['fixminer']['datapath']
     os.environ["PROJECT_TYPE"] = cfg['fixminer']['projectType']
     os.environ["PROJECT_LIST"] = cfg['fixminer']['projectList']
+    os.environ["REDIS_PORT"] = str(cfg['fixminer']['portDumps'])
 
     # import yaml
     #
@@ -177,7 +178,22 @@ def getRun():
 
 
 
-
+# def shellCallTemplate(cmd,enc='utf-8'):
+#     process = subprocess.Popen(cmd,
+#                                stdout=subprocess.PIPE,stderr=PIPE, shell=True,encoding=enc,
+#                                universal_newlines=True)
+#
+#     while True:
+#         output = process.stdout.readline()
+#         print(output.strip())
+#         # Do something else
+#         return_code = process.poll()
+#         if return_code is not None:
+#             print('RETURN CODE', return_code)
+#             # Process has finished, read rest of the output
+#             for output in process.stdout.readlines():
+#                 print(output.strip())
+#             break
 
 def shellCallTemplate(cmd,enc='utf-8'):
     try:
@@ -510,9 +526,9 @@ def get_class_weights(y):
     return  {cls: round(float(majority)/float(count), 2) for cls, count in counter.items()}
 
 
-def stopDB(dbDir,portInner,dbName):
-    cmd = "bash " + dbDir + "/" + "stopServer.sh " + " " + portInner;
-
+def stopDB(dbDir,portInner):
+    # cmd = "bash " + dbDir + "/" + "stopServer.sh " + " " + portInner;
+    cmd = "redis-cli -p " + portInner + " shutdown save"
     o, e = shellGitCheckout(cmd)
     logging.info(o)
 
