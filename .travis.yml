@@ -1,6 +1,6 @@
 language: java
 install: true
-script: mvn clean package -DskipTests=true
+script: mvn clean package #-DskipTests=true
 
 #after_success:
 #  - mvn clean test jacoco:report coveralls:report
