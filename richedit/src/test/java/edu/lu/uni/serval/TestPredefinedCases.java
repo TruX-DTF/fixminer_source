@@ -22,7 +22,7 @@ public class TestPredefinedCases {
     public void testIFCase1() throws IOException {
         Properties appProps = new Properties();
         appProps.load(new FileInputStream("src/main/resource/app.properties"));
-        String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
+        String srcMLPath = "";
 
         File revFile = new File("src/main/resource/testFiles/if_example_1.c");
         File prevFile =new File("src/main/resource/testFiles/prev_if_example_1.c");
@@ -45,7 +45,7 @@ public class TestPredefinedCases {
     public void testForCase1() throws IOException {
         Properties appProps = new Properties();
         appProps.load(new FileInputStream("src/main/resource/app.properties"));
-        String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
+        String srcMLPath = "";
 
         File revFile = new File("src/main/resource/testFiles/for_example_1.c");
         File prevFile =new File("src/main/resource/testFiles/prev_for_example_1.c");
