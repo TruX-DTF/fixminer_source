@@ -3,7 +3,20 @@
 # Code of FixMiner
 
 Reference: [FixMiner: Mining Relevant Fix Patterns for Automated Program Repair](http://arxiv.org/pdf/1810.01791) (Empirical Software Engineering, [doi:10.1007/s10664-019-09780-z](https://doi.org/10.1007/s10664-019-09780-z))
+## Citing FixMiner
 
+You can cite FixMiner using the following bibtex:
+
+```
+@article{koyuncu2020fixminer,
+  title={Fixminer: Mining relevant fix patterns for automated program repair},
+  author={Koyuncu, Anil and Liu, Kui and Bissyand{\'e}, Tegawend{\'e} F and Kim, Dongsun and Klein, Jacques and Monperrus, Martin and Le Traon, Yves},
+  journal={Empirical Software Engineering},
+  pages={1--45},
+  year={2020},
+  publisher={Springer}
+}
+  ```
 # FixMiner
 
 * [I. Introduction of FixMiner](#user-content-i-introduction)
@@ -236,7 +249,4 @@ Usage
   # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html
 
   ```
-
-
-
 
