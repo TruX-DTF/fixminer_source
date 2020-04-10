@@ -1,4 +1,4 @@
-# FixMiner ![Build Status](https://travis-ci.com/SerVal-DTF/fixminer_source.svg?branch=master)[![Coverage Status](https://coveralls.io/repos/github/SerVal-DTF/fixminer_source/badge.svg?branch=master)](https://coveralls.io/github/SerVal-DTF/fixminer_source?branch=master)![Java CI with Maven](https://github.com/SerVal-DTF/fixminer_source/workflows/Java%20CI%20with%20Maven/badge.svg)
+# FixMiner ![Build Status](https://travis-ci.com/SerVal-DTF/fixminer_source.svg?branch=master)[![Coverage Status](https://coveralls.io/repos/github/SerVal-DTF/fixminer_source/badge.svg?branch=master)](https://coveralls.io/github/SerVal-DTF/fixminer_source?branch=master)
 
 # Code of FixMiner
 
