@@ -38,6 +38,7 @@ Fixminer is a systematic and automated approach to mine relevant and actionable 
 
 * OS: macOS Mojave (10.14.3)
 * JDK8: (**important!**)
+* To mine from c code, [srcml 1.0.0](https://www.srcml.org/#download)
 * Download and configure Anaconda
 * Create an python environment using the [environment file](environment.yml)
   ```powershell
@@ -204,7 +205,7 @@ It is necessary to run the FixMiner, following the order.
 ## VII. Structure of the project
 --> 
     
-
+<!--
     
 ## III. Replication Data
 Replication Data:
@@ -224,6 +225,7 @@ Replication Data:
    [ALLbugReportsComplete.pickle](python/data/ALLbugReportsComplete.pickle)
    
     The pickle object that represents the bug reports under the following columns 'bugReport', 'summary', 'description', 'created', 'updated', 'resolved', 'reporterDN', 'reporterEmail','hasAttachment', 'attachmentTime', 'hasPR', 'commentsCount'
+-->
 
 #### Data Viewer
 
