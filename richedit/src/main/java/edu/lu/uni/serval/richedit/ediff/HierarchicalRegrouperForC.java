@@ -152,7 +152,7 @@ public class HierarchicalRegrouperForC {
 
 	Predicate<HierarchicalActionSet> predicate = x->NodeMap_new.getKeysByValue(NodeMap_new.StatementMap,x.getAstNodeType()).size() == 1 ;
 	Predicate<HierarchicalActionSet> predicate1 = x->!x.getAstNodeType().equals("block");
-	Predicate<HierarchicalActionSet> predicate2 = x->!x.getAstNodeType().equals("then");
+	Predicate<HierarchicalActionSet> predicate2 = x->!x.getAstNodeType().equals("block_content");
 //	Predicate<HierarchicalActionSet> predicate3 = p->p.getAction().getName().equals(subActions.get(0).getAction().getName()));
 	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
 		List<HierarchicalActionSet> subActions = actionSet.getSubActions();

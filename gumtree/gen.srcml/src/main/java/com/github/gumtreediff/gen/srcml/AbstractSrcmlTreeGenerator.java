@@ -48,9 +48,9 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
 //    private String SRCML_CMD = "/Users/anil.koyuncu/Downloads22/srcML/src2srcml";
     //    private static String namespace = "http://www.sdml.info/srcML/position";
     private static String namespace = "http://www.srcML.org/srcML/position";
-    private static final QName LINE = new  QName(namespace, "line", "pos");
+    private static final QName START = new  QName(namespace, "start", "pos");
 
-    private static final QName COLUMN = new  QName(namespace, "column", "pos");
+    private static final QName END = new  QName(namespace, "end", "pos");
     private static final QName COMMENT_BLOCK = new  QName("", "type", "");
 
     private LineReader lr;
@@ -177,13 +177,13 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
         for (ITree t : ctx.getRoot().postOrder()) {
             if (!t.isLeaf()) {
                 //put the keywords as labels
-                if(t.getType() == 34 || t.getType() ==37 || t.getType() ==38 || t.getType()==39 || t.getType() == 41 || t.getType()==45 || t.getType() ==55 || t.getType()==14){
-                    t.setLabel(NodeMap_new.map.get(t.getType())+" "  +t.getLabel());
-                }
-                if (t.getPos() == ITree.NO_VALUE || t.getLength() == ITree.NO_VALUE || t.getType()==10) {
+//                if(t.getType() == 34 || t.getType() ==37 || t.getType() ==38 || t.getType()==39 || t.getType() == 41 || t.getType()==45 || t.getType() ==55 || t.getType()==14){
+//                    t.setLabel(NodeMap_new.map.get(t.getType())+" "  +t.getLabel());
+//                }
+                if (t.getPos() == ITree.NO_VALUE || t.getLength() == ITree.NO_VALUE ) {
 
                     ITree firstChild = t.getChild(0);
-                    t.setPos(firstChild.getPos());
+//                    t.setPos(firstChild.getPos());
 
                     if (t.getChildren().size() == 1) {
                         t.setLabel(t.getLabel() + firstChild.getLabel());
@@ -195,7 +195,7 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
 
                             if(t.getChild(0).getChildren().size() == 0) {
                                 t.getChild(0).setPos(t.getChild(1).getPos());
-                                t.setPos(lastChild.getPos());
+//                                t.setPos(lastChild.getPos());
                             }
 
                         }else{
@@ -207,15 +207,16 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
                         }
                     }
                 }else if (t.getLabel().equals("")){
-                    if(t.getType() == 60 || t.getType() == 56 || t.getType() == 47 || t.getType() == 8 || t.getType() == 43 || NodeMap_new.StatementMap.containsKey(t.getType())){
+//                    if(t.getType() == 60 || t.getType() == 56 || t.getType() == 47 || t.getType() == 8 || t.getType() == 43 || NodeMap_new.StatementMap.containsKey(t.getType())){
+                    if(NodeMap_new.StatementMap.containsKey(t.getType())){
                         String childrenLabels = t.getChildrenLabels();
-                        if(t.getType() == 53){
-                            t.setLabel("return "+childrenLabels);
-                        }else{
+//                        if(t.getType() == 53){
+//                            t.setLabel("return "+childrenLabels);
+//                        }else{
                             if (!childrenLabels.equals("")){
                                 t.setLabel(childrenLabels);
                             }
-                        }
+//                        }
                     }
                 }
 
@@ -223,85 +224,85 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
             else{
 
 
-                if (t.getPos() == ITree.NO_VALUE ) {
-
-                    if(t.getType() == 7){
-                        ITree parent = t.getParent();
-                        if(parent.getType() == 22){
-                            ITree child = parent.getParent().getChild(0);
-                            if (child.getType() == 22){
-                                ITree child1 = child.getChild(0);
-                                if(child1.getType() == 7){
-                                    t.setLabel(child1.getLabel());
-                                    t.setPos(child1.getPos());
-                                }
-                            }
-                        }
-                    }
-
-                    int childPosition = t.getParent().getChildPosition(t);
-                    if(childPosition != 0){
-                        ITree child = t.getParent().getChild(childPosition - 1);
-                        t.setPos(child.getPos()+child.getLength()+1);
-
-                    }else{
-                        if(t.getParent().getChildren().size() > 1){
-                            ITree child = t.getParent().getChild(childPosition + 1);
-                            t.setPos(child.getPos()-1);
-                        }else{
-
-                            /*
-                            (34 "if" "" ((183 -1)) (
-                                (8 "condition" "i != j" ((186 6)) (
-                                    (20 "expr" "i != j" ((187 6)) (
-                                        (6 "name" "i" ((187 1)) ()
-                                        (4 "operator" "!=" ((188 2)) ()
-                                        (6 "name" "j" ((190 1)) ()))
-                                (36 "then" "" () (
-                                    (9 "block" "" () ()))
-                                    * */
-                            if (t.getPos() == ITree.NO_VALUE ){
-
-                                    ITree firstParent = t.getParent();
-                                    if(firstParent.getType() == 36){//then
-                                        ITree secondParent = firstParent.getParent();
-                                        if(secondParent.getType() == 34){//
-                                            if(secondParent.getChildren().size()>1){
-                                                int childPosition1 = secondParent.getChildPosition(firstParent);
-                                                if (childPosition1 !=0){
-                                                    ITree child = secondParent.getChild(childPosition1 - 1);
-                                                    firstParent.setPos(child.getPos()+child.getLength());
-//                                                    firstParent.setLength(0);
-                                                    firstParent.getChild(0).setPos(child.getPos()+child.getLength());
-//                                                    firstParent.getChild(0).setLength(0);
-                                                }
-                                            }
-                                        }
-                                    }else if(firstParent.getType() == 55){//sizeof
-                                        ITree secondParent = firstParent.getParent();
-                                        if(secondParent.getType() == 20){//
-                                            if(secondParent.getChildren().size()>1){
-                                                int childPosition1 = secondParent.getChildPosition(firstParent);
-                                                if (childPosition1 ==0){
-                                                    ITree child = secondParent.getChild(childPosition1 + 1);
-                                                    firstParent.setPos(child.getPos()-child.getLength());
-//                                                    firstParent.setLength(0);
-                                                    firstParent.getChild(0).setPos(child.getPos()-child.getLength());
-//                                                    firstParent.getChild(0).setLength(0);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    ITree child = t.getParent().getChild(childPosition);
-                                    if(child.getType() ==61){ //condition
-                                        t.setPos(child.getPos()-1);
-                                    }
-
-                            }
-                        }
-
-                    }
-                }
+//                if (t.getPos() == ITree.NO_VALUE ) {
+//
+////                    if(t.getType() == 7){
+////                        ITree parent = t.getParent();
+////                        if(parent.getType() == 22){
+////                            ITree child = parent.getParent().getChild(0);
+////                            if (child.getType() == 22){
+////                                ITree child1 = child.getChild(0);
+////                                if(child1.getType() == 7){
+////                                    t.setLabel(child1.getLabel());
+////                                    t.setPos(child1.getPos());
+////                                }
+////                            }
+////                        }
+////                    }
+//
+//                    int childPosition = t.getParent().getChildPosition(t);
+//                    if(childPosition != 0){
+//                        ITree child = t.getParent().getChild(childPosition - 1);
+//                        t.setPos(child.getPos()+child.getLength()+1);
+//
+//                    }else{
+//                        if(t.getParent().getChildren().size() > 1){
+//                            ITree child = t.getParent().getChild(childPosition + 1);
+//                            t.setPos(child.getPos()-1);
+//                        }else{
+//
+//                            /*
+//                            (34 "if" "" ((183 -1)) (
+//                                (8 "condition" "i != j" ((186 6)) (
+//                                    (20 "expr" "i != j" ((187 6)) (
+//                                        (6 "name" "i" ((187 1)) ()
+//                                        (4 "operator" "!=" ((188 2)) ()
+//                                        (6 "name" "j" ((190 1)) ()))
+//                                (36 "then" "" () (
+//                                    (9 "block" "" () ()))
+//                                    * */
+////                            if (t.getPos() == ITree.NO_VALUE ){
+////
+////                                    ITree firstParent = t.getParent();
+////                                    if(firstParent.getType() == 36){//then
+////                                        ITree secondParent = firstParent.getParent();
+////                                        if(secondParent.getType() == 34){//
+////                                            if(secondParent.getChildren().size()>1){
+////                                                int childPosition1 = secondParent.getChildPosition(firstParent);
+////                                                if (childPosition1 !=0){
+////                                                    ITree child = secondParent.getChild(childPosition1 - 1);
+////                                                    firstParent.setPos(child.getPos()+child.getLength());
+//////                                                    firstParent.setLength(0);
+////                                                    firstParent.getChild(0).setPos(child.getPos()+child.getLength());
+//////                                                    firstParent.getChild(0).setLength(0);
+////                                                }
+////                                            }
+////                                        }
+////                                    }else if(firstParent.getType() == 55){//sizeof
+////                                        ITree secondParent = firstParent.getParent();
+////                                        if(secondParent.getType() == 20){//
+////                                            if(secondParent.getChildren().size()>1){
+////                                                int childPosition1 = secondParent.getChildPosition(firstParent);
+////                                                if (childPosition1 ==0){
+////                                                    ITree child = secondParent.getChild(childPosition1 + 1);
+////                                                    firstParent.setPos(child.getPos()-child.getLength());
+//////                                                    firstParent.setLength(0);
+////                                                    firstParent.getChild(0).setPos(child.getPos()-child.getLength());
+//////                                                    firstParent.getChild(0).setLength(0);
+////                                                }
+////                                            }
+////                                        }
+////                                    }
+////                                    ITree child = t.getParent().getChild(childPosition);
+////                                    if(child.getType() ==61){ //condition
+////                                        t.setPos(child.getPos()-1);
+////                                    }
+////
+////                            }
+//                        }
+//
+//                    }
+//                }
 
             }
             t.setLength(t.getLabel().length());
@@ -310,9 +311,12 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
     }
 
     private void setPos(ITree t, StartElement e) {
-        if (e.getAttributeByName(LINE) != null) {
-            int line = Integer.parseInt(e.getAttributeByName(LINE).getValue());
-            int column = Integer.parseInt(e.getAttributeByName(COLUMN).getValue());
+        if (e.getAttributeByName(START) != null) {
+            String[] start = e.getAttributeByName(START).getValue().split(":");
+
+            int line = Integer.parseInt(start[0]);
+            int column = Integer.parseInt(start[1]);
+//            int column = Integer.parseInt(e.getAttributeByName(END).getValue());
             t.setPos(lr.positionFor(line, column));
         }
     }
@@ -320,11 +324,11 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
     private void setLength(ITree t, StartElement e) {
         if (t.getPos() == -1)
             return;
-        if (e.getAttributeByName(LINE) != null) {
-            int line = Integer.parseInt(e.getAttributeByName(LINE).getValue());
-            int column = Integer.parseInt(e.getAttributeByName(COLUMN).getValue());
-            t.setLength(lr.positionFor(line, column) - t.getPos() + 1);
-        }
+//        if (e.getAttributeByName(LINE) != null) {
+//            int line = Integer.parseInt(e.getAttributeByName(LINE).getValue());
+//            int column = Integer.parseInt(e.getAttributeByName(COLUMN).getValue());
+//            t.setLength(lr.positionFor(line, column) - t.getPos() + 1);
+//        }
     }
 
     public String getXml(Reader r) throws IOException {
