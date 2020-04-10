@@ -70,13 +70,12 @@ public class TestPredefinedCases {
                 "------------DEL continue@@continue; @AT@ 62 @LENGTH@ 9\n");
 
     }
-    //TODO
-//    @Ignore
+
     @Test
     public void testWhileCase1() throws IOException {
         Properties appProps = new Properties();
         appProps.load(new FileInputStream("src/main/resource/app.properties"));
-        String srcMLPath = appProps.getProperty("srcMLPath", "FORKJOIN");
+        String srcMLPath = "";
 
         File revFile = new File("src/main/resource/testFiles/while_example_1.c");
         File prevFile = new File("src/main/resource/testFiles/prev_while_example_1.c");
@@ -84,7 +83,7 @@ public class TestPredefinedCases {
 
         EDiffHunkParser parser = new EDiffHunkParser();
 
-        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, "",false);
+        List<HierarchicalActionSet> hierarchicalActionSets = parser.parseChangedSourceCodeWithGumTree2(prevFile, revFile, srcMLPath,false);
         hierarchicalActionSets.size();
         Assert.assertEquals(hierarchicalActionSets.size(), 1);
 
@@ -106,7 +105,7 @@ public class TestPredefinedCases {
         public void testIFRetrun() throws IOException {
             Properties appProps = new Properties();
             appProps.load(new FileInputStream("src/main/resource/app.properties"));
-            String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
+            String srcMLPath = "";
 
             File revFile = new File("src/main/resource/testFiles/if_return.c");
             File prevFile =new File("src/main/resource/testFiles/prev_if_return.c");
@@ -144,7 +143,7 @@ public class TestPredefinedCases {
         public void testIfElse() throws IOException {
             Properties appProps = new Properties();
             appProps.load(new FileInputStream("src/main/resource/app.properties"));
-            String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
+            String srcMLPath = "";
 
             File revFile = new File("src/main/resource/testFiles/if_else.c");
             File prevFile =new File("src/main/resource/testFiles/prev_if_else.c");
@@ -167,7 +166,7 @@ public class TestPredefinedCases {
     public void testStruct() throws IOException {
         Properties appProps = new Properties();
         appProps.load(new FileInputStream("src/main/resource/app.properties"));
-        String srcMLPath = appProps.getProperty("srcMLPath","FORKJOIN");
+        String srcMLPath = "";
 
         File revFile = new File("src/main/resource/testFiles/struct.c");
         File prevFile =new File("src/main/resource/testFiles/prev_struct.c");
