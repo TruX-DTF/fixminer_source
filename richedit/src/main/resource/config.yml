@@ -1,0 +1,28 @@
+java:
+    8home:  /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
+spinfer:
+    home:   /Users/anilkoyuncu/projects/fixminer/spinfer/spinfer.native
+coccinelle:
+    home:   /Users/anilkoyuncu/projects/fixminer/spinfer/statics
+
+dataset:
+#    home:   /Users/anilkoyuncu/projects/fixminer/fixminer-core/python/data/gumInputLinux
+    inputPath : /Users/anilkoyuncu/projects/test/fixminer-data/patches
+    repo:   /Users/anilkoyuncu/projects/test/fixminer-data/datasets
+
+fixminer:
+    projectType : java
+    datapath: /Users/anilkoyuncu/projects/test/fixminer-data/
+
+
+    pjName : patches
+    portDumps : 6399
+    numOfWorkers : 14
+    hostname : localhost
+    hunkLimit : 2
+    patchSize : 50
+
+    projectList : spring-shell,fuse,metadata,commons-codec,commons-collections,commons-compress,commons-configuration,commons-crypto,commons-csv
+    inputPath : /Users/anilkoyuncu/projects/test/fixminer-data/patches
+    redisPath : /Users/anilkoyuncu/projects/release/test/fixminer_source/python/data/redis
+    srcMLPath :  /usr/local/bin/srcml

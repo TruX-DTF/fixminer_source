@@ -69,11 +69,11 @@ public class EDiffParser extends Parser {
 			if (isJava){
 				allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
 			}else{
-				HashSet<Integer> removeType = new HashSet<Integer>(Arrays.asList(171,172,99,100,101,102));
-				boolean b = gumTreeResults.stream().anyMatch(p -> removeType.contains(p.getNode().getType()));
-				if(b){
-					return actionSets;
-				}
+//				HashSet<Integer> removeType = new HashSet<Integer>(Arrays.asList(171,172,99,100,101,102));
+//				boolean b = gumTreeResults.stream().anyMatch(p -> removeType.contains(p.getNode().getType()));
+//				if(b){
+//					return actionSets;
+//				}
 				allActionSets = new HierarchicalRegrouperForC().regroupGumTreeResults(gumTreeResults);
 			}
 

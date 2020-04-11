@@ -104,7 +104,7 @@ def getMapping(pathMapping,x):
 
 
 
-def cluster(clusterPath,pairsPath, level,rootType):
+def cluster(clusterPath,pairsPath, level):
 
         try:
             # logging.info('Parameters: \ninputPath %s \nclusterPath %s \nport %s \nmatchesName %s \nthreshold %s \n%indexFile',inputPath,clusterPath,str(port),matchesName,str(threshold),indexFile)

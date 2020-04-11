@@ -31,9 +31,12 @@ public class GumTreeComparer {
 		} catch (Exception e) {
 			if (oldTree == null) {
 				log.info("Null GumTree of Previous File: " + prevFile.getPath());
+				throw new NullPointerException(prevFile.getPath());
 			} else if (newTree == null) {
 				log.info("Null GumTree of Revised File: " + revFile.getPath());
+				throw new NullPointerException(revFile.getPath());
 			}
+
 		}
 		if (oldTree != null && newTree != null) {
 			Matcher m = Matchers.getInstance().getMatcher(oldTree, newTree);

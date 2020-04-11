@@ -8,6 +8,8 @@ import edu.lu.uni.serval.utils.ListSorter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Regroup GumTree results to a hierarchical construction.
@@ -21,10 +23,8 @@ public class HierarchicalRegrouper {
 		/*
 		 * First, sort actions by their positions.
 		 */
-//		List<Action> actions = new ListSorter<Action>(actionsArgu).sortAscending();
-//		if (actions == null) {
-//			actions = actionsArgu;
-//		}
+		actions = new ListSorter<Action>(actions).sortAscending();
+
 		
 		/*
 		 * Second, group actions by their positions.
@@ -65,9 +65,111 @@ public class HierarchicalRegrouper {
 			}
 		}
 
-		return reActionSets;
+		List<HierarchicalActionSet> reActionSets1 = new ArrayList<>();
+
+		ITree movDelNode = null;
+
+		for(HierarchicalActionSet a:reActionSets){
+			a = removeBlocks(a);
+
+			HierarchicalActionSet hierarchicalActionSet1 = postOrder(a).stream().collect(Collectors.toList()).get(0);
+			Action action = hierarchicalActionSet1.getAction();
+			if (hierarchicalActionSet1.getSubActions().size() == 0 && action instanceof Update){
+				List<ITree> collect = hierarchicalActionSet1.getNode().getChildren().stream().filter(x -> x.getType() == 14).collect(Collectors.toList());
+//				if(hierarchicalActionSet1.getNode().getChildren().size() == 1){
+				if(collect.size() == 1){
+//					if(hierarchicalActionSet1.getNode().getChild(0).getType() == 14){
+					if(collect.get(0).getType() == 14){
+						continue;
+					}
+				}
+			}
+			else{
+				Predicate<HierarchicalActionSet> predicate = x->x.getAction() instanceof Move;
+				List<HierarchicalActionSet> collect = postOrder(a).stream().filter(predicate).collect(Collectors.toList());
+				if(collect.size() == 1){
+					HierarchicalActionSet hierarchicalActionSet = collect.get(0);
+					movDelNode = hierarchicalActionSet.getNode().getParent();
+					reActionSets1.add(a);
+					continue;
+				}
+
+			}
+			if( movDelNode != null){
+				if(a.getNode().equals(movDelNode)){
+					continue;
+				}
+			}
+			reActionSets1.add(a);
+
+		}
+
+
+
+		return reActionSets1;
+//		return reActionSets;
 	}
 
+
+	private boolean isStatement(HierarchicalActionSet actSet){
+		String astNodeType = actSet.getAstNodeType();
+		if (astNodeType.endsWith("TypeDeclaration") || astNodeType.endsWith("FieldDeclaration")  || astNodeType.endsWith("EnumDeclaration") ||
+				astNodeType.endsWith("MethodDeclaration") || astNodeType.endsWith("Statement") ||
+				astNodeType.endsWith("ConstructorInvocation") || astNodeType.endsWith("CatchClause") || astNodeType.endsWith("SwitchCase")) {
+			return true;
+		}
+		return false;
+	}
+	Predicate<HierarchicalActionSet> predicate = x-> isStatement(x);
+
+	private HierarchicalActionSet removeBlocks(HierarchicalActionSet actionSet){
+		List<HierarchicalActionSet> subActions = actionSet.getSubActions();
+
+
+
+		Action action = actionSet.getAction();
+		if (subActions.size() == 1){
+			HierarchicalActionSet subaction = subActions.get(0);
+
+			List<HierarchicalActionSet> collect = postOrder(subaction).stream().filter(predicate).collect(Collectors.toList());
+			if(collect.size() == 0){
+				return actionSet;
+			}
+			boolean b = collect.stream().anyMatch(p -> p.getAction().getName().equals(subActions.get(0).getAction().getName()));
+			if(!b){
+				return actionSet;
+			}
+			Action action1 = subaction.getAction();
+			if(action.getClass().equals(action1.getClass()) && action.getName().equals("UPD")) {
+				subaction.setParent(null);
+				return removeBlocks(subaction);
+
+			}
+		}
+		return actionSet;
+
+	}
+
+	public List<HierarchicalActionSet> postOrder(HierarchicalActionSet a) {
+		List<HierarchicalActionSet> trees = new ArrayList<>();
+		getAllSubActions(a, trees);
+		return trees;
+	}
+	private void getAllSubActions(HierarchicalActionSet a,List<HierarchicalActionSet> as) {
+
+		List<HierarchicalActionSet> subActions = a.getSubActions();
+		if (subActions.size() != 0){
+			for (HierarchicalActionSet s : subActions) {
+				getAllSubActions(s, as);
+			}
+
+		}
+		as.add(a);
+//		List<HierarchicalActionSet> b = new ArrayList<HierarchicalActionSet>();
+//		for (HierarchicalActionSet child: this.getSubActions())
+//			b.add(child);
+//		return b;
+	}
 	private HierarchicalActionSet createActionSet(Action act, Action parentAct, HierarchicalActionSet parent) {
 		HierarchicalActionSet actionSet = new HierarchicalActionSet();
 		actionSet.setAction(act);
@@ -129,19 +231,19 @@ public class HierarchicalRegrouper {
 	}
 
 	private boolean isPossibileSubAction(Action parent, Action child) {
-		if ((parent instanceof Update && !(child instanceof Addition))
-				|| (parent instanceof Delete && child instanceof Delete)
-				|| (parent instanceof Insert && (child instanceof Insert))) {
-				int startPosition = child.getPosition();
-				int length = child.getLength();
-				int startPosition2 = parent.getPosition();
-				int length2 = parent.getLength();
-				
-				if (!(startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2)) {
-					// when act is not the sub-set of action.
-					return false;
-				}
-		}
+//		if ((parent instanceof Update && !(child instanceof Addition))
+//				|| (parent instanceof Delete && child instanceof Delete)
+//				|| (parent instanceof Insert && (child instanceof Insert))) {
+//				int startPosition = child.getPosition();
+//				int length = child.getLength();
+//				int startPosition2 = parent.getPosition();
+//				int length2 = parent.getLength();
+//
+//				if (!(startPosition2 <= startPosition && startPosition + length <= startPosition2 + length2)) {
+//					// when act is not the sub-set of action.
+//					return false;
+//				}
+//		}
 		return true;
 	}
 
@@ -214,9 +316,9 @@ public class HierarchicalRegrouper {
 	}
 	
 	private boolean areRelatedActions(Action parent, Action child) {
-		if (parent instanceof Move && !(child instanceof Move)) {// If action is MOV, its children must be MOV.
-			return false;
-		}
+//		if (parent instanceof Move && !(child instanceof Move)) {// If action is MOV, its children must be MOV.
+//			return false;
+//		}
 		if (parent instanceof Delete && !(child instanceof Delete)) {// If action is INS, its children must be MOV or INS.
 			return false;
 		}

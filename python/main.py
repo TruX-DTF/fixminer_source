@@ -15,7 +15,7 @@ if __name__ == '__main__':
         setEnv(args)
 
         job = args.job
-        job = "cluster"
+        # job = "cluster"
         ROOT_DIR = os.environ["ROOT_DIR"]
         REPO_PATH = os.environ["REPO_PATH"]
         CODE_PATH = os.environ["CODE_PATH"]
@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
 
         # subject = 'ALL'
-        rootType = 'if'
+        # rootType = 'if'
 
         print(job)
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
         elif job =='dataset4c':
             from otherDatasets import core
             core()
-        elif job =='richEditScript':
+        elif job =='richedit':
             dbDir = join(DATA_PATH, 'redis')
             stopDB(dbDir, REDIS_PORT)
             cmd = "JAVA_HOME='" + jdk8 + "' java  -jar " + join(Path(ROOT_DIR).parent, 'target','FixPatternMiner-1.0.0-jar-with-dependencies.jar') + " " + args.prop + " RICHEDITSCRIPT "
@@ -71,7 +71,7 @@ if __name__ == '__main__':
         elif job =='compare':
              # cmd = "mvn exec:java -f '/data/fixminer_source/' -Dexec.mainClass='edu.lu.uni.serval.richedit.akka.compare.CompareTrees' -Dexec.args='"+ " shape " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl0-gumInputALL.rdb /data/richedit-core/python/data/richEditScript'"
             cmd = "JAVA_HOME='" + jdk8 + "' java  -jar " + join(Path(ROOT_DIR).parent, 'target','FixPatternMiner-1.0.0-jar-with-dependencies.jar') + " " + args.prop + " COMPARE "
-            output = shellCallTemplate(cmd)
+            output = shellCallTemplate4jar(cmd)
             logging.info(output)
 
         # elif job == 'clusterAdditional':
@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
             dbDir = join(DATA_PATH, 'redis')
             startDB(dbDir, "6399", PROJECT_TYPE)
-            cluster(join(DATA_PATH,'shapes'),join(DATA_PATH, 'pairs'),'shapes',rootType)
+            cluster(join(DATA_PATH,'shapes'),join(DATA_PATH, 'pairs'),'shapes')
 
         # elif job =='actionSI':
         #     from pairs import actionPairs

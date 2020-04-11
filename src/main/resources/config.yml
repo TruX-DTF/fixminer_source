@@ -19,10 +19,10 @@ fixminer:
     portDumps : 6399
     numOfWorkers : 14
     hostname : localhost
-    hunkLimit : 10
+    hunkLimit : 2
     patchSize : 50
 
-    projectList : spring-shell,fuse,metadata
+    projectList : spring-shell,fuse,metadata,commons-codec,commons-collections,commons-compress,commons-configuration,commons-crypto,commons-csv
     inputPath : /Users/anilkoyuncu/projects/test/fixminer-data/patches
     redisPath : /Users/anilkoyuncu/projects/release/test/fixminer_source/python/data/redis
     srcMLPath :  /usr/local/bin/srcml

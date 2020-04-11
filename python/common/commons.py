@@ -178,22 +178,22 @@ def getRun():
 
 
 
-# def shellCallTemplate(cmd,enc='utf-8'):
-#     process = subprocess.Popen(cmd,
-#                                stdout=subprocess.PIPE,stderr=PIPE, shell=True,encoding=enc,
-#                                universal_newlines=True)
-#
-#     while True:
-#         output = process.stdout.readline()
-#         print(output.strip())
-#         # Do something else
-#         return_code = process.poll()
-#         if return_code is not None:
-#             print('RETURN CODE', return_code)
-#             # Process has finished, read rest of the output
-#             for output in process.stdout.readlines():
-#                 print(output.strip())
-#             break
+def shellCallTemplate4jar(cmd,enc='utf-8'):
+    process = subprocess.Popen(cmd,
+                               stdout=subprocess.PIPE,stderr=PIPE, shell=True,encoding=enc,
+                               universal_newlines=True)
+
+    while True:
+        output = process.stdout.readline()
+        print(output.strip())
+        # Do something else
+        return_code = process.poll()
+        if return_code is not None:
+            print('RETURN CODE', return_code)
+            # Process has finished, read rest of the output
+            for output in process.stdout.readlines():
+                print(output.strip())
+            break
 
 def shellCallTemplate(cmd,enc='utf-8'):
     try:

@@ -18,7 +18,7 @@ public class GumTreeGenerator {
 		RAW_TOKEN,
 	}
 	
-	public ITree generateITreeForJavaFile(File javaFile, GumTreeType type) {
+	public ITree generateITreeForJavaFile(File javaFile, GumTreeType type) throws IOException {
 		ITree gumTree = null;
 		try {
 			TreeContext tc = null;
@@ -37,7 +37,8 @@ public class GumTreeGenerator {
 				gumTree = tc.getRoot();
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new IOException(e);
+//			e.printStackTrace();
 		}
 		return gumTree;
 	}

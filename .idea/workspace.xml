@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75ef5724-93bc-4ed4-82b2-ff12411188dc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/com/github/gumtreediff/gen/jdt/AbstractJdtVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/com/github/gumtreediff/gen/jdt/AbstractJdtVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gen/jdt/exp/ExpJdtVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gen/jdt/exp/ExpJdtVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeComparer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeComparer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/abstractPatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/abstractPatch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/bugReport.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/common/commons.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/common/commons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/data/FixPatternMiner-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/data/FixPatternMiner-1.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/data/bugReports.7z.001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/data/bugReports.7z.002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/data/bugReports.7z.003" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/data/gumInput.7z.001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,29 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/richedit/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="237" column="21" selection-start-line="237" selection-start-column="21" selection-end-line="237" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gumtree/core/src/test/java/com/github/gumtreediff/test/TestGumtreeMatcher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state relative-caret-position="192">
+              <caret line="592" column="27" selection-start-line="592" selection-start-column="27" selection-end-line="592" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,25 +55,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gumtree/core/src/test/java/com/github/gumtreediff/test/TestActionIo.java">
+        <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/com/github/gumtreediff/gen/jdt/AbstractJdtTreeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="480">
-                <caret line="227" selection-start-line="227" selection-end-line="227" />
-                <folding>
-                  <element signature="e#3#21#0" expanded="true" />
-                </folding>
-              </first_editor>
-              <second_editor />
+            <state relative-caret-position="375">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
             </state>
           </provider>
         </entry>
@@ -81,38 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-              <folding>
-                <element signature="e#2020#2029#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-998">
-              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.travis.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/GumTreeCComparer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+            <state relative-caret-position="168">
+              <caret line="56" column="26" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -120,46 +75,98 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeComparer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="19" column="19" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="28" />
+            <state relative-caret-position="117">
+              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalActionSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1273">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="111" selection-start-line="111" selection-end-line="111" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouperForC.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="91" column="12" selection-start-line="91" selection-start-column="12" selection-end-line="96" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/ListSorter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/java/lang/Comparable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="509">
+              <caret line="135" column="15" selection-start-line="135" selection-start-column="15" selection-end-line="135" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>stopD</find>
-      <find>'shapes'</find>
-      <find>TestTreeUtils</find>
-      <find>return</find>
-      <find>expr_stm</find>
-      <find>break</find>
-      <find>struct</find>
-      <find>enum_de</find>
-      <find>funct</find>
-      <find>else</find>
-      <find>then</find>
-      <find>init</find>
-      <find>condition</find>
-      <find>specifier</find>
-      <find>parameter_list</find>
-      <find>parameter</find>
-      <find>argument</find>
-      <find>call</find>
-      <find>throw</find>
-      <find>macro</find>
-      <find>marker</find>
-      <find>import</find>
-      <find>selector</find>
-      <find>setPos</find>
-      <find>parseChangedSourceCodeWithGumTree2</find>
-      <find>compareCFilesWithGumTree</find>
-      <find>TestGumtreeMatcher</find>
-      <find>project.build.sourceEncoding</find>
-      <find>com.puppycrawl.tools</find>
-      <find>com.sparkjava</find>
+      <find>Ifst</find>
+      <find>push(8</find>
+      <find>Method</find>
+      <find>body</find>
+      <find>push(8,</find>
+      <find>catch</find>
+      <find>Body</find>
+      <find>ody</find>
+      <find>Body:&quot;</find>
+      <find>catchbody</find>
+      <find>Body:</find>
+      <find>CreateJCloudsContainerMetadata</find>
+      <find>thread.sleep</find>
+      <find>for (</find>
+      <find>String pa : publicAddresses</find>
+      <find>Assignment</find>
+      <find>forst</find>
+      <find>visitBody</find>
+      <find>postOr</find>
+      <find>enha</find>
+      <find>for</find>
+      <find>while</find>
+      <find>setHasAcessDate</find>
+      <find>SwitchStatement</find>
+      <find>block</find>
+      <find>&quot;Block&quot;,</find>
+      <find>switch</find>
+      <find>case</find>
+      <find>SynchronizedStatement</find>
+      <find>todo</find>
     </findStrings>
     <replaceStrings>
       <replace>fixminer</replace>
@@ -171,17 +178,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gumtree/gen.srcml/pom.xml" />
-        <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/Launcher2.java" />
-        <option value="$PROJECT_DIR$/python/data/dataset.csv" />
-        <option value="$PROJECT_DIR$/python/wmp00080.uni.lux.config.yml" />
-        <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/fixminer/jobs/EnhancedASTDiff.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/fixminer/Launcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval/richedit/Launcher.java" />
         <option value="$PROJECT_DIR$/gumtree/gen.jdt/pom.xml" />
         <option value="$PROJECT_DIR$/gumtree/core/pom.xml" />
         <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/FileHelper.java" />
-        <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java" />
         <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffWorker.java" />
         <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/EDiffHelper.java" />
         <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/HunkParserTest.java" />
@@ -190,12 +191,9 @@
         <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/Launcher.java" />
         <option value="$PROJECT_DIR$/python/data/callJava.sh" />
         <option value="$PROJECT_DIR$/python/data/redis/stopServer.sh" />
-        <option value="$PROJECT_DIR$/python/common/commons.py" />
         <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/jobs/EnhancedASTDiff.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
         <option value="$PROJECT_DIR$/python/javaDS.py" />
         <option value="$PROJECT_DIR$/python/otherDatasets.py" />
-        <option value="$PROJECT_DIR$/python/main.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/gumtree/core/src/test/java/com/github/gumtreediff/test/TreeLoader.java" />
         <option value="$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/io/TreeIoUtils.java" />
@@ -205,7 +203,6 @@
         <option value="$PROJECT_DIR$/gumtree/gen.srcml/src/test/java/com/github/gumtreediff/gen/srcml/TestSrcmlCsGenerator.java" />
         <option value="$PROJECT_DIR$/gumtree/gen.srcml/src/test/java/com/github/gumtreediff/gen/srcml/TestSrcmlJavaGenerator.java" />
         <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/FixPatternMiner/BaseTest.java" />
-        <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java" />
         <option value="$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java" />
         <option value="$PROJECT_DIR$/.travis_native_dependencies.sh" />
         <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouperForC.java" />
@@ -220,6 +217,18 @@
         <option value="$PROJECT_DIR$/gumtree/pom.xml" />
         <option value="$PROJECT_DIR$/gumtree/client.diff/pom.xml" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/python/abstractPatch.py" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
+        <option value="$PROJECT_DIR$/python/common/commons.py" />
+        <option value="$PROJECT_DIR$/python/main.py" />
+        <option value="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeComparer.java" />
+        <option value="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeGenerator.java" />
+        <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java" />
+        <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java" />
+        <option value="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/com/github/gumtreediff/gen/jdt/AbstractJdtVisitor.java" />
+        <option value="$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gen/jdt/exp/ExpJdtVisitor.java" />
+        <option value="$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java" />
+        <option value="$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java" />
       </list>
     </option>
   </component>
@@ -260,6 +269,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -270,25 +281,98 @@
             <path>
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
-              <item name="gumtree" type="462c0819:PsiDirectoryNode" />
+              <item name="python" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
               <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
               <item name="richedit" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="serval" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="serval" type="462c0819:PsiDirectoryNode" />
+              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="serval" type="462c0819:PsiDirectoryNode" />
+              <item name="richedit" type="462c0819:PsiDirectoryNode" />
+              <item name="ediff" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gumtree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fixminer_source" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/edu/lu/uni/serval" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/python/data" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/richedit/src/main/resource" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.38275862" />
@@ -302,6 +386,7 @@
       <recent name="edu.lu.uni.serval" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/richedit/src/main/resource" />
       <recent name="$PROJECT_DIR$/python/data" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
@@ -318,7 +403,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestPredefinedCases">
+  <component name="RunManager" selected="JUnit.TestJavaMiner">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -331,7 +416,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestInputCases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestJavaMiner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RichEdit" />
       <extension name="coverage">
         <pattern>
@@ -340,14 +425,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestInputCases" />
+      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestJavaMiner" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestIntroClass" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestJavaMiner.test_collections_3761b5_3639ab" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RichEdit" />
       <extension name="coverage">
         <pattern>
@@ -356,49 +441,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestIntroClass" />
-      <option name="METHOD_NAME" value="test_manybugs_gmp_14166_14167" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestPredefinedCases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RichEdit" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestPredefinedCases" />
-      <option name="METHOD_NAME" value="testWhileCase1" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestPredefinedCases.testIFRetrun" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RichEdit" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.lu.uni.serval.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestPredefinedCases" />
-      <option name="METHOD_NAME" value="testIFRetrun" />
+      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestJavaMiner" />
+      <option name="METHOD_NAME" value="test_collections_3761b5_3639ab" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPredefinedCases.testWhileCase1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestJavaMiner.test_collections_b6d038_4bdb89" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RichEdit" />
       <extension name="coverage">
         <pattern>
@@ -407,8 +458,42 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
-      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestPredefinedCases" />
-      <option name="METHOD_NAME" value="testWhileCase1" />
+      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestJavaMiner" />
+      <option name="METHOD_NAME" value="test_collections_b6d038_4bdb89" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJavaMiner.test_fuse_74c02c_a4658a" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RichEdit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.lu.uni.serval.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
+      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestJavaMiner" />
+      <option name="METHOD_NAME" value="test_fuse_74c02c_a4658a" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJavaMiner.test_fuse_cb3362_cfb295" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RichEdit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.lu.uni.serval.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.lu.uni.serval" />
+      <option name="MAIN_CLASS_NAME" value="edu.lu.uni.serval.TestJavaMiner" />
+      <option name="METHOD_NAME" value="test_fuse_cb3362_cfb295" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
@@ -495,19 +580,19 @@
     <list>
       <item itemvalue="Maven.FixPatternMiner [assembly:assembly]" />
       <item itemvalue="Maven.FixPatternMiner [package]" />
-      <item itemvalue="JUnit.TestIntroClass" />
-      <item itemvalue="JUnit.TestInputCases" />
-      <item itemvalue="JUnit.TestPredefinedCases.testWhileCase1" />
-      <item itemvalue="JUnit.TestPredefinedCases" />
-      <item itemvalue="JUnit.TestPredefinedCases.testIFRetrun" />
+      <item itemvalue="JUnit.TestJavaMiner.test_collections_b6d038_4bdb89" />
+      <item itemvalue="JUnit.TestJavaMiner.test_collections_3761b5_3639ab" />
+      <item itemvalue="JUnit.TestJavaMiner.test_fuse_74c02c_a4658a" />
+      <item itemvalue="JUnit.TestJavaMiner" />
+      <item itemvalue="JUnit.TestJavaMiner.test_fuse_cb3362_cfb295" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPredefinedCases" />
-        <item itemvalue="JUnit.TestPredefinedCases.testIFRetrun" />
-        <item itemvalue="JUnit.TestPredefinedCases.testWhileCase1" />
-        <item itemvalue="JUnit.TestInputCases" />
-        <item itemvalue="JUnit.TestIntroClass" />
+        <item itemvalue="JUnit.TestJavaMiner" />
+        <item itemvalue="JUnit.TestJavaMiner.test_collections_3761b5_3639ab" />
+        <item itemvalue="JUnit.TestJavaMiner.test_fuse_cb3362_cfb295" />
+        <item itemvalue="JUnit.TestJavaMiner.test_fuse_74c02c_a4658a" />
+        <item itemvalue="JUnit.TestJavaMiner.test_collections_b6d038_4bdb89" />
       </list>
     </recent_temporary>
   </component>
@@ -525,43 +610,42 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestPredefinedCases_testWhileCase1 - 2020.04.10 at 14h 41m 22s.xml">
-      <configuration name="TestPredefinedCases.testWhileCase1" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner_test_fuse_cb3362_cfb295 - 2020.04.11 at 20h 27m 52s.xml">
+      <configuration name="TestJavaMiner.test_fuse_cb3362_cfb295" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases_testWhileCase1 - 2020.04.10 at 14h 42m 14s.xml">
-      <configuration name="TestPredefinedCases.testWhileCase1" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner_test_fuse_cb3362_cfb295 - 2020.04.11 at 20h 28m 11s.xml">
+      <configuration name="TestJavaMiner.test_fuse_cb3362_cfb295" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases - 2020.04.10 at 14h 43m 29s.xml">
-      <configuration name="TestPredefinedCases" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner - 2020.04.11 at 20h 34m 25s.xml">
+      <configuration name="TestJavaMiner" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases_testIFRetrun - 2020.04.10 at 14h 44m 34s.xml">
-      <configuration name="TestPredefinedCases.testIFRetrun" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner_test_collections_3761b5_3639ab - 2020.04.11 at 20h 42m 20s.xml">
+      <configuration name="TestJavaMiner.test_collections_3761b5_3639ab" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases - 2020.04.10 at 14h 44m 41s.xml">
-      <configuration name="TestPredefinedCases" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner_test_collections_3761b5_3639ab - 2020.04.11 at 20h 42m 37s.xml">
+      <configuration name="TestJavaMiner.test_collections_3761b5_3639ab" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases - 2020.04.10 at 14h 45m 26s.xml">
-      <configuration name="TestPredefinedCases" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner - 2020.04.11 at 20h 43m 01s.xml">
+      <configuration name="TestJavaMiner" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases - 2020.04.10 at 14h 47m 11s.xml">
-      <configuration name="TestPredefinedCases" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner - 2020.04.11 at 20h 44m 33s.xml">
+      <configuration name="TestJavaMiner" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases - 2020.04.10 at 14h 47m 31s.xml">
-      <configuration name="TestPredefinedCases" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner - 2020.04.11 at 20h 45m 49s.xml">
+      <configuration name="TestJavaMiner" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases - 2020.04.10 at 14h 47m 52s.xml">
-      <configuration name="TestPredefinedCases" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner - 2020.04.11 at 20h 47m 02s.xml">
+      <configuration name="TestJavaMiner" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestPredefinedCases - 2020.04.10 at 14h 48m 13s.xml">
-      <configuration name="TestPredefinedCases" configurationId="JUnit" />
+    <history-entry file="TestJavaMiner - 2020.04.11 at 20h 48m 51s.xml">
+      <configuration name="TestJavaMiner" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49315068" visible="true" weight="0.30708182" />
-      <window_info id="Structure" order="1" sideWeight="0.5068493" side_tool="true" visible="true" weight="0.30708182" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49162862" visible="true" weight="0.31074482" />
+      <window_info id="Structure" order="1" sideWeight="0.5083714" side_tool="true" visible="true" weight="0.31074482" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -569,12 +653,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993895" weight="0.32959184" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4920635" weight="0.32959184" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4920635" visible="true" weight="0.32959184" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4981685" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.71428573" visible="true" weight="0.32959184" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.71428573" weight="0.32959184" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50183153" side_tool="true" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498779" weight="0.32959184" />
@@ -713,391 +797,235 @@
           <properties />
           <option name="timeStamp" value="46" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>19</line>
+          <properties />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java</url>
+          <line>69</line>
+          <properties />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java</url>
+          <line>72</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java</url>
+          <line>89</line>
+          <properties />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java</url>
+          <line>81</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>29</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java</url>
+          <line>108</line>
+          <properties />
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>109</line>
+          <properties />
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java</url>
+          <line>318</line>
+          <properties />
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java</url>
+          <line>88</line>
+          <properties />
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>301</line>
+          <properties />
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/com/github/gumtreediff/gen/jdt/AbstractJdtTreeGenerator.java</url>
+          <line>67</line>
+          <properties />
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gen/jdt/exp/ExpJdtVisitor.java</url>
+          <line>1134</line>
+          <properties />
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gen/jdt/exp/ExpJdtVisitor.java</url>
+          <line>1243</line>
+          <properties />
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>337</line>
+          <properties />
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>389</line>
+          <properties />
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java</url>
+          <line>97</line>
+          <properties />
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>450</line>
+          <properties />
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>461</line>
+          <properties />
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>594</line>
+          <properties />
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>619</line>
+          <properties />
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>654</line>
+          <properties />
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>746</line>
+          <properties />
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java</url>
+          <line>776</line>
+          <properties />
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>e.getAttributeByName(START).getValue().split(&quot;:&quot;)</expression-string>
+        <expression-string>((Tree)hierarchicalActionSet1.node).getChildren().stream().filter(x-&gt;x.getType() == 14).collect(Collectors.toList())</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>com.github.gumtreediff.tree.Tree</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>((Tree)hierarchicalActionSet1.node).getChildren().stream().filter(x-&gt;x.getType() == 14)</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>com.github.gumtreediff.tree.Tree</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>((Tree)hierarchicalActionSet1.node).getChildren()</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>com.github.gumtreediff.tree.Tree</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>((Tree)hierarchicalActionSet1.node).children</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>com.github.gumtreediff.tree.Tree</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>postOrder(reActionSets1.get(0)).stream().collect(Collectors.toList()).get(0)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>e.getAttributeByName(START).getValue()</expression-string>
+        <expression-string>postOrder(reActionSets1.get(0)).stream().collect(Collectors.toList()).get(0).getNode().getChild(0).getType()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>System.getProperty(&quot;gt.srcml.path&quot;, &quot;srcml&quot;);</expression-string>
+        <expression-string>postOrder(reActionSets1.get(0)).stream().collect(Collectors.toList()).get(0).getNode()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>!SRCML_CMD.equals(&quot;&quot;)</expression-string>
+        <expression-string>postOrder(reActionSets1.get(0)).stream().collect(Collectors.toList())</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>SRCML_CMD.equals(&quot;&quot;)</expression-string>
+        <expression-string>postOrder(reActionSets1.get(0)).stream().filter(x-&gt;isStatement(x)).collect(Collectors.toList())</expression-string>
         <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Integer.parseInt(s.getAttributeByName(TYPE).getValue());</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>System.class.getResourceAsStream(name)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>str(cfg['fixminer']['portDumps'])</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>cfg['fixminer']['portDumps']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>os.environ[&quot;REDIS_PORT&quot;] = cfg['fixminer']['portDumps']</expression-string>
-        <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/python/common/commons.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="532" selection-start-line="532" selection-end-line="532" />
-          <folding>
-            <element signature="e#1#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/python/filterBugFixingCommits.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/python/commitCollector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-578">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/python/otherDatasets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="280" column="17" selection-start-line="280" selection-start-column="17" selection-end-line="280" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/python/javaDS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/python/app.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9913" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/python/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/runners/ParentRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="328" selection-start-line="328" selection-end-line="328" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/test/java/com/github/gumtreediff/test/TestTreeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/tree/TreeContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="274" selection-start-line="274" selection-end-line="274" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/target/test-classes/Dummy_v0.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/java/io/InputStreamReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="70" column="11" selection-start-line="70" selection-start-column="11" selection-end-line="70" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/io/CNodeMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/io/TreeIoUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="676" selection-start-line="676" selection-end-line="676" />
-          <folding>
-            <element signature="e#1836#1837#0" expanded="true" />
-            <element signature="e#1885#1886#0" expanded="true" />
-            <element signature="e#21613#21614#0" expanded="true" />
-            <element signature="e#21679#21680#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/test/java/com/github/gumtreediff/test/TreeLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="e#1908#1909#0" expanded="true" />
-            <element signature="e#1962#1963#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/test/java/com/github/gumtreediff/test/TestActionGenerator.java">
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/test/java/com/github/gumtreediff/test/TestActionIo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="35" column="18" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/test/java/com/github/gumtreediff/gen/srcml/TestSrcmlCGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="28" selection-start-line="28" selection-end-line="29" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/test/java/com/github/gumtreediff/gen/srcml/TestSrcmlCppGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/test/java/com/github/gumtreediff/gen/srcml/TestSrcmlCsGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/test/java/com/github/gumtreediff/gen/srcml/TestSrcmlJavaGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/PoolBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/HunkParserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/gen/TreeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis_native_dependencies.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="48" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestInputCases.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="1212" column="16" selection-start-line="1212" selection-start-column="16" selection-end-line="1212" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestIntroClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3698">
-          <caret line="163" selection-start-line="163" selection-end-line="163" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestRealCases.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1816">
-          <caret line="441" selection-start-line="441" selection-end-line="441" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/NodeMap_new.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3267">
-          <caret line="225" column="24" lean-forward="true" selection-start-line="225" selection-start-column="24" selection-end-line="225" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/tree/Tree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
-          <folding>
-            <element signature="e#3143#3144#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/tree/ITree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="166" column="9" selection-start-line="166" selection-start-column="9" selection-end-line="166" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="164" selection-start-line="164" selection-end-line="164" />
-          <folding>
-            <element signature="e#16976#16977#0" expanded="true" />
-            <element signature="e#17044#17045#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouperForC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/resource/testFiles/if_else.c">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/resource/testFiles/prev_if_else.c">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/resource/testFiles/while_example_1.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffHunkParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="32" column="71" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/SrcmlCTreeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
-          <folding>
-            <element signature="e#1559#1560#0" expanded="true" />
-            <element signature="e#1585#1586#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/GumTreeCComparer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-          <folding>
-            <element signature="e#2020#2029#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeComparer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1118,6 +1046,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestPredefinedCases.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-998">
@@ -1132,35 +1067,423 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/pom.xml">
+    <entry file="file://$PROJECT_DIR$/python/abstractPatch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="146" column="31" selection-start-line="146" selection-start-column="31" selection-end-line="146" selection-end-column="31" />
+        <state relative-caret-position="87">
+          <caret line="106" column="40" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gumtree/core/src/test/java/com/github/gumtreediff/test/TestActionIo.java">
+    <entry file="file://$PROJECT_DIR$/python/data/datasets.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/python/data/dataset.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="11" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/python/common/commons.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="180" column="24" selection-start-line="180" selection-start-column="24" selection-end-line="180" selection-end-column="24" />
+          <folding>
+            <element signature="e#1#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffHunkParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestInputCases.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="1244" column="20" selection-start-line="1237" selection-start-column="8" selection-end-line="1244" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/resource/config.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/Launcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="60" column="81" selection-start-line="60" selection-start-column="81" selection-end-line="60" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/GumTreeCComparer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/gen/TreeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.12.2.v20161117-1814/org.eclipse.jdt.core-3.12.2.v20161117-1814-sources.jar!/org/eclipse/jdt/core/dom/ASTParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="804" column="19" selection-start-line="804" selection-start-column="19" selection-end-line="804" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gen/jdt/exp/ExpJdtTreeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestIntroClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.srcml/src/main/java/com/github/gumtreediff/gen/srcml/AbstractSrcmlTreeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="160" column="76" selection-start-line="160" selection-start-column="59" selection-end-line="160" selection-end-column="76" />
+          <folding>
+            <element signature="e#16934#16935#0" expanded="true" />
+            <element signature="e#16976#16977#0" expanded="true" />
+            <element signature="e#17012#17013#0" expanded="true" />
+            <element signature="e#17044#17045#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/tree/TreeContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.12.2.v20161117-1814/org.eclipse.jdt.core-3.12.2.v20161117-1814-sources.jar!/org/eclipse/jdt/core/dom/ASTNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="2703" column="22" selection-start-line="2703" selection-start-column="22" selection-end-line="2703" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.12.2.v20161117-1814/org.eclipse.jdt.core-3.12.2.v20161117-1814-sources.jar!/org/eclipse/jdt/core/dom/AnonymousClassDeclaration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/actions/model/Move.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="480">
-            <caret line="227" selection-start-line="227" selection-end-line="227" />
-            <folding>
-              <element signature="e#3#21#0" expanded="true" />
-            </folding>
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/actions/model/Delete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
       </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="120" column="133" selection-start-line="120" selection-start-column="133" selection-end-line="120" selection-end-column="133" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/actions/model/Insert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/actions/model/Update.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/actions/model/Addition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.12.2.v20161117-1814/org.eclipse.jdt.core-3.12.2.v20161117-1814-sources.jar!/org/eclipse/jdt/core/dom/TryStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="243" selection-start-line="243" selection-end-line="243" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.12.2.v20161117-1814/org.eclipse.jdt.core-3.12.2.v20161117-1814-sources.jar!/org/eclipse/jdt/core/dom/IfStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/com/github/gumtreediff/gen/jdt/AbstractJdtVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="58" column="41" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/com/github/gumtreediff/gen/jdt/cd/CdJdtVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="753">
+          <caret line="658" selection-start-line="658" selection-end-line="658" />
+          <folding>
+            <element signature="e#0#17109#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1382#1409#0" expanded="true" />
+            <element signature="e#1757#1758#0" expanded="true" />
+            <element signature="e#1779#1780#0" expanded="true" />
+            <element signature="e#1786#1816#0" expanded="true" />
+            <element signature="e#3361#3391#0" expanded="true" />
+            <element signature="e#4593#4594#0" expanded="true" />
+            <element signature="e#4618#4619#0" expanded="true" />
+            <element signature="e#4625#4655#0" expanded="true" />
+            <element signature="e#4952#4953#0" expanded="true" />
+            <element signature="e#4977#4978#0" expanded="true" />
+            <element signature="e#5340#5341#0" expanded="true" />
+            <element signature="e#5365#5366#0" expanded="true" />
+            <element signature="e#5544#5545#0" expanded="true" />
+            <element signature="e#5569#5570#0" expanded="true" />
+            <element signature="e#5926#5927#0" expanded="true" />
+            <element signature="e#5951#5952#0" expanded="true" />
+            <element signature="e#6325#6326#0" expanded="true" />
+            <element signature="e#6350#6351#0" expanded="true" />
+            <element signature="e#6357#6387#0" expanded="true" />
+            <element signature="e#7410#7411#0" expanded="true" />
+            <element signature="e#7435#7436#0" expanded="true" />
+            <element signature="e#7865#7866#0" expanded="true" />
+            <element signature="e#7890#7891#0" expanded="true" />
+            <element signature="e#7897#7927#0" expanded="true" />
+            <element signature="e#8179#8180#0" expanded="true" />
+            <element signature="e#8204#8205#0" expanded="true" />
+            <element signature="e#8211#8241#0" expanded="true" />
+            <element signature="e#8618#8619#0" expanded="true" />
+            <element signature="e#8643#8644#0" expanded="true" />
+            <element signature="e#9012#9013#0" expanded="true" />
+            <element signature="e#9037#9038#0" expanded="true" />
+            <element signature="e#9283#9284#0" expanded="true" />
+            <element signature="e#9308#9309#0" expanded="true" />
+            <element signature="e#10741#10742#0" expanded="true" />
+            <element signature="e#10766#10767#0" expanded="true" />
+            <element signature="e#11003#11004#0" expanded="true" />
+            <element signature="e#11028#11029#0" expanded="true" />
+            <element signature="e#11342#11343#0" expanded="true" />
+            <element signature="e#11367#11368#0" expanded="true" />
+            <element signature="e#11576#11577#0" expanded="true" />
+            <element signature="e#11601#11602#0" expanded="true" />
+            <element signature="e#11844#11845#0" expanded="true" />
+            <element signature="e#11869#11870#0" expanded="true" />
+            <element signature="e#12073#12074#0" expanded="true" />
+            <element signature="e#12098#12099#0" expanded="true" />
+            <element signature="e#12280#12281#0" expanded="true" />
+            <element signature="e#12305#12306#0" expanded="true" />
+            <element signature="e#12568#12569#0" expanded="true" />
+            <element signature="e#12593#12594#0" expanded="true" />
+            <element signature="e#12814#12815#0" expanded="true" />
+            <element signature="e#12839#12840#0" expanded="true" />
+            <element signature="e#13153#13154#0" expanded="true" />
+            <element signature="e#13178#13179#0" expanded="true" />
+            <element signature="e#13849#13850#0" expanded="true" />
+            <element signature="e#13874#13875#0" expanded="true" />
+            <element signature="e#14134#14135#0" expanded="true" />
+            <element signature="e#14159#14160#0" expanded="true" />
+            <element signature="e#14408#14409#0" expanded="true" />
+            <element signature="e#14433#14434#0" expanded="true" />
+            <element signature="e#14652#14653#0" expanded="true" />
+            <element signature="e#14677#14678#0" expanded="true" />
+            <element signature="e#14923#14924#0" expanded="true" />
+            <element signature="e#14948#14949#0" expanded="true" />
+            <element signature="e#14955#14985#0" expanded="true" />
+            <element signature="e#15234#15235#0" expanded="true" />
+            <element signature="e#15259#15260#0" expanded="true" />
+            <element signature="e#15483#15484#0" expanded="true" />
+            <element signature="e#15508#15509#0" expanded="true" />
+            <element signature="e#15719#15720#0" expanded="true" />
+            <element signature="e#15744#15745#0" expanded="true" />
+            <element signature="e#15751#15781#0" expanded="true" />
+            <element signature="e#16344#16345#0" expanded="true" />
+            <element signature="e#16369#16370#0" expanded="true" />
+            <element signature="e#16844#16845#0" expanded="true" />
+            <element signature="e#16869#16870#0" expanded="true" />
+            <element signature="e#17079#17080#0" expanded="true" />
+            <element signature="e#17104#17105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/python/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="742">
+          <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/ASTNodeMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="64" column="36" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.12.2.v20161117-1814/org.eclipse.jdt.core-3.12.2.v20161117-1814-sources.jar!/org/eclipse/jdt/core/dom/SwitchCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="144" selection-start-line="144" selection-end-line="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gen/jdt/exp/ExpJdtVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="1227" column="9" selection-start-line="1227" selection-start-column="9" selection-end-line="1227" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/BaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/com/github/gumtreediff/gen/jdt/AbstractJdtTreeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/java/lang/Comparable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="135" column="15" selection-start-line="135" selection-start-column="15" selection-end-line="135" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/utils/ListSorter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/EDiffParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="56" column="26" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/actions/ActionGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+          <folding>
+            <element signature="e#2460#2461#0" expanded="true" />
+            <element signature="e#2490#2491#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/gen.jdt/src/main/java/edu/lu/uni/serval/gumtree/GumTreeComparer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="1214" column="15" selection-start-line="1214" selection-start-column="15" selection-end-line="1214" selection-end-column="15" />
+          <folding>
+            <element signature="e#46394#46395#0" expanded="true" />
+            <element signature="e#46458#46459#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gumtree/core/src/main/java/com/github/gumtreediff/actions/model/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="61" column="40" lean-forward="true" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalActionSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1273">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouperForC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="91" column="12" selection-start-line="91" selection-start-column="12" selection-end-line="96" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/main/java/edu/lu/uni/serval/richedit/ediff/HierarchicalRegrouper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/richedit/src/test/java/edu/lu/uni/serval/TestJavaMiner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="592" column="27" selection-start-line="592" selection-start-column="27" selection-end-line="592" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
