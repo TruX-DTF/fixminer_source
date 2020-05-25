@@ -113,12 +113,13 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
                             typeLabel = prefix + ":"+typeLabel;
                         }
 
-                        if(typeLabel.equals("literal")){
+                        if(typeLabel.equals("literal") || typeLabel.equals("if")){
                             if(s.getAttributeByName(COMMENT_BLOCK) != null){
                                 String value = s.getAttributeByName(COMMENT_BLOCK).getValue();
                                 typeLabel = typeLabel + ":"+value;
                             }
                         }
+
                         List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, typeLabel);
                         if(keysByValue == null || keysByValue.size() ==0){
                             System.out.println(typeLabel);

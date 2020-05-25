@@ -295,7 +295,7 @@ def dumpFilesCore(t):
     except Exception as ex:
         logging.error(t)
         logging.error(ex)
-        raise ex
+        # raise ex
 
 
 

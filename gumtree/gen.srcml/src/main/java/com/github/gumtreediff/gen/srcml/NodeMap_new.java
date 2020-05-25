@@ -421,6 +421,9 @@ public class NodeMap_new {
         StatementMap.put(    39  , "goto");
         StatementMap.put(    40  , "label");
 
+        StatementMap.put(    43  , "macro");
+        StatementMap.put(    55  , "switch");
+
         StatementMap.put(    81  , "struct");
         StatementMap.put(    82  , "struct_decl");
         StatementMap.put(    83  , "union");

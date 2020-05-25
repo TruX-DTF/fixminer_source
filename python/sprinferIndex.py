@@ -201,7 +201,9 @@ def removeDuplicates():
             ind = ind +1
     cocciPatterns['iFiles'] = cocciPatterns.inferedFrom.apply(lambda x: getInferred(x[0]))
 
-
+    cocciPatterns['freq'] = cocciPatterns.iFiles.apply(lambda x: len(x))
+    cocciPatterns['project'] = cocciPatterns.iFiles.apply(lambda x: list(set([i.split('/{')[0].replace('(','') for i in x])))
+    cocciPatterns.sort_values(by='freq', inplace=True, ascending=False)
     save_zipped_pickle(cocciPatterns,join(DATA_PATH,'allCocciPatterns.pickle'))
     allPatterns = cocciPatterns.cid.values.tolist()
     uniquePatterns = cocciPatterns.drop_duplicates(subset=['pattern']).cid.values.tolist()

@@ -52,7 +52,7 @@ public class EnhancedASTDiff {
 		}
 		Stream<File> stream = Arrays.stream(listOfFiles);
 		List<File> folders;
-		if (projectList.length == 1 && projectList[0].equals("")){
+		if (projectList.length == 1 && projectList[0].equals("ALL")){
 			folders = stream
 					.filter(x -> !x.getName().startsWith("."))
 					.filter(x -> !x.getName().startsWith("cocci"))

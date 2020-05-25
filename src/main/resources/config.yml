@@ -1,18 +1,18 @@
 java:
     8home:  /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
 spinfer:
-    home:   /Users/anilkoyuncu/projects/fixminer/spinfer/spinfer.native
+    home:   /Users/anil.koyuncu/projects/fixminer/spinfer/spinfer.native
 coccinelle:
-    home:   /Users/anilkoyuncu/projects/fixminer/spinfer/statics
+    home:   /Users/anil.koyuncu/projects/fixminer/spinfer/statics
 
 dataset:
 #    home:   /Users/anilkoyuncu/projects/fixminer/fixminer-core/python/data/gumInputLinux
-    inputPath : /Users/anilkoyuncu/projects/test/fixminer-data/patches
-    repo:   /Users/anilkoyuncu/projects/test/fixminer-data/datasets
+    inputPath : /Users/anil.koyuncu/projects/fixminer/fixminer-data/patches
+    repo:   /Users/anil.koyuncu/projects/datasets
 
 fixminer:
-    projectType : java
-    datapath: /Users/anilkoyuncu/projects/test/fixminer-data/
+    projectType : c
+    datapath: /Users/anil.koyuncu/projects/fixminer/fixminer-data/
 
 
     pjName : patches
@@ -22,7 +22,7 @@ fixminer:
     hunkLimit : 2
     patchSize : 50
 
-    projectList : spring-shell,fuse,metadata,commons-codec,commons-collections,commons-compress,commons-configuration,commons-crypto,commons-csv
-    inputPath : /Users/anilkoyuncu/projects/test/fixminer-data/patches
-    redisPath : /Users/anilkoyuncu/projects/release/test/fixminer_source/python/data/redis
+    projectList : ALL
+    inputPath : /Users/anil.koyuncu/projects/fixminer/fixminer-data/patches
+    redisPath : /Users/anil.koyuncu/projects/fixminer/fixminer_source/python/data/redis
     srcMLPath :  /usr/local/bin/srcml
