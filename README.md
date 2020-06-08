@@ -71,6 +71,10 @@ In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
 
 * Update [config file](src/main/resources/config.yml) with corresponding user paths.
 
+* Install the project with maven from root. (usage [pom.xml](pom.xml))
+  ```powershell
+  mvn clean install
+  ```
 * Active the conda environment from shell
   ```powershell
   source activate fixminerEnv
@@ -81,6 +85,9 @@ In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
     bash fixminer.sh [JOB] [CONFIG_FILE]
      e.g. bash fixminer.sh  dataset4c /Users/projects/release/fixminer_source/src/main/resources/config.yml
 
+#### Redis Commands
+hlen diffEntry
+To see number of patches / diff entries computed rich edit
     
 #### Job Types  
 
