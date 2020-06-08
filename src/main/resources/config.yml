@@ -1,12 +1,13 @@
 java:
     8home:  /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
 spinfer:
-    home:   /Users/anilkoyuncu/projects/fixminer/spinfer/spinfer.native
+    home:   /Users/anil.koyuncu/projects/fixminer/spinfer/spinfer.native
 coccinelle:
-    home:   /Users/anilkoyuncu/projects/fixminer/spinfer/statics
+    home:   /Users/anil.koyuncu/projects/fixminer/spinfer/statics
 
 dataset:
 #    home:   /Users/anilkoyuncu/projects/fixminer/fixminer-core/python/data/gumInputLinux
+
     inputPath : /Users/anil.koyuncu/projects/release/fixminer-data/patches
     repo:   /Users/anil.koyuncu/projects/release/fixminer-data/datasets
 
@@ -15,12 +16,14 @@ fixminer:
     datapath: /Users/anil.koyuncu/projects/release/fixminer-data/
 
 
+
     pjName : patches
     portDumps : 6399
     numOfWorkers : 14
     hostname : localhost
     hunkLimit : 2
     patchSize : 50
+
 
     projectList : fuse
     inputPath : /Users/anil.koyuncu/projects/release/fixminer-data/patches

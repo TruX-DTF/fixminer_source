@@ -59,7 +59,7 @@ public class EDiffParser extends Parser {
 		}
 		if (gumTreeResults == null) {
 			this.resultType = 1;
-			return null;
+			return actionSets;
 		} else if (gumTreeResults.size() == 0){
 			this.resultType = 2;
 			return actionSets;
@@ -69,11 +69,11 @@ public class EDiffParser extends Parser {
 			if (isJava){
 				allActionSets = new HierarchicalRegrouper().regroupGumTreeResults(gumTreeResults);
 			}else{
-//				HashSet<Integer> removeType = new HashSet<Integer>(Arrays.asList(171,172,99,100,101,102));
-//				boolean b = gumTreeResults.stream().anyMatch(p -> removeType.contains(p.getNode().getType()));
-//				if(b){
-//					return actionSets;
-//				}
+				HashSet<Integer> removeType = new HashSet<Integer>(Arrays.asList(131,132,133,134,135,136,137));
+				boolean b = gumTreeResults.stream().anyMatch(p -> removeType.contains(p.getNode().getType()));
+				if(b){
+					return actionSets;
+				}
 				allActionSets = new HierarchicalRegrouperForC().regroupGumTreeResults(gumTreeResults);
 			}
 

@@ -204,7 +204,11 @@ def collectBugFixPatches(dsName):
     # commits = commits[commits.files.apply(lambda x: len(x) == 1)]
     # commits['cocci'] = commits.log.apply(lambda x: True if re.search('cocci|coccinelle', x) else False)
     # coccis = commits[commits.cocci].commit.values.tolist()
-    fixes = commits[commits.fixes.str.len()!=0].commit.values.tolist()
+    if dsName == 'linux':
+        commits['cocci'] = commits.log.apply(lambda x: True if re.search('cocci|coccinelle', x) else False)
+        fixes = commits[commits.cocci].commit.values.tolist()
+    else:
+        fixes = commits[commits.fixes.str.len()!=0].commit.values.tolist()
     # links = commits[commits.links.str.len()!=0].commit.values.tolist()
 
     # bugs = set(fixes).union(links).union(coccis)

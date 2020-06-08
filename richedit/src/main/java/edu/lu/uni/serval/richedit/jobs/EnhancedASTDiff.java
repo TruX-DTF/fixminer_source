@@ -52,7 +52,7 @@ public class EnhancedASTDiff {
 		}
 		Stream<File> stream = Arrays.stream(listOfFiles);
 		List<File> folders;
-		if (projectList.length == 1 && projectList[0].equals("")) {
+		if (projectList.length == 1 && projectList[0].equals("ALL")){
 			folders = stream
 					.filter(x -> !x.getName().startsWith("."))
 					.filter(x -> !x.getName().startsWith("cocci"))
@@ -99,24 +99,24 @@ public class EnhancedASTDiff {
 			log.info("{} files to process ...", allMessageFiles.size());
 		}
 		boolean finalIsJava = isJava;
-//		ProgressBar.wrap(allMessageFiles.stream().
-//				parallel(),"Task").
-//				forEach(m ->
-//						{
-//							EDiffHunkParser parser =  new EDiffHunkParser();
-//							parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,srcMLPath,hunkLimit, finalIsJava);
-//						}
-//				);
-//
-//        }
-		allMessageFiles.stream().
-				parallel().
+		ProgressBar.wrap(allMessageFiles.stream().
+				parallel(),"Task").
 				forEach(m ->
 						{
-							EDiffHunkParser parser = new EDiffHunkParser();
-							parser.parseFixPatterns(m.getPrevFile(), m.getRevFile(), m.getDiffEntryFile(), project, innerPool, srcMLPath, hunkLimit, finalIsJava);
+							EDiffHunkParser parser =  new EDiffHunkParser();
+							parser.parseFixPatterns(m.getPrevFile(),m.getRevFile(), m.getDiffEntryFile(),project,innerPool,srcMLPath,hunkLimit, finalIsJava);
 						}
 				);
+
+
+//		allMessageFiles.stream().
+//				parallel().
+//				forEach(m ->
+//						{
+//							EDiffHunkParser parser = new EDiffHunkParser();
+//							parser.parseFixPatterns(m.getPrevFile(), m.getRevFile(), m.getDiffEntryFile(), project, innerPool, srcMLPath, hunkLimit, finalIsJava);
+//						}
+//				);
 	}
 
 	

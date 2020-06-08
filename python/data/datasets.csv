@@ -8,7 +8,6 @@ gzip, https://git.savannah.gnu.org/git/gzip.git
 libarchive, https://github.com/libarchive/libarchive
 cairo, https://gitlab.freedesktop.org/cairo/cairo.git
 vlc, https://github.com/videolan/vlc.git
-freebsd, https://github.com/freebsd/freebsd
 curl, https://github.com/curl/curl.git
 tcl, https://github.com/tcltk/tcl.git
 cpython, https://github.com/python/cpython.git

@@ -157,9 +157,12 @@ public class TestPredefinedCases {
             Assert.assertEquals(hierarchicalActionSets.get(0).toString(),"UPD function@@static ctl_serialize_action static int test field = ATOM TST IS_ERR fields -> mode PTR_ERROR fields -> mode a > 0 1 0 @TO@ const static ctl_serialize_action static int test field = ATOM TST IS_ERR fields -> mode PTR_ERROR fields -> mode a > 0 1 0 @AT@ 0 @LENGTH@ 117\n" +
                     "---UPD type@@static ctl_serialize_action static int @TO@ const static ctl_serialize_action static int @AT@ 0 @LENGTH@ 38\n" +
                     "------INS specifier@@const @TO@ type@@static ctl_serialize_action static int @AT@ 0 @LENGTH@ 5\n");
-            Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD if_stmt@@IS_ERR fields -> mode PTR_ERROR fields -> mode a > 0 1 @TO@ IS_ERR fields -> mode PTR_ERROR fields -> mode @AT@ 73 @LENGTH@ 54\n");
+            Assert.assertEquals(hierarchicalActionSets.get(1).toString(),"UPD if_stmt@@IS_ERR fields -> mode PTR_ERROR fields -> mode a > 0 1 @TO@ IS_ERR fields -> mode PTR_ERROR fields -> mode @AT@ 73 @LENGTH@ 54\n" +
+                    "---DEL if:elseif@@a > 0 1 @AT@ 142 @LENGTH@ 7\n");
             Assert.assertEquals(hierarchicalActionSets.get(2).toString(),"INS if_stmt@@a > 0 1 @TO@ block_content@@field = ATOM TST IS_ERR fields -> mode PTR_ERROR fields -> mode a > 0 1 0 @AT@ 149 @LENGTH@ 7\n" +
-                    "---MOV if@@a > 0 1 @TO@ if_stmt@@a > 0 1 @AT@ 142 @LENGTH@ 7\n");
+                    "---INS if@@a > 0 1 @TO@ if_stmt@@a > 0 1 @AT@ 149 @LENGTH@ 7\n" +
+                    "------MOV condition@@a > 0 @TO@ if@@a > 0 1 @AT@ 149 @LENGTH@ 5\n" +
+                    "------MOV block@@1 @TO@ if@@a > 0 1 @AT@ 163 @LENGTH@ 1\n");
         }
 
     @Test

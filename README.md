@@ -84,10 +84,10 @@ In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
 
     bash fixminer.sh [JOB] [CONFIG_FILE]
      e.g. bash fixminer.sh  dataset4c /Users/projects/release/fixminer_source/src/main/resources/config.yml
+     
+A log file (app.log) is created after every execution of the [fixminer.sh]((python/fixminer.sh)). Please check this log file in order to access more information. 
+ 
 
-#### Redis Commands
-hlen diffEntry
-To see number of patches / diff entries computed rich edit
     
 #### Job Types  
 
@@ -111,6 +111,10 @@ To see number of patches / diff entries computed rich edit
                           
                            ```     
    5. __cluster__ : Forms clusters of identical trees. The output of this step is written to __shapes__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
+   
+   6. __stats__: Calculate frequency statistics of the patterns under statsshapes.csv in datapath. The information is also written in app.log file.
+   
+   7. __exportPatterns__ : Export FixPatterns of APR integration under patterns folder located in datapath/
                                                                                                                    
    <!--
     
@@ -236,9 +240,81 @@ Replication Data:
 
 #### Data Viewer
 
-The data provided with replication package is listed in directory [python/data](python/data)
-The data is stored in different formats. (e.g. pickle, db, csv, etc..)
+The intermediate data provided computed during the steps are listed in directory datapath (see [config file](src/main/resources/config.yml))
+                                                                                                  
+The data is stored in different formats. (e.g. pickle, redis db, csv, etc..)
 
+###### Redis Commands
+
+Connect to redis instance
+
+ ```powershell
+     redis-cli -p 6399
+  ```   
+
+We use 3 databases inside the redis, 0,1,2.
+DB 0 stores the richedit dumps, comparison indices
+DB 1 stores the filenames and their corresponding indices
+DB 2 stores the output of comparison, a.k.a same trees.
+
+In order to switch between these database use the following command
+
+ ```powershell
+     select 2
+  ```   
+
+In order to trace the status of the stored rich edit scripts, use the following command
+
+ ```powershell
+     hlen dump
+  ```   
+
+In order to access the rich edit of a single hunk, first locate the key from DB 0. This command returns the exact name of the keys
+
+ ```powershell
+keys *NAME_OF_THE_HUNK
+
+keys *fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1
+
+OUTPUT:
+1) "MethodDeclaration/40/fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1"
+  ```   
+
+Then, use the exact key in order to access the rich edit:
+ ```powershell
+hget dump NAME_OF_THE_EXACT_KEY
+
+hget dump MethodDeclaration/40/fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1
+
+OUTPUT:
+"INS MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @TO@ TypeDeclaration@@[public]ProfileFacade, [Profile, HasId] @AT@ 7279 @LENGTH@ 309\n---INS Modifier@@public @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7279 @LENGTH@ 6\n---INS PrimitiveType@@void @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7286 @LENGTH@ 4\n---INS SimpleName@@MethodName:setConfiguration @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7291 @LENGTH@ 16\n---INS SingleVariableDeclaration@@String pid @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7308 @LENGTH@ 10\n------INS SimpleType@@String @TO@ SingleVariableDeclaration@@String pid @AT@ 7308 @LENGTH@ 6\n------INS SimpleName@@pid @TO@ SingleVariableDeclaration@@String pid @AT@ 7315 @LENGTH@ 3\n---INS SingleVariableDeclaration@@Map<String,String> configuration @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7320 @LENGTH@ 33\n------INS ParameterizedType@@Map<String,String> @TO@ SingleVariableDeclaration@@Map<String,String> configuration @AT@ 7320 @LENGTH@ 19\n---------INS SimpleType@@Map @TO@ ParameterizedType@@Map<String,String> @AT@ 7320 @LENGTH@ 3\n---------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,String> @AT@ 7324 @LENGTH@ 6\n---------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,String> @AT@ 7332 @LENGTH@ 6\n------INS SimpleName@@configuration @TO@ SingleVariableDeclaration@@Map<String,String> configuration @AT@ 7340 @LENGTH@ 13\n---INS VariableDeclarationStatement@@Map<String,Map<String,String>> configurations=getConfigurations(); @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7365 @LENGTH@ 70\n------INS ParameterizedType@@Map<String,Map<String,String>> @TO@ VariableDeclarationStatement@@Map<String,Map<String,String>> configurations=getConfigurations(); @AT@ 7365 @LENGTH@ 32\n---------INS SimpleType@@Map @TO@ ParameterizedType@@Map<String,Map<String,String>> @AT@ 7365 @LENGTH@ 3\n---------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,Map<String,String>> @AT@ 7369 @LENGTH@ 6\n---------INS ParameterizedType@@Map<String,String> @TO@ ParameterizedType@@Map<String,Map<String,String>> @AT@ 7377 @LENGTH@ 19\n------------INS SimpleType@@Map @TO@ ParameterizedType@@Map<String,String> @AT@ 7377 @LENGTH@ 3\n------------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,String> @AT@ 7381 @LENGTH@ 6\n------------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,String> @AT@ 7389 @LENGTH@ 6\n------INS VariableDeclarationFragment@@configurations=getConfigurations() @TO@ VariableDeclarationStatement@@Map<String,Map<String,String>> configurations=getConfigurations(); @AT@ 7398 @LENGTH@ 36\n---------INS SimpleName@@configurations @TO@ VariableDeclarationFragment@@configurations=getConfigurations() @AT@ 7398 @LENGTH@ 14\n---------INS MethodInvocation@@MethodName:getConfigurations:[] @TO@ VariableDeclarationFragment@@configurations=getConfigurations() @AT@ 7415 @LENGTH@ 19\n---INS IfStatement@@if (configurations != null) {  configurations.put(pid,configuration);  setConfigurations(configurations);} @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7444 @LENGTH@ 138\n------INS InfixExpression@@configurations != null @TO@ IfStatement@@if (configurations != null) {  configurations.put(pid,configuration);  setConfigurations(configurations);} @AT@ 7448 @LENGTH@ 22\n---------INS SimpleName@@configurations @TO@ InfixExpression@@configurations != null @AT@ 7448 @LENGTH@ 14\n---------INS Operator@@!= @TO@ InfixExpression@@configurations != null @AT@ 7462 @LENGTH@ 2\n---------INS NullLiteral@@null @TO@ InfixExpression@@configurations != null @AT@ 7466 @LENGTH@ 4\n------INS Block@@ThenBody:{  configurations.put(pid,configuration);  setConfigurations(configurations);} @TO@ IfStatement@@if (configurations != null) {  configurations.put(pid,configuration);  setConfigurations(configurations);} @AT@ 7472 @LENGTH@ 110\n---------INS ExpressionStatement@@MethodInvocation:configurations.put(pid,configuration) @TO@ Block@@ThenBody:{  configurations.put(pid,configuration);  setConfigurations(configurations);} @AT@ 7486 @LENGTH@ 39\n------------INS MethodInvocation@@configurations.put(pid,configuration) @TO@ ExpressionStatement@@MethodInvocation:configurations.put(pid,configuration) @AT@ 7486 @LENGTH@ 38\n---------------INS SimpleName@@Name:configurations @TO@ MethodInvocation@@configurations.put(pid,configuration) @AT@ 7486 @LENGTH@ 14\n---------------INS SimpleName@@MethodName:put:[pid, configuration] @TO@ MethodInvocation@@configurations.put(pid,configuration) @AT@ 7501 @LENGTH@ 23\n------------------INS SimpleName@@pid @TO@ SimpleName@@MethodName:put:[pid, configuration] @AT@ 7505 @LENGTH@ 3\n------------------INS SimpleName@@configuration @TO@ SimpleName@@MethodName:put:[pid, configuration] @AT@ 7510 @LENGTH@ 13\n---------INS ExpressionStatement@@MethodInvocation:setConfigurations(configurations) @TO@ Block@@ThenBody:{  configurations.put(pid,configuration);  setConfigurations(configurations);} @AT@ 7538 @LENGTH@ 34\n------------INS MethodInvocation@@setConfigurations(configurations) @TO@ ExpressionStatement@@MethodInvocation:setConfigurations(configurations) @AT@ 7538 @LENGTH@ 33\n---------------INS SimpleName@@MethodName:setConfigurations:[configurations] @TO@ MethodInvocation@@setConfigurations(configurations) @AT@ 7538 @LENGTH@ 33\n------------------INS SimpleName@@configurations @TO@ SimpleName@@MethodName:setConfigurations:[configurations] @AT@ 7556 @LENGTH@ 14\n"  
+  ```  
+
+Or use the following command to access specialized trees:
+
+ ```powershell
+hgetall NAME_OF_THE_EXACT_KEY
+
+hgetall MethodDeclaration/40/fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1
+
+OUTPUT:
+1) "targetTree"
+2) "[(55@@[(31@@)][(31@@)][(31@@)][(31@@[(44@@)][(44@@)])][(31@@[(44@@[(74@@)][(74@@)][(74@@)])][(44@@)])][(31@@[(60@@[(74@@)][(74@@)][(74@@[(74@@)][(74@@)][(74@@)])])][(60@@[(59@@)][(59@@)])])][(31@@[(25@@[(27@@)][(27@@)][(27@@)])][(25@@[(8@@[(21@@[(32@@)][(32@@[(42@@)][(42@@)])])])][(8@@[(21@@[(32@@[(42@@)])])])])])])]"
+3) "actionTree"
+4) "[(100@@[(100@@)][(100@@)][(100@@)][(100@@[(100@@)][(100@@)])][(100@@[(100@@[(100@@)][(100@@)][(100@@)])][(100@@)])][(100@@[(100@@[(100@@)][(100@@)][(100@@[(100@@)][(100@@)][(100@@)])])][(100@@[(100@@)][(100@@)])])][(100@@[(100@@[(100@@)][(100@@)][(100@@)])][(100@@[(100@@[(100@@[(100@@)][(100@@[(100@@)][(100@@)])])])][(100@@[(100@@[(100@@[(100@@)])])])])])])]"
+5) "shapeTree"
+6) "[(31@@[(83@@)][(39@@)][(42@@)][(44@@[(43@@)][(42@@)])][(44@@[(74@@[(43@@)][(43@@)][(43@@)])][(42@@)])][(60@@[(74@@[(43@@)][(43@@)][(74@@[(43@@)][(43@@)][(43@@)])])][(59@@[(42@@)][(32@@)])])][(25@@[(27@@[(42@@)][(-1@@)][(33@@)])][(8@@[(21@@[(32@@[(42@@)][(42@@[(42@@)][(42@@)])])])][(21@@[(32@@[(42@@[(42@@)])])])])])])]"
+  ```  
+
+After executing the shapeSI step, the rich edit scripts to be compared are stored in a key in DB 0. Use the following command to verify number of comparison to be made.
+
+This command can also be used in order to progress the compare step. When the comparison is completed the following command will return 0.
+ ```powershell
+scard compare
+  ``` 
+
+
+###### Pickle
 The see content of the .pickle file the following script could be used.
 
   ```python

@@ -31,6 +31,11 @@ public class HierarchicalRegrouper {
 		 */
 		List<HierarchicalActionSet> actionSets = new ArrayList<>();
 		HierarchicalActionSet actionSet = null;
+
+		if(actions == null){
+			return actionSets;
+		}
+
 		for(Action act : actions){
 			Action parentAct = findParentAction(act, actions);
 			if (parentAct == null) {
