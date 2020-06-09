@@ -150,16 +150,16 @@ if __name__ == '__main__':
             from sprinferIndex import removeDuplicates
             removeDuplicates()
 
+        elif job == 'evalManyBugs':
+            from patchManyBugs import patchCore
+            patchCore()
+            # from patchManyBugs import patched
+            # patched()
+            from patchManyBugs import exportSosPatches
+            exportSosPatches()
+            from validate_manybugs import validate
 
-            # from patchManyBugs import patchCore
-            # patchCore()
-            # # from patchManyBugs import patched
-            # # patched()
-            # from patchManyBugs import exportSosPatches
-            # exportSosPatches()
-            # from validate_manybugs import validate
-            #
-            # validate()
+            validate()
 
         elif job =='patternOperations':
             from sprinferIndex import patternOperations
