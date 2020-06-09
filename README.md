@@ -34,6 +34,10 @@ You can cite FixMiner using the following bibtex:
 Fixminer is a systematic and automated approach to mine relevant and actionable fix patterns for automated program repair.
 ![The workflow of this technique.\label{workflow}](worflow.png)
 
+** This version of the Fixminer has some changes compared to the one published in the paper. 
+
+    - The iteration that was computing the shapes separetely is removed. Now the operation of the shape trees are performed together with the action trees. As a result of this change no shape clusters are generated separately anymore. The initial output of the pattern mining iteration is action trees (a.k.a patterns ) 
+
 ## II. Environment setup
 
 * OS: macOS Mojave (10.14.3)
@@ -71,6 +75,10 @@ In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
 
 * Update [config file](src/main/resources/config.yml) with corresponding user paths.
 
+* Install the project with maven from root. (usage [pom.xml](pom.xml))
+  ```powershell
+  mvn clean install
+  ```
 * Active the conda environment from shell
   ```powershell
   source activate fixminerEnv
@@ -78,32 +86,47 @@ In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
 
 In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
 
-    bash fixminer.sh [JOB] [CONFIG_FILE]
-     e.g. bash fixminer.sh  dataset4c /Users/projects/release/fixminer_source/src/main/resources/config.yml
+    bash fixminer.sh [CONFIG_FILE] [JOB]
+     e.g. bash fixminer.sh  /Users/projects/release/fixminer_source/src/main/resources/config.yml dataset4c
+     
+A log file (app.log) is created after every execution of the [fixminer.sh]((python/fixminer.sh)). Please check this log file in order to access more information. 
+ 
 
     
 #### Job Types  
 
-*FixMiner* needs to specify a job to run.
+*FixMiner* needs to follow an execution, **in the order listed below** in order to create clusters of patches.
 
    1. __dataset4j__ / __dataset4c__: Create a java/c mining dataset from the projects listed in [subjects.csv](python/data/subjects.csv) or [datasets.csv](python/data/datasets.csv) for c
       
-   2. __richEditScript__: Calls the jar file produced as the results as maven package to compute Rich edit scripts.
+   2. __richedit__: Calls the jar file produced as the results as maven package to compute Rich edit scripts.
    This step can be invoke natively from java or using the [Launcher](src/main/java/edu/lu/uni/serval/richedit/Launcher.java) with appropriate arguments.
 
          ```powershell
          java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml RICHEDITSCRIPT
          ```   
-   3. __shapeSI__: Search index creation for shapes. The output of this step is written to __pairs__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
+   3. __actionSI__: Search index creation for actions. The output of this step is written to __pairs__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
     
    4. __compare__ : Calls the jar file produced as the results as maven package to compare the trees.
                              This step can be invoke natively from java or using the [Launcher](src/main/java/edu/lu/uni/serval/richedit/Launcher.java) with appropriate arguments.
                              
-                           ```powershell
-                           java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml COMPARE
-                          
-                           ```     
-   5. __cluster__ : Forms clusters of identical trees. The output of this step is written to __shapes__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
+        ```powershell
+        java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml COMPARE
+        ```       
+   5. __cluster__ : Forms clusters of identical trees. The output of this step is written to __actions__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
+   
+   6. __tokenSI__ : Search index creation for tokens. The output of this step is written to __pairsToken__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
+   
+   7. __compare__ : Calls the jar file produced as the results as maven package to compare the trees.
+                                   This step can be invoke natively from java or using the [Launcher](src/main/java/edu/lu/uni/serval/richedit/Launcher.java) with appropriate arguments.
+                                   
+        ```powershell
+        java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml COMPARE
+        ```     
+   
+   8. __stats__: Calculate frequency statistics of the patterns under statsactions.csv in datapath. The information is also written in app.log file.
+   
+   7. __patterns__ : Export FixPatterns of APR integration under patterns folder located in datapath/
                                                                                                                    
    <!--
     
@@ -229,9 +252,85 @@ Replication Data:
 
 #### Data Viewer
 
-The data provided with replication package is listed in directory [python/data](python/data)
-The data is stored in different formats. (e.g. pickle, db, csv, etc..)
+The intermediate data provided computed during the steps are listed in directory datapath (see [config file](src/main/resources/config.yml))
+                                                                                                  
+The data is stored in different formats. (e.g. pickle, redis db, csv, etc..)
 
+###### Redis Commands
+
+Connect to redis instance
+
+ ```powershell
+     redis-cli -p 6399
+  ```   
+
+We use 3 databases inside the redis, 0,1,2,3.
+DB 0 stores the richedit dumps, comparison indices
+DB 1 stores the filenames and their indices (used in comparison and stored in DB2, DB3) 
+DB 2 stores the output of comparison action trees.
+DB 3 stores the output of comparison token trees.
+
+In order to switch between these database use the following command
+
+ ```powershell
+     select 2
+  ```   
+
+In order to trace the status of the stored rich edit scripts, use the following command
+
+ ```powershell
+     hlen dump
+  ```   
+
+In order to access the rich edit of a single hunk, first locate the key from DB 0. This command returns the exact name of the keys
+
+ ```powershell
+keys *NAME_OF_THE_HUNK
+
+keys *fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1
+
+OUTPUT:
+1) "MethodDeclaration/40/fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1"
+  ```   
+
+Then, use the exact key in order to access the rich edit:
+ ```powershell
+hget dump NAME_OF_THE_EXACT_KEY
+
+hget dump MethodDeclaration/40/fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1
+
+OUTPUT:
+"INS MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @TO@ TypeDeclaration@@[public]ProfileFacade, [Profile, HasId] @AT@ 7279 @LENGTH@ 309\n---INS Modifier@@public @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7279 @LENGTH@ 6\n---INS PrimitiveType@@void @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7286 @LENGTH@ 4\n---INS SimpleName@@MethodName:setConfiguration @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7291 @LENGTH@ 16\n---INS SingleVariableDeclaration@@String pid @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7308 @LENGTH@ 10\n------INS SimpleType@@String @TO@ SingleVariableDeclaration@@String pid @AT@ 7308 @LENGTH@ 6\n------INS SimpleName@@pid @TO@ SingleVariableDeclaration@@String pid @AT@ 7315 @LENGTH@ 3\n---INS SingleVariableDeclaration@@Map<String,String> configuration @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7320 @LENGTH@ 33\n------INS ParameterizedType@@Map<String,String> @TO@ SingleVariableDeclaration@@Map<String,String> configuration @AT@ 7320 @LENGTH@ 19\n---------INS SimpleType@@Map @TO@ ParameterizedType@@Map<String,String> @AT@ 7320 @LENGTH@ 3\n---------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,String> @AT@ 7324 @LENGTH@ 6\n---------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,String> @AT@ 7332 @LENGTH@ 6\n------INS SimpleName@@configuration @TO@ SingleVariableDeclaration@@Map<String,String> configuration @AT@ 7340 @LENGTH@ 13\n---INS VariableDeclarationStatement@@Map<String,Map<String,String>> configurations=getConfigurations(); @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7365 @LENGTH@ 70\n------INS ParameterizedType@@Map<String,Map<String,String>> @TO@ VariableDeclarationStatement@@Map<String,Map<String,String>> configurations=getConfigurations(); @AT@ 7365 @LENGTH@ 32\n---------INS SimpleType@@Map @TO@ ParameterizedType@@Map<String,Map<String,String>> @AT@ 7365 @LENGTH@ 3\n---------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,Map<String,String>> @AT@ 7369 @LENGTH@ 6\n---------INS ParameterizedType@@Map<String,String> @TO@ ParameterizedType@@Map<String,Map<String,String>> @AT@ 7377 @LENGTH@ 19\n------------INS SimpleType@@Map @TO@ ParameterizedType@@Map<String,String> @AT@ 7377 @LENGTH@ 3\n------------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,String> @AT@ 7381 @LENGTH@ 6\n------------INS SimpleType@@String @TO@ ParameterizedType@@Map<String,String> @AT@ 7389 @LENGTH@ 6\n------INS VariableDeclarationFragment@@configurations=getConfigurations() @TO@ VariableDeclarationStatement@@Map<String,Map<String,String>> configurations=getConfigurations(); @AT@ 7398 @LENGTH@ 36\n---------INS SimpleName@@configurations @TO@ VariableDeclarationFragment@@configurations=getConfigurations() @AT@ 7398 @LENGTH@ 14\n---------INS MethodInvocation@@MethodName:getConfigurations:[] @TO@ VariableDeclarationFragment@@configurations=getConfigurations() @AT@ 7415 @LENGTH@ 19\n---INS IfStatement@@if (configurations != null) {  configurations.put(pid,configuration);  setConfigurations(configurations);} @TO@ MethodDeclaration@@public, void, MethodName:setConfiguration, String pid, Map<String,String> configuration,  @AT@ 7444 @LENGTH@ 138\n------INS InfixExpression@@configurations != null @TO@ IfStatement@@if (configurations != null) {  configurations.put(pid,configuration);  setConfigurations(configurations);} @AT@ 7448 @LENGTH@ 22\n---------INS SimpleName@@configurations @TO@ InfixExpression@@configurations != null @AT@ 7448 @LENGTH@ 14\n---------INS Operator@@!= @TO@ InfixExpression@@configurations != null @AT@ 7462 @LENGTH@ 2\n---------INS NullLiteral@@null @TO@ InfixExpression@@configurations != null @AT@ 7466 @LENGTH@ 4\n------INS Block@@ThenBody:{  configurations.put(pid,configuration);  setConfigurations(configurations);} @TO@ IfStatement@@if (configurations != null) {  configurations.put(pid,configuration);  setConfigurations(configurations);} @AT@ 7472 @LENGTH@ 110\n---------INS ExpressionStatement@@MethodInvocation:configurations.put(pid,configuration) @TO@ Block@@ThenBody:{  configurations.put(pid,configuration);  setConfigurations(configurations);} @AT@ 7486 @LENGTH@ 39\n------------INS MethodInvocation@@configurations.put(pid,configuration) @TO@ ExpressionStatement@@MethodInvocation:configurations.put(pid,configuration) @AT@ 7486 @LENGTH@ 38\n---------------INS SimpleName@@Name:configurations @TO@ MethodInvocation@@configurations.put(pid,configuration) @AT@ 7486 @LENGTH@ 14\n---------------INS SimpleName@@MethodName:put:[pid, configuration] @TO@ MethodInvocation@@configurations.put(pid,configuration) @AT@ 7501 @LENGTH@ 23\n------------------INS SimpleName@@pid @TO@ SimpleName@@MethodName:put:[pid, configuration] @AT@ 7505 @LENGTH@ 3\n------------------INS SimpleName@@configuration @TO@ SimpleName@@MethodName:put:[pid, configuration] @AT@ 7510 @LENGTH@ 13\n---------INS ExpressionStatement@@MethodInvocation:setConfigurations(configurations) @TO@ Block@@ThenBody:{  configurations.put(pid,configuration);  setConfigurations(configurations);} @AT@ 7538 @LENGTH@ 34\n------------INS MethodInvocation@@setConfigurations(configurations) @TO@ ExpressionStatement@@MethodInvocation:setConfigurations(configurations) @AT@ 7538 @LENGTH@ 33\n---------------INS SimpleName@@MethodName:setConfigurations:[configurations] @TO@ MethodInvocation@@setConfigurations(configurations) @AT@ 7538 @LENGTH@ 33\n------------------INS SimpleName@@configurations @TO@ SimpleName@@MethodName:setConfigurations:[configurations] @AT@ 7556 @LENGTH@ 14\n"  
+  ```  
+
+Or use the following command to access specialized trees:
+
+ ```powershell
+hgetall NAME_OF_THE_EXACT_KEY
+
+hgetall MethodDeclaration/40/fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1
+
+OUTPUT:
+1) "tokens"
+2) "public  void  MethodName:setConfiguration  String  pid  Map  String  String  configuration  Map  String  Map  String  String  configurations  MethodName:getConfigurations:[]  configurations  !=  null  Name:configurations  pid  configuration  configurations "
+3) "targetTree"
+4) "[(55@@[(31@@)][(31@@)][(31@@)][(31@@[(44@@)][(44@@)])][(31@@[(44@@[(74@@)][(74@@)][(74@@)])][(44@@)])][(31@@[(60@@[(74@@)][(74@@)][(74@@[(74@@)][(74@@)][(74@@)])])][(60@@[(59@@)][(59@@)])])][(31@@[(25@@[(27@@)][(27@@)][(27@@)])][(25@@[(8@@[(21@@[(32@@)][(32@@[(42@@)][(42@@)])])])][(8@@[(21@@[(32@@[(42@@)])])])])])])]"
+5) "actionTree"
+6) "[(100@@[(100@@)][(100@@)][(100@@)][(100@@[(100@@)][(100@@)])][(100@@[(100@@[(100@@)][(100@@)][(100@@)])][(100@@)])][(100@@[(100@@[(100@@)][(100@@)][(100@@[(100@@)][(100@@)][(100@@)])])][(100@@[(100@@)][(100@@)])])][(100@@[(100@@[(100@@)][(100@@)][(100@@)])][(100@@[(100@@[(100@@[(100@@)][(100@@[(100@@)][(100@@)])])])][(100@@[(100@@[(100@@[(100@@)])])])])])])]"
+7) "shapeTree"
+8) "[(31@@[(83@@)][(39@@)][(42@@)][(44@@[(43@@)][(42@@)])][(44@@[(74@@[(43@@)][(43@@)][(43@@)])][(42@@)])][(60@@[(74@@[(43@@)][(43@@)][(74@@[(43@@)][(43@@)][(43@@)])])][(59@@[(42@@)][(32@@)])])][(25@@[(27@@[(42@@)][(-1@@)][(33@@)])][(8@@[(21@@[(32@@[(42@@)][(42@@[(42@@)][(42@@)])])])][(21@@[(32@@[(42@@[(42@@)])])])])])])]"
+  ```  
+
+After executing the actionSI / tokenSI steps, the rich edit scripts to be compared are stored in a key in DB 0. Use the following command to verify number of comparison to be made. 
+The trees that are labelled to be same are stored in DB2 for action trees and,in DB3 for token trees. 
+
+This command can also be used in order to progress the compare step. When the comparison is completed the following command will return 0.
+ ```powershell
+scard compare
+  ``` 
+
+
+###### Pickle
 The see content of the .pickle file the following script could be used.
 
   ```python

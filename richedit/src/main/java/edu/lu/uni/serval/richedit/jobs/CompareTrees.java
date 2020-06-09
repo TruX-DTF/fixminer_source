@@ -4,6 +4,7 @@ import edu.lu.uni.serval.utils.CallShell;
 import edu.lu.uni.serval.utils.EDiffHelper;
 import edu.lu.uni.serval.utils.PoolBuilder;
 import me.tongfei.progressbar.ProgressBar;
+import org.apache.commons.text.similarity.JaroWinklerDistance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -28,7 +29,7 @@ public class CompareTrees {
     private static Logger log = LoggerFactory.getLogger(CompareTrees.class);
 
 
-    public static void main(String redisPath, String portDumps, String dumpsName, String job,String numOfWorkers) throws Exception {
+    public static void main(String redisPath, String portDumps, String dumpsName, String numOfWorkers) throws Exception {
 
         // shape /Users/anil.koyuncu/projects/test/richedit-core/python/data/redis ALLdumps-gumInput.rdb clusterl0-gumInputALL.rdb /Users/anil.koyuncu/projects/test/richedit-core/python/data/richEditScript
 
@@ -55,6 +56,7 @@ public class CompareTrees {
 
 //        List<String> listOfPairs = AkkaTreeParser.getMessages(innerPool,Integer.valueOf(numOfWorkers));
         HashMap<String, String> filenames = getFilenames(outerPool);
+        String job= getLevel(outerPool);
 //        List<String> listOfPairs = AkkaTreeParser.files2compare(outerPool);
 
 
@@ -69,12 +71,13 @@ public class CompareTrees {
         }
         IntStream stream = IntStream.range(0, compare.intValue());
 
+        String finalJob = job;
         ProgressBar.wrap(stream.
                 parallel(),"Task").
 
                 forEach(m ->
                         {
-                            newCoreCompare(job, errorPairs, filenames, outerPool);
+                            newCoreCompare(finalJob, errorPairs, filenames, outerPool);
                         }
                 );
 
@@ -164,14 +167,16 @@ public class CompareTrees {
             String keyName = split[0];
             matchKey = keyName + "/" + (String.valueOf(i)) + "/" + String.valueOf(j);
 
+            if (matchKey == null){
+                return false;
+            }
+            Map<String, String> oldTreeString = EDiffHelper.getTreeString(keyName, i, outerPool, filenames);
+            Map<String, String> newTreeString = EDiffHelper.getTreeString(keyName, j, outerPool, filenames);
+
             switch (treeType) {
                 case "single":
 
-                    if (matchKey == null){
-                        return false;
-                    }
-                    Map<String, String> oldTreeString = EDiffHelper.getTreeString(keyName, i, outerPool, filenames);
-                    Map<String, String> newTreeString = EDiffHelper.getTreeString(keyName, j, outerPool, filenames);
+
 
                     String oldShapeTree =oldTreeString.get("shapeTree");
                     String newShapeTree =newTreeString.get("shapeTree");
@@ -196,6 +201,35 @@ public class CompareTrees {
                         }
                     }
                     return true;
+                case "token":
+
+                    String oldTokens = oldTreeString.get("tokens");
+                    String newTokens = newTreeString.get("tokens");
+//                    EDiffHelper.getTokens(keyName, i, outerPool, filenames);
+//                    newTree = EDiffHelper.getTokens(keyName, j, outerPool, innerPool);
+
+//                    String oldTokens = EDiffHelper.getNames2(oldTree);
+//                    String newTokens = EDiffHelper.getNames2(newTree);
+//
+                    JaroWinklerDistance jwd = new JaroWinklerDistance();
+//
+//
+                    Double overallSimi = Double.valueOf(0);
+//
+                    if (!(oldTokens.trim().isEmpty() || newTokens.trim().isEmpty())) {
+                        overallSimi = jwd.apply(oldTokens, newTokens);
+
+                    }
+                    int retval = Double.compare(overallSimi, Double.valueOf(1));
+
+                    if (retval >= 0) {
+                        try (Jedis jedis = outerPool.getResource()) {
+                            jedis.select(3);
+                            jedis.set(matchKey, "1");
+                        }
+
+                    }
+                    return true;
                 default:
                     return true;
 //                    break;
@@ -212,6 +246,35 @@ public class CompareTrees {
     }
 
 
+    public static String  getLevel(JedisPool innerPool){
+
+
+        HashMap<String, String> fileMap =new HashMap<String, String>();
+
+        try (Jedis inner = innerPool.getResource()) {
+            while (!inner.ping().equals("PONG")){
+                log.info("wait");
+            }
+
+            inner.select(1);
+            String level = inner.get("level");
+
+            switch (level){
+                case "l1":
+                    return "single";
+                case "l2":
+                    return "token";
+                default:
+                    return "";
+            }
+
+
+
+
+
+
+        }
+    }
 
     public static HashMap<String, String>  getFilenames(JedisPool innerPool){
 
@@ -240,6 +303,9 @@ public class CompareTrees {
 //        log.info("Getting results %d",fileMap.s);
         return  fileMap;
     }
+
+
+
 
 
 

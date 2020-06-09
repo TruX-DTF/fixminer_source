@@ -26,28 +26,28 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String portInner, String dbDir, String chunkName,String srcMLPath,String parameter,String hunkLimit,String[] projectList,String patchSize,String projectType) throws Exception {
+	public static void main(String inputPath, String portInner, String dbDir, String chunkName,String srcMLPath,String hunkLimit,String[] projectList,String patchSize,String projectType) throws Exception {
 
 
-		String parameters = String.format("\nInput path %s",inputPath);
+		String parameters = String.format("\nInput path %s", inputPath);
 		log.info(parameters);
 
 		CallShell cs = new CallShell();
-		String cmd = "bash "+dbDir + "/" + "startServer.sh" +" %s %s %s";
+		String cmd = "bash " + dbDir + "/" + "startServer.sh" + " %s %s %s";
 
-		cmd = String.format(cmd, dbDir,chunkName,Integer.valueOf(portInner));
+		cmd = String.format(cmd, dbDir, chunkName, Integer.valueOf(portInner));
 
 		cs.runShell(cmd, portInner);
 
-		JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1",Integer.valueOf(portInner),20000000);
+		JedisPool innerPool = new JedisPool(PoolBuilder.getPoolConfig(), "127.0.0.1", Integer.valueOf(portInner), 20000000);
 
 		boolean isJava = false;
-		if (projectType.equals("java")){
-			isJava =true;
+		if (projectType.equals("java")) {
+			isJava = true;
 		}
 		File folder = new File(inputPath);
 		File[] listOfFiles = folder.listFiles();
-		if(listOfFiles == null){
+		if (listOfFiles == null) {
 			throw new Exception("No projects found, please verify the projects in the input path");
 		}
 		Stream<File> stream = Arrays.stream(listOfFiles);
@@ -58,8 +58,7 @@ public class EnhancedASTDiff {
 					.filter(x -> !x.getName().startsWith("cocci"))
 					.filter(x -> !x.getName().endsWith(".index"))
 					.collect(Collectors.toList());
-		}
-		else {
+		} else {
 			List<Predicate<File>> allPredicates = new ArrayList<Predicate<File>>();
 			for (String s : projectList) {
 				Predicate<File> predicate = x -> x.getName().endsWith(s);
@@ -69,20 +68,16 @@ public class EnhancedASTDiff {
 					.filter(x -> !x.getName().startsWith("."))
 					.filter(x -> !x.getName().startsWith("cocci"))
 					.filter(x -> !x.getName().endsWith(".index"))
-					.filter(allPredicates.stream().reduce(x->false, Predicate::or))
+					.filter(allPredicates.stream().reduce(x -> false, Predicate::or))
 					.collect(Collectors.toList());
 		}
 
 
-
-
-
-
 		String project = folder.getName();
 		List<MessageFile> allMessageFiles = new ArrayList<>();
-        for (File target : folders) {
+		for (File target : folders) {
 
-			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/",project,patchSize,isJava); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
+			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/", project, patchSize, isJava); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
 //			msgFiles = msgFiles.subList(0,3000);
 			if (msgFiles == null)
@@ -113,7 +108,16 @@ public class EnhancedASTDiff {
 						}
 				);
 
-        }
+
+//		allMessageFiles.stream().
+//				parallel().
+//				forEach(m ->
+//						{
+//							EDiffHunkParser parser = new EDiffHunkParser();
+//							parser.parseFixPatterns(m.getPrevFile(), m.getRevFile(), m.getDiffEntryFile(), project, innerPool, srcMLPath, hunkLimit, finalIsJava);
+//						}
+//				);
+	}
 
 	
 

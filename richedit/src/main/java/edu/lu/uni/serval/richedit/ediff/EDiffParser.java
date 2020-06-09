@@ -59,7 +59,7 @@ public class EDiffParser extends Parser {
 		}
 		if (gumTreeResults == null) {
 			this.resultType = 1;
-			return null;
+			return actionSets;
 		} else if (gumTreeResults.size() == 0){
 			this.resultType = 2;
 			return actionSets;

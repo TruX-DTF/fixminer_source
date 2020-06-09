@@ -7,12 +7,14 @@ coccinelle:
 
 dataset:
 #    home:   /Users/anilkoyuncu/projects/fixminer/fixminer-core/python/data/gumInputLinux
-    inputPath : /Users/anil.koyuncu/projects/fixminer/fixminer-data/patches
-    repo:   /Users/anil.koyuncu/projects/datasets
+
+    inputPath : /Users/anil.koyuncu/projects/release/fixminer-data/patches
+    repo:   /Users/anil.koyuncu/projects/release/fixminer-data/datasets
 
 fixminer:
-    projectType : c
-    datapath: /Users/anil.koyuncu/projects/fixminer/fixminer-data/
+    projectType : java
+    datapath: /Users/anil.koyuncu/projects/release/fixminer-data/
+
 
 
     pjName : patches
@@ -22,7 +24,8 @@ fixminer:
     hunkLimit : 2
     patchSize : 50
 
-    projectList : ALL
-    inputPath : /Users/anil.koyuncu/projects/fixminer/fixminer-data/patches
-    redisPath : /Users/anil.koyuncu/projects/fixminer/fixminer_source/python/data/redis
+
+    projectList : fuse
+    inputPath : /Users/anil.koyuncu/projects/release/fixminer-data/patches
+    redisPath : /Users/anil.koyuncu/projects/release/fixminer_source/python/data/redis
     srcMLPath :  /usr/local/bin/srcml

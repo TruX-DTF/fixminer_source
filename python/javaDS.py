@@ -17,6 +17,8 @@ def createDS():
     pjList = PROJECT_LIST.split(',')
     if not os.path.exists(DATASET_PATH):
         os.mkdir(DATASET_PATH)
+    if not os.path.exists(COMMIT_DFS):
+        os.mkdir(COMMIT_DFS)
 
     subjects = pd.read_csv(join(ROOT,'data', 'dataset.csv'))
 
