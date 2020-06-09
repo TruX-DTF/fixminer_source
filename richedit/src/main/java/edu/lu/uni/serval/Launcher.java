@@ -73,18 +73,18 @@ public class Launcher {
         String srcMLPath = (String) fixminer.get("srcMLPath");
 
 //        String parameter = args[2];
-        String parameter = "L1";
+//        String parameter = "L1";
         String jobType = args[1];
 //        String jobType = "RICHEDITSCRIPT";
-//        String jobType = "COMPARE";
+//        jobType = "COMPARE";
 
 
-        mainLaunch( numOfWorkers, jobType, portDumps,projectType,input,redisPath,parameter, srcMLPath,hunkLimit,projectList,patchSize);
+        mainLaunch( numOfWorkers, jobType, portDumps,projectType,input,redisPath, srcMLPath,hunkLimit,projectList,patchSize);
 
 
     }
 
-    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String projectType, String input, String redisPath,String parameter,String srcMLPath,String hunkLimit,String[] projectList,String patchSize){
+    public static void mainLaunch(String numOfWorkers, String jobType, String portDumps, String projectType, String input, String redisPath,String srcMLPath,String hunkLimit,String[] projectList,String patchSize){
 
 
         String dbDir;
@@ -100,36 +100,36 @@ public class Launcher {
         try {
             switch (jobType) {
                 case "RICHEDITSCRIPT":
-                    EnhancedASTDiff.main(gumInput, portDumps, dbDir, dumpsName, srcMLPath,parameter,hunkLimit,projectList,patchSize,projectType);
+                    EnhancedASTDiff.main(gumInput, portDumps, dbDir, dumpsName, srcMLPath,hunkLimit,projectList,patchSize,projectType);
                     break;
 
                 case "COMPARE":
-                    String job;
-                    String compareDBName;
-                    switch (parameter){
-                        case "L1":
-//                            job = "shape";
-                            job = "single";
-                            compareDBName = "clusterl0-gumInputALL.rdb";
-                            break;
-                        case "L2":
-                            job = "action";
-                            compareDBName = "clusterl1-gumInputALL.rdb";
-                            break;
-                        case "L3":
-                            job = "token";
-                            compareDBName = "clusterl2-gumInputALL.rdb";
-                            break;
-                        default:
-                            throw new Error("unknown level please specify L1,L2,L3");
-                    }
+//                    String job;
+//                    String compareDBName;
+//                    switch (parameter){
+//                        case "L1":
+////                            job = "shape";
+//                            job = "single";
+//                            compareDBName = "clusterl0-gumInputALL.rdb";
+//                            break;
+//                        case "L2":
+//                            job = "action";
+//                            compareDBName = "clusterl1-gumInputALL.rdb";
+//                            break;
+//                        case "L3":
+//                            job = "token";
+//                            compareDBName = "clusterl2-gumInputALL.rdb";
+//                            break;
+//                        default:
+//                            throw new Error("unknown level please specify L1,L2,L3");
+//                    }
 
 
-                    CompareTrees.main(redisPath, portDumps,dumpsName, job,numOfWorkers);
+                    CompareTrees.main(redisPath, portDumps,dumpsName, numOfWorkers);
                     break;
-                case "PATTERN":
-                    ClusterToPattern.main(portDumps,redisPath, dumpsName, parameter);
-                    break;
+//                case "PATTERN":
+//                    ClusterToPattern.main(portDumps,redisPath, dumpsName, parameter);
+//                    break;
                 default:
                     throw new Error("unknown Job");
 

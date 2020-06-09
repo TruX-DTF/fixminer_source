@@ -71,15 +71,22 @@ public class EDiffHelper {
     }
 
 
-    public static ITree getTokenTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc){
+    public static ITree getTokenTree(HierarchicalActionSet actionSet, ITree parent, ITree children,TreeContext tc,boolean isJava){
 
         int newType = 0;
 
         String astNodeType = actionSet.getAstNodeType();
 
         String label = actionSet.getAction().toString();
+
+        Map<Integer, String> nodeMap;
+        if(isJava){
+            nodeMap = ASTNodeMap.map;
+        }else{
+            nodeMap = NodeMap_new.map;
+        }
 //        List<Integer> keysByValue = getKeysByValue(ASTNodeMap.map, astNodeType);
-        List<Integer> keysByValue = getKeysByValue(NodeMap_new.map, astNodeType);
+        List<Integer> keysByValue = getKeysByValue(nodeMap, astNodeType);
 
         if(keysByValue.size() != 1){
             log.error("More than 1");
@@ -102,7 +109,7 @@ public class EDiffHelper {
                 if(actionSet.getParent() == null){
                     children = parent;
                 }
-                getTokenTree(subAction,children,null,tc);
+                getTokenTree(subAction,children,null,tc,isJava);
 
             }
 
@@ -307,6 +314,17 @@ public class EDiffHelper {
         return tree;
     }
 
+    public static ITree getTokenTree(HierarchicalActionSet actionSet,boolean isJava) {
+        ITree tree = null;
+        ITree parent = null;
+        ITree children = null;
+        TreeContext tc = new TreeContext();
+        tree = EDiffHelper.getTokenTree(actionSet, parent, children, tc,isJava);
+        //tree.setParent(null);
+        tc.validate();
+        return tree;
+    }
+
 
     public static ITree getTargets(HierarchicalActionSet actionSet,boolean isJava) {
 
@@ -420,13 +438,15 @@ public class EDiffHelper {
 //                String[] split = prefix.split("-");
 //                String key = split[0] + "/"+split[1]+"/" + dist2load;
 //
-//                byte[] s = outer.hget("dump".getBytes(), key.getBytes());
-//                actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
+//                String s = outer.hget("dump", key);
+//                actionSet = (HierarchicalActionSet) EDiffHelper.fromString(s);
+//
+////                actionSet = (HierarchicalActionSet) EDiffHelper.kryoDeseerialize(s);
 //
 //                ITree parent = null;
 //                ITree children = null;
 //                TreeContext tc = new TreeContext();
-//                tree = EDiffHelper.getTokenTree(actionSet, parent, children, tc);
+//                tree = EDiffHelper.getTokenTree(actionSet, parent, children, tc,is);
 //                tree.setParent(null);
 //                tc.validate();
 ////            getLeaves(tree);

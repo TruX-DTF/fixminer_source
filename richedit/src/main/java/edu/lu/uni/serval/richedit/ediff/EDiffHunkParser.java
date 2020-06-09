@@ -62,12 +62,16 @@ public class EDiffHunkParser extends EDiffParser {
 							ITree targetTree = EDiffHelper.getTargets(actionSet, isJava);
 							ITree actionTree = EDiffHelper.getActionTrees(actionSet);
 							ITree shapeTree = EDiffHelper.getShapeTree(actionSet, isJava);
+							ITree tokenTree = EDiffHelper.getTokenTree(actionSet,isJava);
+							String tokens = EDiffHelper.getNames2(tokenTree);
+//						EDiffHelper.getTokenTree(actionSet, parent, children, tc);
 							try (Jedis inner = innerPool.getResource()) {
 
 								inner.hset("dump", key, actionSet.toString());
 								inner.hset(key, "actionTree", actionTree.toStaticHashString());
 								inner.hset(key, "targetTree", targetTree.toStaticHashString());
 								inner.hset(key, "shapeTree", shapeTree.toStaticHashString());
+								inner.hset(key, "tokens", tokens);
 							}
 //						File f = new File(root+"dumps/"+astNodeType+"/"+String.valueOf(size)+"/");
 //						f.mkdirs();

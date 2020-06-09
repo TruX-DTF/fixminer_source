@@ -1,12 +1,13 @@
 from common.commons import *
 DATA_PATH = os.environ["DATA_PATH"]
 PROJECT_TYPE = os.environ["PROJECT_TYPE"]
+REDIS_PORT = os.environ["REDIS_PORT"]
 
 def statsNormal(isFixminer=True):
     # tokens = join(DATA_PATH, 'tokens')
     # actions = join(DATA_PATH, 'actions')
     import redis
-    redis_db = redis.StrictRedis(host="localhost", port=6399, db=0)
+    redis_db = redis.StrictRedis(host="localhost", port=REDIS_PORT, db=0)
     # keys = redis_db.scan(0, match='*', count='1000000')
     keys = redis_db.hkeys("dump")  # hkeys "dump"
     matches = pd.DataFrame(keys, columns=['pairs_key'])
@@ -95,7 +96,7 @@ def statsNormal(isFixminer=True):
 
 
     # for type in ['tokens', 'actions', 'shapes']:
-    for type in ['shapes']:
+    for type in ['actions']:
         statsS,clusterDF = stats(type,isFixminer)
         if isFixminer:
             clusterDF = clusterDF[clusterDF.members.str.len() > 1]
@@ -136,25 +137,7 @@ def statsNormal(isFixminer=True):
         matches
         if isFixminer:
             matches.to_csv(join(DATA_PATH, "stats" + type + ".csv"), index=False)
-            if type == 'actions':
-                clusterDF['ms'] = clusterDF.members.str.len()
-                clusterDF.sort_values(by='ms', ascending=False, inplace=True)
-                top50 = clusterDF.head(50)
-                top50['member'] = top50.members.apply(lambda x: x[0])
-                top50['cid'] = top50.cid.apply(lambda x: x[0])
-                top50['path'] = top50.apply(lambda x:x['cid'].replace('-','/')+'/'+x['member'],axis=1)
-                def readFile(x):
-                    with open(join(DATA_PATH,'actions',x), 'r', encoding='utf-8') as writeFile:
-                        lines = writeFile.read()
-                        return lines
-                        # if lines.startswith('UPD'):
-                        #     return lines
-                        # else:
-                        #     return ''
-                    # return lines
 
-                top50['pattern'] = top50.path.apply(lambda x:readFile(x))
-                top50[['cid','pattern']].to_csv('actionsPattern2verify.csv',index=False,header=None)
 
 
 
@@ -253,7 +236,7 @@ def stats(type,isFixminer=True):
                     continue
                 cs = listdir(join(shapesPath, shape, size, cluster))
 
-                if shapesPath.endswith('shapes'):
+                if shapesPath.endswith('actions'):
                     cs = listdir(join(shapesPath, shape, size, cluster))
                     statsCore(cs)
                 else:
@@ -262,14 +245,14 @@ def stats(type,isFixminer=True):
                         if action.startswith('.'):
                             continue
                         tokens = listdir(join(shapesPath, shape, size, cluster, action))
-                        if shapesPath.endswith('actions'):
+                        if shapesPath.endswith('tokens'):
                             statsCore(tokens)
-                        else:
-                            for token in tokens:
-                                if token.startswith('.'):
-                                    continue
-                                cs = listdir(join(shapesPath, shape, size, cluster, action, token))
-                                statsCore(cs)
+                        # else:
+                        #     for token in tokens:
+                        #         if token.startswith('.'):
+                        #             continue
+                        #         cs = listdir(join(shapesPath, shape, size, cluster, action, token))
+                        #         statsCore(cs)
     return statsS,clustersDF
 
 
@@ -282,7 +265,7 @@ def defects4jStats(isFixminer=False):
         mapping.rename(columns={0: 'repo', 1: "commit", 2: 'defects4jID'}, inplace=True)
         dbDir = join(DATA_PATH, 'redis')
 
-        portInner = '6399'
+        portInner = REDIS_PORT
         startDB(dbDir, portInner, PROJECT_TYPE )
 
         import redis
@@ -474,8 +457,8 @@ cAst = ["unit","comment","literal","operator","modifier","name","type","conditio
 
 
 def exportAbstractPatterns():
-    clusterStats,df = stats('shapes')
-    port = 6399
+    clusterStats,df = stats('actions')
+    port = REDIS_PORT
     import redis
     redis_db = redis.StrictRedis(host="localhost", port=port, db=0)
     isJava = False

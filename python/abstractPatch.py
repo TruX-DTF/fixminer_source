@@ -6,6 +6,8 @@ from common.commons import *
 DATA_PATH = os.environ["DATA_PATH"]
 DATASET = os.environ["dataset"]
 jdk8 = os.environ["JDK8"]
+REDIS_PORT = os.environ["REDIS_PORT"]
+
 # def localPairCore(aTuple):
 #     redis_db = redis.StrictRedis(host="localhost", port=6380, db=1)
 #     idx, key = aTuple
@@ -54,12 +56,15 @@ def loadPairMulti(root,clusterPath,level):
 
     # root = 'BreakStatement'
     logging.info(root)
-    port = 6399
+    port = REDIS_PORT
     # if isfile(clusterPath +"/"+root+".pickle"):
     #     return load_zipped_pickle(clusterPath +"/"+root+".pickle")
     # else:
         # redis_db = redis.StrictRedis(host="localhost", port=port, db=1)  #L1
-    redis_db = redis.StrictRedis(host="localhost", port=port, db=2)
+    if level == 'tokens':
+        redis_db = redis.StrictRedis(host="localhost", port=port, db=3)
+    else:
+        redis_db = redis.StrictRedis(host="localhost", port=port, db=2)
     keys = redis_db.scan(0, match=root+'-*', count='100000000')
     # keys = redis_db.hkeys("dump")
 
@@ -81,11 +86,11 @@ def loadPairMulti(root,clusterPath,level):
     matches['path2']=matches['pairs'].apply(lambda x:x[1])
     # matches['sizes']=matches['pairs_key'].apply(lambda x:x.split('_')[0].split('-')[1])
     matches['sizes']=matches['pairs_key'].apply(lambda x:x.split(root)[1].split('/')[0].split('-')[1])
-    if level == 'actions':
-        matches['actions']=matches['pairs_key'].apply(lambda x:x.split('/')[0].split('-')[2])
     if level == 'tokens':
-        matches['actions'] = matches['pairs_key'].apply(lambda x: x.split('/')[0].split('-')[2])
-        matches['tokens']=matches['pairs_key'].apply(lambda x:x.split('/')[0].split('-')[3])
+        matches['tokens']=matches['pairs_key'].apply(lambda x:x.split('/')[0].split('-')[2])
+    # if level == 'tokens':
+    #     matches['actions'] = matches['pairs_key'].apply(lambda x: x.split('/')[0].split('-')[2])
+    #     matches['tokens']=matches['pairs_key'].apply(lambda x:x.split('/')[0].split('-')[3])
 
 
     # save_zipped_pickle(matches,clusterPath +"/"+root+".pickle")
@@ -119,19 +124,19 @@ def cluster(clusterPath,pairsPath, level):
                 for s in sizes:
                     match = matches[matches['sizes'] == s]
 
-                    if level == 'actions':
-                        actions = match['actions'].unique().tolist()
+                    if level == 'tokens':
+                        actions = match['tokens'].unique().tolist()
                         for action in actions:
-                            match = match[match['actions'] == action]
+                            match = match[match['tokens'] == action]
                             clusterCore(clusterPath,  level, match, pairsPath, root, s,action)
-                    elif level == 'tokens':
-                        actions = match['actions'].unique().tolist()
-                        for action in actions:
-                            match = match[match['actions'] == action]
-                            tokens = match['tokens'].unique().tolist()
-                            for token in tokens:
-                                match = match[match['tokens']==token]
-                                clusterCore(clusterPath, level, match, pairsPath, root, s, action,token)
+                    # elif level == 'tokens':
+                    #     actions = match['actions'].unique().tolist()
+                    #     for action in actions:
+                    #         match = match[match['actions'] == action]
+                    #         tokens = match['tokens'].unique().tolist()
+                    #         for token in tokens:
+                    #             match = match[match['tokens']==token]
+                    #             clusterCore(clusterPath, level, match, pairsPath, root, s, action,token)
                     else:
                         clusterCore(clusterPath,  level, match, pairsPath, root, s,'')
 
@@ -158,12 +163,12 @@ def clusterCore(clusterPath, level, match, pairsPath, root, s,action ,token=''):
         cluster.append(subgraph.nodes())
     cluster
     pathMapping = dict()
-    if level == 'actions':
+    if level == 'tokens':
         indexFile = join(pairsPath, root, s,action+'.index')
-    elif level == 'shapes':
+    elif level == 'actions':
         indexFile = join(pairsPath, root, s + '.index')
-    else:
-        indexFile =join(pairsPath, root, s,action,token+'.index')
+    # else:
+    #     indexFile =join(pairsPath, root, s,action,token+'.index')
     df = pd.read_csv(indexFile, header=None, usecols=[0, 1], index_col=[0])
     pathMapping = df.to_dict()
 

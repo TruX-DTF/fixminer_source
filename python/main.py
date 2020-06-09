@@ -40,9 +40,7 @@ if __name__ == '__main__':
         if job == 'dataset4j':
             from javaDS import createDS
             createDS()
-        # elif job == 'linuxDS':
-        #     from linuxDataset import collectBugFixPatches
-        #     collectBugFixPatches()
+
         elif job =='dataset4c':
             from otherDatasets import core
             core()
@@ -53,20 +51,16 @@ if __name__ == '__main__':
             output = shellCallTemplate(cmd)
             logging.info(output)
 
-        # elif job =='loadRES':
-        #     cmd = "JAVA_HOME='" + jdk8 + "' java -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " LOAD " + rootType
-        #     output = shellCallTemplate(cmd)
-        #     logging.info(output)
 
-        elif job =='shapeSI':
-            from pairs import shapePairs
-            matches = shapePairs()
+        elif job =='actionSI':
+            from pairs import actionPairs
+            matches = actionPairs()
 
             from pairs import createPairs
             createPairs(matches)
 
-            from pairs import importShape
-            importShape()
+            from pairs import importAction
+            importAction()
 
         elif job =='compare':
              # cmd = "mvn exec:java -f '/data/fixminer_source/' -Dexec.mainClass='edu.lu.uni.serval.richedit.akka.compare.CompareTrees' -Dexec.args='"+ " shape " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl0-gumInputALL.rdb /data/richedit-core/python/data/richEditScript'"
@@ -74,65 +68,28 @@ if __name__ == '__main__':
             output = shellCallTemplate4jar(cmd)
             logging.info(output)
 
-        # elif job == 'clusterAdditional':
-        #     from addNewData import cluster
-        #     cluster()
 
         elif job == 'cluster':
             from abstractPatch import cluster
 
             dbDir = join(DATA_PATH, 'redis')
-            startDB(dbDir, "6399", PROJECT_TYPE)
-            cluster(join(DATA_PATH,'shapes'),join(DATA_PATH, 'pairs'),'shapes')
+            startDB(dbDir, REDIS_PORT, PROJECT_TYPE)
+            cluster(join(DATA_PATH,'actions'),join(DATA_PATH, 'pairs'),'actions')
 
-        # elif job =='actionSI':
-        #     from pairs import actionPairs
-        #     actionPairs(rootType)
-        #
-        # # elif job =='importActionPairs':
-        #     from pairs import importAction
-        #     importAction(rootType)
-        #
-        # elif job =='compareActions':
-        #     # cmd = "JAVA_HOME='"+jdk8+"' java -Xmx8096m -Djava.util.concurrent.ForkJoinPool.common.parallelism=64 -jar "+  join(DATA_PATH,'CompareTrees.jar') + " action " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl1-gumInputALL.rdb"
-        #
-        #     cmd = "JAVA_HOME='" + jdk8 + "' java -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " COMPARE " + 'L2'
-        #     output = shellCallTemplate(cmd)
-        #     logging.info(output)
-        #
-        # elif job == 'clusterActions':
-        #     from abstractPatch import cluster
-        #
-        #     dbDir = join(DATA_PATH, 'redis')
-        #     startDB(dbDir, "6399", PROJECT_TYPE)
-        #     cluster( join(DATA_PATH, 'actions'),join(DATA_PATH, 'pairsAction'),'actions',rootType)
-
-        elif job == 'tokenSI':
+        elif job =='tokenSI':
             from pairs import tokenPairs
             tokenPairs()
-            from pairs import importToken
-            importToken()
 
-        elif job == 'compareTokens':
-            # cmd = "JAVA_HOME='"+jdk8+"' java -jar "+  join(DATA_PATH,'CompareTrees.jar') + " token " + join(DATA_PATH,"redis") +" ALLdumps-gumInput.rdb " + "clusterl2-gumInputALL.rdb"
-            cmd = "JAVA_HOME='" + jdk8 + "' java -jar " + join(DATA_PATH, 'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH, 'app.properties') + " COMPARE " + 'L3'
-            output = shellCallTemplate(cmd)
-            logging.info(output)
+            from pairs import importTokens
+            importTokens()
 
         elif job == 'clusterTokens':
             from abstractPatch import cluster
 
             dbDir = join(DATA_PATH, 'redis')
-            startDB(dbDir, "6399", PROJECT_TYPE)
-            startDB(dbDir, "6380", "clusterl2-gumInputALL.rdb")
-            cluster(join(DATA_PATH, 'tokens'), join(DATA_PATH, 'pairsToken'),'tokens')
-            stopDB(dbDir, "6380", "clusterl2-gumInputALL.rdb")
+            startDB(dbDir, REDIS_PORT, PROJECT_TYPE)
+            cluster( join(DATA_PATH, 'tokens'),join(DATA_PATH, 'pairsToken'),'tokens')
 
-        # elif job == 'additional':
-        #     from addNewData import core
-        #     core()
-        #     # from addNewData import checkWrongMembers
-        #     # checkWrongMembers()
 
         elif job == 'codeflaws':
             from otherDatasets import codeflaws
@@ -218,19 +175,10 @@ if __name__ == '__main__':
         elif job == 'defects4j':
             from stats import defects4jStats
             defects4jStats()
-        elif job == 'exportPatterns':
+        elif job == 'patterns':
             from stats import exportAbstractPatterns
             exportAbstractPatterns()
-        elif job =='export':
-            patternPath = join(DATA_PATH,'actions','ExpressionStatement','3','0','0')
-            patterns = listdir(patternPath)
-            for pattern in patterns:
-                repo = pattern.split('_')[0]
-                file = pattern.replace(repo+'_','')
-                print(file)
-                filename = file.rsplit('_',1)[0]
-                print(join(DATA_PATH,'gumInput',repo,'DiffEntries',filename))
-                break
+
 
         else:
             logging.error('Unknown job %s',job)

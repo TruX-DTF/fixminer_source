@@ -34,6 +34,10 @@ You can cite FixMiner using the following bibtex:
 Fixminer is a systematic and automated approach to mine relevant and actionable fix patterns for automated program repair.
 ![The workflow of this technique.\label{workflow}](worflow.png)
 
+** This version of the Fixminer has some changes compared to the one published in the paper. 
+
+    - The iteration that was computing the shapes separetely is removed. Now the operation of the shape trees are performed together with the action trees. As a result of this change no shape clusters are generated separately anymore. The initial output of the pattern mining iteration is action trees (a.k.a patterns ) 
+
 ## II. Environment setup
 
 * OS: macOS Mojave (10.14.3)
@@ -82,8 +86,8 @@ In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
 
 In order to launch FixMiner, execute [fixminer.sh](python/fixminer.sh)
 
-    bash fixminer.sh [JOB] [CONFIG_FILE]
-     e.g. bash fixminer.sh  dataset4c /Users/projects/release/fixminer_source/src/main/resources/config.yml
+    bash fixminer.sh [CONFIG_FILE] [JOB]
+     e.g. bash fixminer.sh  /Users/projects/release/fixminer_source/src/main/resources/config.yml dataset4c
      
 A log file (app.log) is created after every execution of the [fixminer.sh]((python/fixminer.sh)). Please check this log file in order to access more information. 
  
@@ -91,30 +95,38 @@ A log file (app.log) is created after every execution of the [fixminer.sh]((pyth
     
 #### Job Types  
 
-*FixMiner* needs to specify a job to run.
+*FixMiner* needs to follow an execution, **in the order listed below** in order to create clusters of patches.
 
    1. __dataset4j__ / __dataset4c__: Create a java/c mining dataset from the projects listed in [subjects.csv](python/data/subjects.csv) or [datasets.csv](python/data/datasets.csv) for c
       
-   2. __richEditScript__: Calls the jar file produced as the results as maven package to compute Rich edit scripts.
+   2. __richedit__: Calls the jar file produced as the results as maven package to compute Rich edit scripts.
    This step can be invoke natively from java or using the [Launcher](src/main/java/edu/lu/uni/serval/richedit/Launcher.java) with appropriate arguments.
 
          ```powershell
          java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml RICHEDITSCRIPT
          ```   
-   3. __shapeSI__: Search index creation for shapes. The output of this step is written to __pairs__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
+   3. __actionSI__: Search index creation for actions. The output of this step is written to __pairs__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
     
    4. __compare__ : Calls the jar file produced as the results as maven package to compare the trees.
                              This step can be invoke natively from java or using the [Launcher](src/main/java/edu/lu/uni/serval/richedit/Launcher.java) with appropriate arguments.
                              
-                           ```powershell
-                           java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml COMPARE
-                          
-                           ```     
-   5. __cluster__ : Forms clusters of identical trees. The output of this step is written to __shapes__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
+        ```powershell
+        java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml COMPARE
+        ```       
+   5. __cluster__ : Forms clusters of identical trees. The output of this step is written to __actions__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
    
-   6. __stats__: Calculate frequency statistics of the patterns under statsshapes.csv in datapath. The information is also written in app.log file.
+   6. __tokenSI__ : Search index creation for tokens. The output of this step is written to __pairsToken__ folder which will be generated under __datapath__ in [config file](src/main/resources/config.yml)
    
-   7. __exportPatterns__ : Export FixPatterns of APR integration under patterns folder located in datapath/
+   7. __compare__ : Calls the jar file produced as the results as maven package to compare the trees.
+                                   This step can be invoke natively from java or using the [Launcher](src/main/java/edu/lu/uni/serval/richedit/Launcher.java) with appropriate arguments.
+                                   
+        ```powershell
+        java -jar FixPatternMiner-1.0.0-jar-with-dependencies.jar  /Users/projects/release/fixminer_source/src/main/resources/config.yml COMPARE
+        ```     
+   
+   8. __stats__: Calculate frequency statistics of the patterns under statsactions.csv in datapath. The information is also written in app.log file.
+   
+   7. __patterns__ : Export FixPatterns of APR integration under patterns folder located in datapath/
                                                                                                                    
    <!--
     
@@ -252,10 +264,11 @@ Connect to redis instance
      redis-cli -p 6399
   ```   
 
-We use 3 databases inside the redis, 0,1,2.
+We use 3 databases inside the redis, 0,1,2,3.
 DB 0 stores the richedit dumps, comparison indices
-DB 1 stores the filenames and their corresponding indices
-DB 2 stores the output of comparison, a.k.a same trees.
+DB 1 stores the filenames and their indices (used in comparison and stored in DB2, DB3) 
+DB 2 stores the output of comparison action trees.
+DB 3 stores the output of comparison token trees.
 
 In order to switch between these database use the following command
 
@@ -298,15 +311,18 @@ hgetall NAME_OF_THE_EXACT_KEY
 hgetall MethodDeclaration/40/fuse_67b14b_04e5b1_fabric#fabric-client#src#main#java#org#fusesource#fabric#jolokia#facade#facades#ProfileFacade.java.txt_1
 
 OUTPUT:
-1) "targetTree"
-2) "[(55@@[(31@@)][(31@@)][(31@@)][(31@@[(44@@)][(44@@)])][(31@@[(44@@[(74@@)][(74@@)][(74@@)])][(44@@)])][(31@@[(60@@[(74@@)][(74@@)][(74@@[(74@@)][(74@@)][(74@@)])])][(60@@[(59@@)][(59@@)])])][(31@@[(25@@[(27@@)][(27@@)][(27@@)])][(25@@[(8@@[(21@@[(32@@)][(32@@[(42@@)][(42@@)])])])][(8@@[(21@@[(32@@[(42@@)])])])])])])]"
-3) "actionTree"
-4) "[(100@@[(100@@)][(100@@)][(100@@)][(100@@[(100@@)][(100@@)])][(100@@[(100@@[(100@@)][(100@@)][(100@@)])][(100@@)])][(100@@[(100@@[(100@@)][(100@@)][(100@@[(100@@)][(100@@)][(100@@)])])][(100@@[(100@@)][(100@@)])])][(100@@[(100@@[(100@@)][(100@@)][(100@@)])][(100@@[(100@@[(100@@[(100@@)][(100@@[(100@@)][(100@@)])])])][(100@@[(100@@[(100@@[(100@@)])])])])])])]"
-5) "shapeTree"
-6) "[(31@@[(83@@)][(39@@)][(42@@)][(44@@[(43@@)][(42@@)])][(44@@[(74@@[(43@@)][(43@@)][(43@@)])][(42@@)])][(60@@[(74@@[(43@@)][(43@@)][(74@@[(43@@)][(43@@)][(43@@)])])][(59@@[(42@@)][(32@@)])])][(25@@[(27@@[(42@@)][(-1@@)][(33@@)])][(8@@[(21@@[(32@@[(42@@)][(42@@[(42@@)][(42@@)])])])][(21@@[(32@@[(42@@[(42@@)])])])])])])]"
+1) "tokens"
+2) "public  void  MethodName:setConfiguration  String  pid  Map  String  String  configuration  Map  String  Map  String  String  configurations  MethodName:getConfigurations:[]  configurations  !=  null  Name:configurations  pid  configuration  configurations "
+3) "targetTree"
+4) "[(55@@[(31@@)][(31@@)][(31@@)][(31@@[(44@@)][(44@@)])][(31@@[(44@@[(74@@)][(74@@)][(74@@)])][(44@@)])][(31@@[(60@@[(74@@)][(74@@)][(74@@[(74@@)][(74@@)][(74@@)])])][(60@@[(59@@)][(59@@)])])][(31@@[(25@@[(27@@)][(27@@)][(27@@)])][(25@@[(8@@[(21@@[(32@@)][(32@@[(42@@)][(42@@)])])])][(8@@[(21@@[(32@@[(42@@)])])])])])])]"
+5) "actionTree"
+6) "[(100@@[(100@@)][(100@@)][(100@@)][(100@@[(100@@)][(100@@)])][(100@@[(100@@[(100@@)][(100@@)][(100@@)])][(100@@)])][(100@@[(100@@[(100@@)][(100@@)][(100@@[(100@@)][(100@@)][(100@@)])])][(100@@[(100@@)][(100@@)])])][(100@@[(100@@[(100@@)][(100@@)][(100@@)])][(100@@[(100@@[(100@@[(100@@)][(100@@[(100@@)][(100@@)])])])][(100@@[(100@@[(100@@[(100@@)])])])])])])]"
+7) "shapeTree"
+8) "[(31@@[(83@@)][(39@@)][(42@@)][(44@@[(43@@)][(42@@)])][(44@@[(74@@[(43@@)][(43@@)][(43@@)])][(42@@)])][(60@@[(74@@[(43@@)][(43@@)][(74@@[(43@@)][(43@@)][(43@@)])])][(59@@[(42@@)][(32@@)])])][(25@@[(27@@[(42@@)][(-1@@)][(33@@)])][(8@@[(21@@[(32@@[(42@@)][(42@@[(42@@)][(42@@)])])])][(21@@[(32@@[(42@@[(42@@)])])])])])])]"
   ```  
 
-After executing the shapeSI step, the rich edit scripts to be compared are stored in a key in DB 0. Use the following command to verify number of comparison to be made.
+After executing the actionSI / tokenSI steps, the rich edit scripts to be compared are stored in a key in DB 0. Use the following command to verify number of comparison to be made. 
+The trees that are labelled to be same are stored in DB2 for action trees and,in DB3 for token trees. 
 
 This command can also be used in order to progress the compare step. When the comparison is completed the following command will return 0.
  ```powershell

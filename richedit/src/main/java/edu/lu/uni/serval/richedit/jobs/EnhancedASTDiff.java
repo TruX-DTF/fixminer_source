@@ -26,7 +26,7 @@ public class EnhancedASTDiff {
 
 	private static Logger log = LoggerFactory.getLogger(EnhancedASTDiff.class);
 
-	public static void main(String inputPath, String portInner, String dbDir, String chunkName,String srcMLPath,String parameter,String hunkLimit,String[] projectList,String patchSize,String projectType) throws Exception {
+	public static void main(String inputPath, String portInner, String dbDir, String chunkName,String srcMLPath,String hunkLimit,String[] projectList,String patchSize,String projectType) throws Exception {
 
 
 		String parameters = String.format("\nInput path %s", inputPath);
