@@ -151,13 +151,14 @@ public class CompareTrees {
 
     public static boolean newCoreCompare( String treeType,ArrayList<String> errorPairs, HashMap<String, String> filenames,JedisPool outerPool ) {
 
-        String pairName;
+        String pairName = null;
         try (Jedis outer = outerPool.getResource()) {
             pairName = outer.spop("compare");
-        }
-
+//        }
+        if(pairName.equals("0"))
+            return true;
         String matchKey = null;
-        try {
+//        try {
 
             String[] split = pairName.split("/");
 
@@ -235,7 +236,7 @@ public class CompareTrees {
 //                    break;
             }
         }catch (Exception e) {
-            errorPairs.add(matchKey);
+            errorPairs.add(pairName);
             if (pairName == null)
                 return false;
             log.debug("{} not comparable", pairName);

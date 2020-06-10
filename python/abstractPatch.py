@@ -87,7 +87,7 @@ def loadPairMulti(root,clusterPath,level):
     # matches['sizes']=matches['pairs_key'].apply(lambda x:x.split('_')[0].split('-')[1])
     matches['sizes']=matches['pairs_key'].apply(lambda x:x.split(root)[1].split('/')[0].split('-')[1])
     if level == 'tokens':
-        matches['tokens']=matches['pairs_key'].apply(lambda x:x.split('/')[0].split('-')[2])
+        matches['actions']=matches['pairs_key'].apply(lambda x:x.split('/')[0].split('-')[2])
     # if level == 'tokens':
     #     matches['actions'] = matches['pairs_key'].apply(lambda x: x.split('/')[0].split('-')[2])
     #     matches['tokens']=matches['pairs_key'].apply(lambda x:x.split('/')[0].split('-')[3])
@@ -125,9 +125,9 @@ def cluster(clusterPath,pairsPath, level):
                     match = matches[matches['sizes'] == s]
 
                     if level == 'tokens':
-                        actions = match['tokens'].unique().tolist()
+                        actions = match['actions'].unique().tolist()
                         for action in actions:
-                            match = match[match['tokens'] == action]
+                            match = match[match['actions'] == action]
                             clusterCore(clusterPath,  level, match, pairsPath, root, s,action)
                     # elif level == 'tokens':
                     #     actions = match['actions'].unique().tolist()
@@ -200,7 +200,10 @@ def dumpFilesCore(t):
         jdk8 = os.environ["JDK8"]
         # cmd = "JAVA_HOME='"+jdk8+"' java -jar "+ join(DATA_PATH,'FixPatternMiner-1.0.1.jar') + " " + join(DATA_PATH,'app.properties')+" PATTERN " +key
 
-        clusterSavePath = join(clusterPath, root, s, str(idx))
+        if level == 'tokens':
+            clusterSavePath = join(clusterPath, root, s, action, str(idx))
+        else:
+            clusterSavePath = join(clusterPath, root, s, str(idx))
         os.makedirs(clusterSavePath, exist_ok=True)
         shutil.copy(filePath,join(clusterSavePath,dumpFile))
         # with open(join(clusterSavePath, dumpFile), 'w', encoding='utf-8') as writeFile:
