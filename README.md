@@ -126,7 +126,27 @@ A log file (app.log) is created after every execution of the [fixminer.sh]((pyth
    
    8. __stats__: Calculate frequency statistics of the patterns under statsactions.csv in datapath. The information is also written in app.log file.
    
-   7. __patterns__ : Export FixPatterns of APR integration under patterns folder located in datapath/
+   9. __patterns__ : Export FixPatterns of APR integration under patterns folder located in datapath/
+
+
+##### Structure of the cluster folders
+```powershell
+  |--- actions                    : Action clusters
+  |------ReturnStatement          : AST Node type
+  |---------4                     : The size of the rich edit script
+  |------------0                  : 0th Action cluster of ReturnStatement of rich edit size 4
+  |--------------- filename       : 0th member of the cluster
+
+
+  |--- tokens                     : Token clusters
+  |------ReturnStatement          : AST Node type
+  |---------4                     : The size of the rich edit script
+  |------------0                  : 0th Action cluster of ReturnStatement of rich edit size 4
+  |---------------0               : 0th Token cluster of ReturnStatement of rich edit size 4 of 0th action cluster
+  |----------------- filename       : 0th member of the cluster
+
+
+```
                                                                                                                    
    <!--
     
