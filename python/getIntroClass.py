@@ -25,10 +25,21 @@ def export():
         os.mkdir(join(BUGDIR))
     # bugList = [i.replace(':', '-').replace('manybugs-', 'squareslab/manybugs:') for i in bugList]
     # exportCore(bugList[0])
+    cmd = 'bugzoo bug list'
+    logging.info(cmd)
+    output, e = shellGitCheckout(cmd)
     bugList = []
-    with open(introClassFile, 'r') as file:
-        for line in file.readlines():
-            bugList.append(line.strip())
+    for line in output.splitlines():
+        if line == '':
+            continue
+        potentialId = line.split('|')[1].strip()
+        if potentialId.startswith('introclass'):
+            if 'Yes' in line:
+                bugList.append(potentialId)
+
+    # with open(introClassFile, 'r') as file:
+    #     for line in file.readlines():
+    #         bugList.append(line.strip())
     print("bugList length: {}".format(len(bugList)))
     for b in bugList:
         exportCore(b)

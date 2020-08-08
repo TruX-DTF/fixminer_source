@@ -5,13 +5,14 @@ import signal
 
 # from common.commons import shellGitCheckout
 DATA_PATH = os.environ["DATA_PATH"]
+ROOT_DIR = os.environ["ROOT_DIR"]
 introClassFile = join(DATA_PATH,'introClassData.txt')
 
 def testCore(t):
         bugName, port = t
         container = None
         # with bugzoo.server.ephemeral(port=port, verbose=False,bugzooPath="/Users/anil.koyuncu/anaconda3/envs/python36/bin/bugzood", timeout_connection=3000) as client:
-        cmd = 'bash {} {}'.format(join(DATA_PATH,'startBugzoo.sh'),port)
+        cmd = 'bash {} {}'.format(join(ROOT_DIR,'data','startBugzoo.sh'),port)
 
         with Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True) as process:
 

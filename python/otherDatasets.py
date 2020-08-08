@@ -19,6 +19,7 @@ def checkoutFiles(sha,shaOld, filePath,type, repo=None):
         folderDiff = join(type, 'DiffEntries')
         folderPrev = join(type, 'prevFiles')
         folderRev = join( type, 'revFiles')
+        folderPatch = join( type, 'patches')
         if not os.path.exists(folderDiff):
             os.mkdir(folderDiff)
 
@@ -27,14 +28,15 @@ def checkoutFiles(sha,shaOld, filePath,type, repo=None):
 
         if not os.path.exists(folderRev):
             os.mkdir(folderRev)
-
+        if not os.path.exists(folderPatch):
+            os.mkdir(folderPatch)
         # if repo is None:
         #     repo = join(REPO_PATH,repoName)
 
 
         savePath = filePath.replace('/','#')
 
-        if not isfile(folderDiff + '/' + sha + '_' + shaOld + '_' + savePath + '.txt'):
+        if not isfile(folderDiff + '/' + shaOld + '_' + sha + '_' + savePath + '.txt'):
 
             cmd = 'git -C ' + repo + ' diff -U ' + shaOld + ':' + filePath + '..' + sha + ':' + filePath  # + '> ' + folderDiff + '/' + sha + '_' + shaOld + '_' + savePath.replace('.java','.txt')
 
@@ -52,21 +54,28 @@ def checkoutFiles(sha,shaOld, filePath,type, repo=None):
             numberOfHunks = re.findall('@@\s\-\d+,*\d*\s\+\d+,*\d*\s@@', matched)
             if len(numberOfHunks) == 0:
                 return
-            diffFile = shaOld + '\n' + matched.replace(' @@ ', ' @@\n')
+            # diffFile = shaOld + '\n' + matched.replace(' @@ ', ' @@\n')
+            diffFile = matched.replace(' @@ ', ' @@\n')
 
-            with open(folderDiff + '/' + sha + '_' + shaOld + '_' + savePath + '.txt',
+            with open(folderDiff + '/' + shaOld + '_' + sha + '_' + savePath + '.txt',
                       'w') as writeFile:
                 writeFile.writelines(diffFile)
 
+            # cmd = 'git -C ' + repo + ' format-patch -M100% --text --full-index --binary -n ' + shaOld + '..' + sha + ' -o ' + join(
+            #     folderPatch, sha +'_'+str(len(numberOfHunks))+'_' +'.patch')
+            cmd = 'git -C ' + repo + ' diff -U --patch ' + shaOld + ':' + filePath + '..' + sha + ':' + filePath  + ' > ' + join(
+                folderPatch, shaOld + '_' + sha + '_' + savePath + '.patch' + '_'+str(len(numberOfHunks)))
+
+            o, errors = shellGitCheckout(cmd, enc='latin1')
 
 
-            cmd = 'git -C ' + repo + ' show ' + sha + ':' + filePath + '> ' + folderRev + '/' + sha + '_' + shaOld + '_' +savePath
+            cmd = 'git -C ' + repo + ' show ' + sha + ':' + filePath + '> ' + folderRev + '/' + shaOld + '_' + sha + '_' +savePath
 
             if errors:
                 # print(errors)
                 raise FileNotFoundError
             o,errors= shellGitCheckout(cmd,enc='latin1')
-            cmd = 'git -C ' + repo + ' show ' + shaOld + ':' + filePath + '> ' + folderPrev + '/' + 'prev_'+sha + '_' + shaOld + '_' +savePath
+            cmd = 'git -C ' + repo + ' show ' + shaOld + ':' + filePath + '> ' + folderPrev + '/' + 'prev_'+shaOld + '_' + sha + '_' +savePath
             if errors:
                 # print(errors)
                 raise FileNotFoundError
@@ -77,12 +86,12 @@ def checkoutFiles(sha,shaOld, filePath,type, repo=None):
                 raise FileNotFoundError
 
     except FileNotFoundError as fnfe:
-        if isfile(folderRev + '/' + sha + '_' + shaOld + '_' +savePath):
-            os.remove(folderRev + '/' + sha + '_' + shaOld + '_' +savePath)
-        if isfile(folderPrev + '/' + 'prev_'+sha + '_' + shaOld + '_' +savePath):
-            os.remove(folderPrev + '/' + 'prev_'+sha + '_' + shaOld + '_' +savePath)
-        if isfile(folderDiff + '/' + sha + '_' + shaOld + '_' + savePath.replace('.java','.txt')):
-            os.remove(folderDiff + '/' + sha + '_' + shaOld + '_' + savePath.replace('.java','.txt'))
+        if isfile(folderRev + '/' + shaOld + '_' + sha + '_' +savePath):
+            os.remove(folderRev + '/' + shaOld + '_' + sha + '_' +savePath)
+        if isfile(folderPrev + '/' + 'prev_'+shaOld + '_' + sha + '_' +savePath):
+            os.remove(folderPrev + '/' + 'prev_'+shaOld + '_' + sha + '_' +savePath)
+        if isfile(folderDiff + '/' + shaOld + '_' + sha + '_' + savePath.replace('.java','.txt')):
+            os.remove(folderDiff + '/' + shaOld + '_' + sha + '_' + savePath.replace('.java','.txt'))
         # print(fnfe)
         # raise Exception(fnfe)
     except Exception as e:
@@ -282,6 +291,8 @@ def core():
             if repo in pjList:
                  print(repo)
                  cmd = 'git config --global http.postBuffer 157286400'
+                 shellCallTemplate(cmd)
+                 cmd = 'git config --global diff.renamelimit 0'
                  shellCallTemplate(cmd)
                  cmd = 'git -C ' + DATASET_PATH + ' clone ' + src
                  shellCallTemplate(cmd)

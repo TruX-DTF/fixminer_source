@@ -285,7 +285,7 @@ def patch_validate():
         if b== '.DS_Store':
             continue
         t = b, port
-        if (b.startswith('manybugs:php:')):
+        if (b.startswith('manybugs:')):
             bugList.append(t)
             if port == 6300:
                 port = 6000
@@ -300,6 +300,7 @@ def patch_validate():
     # parallelRun(findTests,bugList,max_workers=1)
     results = parallelRunMerge(validateCore, bugList)
     # #
+    print(results)
     with open(join(DATA_PATH, 'mayBugsValidateNew'), 'w',
               encoding='utf-8') as writeFile:
         # if levelPatch == 0:

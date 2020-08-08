@@ -118,10 +118,10 @@ def patchCore():
         manybugs = [i for i in manybugs if i in sosbugs]
         spfiles = listdir(join(DATASET,'cocci'))
 
-        from sprinferIndex import filterPatterns
-        filteredPattern = filterPatterns()
+        # from sprinferIndex import filterPatterns
+        # filteredPattern = filterPatterns()
 
-        spfiles = [i for i in spfiles if i in filteredPattern]
+        # spfiles = [i for i in spfiles if i in filteredPattern]
         workList = []
         for manybug in manybugs:
             if manybug == '.DS_Store':

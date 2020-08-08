@@ -5,6 +5,7 @@ import os
 from common.commons import *
 import signal
 DATA_PATH = os.environ["DATA_PATH"]
+ROOT_DIR = os.environ["ROOT_DIR"]
 
 BUGDIR = join(DATA_PATH,'manybugs')
 PATCHES_DIR = join(DATA_PATH,'manybugs_sos')
@@ -17,7 +18,8 @@ def patch_validate(t):
         # bug = client.bugs['introclass:checksum:08c7ea:006']
     # client,process = getClient(port)
     container = None
-    cmd = 'bash {} {}'.format(join(DATA_PATH, 'startBugzoo.sh'), port)
+
+    cmd = 'bash {} {}'.format(join(ROOT_DIR, 'data', 'startBugzoo.sh'), port)
 
     with Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True) as process:
         # o,e = shellGitCheckout(cmd)

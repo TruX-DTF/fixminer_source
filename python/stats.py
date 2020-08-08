@@ -2,6 +2,8 @@ from common.commons import *
 DATA_PATH = os.environ["DATA_PATH"]
 PROJECT_TYPE = os.environ["PROJECT_TYPE"]
 REDIS_PORT = os.environ["REDIS_PORT"]
+ROOT = os.environ["ROOT_DIR"]
+INNER_DATA_PATH = join(ROOT,'data')
 
 def statsNormal(isFixminer=True):
     # tokens = join(DATA_PATH, 'tokens')
@@ -226,6 +228,7 @@ def stats(type,isFixminer=True):
         if shape.startswith('.'):
             continue
         sizes = listdir(join(shapesPath, shape))
+        logging.debug(shape + ":" + str(len(sizes)))
 
         for size in sizes:
             if size.startswith('.'):
@@ -453,11 +456,16 @@ javaAst = ["AnonymousClassDeclaration", "ArrayAccess", "ArrayCreation", "ArrayIn
        "LambdaExpression", "IntersectionType", "NameQualifiedType", "CreationReference", "ExpressionMethodReference",
        "SuperMethodReference", "TypeMethodReference", "MethodName", "Operator", "New", "Instanceof"]
 
-cAst = ["unit","comment","literal","operator","modifier","name","type","condition","block","index","decltype","typename","atomic","assert","generic_selection","selector","association_list","association","expr_stmt","expr","decl_stmt","decl","init","range","break","continue","goto","label","typedef","asm","macro","enum","enum_decl","if","ternary","then","else","elseif","while","typeof","do","switch","case","default","for","foreach","control","incr","function","function_decl","lambda","specifier","return","call","sizeof","parameter_list","parameter","krparameter_list","krparameter","argument_list","argument","capture","struct","struct_decl","union","union_decl","class","class_decl","public","private","protected","signals","forever","emit","member_init_list","constructor","constructor_decl","destructor","destructor_decl","super","friend","extern","namespace","using","try","catch","finally","throw","throws","noexcept","template","directive","file","number","include","define","undef","line","ifdef","ifndef","elif","endif","pragma","error","warning","value","empty","region","endregion","import","marker","parse","mode","lock","fixed","checked","unchecked","unsafe","using_stmt","delegate","event","constraint","extends","implements","package","synchronized","interface","interface_decl","annotation_defn","static","attribute","target","linq","from","select","where","let","orderby","group","join","in","on","equals","by","into","escape","annotation","alignas","alignof","typeid","ref_qualifier","receiver","message","protocol_list","category","protocol","required","optional","property","attribute_list","synthesize","dynamic","encode","autoreleasepool","compatibility_alias","protocol_decl","cast","position","clause","empty_stmt"]
-
+# cAst = ["unit","comment","literal","operator","modifier","name","type","condition","block","index","decltype","typename","atomic","assert","generic_selection","selector","association_list","association","expr_stmt","expr","decl_stmt","decl","init","range","break","continue","goto","label","typedef","asm","macro","enum","enum_decl","if","ternary","then","else","elseif","while","typeof","do","switch","case","default","for","foreach","control","incr","function","function_decl","lambda","specifier","return","call","sizeof","parameter_list","parameter","krparameter_list","krparameter","argument_list","argument","capture","struct","struct_decl","union","union_decl","class","class_decl","public","private","protected","signals","forever","emit","member_init_list","constructor","constructor_decl","destructor","destructor_decl","super","friend","extern","namespace","using","try","catch","finally","throw","throws","noexcept","template","directive","file","number","include","define","undef","line","ifdef","ifndef","elif","endif","pragma","error","warning","value","empty","region","endregion","import","marker","parse","mode","lock","fixed","checked","unchecked","unsafe","using_stmt","delegate","event","constraint","extends","implements","package","synchronized","interface","interface_decl","annotation_defn","static","attribute","target","linq","from","select","where","let","orderby","group","join","in","on","equals","by","into","escape","annotation","alignas","alignof","typeid","ref_qualifier","receiver","message","protocol_list","category","protocol","required","optional","property","attribute_list","synthesize","dynamic","encode","autoreleasepool","compatibility_alias","protocol_decl","cast","position","clause","empty_stmt"]
+cAst = ["unit" ,"comment:block", "comment:line", "literal:string", "literal:char", "literal:number", "literal:boolean", "literal:null", "literal:complex", "operator", "modifier", "name", "type", "type:prev", "block", "block_content", "block:pseudo", "index", "decltype", "typename", "atomic", "assert:static", "generic_selection", "selector", "association_list", "association", "expr_stmt", "expr", "decl_stmt", "decl", "init", "range", "break", "continue", "goto", "label", "typedef", "asm", "macro", "enum", "enum_decl", "if_stmt", "if", "ternary", "then", "else", "if:elseif", "while", "typeof", "do", "switch", "case", "default", "for", "foreach", "control", "condition", "incr", "function", "function_decl", "lambda", "specifier", "return", "call", "sizeof", "parameter_list", "parameter", "krparameter_list", "krparameter", "argument_list", "argument", "capture", "parameter_list:pseudo", "parameter_list:indexer", "struct", "struct_decl", "union", "union_decl", "class", "class_decl", "public", "public:default", "private", "private:default", "protected", "protected:default", "signals", "forever", "emit", "member_init_list", "constructor", "constructor_decl", "destructor", "destructor_decl", "super_list", "super", "friend", "extern", "namespace", "using", "try", "catch", "finally", "throw", "throws", "noexcept", "template", "argument_list:generic", "parameter_list:generic", "directive", "file", "number", "literal", "include", "define", "undef", "line", "cpp:if", "ifdef", "ifndef", "cpp:else", "elif", "endif", "cpp:then", "pragma", "error", "warning", "value", "empty", "marker", "region", "endregion", "import", "parse", "mode", "lock", "fixed", "checked", "unchecked", "unsafe", "using_stmt", "delegate", "event", "constraint", "extends", "implements", "package", "assert", "synchronized", "interface", "interface_decl", "annotation_defn", "static", "attribute", "target", "linq", "from", "select", "where", "let", "orderby", "group", "join", "in", "on", "equals", "by", "into", "escape", "annotation", "alignas", "alignof", "typeid", "sizeof:pack", "enum:class", "enum_decl:class", "function:operator", "function_decl:operator", "ref_qualifier", "receiver", "message", "protocol_list", "category", "clause"]
 
 def exportAbstractPatterns():
+    dbDir = join(INNER_DATA_PATH, 'redis')
+
+    portInner = REDIS_PORT
+    startDB(dbDir, portInner, PROJECT_TYPE)
     clusterStats,df = stats('actions')
+    logging.debug(len(clusterStats))
     port = REDIS_PORT
     import redis
     redis_db = redis.StrictRedis(host="localhost", port=port, db=0)

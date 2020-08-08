@@ -33,7 +33,7 @@ def indexCore():
     # singleHunkedFiles = sDF.fileName.unique().tolist()
     # singleHunkedFiles = [i.replace('.txt', '') for i in singleHunkedFiles]
 
-    clusterPath = join(DATA_PATH, 'shapes')
+    clusterPath = join(DATA_PATH, 'actions')
     roots = listdir(clusterPath)
     roots = [i for i in roots if not (i.startswith('.') or i.endswith('.pickle'))]
 
@@ -186,32 +186,48 @@ def divideCoccis():
                 iFile.writelines(idx[t[1]:])
             os.remove(join(SPINFER_INDEX_PATH, 'cocci', cocci))
 
+def getFreqPatterns():
+    patterns = load_zipped_pickle(join(DATA_PATH, 'allCocciPatterns.pickle'))
+    freqs = patterns.pattern.value_counts().to_dict()
+
+    allPatterns = patterns.cid.values.tolist()
+    uniquePatterns = patterns.drop_duplicates(subset=['pattern']).cid.values.tolist()
+
+    uniquePatterns = patterns[patterns.cid.isin(uniquePatterns)]
+
+    uniquePatterns['newFreq'] = uniquePatterns.pattern.apply(lambda x: freqs[x])
+
+    re.search(r"// Recall:(.*), Precision:(.*), Matching recall:(.*)")
+
+
 def removeDuplicates():
     commentPattern = r"(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)"
     coccis =os.listdir(join(SPINFER_INDEX_PATH, 'cocci'))
-    cocciPatterns = pd.DataFrame(columns=['cid', 'pattern','inferedFrom'])
+    cocciPatterns = pd.DataFrame(columns=['cid', 'pattern','inferedFrom','recall','precision','matchingRecall'])
     ind = 0
     for cocci in coccis:
         with open(join(SPINFER_INDEX_PATH, 'cocci', cocci), 'r') as iFile:
             idx = iFile.read()
             idx
             inferedFrom = re.search(r"// Infered from:(.*)\n",idx).groups()
+            recall,precision, matchingRecall = re.search(r"// Recall:(.*), Precision:(.*), Matching recall:(.*)",idx).groups()
             pattern = re.sub(commentPattern, '', idx, re.DOTALL)
-            cocciPatterns.loc[ind] = [cocci,pattern,inferedFrom]
+            cocciPatterns.loc[ind] = [cocci,pattern,inferedFrom,recall.strip(),precision.strip(),matchingRecall.strip()]
             ind = ind +1
     cocciPatterns['iFiles'] = cocciPatterns.inferedFrom.apply(lambda x: getInferred(x[0]))
 
     cocciPatterns['freq'] = cocciPatterns.iFiles.apply(lambda x: len(x))
     cocciPatterns['project'] = cocciPatterns.iFiles.apply(lambda x: list(set([i.split('/{')[0].replace('(','') for i in x])))
     cocciPatterns.sort_values(by='freq', inplace=True, ascending=False)
-    save_zipped_pickle(cocciPatterns,join(DATA_PATH,'allCocciPatterns.pickle'))
-    allPatterns = cocciPatterns.cid.values.tolist()
-    uniquePatterns = cocciPatterns.drop_duplicates(subset=['pattern']).cid.values.tolist()
-    toRemove = list(set(allPatterns).difference(uniquePatterns))
-    print(toRemove)
-    for p in toRemove:
-        os.remove(join(SPINFER_INDEX_PATH, 'cocci', p))
-    print(len(uniquePatterns))
+    # save_zipped_pickle(cocciPatterns,join(DATA_PATH,'allCocciPatterns.pickle'))
+    save_zipped_pickle(cocciPatterns,join(DATA_PATH,'allCocciPatterns2.pickle'))
+    # allPatterns = cocciPatterns.cid.values.tolist()
+    # uniquePatterns = cocciPatterns.drop_duplicates(subset=['pattern']).cid.values.tolist()
+    # toRemove = list(set(allPatterns).difference(uniquePatterns))
+    # print(toRemove)
+    # for p in toRemove:
+    #     os.remove(join(SPINFER_INDEX_PATH, 'cocci', p))
+    # print(len(uniquePatterns))
 
 
 def filterPatterns():
@@ -322,6 +338,8 @@ def patchCoreIntro():
 
     filterList =[]
     for manybug in manybugs:
+        if manybug == '.DS_Store':
+            continue
         # files = listdir(join(join(DATA_PATH,"manybugs",manybug,'diffs')))
         if  os.path.exists(join(DATA_PATH, "introclass", manybug, 'patches')):
             shutil.rmtree(join(DATA_PATH, "introclass", manybug, 'patches'))

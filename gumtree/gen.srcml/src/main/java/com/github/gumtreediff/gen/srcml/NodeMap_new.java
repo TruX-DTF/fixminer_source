@@ -200,6 +200,7 @@ public class NodeMap_new {
             map.put(    197 , "message");
             map.put(    199 , "protocol_list");
             map.put(    200 , "category");
+            map.put(    201 , "clause");
 
 //
 //            map.put(1	,	"unit");

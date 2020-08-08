@@ -177,6 +177,7 @@ public abstract class AbstractSrcmlTreeGenerator extends TreeGenerator {
     private void fixPos(TreeContext ctx) {
         for (ITree t : ctx.getRoot().postOrder()) {
             if (!t.isLeaf()) {
+                if(t.getType() == 0) continue;
                 //put the keywords as labels
 //                if(t.getType() == 34 || t.getType() ==37 || t.getType() ==38 || t.getType()==39 || t.getType() == 41 || t.getType()==45 || t.getType() ==55 || t.getType()==14){
 //                    t.setLabel(NodeMap_new.map.get(t.getType())+" "  +t.getLabel());
