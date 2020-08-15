@@ -190,14 +190,16 @@ public class CompareTrees {
 
                     if (oldShapeTree.equals(newShapeTree)) {
                         if (oldActionTree.equals(newActionTree)) {
-                            if (oldTargetTree.equals(newTargetTree)) {
+//                            if (oldTargetTree.equals(newTargetTree)) {
 //                                samePairs.add(matchKey);
                                 try (Jedis jedis = outerPool.getResource()) {
 ////                            jedis.del(matchKey);
                                     jedis.select(2);
-                                    jedis.set(matchKey, "1");
+
+                                    jedis.hset("compared", matchKey, "1");
+//                                    jedis.set(matchKey, "1");
                                 }
-                            }
+//                            }
                         }
                     }
                     return true;
@@ -225,7 +227,8 @@ public class CompareTrees {
                     if (retval >= 0) {
                         try (Jedis jedis = outerPool.getResource()) {
                             jedis.select(3);
-                            jedis.set(matchKey, "1");
+                            jedis.hset("compared", matchKey, "1");
+//                            jedis.set(matchKey, "1");
                         }
 
                     }

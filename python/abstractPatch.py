@@ -52,20 +52,18 @@ delPattern = 'DEL (' + '|'.join(ast) + ')@@(.*)@AT@'
 insPattern = 'INS (' + '|'.join(ast) + ')@@(.*)@TO@ (' + '|'.join(ast) + ')@@(.*)@AT@'
 updPattern = 'UPD (' + '|'.join(ast) + ')@@(.*)@TO@(.*)@AT@'
 
-def loadPairMulti(root,clusterPath,level):
+def loadPairMulti(root,matches,level):
 
     # root = 'BreakStatement'
     logging.info(root)
-    port = REDIS_PORT
+
     # if isfile(clusterPath +"/"+root+".pickle"):
     #     return load_zipped_pickle(clusterPath +"/"+root+".pickle")
     # else:
         # redis_db = redis.StrictRedis(host="localhost", port=port, db=1)  #L1
-    if level == 'tokens':
-        redis_db = redis.StrictRedis(host="localhost", port=port, db=3)
-    else:
-        redis_db = redis.StrictRedis(host="localhost", port=port, db=2)
-    keys = redis_db.scan(0, match=root+'-*', count='100000000')
+
+
+    matches = matches[matches.pairs_key.apply(lambda x: x.startswith(root + '-'))]
     # keys = redis_db.hkeys("dump")
 
     # tuples = []
@@ -75,8 +73,7 @@ def loadPairMulti(root,clusterPath,level):
 
     # coreNumber = 1600
     # print('Core number %s' % coreNumber)
-    matches = pd.DataFrame(keys[1],columns=['pairs_key'])
-    matches['pairs_key']=matches['pairs_key'].apply(lambda x:x.decode())
+
     # matches['pairs']=matches['pairs_key'].apply(lambda x:x.split('_')[1:])
     matches['pairs']=matches['pairs_key'].apply(lambda x:x.split(root)[1].split('/')[1:])
     matches['tuples'] = matches.pairs.apply(lambda x: tuple(x))
@@ -116,10 +113,20 @@ def cluster(clusterPath,pairsPath, level):
             os.makedirs(clusterPath, exist_ok=True)
             roots = listdir(pairsPath)
             roots = [i for i in roots if not i.startswith('.')]
+
+            port = REDIS_PORT
+            if level == 'tokens':
+                redis_db = redis.StrictRedis(host="localhost", port=port, db=3)
+            else:
+                redis_db = redis.StrictRedis(host="localhost", port=port, db=2)
+
+            keys = redis_db.hkeys("compared")
+            compared = pd.DataFrame(keys, columns=['pairs_key'])
+            compared['pairs_key'] = compared['pairs_key'].apply(lambda x: x.decode())
             # roots = [rootType]
             # parallelRun(loadPairMulti,roots,clusterPath)
             for root in roots:
-                matches = loadPairMulti(root,clusterPath,level)
+                matches = loadPairMulti(root,compared,level)
                 sizes = matches['sizes'].unique().tolist()
                 for s in sizes:
                     match = matches[matches['sizes'] == s]
