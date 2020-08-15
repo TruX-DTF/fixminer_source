@@ -75,7 +75,7 @@ def patch_validate(t):
         finally:
             cmd = 'docker stop {}'.format(container.id)
             out, e = shellGitCheckout(cmd)
-            client.shutdown()
+            # client.shutdown()
             os.killpg(process.pid, signal.SIGTERM)
 
 from bugzoo import Patch, Client

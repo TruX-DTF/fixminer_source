@@ -5,6 +5,7 @@ SPINFER_PATH = os.environ["spinfer"]
 SPINFER_INDEX_PATH = os.environ["dataset"]
 COCCI_PATH = join(os.environ["coccinelle"],'spatch')
 DATASET = os.environ["dataset"]
+ROOT_DIR = os.environ["ROOT_DIR"]
 
 
 def indexCore():
@@ -157,6 +158,43 @@ def runSpinfer():
         # output,e = shellGitCheckout(cmd)
         # logging.info(output)
 
+def mergeCoccis():
+    DATA = '/Users/anil.koyuncu/projects/fixminer/fixminer-data2'
+    folders = os.listdir(DATA)
+    coccis = [i for i in folders if 'cocci' in i]
+
+    allCoccis = [get_filepaths(join(DATA, i), '') for i in coccis]
+
+    for cocci in list(itertools.chain.from_iterable(allCoccis)):
+
+        _,srcFolder,cocciName = cocci.split(DATA)[-1].split('/')
+
+        with open(cocci, 'r') as iFile:
+            idx = iFile.readlines()
+            idx
+        values = np.array(idx)
+        points = np.where(values == '@@\n')
+
+        points = list(itertools.chain.from_iterable(points))
+        # if len(points) == 0:
+        #     os.remove(join(SPINFER_INDEX_PATH, 'cocci', cocci))
+        # patches = list(zip(*([iter(points)] * 2)))
+        patches = list(pairwise(points[::2]))# every second element in list
+
+        if len(patches) > 0:
+            i = 0;
+            for t in patches :
+                t
+                with open(join(DATA, 'merged', cocciName+str(i)+'-'+srcFolder), 'w') as iFile:
+                    iFile.writelines(idx[t[0]:t[1]])
+                i=i+1
+            t
+            with open(join(DATA, 'merged', cocciName + str(i)+'-'+srcFolder), 'w') as iFile:
+                iFile.writelines(idx[t[1]:])
+        else:
+            shutil.copy2(cocci,join(DATA, 'merged', cocciName + '-'+srcFolder))
+
+
 def divideCoccis():
     import datetime
     shutil.copytree(join(SPINFER_INDEX_PATH,'cocci'),join(DATA_PATH,'cocci'+ datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')))
@@ -199,6 +237,58 @@ def getFreqPatterns():
 
     re.search(r"// Recall:(.*), Precision:(.*), Matching recall:(.*)")
 
+
+def removeDuplicates2():
+    commentPattern = r"(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)"
+    DATA = '/Users/anil.koyuncu/projects/fixminer/fixminer-data2'
+    coccis =os.listdir(join(DATA, 'merged'))
+    cocciPatterns = pd.DataFrame(columns=['cid', 'pattern','inferedFrom','recall','precision','matchingRecall'])
+    ind = 0
+    for cocci in coccis:
+        try:
+            if cocci == '.DS_Store':
+                continue
+            with open(join(DATA, 'merged', cocci), 'r') as iFile:
+                idx = iFile.read()
+                idx
+                inferedFrom = re.search(r"// Infered from:(.*)\n",idx).groups()
+                recall,precision, matchingRecall = re.search(r"// Recall:(.*), Precision:(.*), Matching recall:(.*)",idx).groups()
+                pattern = re.sub(commentPattern, '', idx, re.DOTALL)
+                cocciPatterns.loc[ind] = [cocci,pattern,inferedFrom,recall.strip(),precision.strip(),matchingRecall.strip()]
+                ind = ind +1
+        except Exception as e:
+            shutil.move(join(DATA,'merged',cocci),join(DATA,'mergedBroken',cocci))
+            continue
+            # logging.error(e)
+    cocciPatterns['iFiles'] = cocciPatterns.inferedFrom.apply(lambda x: getInferred(x[0]))
+
+    cocciPatterns['freq'] = cocciPatterns.iFiles.apply(lambda x: len(x))
+    cocciPatterns['project'] = cocciPatterns.iFiles.apply(lambda x: list(set([i.split('/{')[0].replace('(','') for i in x])))
+    cocciPatterns.sort_values(by='freq', inplace=True, ascending=False)
+    # save_zipped_pickle(cocciPatterns,join(DATA_PATH,'allCocciPatterns.pickle'))
+    save_zipped_pickle(cocciPatterns,join(DATA,'allCocciPatternsMerge.pickle'))
+
+    cocciPatterns['dup'] = cocciPatterns.duplicated(subset=['pattern'], keep=False)
+
+    duplicates = cocciPatterns[cocciPatterns.dup == True]
+
+    duplicateDF = duplicates.groupby(by=['pattern'], as_index=False).agg(lambda x: x.tolist())
+
+    pattern2keep= duplicateDF.cid.apply(lambda x: min(x, key=len)).values.tolist()
+    allDuplicates = list(itertools.chain.from_iterable(duplicateDF.cid.values.tolist()))
+
+    toRemove = list(set(allDuplicates).difference(set(pattern2keep)))
+
+    for tr in toRemove:
+        shutil.move(join(DATA,'merged',tr),join(DATA,'mergedDuplicate',tr))
+
+    # allPatterns = cocciPatterns.cid.values.tolist()
+    # uniquePatterns = cocciPatterns.drop_duplicates(subset=['pattern']).cid.values.tolist()
+    # toRemove = list(set(allPatterns).difference(uniquePatterns))
+    # print(toRemove)
+    # for p in toRemove:
+    #     os.remove(join(SPINFER_INDEX_PATH, 'cocci', p))
+    # print(len(uniquePatterns))
 
 def removeDuplicates():
     commentPattern = r"(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)"

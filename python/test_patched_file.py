@@ -6,7 +6,34 @@ import signal
 # from common.commons import shellGitCheckout
 DATA_PATH = os.environ["DATA_PATH"]
 ROOT_DIR = os.environ["ROOT_DIR"]
+DATASET = os.environ["dataset"]
 introClassFile = join(DATA_PATH,'introClassData.txt')
+COCCI_PATH = join(os.environ["coccinelle"],'spatch')
+def patchSourceFile(bugPath,spfile,bugName):
+    # print(bugPath)
+    srcName = bugPath.split('/')[-1].split(':')[1]
+    srcPath = join(bugPath,srcName + '.c')
+    patchName = srcName+'.c'
+
+    if(isfile(join(DATA_PATH,"introclass",bugName,'patched',patchName+spfile+'.c'))):
+        return join(DATA_PATH,"introclass",bugName,'patched',patchName+spfile+'.c')
+
+    if not (isfile(join(DATA_PATH,"introclass",bugName,'patches',patchName+spfile+'.txt'))):
+        cmd = COCCI_PATH + ' --sp-file ' + join(DATASET, 'cocci', spfile) + ' ' + srcPath + ' --patch -o' + join(
+            DATA_PATH, "introclass", bugName, 'patches', patchName) + ' > ' + join(DATA_PATH, "introclass", bugName,
+                                                                                   'patches',
+                                                                                   patchName + spfile + '.txt')
+
+        output, e = shellGitCheckout(cmd)
+    # logging.info(output)
+    patchSize = os.path.getsize(join(DATA_PATH,"introclass",bugName,'patches',patchName+spfile+'.txt'))
+    if patchSize == 0 :
+        # os.remove(join(DATA_PATH,"introclass",bugName,'patches',patchName+spfile+'.txt'))
+        return None
+    else:
+        cmd = 'patch -d '+join(DATA_PATH, "introclass", bugName)+' -i '+join(DATA_PATH,"introclass",bugName,'patches',patchName+spfile+'.txt')+' -o '+join(DATA_PATH,"introclass",bugName,'patched',patchName+spfile+'.c')
+        o,e = shellGitCheckout(cmd)
+        return join(DATA_PATH, "introclass", bugName, 'patched', patchName + spfile + '.c')
 
 def testCore(t):
         bugName, port = t
@@ -14,7 +41,7 @@ def testCore(t):
         # with bugzoo.server.ephemeral(port=port, verbose=False,bugzooPath="/Users/anil.koyuncu/anaconda3/envs/python36/bin/bugzood", timeout_connection=3000) as client:
         cmd = 'bash {} {}'.format(join(ROOT_DIR,'data','startBugzoo.sh'),port)
 
-        with Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True) as process:
+        with Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True) as myProcess:
 
             # o,e = shellGitCheckout(cmd)
             url = "http://127.0.0.1:{}".format(port)
@@ -56,27 +83,39 @@ def testCore(t):
                     return ''
                 output += '@fail:' + str(pre_failure) + '@total:' + str(total) + ', '
 
-                # print("patching...")
-                path = join(DATA_PATH,'introclass',bugName)
-                patch_path = join(path ,'patched')
-                # avaliable_patch = os.path.abspath('data') + '/introclass2/' + bugName + '/' + 'patches'
-                patch_names = os.listdir(patch_path)
+                spfiles = listdir(join(DATASET, 'cocci'))
+                # print("patching... " + bugName)
+                for idx,spfile in enumerate(spfiles):
+                    if spfile == '.DS_Store':
+                        continue
 
-                times = 0
-                for patch_name in patch_names:
+                    path = join(DATA_PATH,'introclass',bugName)
+                    patch = patchSourceFile(path,spfile,bugName)
+
+                    if patch is None:
+                        continue
+                    # print(patch)
+                    # print(str(idx) + '..'+str(len(spfiles)))
+                # patch_path = join(path ,'patched')
+                # # avaliable_patch = os.path.abspath('data') + '/introclass2/' + bugName + '/' + 'patches'
+                # patch_names = os.listdir(patch_path)
+                #
+                    times = 0
+                # for patch_name in patch_names:
                     # if patch_name not in os.listdir(avaliable_patch):
                     #     continue
-                    patch = join(patch_path,patch_name)
+                    # patch = join(patch_path,patch_name)
 
                     patch_result = patched_application(path, bug.name, patch, client, container)
                     if patch_result == -1 or patch_result.code != 0:
                         # print("@{}@".format('False'), end='')
                         # print("{}".format('F'), end=' ')
-                        output += '@False@F '
+                        # output += '@False@F '
+                        output += '@False:' + str(idx) + ':' + patch.split('/')[-1] + '@'
                         continue
                     # print("@{}@".format('True'), end='')
-                    output += '@True@'
-
+                    # output += '@True@'
+                    output += '@True:' + str(idx) + ':' + patch.split('/')[-1] + '@'
                     # print("Second_test:", end=' ')
                     post_test_outcomes = {}
                     post_failure_cases, post_failure, total, post_test_outcomes = test_all(bug, container, client)
@@ -86,7 +125,8 @@ def testCore(t):
                         times += 1
                         fix = 'success'
                         # print("fix {} by {}".format(bugName, patch_name))
-                        output += 'fix {} by {} '.format(bugName, patch_name)
+                        output += 'fix {} by {} '.format(bugName, patch)
+                        break
                     # print("@fail:{}@total:{}".format(post_failure, total),end=' ')
                     # print("@post_failure_cases:{}".format(post_failure_cases))
 
@@ -103,8 +143,12 @@ def testCore(t):
                 # ''
                 cmd = 'docker stop {}'.format(container.id)
                 out, e = shellGitCheckout(cmd)
-                client.shutdown()
-                os.killpg(process.pid, signal.SIGTERM)
+                try:
+                    client.shutdown()
+                except Exception as e:
+                    logging.error(e)
+                # print(myProcess.pid)
+                # os.killpg(myProcess.pid, signal.SIGTERM)
                 # docker stop $(docker ps -q)
 
 
@@ -124,6 +168,10 @@ def patch_validate():
     # bug = client.bugs['introclass:checksum:08c7ea:006']
     bugList = []
 
+    nonFail = ['introclass:syllables:93f87b:005','introclass:smallest:f94e26:004','introclass:smallest:d25c71:001','introclass:median:d25c71:002','introclass:smallest:d25c71:000'
+        ,'introclass:median:d6364e:007','introclass:median:489253:007','introclass:syllables:d12048:004','introclass:smallest:d9e7ea:002','introclass:syllables:035fe9:000'
+     ,'introclass:syllables:c9d718:002','introclass:syllables:ea67b8:007','introclass:median:48b829:000','introclass:syllables:d9e7ea:001']
+
     # cmd = 'bash ' + join(DATA_PATH,'startBugzoo.sh')
     # cmd = "/Users/anil.koyuncu/anaconda3/envs/python36/bin/bugzood --debug -p " + str(port)
     # output, errors = shellGitCheckout(cmd)
@@ -131,6 +179,11 @@ def patch_validate():
     port = 6000
     bugs2test= listdir(join(DATA_PATH, "introclass"))
     for b in bugs2test:
+        if b == '.DS_Store':
+            continue
+
+        if b in nonFail:
+            continue
         t = b, port
         bugList.append(t)
         if port == 6300:
@@ -149,8 +202,9 @@ def patch_validate():
     # t = 'introclass:syllables:93f87b:005',6000
     # t = 'introclass:syllables:99cbb4:000',6000
     # testCore(t)
-    results = parallelRunMerge(testCore, bugList,max_workers=10)
-    # print('\n'.join(results))
+    # results = parallelRunMerge(testCore, bugList,max_workers=10)
+    results = parallelRunMerge(testCore, bugList)
+    print('\n'.join(results))
     with open(join(DATA_PATH, 'introTestResults'), 'w',
               encoding='utf-8') as writeFile:
         # if levelPatch == 0:

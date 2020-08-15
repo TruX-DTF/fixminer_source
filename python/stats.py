@@ -473,12 +473,18 @@ def exportAbstractPatterns():
     if 'java' == PROJECT_TYPE:
         isJava = True
     for id, members in df[['cid','members']].values.tolist():
+        if (len(members) == 0):
+            continue
 
+        try:
+            dKey = '/'.join(id[0].split('-')[:-1]) + "/" + members[0]
+            lines = redis_db.hget("dump",dKey )
 
-        dKey = '/'.join(id[0].split('-')[:-1]) + "/" + members[0]
-        lines = redis_db.hget("dump",dKey )
-        cid = id[0].replace("-",'#')
-        abstractPattern(cid,lines.decode(),isJava,members)
+            cid = id[0].replace("-",'#')
+
+            abstractPattern(cid,lines.decode(),isJava,members)
+        except Exception as e:
+            logging.error(e)
 
 def abstractPattern(cid,lines,isJava,cMembers):
 

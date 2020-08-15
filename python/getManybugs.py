@@ -99,8 +99,8 @@ def exportCore(bugName):
         if os.path.exists(join(BUGDIR, bugName,'diffs')):
             shutil.rmtree(join(BUGDIR, bugName,'diffs'))
             # os.makedirs(join(BUGDIR, bugName,'diffs'))
-        if os.path.exists(join(BUGDIR, bugName, 'src')):
-            shutil.rmtree(join(BUGDIR, bugName,'src'))
+        # if os.path.exists(join(BUGDIR, bugName, 'src')):
+        #     shutil.rmtree(join(BUGDIR, bugName,'src'))
             # os.makedirs(join(BUGDIR, bugName, 'src'))
     #
         cmd = 'docker create -ti --name dummy '+output.strip()+' bash'
@@ -114,10 +114,10 @@ def exportCore(bugName):
 
 
 
-        cmd = 'docker cp dummy:/experiment/src '+join(BUGDIR,bugName)
-        logging.info(cmd)
-        output, e = shellGitCheckout(cmd)
-        logging.info(output)
+        # cmd = 'docker cp dummy:/experiment/src '+join(BUGDIR,bugName)
+        # logging.info(cmd)
+        # output, e = shellGitCheckout(cmd)
+        # logging.info(output)
 
         cmd = 'docker cp dummy:/experiment/diffs '+join(BUGDIR,bugName)
         logging.info(cmd)

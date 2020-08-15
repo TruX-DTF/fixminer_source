@@ -4,7 +4,7 @@ import csv
 import os
 from common.commons import *
 DATA_PATH = os.environ["DATA_PATH"]
-
+ROOT_DIR = os.environ["ROOT_DIR"]
 def readTestSuite(testPath):
     regex = r"([p|n0-9]+)\)"
     with open(testPath,mode='r') as testFile:
@@ -127,7 +127,15 @@ def myvalidateCore(t):
 def validateCore(t):
     bugName, port = t
     container = None
-    with bugzoo.server.ephemeral(port=port, verbose=False, timeout_connection=30000) as client:
+    cmd = 'bash {} {}'.format(join(ROOT_DIR, 'data', 'startBugzoo.sh'), port)
+
+    with Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True) as myProcess:
+
+        # o,e = shellGitCheckout(cmd)
+        url = "http://127.0.0.1:{}".format(port)
+        timeout_connection = 3000
+        client = Client(url, timeout_connection=timeout_connection)
+    # with bugzoo.server.ephemeral(port=port, verbose=False, timeout_connection=30000) as client:
         try:
 
             bug = client.bugs[bugName]
@@ -144,22 +152,22 @@ def validateCore(t):
 
             preId, postId = bugName.split(':')[-1].split('-')[-2:]
 
-            failing = join(DATA_PATH, 'manybugs', bugName, 'failing.tests.txt')
-            passing = join(DATA_PATH, 'manybugs', bugName, 'passing.tests.txt')
-
-            if not (isfile(failing)):
-                return
-
-            cmd = 'docker cp ' +failing+ ' '+container.id +':/experiment/failing.tests.txt '
-            o,e = shellGitCheckout(cmd)
-            cmd = 'sudo chown $(whoami):$(whoami) "{}"'
-            cmd = cmd.format('failing.tests.txt')
-            o = client.containers.exec(container=container, command=cmd, context='/experiment/')
-            cmd = 'docker cp ' +passing+ ' '+container.id +':/experiment/passing.tests.txt '
-            o,e = shellGitCheckout(cmd)
-            cmd = 'sudo chown $(whoami):$(whoami) "{}"'
-            cmd = cmd.format('passing.tests.txt')
-            o = client.containers.exec(container=container, command=cmd, context='/experiment/')
+            # failing = join(DATA_PATH, 'manybugs', bugName, 'failing.tests.txt')
+            # passing = join(DATA_PATH, 'manybugs', bugName, 'passing.tests.txt')
+            #
+            # if not (isfile(failing)):
+            #     return
+            #
+            # cmd = 'docker cp ' +failing+ ' '+container.id +':/experiment/failing.tests.txt '
+            # o,e = shellGitCheckout(cmd)
+            # cmd = 'sudo chown $(whoami):$(whoami) "{}"'
+            # cmd = cmd.format('failing.tests.txt')
+            # o = client.containers.exec(container=container, command=cmd, context='/experiment/')
+            # cmd = 'docker cp ' +passing+ ' '+container.id +':/experiment/passing.tests.txt '
+            # o,e = shellGitCheckout(cmd)
+            # cmd = 'sudo chown $(whoami):$(whoami) "{}"'
+            # cmd = cmd.format('passing.tests.txt')
+            # o = client.containers.exec(container=container, command=cmd, context='/experiment/')
 
             originalBugs = get_filepaths(join(DATA_PATH, 'manybugs', bugName, 'diffs'), preId)
             for ob in originalBugs:
@@ -180,7 +188,25 @@ def validateCore(t):
                 filepath = ob.split('diffs')[-1]
                 cmd = 'cp diffs' + filepath + ' src' + filepath.replace('-' + postId, '')
                 client.containers.exec(container=container, command=cmd, context='/experiment/')
-            client.containers.build(container)
+
+            times = 0
+            name = ob
+            patch_result = client.containers.build(container)
+            if patch_result.successful:
+                failure_cases, failure, total, test_outcomes = test_all(bug, container, client,validTests)
+                if failure == 0:
+                    times += 1
+                    output += ' fixed by {}'.format(name)
+                else:
+                    output += ' {}'.format(failure_cases)
+            else:
+                output += ' {}'.format('build error')
+            output += ' times:{}'.format(times)
+            if times > 0:
+                output += ' success'
+            else:
+                output += ' failure'
+            # client.containers.build(container)
             # diff_files = get_diff(bug.name, client, container)
             # patch_result = patch_application(client, container, diff_files)
             # if not patch_result:
@@ -191,13 +217,13 @@ def validateCore(t):
             #
             # print("Second_test:",end=' ')
             # post_test_outcomes = {}
-            post_failure_cases, post_failure, total, post_test_outcomes = test_all(bug, container, client,validTests)
-            output += ','.join(post_failure) + ' '
-            if len(post_failure) == 0:
-                # times += 1
-                fix = 'success'
-                # print("fix {} by {}".format(bugName, patch_name))
-                output += 'fix {}  '.format(bugName)
+            # post_failure_cases, post_failure, total, post_test_outcomes = test_all(bug, container, client,validTests)
+            # output += ','.join(post_failure) + ' '
+            # if len(post_failure) == 0:
+            #     # times += 1
+            #     fix = 'success'
+            #     # print("fix {} by {}".format(bugName, patch_name))
+            #     output += 'fix {}  '.format(bugName)
 
 
             # patch_names = os.listdir(join(DATA_PATH,'manybugs',bugName,'patched'))
@@ -245,6 +271,10 @@ def validateCore(t):
             # ''
             cmd = 'docker stop {}'.format(container.id)
             out, e = shellGitCheckout(cmd)
+            try:
+                client.shutdown()
+            except Exception as e:
+                logging.error(e)
             # docker stop $(docker ps -q)
 
 
@@ -276,7 +306,7 @@ def patch_validate():
             if isinstance(v,logging.Logger):
                 v.setLevel(logging.ERROR)
 
-    buglist = listdir(join(DATA_PATH,'manybugs'))
+    buglist = listdir(join(DATA_PATH,'manybugs_sos'))
 
     # for i in range(0,len(bugList)):
     bugList = []

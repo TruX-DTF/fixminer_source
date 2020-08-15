@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
         # subject = 'ALL'
         # rootType = 'if'
-        # job = 'patterns'
+        job = 'indexClusters'
         print(job)
 
 
@@ -107,6 +107,12 @@ if __name__ == '__main__':
             from sprinferIndex import removeDuplicates
             removeDuplicates()
 
+        elif job =='mergeCoccis':
+            # from sprinferIndex import mergeCoccis
+            # mergeCoccis()
+            from sprinferIndex import removeDuplicates2
+            removeDuplicates2()
+
         elif job == 'evalManyBugs':
             # from patchManyBugs import patchCore
             # patchCore()
@@ -176,8 +182,12 @@ if __name__ == '__main__':
             from stats import defects4jStats
             defects4jStats()
         elif job == 'patterns':
-            from stats import exportAbstractPatterns
-            exportAbstractPatterns()
+
+            coccis = load_zipped_pickle(join(DATA_PATH, 'allCocciPatterns2.pickle'))
+            coccis['family'] = coccis.cid.apply(lambda x: x.split('.cocci')[0])
+
+            # from stats import exportAbstractPatterns
+            # exportAbstractPatterns()
         elif job == 'travis':
 
             if isfile(join(DATA_PATH,'repoList')):
