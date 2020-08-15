@@ -77,7 +77,7 @@ public class EnhancedASTDiff {
 		List<MessageFile> allMessageFiles = new ArrayList<>();
 		for (File target : folders) {
 
-			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/", project, patchSize, isJava); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
+			List<MessageFile> msgFiles = getMessageFiles(target.toString() + "/", project, patchSize, isJava,Integer.valueOf(hunkLimit)); //"/Users/anilkoyuncu/bugStudy/code/python/GumTreeInput/Apache/CAMEL/"
 
 //			msgFiles = msgFiles.subList(0,3000);
 			if (msgFiles == null)
@@ -121,7 +121,7 @@ public class EnhancedASTDiff {
 
 	
 
-	private static List<MessageFile> getMessageFiles(String gumTreeInput,String datasetName,String patchSize,boolean isJava) {
+	private static List<MessageFile> getMessageFiles(String gumTreeInput,String datasetName,String patchSize,boolean isJava,int hunkLimit) {
 		String inputPath = gumTreeInput; // prevFiles  revFiles diffentryFile positionsFile
 		File revFilesPath = new File(inputPath + "revFiles/");
 		log.info(revFilesPath.getPath());
@@ -151,8 +151,8 @@ public class EnhancedASTDiff {
 				if(count>= Integer.valueOf(patchSize))
 //				if(count>201)
 					continue;
-//				if(FileHelper.readFile(diffentryFile).split("@@\\s\\-\\d+,*\\d*\\s\\+\\d+,*\\d*\\s@@").length > 2)
-//					continue;
+				if(FileHelper.readFile(diffentryFile).split("@@\\s\\-\\d+,*\\d*\\s\\+\\d+,*\\d*\\s@@").length >= hunkLimit)
+					continue;
 
 //				String datasetName = project;
 				String[] split1 = diffentryFile.getParent().split(datasetName);

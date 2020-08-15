@@ -36,10 +36,10 @@ public class EDiffHunkParser extends EDiffParser {
 
 				boolean processActionSet = true;
 
-				if (actionSets.size() > Integer.valueOf(hunkLimit)) {
-					processActionSet = false;
-					logger.debug("Skipping {} set size {}", diffentryFile.getName(), hunkLimit);
-				}
+//				if (actionSets.size() > Integer.valueOf(hunkLimit)) {
+//					processActionSet = false;
+//					logger.debug("Skipping {} set size {}", diffentryFile.getName(), hunkLimit);
+//				}
 
 				int hunkSet = 0;
 				if (processActionSet) {
