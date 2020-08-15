@@ -78,10 +78,19 @@ def indexCore():
                     if len(members) > 1:
                             lines = []
                             for member in members:
-                                split =member.split('_')
-                                pj = split[0]
-                                member ='_'.join(split[1:])
-                                line = pj+'/prevFiles/prev_' + member + ' ' + pj+'/revFiles/' + member + '\n'
+                                project, _, fileName = re.split('_[0-9a-f]{6}', member)
+                                prev, rev = re.findall('[0-9a-f]{6}', member)
+
+                                # fileName, hunk = fileName.split('.txt_')
+                                # split = dumpFile.split('_')
+                                # project = split[0]
+                                # filename = "_".join(split[1:-1])
+                                filename = prev + '_' + rev + fileName
+
+                                # split =member.split('_')
+                                # pj = split[0]
+                                # member ='_'.join(split[1:])
+                                line = project+'/prevFiles/prev_' + filename + ' ' + project+'/revFiles/' + filename + '\n'
                                 lines.append(line)
 
                             if len(lines)>0:
