@@ -191,9 +191,14 @@ def dumpFilesCore(t):
 
     try:
         dumpFile, root, level, clusterPath, s, action, token, idx = t
-        split = dumpFile.split('_')
-        project = split[0]
-        filename = "_".join(split[1:-1])
+        project, _ ,fileName = re.split('_[0-9a-f]{6}', dumpFile)
+        prev, rev = re.findall('[0-9a-f]{6}', dumpFile)
+
+        fileName, hunk = fileName.split('.txt_')
+        # split = dumpFile.split('_')
+        # project = split[0]
+        # filename = "_".join(split[1:-1])
+        filename = prev + '_'+ rev + fileName + '.txt'
         filePath = join(DATASET, project, 'DiffEntries', filename)
 
         key = root + '/'+s+'/'+dumpFile
@@ -206,8 +211,11 @@ def dumpFilesCore(t):
         # with open(join(clusterSavePath, dumpFile), 'w', encoding='utf-8') as writeFile:
         #     writeFile.write(lines)
 
-
-
+        # with open(join(clusterSavePath,dumpFile),'r') as readFile:
+        #     fileContent = readFile.read()
+        #
+        # with open(join(clusterSavePath,dumpFile + "_" + hunk),'w') as writeFile:
+        #     writeFile.write(re.split(r"@@\s\-\d+,*\d*\s\+\d+,*\d*\s@@", fileContent)[int(hunk)+1])
         clusterSavePath = ''
         # if level == 'shapes':
         #     clusterSavePath = join(clusterPath, root,s, str(idx))
