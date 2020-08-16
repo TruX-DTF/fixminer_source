@@ -78,8 +78,14 @@ def indexCore():
                     if len(members) > 1:
                             lines = []
                             for member in members:
-                                project, _, fileName = re.split('_[0-9a-f]{6}', member)
-                                prev, rev = re.findall('[0-9a-f]{6}', member)
+                                # project, _, fileName = re.split('_[0-9a-f]{6}', member)
+                                # prev, rev = re.findall('[0-9a-f]{6}', member)
+
+                                project, _, fileName = re.split('_[0-9a-f]{6,40}', member)
+                                prev, rev = re.findall('_[0-9a-f]{6,40}', member)
+
+                                prev = prev.replace('_', '')
+                                rev = rev.replace('_', '')
 
                                 # fileName, hunk = fileName.split('.txt_')
                                 # split = dumpFile.split('_')

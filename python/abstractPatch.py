@@ -191,16 +191,18 @@ def clusterCore(clusterPath, level, match, pairsPath, root, s,action ,token=''):
     parallelRun(dumpFilesCore,workList)
     # for wl in workList:
     #     dumpFilesCore(wl)
-    # dumpFilesCore(('hive_d65d5c_96c1dc_ql#src#gen#protobuf#gen-java#org#apache#hadoop#hive#ql#io#orc#OrcProto.txt_31', 'ReturnStatement', 'tokens', '/Users/anil.koyuncu/projects/richedit-all/enhancedASTDiff/python/data/tokens', '3', '1', '0', 10))
+    # dumpFilesCore(('linux_71cd79_37905ae1_drivers#staging#rtl88192u#ieee80211_softmac.c.txt_0', 'block_content', 'actions', '/Users/anilkoyuncu/projects/fixminer-data/actions', '36', '', '', 4))
 
 
 def dumpFilesCore(t):
 
     try:
         dumpFile, root, level, clusterPath, s, action, token, idx = t
-        project, _ ,fileName = re.split('_[0-9a-f]{6}', dumpFile)
-        prev, rev = re.findall('[0-9a-f]{6}', dumpFile)
+        project, _ ,fileName = re.split('_[0-9a-f]{6,40}', dumpFile)
+        prev, rev = re.findall('_[0-9a-f]{6,40}', dumpFile)
 
+        prev = prev.replace('_','')
+        rev = rev.replace('_','')
         fileName, hunk = fileName.split('.txt_')
         # split = dumpFile.split('_')
         # project = split[0]
