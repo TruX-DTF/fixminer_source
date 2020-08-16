@@ -81,8 +81,8 @@ def indexCore():
                                 # project, _, fileName = re.split('_[0-9a-f]{6}', member)
                                 # prev, rev = re.findall('[0-9a-f]{6}', member)
 
-                                project, _, fileName = re.split('_[0-9a-f]{6,40}', member)
-                                prev, rev = re.findall('_[0-9a-f]{6,40}', member)
+                                project, _, fileName = re.split('_[0-9a-f]{6,40}', member, maxsplit=2)
+                                prev, rev = re.findall('_[0-9a-f]{6,40}', member)[:2]
 
                                 prev = prev.replace('_', '')
                                 rev = rev.replace('_', '')

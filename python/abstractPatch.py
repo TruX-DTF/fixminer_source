@@ -191,15 +191,15 @@ def clusterCore(clusterPath, level, match, pairsPath, root, s,action ,token=''):
     parallelRun(dumpFilesCore,workList)
     # for wl in workList:
     #     dumpFilesCore(wl)
-    # dumpFilesCore(('linux_71cd79_37905ae1_drivers#staging#rtl88192u#ieee80211_softmac.c.txt_0', 'block_content', 'actions', '/Users/anilkoyuncu/projects/fixminer-data/actions', '36', '', '', 4))
+    # dumpFilesCore(('linux_4844f5_c5f13d_sound#pci#hda#patch_ca0132.c.txt_0', 'decl_stmt', 'actions', '/Users/anilkoyuncu/projects/fixminer-data/actions', '14', '', '', 19))
 
 
 def dumpFilesCore(t):
 
     try:
         dumpFile, root, level, clusterPath, s, action, token, idx = t
-        project, _ ,fileName = re.split('_[0-9a-f]{6,40}', dumpFile)
-        prev, rev = re.findall('_[0-9a-f]{6,40}', dumpFile)
+        project, _ ,fileName = re.split('_[0-9a-f]{6,40}', dumpFile,maxsplit=2)
+        prev, rev = re.findall('_[0-9a-f]{6,40}', dumpFile)[:2]
 
         prev = prev.replace('_','')
         rev = rev.replace('_','')
