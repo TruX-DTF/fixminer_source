@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
         # subject = 'ALL'
         # rootType = 'if'
-        job = 'indexClusters'
+        # job = 'validateMany'
         print(job)
 
 
