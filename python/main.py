@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
         # subject = 'ALL'
         # rootType = 'if'
-        job = 'indexClusters'
+        # job = 'validateIntro'
         print(job)
 
 
@@ -102,16 +102,23 @@ if __name__ == '__main__':
             #
             # from sprinferIndex import test
             # test()
-            from sprinferIndex import divideCoccis
-            divideCoccis()
-            from sprinferIndex import removeDuplicates
-            removeDuplicates()
+            # from sprinferIndex import divideCoccis
+            # divideCoccis()
+            # from sprinferIndex import removeDuplicates
+            # removeDuplicates()
 
         elif job =='mergeCoccis':
             # from sprinferIndex import mergeCoccis
             # mergeCoccis()
             from sprinferIndex import removeDuplicates2
             removeDuplicates2()
+
+        elif job == 'getPatterns':
+            dbDir = join(ROOT_DIR,'data', 'redis')
+            startDB(dbDir, REDIS_PORT, PROJECT_TYPE)
+            from sprinferIndex import getPatternTypes
+            getPatternTypes()
+
 
         elif job == 'evalManyBugs':
             # from patchManyBugs import patchCore
@@ -183,11 +190,11 @@ if __name__ == '__main__':
             defects4jStats()
         elif job == 'patterns':
 
-            coccis = load_zipped_pickle(join(DATA_PATH, 'allCocciPatterns2.pickle'))
-            coccis['family'] = coccis.cid.apply(lambda x: x.split('.cocci')[0])
+            # coccis = load_zipped_pickle(join(DATA_PATH, 'allCocciPatterns2.pickle'))
+            # coccis['family'] = coccis.cid.apply(lambda x: x.split('.cocci')[0])
 
-            # from stats import exportAbstractPatterns
-            # exportAbstractPatterns()
+            from stats import exportAbstractPatterns
+            exportAbstractPatterns()
         elif job == 'travis':
 
             if isfile(join(DATA_PATH,'repoList')):
