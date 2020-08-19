@@ -56,25 +56,27 @@ def export():
     if not os.path.exists(join(BUGDIR)):
         os.mkdir(join(BUGDIR))
 
-    cmd = 'bugzoo bug list | grep Yes'
-    o,e = shellGitCheckout(cmd)
+    # cmd = 'bugzoo bug list | grep Yes'
+    # o,e = shellGitCheckout(cmd)
+    #
+    # # if o =='':
+    # #     with open(join(DATA_PATH,'bugzooList'),mode='r') as b:
+    # #         o = b.read()
+    #
+    # bugList = []
+    # for line in o.split('\n'):
+    #     if(line.strip() == ''):
+    #         continue
+    #     bugList.append(line.split('|')[1].strip())
+    # bugList
+    # # bugList = [i.replace(':', '-').replace('manybugs-', 'squareslab/manybugs:') for i in bugList]
+    # # exportCore(bugList[0])
+    # # print("bugList length: {}".format(len(bugList)))
 
-    if o =='':
-        with open(join(DATA_PATH,'bugzooList'),mode='r') as b:
-            o = b.read()
-    bugList = []
-    for line in o.split('\n'):
-        if(line.strip() == ''):
-            continue
-        bugList.append(line.split('|')[1].strip())
-    bugList
-    # bugList = [i.replace(':', '-').replace('manybugs-', 'squareslab/manybugs:') for i in bugList]
-    # exportCore(bugList[0])
-    # print("bugList length: {}".format(len(bugList)))
+    bugList = ['manybugs:gmp:14166-14167','manybugs:gzip:2009-08-16-3fe0caeada-39a362ae9d','manybugs:gzip:2009-10-09-1a085b1446-118a107f2d','manybugs:gzip:2010-02-19-3eb6091d69-884ef6d16c','manybugs:libtiff:2005-12-21-3b848a7-3edb9cd','manybugs:libtiff:2006-02-23-b2ce5d8-207c78a','manybugs:libtiff:2006-03-03-a72cf60-0a36d7f','manybugs:libtiff:2006-03-03-eec4c06-ee65c74','manybugs:libtiff:2007-07-13-09e8220-f2d989d','manybugs:libtiff:2007-11-02-371336d-865f7b2','manybugs:libtiff:2009-02-05-764dbba-2e42d63','manybugs:libtiff:2009-08-28-e8a47d4-023b6df','manybugs:libtiff:2010-11-27-eb326f9-eec7ec0','manybugs:lighttpd:1948-1949','manybugs:lighttpd:2254-2259','manybugs:lighttpd:2661-2662','manybugs:lighttpd:2785-2786','manybugs:php:2011-03-25-8138f7de40-3acdca4703','manybugs:php:2011-04-02-70075bc84c-5a8c917c37','manybugs:php:2011-11-19-eeba0b5681-d3b20b4058','manybugs:php:2011-12-04-1e6a82a1cf-dfa08dc325','manybugs:php:2011-12-10-74343ca506-52c36e60c4','manybugs:php:2012-02-08-ff63c09e6f-6672171672']
 
-
-
-    for b in [b for b in bugList if b in sosbugs]:
+    # for b in [b for b in bugList if b in sosbugs]:
+    for b in [b for b in sosbugs]:
         # cmd = 'bugzoo bug build ' + b
         # o,e = shellGitCheckout(cmd)
         # print(o)
