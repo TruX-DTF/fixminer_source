@@ -73,19 +73,22 @@ def testCore(t):
                 # print("container is ready")
 
                 # print("First_test:", end=' ')
-                output += 'First_test:'
-                pre_test_outcomes = {}
-                pre_failure_cases, pre_failure, total, pre_test_outcomes = test_all(bug, container, client)
-                # print("@fail:{}@total:{}".format(pre_failure, total), end=' ')
-                # print("@pre_failure_cases:{}".format(pre_failure_cases), end=' ')
-                if pre_failure == 0:
-                    logging.error(bugName + ' no failed test initially')
-                    return ''
-                output += '@fail:' + str(pre_failure) + '@total:' + str(total) + ', '
+                # output += 'First_test:'
+                # pre_test_outcomes = {}
+                # pre_failure_cases, pre_failure, total, pre_test_outcomes = test_all(bug, container, client)
+                # # print("@fail:{}@total:{}".format(pre_failure, total), end=' ')
+                # # print("@pre_failure_cases:{}".format(pre_failure_cases), end=' ')
+                # if pre_failure == 0:
+                #     logging.error(bugName + ' no failed test initially')
+                #     return ''
+                # output += '@fail:' + str(pre_failure) + '@total:' + str(total) + ', '
 
-                spfiles = listdir(join(DATASET, 'cocci'))
+                # spfiles = listdir(join(DATASET, 'cocci'))
+                spfiles = load_zipped_pickle(join(DATA_PATH, 'uniquePatternsL.pickle'))
+                spfiles.sort_values(by='uFreq', inplace=True, ascending=False)
+                spfiles = spfiles[['uid']]
                 # print("patching... " + bugName)
-                for idx,spfile in enumerate(spfiles):
+                for idx,spfile in enumerate(spfiles.uid.values.tolist()):
                     if spfile == '.DS_Store':
                         continue
 

@@ -6,6 +6,7 @@ SPINFER_INDEX_PATH = os.environ["dataset"]
 COCCI_PATH = join(os.environ["coccinelle"],'spatch')
 DATASET = os.environ["dataset"]
 ROOT_DIR = os.environ["ROOT_DIR"]
+REDIS_PORT = os.environ["REDIS_PORT"]
 
 
 def indexCore():
@@ -163,7 +164,7 @@ def runSpinfer():
     #     #     logging.info(cmd)
     #     #     output, e = shellGitCheckout(cmd)
     #     #     logging.info(output)
-    parallelRun(callSpinfer,bigCmdList)
+    parallelRun(callSpinfer,bigCmdList,max_workers=8)
 
     # if not os.path.exists(join(DATA_PATH,'cocci')):
     #     os.mkdir(join(DATA_PATH,'cocci'))
@@ -251,6 +252,54 @@ def getFreqPatterns():
     uniquePatterns['newFreq'] = uniquePatterns.pattern.apply(lambda x: freqs[x])
 
     re.search(r"// Recall:(.*), Precision:(.*), Matching recall:(.*)")
+
+
+
+def getPatternTypes():
+
+    if isfile(join(DATA_PATH,'allCocciPatternsLast.pickle')):
+        coccis = load_zipped_pickle(join(DATA_PATH,'allCocciPatternsLast.pickle'))
+    else:
+        commentPattern = r"(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)"
+        DATA = '/Users/anil.koyuncu/projects/fixminer/fixminer-data/patches'
+        coccis =os.listdir(join(DATA, 'cocci'))
+        cocciPatterns = pd.DataFrame(columns=['cid', 'pattern','inferedFrom','recall','precision','matchingRecall'])
+        ind = 0
+        for cocci in coccis:
+            try:
+                if cocci == '.DS_Store':
+                    continue
+                with open(join(DATA, 'cocci', cocci), 'r') as iFile:
+                    idx = iFile.read()
+                    idx
+                    inferedFrom = re.search(r"// Infered from:(.*)\n",idx).groups()
+                    recall,precision, matchingRecall = re.search(r"// Recall:(.*), Precision:(.*), Matching recall:(.*)",idx).groups()
+                    pattern = re.sub(commentPattern, '', idx, re.DOTALL)
+                    cocciPatterns.loc[ind] = [cocci,pattern,inferedFrom,recall.strip(),precision.strip(),matchingRecall.strip()]
+                    ind = ind +1
+            except Exception as e:
+                # shutil.move(join(DATA,'merged',cocci),join(DATA,'mergedBroken',cocci))
+                continue
+                # logging.error(e)
+        cocciPatterns['iFiles'] = cocciPatterns.inferedFrom.apply(lambda x: getInferred(x[0]))
+
+        cocciPatterns['freq'] = cocciPatterns.iFiles.apply(lambda x: len(x))
+        cocciPatterns['project'] = cocciPatterns.iFiles.apply(lambda x: list(set([i.split('/{')[0].replace('(','') for i in x])))
+        cocciPatterns.sort_values(by='freq', inplace=True, ascending=False)
+        # save_zipped_pickle(cocciPatterns,join(DATA_PATH,'allCocciPatterns.pickle'))
+        save_zipped_pickle(cocciPatterns,join(DATA_PATH,'allCocciPatternsLast.pickle'))
+
+    coccis
+
+    port = REDIS_PORT
+    import redis
+    redis_db = redis.StrictRedis(host="localhost", port=port, db=0)
+
+    redis_db
+
+    # def getPatternFromRedis(x):
+    #     lines = redis_db.hget(dKey, 'actionTree')
+
 
 
 def removeDuplicates2():

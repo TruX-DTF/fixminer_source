@@ -276,7 +276,7 @@ def shellGitCheckout(cmd,timeout =600,enc='utf-8'):
             logging.warning(cmd +'\t'+str(t))
     return output,errors
 
-def callSpinfer(cmd,timeout =600,enc='utf-8'):
+def callSpinfer(cmd,timeout =900,enc='utf-8'):
     output = ''
     errors = ''
     # logging.debug(cmd)
