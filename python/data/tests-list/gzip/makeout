@@ -1,0 +1,79 @@
+Making all in lib
+make[1]: Entering directory `/experiment/src/lib'
+  GEN      arg-nonnull.h
+  GEN      c++defs.h
+  GEN      configmake.h
+  GEN      warn-on-use.h
+  GEN      fcntl.h
+  GEN      stdio.h
+  GEN      string.h
+  GEN      sys/stat.h
+  GEN      sys/time.h
+  GEN      time.h
+  GEN      unistd.h
+  GEN      wchar.h
+  GEN      wctype.h
+make  all-recursive
+make[2]: Entering directory `/experiment/src/lib'
+make[3]: Entering directory `/experiment/src/lib'
+  GEN      charset.alias
+  GEN      ref-add.sed
+  GEN      ref-del.sed
+  CC       exitfail.o
+  CC       freadahead.o
+  CC       freading.o
+  CC       localcharset.o
+  CC       close-stream.o
+  CC       xalloc-die.o
+  CC       closein.o
+  CC       closeout.o
+  CC       creat-safer.o
+  CC       dup-safer.o
+  CC       fcntl.o
+  CC       fd-safer.o
+  CC       fflush.o
+  CC       fpurge.o
+  CC       fseeko.o
+  CC       gettime.o
+  CC       open-safer.o
+  CC       pipe-safer.o
+  CC       quotearg.o
+  CC       utimens.o
+  CC       xmalloc.o
+  CC       yesno.o
+  AR       libgzip.a
+make[3]: Leaving directory `/experiment/src/lib'
+make[2]: Leaving directory `/experiment/src/lib'
+make[1]: Leaving directory `/experiment/src/lib'
+Making all in doc
+make[1]: Entering directory `/experiment/src/doc'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/experiment/src/doc'
+make[1]: Entering directory `/experiment/src'
+  CC       bits.o
+  CC       crypt.o
+  CC       deflate.o
+  CC       gzip.o
+  CC       inflate.o
+  CC       lzw.o
+  CC       trees.o
+  CC       unlzh.o
+  CC       unlzw.o
+  CC       unpack.o
+  CC       unzip.o
+  CC       util.o
+  CC       zip.o
+  GEN      gunzip
+  GEN      gzexe
+  GEN      zcat
+  GEN      zcmp
+  GEN      zdiff
+  GEN      zegrep
+  GEN      zfgrep
+  GEN      zforce
+  GEN      zgrep
+  GEN      zless
+  GEN      zmore
+  GEN      znew
+  CCLD     gzip
+make[1]: Leaving directory `/experiment/src'

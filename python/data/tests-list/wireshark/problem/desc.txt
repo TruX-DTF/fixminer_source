@@ -1,0 +1,27 @@
+I'm unable to compile snippets with clang-3.4.
+
+When this is executed:
+
+clang-3.4 -I/usr/include -I/experiment/src -I/usr/include/glib-2.0 -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -emit-llvm -c -g snippet.c
+
+I get the error:
+In file included from /usr/include/glib-2.0/glibconfig.h:11:
+/usr/include/limits.h:123:16: fatal error: 'limits.h' file not found
+# include_next <limits.h>
+               ^
+1 error generated.
+
+
+
+When this:
+clang-3.4 -I/experiment/src -I/usr/include/glib-2.0 -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/opt/sosrepair/llvm/lib/clang/5.0.2/include/ -emit-llvm -c -g snippet.c
+
+I get error:
+
+/opt/sosrepair/llvm/lib/clang/5.0.2/include/varargs.h:25:4: error: "Please use <stdarg.h> 
+....
+
+
+
+Also at the beginning clang was unable to fine `glibconfig.h` so i had to run:
+sudo ln -s /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h /usr/include/glib-2.0/

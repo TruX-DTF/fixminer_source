@@ -1,0 +1,675 @@
+Making all in port
+make[1]: Entering directory `/experiment/src/port'
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff     -m32 -Wall -MT dummy.lo -MD -MP -MF ".deps/dummy.Tpo" -c -o dummy.lo dummy.c; \
+	then mv -f ".deps/dummy.Tpo" ".deps/dummy.Plo"; else rm -f ".deps/dummy.Tpo"; exit 1; fi
+mkdir .libs
+ gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -m32 -Wall -MT dummy.lo -MD -MP -MF .deps/dummy.Tpo -c dummy.c  -fPIC -DPIC -o .libs/dummy.o
+dummy.c:8:1: warning: 'libport_dummy_function' defined but not used [-Wunused-function]
+ libport_dummy_function()
+ ^
+ gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -m32 -Wall -MT dummy.lo -MD -MP -MF .deps/dummy.Tpo -c dummy.c -o dummy.o >/dev/null 2>&1
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o libport.la   dummy.lo  -lm -lc 
+ar cru .libs/libport.a .libs/dummy.o
+ranlib .libs/libport.a
+creating libport.la
+(cd .libs && rm -f libport.la && ln -s ../libport.la libport.la)
+make[1]: Leaving directory `/experiment/src/port'
+Making all in libtiff
+make[1]: Entering directory `/experiment/src/libtiff'
+make  all-am
+make[2]: Entering directory `/experiment/src/libtiff'
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_aux.lo -MD -MP -MF ".deps/tif_aux.Tpo" -c -o tif_aux.lo tif_aux.c; \
+	then mv -f ".deps/tif_aux.Tpo" ".deps/tif_aux.Plo"; else rm -f ".deps/tif_aux.Tpo"; exit 1; fi
+mkdir .libs
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_aux.lo -MD -MP -MF .deps/tif_aux.Tpo -c tif_aux.c  -fPIC -DPIC -o .libs/tif_aux.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_aux.lo -MD -MP -MF .deps/tif_aux.Tpo -c tif_aux.c -o tif_aux.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_close.lo -MD -MP -MF ".deps/tif_close.Tpo" -c -o tif_close.lo tif_close.c; \
+	then mv -f ".deps/tif_close.Tpo" ".deps/tif_close.Plo"; else rm -f ".deps/tif_close.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_close.lo -MD -MP -MF .deps/tif_close.Tpo -c tif_close.c  -fPIC -DPIC -o .libs/tif_close.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_close.lo -MD -MP -MF .deps/tif_close.Tpo -c tif_close.c -o tif_close.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_codec.lo -MD -MP -MF ".deps/tif_codec.Tpo" -c -o tif_codec.lo tif_codec.c; \
+	then mv -f ".deps/tif_codec.Tpo" ".deps/tif_codec.Plo"; else rm -f ".deps/tif_codec.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_codec.lo -MD -MP -MF .deps/tif_codec.Tpo -c tif_codec.c  -fPIC -DPIC -o .libs/tif_codec.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_codec.lo -MD -MP -MF .deps/tif_codec.Tpo -c tif_codec.c -o tif_codec.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_color.lo -MD -MP -MF ".deps/tif_color.Tpo" -c -o tif_color.lo tif_color.c; \
+	then mv -f ".deps/tif_color.Tpo" ".deps/tif_color.Plo"; else rm -f ".deps/tif_color.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_color.lo -MD -MP -MF .deps/tif_color.Tpo -c tif_color.c  -fPIC -DPIC -o .libs/tif_color.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_color.lo -MD -MP -MF .deps/tif_color.Tpo -c tif_color.c -o tif_color.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_compress.lo -MD -MP -MF ".deps/tif_compress.Tpo" -c -o tif_compress.lo tif_compress.c; \
+	then mv -f ".deps/tif_compress.Tpo" ".deps/tif_compress.Plo"; else rm -f ".deps/tif_compress.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_compress.lo -MD -MP -MF .deps/tif_compress.Tpo -c tif_compress.c  -fPIC -DPIC -o .libs/tif_compress.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_compress.lo -MD -MP -MF .deps/tif_compress.Tpo -c tif_compress.c -o tif_compress.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_dir.lo -MD -MP -MF ".deps/tif_dir.Tpo" -c -o tif_dir.lo tif_dir.c; \
+	then mv -f ".deps/tif_dir.Tpo" ".deps/tif_dir.Plo"; else rm -f ".deps/tif_dir.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dir.lo -MD -MP -MF .deps/tif_dir.Tpo -c tif_dir.c  -fPIC -DPIC -o .libs/tif_dir.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dir.lo -MD -MP -MF .deps/tif_dir.Tpo -c tif_dir.c -o tif_dir.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_dirinfo.lo -MD -MP -MF ".deps/tif_dirinfo.Tpo" -c -o tif_dirinfo.lo tif_dirinfo.c; \
+	then mv -f ".deps/tif_dirinfo.Tpo" ".deps/tif_dirinfo.Plo"; else rm -f ".deps/tif_dirinfo.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dirinfo.lo -MD -MP -MF .deps/tif_dirinfo.Tpo -c tif_dirinfo.c  -fPIC -DPIC -o .libs/tif_dirinfo.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dirinfo.lo -MD -MP -MF .deps/tif_dirinfo.Tpo -c tif_dirinfo.c -o tif_dirinfo.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_dirread.lo -MD -MP -MF ".deps/tif_dirread.Tpo" -c -o tif_dirread.lo tif_dirread.c; \
+	then mv -f ".deps/tif_dirread.Tpo" ".deps/tif_dirread.Plo"; else rm -f ".deps/tif_dirread.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dirread.lo -MD -MP -MF .deps/tif_dirread.Tpo -c tif_dirread.c  -fPIC -DPIC -o .libs/tif_dirread.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dirread.lo -MD -MP -MF .deps/tif_dirread.Tpo -c tif_dirread.c -o tif_dirread.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_dirwrite.lo -MD -MP -MF ".deps/tif_dirwrite.Tpo" -c -o tif_dirwrite.lo tif_dirwrite.c; \
+	then mv -f ".deps/tif_dirwrite.Tpo" ".deps/tif_dirwrite.Plo"; else rm -f ".deps/tif_dirwrite.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dirwrite.lo -MD -MP -MF .deps/tif_dirwrite.Tpo -c tif_dirwrite.c  -fPIC -DPIC -o .libs/tif_dirwrite.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dirwrite.lo -MD -MP -MF .deps/tif_dirwrite.Tpo -c tif_dirwrite.c -o tif_dirwrite.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_dumpmode.lo -MD -MP -MF ".deps/tif_dumpmode.Tpo" -c -o tif_dumpmode.lo tif_dumpmode.c; \
+	then mv -f ".deps/tif_dumpmode.Tpo" ".deps/tif_dumpmode.Plo"; else rm -f ".deps/tif_dumpmode.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dumpmode.lo -MD -MP -MF .deps/tif_dumpmode.Tpo -c tif_dumpmode.c  -fPIC -DPIC -o .libs/tif_dumpmode.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_dumpmode.lo -MD -MP -MF .deps/tif_dumpmode.Tpo -c tif_dumpmode.c -o tif_dumpmode.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_error.lo -MD -MP -MF ".deps/tif_error.Tpo" -c -o tif_error.lo tif_error.c; \
+	then mv -f ".deps/tif_error.Tpo" ".deps/tif_error.Plo"; else rm -f ".deps/tif_error.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_error.lo -MD -MP -MF .deps/tif_error.Tpo -c tif_error.c  -fPIC -DPIC -o .libs/tif_error.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_error.lo -MD -MP -MF .deps/tif_error.Tpo -c tif_error.c -o tif_error.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_extension.lo -MD -MP -MF ".deps/tif_extension.Tpo" -c -o tif_extension.lo tif_extension.c; \
+	then mv -f ".deps/tif_extension.Tpo" ".deps/tif_extension.Plo"; else rm -f ".deps/tif_extension.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_extension.lo -MD -MP -MF .deps/tif_extension.Tpo -c tif_extension.c  -fPIC -DPIC -o .libs/tif_extension.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_extension.lo -MD -MP -MF .deps/tif_extension.Tpo -c tif_extension.c -o tif_extension.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_fax3.lo -MD -MP -MF ".deps/tif_fax3.Tpo" -c -o tif_fax3.lo tif_fax3.c; \
+	then mv -f ".deps/tif_fax3.Tpo" ".deps/tif_fax3.Plo"; else rm -f ".deps/tif_fax3.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_fax3.lo -MD -MP -MF .deps/tif_fax3.Tpo -c tif_fax3.c  -fPIC -DPIC -o .libs/tif_fax3.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_fax3.lo -MD -MP -MF .deps/tif_fax3.Tpo -c tif_fax3.c -o tif_fax3.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_fax3sm.lo -MD -MP -MF ".deps/tif_fax3sm.Tpo" -c -o tif_fax3sm.lo tif_fax3sm.c; \
+	then mv -f ".deps/tif_fax3sm.Tpo" ".deps/tif_fax3sm.Plo"; else rm -f ".deps/tif_fax3sm.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_fax3sm.lo -MD -MP -MF .deps/tif_fax3sm.Tpo -c tif_fax3sm.c  -fPIC -DPIC -o .libs/tif_fax3sm.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_fax3sm.lo -MD -MP -MF .deps/tif_fax3sm.Tpo -c tif_fax3sm.c -o tif_fax3sm.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_flush.lo -MD -MP -MF ".deps/tif_flush.Tpo" -c -o tif_flush.lo tif_flush.c; \
+	then mv -f ".deps/tif_flush.Tpo" ".deps/tif_flush.Plo"; else rm -f ".deps/tif_flush.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_flush.lo -MD -MP -MF .deps/tif_flush.Tpo -c tif_flush.c  -fPIC -DPIC -o .libs/tif_flush.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_flush.lo -MD -MP -MF .deps/tif_flush.Tpo -c tif_flush.c -o tif_flush.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_getimage.lo -MD -MP -MF ".deps/tif_getimage.Tpo" -c -o tif_getimage.lo tif_getimage.c; \
+	then mv -f ".deps/tif_getimage.Tpo" ".deps/tif_getimage.Plo"; else rm -f ".deps/tif_getimage.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_getimage.lo -MD -MP -MF .deps/tif_getimage.Tpo -c tif_getimage.c  -fPIC -DPIC -o .libs/tif_getimage.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_getimage.lo -MD -MP -MF .deps/tif_getimage.Tpo -c tif_getimage.c -o tif_getimage.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_jpeg.lo -MD -MP -MF ".deps/tif_jpeg.Tpo" -c -o tif_jpeg.lo tif_jpeg.c; \
+	then mv -f ".deps/tif_jpeg.Tpo" ".deps/tif_jpeg.Plo"; else rm -f ".deps/tif_jpeg.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_jpeg.lo -MD -MP -MF .deps/tif_jpeg.Tpo -c tif_jpeg.c  -fPIC -DPIC -o .libs/tif_jpeg.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_jpeg.lo -MD -MP -MF .deps/tif_jpeg.Tpo -c tif_jpeg.c -o tif_jpeg.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_luv.lo -MD -MP -MF ".deps/tif_luv.Tpo" -c -o tif_luv.lo tif_luv.c; \
+	then mv -f ".deps/tif_luv.Tpo" ".deps/tif_luv.Plo"; else rm -f ".deps/tif_luv.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_luv.lo -MD -MP -MF .deps/tif_luv.Tpo -c tif_luv.c  -fPIC -DPIC -o .libs/tif_luv.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_luv.lo -MD -MP -MF .deps/tif_luv.Tpo -c tif_luv.c -o tif_luv.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_lzw.lo -MD -MP -MF ".deps/tif_lzw.Tpo" -c -o tif_lzw.lo tif_lzw.c; \
+	then mv -f ".deps/tif_lzw.Tpo" ".deps/tif_lzw.Plo"; else rm -f ".deps/tif_lzw.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_lzw.lo -MD -MP -MF .deps/tif_lzw.Tpo -c tif_lzw.c  -fPIC -DPIC -o .libs/tif_lzw.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_lzw.lo -MD -MP -MF .deps/tif_lzw.Tpo -c tif_lzw.c -o tif_lzw.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_next.lo -MD -MP -MF ".deps/tif_next.Tpo" -c -o tif_next.lo tif_next.c; \
+	then mv -f ".deps/tif_next.Tpo" ".deps/tif_next.Plo"; else rm -f ".deps/tif_next.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_next.lo -MD -MP -MF .deps/tif_next.Tpo -c tif_next.c  -fPIC -DPIC -o .libs/tif_next.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_next.lo -MD -MP -MF .deps/tif_next.Tpo -c tif_next.c -o tif_next.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_ojpeg.lo -MD -MP -MF ".deps/tif_ojpeg.Tpo" -c -o tif_ojpeg.lo tif_ojpeg.c; \
+	then mv -f ".deps/tif_ojpeg.Tpo" ".deps/tif_ojpeg.Plo"; else rm -f ".deps/tif_ojpeg.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_ojpeg.lo -MD -MP -MF .deps/tif_ojpeg.Tpo -c tif_ojpeg.c  -fPIC -DPIC -o .libs/tif_ojpeg.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_ojpeg.lo -MD -MP -MF .deps/tif_ojpeg.Tpo -c tif_ojpeg.c -o tif_ojpeg.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_open.lo -MD -MP -MF ".deps/tif_open.Tpo" -c -o tif_open.lo tif_open.c; \
+	then mv -f ".deps/tif_open.Tpo" ".deps/tif_open.Plo"; else rm -f ".deps/tif_open.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_open.lo -MD -MP -MF .deps/tif_open.Tpo -c tif_open.c  -fPIC -DPIC -o .libs/tif_open.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_open.lo -MD -MP -MF .deps/tif_open.Tpo -c tif_open.c -o tif_open.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_packbits.lo -MD -MP -MF ".deps/tif_packbits.Tpo" -c -o tif_packbits.lo tif_packbits.c; \
+	then mv -f ".deps/tif_packbits.Tpo" ".deps/tif_packbits.Plo"; else rm -f ".deps/tif_packbits.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_packbits.lo -MD -MP -MF .deps/tif_packbits.Tpo -c tif_packbits.c  -fPIC -DPIC -o .libs/tif_packbits.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_packbits.lo -MD -MP -MF .deps/tif_packbits.Tpo -c tif_packbits.c -o tif_packbits.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_pixarlog.lo -MD -MP -MF ".deps/tif_pixarlog.Tpo" -c -o tif_pixarlog.lo tif_pixarlog.c; \
+	then mv -f ".deps/tif_pixarlog.Tpo" ".deps/tif_pixarlog.Plo"; else rm -f ".deps/tif_pixarlog.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_pixarlog.lo -MD -MP -MF .deps/tif_pixarlog.Tpo -c tif_pixarlog.c  -fPIC -DPIC -o .libs/tif_pixarlog.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_pixarlog.lo -MD -MP -MF .deps/tif_pixarlog.Tpo -c tif_pixarlog.c -o tif_pixarlog.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_predict.lo -MD -MP -MF ".deps/tif_predict.Tpo" -c -o tif_predict.lo tif_predict.c; \
+	then mv -f ".deps/tif_predict.Tpo" ".deps/tif_predict.Plo"; else rm -f ".deps/tif_predict.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_predict.lo -MD -MP -MF .deps/tif_predict.Tpo -c tif_predict.c  -fPIC -DPIC -o .libs/tif_predict.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_predict.lo -MD -MP -MF .deps/tif_predict.Tpo -c tif_predict.c -o tif_predict.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_print.lo -MD -MP -MF ".deps/tif_print.Tpo" -c -o tif_print.lo tif_print.c; \
+	then mv -f ".deps/tif_print.Tpo" ".deps/tif_print.Plo"; else rm -f ".deps/tif_print.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_print.lo -MD -MP -MF .deps/tif_print.Tpo -c tif_print.c  -fPIC -DPIC -o .libs/tif_print.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_print.lo -MD -MP -MF .deps/tif_print.Tpo -c tif_print.c -o tif_print.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_read.lo -MD -MP -MF ".deps/tif_read.Tpo" -c -o tif_read.lo tif_read.c; \
+	then mv -f ".deps/tif_read.Tpo" ".deps/tif_read.Plo"; else rm -f ".deps/tif_read.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_read.lo -MD -MP -MF .deps/tif_read.Tpo -c tif_read.c  -fPIC -DPIC -o .libs/tif_read.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_read.lo -MD -MP -MF .deps/tif_read.Tpo -c tif_read.c -o tif_read.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_strip.lo -MD -MP -MF ".deps/tif_strip.Tpo" -c -o tif_strip.lo tif_strip.c; \
+	then mv -f ".deps/tif_strip.Tpo" ".deps/tif_strip.Plo"; else rm -f ".deps/tif_strip.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_strip.lo -MD -MP -MF .deps/tif_strip.Tpo -c tif_strip.c  -fPIC -DPIC -o .libs/tif_strip.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_strip.lo -MD -MP -MF .deps/tif_strip.Tpo -c tif_strip.c -o tif_strip.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_swab.lo -MD -MP -MF ".deps/tif_swab.Tpo" -c -o tif_swab.lo tif_swab.c; \
+	then mv -f ".deps/tif_swab.Tpo" ".deps/tif_swab.Plo"; else rm -f ".deps/tif_swab.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_swab.lo -MD -MP -MF .deps/tif_swab.Tpo -c tif_swab.c  -fPIC -DPIC -o .libs/tif_swab.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_swab.lo -MD -MP -MF .deps/tif_swab.Tpo -c tif_swab.c -o tif_swab.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_thunder.lo -MD -MP -MF ".deps/tif_thunder.Tpo" -c -o tif_thunder.lo tif_thunder.c; \
+	then mv -f ".deps/tif_thunder.Tpo" ".deps/tif_thunder.Plo"; else rm -f ".deps/tif_thunder.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_thunder.lo -MD -MP -MF .deps/tif_thunder.Tpo -c tif_thunder.c  -fPIC -DPIC -o .libs/tif_thunder.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_thunder.lo -MD -MP -MF .deps/tif_thunder.Tpo -c tif_thunder.c -o tif_thunder.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_tile.lo -MD -MP -MF ".deps/tif_tile.Tpo" -c -o tif_tile.lo tif_tile.c; \
+	then mv -f ".deps/tif_tile.Tpo" ".deps/tif_tile.Plo"; else rm -f ".deps/tif_tile.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_tile.lo -MD -MP -MF .deps/tif_tile.Tpo -c tif_tile.c  -fPIC -DPIC -o .libs/tif_tile.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_tile.lo -MD -MP -MF .deps/tif_tile.Tpo -c tif_tile.c -o tif_tile.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_unix.lo -MD -MP -MF ".deps/tif_unix.Tpo" -c -o tif_unix.lo tif_unix.c; \
+	then mv -f ".deps/tif_unix.Tpo" ".deps/tif_unix.Plo"; else rm -f ".deps/tif_unix.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_unix.lo -MD -MP -MF .deps/tif_unix.Tpo -c tif_unix.c  -fPIC -DPIC -o .libs/tif_unix.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_unix.lo -MD -MP -MF .deps/tif_unix.Tpo -c tif_unix.c -o tif_unix.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_version.lo -MD -MP -MF ".deps/tif_version.Tpo" -c -o tif_version.lo tif_version.c; \
+	then mv -f ".deps/tif_version.Tpo" ".deps/tif_version.Plo"; else rm -f ".deps/tif_version.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_version.lo -MD -MP -MF .deps/tif_version.Tpo -c tif_version.c  -fPIC -DPIC -o .libs/tif_version.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_version.lo -MD -MP -MF .deps/tif_version.Tpo -c tif_version.c -o tif_version.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_warning.lo -MD -MP -MF ".deps/tif_warning.Tpo" -c -o tif_warning.lo tif_warning.c; \
+	then mv -f ".deps/tif_warning.Tpo" ".deps/tif_warning.Plo"; else rm -f ".deps/tif_warning.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_warning.lo -MD -MP -MF .deps/tif_warning.Tpo -c tif_warning.c  -fPIC -DPIC -o .libs/tif_warning.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_warning.lo -MD -MP -MF .deps/tif_warning.Tpo -c tif_warning.c -o tif_warning.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_write.lo -MD -MP -MF ".deps/tif_write.Tpo" -c -o tif_write.lo tif_write.c; \
+	then mv -f ".deps/tif_write.Tpo" ".deps/tif_write.Plo"; else rm -f ".deps/tif_write.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_write.lo -MD -MP -MF .deps/tif_write.Tpo -c tif_write.c  -fPIC -DPIC -o .libs/tif_write.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_write.lo -MD -MP -MF .deps/tif_write.Tpo -c tif_write.c -o tif_write.o >/dev/null 2>&1
+if /bin/sh ../libtool --tag=CC --mode=compile gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT tif_zip.lo -MD -MP -MF ".deps/tif_zip.Tpo" -c -o tif_zip.lo tif_zip.c; \
+	then mv -f ".deps/tif_zip.Tpo" ".deps/tif_zip.Plo"; else rm -f ".deps/tif_zip.Tpo"; exit 1; fi
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_zip.lo -MD -MP -MF .deps/tif_zip.Tpo -c tif_zip.c  -fPIC -DPIC -o .libs/tif_zip.o
+ gcc -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -Wall -MT tif_zip.lo -MD -MP -MF .deps/tif_zip.Tpo -c tif_zip.c -o tif_zip.o >/dev/null 2>&1
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o libtiff.la -rpath /usr/local/lib -no-undefined -version-number 3:7:4  tif_aux.lo tif_close.lo tif_codec.lo tif_color.lo tif_compress.lo tif_dir.lo tif_dirinfo.lo tif_dirread.lo tif_dirwrite.lo tif_dumpmode.lo tif_error.lo tif_extension.lo tif_fax3.lo tif_fax3sm.lo tif_flush.lo tif_getimage.lo tif_jpeg.lo tif_luv.lo tif_lzw.lo tif_next.lo tif_ojpeg.lo tif_open.lo tif_packbits.lo tif_pixarlog.lo tif_predict.lo tif_print.lo tif_read.lo tif_strip.lo tif_swab.lo tif_thunder.lo tif_tile.lo tif_unix.lo tif_version.lo tif_warning.lo tif_write.lo tif_zip.lo ../port/libport.la -lm -lc 
+gcc -shared  .libs/tif_aux.o .libs/tif_close.o .libs/tif_codec.o .libs/tif_color.o .libs/tif_compress.o .libs/tif_dir.o .libs/tif_dirinfo.o .libs/tif_dirread.o .libs/tif_dirwrite.o .libs/tif_dumpmode.o .libs/tif_error.o .libs/tif_extension.o .libs/tif_fax3.o .libs/tif_fax3sm.o .libs/tif_flush.o .libs/tif_getimage.o .libs/tif_jpeg.o .libs/tif_luv.o .libs/tif_lzw.o .libs/tif_next.o .libs/tif_ojpeg.o .libs/tif_open.o .libs/tif_packbits.o .libs/tif_pixarlog.o .libs/tif_predict.o .libs/tif_print.o .libs/tif_read.o .libs/tif_strip.o .libs/tif_swab.o .libs/tif_thunder.o .libs/tif_tile.o .libs/tif_unix.o .libs/tif_version.o .libs/tif_warning.o .libs/tif_write.o .libs/tif_zip.o -Wl,--whole-archive ../port/.libs/libport.a -Wl,--no-whole-archive  -lm -lc  -m32 -m32 -Wl,-soname -Wl,libtiff.so.3 -o .libs/libtiff.so.3.7.4
+(cd .libs && rm -f libtiff.so.3 && ln -s libtiff.so.3.7.4 libtiff.so.3)
+(cd .libs && rm -f libtiff.so && ln -s libtiff.so.3.7.4 libtiff.so)
+rm -fr .libs/libtiff.lax
+mkdir .libs/libtiff.lax
+rm -fr .libs/libtiff.lax/libport.a
+mkdir .libs/libtiff.lax/libport.a
+(cd .libs/libtiff.lax/libport.a && ar x /experiment/src/libtiff/../port/.libs/libport.a)
+ar cru .libs/libtiff.a  tif_aux.o tif_close.o tif_codec.o tif_color.o tif_compress.o tif_dir.o tif_dirinfo.o tif_dirread.o tif_dirwrite.o tif_dumpmode.o tif_error.o tif_extension.o tif_fax3.o tif_fax3sm.o tif_flush.o tif_getimage.o tif_jpeg.o tif_luv.o tif_lzw.o tif_next.o tif_ojpeg.o tif_open.o tif_packbits.o tif_pixarlog.o tif_predict.o tif_print.o tif_read.o tif_strip.o tif_swab.o tif_thunder.o tif_tile.o tif_unix.o tif_version.o tif_warning.o tif_write.o tif_zip.o  .libs/libtiff.lax/libport.a/dummy.o 
+ranlib .libs/libtiff.a
+rm -fr .libs/libtiff.lax
+creating libtiff.la
+(cd .libs && rm -f libtiff.la && ln -s ../libtiff.la libtiff.la)
+if /bin/sh ../libtool --tag=CXX --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -MT tif_stream.lo -MD -MP -MF ".deps/tif_stream.Tpo" -c -o tif_stream.lo tif_stream.cxx; \
+	then mv -f ".deps/tif_stream.Tpo" ".deps/tif_stream.Plo"; else rm -f ".deps/tif_stream.Tpo"; exit 1; fi
+ g++ -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -MT tif_stream.lo -MD -MP -MF .deps/tif_stream.Tpo -c tif_stream.cxx  -fPIC -DPIC -o .libs/tif_stream.o
+In file included from tiffiop.h:61:0,
+                 from tif_stream.cxx:30:
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+ };
+ ^
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:533:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+ };
+ ^
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+tif_dir.h:602:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+ g++ -DHAVE_CONFIG_H -I. -I. -I. -I. -m32 -MT tif_stream.lo -MD -MP -MF .deps/tif_stream.Tpo -c tif_stream.cxx -o tif_stream.o >/dev/null 2>&1
+/bin/sh ../libtool --tag=CXX --mode=link g++  -m32  -m32 -o libtiffxx.la -rpath /usr/local/lib -no-undefined -version-number 3:7:4  tif_stream.lo ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+g++ -shared -nostdlib /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib32/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/32/crtbeginS.o  .libs/tif_stream.o -Wl,--whole-archive ../port/.libs/libport.a -Wl,--no-whole-archive  -Wl,--rpath -Wl,/experiment/src/libtiff/.libs ../libtiff/.libs/libtiff.so -L/usr/lib/gcc/x86_64-linux-gnu/4.8/32 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib32 -L/lib/../lib32 -L/usr/lib/../lib32 -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. -lstdc++ -lm -lc -lgcc_s /usr/lib/gcc/x86_64-linux-gnu/4.8/32/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib32/crtn.o  -m32 -m32 -Wl,-soname -Wl,libtiffxx.so.3 -o .libs/libtiffxx.so.3.7.4
+(cd .libs && rm -f libtiffxx.so.3 && ln -s libtiffxx.so.3.7.4 libtiffxx.so.3)
+(cd .libs && rm -f libtiffxx.so && ln -s libtiffxx.so.3.7.4 libtiffxx.so)
+rm -fr .libs/libtiffxx.lax
+mkdir .libs/libtiffxx.lax
+rm -fr .libs/libtiffxx.lax/libport.a
+mkdir .libs/libtiffxx.lax/libport.a
+(cd .libs/libtiffxx.lax/libport.a && ar x /experiment/src/libtiff/../port/.libs/libport.a)
+ar cru .libs/libtiffxx.a  tif_stream.o  .libs/libtiffxx.lax/libport.a/dummy.o 
+ranlib .libs/libtiffxx.a
+rm -fr .libs/libtiffxx.lax
+creating libtiffxx.la
+(cd .libs && rm -f libtiffxx.la && ln -s ../libtiffxx.la libtiffxx.la)
+if gcc -DHAVE_CONFIG_H -I. -I. -I. -I.     -m32 -Wall -MT mkg3states.o -MD -MP -MF ".deps/mkg3states.Tpo" -c -o mkg3states.o mkg3states.c; \
+	then mv -f ".deps/mkg3states.Tpo" ".deps/mkg3states.Po"; else rm -f ".deps/mkg3states.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o mkg3states  mkg3states.o ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o mkg3states mkg3states.o  ../port/.libs/libport.a -lm -lc
+make[2]: Leaving directory `/experiment/src/libtiff'
+make[1]: Leaving directory `/experiment/src/libtiff'
+Making all in tools
+make[1]: Entering directory `/experiment/src/tools'
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT bmp2tiff.o -MD -MP -MF ".deps/bmp2tiff.Tpo" -c -o bmp2tiff.o bmp2tiff.c; \
+	then mv -f ".deps/bmp2tiff.Tpo" ".deps/bmp2tiff.Po"; else rm -f ".deps/bmp2tiff.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o bmp2tiff  bmp2tiff.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+mkdir .libs
+gcc -m32 -Wall -m32 -o .libs/bmp2tiff bmp2tiff.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating bmp2tiff
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT fax2ps.o -MD -MP -MF ".deps/fax2ps.Tpo" -c -o fax2ps.o fax2ps.c; \
+	then mv -f ".deps/fax2ps.Tpo" ".deps/fax2ps.Po"; else rm -f ".deps/fax2ps.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o fax2ps  fax2ps.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/fax2ps fax2ps.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating fax2ps
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT fax2tiff.o -MD -MP -MF ".deps/fax2tiff.Tpo" -c -o fax2tiff.o fax2tiff.c; \
+	then mv -f ".deps/fax2tiff.Tpo" ".deps/fax2tiff.Po"; else rm -f ".deps/fax2tiff.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o fax2tiff  fax2tiff.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/fax2tiff fax2tiff.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating fax2tiff
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT gif2tiff.o -MD -MP -MF ".deps/gif2tiff.Tpo" -c -o gif2tiff.o gif2tiff.c; \
+	then mv -f ".deps/gif2tiff.Tpo" ".deps/gif2tiff.Po"; else rm -f ".deps/gif2tiff.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o gif2tiff  gif2tiff.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/gif2tiff gif2tiff.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating gif2tiff
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT pal2rgb.o -MD -MP -MF ".deps/pal2rgb.Tpo" -c -o pal2rgb.o pal2rgb.c; \
+	then mv -f ".deps/pal2rgb.Tpo" ".deps/pal2rgb.Po"; else rm -f ".deps/pal2rgb.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o pal2rgb  pal2rgb.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/pal2rgb pal2rgb.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating pal2rgb
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT ppm2tiff.o -MD -MP -MF ".deps/ppm2tiff.Tpo" -c -o ppm2tiff.o ppm2tiff.c; \
+	then mv -f ".deps/ppm2tiff.Tpo" ".deps/ppm2tiff.Po"; else rm -f ".deps/ppm2tiff.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o ppm2tiff  ppm2tiff.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/ppm2tiff ppm2tiff.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating ppm2tiff
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT ras2tiff.o -MD -MP -MF ".deps/ras2tiff.Tpo" -c -o ras2tiff.o ras2tiff.c; \
+	then mv -f ".deps/ras2tiff.Tpo" ".deps/ras2tiff.Po"; else rm -f ".deps/ras2tiff.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o ras2tiff  ras2tiff.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/ras2tiff ras2tiff.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating ras2tiff
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT raw2tiff.o -MD -MP -MF ".deps/raw2tiff.Tpo" -c -o raw2tiff.o raw2tiff.c; \
+	then mv -f ".deps/raw2tiff.Tpo" ".deps/raw2tiff.Po"; else rm -f ".deps/raw2tiff.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o raw2tiff  raw2tiff.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/raw2tiff raw2tiff.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating raw2tiff
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT rgb2ycbcr.o -MD -MP -MF ".deps/rgb2ycbcr.Tpo" -c -o rgb2ycbcr.o rgb2ycbcr.c; \
+	then mv -f ".deps/rgb2ycbcr.Tpo" ".deps/rgb2ycbcr.Po"; else rm -f ".deps/rgb2ycbcr.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o rgb2ycbcr  rgb2ycbcr.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/rgb2ycbcr rgb2ycbcr.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating rgb2ycbcr
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT thumbnail.o -MD -MP -MF ".deps/thumbnail.Tpo" -c -o thumbnail.o thumbnail.c; \
+	then mv -f ".deps/thumbnail.Tpo" ".deps/thumbnail.Po"; else rm -f ".deps/thumbnail.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o thumbnail  thumbnail.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/thumbnail thumbnail.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating thumbnail
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiff2bw.o -MD -MP -MF ".deps/tiff2bw.Tpo" -c -o tiff2bw.o tiff2bw.c; \
+	then mv -f ".deps/tiff2bw.Tpo" ".deps/tiff2bw.Po"; else rm -f ".deps/tiff2bw.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiff2bw  tiff2bw.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiff2bw tiff2bw.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiff2bw
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiff2pdf.o -MD -MP -MF ".deps/tiff2pdf.Tpo" -c -o tiff2pdf.o tiff2pdf.c; \
+	then mv -f ".deps/tiff2pdf.Tpo" ".deps/tiff2pdf.Po"; else rm -f ".deps/tiff2pdf.Tpo"; exit 1; fi
+tiff2pdf.c: In function 'main':
+tiff2pdf.c:528:10: warning: variable 'written' set but not used [-Wunused-but-set-variable]
+  tsize_t written=0;
+          ^
+tiff2pdf.c: In function 't2p_readwrite_pdf_image_tile':
+tiff2pdf.c:2675:10: warning: variable 'tilesize' set but not used [-Wunused-but-set-variable]
+  tsize_t tilesize=0;
+          ^
+tiff2pdf.c: In function 't2p_write_pdf_info':
+tiff2pdf.c:3947:6: warning: variable 'buflen' set but not used [-Wunused-but-set-variable]
+  int buflen=0;
+      ^
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiff2pdf  tiff2pdf.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiff2pdf tiff2pdf.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiff2pdf
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiff2ps.o -MD -MP -MF ".deps/tiff2ps.Tpo" -c -o tiff2ps.o tiff2ps.c; \
+	then mv -f ".deps/tiff2ps.Tpo" ".deps/tiff2ps.Po"; else rm -f ".deps/tiff2ps.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiff2ps  tiff2ps.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiff2ps tiff2ps.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiff2ps
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiff2rgba.o -MD -MP -MF ".deps/tiff2rgba.Tpo" -c -o tiff2rgba.o tiff2rgba.c; \
+	then mv -f ".deps/tiff2rgba.Tpo" ".deps/tiff2rgba.Po"; else rm -f ".deps/tiff2rgba.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiff2rgba  tiff2rgba.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiff2rgba tiff2rgba.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiff2rgba
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiffcmp.o -MD -MP -MF ".deps/tiffcmp.Tpo" -c -o tiffcmp.o tiffcmp.c; \
+	then mv -f ".deps/tiffcmp.Tpo" ".deps/tiffcmp.Po"; else rm -f ".deps/tiffcmp.Tpo"; exit 1; fi
+tiffcmp.c: In function 'CheckLongTag':
+tiffcmp.c:605:2: warning: format '%lu' expects argument of type 'long unsigned int', but argument 3 has type 'uint32' [-Wformat=]
+  CHECK(v1 == v2, "%s: %lu %lu\n");
+  ^
+tiffcmp.c:605:2: warning: format '%lu' expects argument of type 'long unsigned int', but argument 4 has type 'uint32' [-Wformat=]
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiffcmp  tiffcmp.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiffcmp tiffcmp.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiffcmp
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiffcp.o -MD -MP -MF ".deps/tiffcp.Tpo" -c -o tiffcp.o tiffcp.c; \
+	then mv -f ".deps/tiffcp.Tpo" ".deps/tiffcp.Po"; else rm -f ".deps/tiffcp.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiffcp  tiffcp.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiffcp tiffcp.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiffcp
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiffdither.o -MD -MP -MF ".deps/tiffdither.Tpo" -c -o tiffdither.o tiffdither.c; \
+	then mv -f ".deps/tiffdither.Tpo" ".deps/tiffdither.Po"; else rm -f ".deps/tiffdither.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiffdither  tiffdither.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiffdither tiffdither.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiffdither
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiffdump.o -MD -MP -MF ".deps/tiffdump.Tpo" -c -o tiffdump.o tiffdump.c; \
+	then mv -f ".deps/tiffdump.Tpo" ".deps/tiffdump.Po"; else rm -f ".deps/tiffdump.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiffdump  tiffdump.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiffdump tiffdump.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiffdump
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiffinfo.o -MD -MP -MF ".deps/tiffinfo.Tpo" -c -o tiffinfo.o tiffinfo.c; \
+	then mv -f ".deps/tiffinfo.Tpo" ".deps/tiffinfo.Po"; else rm -f ".deps/tiffinfo.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiffinfo  tiffinfo.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiffinfo tiffinfo.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiffinfo
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiffmedian.o -MD -MP -MF ".deps/tiffmedian.Tpo" -c -o tiffmedian.o tiffmedian.c; \
+	then mv -f ".deps/tiffmedian.Tpo" ".deps/tiffmedian.Po"; else rm -f ".deps/tiffmedian.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiffmedian  tiffmedian.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiffmedian tiffmedian.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiffmedian
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiffset.o -MD -MP -MF ".deps/tiffset.Tpo" -c -o tiffset.o tiffset.c; \
+	then mv -f ".deps/tiffset.Tpo" ".deps/tiffset.Po"; else rm -f ".deps/tiffset.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiffset  tiffset.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiffset tiffset.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiffset
+if gcc -DHAVE_CONFIG_H -I. -I. -I../libtiff -I../libtiff -I../libtiff    -m32 -Wall -MT tiffsplit.o -MD -MP -MF ".deps/tiffsplit.Tpo" -c -o tiffsplit.o tiffsplit.c; \
+	then mv -f ".deps/tiffsplit.Tpo" ".deps/tiffsplit.Po"; else rm -f ".deps/tiffsplit.Tpo"; exit 1; fi
+/bin/sh ../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiffsplit  tiffsplit.o ../libtiff/libtiff.la ../port/libport.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiffsplit tiffsplit.o  ../libtiff/.libs/libtiff.so ../port/.libs/libport.a -lm -lc
+creating tiffsplit
+make[1]: Leaving directory `/experiment/src/tools'
+Making all in contrib
+make[1]: Entering directory `/experiment/src/contrib'
+Making all in acorn
+make[2]: Entering directory `/experiment/src/contrib/acorn'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/acorn'
+Making all in addtiffo
+make[2]: Entering directory `/experiment/src/contrib/addtiffo'
+if gcc -DHAVE_CONFIG_H -I. -I. -I../../libtiff -I../../libtiff -I../../libtiff    -m32 -Wall -MT addtiffo.o -MD -MP -MF ".deps/addtiffo.Tpo" -c -o addtiffo.o addtiffo.c; \
+	then mv -f ".deps/addtiffo.Tpo" ".deps/addtiffo.Po"; else rm -f ".deps/addtiffo.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I../../libtiff -I../../libtiff -I../../libtiff    -m32 -Wall -MT tif_overview.o -MD -MP -MF ".deps/tif_overview.Tpo" -c -o tif_overview.o tif_overview.c; \
+	then mv -f ".deps/tif_overview.Tpo" ".deps/tif_overview.Po"; else rm -f ".deps/tif_overview.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -I. -I. -I../../libtiff -I../../libtiff -I../../libtiff    -m32 -Wall -MT tif_ovrcache.o -MD -MP -MF ".deps/tif_ovrcache.Tpo" -c -o tif_ovrcache.o tif_ovrcache.c; \
+	then mv -f ".deps/tif_ovrcache.Tpo" ".deps/tif_ovrcache.Po"; else rm -f ".deps/tif_ovrcache.Tpo"; exit 1; fi
+/bin/sh ../../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o addtiffo  addtiffo.o tif_overview.o tif_ovrcache.o ../../libtiff/libtiff.la -lm -lc 
+mkdir .libs
+gcc -m32 -Wall -m32 -o .libs/addtiffo addtiffo.o tif_overview.o tif_ovrcache.o  ../../libtiff/.libs/libtiff.so -lm -lc
+creating addtiffo
+make[2]: Leaving directory `/experiment/src/contrib/addtiffo'
+Making all in dbs
+make[2]: Entering directory `/experiment/src/contrib/dbs'
+Making all in xtiff
+make[3]: Entering directory `/experiment/src/contrib/dbs/xtiff'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/experiment/src/contrib/dbs/xtiff'
+make[3]: Entering directory `/experiment/src/contrib/dbs'
+if gcc -DHAVE_CONFIG_H -I. -I. -I../../libtiff -I../../libtiff -I../../libtiff    -m32 -Wall -MT tiff-bi.o -MD -MP -MF ".deps/tiff-bi.Tpo" -c -o tiff-bi.o tiff-bi.c; \
+	then mv -f ".deps/tiff-bi.Tpo" ".deps/tiff-bi.Po"; else rm -f ".deps/tiff-bi.Tpo"; exit 1; fi
+/bin/sh ../../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiff-bi  tiff-bi.o ../../libtiff/libtiff.la -lm -lc 
+mkdir .libs
+gcc -m32 -Wall -m32 -o .libs/tiff-bi tiff-bi.o  ../../libtiff/.libs/libtiff.so -lm -lc
+creating tiff-bi
+if gcc -DHAVE_CONFIG_H -I. -I. -I../../libtiff -I../../libtiff -I../../libtiff    -m32 -Wall -MT tiff-grayscale.o -MD -MP -MF ".deps/tiff-grayscale.Tpo" -c -o tiff-grayscale.o tiff-grayscale.c; \
+	then mv -f ".deps/tiff-grayscale.Tpo" ".deps/tiff-grayscale.Po"; else rm -f ".deps/tiff-grayscale.Tpo"; exit 1; fi
+/bin/sh ../../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiff-grayscale  tiff-grayscale.o ../../libtiff/libtiff.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiff-grayscale tiff-grayscale.o  ../../libtiff/.libs/libtiff.so -lm -lc
+creating tiff-grayscale
+if gcc -DHAVE_CONFIG_H -I. -I. -I../../libtiff -I../../libtiff -I../../libtiff    -m32 -Wall -MT tiff-palette.o -MD -MP -MF ".deps/tiff-palette.Tpo" -c -o tiff-palette.o tiff-palette.c; \
+	then mv -f ".deps/tiff-palette.Tpo" ".deps/tiff-palette.Po"; else rm -f ".deps/tiff-palette.Tpo"; exit 1; fi
+/bin/sh ../../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiff-palette  tiff-palette.o ../../libtiff/libtiff.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiff-palette tiff-palette.o  ../../libtiff/.libs/libtiff.so -lm -lc
+creating tiff-palette
+if gcc -DHAVE_CONFIG_H -I. -I. -I../../libtiff -I../../libtiff -I../../libtiff    -m32 -Wall -MT tiff-rgb.o -MD -MP -MF ".deps/tiff-rgb.Tpo" -c -o tiff-rgb.o tiff-rgb.c; \
+	then mv -f ".deps/tiff-rgb.Tpo" ".deps/tiff-rgb.Po"; else rm -f ".deps/tiff-rgb.Tpo"; exit 1; fi
+/bin/sh ../../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o tiff-rgb  tiff-rgb.o ../../libtiff/libtiff.la -lm -lc 
+gcc -m32 -Wall -m32 -o .libs/tiff-rgb tiff-rgb.o  ../../libtiff/.libs/libtiff.so -lm -lc
+creating tiff-rgb
+make[3]: Leaving directory `/experiment/src/contrib/dbs'
+make[2]: Leaving directory `/experiment/src/contrib/dbs'
+Making all in iptcutil
+make[2]: Entering directory `/experiment/src/contrib/iptcutil'
+if gcc -DHAVE_CONFIG_H -I. -I. -I../../libtiff -I../../libtiff -I../../libtiff    -m32 -Wall -MT iptcutil.o -MD -MP -MF ".deps/iptcutil.Tpo" -c -o iptcutil.o iptcutil.c; \
+	then mv -f ".deps/iptcutil.Tpo" ".deps/iptcutil.Po"; else rm -f ".deps/iptcutil.Tpo"; exit 1; fi
+iptcutil.c: In function 'main':
+iptcutil.c:388:7: warning: format not a string literal and no format arguments [-Wformat-security]
+       printf(usage);
+       ^
+iptcutil.c:447:9: warning: format not a string literal and no format arguments [-Wformat-security]
+         printf(usage);
+         ^
+iptcutil.c:372:6: warning: variable 'buffer' set but not used [-Wunused-but-set-variable]
+     *buffer;
+      ^
+iptcutil.c:369:5: warning: variable 'length' set but not used [-Wunused-but-set-variable]
+     length;
+     ^
+/bin/sh ../../libtool --tag=CC --mode=link gcc  -m32 -Wall  -m32 -o iptcutil  iptcutil.o ../../libtiff/libtiff.la -lm -lc 
+mkdir .libs
+gcc -m32 -Wall -m32 -o .libs/iptcutil iptcutil.o  ../../libtiff/.libs/libtiff.so -lm -lc
+creating iptcutil
+make[2]: Leaving directory `/experiment/src/contrib/iptcutil'
+Making all in mac-cw
+make[2]: Entering directory `/experiment/src/contrib/mac-cw'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/mac-cw'
+Making all in mac-mpw
+make[2]: Entering directory `/experiment/src/contrib/mac-mpw'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/mac-mpw'
+Making all in mfs
+make[2]: Entering directory `/experiment/src/contrib/mfs'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/mfs'
+Making all in ojpeg
+make[2]: Entering directory `/experiment/src/contrib/ojpeg'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/ojpeg'
+Making all in pds
+make[2]: Entering directory `/experiment/src/contrib/pds'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/pds'
+Making all in ras
+make[2]: Entering directory `/experiment/src/contrib/ras'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/ras'
+Making all in stream
+make[2]: Entering directory `/experiment/src/contrib/stream'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/stream'
+Making all in tags
+make[2]: Entering directory `/experiment/src/contrib/tags'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/tags'
+Making all in win_dib
+make[2]: Entering directory `/experiment/src/contrib/win_dib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/contrib/win_dib'
+make[2]: Entering directory `/experiment/src/contrib'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/experiment/src/contrib'
+make[1]: Leaving directory `/experiment/src/contrib'
+Making all in test
+make[1]: Entering directory `/experiment/src/test'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/experiment/src/test'
+Making all in man
+make[1]: Entering directory `/experiment/src/man'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/experiment/src/man'
+Making all in html
+make[1]: Entering directory `/experiment/src/html'
+Making all in images
+make[2]: Entering directory `/experiment/src/html/images'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/html/images'
+Making all in man
+make[2]: Entering directory `/experiment/src/html/man'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/html/man'
+make[2]: Entering directory `/experiment/src/html'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/experiment/src/html'
+make[1]: Leaving directory `/experiment/src/html'
+make[1]: Entering directory `/experiment/src'
+make[1]: Nothing to be done for `all-am'.
+make[1]: Leaving directory `/experiment/src'

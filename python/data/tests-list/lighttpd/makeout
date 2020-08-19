@@ -1,0 +1,1394 @@
+make  all-recursive
+make[1]: Entering directory `/experiment/src'
+Making all in src
+make[2]: Entering directory `/experiment/src/src'
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_flv_streaming.lo -MD -MP -MF .deps/mod_flv_streaming.Tpo -c -o mod_flv_streaming.lo mod_flv_streaming.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_uploadprogress.lo -MD -MP -MF .deps/mod_uploadprogress.Tpo -c -o mod_uploadprogress.lo mod_uploadprogress.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_evasive.lo -MD -MP -MF .deps/mod_evasive.Tpo -c -o mod_evasive.lo mod_evasive.c
+/bin/sh ../libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -I/usr/include/libxml2     -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_webdav_la-mod_webdav.lo -MD -MP -MF .deps/mod_webdav_la-mod_webdav.Tpo -c -o mod_webdav_la-mod_webdav.lo `test -f 'mod_webdav.c' || echo './'`mod_webdav.c
+/bin/sh ../libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_magnet_la-mod_magnet.lo -MD -MP -MF .deps/mod_magnet_la-mod_magnet.Tpo -c -o mod_magnet_la-mod_magnet.lo `test -f 'mod_magnet.c' || echo './'`mod_magnet.c
+/bin/sh ../libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_magnet_la-mod_magnet_cache.lo -MD -MP -MF .deps/mod_magnet_la-mod_magnet_cache.Tpo -c -o mod_magnet_la-mod_magnet_cache.lo `test -f 'mod_magnet_cache.c' || echo './'`mod_magnet_cache.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_trigger_b4_dl.lo -MD -MP -MF .deps/mod_trigger_b4_dl.Tpo -c -o mod_trigger_b4_dl.lo mod_trigger_b4_dl.c
+/bin/sh ../libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_mysql_vhost_la-mod_mysql_vhost.lo -MD -MP -MF .deps/mod_mysql_vhost_la-mod_mysql_vhost.Tpo -c -o mod_mysql_vhost_la-mod_mysql_vhost.lo `test -f 'mod_mysql_vhost.c' || echo './'`mod_mysql_vhost.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_uploadprogress.lo -MD -MP -MF .deps/mod_uploadprogress.Tpo -c mod_uploadprogress.c  -fPIC -DPIC -o .libs/mod_uploadprogress.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_evasive.lo -MD -MP -MF .deps/mod_evasive.Tpo -c mod_evasive.c  -fPIC -DPIC -o .libs/mod_evasive.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libxml2 -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_webdav_la-mod_webdav.lo -MD -MP -MF .deps/mod_webdav_la-mod_webdav.Tpo -c mod_webdav.c  -fPIC -DPIC -o .libs/mod_webdav_la-mod_webdav.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_trigger_b4_dl.lo -MD -MP -MF .deps/mod_trigger_b4_dl.Tpo -c mod_trigger_b4_dl.c  -fPIC -DPIC -o .libs/mod_trigger_b4_dl.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_magnet_la-mod_magnet_cache.lo -MD -MP -MF .deps/mod_magnet_la-mod_magnet_cache.Tpo -c mod_magnet_cache.c  -fPIC -DPIC -o .libs/mod_magnet_la-mod_magnet_cache.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_flv_streaming.lo -MD -MP -MF .deps/mod_flv_streaming.Tpo -c mod_flv_streaming.c  -fPIC -DPIC -o .libs/mod_flv_streaming.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_magnet_la-mod_magnet.lo -MD -MP -MF .deps/mod_magnet_la-mod_magnet.Tpo -c mod_magnet.c  -fPIC -DPIC -o .libs/mod_magnet_la-mod_magnet.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_mysql_vhost_la-mod_mysql_vhost.lo -MD -MP -MF .deps/mod_mysql_vhost_la-mod_mysql_vhost.Tpo -c mod_mysql_vhost.c  -fPIC -DPIC -o .libs/mod_mysql_vhost_la-mod_mysql_vhost.o
+mv -f .deps/mod_magnet_la-mod_magnet_cache.Tpo .deps/mod_magnet_la-mod_magnet_cache.Plo
+mv -f .deps/mod_evasive.Tpo .deps/mod_evasive.Plo
+mv -f .deps/mod_trigger_b4_dl.Tpo .deps/mod_trigger_b4_dl.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_sql_vhost_core.lo -MD -MP -MF .deps/mod_sql_vhost_core.Tpo -c -o mod_sql_vhost_core.lo mod_sql_vhost_core.c
+mv -f .deps/mod_flv_streaming.Tpo .deps/mod_flv_streaming.Plo
+mv -f .deps/mod_uploadprogress.Tpo .deps/mod_uploadprogress.Plo
+mv -f .deps/mod_webdav_la-mod_webdav.Tpo .deps/mod_webdav_la-mod_webdav.Plo
+mv -f .deps/mod_magnet_la-mod_magnet.Tpo .deps/mod_magnet_la-mod_magnet.Plo
+mv -f .deps/mod_mysql_vhost_la-mod_mysql_vhost.Tpo .deps/mod_mysql_vhost_la-mod_mysql_vhost.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_cgi.lo -MD -MP -MF .deps/mod_cgi.Tpo -c -o mod_cgi.lo mod_cgi.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_staticfile.lo -MD -MP -MF .deps/mod_staticfile.Tpo -c -o mod_staticfile.lo mod_staticfile.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_deflate.lo -MD -MP -MF .deps/mod_deflate.Tpo -c -o mod_deflate.lo mod_deflate.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_chunked.lo -MD -MP -MF .deps/mod_chunked.Tpo -c -o mod_chunked.lo mod_chunked.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_dirlisting.lo -MD -MP -MF .deps/mod_dirlisting.Tpo -c -o mod_dirlisting.lo mod_dirlisting.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_indexfile.lo -MD -MP -MF .deps/mod_indexfile.Tpo -c -o mod_indexfile.lo mod_indexfile.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_setenv.lo -MD -MP -MF .deps/mod_setenv.Tpo -c -o mod_setenv.lo mod_setenv.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_chunked.lo -MD -MP -MF .deps/mod_chunked.Tpo -c mod_chunked.c  -fPIC -DPIC -o .libs/mod_chunked.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_dirlisting.lo -MD -MP -MF .deps/mod_dirlisting.Tpo -c mod_dirlisting.c  -fPIC -DPIC -o .libs/mod_dirlisting.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_cgi.lo -MD -MP -MF .deps/mod_cgi.Tpo -c mod_cgi.c  -fPIC -DPIC -o .libs/mod_cgi.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_staticfile.lo -MD -MP -MF .deps/mod_staticfile.Tpo -c mod_staticfile.c  -fPIC -DPIC -o .libs/mod_staticfile.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_sql_vhost_core.lo -MD -MP -MF .deps/mod_sql_vhost_core.Tpo -c mod_sql_vhost_core.c  -fPIC -DPIC -o .libs/mod_sql_vhost_core.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_deflate.lo -MD -MP -MF .deps/mod_deflate.Tpo -c mod_deflate.c  -fPIC -DPIC -o .libs/mod_deflate.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_indexfile.lo -MD -MP -MF .deps/mod_indexfile.Tpo -c mod_indexfile.c  -fPIC -DPIC -o .libs/mod_indexfile.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_setenv.lo -MD -MP -MF .deps/mod_setenv.Tpo -c mod_setenv.c  -fPIC -DPIC -o .libs/mod_setenv.o
+mod_staticfile.c: In function 'mod_staticfile_subrequest':
+mod_staticfile.c:321:6: warning: variable 's_len' set but not used [-Wunused-but-set-variable]
+  int s_len;
+      ^
+mod_sql_vhost_core.c: In function 'cached_vhost_remove_expired':
+mod_sql_vhost_core.c:313:10: warning: unused variable 'key' [-Wunused-variable]
+  buffer *key       = _key;
+          ^
+mv -f .deps/mod_indexfile.Tpo .deps/mod_indexfile.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_alias.lo -MD -MP -MF .deps/mod_alias.Tpo -c -o mod_alias.lo mod_alias.c
+mv -f .deps/mod_setenv.Tpo .deps/mod_setenv.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_userdir.lo -MD -MP -MF .deps/mod_userdir.Tpo -c -o mod_userdir.lo mod_userdir.c
+mod_deflate.c: In function 'mod_deflate_file_chunk':
+mod_deflate.c:841:14: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if(to_mmap > we_want_to_mmap) to_mmap = we_want_to_mmap;
+              ^
+mod_deflate.c:843:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if(we_want_to_send > to_mmap) we_want_to_send = to_mmap;
+                      ^
+mv -f .deps/mod_chunked.Tpo .deps/mod_chunked.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_rrdtool.lo -MD -MP -MF .deps/mod_rrdtool.Tpo -c -o mod_rrdtool.lo mod_rrdtool.c
+mv -f .deps/mod_staticfile.Tpo .deps/mod_staticfile.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_usertrack.lo -MD -MP -MF .deps/mod_usertrack.Tpo -c -o mod_usertrack.lo mod_usertrack.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_alias.lo -MD -MP -MF .deps/mod_alias.Tpo -c mod_alias.c  -fPIC -DPIC -o .libs/mod_alias.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_userdir.lo -MD -MP -MF .deps/mod_userdir.Tpo -c mod_userdir.c  -fPIC -DPIC -o .libs/mod_userdir.o
+mv -f .deps/mod_sql_vhost_core.Tpo .deps/mod_sql_vhost_core.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core.lo -MD -MP -MF .deps/mod_proxy_core.Tpo -c -o mod_proxy_core.lo mod_proxy_core.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_rrdtool.lo -MD -MP -MF .deps/mod_rrdtool.Tpo -c mod_rrdtool.c  -fPIC -DPIC -o .libs/mod_rrdtool.o
+mv -f .deps/mod_dirlisting.Tpo .deps/mod_dirlisting.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_pool.lo -MD -MP -MF .deps/mod_proxy_core_pool.Tpo -c -o mod_proxy_core_pool.lo mod_proxy_core_pool.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_usertrack.lo -MD -MP -MF .deps/mod_usertrack.Tpo -c mod_usertrack.c  -fPIC -DPIC -o .libs/mod_usertrack.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core.lo -MD -MP -MF .deps/mod_proxy_core.Tpo -c mod_proxy_core.c  -fPIC -DPIC -o .libs/mod_proxy_core.o
+mv -f .deps/mod_cgi.Tpo .deps/mod_cgi.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_backend.lo -MD -MP -MF .deps/mod_proxy_core_backend.Tpo -c -o mod_proxy_core_backend.lo mod_proxy_core_backend.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_pool.lo -MD -MP -MF .deps/mod_proxy_core_pool.Tpo -c mod_proxy_core_pool.c  -fPIC -DPIC -o .libs/mod_proxy_core_pool.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_backend.lo -MD -MP -MF .deps/mod_proxy_core_backend.Tpo -c mod_proxy_core_backend.c  -fPIC -DPIC -o .libs/mod_proxy_core_backend.o
+mv -f .deps/mod_deflate.Tpo .deps/mod_deflate.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_address.lo -MD -MP -MF .deps/mod_proxy_core_address.Tpo -c -o mod_proxy_core_address.lo mod_proxy_core_address.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_address.lo -MD -MP -MF .deps/mod_proxy_core_address.Tpo -c mod_proxy_core_address.c  -fPIC -DPIC -o .libs/mod_proxy_core_address.o
+mod_userdir.c: In function 'mod_userdir_docroot_handler':
+mod_userdir.c:162:6: warning: variable 'uri_len' set but not used [-Wunused-but-set-variable]
+  int uri_len;
+      ^
+mv -f .deps/mod_alias.Tpo .deps/mod_alias.Plo
+mv -f .deps/mod_usertrack.Tpo .deps/mod_usertrack.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_backlog.lo -MD -MP -MF .deps/mod_proxy_core_backlog.Tpo -c -o mod_proxy_core_backlog.lo mod_proxy_core_backlog.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_rewrites.lo -MD -MP -MF .deps/mod_proxy_core_rewrites.Tpo -c -o mod_proxy_core_rewrites.lo mod_proxy_core_rewrites.c
+mv -f .deps/mod_userdir.Tpo .deps/mod_userdir.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_protocol.lo -MD -MP -MF .deps/mod_proxy_core_protocol.Tpo -c -o mod_proxy_core_protocol.lo mod_proxy_core_protocol.c
+mv -f .deps/mod_proxy_core_address.Tpo .deps/mod_proxy_core_address.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_backend_http.lo -MD -MP -MF .deps/mod_proxy_backend_http.Tpo -c -o mod_proxy_backend_http.lo mod_proxy_backend_http.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_backlog.lo -MD -MP -MF .deps/mod_proxy_core_backlog.Tpo -c mod_proxy_core_backlog.c  -fPIC -DPIC -o .libs/mod_proxy_core_backlog.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_rewrites.lo -MD -MP -MF .deps/mod_proxy_core_rewrites.Tpo -c mod_proxy_core_rewrites.c  -fPIC -DPIC -o .libs/mod_proxy_core_rewrites.o
+mv -f .deps/mod_rrdtool.Tpo .deps/mod_rrdtool.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_backend_fastcgi.lo -MD -MP -MF .deps/mod_proxy_backend_fastcgi.Tpo -c -o mod_proxy_backend_fastcgi.lo mod_proxy_backend_fastcgi.c
+mv -f .deps/mod_proxy_core_pool.Tpo .deps/mod_proxy_core_pool.Plo
+mv -f .deps/mod_proxy_core_backend.Tpo .deps/mod_proxy_core_backend.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_backend_scgi.lo -MD -MP -MF .deps/mod_proxy_backend_scgi.Tpo -c -o mod_proxy_backend_scgi.lo mod_proxy_backend_scgi.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_core_protocol.lo -MD -MP -MF .deps/mod_proxy_core_protocol.Tpo -c mod_proxy_core_protocol.c  -fPIC -DPIC -o .libs/mod_proxy_core_protocol.o
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_backend_ajp13.lo -MD -MP -MF .deps/mod_proxy_backend_ajp13.Tpo -c -o mod_proxy_backend_ajp13.lo mod_proxy_backend_ajp13.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_backend_http.lo -MD -MP -MF .deps/mod_proxy_backend_http.Tpo -c mod_proxy_backend_http.c  -fPIC -DPIC -o .libs/mod_proxy_backend_http.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_backend_ajp13.lo -MD -MP -MF .deps/mod_proxy_backend_ajp13.Tpo -c mod_proxy_backend_ajp13.c  -fPIC -DPIC -o .libs/mod_proxy_backend_ajp13.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_backend_scgi.lo -MD -MP -MF .deps/mod_proxy_backend_scgi.Tpo -c mod_proxy_backend_scgi.c  -fPIC -DPIC -o .libs/mod_proxy_backend_scgi.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_proxy_backend_fastcgi.lo -MD -MP -MF .deps/mod_proxy_backend_fastcgi.Tpo -c mod_proxy_backend_fastcgi.c  -fPIC -DPIC -o .libs/mod_proxy_backend_fastcgi.o
+mv -f .deps/mod_proxy_core_backlog.Tpo .deps/mod_proxy_core_backlog.Plo
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT lemon.o -MD -MP -MF .deps/lemon.Tpo -c -o lemon.o lemon.c
+lemon.c: In function 'resolve_conflict':
+lemon.c:982:16: warning: unused parameter 'errsym' [-Wunused-parameter]
+ struct symbol *errsym;   /* The error symbol (if defined.  NULL otherwise) */
+                ^
+lemon.c: In function 'main':
+lemon.c:1326:5: warning: unused parameter 'argc' [-Wunused-parameter]
+ int argc;
+     ^
+lemon.c: In function 'handleflags':
+lemon.c:1654:7: warning: ISO C forbids conversion of object pointer to function pointer type [-Wpedantic]
+     (*(void(*)())(op[j].arg))(v);
+       ^
+lemon.c: In function 'handleswitch':
+lemon.c:1736:11: warning: ISO C forbids conversion of object pointer to function pointer type [-Wpedantic]
+         (*(void(*)())(op[j].arg))(dv);
+           ^
+lemon.c:1742:11: warning: ISO C forbids conversion of object pointer to function pointer type [-Wpedantic]
+         (*(void(*)())(op[j].arg))((int)lv);
+           ^
+lemon.c:1748:11: warning: ISO C forbids conversion of object pointer to function pointer type [-Wpedantic]
+         (*(void(*)())(op[j].arg))(sv);
+           ^
+mv -f .deps/lemon.Tpo .deps/lemon.Po
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_ssi.lo -MD -MP -MF .deps/mod_ssi.Tpo -c -o mod_ssi.lo mod_ssi.c
+mv -f .deps/mod_proxy_core.Tpo .deps/mod_proxy_core.Plo
+mv -f .deps/mod_proxy_core_protocol.Tpo .deps/mod_proxy_core_protocol.Plo
+mv -f .deps/mod_proxy_backend_fastcgi.Tpo .deps/mod_proxy_backend_fastcgi.Plo
+mv -f .deps/mod_proxy_backend_scgi.Tpo .deps/mod_proxy_backend_scgi.Plo
+mv -f .deps/mod_proxy_backend_ajp13.Tpo .deps/mod_proxy_backend_ajp13.Plo
+mv -f .deps/mod_proxy_backend_http.Tpo .deps/mod_proxy_backend_http.Plo
+mv -f .deps/mod_proxy_core_rewrites.Tpo .deps/mod_proxy_core_rewrites.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_secure_download.lo -MD -MP -MF .deps/mod_secure_download.Tpo -c -o mod_secure_download.lo mod_secure_download.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_expire.lo -MD -MP -MF .deps/mod_expire.Tpo -c -o mod_expire.lo mod_expire.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_evhost.lo -MD -MP -MF .deps/mod_evhost.Tpo -c -o mod_evhost.lo mod_evhost.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_simple_vhost.lo -MD -MP -MF .deps/mod_simple_vhost.Tpo -c -o mod_simple_vhost.lo mod_simple_vhost.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_access.lo -MD -MP -MF .deps/mod_access.Tpo -c -o mod_access.lo mod_access.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_compress.lo -MD -MP -MF .deps/mod_compress.Tpo -c -o mod_compress.lo mod_compress.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_auth.lo -MD -MP -MF .deps/mod_auth.Tpo -c -o mod_auth.lo mod_auth.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_evhost.lo -MD -MP -MF .deps/mod_evhost.Tpo -c mod_evhost.c  -fPIC -DPIC -o .libs/mod_evhost.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_access.lo -MD -MP -MF .deps/mod_access.Tpo -c mod_access.c  -fPIC -DPIC -o .libs/mod_access.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_ssi.lo -MD -MP -MF .deps/mod_ssi.Tpo -c mod_ssi.c  -fPIC -DPIC -o .libs/mod_ssi.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_expire.lo -MD -MP -MF .deps/mod_expire.Tpo -c mod_expire.c  -fPIC -DPIC -o .libs/mod_expire.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_simple_vhost.lo -MD -MP -MF .deps/mod_simple_vhost.Tpo -c mod_simple_vhost.c  -fPIC -DPIC -o .libs/mod_simple_vhost.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_secure_download.lo -MD -MP -MF .deps/mod_secure_download.Tpo -c mod_secure_download.c  -fPIC -DPIC -o .libs/mod_secure_download.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_compress.lo -MD -MP -MF .deps/mod_compress.Tpo -c mod_compress.c  -fPIC -DPIC -o .libs/mod_compress.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_auth.lo -MD -MP -MF .deps/mod_auth.Tpo -c mod_auth.c  -fPIC -DPIC -o .libs/mod_auth.o
+mod_ssi.c: In function 'process_ssi_stmt':
+mod_ssi.c:330:16: warning: variable 'enc' set but not used [-Wunused-but-set-variable]
+   int var = 0, enc = 0;
+                ^
+mod_auth.c: In function 'mod_auth_free':
+mod_auth.c:90:4: warning: implicit declaration of function 'ldap_unbind_s' [-Wimplicit-function-declaration]
+    if (s->ldap) ldap_unbind_s(s->ldap);
+    ^
+mod_auth.c: In function 'auth_ldap_init':
+mod_auth.c:604:5: warning: implicit declaration of function 'ldap_init' [-Wimplicit-function-declaration]
+     if (NULL == (s->ldap = ldap_init(s->auth_ldap_hostname->ptr, LDAP_PORT))) {
+     ^
+mod_auth.c:604:26: warning: assignment makes pointer from integer without a cast [enabled by default]
+     if (NULL == (s->ldap = ldap_init(s->auth_ldap_hostname->ptr, LDAP_PORT))) {
+                          ^
+mod_auth.c:660:6: warning: implicit declaration of function 'ldap_simple_bind_s' [-Wimplicit-function-declaration]
+      if (LDAP_SUCCESS != (ret = ldap_simple_bind_s(s->ldap, s->auth_ldap_binddn->ptr, s->auth_ldap_bindpw->ptr))) {
+      ^
+mv -f .deps/mod_access.Tpo .deps/mod_access.Plo
+mv -f .deps/mod_simple_vhost.Tpo .deps/mod_simple_vhost.Plo
+mv -f .deps/mod_secure_download.Tpo .deps/mod_secure_download.Plo
+mv -f .deps/mod_expire.Tpo .deps/mod_expire.Plo
+mv -f .deps/mod_evhost.Tpo .deps/mod_evhost.Plo
+mv -f .deps/mod_compress.Tpo .deps/mod_compress.Plo
+mv -f .deps/mod_auth.Tpo .deps/mod_auth.Plo
+mv -f .deps/mod_ssi.Tpo .deps/mod_ssi.Plo
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_auth_digest.lo -MD -MP -MF .deps/http_auth_digest.Tpo -c -o http_auth_digest.lo http_auth_digest.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_auth.lo -MD -MP -MF .deps/http_auth.Tpo -c -o http_auth.lo http_auth.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_rewrite.lo -MD -MP -MF .deps/mod_rewrite.Tpo -c -o mod_rewrite.lo mod_rewrite.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_redirect.lo -MD -MP -MF .deps/mod_redirect.Tpo -c -o mod_redirect.lo mod_redirect.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_status.lo -MD -MP -MF .deps/mod_status.Tpo -c -o mod_status.lo mod_status.c
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_accesslog.lo -MD -MP -MF .deps/mod_accesslog.Tpo -c -o mod_accesslog.lo mod_accesslog.c
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT spawn-fcgi.o -MD -MP -MF .deps/spawn-fcgi.Tpo -c -o spawn-fcgi.o spawn-fcgi.c
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..  -DDEBUG_PROC_OPEN -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT proc_open-proc_open.o -MD -MP -MF .deps/proc_open-proc_open.Tpo -c -o proc_open-proc_open.o `test -f 'proc_open.c' || echo './'`proc_open.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_rewrite.lo -MD -MP -MF .deps/mod_rewrite.Tpo -c mod_rewrite.c  -fPIC -DPIC -o .libs/mod_rewrite.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_auth.lo -MD -MP -MF .deps/http_auth.Tpo -c http_auth.c  -fPIC -DPIC -o .libs/http_auth.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_auth_digest.lo -MD -MP -MF .deps/http_auth_digest.Tpo -c http_auth_digest.c  -fPIC -DPIC -o .libs/http_auth_digest.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_redirect.lo -MD -MP -MF .deps/mod_redirect.Tpo -c mod_redirect.c  -fPIC -DPIC -o .libs/mod_redirect.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_accesslog.lo -MD -MP -MF .deps/mod_accesslog.Tpo -c mod_accesslog.c  -fPIC -DPIC -o .libs/mod_accesslog.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_status.lo -MD -MP -MF .deps/mod_status.Tpo -c mod_status.c  -fPIC -DPIC -o .libs/mod_status.o
+mv -f .deps/proc_open-proc_open.Tpo .deps/proc_open-proc_open.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..  -DDEBUG_PROC_OPEN -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT proc_open-buffer.o -MD -MP -MF .deps/proc_open-buffer.Tpo -c -o proc_open-buffer.o `test -f 'buffer.c' || echo './'`buffer.c
+mv -f .deps/http_auth_digest.Tpo .deps/http_auth_digest.Plo
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT server.o -MD -MP -MF .deps/server.Tpo -c -o server.o server.c
+mv -f .deps/spawn-fcgi.Tpo .deps/spawn-fcgi.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT response.o -MD -MP -MF .deps/response.Tpo -c -o response.o response.c
+http_auth.c: In function 'http_auth_basic_password_compare':
+http_auth.c:748:7: warning: implicit declaration of function 'ldap_search_s' [-Wimplicit-function-declaration]
+       LDAP_SUCCESS != (ret = ldap_search_s(p->conf.ldap, p->conf.auth_ldap_basedn->ptr, LDAP_SCOPE_SUBTREE, p->ldap_filter->ptr, attrs, 0, &lm))) {
+       ^
+http_auth.c:780:3: warning: implicit declaration of function 'ldap_init' [-Wimplicit-function-declaration]
+   if (NULL == (ldap = ldap_init(p->conf.auth_ldap_hostname->ptr, LDAP_PORT))) {
+   ^
+http_auth.c:780:21: warning: assignment makes pointer from integer without a cast [enabled by default]
+   if (NULL == (ldap = ldap_init(p->conf.auth_ldap_hostname->ptr, LDAP_PORT))) {
+                     ^
+http_auth.c:789:4: warning: implicit declaration of function 'ldap_unbind_s' [-Wimplicit-function-declaration]
+    ldap_unbind_s(ldap);
+    ^
+http_auth.c:805:3: warning: implicit declaration of function 'ldap_simple_bind_s' [-Wimplicit-function-declaration]
+   if (LDAP_SUCCESS != (ret = ldap_simple_bind_s(ldap, dn, pw))) {
+   ^
+mod_accesslog.c: In function 'mod_accesslog_free':
+mod_accesslog.c:345:7: warning: field width specifier '*' expects argument of type 'int', but argument 3 has type 'size_t' [-Wformat=]
+       syslog(LOG_INFO, "%*s", s->access_logbuffer->used - 2, s->access_logbuffer->ptr);
+       ^
+mod_accesslog.c: In function 'log_access_cycle':
+mod_accesslog.c:549:6: warning: field width specifier '*' expects argument of type 'int', but argument 3 has type 'size_t' [-Wformat=]
+      syslog(LOG_INFO, "%*s", s->access_logbuffer->used - 2, s->access_logbuffer->ptr);
+      ^
+mod_accesslog.c: In function 'log_access_write':
+mod_accesslog.c:831:5: warning: field width specifier '*' expects argument of type 'int', but argument 3 has type 'size_t' [-Wformat=]
+     syslog(LOG_INFO, "%*s", b->used - 2, b->ptr);
+     ^
+mv -f .deps/mod_redirect.Tpo .deps/mod_redirect.Plo
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT connections.o -MD -MP -MF .deps/connections.Tpo -c -o connections.o connections.c
+mv -f .deps/mod_rewrite.Tpo .deps/mod_rewrite.Plo
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network.o -MD -MP -MF .deps/network.Tpo -c -o network.o network.c
+mv -f .deps/http_auth.Tpo .deps/http_auth.Plo
+mv -f .deps/mod_accesslog.Tpo .deps/mod_accesslog.Plo
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT request.o -MD -MP -MF .deps/request.Tpo -c -o request.o request.c
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT proc_open.o -MD -MP -MF .deps/proc_open.Tpo -c -o proc_open.o proc_open.c
+mv -f .deps/mod_status.Tpo .deps/mod_status.Plo
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT buffer.o -MD -MP -MF .deps/buffer.Tpo -c -o buffer.o buffer.c
+server.c: In function 'joblist_queue_thread':
+server.c:548:3: warning: 'g_async_queue_timed_pop' is deprecated (declared at /usr/include/glib-2.0/glib/gasyncqueue.h:101): Use 'g_async_queue_timeout_pop' instead [-Wdeprecated-declarations]
+   if (NULL != (con = g_async_queue_timed_pop(srv->joblist_queue, &ts))) {
+   ^
+mv -f .deps/proc_open.Tpo .deps/proc_open.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT log.o -MD -MP -MF .deps/log.Tpo -c -o log.o log.c
+server.c: In function 'main':
+server.c:1600:2: warning: 'g_thread_init' is deprecated (declared at /usr/include/glib-2.0/glib/deprecated/gthread.h:261) [-Wdeprecated-declarations]
+  g_thread_init(NULL);
+  ^
+server.c:1613:2: warning: 'g_mutex_new' is deprecated (declared at /usr/include/glib-2.0/glib/deprecated/gthread.h:273) [-Wdeprecated-declarations]
+  joblist_queue_mutex = g_mutex_new();
+  ^
+server.c:1614:2: warning: 'g_cond_new' is deprecated (declared at /usr/include/glib-2.0/glib/deprecated/gthread.h:277) [-Wdeprecated-declarations]
+  joblist_queue_cond = g_cond_new();
+  ^
+server.c:1621:3: warning: 'g_thread_create' is deprecated (declared at /usr/include/glib-2.0/glib/deprecated/gthread.h:100): Use 'g_thread_new' instead [-Wdeprecated-declarations]
+   stat_cache_threads[i] = g_thread_create(stat_cache_thread, srv, 1, &gerr);
+   ^
+server.c:1635:4: warning: 'g_thread_create_full' is deprecated (declared at /usr/include/glib-2.0/glib/deprecated/gthread.h:106): Use 'g_thread_new' instead [-Wdeprecated-declarations]
+    aio_write_threads[i] = g_thread_create_full(network_gthread_aio_read_thread, srv, LI_THREAD_STACK_SIZE, 1, TRUE, G_THREAD_PRIORITY_NORMAL, &gerr);
+    ^
+server.c:1648:4: warning: 'g_thread_create_full' is deprecated (declared at /usr/include/glib-2.0/glib/deprecated/gthread.h:106): Use 'g_thread_new' instead [-Wdeprecated-declarations]
+    aio_write_threads[i] = g_thread_create_full(network_gthread_sendfile_read_thread, srv, LI_THREAD_STACK_SIZE, 1, TRUE, G_THREAD_PRIORITY_NORMAL, &gerr);
+    ^
+server.c:1696:3: warning: 'g_thread_create_full' is deprecated (declared at /usr/include/glib-2.0/glib/deprecated/gthread.h:106): Use 'g_thread_new' instead [-Wdeprecated-declarations]
+   joblist_queue_thread_id = g_thread_create_full(joblist_queue_thread, srv, LI_THREAD_STACK_SIZE, 1, TRUE, G_THREAD_PRIORITY_NORMAL, &gerr);
+   ^
+server.c:1039:11: warning: unused variable 'linux_aio_read_thread_id' [-Wunused-variable]
+  GThread *linux_aio_read_thread_id = NULL;
+           ^
+mv -f .deps/proc_open-buffer.Tpo .deps/proc_open-buffer.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT keyvalue.o -MD -MP -MF .deps/keyvalue.Tpo -c -o keyvalue.o keyvalue.c
+mv -f .deps/network.Tpo .deps/network.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT chunk.o -MD -MP -MF .deps/chunk.Tpo -c -o chunk.o chunk.c
+mv -f .deps/response.Tpo .deps/response.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT filter.o -MD -MP -MF .deps/filter.Tpo -c -o filter.o filter.c
+mv -f .deps/request.Tpo .deps/request.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT stream.o -MD -MP -MF .deps/stream.Tpo -c -o stream.o stream.c
+mv -f .deps/connections.Tpo .deps/connections.Po
+mv -f .deps/server.Tpo .deps/server.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT fdevent.o -MD -MP -MF .deps/fdevent.Tpo -c -o fdevent.o fdevent.c
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT stat_cache.o -MD -MP -MF .deps/stat_cache.Tpo -c -o stat_cache.o stat_cache.c
+log.c: In function 'log_trace':
+log.c:334:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if (l > -1 && l < b->size) {
+                   ^
+mv -f .deps/buffer.Tpo .deps/buffer.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT plugin.o -MD -MP -MF .deps/plugin.Tpo -c -o plugin.o plugin.c
+mv -f .deps/log.Tpo .deps/log.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT joblist.o -MD -MP -MF .deps/joblist.Tpo -c -o joblist.o joblist.c
+mv -f .deps/filter.Tpo .deps/filter.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT etag.o -MD -MP -MF .deps/etag.Tpo -c -o etag.o etag.c
+mv -f .deps/stream.Tpo .deps/stream.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT array.o -MD -MP -MF .deps/array.Tpo -c -o array.o array.c
+mv -f .deps/chunk.Tpo .deps/chunk.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT data_string.o -MD -MP -MF .deps/data_string.Tpo -c -o data_string.o data_string.c
+stat_cache.c: In function 'stat_cache_thread':
+stat_cache.c:124:3: warning: 'g_async_queue_timed_pop' is deprecated (declared at /usr/include/glib-2.0/glib/gasyncqueue.h:101): Use 'g_async_queue_timeout_pop' instead [-Wdeprecated-declarations]
+   if ((sj = g_async_queue_timed_pop(inq, &ts))) {
+   ^
+stat_cache.c: In function 'stat_cache_free_hrfunc':
+stat_cache.c:193:74: warning: unused parameter '_user_data' [-Wunused-parameter]
+ gboolean stat_cache_free_hrfunc(gpointer _key, gpointer _value, gpointer _user_data) {
+                                                                          ^
+stat_cache.c: In function 'stat_cache_handle_fdevent':
+stat_cache.c:233:55: warning: unused parameter '_fce' [-Wunused-parameter]
+ handler_t stat_cache_handle_fdevent(void *_srv, void *_fce, int revent) {
+                                                       ^
+stat_cache.c:233:65: warning: unused parameter 'revent' [-Wunused-parameter]
+ handler_t stat_cache_handle_fdevent(void *_srv, void *_fce, int revent) {
+                                                                 ^
+mv -f .deps/keyvalue.Tpo .deps/keyvalue.Po
+stat_cache.c: In function 'stat_cache_entry_is_current':
+stat_cache.c:258:41: warning: unused parameter 'srv' [-Wunused-parameter]
+ int stat_cache_entry_is_current(server *srv, stat_cache_entry *sce) {
+                                         ^
+stat_cache.c:258:64: warning: unused parameter 'sce' [-Wunused-parameter]
+ int stat_cache_entry_is_current(server *srv, stat_cache_entry *sce) {
+                                                                ^
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT data_count.o -MD -MP -MF .deps/data_count.Tpo -c -o data_count.o data_count.c
+mv -f .deps/etag.Tpo .deps/etag.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT data_array.o -MD -MP -MF .deps/data_array.Tpo -c -o data_array.o data_array.c
+mv -f .deps/data_string.Tpo .deps/data_string.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT data_integer.o -MD -MP -MF .deps/data_integer.Tpo -c -o data_integer.o data_integer.c
+mv -f .deps/stat_cache.Tpo .deps/stat_cache.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT md5.o -MD -MP -MF .deps/md5.Tpo -c -o md5.o md5.c
+mv -f .deps/array.Tpo .deps/array.Po
+mv -f .deps/fdevent.Tpo .deps/fdevent.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT fdevent_select.o -MD -MP -MF .deps/fdevent_select.Tpo -c -o fdevent_select.o fdevent_select.c
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT fdevent_linux_rtsig.o -MD -MP -MF .deps/fdevent_linux_rtsig.Tpo -c -o fdevent_linux_rtsig.o fdevent_linux_rtsig.c
+mv -f .deps/joblist.Tpo .deps/joblist.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT fdevent_poll.o -MD -MP -MF .deps/fdevent_poll.Tpo -c -o fdevent_poll.o fdevent_poll.c
+mv -f .deps/data_count.Tpo .deps/data_count.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT fdevent_linux_sysepoll.o -MD -MP -MF .deps/fdevent_linux_sysepoll.Tpo -c -o fdevent_linux_sysepoll.o fdevent_linux_sysepoll.c
+mv -f .deps/data_array.Tpo .deps/data_array.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT fdevent_solaris_devpoll.o -MD -MP -MF .deps/fdevent_solaris_devpoll.Tpo -c -o fdevent_solaris_devpoll.o fdevent_solaris_devpoll.c
+plugin.c: In function 'plugins_load':
+plugin.c:293:10: warning: ISO C forbids conversion of object pointer to function pointer type [-Wpedantic]
+   init = (int (*)(plugin *))dlsym(p->lib, srv->tmp_buf->ptr);
+          ^
+mv -f .deps/data_integer.Tpo .deps/data_integer.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT fdevent_freebsd_kqueue.o -MD -MP -MF .deps/fdevent_freebsd_kqueue.Tpo -c -o fdevent_freebsd_kqueue.o fdevent_freebsd_kqueue.c
+mv -f .deps/md5.Tpo .deps/md5.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT data_config.o -MD -MP -MF .deps/data_config.Tpo -c -o data_config.o data_config.c
+fdevent_select.c: In function 'fdevent_select_event_add':
+fdevent_select.c:57:8: warning: unused variable 'i' [-Wunused-variable]
+  u_int i;
+        ^
+mv -f .deps/plugin.Tpo .deps/plugin.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT bitset.o -MD -MP -MF .deps/bitset.Tpo -c -o bitset.o bitset.c
+mv -f .deps/fdevent_select.Tpo .deps/fdevent_select.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT inet_ntop_cache.o -MD -MP -MF .deps/inet_ntop_cache.Tpo -c -o inet_ntop_cache.o inet_ntop_cache.c
+mv -f .deps/fdevent_linux_rtsig.Tpo .deps/fdevent_linux_rtsig.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT crc32.o -MD -MP -MF .deps/crc32.Tpo -c -o crc32.o crc32.c
+mv -f .deps/fdevent_poll.Tpo .deps/fdevent_poll.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT connections-glue.o -MD -MP -MF .deps/connections-glue.Tpo -c -o connections-glue.o connections-glue.c
+mv -f .deps/data_config.Tpo .deps/data_config.Po
+mv -f .deps/fdevent_linux_sysepoll.Tpo .deps/fdevent_linux_sysepoll.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT iosocket.o -MD -MP -MF .deps/iosocket.Tpo -c -o iosocket.o iosocket.c
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT configfile-glue.o -MD -MP -MF .deps/configfile-glue.Tpo -c -o configfile-glue.o configfile-glue.c
+mv -f .deps/fdevent_solaris_devpoll.Tpo .deps/fdevent_solaris_devpoll.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT status_counter.o -MD -MP -MF .deps/status_counter.Tpo -c -o status_counter.o status_counter.c
+mv -f .deps/fdevent_freebsd_kqueue.Tpo .deps/fdevent_freebsd_kqueue.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http-header-glue.o -MD -MP -MF .deps/http-header-glue.Tpo -c -o http-header-glue.o http-header-glue.c
+mv -f .deps/bitset.Tpo .deps/bitset.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_write.o -MD -MP -MF .deps/network_write.Tpo -c -o network_write.o network_write.c
+mv -f .deps/crc32.Tpo .deps/crc32.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_linux_sendfile.o -MD -MP -MF .deps/network_linux_sendfile.Tpo -c -o network_linux_sendfile.o network_linux_sendfile.c
+mv -f .deps/status_counter.Tpo .deps/status_counter.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_freebsd_sendfile.o -MD -MP -MF .deps/network_freebsd_sendfile.Tpo -c -o network_freebsd_sendfile.o network_freebsd_sendfile.c
+mv -f .deps/inet_ntop_cache.Tpo .deps/inet_ntop_cache.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_writev.o -MD -MP -MF .deps/network_writev.Tpo -c -o network_writev.o network_writev.c
+mv -f .deps/connections-glue.Tpo .deps/connections-glue.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_solaris_sendfilev.o -MD -MP -MF .deps/network_solaris_sendfilev.Tpo -c -o network_solaris_sendfilev.o network_solaris_sendfilev.c
+mv -f .deps/iosocket.Tpo .deps/iosocket.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_openssl.o -MD -MP -MF .deps/network_openssl.Tpo -c -o network_openssl.o network_openssl.c
+network_linux_sendfile.c: In function 'network_write_chunkqueue_linuxsendfile':
+network_linux_sendfile.c:49:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (tc->offset == tc->mem->used - 1) {
+                    ^
+mv -f .deps/configfile-glue.Tpo .deps/configfile-glue.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_linux_aio.o -MD -MP -MF .deps/network_linux_aio.Tpo -c -o network_linux_aio.o network_linux_aio.c
+mv -f .deps/http-header-glue.Tpo .deps/http-header-glue.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_posix_aio.o -MD -MP -MF .deps/network_posix_aio.Tpo -c -o network_posix_aio.o network_posix_aio.c
+mv -f .deps/network_linux_sendfile.Tpo .deps/network_linux_sendfile.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_gthread_aio.o -MD -MP -MF .deps/network_gthread_aio.Tpo -c -o network_gthread_aio.o network_gthread_aio.c
+mv -f .deps/network_write.Tpo .deps/network_write.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT network_gthread_sendfile.o -MD -MP -MF .deps/network_gthread_sendfile.Tpo -c -o network_gthread_sendfile.o network_gthread_sendfile.c
+mv -f .deps/network_freebsd_sendfile.Tpo .deps/network_freebsd_sendfile.Po
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT timing.o -MD -MP -MF .deps/timing.Tpo -c -o timing.o timing.c
+network_writev.c: In function 'network_write_chunkqueue_writev':
+network_writev.c:157:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (tc->offset == tc->mem->used - 1) {
+                    ^
+mv -f .deps/network_writev.Tpo .deps/network_writev.Po
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_flv_streaming.la -rpath /usr/local/lib mod_flv_streaming.lo  -lrt 
+mv -f .deps/network_openssl.Tpo .deps/network_openssl.Po
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_uploadprogress.la -rpath /usr/local/lib mod_uploadprogress.lo  -lrt 
+network_gthread_aio.c: In function 'network_gthread_aio_read_thread':
+network_gthread_aio.c:95:3: warning: 'g_async_queue_timed_pop' is deprecated (declared at /usr/include/glib-2.0/glib/gasyncqueue.h:101): Use 'g_async_queue_timeout_pop' instead [-Wdeprecated-declarations]
+   if ((wj = g_async_queue_timed_pop(inq, &ts))) {
+   ^
+network_gthread_aio.c:98:10: warning: variable 'offset' set but not used [-Wunused-but-set-variable]
+    off_t offset;
+          ^
+network_gthread_aio.c: In function 'network_write_chunkqueue_gthreadaio':
+network_gthread_aio.c:245:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (tc->offset == tc->mem->used - 1) {
+                    ^
+network_gthread_aio.c:303:11: warning: variable 'offset' set but not used [-Wunused-but-set-variable]
+     off_t offset;
+           ^
+mv -f .deps/network_solaris_sendfilev.Tpo .deps/network_solaris_sendfilev.Po
+network_gthread_aio.c:412:28: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if (c->file.mmap.length == c->file.copy.offset) {
+                            ^
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_evasive.la -rpath /usr/local/lib mod_evasive.lo  -lrt 
+network_gthread_sendfile.c: In function 'network_gthread_sendfile_read_thread':
+network_gthread_sendfile.c:97:3: warning: 'g_async_queue_timed_pop' is deprecated (declared at /usr/include/glib-2.0/glib/gasyncqueue.h:101): Use 'g_async_queue_timeout_pop' instead [-Wdeprecated-declarations]
+   if ((wj = g_async_queue_timed_pop(inq, &ts))) {
+   ^
+network_gthread_sendfile.c: In function 'network_write_chunkqueue_gthreadsendfile':
+network_gthread_sendfile.c:174:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (tc->offset == tc->mem->used - 1) {
+                    ^
+mv -f .deps/timing.Tpo .deps/timing.Po
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -I/usr/include/libxml2     -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_webdav.la -rpath /usr/local/lib mod_webdav_la-mod_webdav.lo  -lxml2   -lsqlite3    -lrt 
+mv -f .deps/network_linux_aio.Tpo .deps/network_linux_aio.Po
+mv -f .deps/network_gthread_sendfile.Tpo .deps/network_gthread_sendfile.Po
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_magnet.la -rpath /usr/local/lib mod_magnet_la-mod_magnet.lo mod_magnet_la-mod_magnet_cache.lo    -lm -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_trigger_b4_dl.la -rpath /usr/local/lib mod_trigger_b4_dl.lo -lgdbm  -lpcre  -lrt 
+mv -f .deps/network_posix_aio.Tpo .deps/network_posix_aio.Po
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_mysql_vhost.la -rpath /usr/local/lib mod_mysql_vhost_la-mod_mysql_vhost.lo   -lrt 
+mv -f .deps/network_gthread_aio.Tpo .deps/network_gthread_aio.Po
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_sql_vhost_core.la -rpath /usr/local/lib mod_sql_vhost_core.lo  -lrt 
+libtool: link: gcc -shared  .libs/mod_flv_streaming.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_flv_streaming.so -o .libs/mod_flv_streaming.so
+libtool: link: gcc -shared  .libs/mod_uploadprogress.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_uploadprogress.so -o .libs/mod_uploadprogress.so
+libtool: link: gcc -shared  .libs/mod_evasive.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_evasive.so -o .libs/mod_evasive.so
+libtool: link: ( cd ".libs" && rm -f "mod_flv_streaming.la" && ln -s "../mod_flv_streaming.la" "mod_flv_streaming.la" )
+libtool: link: ( cd ".libs" && rm -f "mod_uploadprogress.la" && ln -s "../mod_uploadprogress.la" "mod_uploadprogress.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_cgi.la -rpath /usr/local/lib mod_cgi.lo  -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_staticfile.la -rpath /usr/local/lib mod_staticfile.lo  -lrt 
+libtool: link: gcc -shared  .libs/mod_webdav_la-mod_webdav.o   -lxml2 /usr/lib/x86_64-linux-gnu/libsqlite3.so -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_webdav.so -o .libs/mod_webdav.so
+libtool: link: ( cd ".libs" && rm -f "mod_evasive.la" && ln -s "../mod_evasive.la" "mod_evasive.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_deflate.la -rpath /usr/local/lib mod_deflate.lo -lz -lbz2  -lrt 
+libtool: link: gcc -shared  .libs/mod_trigger_b4_dl.o   -lgdbm -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_trigger_b4_dl.so -o .libs/mod_trigger_b4_dl.so
+libtool: link: gcc -shared  .libs/mod_magnet_la-mod_magnet.o .libs/mod_magnet_la-mod_magnet_cache.o   -lm -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_magnet.so -o .libs/mod_magnet.so
+libtool: link: gcc -shared  .libs/mod_mysql_vhost_la-mod_mysql_vhost.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_mysql_vhost.so -o .libs/mod_mysql_vhost.so
+libtool: link: gcc -shared  .libs/mod_sql_vhost_core.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_sql_vhost_core.so -o .libs/mod_sql_vhost_core.so
+libtool: link: ( cd ".libs" && rm -f "mod_sql_vhost_core.la" && ln -s "../mod_sql_vhost_core.la" "mod_sql_vhost_core.la" )
+libtool: link: ( cd ".libs" && rm -f "mod_mysql_vhost.la" && ln -s "../mod_mysql_vhost.la" "mod_mysql_vhost.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_chunked.la -rpath /usr/local/lib mod_chunked.lo  -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_dirlisting.la -rpath /usr/local/lib mod_dirlisting.lo  -lpcre -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_webdav.la" && ln -s "../mod_webdav.la" "mod_webdav.la" )
+libtool: link: ( cd ".libs" && rm -f "mod_magnet.la" && ln -s "../mod_magnet.la" "mod_magnet.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_indexfile.la -rpath /usr/local/lib mod_indexfile.lo  -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_trigger_b4_dl.la" && ln -s "../mod_trigger_b4_dl.la" "mod_trigger_b4_dl.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_setenv.la -rpath /usr/local/lib mod_setenv.lo  -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_alias.la -rpath /usr/local/lib mod_alias.lo  -lrt 
+libtool: link: gcc -shared  .libs/mod_cgi.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_cgi.so -o .libs/mod_cgi.so
+libtool: link: gcc -shared  .libs/mod_staticfile.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_staticfile.so -o .libs/mod_staticfile.so
+libtool: link: gcc -shared  .libs/mod_deflate.o   -lz -lbz2 -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_deflate.so -o .libs/mod_deflate.so
+libtool: link: ( cd ".libs" && rm -f "mod_cgi.la" && ln -s "../mod_cgi.la" "mod_cgi.la" )
+libtool: link: ( cd ".libs" && rm -f "mod_staticfile.la" && ln -s "../mod_staticfile.la" "mod_staticfile.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_userdir.la -rpath /usr/local/lib mod_userdir.lo  -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_rrdtool.la -rpath /usr/local/lib mod_rrdtool.lo  -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_deflate.la" && ln -s "../mod_deflate.la" "mod_deflate.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_usertrack.la -rpath /usr/local/lib mod_usertrack.lo  -lrt 
+libtool: link: gcc -shared  .libs/mod_chunked.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_chunked.so -o .libs/mod_chunked.so
+libtool: link: gcc -shared  .libs/mod_dirlisting.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_dirlisting.so -o .libs/mod_dirlisting.so
+libtool: link: gcc -shared  .libs/mod_setenv.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_setenv.so -o .libs/mod_setenv.so
+libtool: link: gcc -shared  .libs/mod_alias.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_alias.so -o .libs/mod_alias.so
+libtool: link: gcc -shared  .libs/mod_indexfile.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_indexfile.so -o .libs/mod_indexfile.so
+libtool: link: ( cd ".libs" && rm -f "mod_chunked.la" && ln -s "../mod_chunked.la" "mod_chunked.la" )
+libtool: link: ( cd ".libs" && rm -f "mod_dirlisting.la" && ln -s "../mod_dirlisting.la" "mod_dirlisting.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_proxy_core.la -rpath /usr/local/lib mod_proxy_core.lo mod_proxy_core_pool.lo mod_proxy_core_backend.lo mod_proxy_core_address.lo mod_proxy_core_backlog.lo mod_proxy_core_rewrites.lo mod_proxy_core_protocol.lo  -lpcre -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_proxy_backend_http.la -rpath /usr/local/lib mod_proxy_backend_http.lo  -lpcre -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_setenv.la" && ln -s "../mod_setenv.la" "mod_setenv.la" )
+libtool: link: ( cd ".libs" && rm -f "mod_alias.la" && ln -s "../mod_alias.la" "mod_alias.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_proxy_backend_fastcgi.la -rpath /usr/local/lib mod_proxy_backend_fastcgi.lo  -lpcre -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_proxy_backend_scgi.la -rpath /usr/local/lib mod_proxy_backend_scgi.lo  -lpcre -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_indexfile.la" && ln -s "../mod_indexfile.la" "mod_indexfile.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_proxy_backend_ajp13.la -rpath /usr/local/lib mod_proxy_backend_ajp13.lo  -lpcre -lrt 
+libtool: link: gcc -shared  .libs/mod_rrdtool.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_rrdtool.so -o .libs/mod_rrdtool.so
+libtool: link: gcc -shared  .libs/mod_userdir.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_userdir.so -o .libs/mod_userdir.so
+libtool: link: gcc -shared  .libs/mod_usertrack.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_usertrack.so -o .libs/mod_usertrack.so
+libtool: link: ( cd ".libs" && rm -f "mod_rrdtool.la" && ln -s "../mod_rrdtool.la" "mod_rrdtool.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99   -o lemon lemon.o  -lrt 
+libtool: link: gcc -shared  .libs/mod_proxy_core.o .libs/mod_proxy_core_pool.o .libs/mod_proxy_core_backend.o .libs/mod_proxy_core_address.o .libs/mod_proxy_core_backlog.o .libs/mod_proxy_core_rewrites.o .libs/mod_proxy_core_protocol.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_proxy_core.so -o .libs/mod_proxy_core.so
+libtool: link: gcc -shared  .libs/mod_proxy_backend_fastcgi.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_proxy_backend_fastcgi.so -o .libs/mod_proxy_backend_fastcgi.so
+libtool: link: ( cd ".libs" && rm -f "mod_userdir.la" && ln -s "../mod_userdir.la" "mod_userdir.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_secdownload.la -rpath /usr/local/lib mod_secure_download.lo  -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_usertrack.la" && ln -s "../mod_usertrack.la" "mod_usertrack.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_expire.la -rpath /usr/local/lib mod_expire.lo  -lrt 
+libtool: link: gcc -shared  .libs/mod_proxy_backend_ajp13.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_proxy_backend_ajp13.so -o .libs/mod_proxy_backend_ajp13.so
+libtool: link: gcc -shared  .libs/mod_proxy_backend_http.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_proxy_backend_http.so -o .libs/mod_proxy_backend_http.so
+libtool: link: ( cd ".libs" && rm -f "mod_proxy_core.la" && ln -s "../mod_proxy_core.la" "mod_proxy_core.la" )
+libtool: link: gcc -shared  .libs/mod_proxy_backend_scgi.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_proxy_backend_scgi.so -o .libs/mod_proxy_backend_scgi.so
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_evhost.la -rpath /usr/local/lib mod_evhost.lo  -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_proxy_backend_fastcgi.la" && ln -s "../mod_proxy_backend_fastcgi.la" "mod_proxy_backend_fastcgi.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_simple_vhost.la -rpath /usr/local/lib mod_simple_vhost.lo  -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_proxy_backend_ajp13.la" && ln -s "../mod_proxy_backend_ajp13.la" "mod_proxy_backend_ajp13.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_access.la -rpath /usr/local/lib mod_access.lo  -lrt 
+libtool: link: gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -o lemon lemon.o  -lrt -pthread
+libtool: link: ( cd ".libs" && rm -f "mod_proxy_backend_http.la" && ln -s "../mod_proxy_backend_http.la" "mod_proxy_backend_http.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_compress.la -rpath /usr/local/lib mod_compress.lo -lz -lbz2  -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_proxy_backend_scgi.la" && ln -s "../mod_proxy_backend_scgi.la" "mod_proxy_backend_scgi.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_auth.la -rpath /usr/local/lib mod_auth.lo http_auth_digest.lo http_auth.lo -lcrypt -lldap -llber  -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_rewrite.la -rpath /usr/local/lib mod_rewrite.lo -lpcre  -lrt 
+libtool: link: gcc -shared  .libs/mod_evhost.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_evhost.so -o .libs/mod_evhost.so
+libtool: link: gcc -shared  .libs/mod_secure_download.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_secdownload.so -o .libs/mod_secdownload.so
+libtool: link: gcc -shared  .libs/mod_expire.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_expire.so -o .libs/mod_expire.so
+libtool: link: gcc -shared  .libs/mod_simple_vhost.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_simple_vhost.so -o .libs/mod_simple_vhost.so
+libtool: link: gcc -shared  .libs/mod_access.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_access.so -o .libs/mod_access.so
+libtool: link: gcc -shared  .libs/mod_compress.o   -lz -lbz2 -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_compress.so -o .libs/mod_compress.so
+libtool: link: ( cd ".libs" && rm -f "mod_evhost.la" && ln -s "../mod_evhost.la" "mod_evhost.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_redirect.la -rpath /usr/local/lib mod_redirect.lo -lpcre  -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_simple_vhost.la" && ln -s "../mod_simple_vhost.la" "mod_simple_vhost.la" )
+libtool: link: ( cd ".libs" && rm -f "mod_secdownload.la" && ln -s "../mod_secdownload.la" "mod_secdownload.la" )
+libtool: link: ( cd ".libs" && rm -f "mod_expire.la" && ln -s "../mod_expire.la" "mod_expire.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_status.la -rpath /usr/local/lib mod_status.lo  -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_accesslog.la -rpath /usr/local/lib mod_accesslog.lo  -lrt 
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99   -o spawn-fcgi spawn-fcgi.o -pthread -lgthread-2.0 -lglib-2.0   -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_access.la" && ln -s "../mod_access.la" "mod_access.la" )
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99   -o proc_open proc_open-proc_open.o proc_open-buffer.o  -lrt 
+libtool: link: ( cd ".libs" && rm -f "mod_compress.la" && ln -s "../mod_compress.la" "mod_compress.la" )
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT configfile.o -MD -MP -MF .deps/configfile.Tpo -c -o configfile.o configfile.c
+libtool: link: gcc -shared  .libs/mod_rewrite.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_rewrite.so -o .libs/mod_rewrite.so
+libtool: link: gcc -shared  .libs/mod_auth.o .libs/http_auth_digest.o .libs/http_auth.o   -lcrypt -lldap -llber -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_auth.so -o .libs/mod_auth.so
+libtool: link: gcc -shared  .libs/mod_redirect.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_redirect.so -o .libs/mod_redirect.so
+libtool: link: ( cd ".libs" && rm -f "mod_rewrite.la" && ln -s "../mod_rewrite.la" "mod_rewrite.la" )
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT configparser.o -MD -MP -MF .deps/configparser.Tpo -c -o configparser.o configparser.c
+libtool: link: ( cd ".libs" && rm -f "mod_auth.la" && ln -s "../mod_auth.la" "mod_auth.la" )
+libtool: link: gcc -shared  .libs/mod_status.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_status.so -o .libs/mod_status.so
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_resp.o -MD -MP -MF .deps/http_resp.Tpo -c -o http_resp.o http_resp.c
+libtool: link: gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -o spawn-fcgi spawn-fcgi.o -pthread  -lgthread-2.0 -lglib-2.0 -lrt -pthread
+libtool: link: gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -o proc_open proc_open-proc_open.o proc_open-buffer.o  -lrt -pthread
+libtool: link: gcc -shared  .libs/mod_accesslog.o   -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_accesslog.so -o .libs/mod_accesslog.so
+configparser.c:4511:4: warning: type of bit-field 'res1' is a GCC extension [-Wpedantic]
+    u_int16_t res1 : 4 ;
+    ^
+configparser.c:4512:4: warning: type of bit-field 'doff' is a GCC extension [-Wpedantic]
+    u_int16_t doff : 4 ;
+    ^
+configparser.c:4513:4: warning: type of bit-field 'fin' is a GCC extension [-Wpedantic]
+    u_int16_t fin : 1 ;
+    ^
+configparser.c:4514:4: warning: type of bit-field 'syn' is a GCC extension [-Wpedantic]
+    u_int16_t syn : 1 ;
+    ^
+configparser.c:4515:4: warning: type of bit-field 'rst' is a GCC extension [-Wpedantic]
+    u_int16_t rst : 1 ;
+    ^
+configparser.c:4516:4: warning: type of bit-field 'psh' is a GCC extension [-Wpedantic]
+    u_int16_t psh : 1 ;
+    ^
+configparser.c:4517:4: warning: type of bit-field 'ack' is a GCC extension [-Wpedantic]
+    u_int16_t ack : 1 ;
+    ^
+configparser.c:4518:4: warning: type of bit-field 'urg' is a GCC extension [-Wpedantic]
+    u_int16_t urg : 1 ;
+    ^
+configparser.c:4519:4: warning: type of bit-field 'res2' is a GCC extension [-Wpedantic]
+    u_int16_t res2 : 2 ;
+    ^
+configparser.c:4551:4: warning: type of bit-field 'tcpi_snd_wscale' is a GCC extension [-Wpedantic]
+    u_int8_t tcpi_snd_wscale : 4 ;
+    ^
+configparser.c:4552:4: warning: type of bit-field 'tcpi_rcv_wscale' is a GCC extension [-Wpedantic]
+    u_int8_t tcpi_rcv_wscale : 4 ;
+    ^
+libtool: link: ( cd ".libs" && rm -f "mod_redirect.la" && ln -s "../mod_redirect.la" "mod_redirect.la" )
+configparser.c:5240:68: warning: conflicting types for built-in function 'snprintf' [enabled by default]
+ extern  __attribute__((__nothrow__)) int ( /* format attribute */  snprintf)(char * __restrict  __s , size_t __maxlen , char const   * __restrict  __format  , ...) ;
+                                                                    ^
+configparser.c:5241:68: warning: conflicting types for built-in function 'vsnprintf' [enabled by default]
+ extern  __attribute__((__nothrow__)) int ( /* format attribute */  vsnprintf)(char * __restrict  __s , size_t __maxlen , char const   * __restrict  __format , __gnuc_va_list __arg ) ;
+                                                                    ^
+configparser.c:5273:15: warning: conflicting types for built-in function 'fwrite' [enabled by default]
+ extern size_t fwrite(void const   * __restrict  __ptr , size_t __size , size_t __n , FILE * __restrict  __s ) ;
+               ^
+configparser.c:5275:15: warning: conflicting types for built-in function 'fwrite_unlocked' [enabled by default]
+ extern size_t fwrite_unlocked(void const   * __restrict  __ptr , size_t __size , size_t __n , FILE * __restrict  __stream ) ;
+               ^
+configparser.c: In function 'vprintf':
+configparser.c:5305:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'getchar':
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_resp_parser.o -MD -MP -MF .deps/http_resp_parser.Tpo -c -o http_resp_parser.o http_resp_parser.c
+configparser.c:5313:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'fgetc_unlocked':
+configparser.c:5324:38: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___3 = __builtin_expect((long )((unsigned int )__fp->_IO_read_ptr >= (unsigned int )__fp->_IO_read_end), 0L);
+                                      ^
+configparser.c:5324:75: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___3 = __builtin_expect((long )((unsigned int )__fp->_IO_read_ptr >= (unsigned int )__fp->_IO_read_end), 0L);
+                                                                           ^
+configparser.c:5333:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp___2);
+   ^
+configparser.c:5317:8: warning: unused variable 'tmp' [-Wunused-variable]
+ { long tmp ;
+        ^
+configparser.c: In function 'getc_unlocked':
+configparser.c:5344:38: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___3 = __builtin_expect((long )((unsigned int )__fp->_IO_read_ptr >= (unsigned int )__fp->_IO_read_end), 0L);
+                                      ^
+configparser.c:5344:75: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___3 = __builtin_expect((long )((unsigned int )__fp->_IO_read_ptr >= (unsigned int )__fp->_IO_read_end), 0L);
+                                                                           ^
+configparser.c:5353:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp___2);
+   ^
+configparser.c:5337:8: warning: unused variable 'tmp' [-Wunused-variable]
+ { long tmp ;
+        ^
+configparser.c: In function 'getchar_unlocked':
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_req.o -MD -MP -MF .deps/http_req.Tpo -c -o http_req.o http_req.c
+configparser.c:5364:38: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___3 = __builtin_expect((long )((unsigned int )stdin->_IO_read_ptr >= (unsigned int )stdin->_IO_read_end), 0L);
+                                      ^
+configparser.c:5364:76: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___3 = __builtin_expect((long )((unsigned int )stdin->_IO_read_ptr >= (unsigned int )stdin->_IO_read_end), 0L);
+                                                                            ^
+configparser.c:5373:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp___2);
+   ^
+configparser.c:5357:8: warning: unused variable 'tmp' [-Wunused-variable]
+ { long tmp ;
+        ^
+configparser.c: In function 'putchar':
+configparser.c:5381:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'fputc_unlocked':
+configparser.c:5393:38: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___4 = __builtin_expect((long )((unsigned int )__stream->_IO_write_ptr >= (unsigned int )__stream->_IO_write_end), 0L);
+                                      ^
+configparser.c:5393:80: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___4 = __builtin_expect((long )((unsigned int )__stream->_IO_write_ptr >= (unsigned int )__stream->_IO_write_end), 0L);
+                                                                                ^
+configparser.c:5404:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp___3);
+   ^
+configparser.c:5385:8: warning: unused variable 'tmp' [-Wunused-variable]
+ { long tmp ;
+        ^
+configparser.c: In function 'putc_unlocked':
+configparser.c:5416:38: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___4 = __builtin_expect((long )((unsigned int )__stream->_IO_write_ptr >= (unsigned int )__stream->_IO_write_end), 0L);
+                                      ^
+configparser.c:5416:80: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___4 = __builtin_expect((long )((unsigned int )__stream->_IO_write_ptr >= (unsigned int )__stream->_IO_write_end), 0L);
+                                                                                ^
+configparser.c:5427:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp___3);
+   ^
+libtool: link: ( cd ".libs" && rm -f "mod_status.la" && ln -s "../mod_status.la" "mod_status.la" )
+configparser.c:5408:8: warning: unused variable 'tmp' [-Wunused-variable]
+ { long tmp ;
+        ^
+configparser.c: In function 'putchar_unlocked':
+configparser.c:5439:38: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___4 = __builtin_expect((long )((unsigned int )stdout->_IO_write_ptr >= (unsigned int )stdout->_IO_write_end), 0L);
+                                      ^
+configparser.c:5439:78: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   tmp___4 = __builtin_expect((long )((unsigned int )stdout->_IO_write_ptr >= (unsigned int )stdout->_IO_write_end), 0L);
+                                                                              ^
+configparser.c:5450:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp___3);
+   ^
+configparser.c:5431:8: warning: unused variable 'tmp' [-Wunused-variable]
+ { long tmp ;
+        ^
+configparser.c: In function 'feof_unlocked':
+configparser.c:5458:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )((__stream->_flags & 0x10) != 0));
+   ^
+configparser.c: In function 'ferror_unlocked':
+configparser.c:5466:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )((__stream->_flags & 0x20) != 0));
+   ^
+configparser.c: At top level:
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_req_parser.o -MD -MP -MF .deps/http_req_parser.Tpo -c -o http_req_parser.o http_req_parser.c
+configparser.c:5472:44: warning: conflicting types for built-in function 'memcpy' [enabled by default]
+ extern  __attribute__((__nothrow__)) void *memcpy(void * __restrict  __dest , void const   * __restrict  __src , size_t __n )  __attribute__((__nonnull__(1,2))) ;
+                                            ^
+configparser.c:5473:44: warning: conflicting types for built-in function 'memmove' [enabled by default]
+ extern  __attribute__((__nothrow__)) void *memmove(void *__dest , void const   *__src , size_t __n )  __attribute__((__nonnull__(1,2))) ;
+                                            ^
+configparser.c:5475:44: warning: conflicting types for built-in function 'memset' [enabled by default]
+ extern  __attribute__((__nothrow__)) void *memset(void *__s , int __c , size_t __n )  __attribute__((__nonnull__(1))) ;
+                                            ^
+configparser.c:5476:42: warning: conflicting types for built-in function 'memcmp' [enabled by default]
+ extern  __attribute__((__nothrow__)) int memcmp(void const   *__s1 , void const   *__s2 , size_t __n )  __attribute__((__pure__, __nonnull__(1,2))) ;
+                                          ^
+libtool: link: ( cd ".libs" && rm -f "mod_accesslog.la" && ln -s "../mod_accesslog.la" "mod_accesslog.la" )
+configparser.c:5477:44: warning: conflicting types for built-in function 'memchr' [enabled by default]
+ extern  __attribute__((__nothrow__)) void *memchr(void const   *__s , int __c , size_t __n )  __attribute__((__pure__, __nonnull__(1))) ;
+                                            ^
+configparser.c:5479:44: warning: conflicting types for built-in function 'strncpy' [enabled by default]
+ extern  __attribute__((__nothrow__)) char *strncpy(char * __restrict  __dest , char const   * __restrict  __src , size_t __n )  __attribute__((__nonnull__(1,2))) ;
+                                            ^
+configparser.c:5481:44: warning: conflicting types for built-in function 'strncat' [enabled by default]
+ extern  __attribute__((__nothrow__)) char *strncat(char * __restrict  __dest , char const   * __restrict  __src , size_t __n )  __attribute__((__nonnull__(1,2))) ;
+                                            ^
+configparser.c:5483:42: warning: conflicting types for built-in function 'strncmp' [enabled by default]
+ extern  __attribute__((__nothrow__)) int strncmp(char const   *__s1 , char const   *__s2 , size_t __n )  __attribute__((__pure__, __nonnull__(1,2))) ;
+                                          ^
+configparser.c:5489:44: warning: conflicting types for built-in function 'strndup' [enabled by default]
+ extern  __attribute__((__nothrow__)) char *strndup(char const   *__string , size_t __n )  __attribute__((__nonnull__(1), __malloc__)) ;
+                                            ^
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_req_range.o -MD -MP -MF .deps/http_req_range.Tpo -c -o http_req_range.o http_req_range.c
+configparser.c:5492:45: warning: conflicting types for built-in function 'strcspn' [enabled by default]
+ extern  __attribute__((__nothrow__)) size_t strcspn(char const   *__s , char const   *__reject )  __attribute__((__pure__, __nonnull__(1,2))) ;
+                                             ^
+configparser.c:5493:45: warning: conflicting types for built-in function 'strspn' [enabled by default]
+ extern  __attribute__((__nothrow__)) size_t strspn(char const   *__s , char const   *__accept )  __attribute__((__pure__, __nonnull__(1,2))) ;
+                                             ^
+gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT http_req_range_parser.o -MD -MP -MF .deps/http_req_range_parser.Tpo -c -o http_req_range_parser.o http_req_range_parser.c
+configparser.c:5499:45: warning: conflicting types for built-in function 'strlen' [enabled by default]
+ extern  __attribute__((__nothrow__)) size_t strlen(char const   *__s )  __attribute__((__pure__, __nonnull__(1))) ;
+                                             ^
+configparser.c:5505:43: warning: conflicting types for built-in function 'bcopy' [enabled by default]
+ extern  __attribute__((__nothrow__)) void bcopy(void const   *__src , void *__dest , size_t __n )  __attribute__((__nonnull__(1,2))) ;
+                                           ^
+configparser.c:5506:43: warning: conflicting types for built-in function 'bzero' [enabled by default]
+ extern  __attribute__((__nothrow__)) void bzero(void *__s , size_t __n )  __attribute__((__nonnull__(1))) ;
+                                           ^
+configparser.c:5507:42: warning: conflicting types for built-in function 'bcmp' [enabled by default]
+ extern  __attribute__((__nothrow__)) int bcmp(void const   *__s1 , void const   *__s2 , size_t __n )  __attribute__((__pure__, __nonnull__(1,2))) ;
+                                          ^
+configparser.c:5512:42: warning: conflicting types for built-in function 'strncasecmp' [enabled by default]
+ extern  __attribute__((__nothrow__)) int strncasecmp(char const   *__s1 , char const   *__s2 , size_t __n )  __attribute__((__pure__, __nonnull__(1,2))) ;
+                                          ^
+configparser.c:5518:44: warning: conflicting types for built-in function 'stpncpy' [enabled by default]
+ extern  __attribute__((__nothrow__)) char *stpncpy(char * __restrict  __dest , char const   * __restrict  __src , size_t __n )  __attribute__((__nonnull__(1,2))) ;
+                                            ^
+configparser.c: In function '__strcspn_c1':
+configparser.c:5538:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned int __attribute__((__gnu_inline__))  )__result);
+   ^
+configparser.c: In function '__strcspn_c2':
+configparser.c:5563:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned int __attribute__((__gnu_inline__))  )__result);
+   ^
+configparser.c: In function '__strcspn_c3':
+configparser.c:5592:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned int __attribute__((__gnu_inline__))  )__result);
+   ^
+configparser.c: In function '__strspn_c1':
+configparser.c:5604:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned int __attribute__((__gnu_inline__))  )__result);
+   ^
+configparser.c: In function '__strspn_c2':
+configparser.c:5625:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned int __attribute__((__gnu_inline__))  )__result);
+   ^
+configparser.c: In function '__strspn_c3':
+configparser.c:5650:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned int __attribute__((__gnu_inline__))  )__result);
+   ^
+configparser.c: In function '__strpbrk_c2':
+configparser.c:5677:20: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     tmp = (char *)((unsigned int )__s);
+                    ^
+configparser.c:5677:11: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     tmp = (char *)((unsigned int )__s);
+           ^
+configparser.c:5679:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((char __attribute__((__gnu_inline__))  *)tmp);
+   ^
+configparser.c: In function '__strpbrk_c3':
+configparser.c:5710:20: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     tmp = (char *)((unsigned int )__s);
+                    ^
+configparser.c:5710:11: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     tmp = (char *)((unsigned int )__s);
+           ^
+configparser.c:5712:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((char __attribute__((__gnu_inline__))  *)tmp);
+   ^
+configparser.c: In function '__strtok_r_1c':
+configparser.c:5722:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )__s == (unsigned int )((void *)0)) {
+       ^
+configparser.c:5722:29: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )__s == (unsigned int )((void *)0)) {
+                             ^
+configparser.c:5749:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((char __attribute__((__gnu_inline__))  *)__result);
+   ^
+configparser.c: In function '__strsep_1c':
+configparser.c:5763:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )__retval != (unsigned int )((void *)0)) {
+       ^
+configparser.c:5763:34: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )__retval != (unsigned int )((void *)0)) {
+                                  ^
+configparser.c:5767:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )tmp___0 != (unsigned int )((void *)0)) {
+         ^
+configparser.c:5767:35: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )tmp___0 != (unsigned int )((void *)0)) {
+                                   ^
+configparser.c:5777:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((char __attribute__((__gnu_inline__))  *)__retval);
+   ^
+configparser.c:5758:9: warning: unused variable 'tmp___1' [-Wunused-variable]
+   void *tmp___1 ;
+         ^
+configparser.c: In function '__strsep_2c':
+configparser.c:5788:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )__retval != (unsigned int )((void *)0)) {
+       ^
+configparser.c:5788:34: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )__retval != (unsigned int )((void *)0)) {
+                                  ^
+configparser.c:5818:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((char __attribute__((__gnu_inline__))  *)__retval);
+   ^
+configparser.c: In function '__strsep_3c':
+configparser.c:5829:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )__retval != (unsigned int )((void *)0)) {
+       ^
+configparser.c:5829:34: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )__retval != (unsigned int )((void *)0)) {
+                                  ^
+configparser.c:5866:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((char __attribute__((__gnu_inline__))  *)__retval);
+   ^
+configparser.c: At top level:
+configparser.c:5869:44: warning: conflicting types for built-in function 'malloc' [enabled by default]
+ extern  __attribute__((__nothrow__)) void *malloc(size_t __size )  __attribute__((__malloc__)) ;
+                                            ^
+configparser.c:5870:44: warning: conflicting types for built-in function 'calloc' [enabled by default]
+ extern  __attribute__((__nothrow__)) void *calloc(size_t __nmemb , size_t __size )  __attribute__((__malloc__)) ;
+                                            ^
+configparser.c: In function 'g_bit_storage':
+configparser.c:6040:8: warning: unused variable 'tmp' [-Wunused-variable]
+   long tmp ;
+        ^
+configparser.c:6039:7: warning: unused variable '_g_boolean_var_' [-Wunused-variable]
+ { int _g_boolean_var_ ;
+       ^
+configparser.c: In function 'g_once_init_enter':
+configparser.c:6175:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )tmp___0 != (unsigned int )((void *)0)) {
+       ^
+configparser.c:6175:33: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )tmp___0 != (unsigned int )((void *)0)) {
+                                 ^
+configparser.c: In function '__sigismember':
+configparser.c:6229:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function '__sigaddset':
+configparser.c:6240:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )0);
+   ^
+configparser.c: In function '__sigdelset':
+configparser.c:6251:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )0);
+   ^
+configparser.c: At top level:
+configparser.c:6306:45: warning: conflicting types for built-in function 'strftime' [enabled by default]
+ extern  __attribute__((__nothrow__)) size_t strftime(char * __restrict  __s , size_t __maxsize , char const   * __restrict  __format , struct tm  const  * __restrict  __tp ) ;
+                                             ^
+configparser.c: In function 'gnu_dev_major':
+configparser.c:7466:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned int __attribute__((__gnu_inline__))  )(((__dev >> 8) & 4095ULL) | (unsigned long long )((unsigned int )(__dev >> 32) & 4294963200U)));
+   ^
+configparser.c: In function 'gnu_dev_minor':
+configparser.c:7474:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned int __attribute__((__gnu_inline__))  )((__dev & 255ULL) | (unsigned long long )((unsigned int )(__dev >> 12) & 4294967040U)));
+   ^
+configparser.c: In function 'gnu_dev_makedev':
+configparser.c:7482:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned long long __attribute__((__gnu_inline__))  )(((unsigned long long )((__minor & 255U) | ((__major & 4095U) << 8)) | ((unsigned long long )(__minor & 4294967040U) << 12)) | ((unsigned long long )(__major & 4294963200U) << 32)));
+   ^
+configparser.c: In function 'stat':
+http_resp_parser.c: In function 'http_resp_parserTokenName':
+http_resp_parser.c:281:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if( tokenType>0 && tokenType<(sizeof(yyTokenName)/sizeof(yyTokenName[0])) ){
+                               ^
+configparser.c:7532:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'lstat':
+http_resp_parser.c: In function 'yy_find_shift_action':
+http_resp_parser.c:416:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   i += iLookAhead;
+               ^
+http_resp_parser.c: In function 'yy_find_reduce_action':
+http_resp_parser.c:459:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   i += iLookAhead;
+               ^
+configparser.c:7541:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'fstat':
+http_resp_parser.c: In function 'yy_reduce':
+http_resp_parser.c:546:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if( yyTraceFILE && yyruleno>=0
+                    ^
+configparser.c:7550:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'fstatat':
+http_resp_parser.c: In function 'yy_syntax_error':
+http_resp_parser.c:757:7: warning: unused parameter 'yymajor' [-Wunused-parameter]
+   yyParser *yypParser,           /* The parser */
+       ^
+http_resp_parser.c:758:15: warning: unused parameter 'yyminor' [-Wunused-parameter]
+   int yymajor,                   /* The major type of the error token */
+               ^
+configparser.c:7559:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'mknod':
+configparser.c:7568:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'mknodat':
+configparser.c:7577:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'strtoimax':
+configparser.c:7593:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((long long __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'strtoumax':
+configparser.c:7603:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned long long __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'wcstoimax':
+configparser.c:7613:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((long long __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'wcstoumax':
+configparser.c:7623:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((unsigned long long __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'atof':
+configparser.c:7646:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((double __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'atoi':
+configparser.c:7655:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((int __attribute__((__gnu_inline__))  )((int )tmp));
+   ^
+configparser.c: In function 'atol':
+configparser.c:7664:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((long __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: In function 'atoll':
+mv -f .deps/http_resp.Tpo .deps/http_resp.Po
+configparser.c:7673:3: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((long long __attribute__((__gnu_inline__))  )tmp);
+   ^
+configparser.c: At top level:
+configparser.c:7707:44: warning: conflicting types for built-in function 'realloc' [enabled by default]
+ extern  __attribute__((__nothrow__)) void *realloc(void *__ptr , size_t __size )  __attribute__((__warn_unused_result__)) ;
+                                            ^
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_ssi_exprparser.lo -MD -MP -MF .deps/mod_ssi_exprparser.Tpo -c -o mod_ssi_exprparser.lo mod_ssi_exprparser.c
+configparser.c:7710:44: warning: conflicting types for built-in function 'alloca' [enabled by default]
+ extern  __attribute__((__nothrow__)) void *alloca(size_t __size ) ;
+                                            ^
+http_req_parser.c: In function 'http_req_parserTokenName':
+http_req_parser.c:277:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if( tokenType>0 && tokenType<(sizeof(yyTokenName)/sizeof(yyTokenName[0])) ){
+                               ^
+http_req_parser.c: In function 'yy_find_shift_action':
+http_req_parser.c:408:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   i += iLookAhead;
+               ^
+http_req_parser.c: In function 'yy_find_reduce_action':
+http_req_parser.c:451:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   i += iLookAhead;
+               ^
+http_req_parser.c: In function 'yy_reduce':
+http_req_parser.c:537:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if( yyTraceFILE && yyruleno>=0
+                    ^
+http_req_parser.c: In function 'yy_syntax_error':
+http_req_parser.c:720:7: warning: unused parameter 'yymajor' [-Wunused-parameter]
+   yyParser *yypParser,           /* The parser */
+       ^
+http_req_parser.c:721:15: warning: unused parameter 'yyminor' [-Wunused-parameter]
+   int yymajor,                   /* The major type of the error token */
+               ^
+http_req_range_parser.c: In function 'http_req_range_parserTokenName':
+http_req_range_parser.c:270:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if( tokenType>0 && tokenType<(sizeof(yyTokenName)/sizeof(yyTokenName[0])) ){
+                               ^
+http_req_range_parser.c: In function 'yy_find_shift_action':
+http_req_range_parser.c:402:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   i += iLookAhead;
+               ^
+http_req_range_parser.c: In function 'yy_find_reduce_action':
+http_req_range_parser.c:445:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   i += iLookAhead;
+               ^
+http_req_range_parser.c: In function 'yy_reduce':
+http_req_range_parser.c:528:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if( yyTraceFILE && yyruleno>=0
+                    ^
+http_req_range_parser.c: In function 'yy_syntax_error':
+http_req_range_parser.c:663:7: warning: unused parameter 'yymajor' [-Wunused-parameter]
+   yyParser *yypParser,           /* The parser */
+       ^
+http_req_range_parser.c:664:15: warning: unused parameter 'yyminor' [-Wunused-parameter]
+   int yymajor,                   /* The major type of the error token */
+               ^
+configparser.c: In function '__cmsg_nxthdr':
+configparser.c:10190:21: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+     return ((struct cmsghdr  __attribute__((__gnu_inline__)) *)0);
+                     ^
+configparser.c:10195:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )((unsigned char *)(__cmsg + 1)) > (unsigned int )((unsigned char *)__mhdr->msg_control + __mhdr->msg_controllen)) {
+       ^
+configparser.c:10195:56: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )((unsigned char *)(__cmsg + 1)) > (unsigned int )((unsigned char *)__mhdr->msg_control + __mhdr->msg_controllen)) {
+                                                        ^
+configparser.c:10196:21: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+     return ((struct cmsghdr  __attribute__((__gnu_inline__)) *)0);
+                     ^
+configparser.c:10198:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((unsigned char *)__cmsg + (((__cmsg->cmsg_len + sizeof(size_t )) - 1U) & ~ (sizeof(size_t ) - 1U))) > (unsigned int )((unsigned char *)__mhdr->msg_control + __mhdr->msg_controllen)) {
+         ^
+configparser.c:10198:127: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((unsigned char *)__cmsg + (((__cmsg->cmsg_len + sizeof(size_t )) - 1U) & ~ (sizeof(size_t ) - 1U))) > (unsigned int )((unsigned char *)__mhdr->msg_control + __mhdr->msg_controllen)) {
+                                                                                                                               ^
+configparser.c:10199:23: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+       return ((struct cmsghdr  __attribute__((__gnu_inline__)) *)0);
+                       ^
+mv -f .deps/http_req.Tpo .deps/http_req.Po
+configparser.c:10204:19: warning: '__gnu_inline__' attribute does not apply to types [-Wattributes]
+   return ((struct cmsghdr  __attribute__((__gnu_inline__)) *)__cmsg);
+                   ^
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_ssi_exprparser.lo -MD -MP -MF .deps/mod_ssi_exprparser.Tpo -c mod_ssi_exprparser.c  -fPIC -DPIC -o .libs/mod_ssi_exprparser.o
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -DLIBRARY_DIR="\"/usr/local/lib\"" -I. -I..   -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_ssi_expr.lo -MD -MP -MF .deps/mod_ssi_expr.Tpo -c -o mod_ssi_expr.lo mod_ssi_expr.c
+configparser.c: In function 'io_set_callback':
+mv -f .deps/http_req_range.Tpo .deps/http_req_range.Po
+configparser.c:10330:16: warning: ISO C forbids conversion of function pointer to object pointer type [-Wpedantic]
+   iocb->data = (void *)cb;
+                ^
+mv -f .deps/http_resp_parser.Tpo .deps/http_resp_parser.Po
+configparser.c: In function 'configparser_get_variable':
+configparser.c:10523:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) != (unsigned int )du) {
+         ^
+configparser.c:10523:39: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) != (unsigned int )du) {
+                                       ^
+configparser.c: In function 'configparserTrace':
+configparser.c:10732:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )yyTraceFILE == (unsigned int )((FILE *)0)) {
+       ^
+configparser.c:10732:37: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )yyTraceFILE == (unsigned int )((FILE *)0)) {
+                                     ^
+configparser.c:10735:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )yyTracePrompt == (unsigned int )((char *)0)) {
+         ^
+configparser.c:10735:41: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )yyTracePrompt == (unsigned int )((char *)0)) {
+                                         ^
+configparser.c: In function 'configparserFree':
+configparser.c:10888:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )pParser == (unsigned int )((yyParser *)0)) {
+       ^
+configparser.c:10888:33: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )pParser == (unsigned int )((yyParser *)0)) {
+                                 ^
+mv -f .deps/http_req_range_parser.Tpo .deps/http_req_range_parser.Po
+mv -f .deps/http_req_parser.Tpo .deps/http_req_parser.Po
+configparser.c: In function 'yy_reduce':
+configparser.c:11199:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (! ((unsigned int )((void const   *)(((yymsp + -2)->minor.yy43)->ptr + 1)) - (unsigned int )((void const   *)((yymsp + -2)->minor.yy43)->ptr) == 1U)) {
+              ^
+configparser.c:11199:87: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (! ((unsigned int )((void const   *)(((yymsp + -2)->minor.yy43)->ptr + 1)) - (unsigned int )((void const   *)((yymsp + -2)->minor.yy43)->ptr) == 1U)) {
+                                                                                       ^
+configparser.c:11204:18: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+           if (! ((unsigned int )((void const   *)("env." + 1)) - (unsigned int )((void const   *)"env.") == 1U)) {
+                  ^
+configparser.c:11204:66: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+           if (! ((unsigned int )((void const   *)("env." + 1)) - (unsigned int )((void const   *)"env.") == 1U)) {
+                                                                  ^
+configparser.c:11243:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) == (unsigned int )tmp___0) {
+         ^
+configparser.c:11243:39: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) == (unsigned int )tmp___0) {
+                                       ^
+configparser.c:11263:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (! ((unsigned int )((void const   *)(((yymsp + -2)->minor.yy43)->ptr + 1)) - (unsigned int )((void const   *)((yymsp + -2)->minor.yy43)->ptr) == 1U)) {
+              ^
+libtool: compile:  gcc -DHAVE_CONFIG_H -DLIBRARY_DIR=\"/usr/local/lib\" -I. -I.. -D_REENTRANT -D__EXTENSIONS__ -DOPENSSL_NO_KRB5 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -MT mod_ssi_expr.lo -MD -MP -MF .deps/mod_ssi_expr.Tpo -c mod_ssi_expr.c  -fPIC -DPIC -o .libs/mod_ssi_expr.o
+configparser.c:11263:87: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (! ((unsigned int )((void const   *)(((yymsp + -2)->minor.yy43)->ptr + 1)) - (unsigned int )((void const   *)((yymsp + -2)->minor.yy43)->ptr) == 1U)) {
+                                                                                       ^
+configparser.c:11268:18: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+           if (! ((unsigned int )((void const   *)("env." + 1)) - (unsigned int )((void const   *)"env.") == 1U)) {
+                  ^
+configparser.c:11268:66: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+           if (! ((unsigned int )((void const   *)("env." + 1)) - (unsigned int )((void const   *)"env.") == 1U)) {
+                                                                  ^
+configparser.c:11307:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) != (unsigned int )du) {
+         ^
+configparser.c:11307:39: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) != (unsigned int )du) {
+                                       ^
+configparser.c:11309:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if ((unsigned int )((void *)0) == (unsigned int )du) {
+           ^
+configparser.c:11309:41: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if ((unsigned int )((void *)0) == (unsigned int )du) {
+                                         ^
+configparser.c:11318:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if ((unsigned int )((void *)0) != (unsigned int )du) {
+           ^
+configparser.c:11318:41: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if ((unsigned int )((void *)0) != (unsigned int )du) {
+                                         ^
+configparser.c:11320:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+         if ((unsigned int )((void *)0) == (unsigned int )du) {
+             ^
+configparser.c:11320:43: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+         if ((unsigned int )((void *)0) == (unsigned int )du) {
+                                           ^
+configparser.c:11340:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )tmp___29 == (unsigned int )((void *)0)) {
+       ^
+configparser.c:11340:34: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )tmp___29 == (unsigned int )((void *)0)) {
+                                  ^
+configparser.c:11352:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )((void *)0) == (unsigned int )yygotominor.yy41) {
+       ^
+configparser.c:11352:37: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )((void *)0) == (unsigned int )yygotominor.yy41) {
+                                     ^
+configparser.c:11371:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (! ((unsigned int )((void const   *)(((yymsp + 0)->minor.yy43)->ptr + 1)) - (unsigned int )((void const   *)((yymsp + 0)->minor.yy43)->ptr) == 1U)) {
+              ^
+configparser.c:11371:86: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if (! ((unsigned int )((void const   *)(((yymsp + 0)->minor.yy43)->ptr + 1)) - (unsigned int )((void const   *)((yymsp + 0)->minor.yy43)->ptr) == 1U)) {
+                                                                                      ^
+mv -f .deps/configfile.Tpo .deps/configfile.Po
+configparser.c:11376:18: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+           if (! ((unsigned int )((void const   *)("env." + 1)) - (unsigned int )((void const   *)"env.") == 1U)) {
+                  ^
+mod_ssi_exprparser.c: In function 'ssiexprparserTokenName':
+mod_ssi_exprparser.c:288:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if( tokenType>0 && tokenType<(sizeof(yyTokenName)/sizeof(yyTokenName[0])) ){
+                               ^
+mod_ssi_exprparser.c: In function 'yy_find_shift_action':
+mod_ssi_exprparser.c:427:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   i += iLookAhead;
+               ^
+mod_ssi_exprparser.c: In function 'yy_find_reduce_action':
+configparser.c:11376:66: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+           if (! ((unsigned int )((void const   *)("env." + 1)) - (unsigned int )((void const   *)"env.") == 1U)) {
+                                                                  ^
+mod_ssi_exprparser.c:470:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   i += iLookAhead;
+               ^
+mod_ssi_exprparser.c: In function 'yy_reduce':
+mod_ssi_exprparser.c:562:20: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   if( yyTraceFILE && yyruleno>=0
+                    ^
+mod_ssi_exprparser.c: In function 'yy_syntax_error':
+mod_ssi_exprparser.c:776:7: warning: unused parameter 'yymajor' [-Wunused-parameter]
+   yyParser *yypParser,           /* The parser */
+       ^
+mod_ssi_exprparser.c:777:15: warning: unused parameter 'yyminor' [-Wunused-parameter]
+   int yymajor,                   /* The major type of the error token */
+               ^
+configparser.c:11407:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) != (unsigned int )env) {
+         ^
+configparser.c:11407:39: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) != (unsigned int )env) {
+                                       ^
+configparser.c:11418:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) == (unsigned int )yygotominor.yy41) {
+         ^
+configparser.c:11418:39: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) == (unsigned int )yygotominor.yy41) {
+                                       ^
+configparser.c:11479:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) == (unsigned int )tmp___50) {
+         ^
+configparser.c:11479:39: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) == (unsigned int )tmp___50) {
+                                       ^
+configparser.c:11623:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )((void *)0) != (unsigned int )dc___0) {
+       ^
+configparser.c:11623:37: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   if ((unsigned int )((void *)0) != (unsigned int )dc___0) {
+                                     ^
+configparser.c:11702:9: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) == (unsigned int )tmp___54) {
+         ^
+configparser.c:11702:39: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     if ((unsigned int )((void *)0) == (unsigned int )tmp___54) {
+                                       ^
+configparser.c:11710:11: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if ((unsigned int )((void *)0) == (unsigned int )tmp___53) {
+           ^
+configparser.c:11710:41: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+       if ((unsigned int )((void *)0) == (unsigned int )tmp___53) {
+                                         ^
+configparser.c:11711:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+         if ((unsigned int )errptr != (unsigned int )((void *)0)) {
+             ^
+configparser.c:11711:38: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+         if ((unsigned int )errptr != (unsigned int )((void *)0)) {
+                                      ^
+configparser.c:11126:10: warning: unused variable 'tmp___42' [-Wunused-variable]
+   size_t tmp___42 ;
+          ^
+configparser.c:11125:10: warning: unused variable 'tmp___41' [-Wunused-variable]
+   size_t tmp___41 ;
+          ^
+configparser.c:11119:16: warning: unused variable '__result___4' [-Wunused-variable]
+   register int __result___4 ;
+                ^
+configparser.c:11118:26: warning: unused variable '__s1___1' [-Wunused-variable]
+   unsigned char const   *__s1___1 ;
+                          ^
+configparser.c:11117:7: warning: unused variable 'tmp___35' [-Wunused-variable]
+   int tmp___35 ;
+       ^
+configparser.c:11116:16: warning: unused variable '__result___3' [-Wunused-variable]
+   register int __result___3 ;
+                ^
+configparser.c:11115:26: warning: unused variable '__s2___1' [-Wunused-variable]
+   unsigned char const   *__s2___1 ;
+                          ^
+configparser.c:11114:7: warning: unused variable 'tmp___34' [-Wunused-variable]
+   int tmp___34 ;
+       ^
+configparser.c:11112:7: warning: unused variable 'tmp___32' [-Wunused-variable]
+   int tmp___32 ;
+       ^
+configparser.c:11109:10: warning: unused variable 'tmp___31' [-Wunused-variable]
+   size_t tmp___31 ;
+          ^
+configparser.c:11108:10: warning: unused variable 'tmp___30' [-Wunused-variable]
+   size_t tmp___30 ;
+          ^
+configparser.c:11104:9: warning: unused variable 'tmp___28' [-Wunused-variable]
+   void *tmp___28 ;
+         ^
+configparser.c:11103:10: warning: unused variable 'tmp___27' [-Wunused-variable]
+   size_t tmp___27 ;
+          ^
+configparser.c:11102:10: warning: unused variable 'tmp___26' [-Wunused-variable]
+   size_t tmp___26 ;
+          ^
+configparser.c:11096:16: warning: unused variable '__result___2' [-Wunused-variable]
+   register int __result___2 ;
+                ^
+mv -f .deps/mod_ssi_exprparser.Tpo .deps/mod_ssi_exprparser.Plo
+configparser.c:11095:26: warning: unused variable '__s1___0' [-Wunused-variable]
+   unsigned char const   *__s1___0 ;
+                          ^
+configparser.c:11094:7: warning: unused variable 'tmp___20' [-Wunused-variable]
+   int tmp___20 ;
+       ^
+configparser.c:11093:16: warning: unused variable '__result___1' [-Wunused-variable]
+   register int __result___1 ;
+                ^
+configparser.c:11092:26: warning: unused variable '__s2___0' [-Wunused-variable]
+   unsigned char const   *__s2___0 ;
+                          ^
+configparser.c:11091:7: warning: unused variable 'tmp___19' [-Wunused-variable]
+   int tmp___19 ;
+       ^
+configparser.c:11089:7: warning: unused variable 'tmp___17' [-Wunused-variable]
+   int tmp___17 ;
+       ^
+configparser.c:11086:10: warning: unused variable 'tmp___16' [-Wunused-variable]
+   size_t tmp___16 ;
+          ^
+configparser.c:11085:10: warning: unused variable 'tmp___15' [-Wunused-variable]
+   size_t tmp___15 ;
+          ^
+configparser.c:11081:10: warning: unused variable 'tmp___13' [-Wunused-variable]
+   size_t tmp___13 ;
+          ^
+configparser.c:11080:10: warning: unused variable 'tmp___12' [-Wunused-variable]
+   size_t tmp___12 ;
+          ^
+configparser.c:11074:16: warning: unused variable '__result___0' [-Wunused-variable]
+   register int __result___0 ;
+                ^
+configparser.c:11073:26: warning: unused variable '__s1' [-Wunused-variable]
+   unsigned char const   *__s1 ;
+                          ^
+configparser.c:11072:7: warning: unused variable 'tmp___6' [-Wunused-variable]
+   int tmp___6 ;
+       ^
+configparser.c:11071:16: warning: unused variable '__result' [-Wunused-variable]
+   register int __result ;
+                ^
+configparser.c:11070:26: warning: unused variable '__s2' [-Wunused-variable]
+   unsigned char const   *__s2 ;
+                          ^
+configparser.c:11069:7: warning: unused variable 'tmp___5' [-Wunused-variable]
+   int tmp___5 ;
+       ^
+configparser.c:11067:7: warning: unused variable 'tmp___3' [-Wunused-variable]
+   int tmp___3 ;
+       ^
+configparser.c:11064:10: warning: unused variable 'tmp___2' [-Wunused-variable]
+   size_t tmp___2 ;
+          ^
+configparser.c:11063:10: warning: unused variable 'tmp___1' [-Wunused-variable]
+   size_t tmp___1 ;
+          ^
+configparser.c: In function 'yy_syntax_error':
+configparser.c:11842:55: warning: unused parameter 'yymajor' [-Wunused-parameter]
+ static void yy_syntax_error(yyParser *yypParser , int yymajor , YYMINORTYPE yyminor ) 
+                                                       ^
+configparser.c:11842:77: warning: unused parameter 'yyminor' [-Wunused-parameter]
+ static void yy_syntax_error(yyParser *yypParser , int yymajor , YYMINORTYPE yyminor ) 
+                                                                             ^
+mv -f .deps/mod_ssi_expr.Tpo .deps/mod_ssi_expr.Plo
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -module -export-dynamic -avoid-version -no-undefined  -o mod_ssi.la -rpath /usr/local/lib mod_ssi_exprparser.lo mod_ssi_expr.lo mod_ssi.lo  -lpcre -lrt 
+mv -f .deps/configparser.Tpo .deps/configparser.Po
+/bin/sh ../libtool --tag=CC   --mode=link gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall -W -Wshadow -pedantic -std=gnu99 -export-dynamic  -o lighttpd server.o response.o connections.o network.o configfile.o configparser.o request.o proc_open.o buffer.o log.o keyvalue.o chunk.o filter.o stream.o fdevent.o stat_cache.o plugin.o joblist.o etag.o array.o data_string.o data_count.o data_array.o data_integer.o md5.o fdevent_select.o fdevent_linux_rtsig.o fdevent_poll.o fdevent_linux_sysepoll.o fdevent_solaris_devpoll.o fdevent_freebsd_kqueue.o data_config.o bitset.o inet_ntop_cache.o crc32.o connections-glue.o iosocket.o configfile-glue.o status_counter.o http-header-glue.o network_write.o network_linux_sendfile.o network_freebsd_sendfile.o network_writev.o network_solaris_sendfilev.o network_openssl.o network_linux_aio.o network_posix_aio.o network_gthread_aio.o network_gthread_sendfile.o http_resp.o http_resp_parser.o http_req.o http_req_parser.o http_req_range.o http_req_range_parser.o timing.o -lpcre -ldl    -lssl -lcrypto  -lrt -pthread -pthread -lgthread-2.0 -lglib-2.0   -lrt 
+libtool: link: gcc -shared  .libs/mod_ssi_exprparser.o .libs/mod_ssi_expr.o .libs/mod_ssi.o   -lpcre -lrt  -pthread   -pthread -Wl,-soname -Wl,mod_ssi.so -o .libs/mod_ssi.so
+libtool: link: gcc -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -Wall -W -Wshadow -pedantic -std=gnu99 -o lighttpd server.o response.o connections.o network.o configfile.o configparser.o request.o proc_open.o buffer.o log.o keyvalue.o chunk.o filter.o stream.o fdevent.o stat_cache.o plugin.o joblist.o etag.o array.o data_string.o data_count.o data_array.o data_integer.o md5.o fdevent_select.o fdevent_linux_rtsig.o fdevent_poll.o fdevent_linux_sysepoll.o fdevent_solaris_devpoll.o fdevent_freebsd_kqueue.o data_config.o bitset.o inet_ntop_cache.o crc32.o connections-glue.o iosocket.o configfile-glue.o status_counter.o http-header-glue.o network_write.o network_linux_sendfile.o network_freebsd_sendfile.o network_writev.o network_solaris_sendfilev.o network_openssl.o network_linux_aio.o network_posix_aio.o network_gthread_aio.o network_gthread_sendfile.o http_resp.o http_resp_parser.o http_req.o http_req_parser.o http_req_range.o http_req_range_parser.o timing.o -pthread -pthread -Wl,--export-dynamic  -lpcre -ldl -lssl -lcrypto -lgthread-2.0 -lglib-2.0 -lrt -pthread
+libtool: link: ( cd ".libs" && rm -f "mod_ssi.la" && ln -s "../mod_ssi.la" "mod_ssi.la" )
+make[2]: Leaving directory `/experiment/src/src'
+Making all in doc
+make[2]: Entering directory `/experiment/src/doc'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/doc'
+Making all in tests
+make[2]: Entering directory `/experiment/src/tests'
+Making all in docroot
+make[3]: Entering directory `/experiment/src/tests/docroot'
+Making all in 123
+make[4]: Entering directory `/experiment/src/tests/docroot/123'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/experiment/src/tests/docroot/123'
+Making all in www
+make[4]: Entering directory `/experiment/src/tests/docroot/www'
+Making all in go
+make[5]: Entering directory `/experiment/src/tests/docroot/www/go'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/experiment/src/tests/docroot/www/go'
+Making all in indexfile
+make[5]: Entering directory `/experiment/src/tests/docroot/www/indexfile'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/experiment/src/tests/docroot/www/indexfile'
+Making all in expire
+make[5]: Entering directory `/experiment/src/tests/docroot/www/expire'
+make[5]: Nothing to be done for `all'.
+make[5]: Leaving directory `/experiment/src/tests/docroot/www/expire'
+make[5]: Entering directory `/experiment/src/tests/docroot/www'
+make[5]: Nothing to be done for `all-am'.
+make[5]: Leaving directory `/experiment/src/tests/docroot/www'
+make[4]: Leaving directory `/experiment/src/tests/docroot/www'
+make[4]: Entering directory `/experiment/src/tests/docroot'
+make[4]: Nothing to be done for `all-am'.
+make[4]: Leaving directory `/experiment/src/tests/docroot'
+make[3]: Leaving directory `/experiment/src/tests/docroot'
+make[3]: Entering directory `/experiment/src/tests'
+make[3]: Nothing to be done for `all-am'.
+make[3]: Leaving directory `/experiment/src/tests'
+make[2]: Leaving directory `/experiment/src/tests'
+Making all in cygwin
+make[2]: Entering directory `/experiment/src/cygwin'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/cygwin'
+Making all in openwrt
+make[2]: Entering directory `/experiment/src/openwrt'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/experiment/src/openwrt'
+make[2]: Entering directory `/experiment/src'
+make[2]: Leaving directory `/experiment/src'
+make[1]: Leaving directory `/experiment/src'
