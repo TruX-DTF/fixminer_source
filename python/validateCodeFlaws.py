@@ -62,7 +62,8 @@ def test_all(testerPath,validTests):
         out,e = shellGitCheckout(cmd)
         # out = client.containers.exec(container=container, command=cmd, context='/experiment/')
 
-        if 'Accepted' not in out or e != '':
+        # if 'Accepted' not in out or e != '':
+        if 'Accepted' not in out :
             failure += 1
             failure_cases.append(test)
             # test_outcomes.append(out.output)
@@ -178,7 +179,7 @@ def validate():
          bugList.append(b)
 
      # results = parallelRunMerge(testCore, bugList,max_workers=10)
-     results = parallelRunMerge(validateCore, bugList)
+     results = parallelRunMerge(validateCore, bugList,max_workers=6)
      print('\n'.join(results))
      with open(join(DATA_PATH, 'codeFlawsResults'), 'w',
                encoding='utf-8') as writeFile:
