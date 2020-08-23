@@ -128,7 +128,7 @@ def validateCore(bugName):
         # if patch_result.successful:
         if isfile(join(DATA_PATH,'codeflaws',bugName,bugName+spfile)):
 
-            cmd = 'mv ' + join(DATA_PATH,'codeflaws',bugName,bugName+spfile) + ' ' + join(DATA_PATH,'codeflaws',bugName,bugName)
+            cmd = 'mv ' + join(DATA_PATH,'codeflaws',bugName,bugName+spfile) + ' ' + join(DATA_PATH,'codeflaws',bugName,contestid+'-'+problem+'-'+buggyId)
             o, e = shellGitCheckout(cmd)
 
             output += '@True:' + str(idx) + ':' + patch.split('/')[-1] + '@'
