@@ -128,6 +128,9 @@ def validateCore(bugName):
         # if patch_result.successful:
         if isfile(join(DATA_PATH,'codeflaws',bugName,bugName+spfile)):
 
+            cmd = 'mv ' + join(DATA_PATH,'codeflaws',bugName,bugName+spfile) + ' ' + join(DATA_PATH,'codeflaws',bugName,bugName)
+            o, e = shellGitCheckout(cmd)
+
             output += '@True:' + str(idx) + ':' + patch.split('/')[-1] + '@'
 
             validTests = readTestSuite(join(DATA_PATH, 'codeflaws', bugName, 'test-valid.sh'))
