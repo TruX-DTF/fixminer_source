@@ -84,13 +84,15 @@ def testCore(t):
                 # output += '@fail:' + str(pre_failure) + '@total:' + str(total) + ', '
 
                 # spfiles = listdir(join(DATASET, 'cocci'))
-                spfiles = load_zipped_pickle(join(DATA_PATH, 'uniquePatternsL.pickle'))
+                spfiles = load_zipped_pickle(join(DATA_PATH, 'uniquePatterns.pickle'))
                 spfiles.sort_values(by='uFreq', inplace=True, ascending=False)
                 spfiles = spfiles[['uid']]
                 # print("patching... " + bugName)
                 for idx,spfile in enumerate(spfiles.uid.values.tolist()):
                     if spfile == '.DS_Store':
                         continue
+
+                    # spfile ='if_8_102.cocci0-cocci_patches'
 
                     path = join(DATA_PATH,'introclass',bugName)
                     patch = patchSourceFile(path,spfile,bugName)
@@ -120,8 +122,15 @@ def testCore(t):
                     # output += '@True@'
                     output += '@True:' + str(idx) + ':' + patch.split('/')[-1] + '@'
                     # print("Second_test:", end=' ')
-                    post_test_outcomes = {}
-                    post_failure_cases, post_failure, total, post_test_outcomes = test_all(bug, container, client)
+
+
+                    #black
+                    # post_test_outcomes = {}
+                    # post_failure_cases, post_failure, total, post_test_outcomes = test_all(bug, container, client)
+
+                    validTests = readTestSuite(join(path, 'whitebox_test.sh'))
+                    post_failure_cases, post_failure, total = test_all_white(bug, container, client,validTests)
+
                     # print("{}".format(post_failure), end=' ')
                     output += str(post_failure) + ' '
                     if post_failure == 0:
@@ -206,7 +215,7 @@ def patch_validate():
     # t = 'introclass:syllables:99cbb4:000',6000
     # testCore(t)
     # results = parallelRunMerge(testCore, bugList,max_workers=10)
-    results = parallelRunMerge(testCore, bugList)
+    results = parallelRunMerge(testCore, bugList , max_workers=10)
     print('\n'.join(results))
     with open(join(DATA_PATH, 'introTestResults'), 'w',
               encoding='utf-8') as writeFile:
@@ -218,6 +227,44 @@ def patch_validate():
 
 
 from bugzoo import Patch, Client
+
+def readTestSuite(testPath):
+    regex = r"([p|n0-9]+)\)"
+    with open(testPath,mode='r') as testFile:
+        test_str = testFile.read()
+    matches = re.finditer(regex, test_str, re.MULTILINE)
+
+    testList = []
+    for matchNum, match in enumerate(matches, start=1):
+
+         for groupNum in range(0, len(match.groups())):
+            groupNum = groupNum + 1
+            testList.append(match.group(groupNum))
+    return testList
+
+def test_all_white(bug, container,  client,validTests):
+    test_outcomes = {}  # type: Dict[TestCase, TestOutcome]
+    failure_cases = []
+    failure = 0
+    total = len(validTests)
+    for test in validTests:
+        # if test.name in validTests:
+        cmd = './whitebox_test.sh {}'.format(test)
+        out = client.containers.exec(container=container, command=cmd, context='/experiment/')
+
+        if 'passed' not in out.output or out.code != 0:
+            failure += 1
+            failure_cases.append(test)
+            # test_outcomes.append(out.output)
+            break
+
+        # test_outcomes[test] = client.containers.test(container, test)
+        # if test.expected_outcome != test_outcomes[test].passed:
+        # if test_outcomes[test].passed != True:
+        #     failure.append(test.name)
+        #     failure_cases.append(test.command)
+        #     break
+    return failure_cases, failure, total
 
 def test_all(bug, container,  client):
     test_outcomes = {}  # type: Dict[TestCase, TestOutcome]

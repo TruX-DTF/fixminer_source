@@ -33,13 +33,43 @@ if __name__ == '__main__':
 
         # subject = 'ALL'
         # rootType = 'if'
-        # job = 'validateIntro'
+        # job = 'validateCodeFlaws'
         print(job)
 
 
         if job == 'dataset4j':
             from javaDS import createDS
             createDS()
+
+        elif job == 'introRes':
+            with open(join(DATA_PATH,'introTestResults186'),'r') as f:
+                lines = f.readlines()
+
+            success = [i for i in lines if i.strip().endswith('success')]
+
+            def getPatterns(x):
+                regex = r"fix (.*) by (.*) times:1, success"
+                matches = re.finditer(regex, x, re.MULTILINE)
+                match = list(matches)
+                fixes = []
+                if len(match) >= 1:
+                    for m in match:
+                        t = m.group(1), m.group(2)
+                        fixes.append(t)
+                return fixes
+
+            success = [getPatterns(i) for i in success]
+            patterns  = pd.DataFrame(columns=['bug','pj','pattern'])
+            for idx,suc in enumerate(success):
+                bug,pattern =suc[0]
+                pj =bug.split(':')[1]
+                patterns.loc[idx] = [bug,pj,pattern.split(pj+'.c')[-1]]
+            patterns
+            summary = patterns.groupby(by=['pj'], as_index=False).agg(lambda x: x.tolist())
+            summary['bCount'] = summary.bug.apply(lambda x:len(x))
+
+
+            success
 
         elif job =='dataset4c':
             from otherDatasets import core
@@ -168,7 +198,9 @@ if __name__ == '__main__':
         elif job == 'validateMany':
             from patch_validate import patch_validate
             patch_validate()
-
+        elif job == 'validateCodeFlaws':
+            from validateCodeFlaws import validate
+            validate()
         elif job == 'introclass':
             from getIntroClass import export
             export()

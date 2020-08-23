@@ -59,6 +59,11 @@ def exportCore(bugName):
     if not os.path.exists(join(BUGDIR,bugName)):
         os.makedirs(join(BUGDIR,bugName,))
 
+    cmd = 'docker cp dummy:/experiment/whitebox_test.sh ' + join(BUGDIR,bugName)
+    logging.info(cmd)
+    output, e = shellGitCheckout(cmd)
+    logging.info(output)
+
     cmd = 'docker cp dummy:/experiment/'+ bugName.split(':')[1] + '.c ' + join(BUGDIR,bugName)
     logging.info(cmd)
     output, e = shellGitCheckout(cmd)
