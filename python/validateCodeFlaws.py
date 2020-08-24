@@ -93,7 +93,8 @@ def validateCore(bugName):
     spfiles = load_zipped_pickle(join(DATA_PATH, 'uniquePatterns.pickle'))
 
     spfiles['uProjects'] = spfiles.uFiles.apply(lambda x: list(set([i.split('/{')[0].replace('(','') for i in x])))
-    spfiles[~spfiles.uProjects.apply(lambda x: np.all([i == 'codeflaws' for i in x]))]
+    spfiles = spfiles[~spfiles.uProjects.apply(lambda x: np.all([i == 'codeflaws' for i in x]))]
+    spfiles = spfiles[spfiles.uFreq > 2]
     spfiles = spfiles[['uid']]
 
 
@@ -179,7 +180,7 @@ def validate():
          bugList.append(b)
 
      # results = parallelRunMerge(testCore, bugList,max_workers=10)
-     results = parallelRunMerge(validateCore, bugList,max_workers=6)
+     results = parallelRunMerge(validateCore, bugList,max_workers=1)
      print('\n'.join(results))
      with open(join(DATA_PATH, 'codeFlawsResults'), 'w',
                encoding='utf-8') as writeFile:
