@@ -180,7 +180,7 @@ def validate():
          bugList.append(b)
 
      # results = parallelRunMerge(testCore, bugList,max_workers=10)
-     results = parallelRunMerge(validateCore, bugList,max_workers=1)
+     results = parallelRunMerge(validateCore, bugList)
      print('\n'.join(results))
      with open(join(DATA_PATH, 'codeFlawsResults'), 'w',
                encoding='utf-8') as writeFile:
