@@ -69,8 +69,8 @@ def test_all(testerPath,validTests,testPath):
 
         outpos = test.replace('input-','output-')
         # cmd = 'diff -u --brief -w {} <( '.format(join(testPath,outpos))+testerPath+' < {} )'.format(join(testPath,test))
-        cmd = 'bash ' + join(DATA_PATH, 'test-valid.sh') + ' {} {} {}'.format(join(testPath, test),
-                                                                              join(testPath, outpos), testerPath)
+        cmd = 'bash ' + join(DATA_PATH, 'test-valid2.sh') + ' {} {} {} {} '.format(join(testPath, test),
+                                                                              join(testPath, outpos), testerPath, join(testPath,'time.out'))
         out,e = shellGitCheckout(cmd)
 
 
@@ -183,11 +183,13 @@ def validateCore(bugName):
     # return output
 
 def validate():
+     # validateCore('405-B-bug-6537621-6537728')
      bugs2test= listdir(join(DATA_PATH, 'codeflaws'))
+     bugs2test.sort()
 
      bugList = []
-     for b in bugs2test:
-         if b == '.DS_Store' or b == 'README.md' or b == 'codeflaws-defect-detail-info.txt':
+     for b in bugs2test[2000:]:
+         if b == '.DS_Store' or b == 'README.md' or b == 'codeflaws-defect-detail-info.txt' or b.endswith('.tar.gz'):
              continue
          bugList.append(b)
          # if b == '476-A-bug-16608008-16608059':
