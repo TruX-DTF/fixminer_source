@@ -36,6 +36,11 @@ def patchSourceFile(bugPath,spfile,bugName):
         o,e = shellGitCheckout(cmd)
         return join(DATA_PATH, "codeflaws", bugName, 'patched', patchName + spfile + '.c')
 
+def getTestList(path):
+    files = listdir(path)
+    inputs = [i for i in files if i.startswith('input-')]
+    return inputs
+
 
 def readTestSuite(testPath):
     regex = r"([p|n0-9]+)\)"
@@ -51,19 +56,26 @@ def readTestSuite(testPath):
             testList.append(match.group(groupNum))
     return testList
 
-def test_all(testerPath,validTests):
+def test_all(testerPath,validTests,testPath):
     test_outcomes = {}  # type: Dict[TestCase, TestOutcome]
     failure_cases = []
     failure = 0
     total = len(validTests)
+    #remove prev outputs
+    [os.remove(join(testPath, i)) for i in listdir(testPath) if i.endswith('my_output')]
     for test in validTests:
         # if test.name in validTests:
-        cmd ='bash ' + testerPath + ' {}'.format(test)
-        out,e = shellGitCheckout(cmd)
-        # out = client.containers.exec(container=container, command=cmd, context='/experiment/')
+        # cmd = testerPath + ' < {} '.format(join(testPath,test))
 
-        # if 'Accepted' not in out or e != '':
-        if 'Accepted' not in out :
+        outpos = test.replace('input-','output-')
+        # cmd = 'diff -u --brief -w {} <( '.format(join(testPath,outpos))+testerPath+' < {} )'.format(join(testPath,test))
+        cmd = 'bash ' + join(DATA_PATH, 'test-valid.sh') + ' {} {} {}'.format(join(testPath, test),
+                                                                              join(testPath, outpos), testerPath)
+        out,e = shellGitCheckout(cmd)
+
+
+        if 'Accepted' not in out or e != '':
+        # if 'Accepted' not in out :
             failure += 1
             failure_cases.append(test)
             # test_outcomes.append(out.output)
@@ -134,9 +146,9 @@ def validateCore(bugName):
             o, e = shellGitCheckout(cmd)
 
             output += '@True:' + str(idx) + ':' + patch.split('/')[-1] + '@'
-
-            validTests = readTestSuite(join(DATA_PATH, 'codeflaws', bugName, 'test-valid.sh'))
-            post_failure_cases, post_failure, total = test_all(join(DATA_PATH, 'codeflaws', bugName, 'test-valid.sh'), validTests)
+            validTests = getTestList(join(DATA_PATH, 'codeflaws', bugName))
+            # validTests = readTestSuite(join(DATA_PATH, 'codeflaws', bugName, 'test-valid.sh'))
+            post_failure_cases, post_failure, total = test_all(join(DATA_PATH, 'codeflaws', bugName, contestid+'-'+problem+'-'+buggyId), validTests, join(DATA_PATH, 'codeflaws', bugName))
 
             # print("{}".format(post_failure), end=' ')
             output += str(post_failure) + ' '
@@ -178,6 +190,8 @@ def validate():
          if b == '.DS_Store' or b == 'README.md' or b == 'codeflaws-defect-detail-info.txt':
              continue
          bugList.append(b)
+         # if b == '476-A-bug-16608008-16608059':
+         #    bugList.append(b)
 
      # results = parallelRunMerge(testCore, bugList,max_workers=10)
      results = parallelRunMerge(validateCore, bugList)
