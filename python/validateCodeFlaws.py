@@ -69,7 +69,7 @@ def test_all(testerPath,validTests,testPath):
 
         outpos = test.replace('input-','output-')
         # cmd = 'diff -u --brief -w {} <( '.format(join(testPath,outpos))+testerPath+' < {} )'.format(join(testPath,test))
-        cmd = 'bash ' + join(DATA_PATH, 'test-valid2.sh') + ' {} {} {} {} '.format(join(testPath, test),
+        cmd = 'bash ' + join(ROOT_DIR,'data' , 'test-valid2.sh') + ' {} {} {} {} '.format(join(testPath, test),
                                                                               join(testPath, outpos), testerPath, join(testPath,'time.out'))
         out,e = shellGitCheckout(cmd)
 
