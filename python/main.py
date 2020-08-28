@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
         # subject = 'ALL'
         # rootType = 'if'
-        job = 'validateIntro'
+        job = 'introRes'
         print(job)
 
 
@@ -72,10 +72,22 @@ if __name__ == '__main__':
                 aDf['pos'] = aDf['pos'].apply(lambda x: int(x))
                 return aDf,success
 
-            aDf,success =readResultFile('introTestResults186')
-            bDf,success =readResultFile('introTestResultsWhite')
+            aDf,success =readResultFile('introTestResultsWhite')
+            bDf,success =readResultFile('introTestResultsWhiteFunc')
+            cDf,success =readResultFile('introTestResultsWhiteuFilenames')
+            dDf,success =readResultFile('introTestResultsWhiteuPatch')
+            eDf,success =readResultFile('introTestResultsWhiteuProject')
 
-            plotBox([aDf['noTested'].values.tolist(),bDf['noTested'].values.tolist()], ['blackbox','whitebox'] ,'test.pdf',yAxisLabel='',xAxisLabel='Position of the first plausible patch', limit=False)
+
+
+
+            labels = ['hunks','functions','files','patches','projects']
+
+            data = [aDf['noTested'].values.tolist(), bDf['noTested'].values.tolist(),cDf['noTested'].values.tolist(),dDf['noTested'].values.tolist(),eDf['noTested'].values.tolist()]
+            data = [aDf['pos'].values.tolist(), bDf['pos'].values.tolist(), cDf['pos'].values.tolist(),
+                    dDf['pos'].values.tolist(), eDf['pos'].values.tolist()]
+
+            plotBox(data, labels ,'test.pdf',yAxisLabel='',xAxisLabel='Position of the first plausible patch', limit=False)
             patterns  = pd.DataFrame(columns=['bug','pj','pattern'])
             for idx,suc in enumerate(success):
                 bug,pattern =suc[0]
