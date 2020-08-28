@@ -38,7 +38,8 @@ def patchSourceFile(bugPath,spfile,bugName):
 
 def getTestList(path):
     files = listdir(path)
-    inputs = [i for i in files if i.startswith('input-')]
+    # inputs = [i for i in files if i.startswith('input-')]
+    inputs = [i for i in files if i.startswith('heldout-input-')]
     return inputs
 
 
@@ -102,11 +103,11 @@ def validateCore(bugName):
     output += 'bugName:' + bugName + ', '
 
     # spfiles = listdir(join(DATASET, 'cocci'))
-    spfiles = load_zipped_pickle(join(DATA_PATH, 'uniquePatterns.pickle'))
+    spfiles = load_zipped_pickle(join(DATA_PATH, 'uniquePatternsMod.pickle'))
 
-    spfiles['uProjects'] = spfiles.uFiles.apply(lambda x: list(set([i.split('/{')[0].replace('(','') for i in x])))
-    spfiles = spfiles[~spfiles.uProjects.apply(lambda x: np.all([i == 'codeflaws' for i in x]))]
-    spfiles = spfiles[spfiles.uFreq > 2]
+    # spfiles['uProjects'] = spfiles.uFiles.apply(lambda x: list(set([i.split('/{')[0].replace('(','') for i in x])))
+    # spfiles = spfiles[~spfiles.uProjects.apply(lambda x: np.all([i == 'codeflaws' for i in x]))]
+    spfiles.sort_values(by='uFilenames',inplace=True,ascending=False)
     spfiles = spfiles[['uid']]
 
 
@@ -188,7 +189,7 @@ def validate():
      bugs2test.sort()
 
      bugList = []
-     for b in bugs2test[2000:]:
+     for b in bugs2test:
          if b == '.DS_Store' or b == 'README.md' or b == 'codeflaws-defect-detail-info.txt' or b.endswith('.tar.gz'):
              continue
          bugList.append(b)
@@ -198,7 +199,7 @@ def validate():
      # results = parallelRunMerge(testCore, bugList,max_workers=10)
      results = parallelRunMerge(validateCore, bugList)
      print('\n'.join(results))
-     with open(join(DATA_PATH, 'codeFlawsResults'), 'w',
+     with open(join(DATA_PATH, 'codeFlawsResultsuFilenames'), 'w',
                encoding='utf-8') as writeFile:
          writeFile.write('\n'.join(results))
          validateCore(b)
