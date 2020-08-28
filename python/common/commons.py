@@ -569,7 +569,7 @@ def unique_everseen(iterable, key=None):
                 seen_add(k)
                 yield element
 
-def plotBox(yList,labels, fn, rotate=False,limit=True):
+def plotBox(yList,labels, fn, xAxisLabel,yAxisLabel, rotate=False,limit=True):
     import matplotlib
     matplotlib.use("TkAgg")
     import matplotlib.pyplot as plt
@@ -583,7 +583,7 @@ def plotBox(yList,labels, fn, rotate=False,limit=True):
 
     flierprops = dict(markeredgecolor ='black',markerfacecolor=
                            'black',marker='.',markersize=2)
-    box = ax1.boxplot(yList, 0, flierprops=flierprops,widths=0.5, showmeans=False, vert=True,meanprops=meanpointsprops)
+    box = ax1.boxplot(yList, 0, flierprops=flierprops,widths=0.5, showmeans=True, vert=False,meanprops=meanpointsprops)
     for line in box['medians']:
         x,y = line.get_xydata()[1]
         line.set(linewidth=3)
@@ -598,15 +598,17 @@ def plotBox(yList,labels, fn, rotate=False,limit=True):
     else:
         # ax1.set_xticklabels(labels)
         # ax1.set_xticklabels(None)
-        ax1.get_xaxis().set_ticklabels([])
+        ax1.set_yticklabels(labels, rotation=45, ha='right')
+        ax1.get_yaxis().set_ticklabels(labels)
     # sns.boxplot(yList, ax=ax1)
     if limit:
-        ax1.set_ylim(top=1.1,bottom=0)
+        ax1.set_xlim(left=0)
         ax1.yaxis.set_ticks([0.0,1.0])
     else:
-        ax1.set_yscale('log')
-        ax1.set_xlabel('Cluster Member Size')
-        ax1.set_ylabel('Folds')
+        # ax1.set_yscale('log')
+        ax1.set_xlim(left=0)
+        ax1.set_xlabel(xAxisLabel)
+        ax1.set_ylabel(yAxisLabel)
     plt.ion()
 
     plt.subplots_adjust(wspace=0, hspace=0)

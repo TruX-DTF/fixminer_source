@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
         # subject = 'ALL'
         # rootType = 'if'
-        # job = 'validateCodeFlaws'
+        job = 'validateIntro'
         print(job)
 
 
@@ -42,29 +42,55 @@ if __name__ == '__main__':
             createDS()
 
         elif job == 'introRes':
-            with open(join(DATA_PATH,'introTestResults186'),'r') as f:
-                lines = f.readlines()
 
-            success = [i for i in lines if i.strip().endswith('success')]
+            def readResultFile(resFile):
+                with open(join(DATA_PATH,resFile),'r') as f:
+                    lines = f.readlines()
 
-            def getPatterns(x):
-                regex = r"fix (.*) by (.*) times:1, success"
-                matches = re.finditer(regex, x, re.MULTILINE)
-                match = list(matches)
-                fixes = []
-                if len(match) >= 1:
-                    for m in match:
-                        t = m.group(1), m.group(2)
-                        fixes.append(t)
-                return fixes
+                success = [i for i in lines if i.strip().endswith('success')]
+                patchCandidates = {}
+                def getPatterns(x):
+                    regex = r"fix (.*) by (.*) times:1, success"
+                    matches = re.finditer(regex, x, re.MULTILINE)
+                    match = list(matches)
+                    fixes = []
+                    if len(match) >= 1:
+                        patchCandidates[x.split(',')[0]] =re.findall(r"@True[a-zA-z\:0-9\.\-\_]+@", x, re.MULTILINE)
+                        for m in match:
+                            t = m.group(1), m.group(2)
+                            fixes.append(t)
+                    return fixes
 
-            success = [getPatterns(i) for i in success]
+                success = [getPatterns(i) for i in success]
+                aDf = pd.DataFrame(columns=['bid','candidates'])
+                idx = 0
+                for k,v in patchCandidates.items():
+                    aDf.loc[idx] = [k,[v]]
+                    idx+=1
+                aDf['noTested'] = aDf.candidates.apply(lambda x: len(x[0]))
+                aDf['pos'] = aDf.candidates.apply(lambda x: x[0][-1].split(':')[1])
+                aDf['pos'] = aDf['pos'].apply(lambda x: int(x))
+                return aDf,success
+
+            aDf,success =readResultFile('introTestResults186')
+            bDf,success =readResultFile('introTestResultsWhite')
+
+            plotBox([aDf['noTested'].values.tolist(),bDf['noTested'].values.tolist()], ['blackbox','whitebox'] ,'test.pdf',yAxisLabel='',xAxisLabel='Position of the first plausible patch', limit=False)
             patterns  = pd.DataFrame(columns=['bug','pj','pattern'])
             for idx,suc in enumerate(success):
                 bug,pattern =suc[0]
                 pj =bug.split(':')[1]
                 patterns.loc[idx] = [bug,pj,pattern.split(pj+'.c')[-1]]
-            patterns
+            fixPatterns = patterns.groupby(by=['pattern'], as_index=False).agg(lambda x: x.tolist())
+            fixPatterns['count'] = fixPatterns.bug.apply(lambda x: len(x))
+            fixPatterns.sort_values(by=['count'], ascending=False, inplace=True)
+            fixPatterns[['pattern','count']].to_latex(index=False)
+
+            for i in fixPatterns.pattern.values.tolist():
+                i = re.findall(r"((.*)\.c$)", i, re.MULTILINE)[0][1]
+
+                shutil.copy2(join(DATA_PATH, 'patches', 'cocci', i), join(DATA_PATH, 'white', i))
+
             summary = patterns.groupby(by=['pj'], as_index=False).agg(lambda x: x.tolist())
             summary['bCount'] = summary.bug.apply(lambda x:len(x))
 
@@ -73,6 +99,10 @@ if __name__ == '__main__':
 
         elif job =='dataset4c':
             from otherDatasets import core
+            core()
+
+        elif job =='datasetIntro':
+            from introDS import core
             core()
         elif job =='richedit':
             dbDir = join(DATA_PATH, 'redis')
@@ -102,7 +132,7 @@ if __name__ == '__main__':
         elif job == 'cluster':
             from abstractPatch import cluster
 
-            dbDir = join(DATA_PATH, 'redis')
+            dbDir = join(ROOT_DIR,'data','redis')
             startDB(dbDir, REDIS_PORT, PROJECT_TYPE)
             cluster(join(DATA_PATH,'actions'),join(DATA_PATH, 'pairs'),'actions')
 
