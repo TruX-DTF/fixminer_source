@@ -105,6 +105,21 @@ def getMapping(pathMapping,x):
 
 
 
+def decode_redis(src):
+    if isinstance(src, list):
+        rv = list()
+        for key in src:
+            rv.append(decode_redis(key))
+        return rv
+    elif isinstance(src, dict):
+        rv = dict()
+        for key in src:
+            rv[key.decode()] = decode_redis(src[key])
+        return rv
+    elif isinstance(src, bytes):
+        return src.decode()
+    else:
+        raise Exception("type not handled: " +type(src))
 
 def cluster(clusterPath,pairsPath, level):
 
@@ -115,10 +130,16 @@ def cluster(clusterPath,pairsPath, level):
             roots = [i for i in roots if not i.startswith('.')]
 
             port = REDIS_PORT
+            redis_db = redis.StrictRedis(host="localhost", port=port, db=1)
+            filenames= decode_redis(redis_db.hgetall('filenames'))
+            pairsPath = filenames
+            roots = list(set([i.split('-')[0] for i in filenames.keys()]))
             if level == 'tokens':
                 redis_db = redis.StrictRedis(host="localhost", port=port, db=3)
             else:
                 redis_db = redis.StrictRedis(host="localhost", port=port, db=2)
+
+
 
             keys = redis_db.hkeys("compared")
             compared = pd.DataFrame(keys, columns=['pairs_key'])
@@ -169,21 +190,24 @@ def clusterCore(clusterPath, level, match, pairsPath, root, s,action ,token=''):
         logging.info('Cluster size %d',len(subgraph.nodes()))
         cluster.append(subgraph.nodes())
     cluster
-    pathMapping = dict()
-    if level == 'tokens':
-        indexFile = join(pairsPath, root, s,action+'.index')
-    elif level == 'actions':
-        indexFile = join(pairsPath, root, s + '.index')
-    # else:
-    #     indexFile =join(pairsPath, root, s,action,token+'.index')
-    df = pd.read_csv(indexFile, header=None, usecols=[0, 1], index_col=[0])
-    pathMapping = df.to_dict()
+    # pathMapping = dict()
+    # if level == 'tokens':
+    #     indexFile = join(pairsPath, root, s,action+'.index')
+    # elif level == 'actions':
+    #     indexFile = join(pairsPath, root, s + '.index')
+    # # else:
+    # #     indexFile =join(pairsPath, root, s,action,token+'.index')
+    # df = pd.read_csv(indexFile, header=None, usecols=[0, 1], index_col=[0])
+    # pathMapping = df.to_dict()
 
     workList = []
     for idx, clus in enumerate(cluster):
         logging.info('exporting cluster %s %s %s %d', root,s,action,idx)
         for f in clus:
-            dumpFile = pathMapping[1][int(f)]
+            # redis_db = redis.StrictRedis(host="localhost", port=6399, db=1)
+            # dumpFile = redis_db.hget("filenames",root+'-'+s+'-'+f)
+            dumpFile = pairsPath[root+'-'+s+'-'+f]
+            # dumpFile = pathMapping[1][int(f)]
 
             t = dumpFile,root,level,clusterPath,s,action,token,idx
             workList.append(t)

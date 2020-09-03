@@ -598,7 +598,7 @@ def plotBox(yList,labels, fn, xAxisLabel,yAxisLabel, rotate=False,limit=True):
     else:
         # ax1.set_xticklabels(labels)
         # ax1.set_xticklabels(None)
-        ax1.set_yticklabels(labels, rotation=45, ha='right')
+        ax1.set_yticklabels(labels,  ha='right')
         ax1.get_yaxis().set_ticklabels(labels)
     # sns.boxplot(yList, ax=ax1)
     if limit:
@@ -615,7 +615,7 @@ def plotBox(yList,labels, fn, xAxisLabel,yAxisLabel, rotate=False,limit=True):
     fig = plt.gcf()
 
     # fig.tight_layout()
-    fig.set_size_inches(7, 1, forward=True)
+    fig.set_size_inches(7, 2, forward=True)
     fig.savefig(fn, dpi=100, bbox_inches='tight')
 
 

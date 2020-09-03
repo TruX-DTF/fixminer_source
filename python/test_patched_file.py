@@ -84,9 +84,13 @@ def testCore(t):
                 # output += '@fail:' + str(pre_failure) + '@total:' + str(total) + ', '
 
                 # spfiles = listdir(join(DATASET, 'cocci'))
-                spfiles = load_zipped_pickle(join(DATA_PATH, 'uniquePatterns.pickle'))
-                spfiles.sort_values(by='uFreq', inplace=True, ascending=False)
+                spfiles = load_zipped_pickle(join(DATA_PATH, 'uniquePatternsMod.pickle'))
+                spfiles.sort_values(by='uProject', inplace=True, ascending=False)
                 spfiles = spfiles[['uid']]
+                #['uid', 'uFreq', 'uFunction', 'uFilenames', 'uPatch', 'uProject']
+                # spfiles = spfiles[spfiles.uFreq > 2]
+                spfiles = spfiles[['uid']]
+
                 # print("patching... " + bugName)
                 for idx,spfile in enumerate(spfiles.uid.values.tolist()):
                     if spfile == '.DS_Store':
@@ -158,7 +162,8 @@ def testCore(t):
                 try:
                     client.shutdown()
                 except Exception as e:
-                    logging.error(e)
+                    logging.debug(e)
+
                 # print(myProcess.pid)
                 # os.killpg(myProcess.pid, signal.SIGTERM)
                 # docker stop $(docker ps -q)
@@ -184,6 +189,14 @@ def patch_validate():
         ,'introclass:median:d6364e:007','introclass:median:489253:007','introclass:syllables:d12048:004','introclass:smallest:d9e7ea:002','introclass:syllables:035fe9:000'
      ,'introclass:syllables:c9d718:002','introclass:syllables:ea67b8:007','introclass:median:48b829:000','introclass:syllables:d9e7ea:001']
 
+    black = load_zipped_pickle(join(DATA_PATH,'blackBugs'))
+    white = load_zipped_pickle(join(DATA_PATH,'whiteBugs'))
+
+    # nonFail.append('introclass:grade-b1924d-001')
+    # nonFail.append('introclass:smallest-b1924d-002')
+
+    # allFixed = list(set(white).union(black)) #288
+    allFixed = white
     # cmd = 'bash ' + join(DATA_PATH,'startBugzoo.sh')
     # cmd = "/Users/anil.koyuncu/anaconda3/envs/python36/bin/bugzood --debug -p " + str(port)
     # output, errors = shellGitCheckout(cmd)
@@ -195,6 +208,9 @@ def patch_validate():
             continue
 
         if b in nonFail:
+            continue
+
+        if b not in allFixed:
             continue
         t = b, port
         bugList.append(t)
@@ -215,9 +231,9 @@ def patch_validate():
     # t = 'introclass:syllables:99cbb4:000',6000
     # testCore(t)
     # results = parallelRunMerge(testCore, bugList,max_workers=10)
-    results = parallelRunMerge(testCore, bugList , max_workers=10)
+    results = parallelRunMerge(testCore, bugList , max_workers=12)
     print('\n'.join(results))
-    with open(join(DATA_PATH, 'introTestResults'), 'w',
+    with open(join(DATA_PATH, 'introTestResultsWhiteuProject'), 'w',
               encoding='utf-8') as writeFile:
         # if levelPatch == 0:
         writeFile.write('\n'.join(results))

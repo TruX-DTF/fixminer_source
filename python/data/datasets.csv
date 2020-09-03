@@ -3,7 +3,6 @@ libtiff, https://gitlab.com/libtiff/libtiff.git
 FFmpeg, https://github.com/FFmpeg/FFmpeg.git
 cmake, https://gitlab.kitware.com/cmake/cmake.git
 redis, https://github.com/antirez/redis.git
-ompi, https://github.com/open-mpi/ompi.git
 gzip, https://git.savannah.gnu.org/git/gzip.git
 libarchive, https://github.com/libarchive/libarchive
 cairo, https://gitlab.freedesktop.org/cairo/cairo.git
@@ -19,14 +18,11 @@ php-src, https://github.com/php/php-src.git
 gtk, https://gitlab.gnome.org/GNOME/gtk.git
 gstreamer, https://gitlab.freedesktop.org/gstreamer/gstreamer.git
 openssh-portable, https://github.com/openssh/openssh-portable.git
-openssl, https://github.com/openssl/openssl.git
 wireshark, https://github.com/wireshark/wireshark.git
-git, https://github.com/git/git.git
 linux, git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 gmp,https://github.com/ryepdx/gmp
 lighttpd1.4,https://github.com/lighttpd/lighttpd1.4.git
 lighttpd2,https://github.com/lighttpd/lighttpd2.git
-xqemu,https://github.com/xqemu/xqemu
 xqemu,https://github.com/xqemu/xqemu
 git,https://github.com/git/git
 gpdb,https://github.com/greenplum-db/gpdb

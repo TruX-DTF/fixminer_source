@@ -8,19 +8,21 @@ INNER_DATA_PATH = join(ROOT,'data')
 def statsNormal(isFixminer=True):
     # tokens = join(DATA_PATH, 'tokens')
     # actions = join(DATA_PATH, 'actions')
-    import redis
-    redis_db = redis.StrictRedis(host="localhost", port=REDIS_PORT, db=0)
-    # keys = redis_db.scan(0, match='*', count='1000000')
-    keys = redis_db.hkeys("dump")  # hkeys "dump"
-    matches = pd.DataFrame(keys, columns=['pairs_key'])
-
+    # import redis
+    # redis_db = redis.StrictRedis(host="localhost", port=REDIS_PORT, db=0)
+    # # keys = redis_db.scan(0, match='*', count='1000000')
+    # keys = redis_db.hkeys("dump")  # hkeys "dump"
+    # matches = pd.DataFrame(keys, columns=['pairs_key'])
+    matches = load_zipped_pickle(join(DATA_PATH,'matches.pickle'))
     # matches = load_zipped_pickle(join(DATA_PATH,'singleHunks'))
     matches['pairs_key'] = matches['pairs_key'].apply(lambda x: x.decode())
     matches['root'] = matches['pairs_key'].apply(lambda x: x.split('/')[0])
     matches['size'] = matches['pairs_key'].apply(lambda x: x.split('/')[1])
     matches['file'] = matches['pairs_key'].apply(lambda x: x.split('/')[2])
-    matches['repo'] = matches['file'].apply(lambda x: x.split('_')[0])
-    matches['commit'] = matches['file'].apply(lambda x: x.split('_')[1])
+    # matches['repo'] = matches['file'].apply(lambda x: x.split('_')[0])
+    matches['repo'] = matches['file'].apply(lambda x: re.split('_[0-9a-f]{6,40}',x)[0])
+    # matches['commit'] = matches['file'].apply(lambda x: x.split('_')[1])
+    matches['commit'] = matches['file'].apply(lambda x: re.findall('_[0-9a-f]{6,40}',x)[0].replace('_',''))
     matches['hunk'] = matches['pairs_key'].apply(lambda x: x.split('/')[2].split('_')[-1])
     matches['fileName'] = matches['pairs_key'].apply(lambda x: '_'.join(x.split('/')[2].split('_')[:-1]))
     test = matches[['fileName','hunk']]
@@ -478,8 +480,9 @@ def exportAbstractPatterns():
 
         try:
             dKey = '/'.join(id[0].split('-')[:-1]) + "/" + members[0]
-            lines = redis_db.hget("dump",dKey )
-
+            # lines = redis_db.hget("dump",dKey )
+            lines = redis_db.hget(dKey,'actionTree')
+            lines = redis_db.hget(dKey,'shapeTree')
             cid = id[0].replace("-",'#')
 
             abstractPattern(cid,lines.decode(),isJava,members)
